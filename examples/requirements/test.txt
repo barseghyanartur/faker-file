@@ -28,7 +28,7 @@ packaging==21.3
     # via
     #   pytest
     #   tox
-parameterize==0.2
+parametrize==0.1.1
     # via -r test.in
 platformdirs==2.5.4
     # via virtualenv

@@ -2,7 +2,7 @@ Faker
 coverage
 factory_boy
 py
-parameterize
+parametrize
 pytest-cov
 pytest-django
 pytest-ordering
