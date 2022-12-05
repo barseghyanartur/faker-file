@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=41.0", "setuptools-scm", "wheel"]
+build-backend = "setuptools.build_meta"
+
+#[project]
+#name = "faker-file"
+#description = ''
+#readme = "README.rst"
+#requires-python = ">=3.7"
+#license = {text = "MIT"}
+#keywords = []
+#authors = [
+#  { name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com" },
+#]
+#classifiers = [
+#  "Development Status :: 4 - Beta",
+#  "Programming Language :: Python",
+#  "Programming Language :: Python :: 3.7",
+#  "Programming Language :: Python :: 3.8",
+#  "Programming Language :: Python :: 3.9",
+#  "Programming Language :: Python :: 3.10",
+#  "Programming Language :: Python :: 3.11",
+##  "Programming Language :: Python :: Implementation :: CPython",
+##  "Programming Language :: Python :: Implementation :: PyPy",
+#]
+#dependencies = [
+#  "python-docx",
+#  "python-pptx",
+#  "pdfkit",
+#  "factory-boy",
+#  "Faker",
+#]
+#dynamic = ["version"]
+#
+#[project.urls]
+#Documentation = "https://github.com/barseghyanartur/faker-file#readme"
+#Issues = "https://github.com/barseghyanartur/faker-file/issues"
+#Source = "https://github.com/barseghyanartur/faker-file"
+#
+#[tool.coverage.run]
+#branch = true
+#parallel = true
+#omit = [
+#  "faker_file/__about__.py",
+#]
+#
+#[tool.coverage.report]
+#exclude_lines = [
+#  "no cov",
+#  "if __name__ == .__main__.:",
+#  "if TYPE_CHECKING:",
+#]
+
+[tool.black]
+line-length = 80
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 80
+
+[tool.ruff]
+line-length = 80

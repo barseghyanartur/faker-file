@@ -1,0 +1,6 @@
+-r common.in
+-r test.in
+-r flask.in
+
+Django>=2.2,<3.0
+django-debug-toolbar>=3.2,<3.3

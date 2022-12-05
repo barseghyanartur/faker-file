@@ -1,0 +1,5 @@
+-r common.in
+-r test.in
+
+Django>=4.0,<4.1
+django-debug-toolbar>=3.3.0

@@ -1,0 +1,63 @@
+name: test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: test ${{ matrix.python-version }} - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        os:
+          - Ubuntu
+        #          - Windows
+        #          - MacOs
+        python-version:
+          - "3.11"
+          - "3.10"
+          - "3.9"
+          - "3.8"
+          - "3.7"
+
+    steps:
+    - name: Install wkhtmltopdf
+      run: sudo apt-get install -y wkhtmltopdf
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+    - name: Install tox
+      run: python -m pip install tox-gh-actions
+    - name: Run test suite
+      run: tox -r
+      env:
+        PYTEST_ADDOPTS: "-vv --durations=10"
+    - name: Coveralls
+      id: coveralls-setup
+      continue-on-error: true
+      uses: AndreMiras/coveralls-python-action@develop
+      with:
+        parallel: true
+        flag-name: Run Tests
+
+  coveralls_finish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      id: coveralls-finish
+      continue-on-error: true
+      if: strategy.steps.coveralls-setup.outcome == 'success'
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      uses: AndreMiras/coveralls-python-action@develop
+      with:
+        parallel-finished: true
+        debug: True

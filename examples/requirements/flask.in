@@ -1,0 +1,9 @@
+-r common.in
+-r test.in
+
+Flask
+Flask-Admin
+Flask-BabelEx
+Flask-SQLAlchemy
+Flask-Testing
+sqlalchemy_utils
