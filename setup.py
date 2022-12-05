@@ -18,7 +18,7 @@ install_requires = [
 
 tests_require = [
     "factory_boy",
-    "parameterize",
+    "parametrize",
     "pytest",
     "pytest-cov",
     "pytest-django",
