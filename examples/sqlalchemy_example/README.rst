@@ -20,4 +20,4 @@ Testing
 =======
 .. code-block:: shell
 
-    pytest -c pytest_sqlalchemy.ini src/faker_file/contrib/sqlalchemy_integration/
+    pytest -c pytest_sqlalchemy.ini src/faker_file/

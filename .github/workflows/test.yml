@@ -11,7 +11,7 @@ jobs:
       max-parallel: 4
       matrix:
         os:
-          - Ubuntu
+          - ubuntu-22.04
         #          - Windows
         #          - MacOs
         python-version:
@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Install wkhtmltopdf
-      run: sudo apt-get install -y wkhtmltopdf
+      run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4

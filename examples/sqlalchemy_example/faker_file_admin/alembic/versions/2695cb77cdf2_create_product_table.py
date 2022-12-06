@@ -1,8 +1,8 @@
-"""create product table
+"""create upload table
 
 Revision ID: 2695cb77cdf2
 Revises: 
-Create Date: 2021-07-03 00:08:14.129153
+Create Date: 2022-12-06 23:46:09.000000
 
 """
 import sqlalchemy as sa
@@ -17,13 +17,13 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        "product",
+        "upload",
         sa.Column("id", sa.Integer, primary_key=True),
         sa.Column("name", sa.String(64), nullable=False),
         sa.Column("description", sa.Text(), nullable=True),
-        sa.Column("file", sa.String(255)),
+        sa.Column("file", sa.String(255), nullable=False),
     )
 
 
 def downgrade():
-    op.drop_table("product")
+    op.drop_table("upload")

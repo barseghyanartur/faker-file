@@ -3,15 +3,7 @@ from flask import send_file
 from flask_admin.contrib import sqla
 
 from . import app, db
-from .models import (
-    Product,
-    ProductProxyAmountFieldsIsNone,
-    ProductProxyCastToDecimal,
-    ProductProxyCastToFloat,
-    ProductProxyCastToInt,
-    ProductProxyChoicesFuncNone,
-    ProductProxyLimitChoicesTo,
-)
+from .models import Upload
 
 
 # Flask views
