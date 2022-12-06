@@ -3,7 +3,6 @@ import unittest
 from typing import Optional, Union
 
 from faker import Faker
-from faker.providers import BaseProvider
 from parametrize import parametrize
 
 from ..providers.docx_file import DocxFileProvider
@@ -25,7 +24,7 @@ from ..providers.zip_file import (
     create_inner_jpeg_file,
     create_inner_png_file,
     create_inner_svg_file,
-    create_inner_webp_file,
+    # create_inner_webp_file,
 )
 
 __all__ = ("ProvidersTestCase",)
@@ -61,7 +60,7 @@ class ProvidersTestCase(unittest.TestCase):
             (PptxFileProvider, "pptx_file"),
             (SvgFileProvider, "svg_file"),
             (TxtFileProvider, "txt_file"),
-            (WebpFileProvider, "webp_file"),
+            # (WebpFileProvider, "webp_file"),
             (ZipFileProvider, "zip_file"),
         ],
     )
@@ -84,7 +83,7 @@ class ProvidersTestCase(unittest.TestCase):
             (PptxFileProvider, "pptx_file"),
             (SvgFileProvider, "svg_file"),
             (TxtFileProvider, "txt_file"),
-            (WebpFileProvider, "webp_file"),
+            # (WebpFileProvider, "webp_file"),
             (ZipFileProvider, "zip_file"),
         ],
     )
@@ -111,7 +110,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_jpeg_file,),
             (create_inner_png_file,),
             (create_inner_svg_file,),
-            (create_inner_webp_file,),
+            # (create_inner_webp_file,),
         ],
     )
     def test_standalone_zip_file(
