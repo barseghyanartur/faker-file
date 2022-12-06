@@ -91,14 +91,14 @@ When using with ``Faker``
     FAKER.add_provider(ZipFileProvider)
 
 Create a TXT file with static content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
     file = FAKER("txt_file", content="Lorem ipsum dolor sit amet")
 
 Create a DOCX file with dynamically generated content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content is generated dynamically.
 - Content is limited to 1024 chars.
 - Wrap lines after 80 chars.
@@ -121,7 +121,7 @@ will be triggered) the generated files will reside outside the ``MEDIA_ROOT``
 directory (by default in ``/tmp/tmp/`` on Linux) and further operations with
 those files through Django will cause ``SuspiciousOperation`` exception.
 
-**Imaginary Django model**
+**Imaginary `Django` model**
 
 .. code-block:: python
 
@@ -147,7 +147,7 @@ those files through Django will cause ``SuspiciousOperation`` exception.
         def __str__(self):
             return self.name
 
-**Correspondent ``factory_boy`` factory**
+**Correspondent `factory_boy` factory**
 
 .. code-block:: python
 
