@@ -49,20 +49,16 @@ class PdfFileProvider(BaseProvider, FileMixin):
     ) -> StringValue:
         """Generate a file with random text.
 
-        :param max_nb_chars: File size in bytes. Note, that it might not be the
-            exact file size. When working with more specific file formats,
-            such as `docx` or `pdf`, size would be the number of generated
-            characters. For random bytes (not `docx` or `pdf`) it would be
-            the exact file size.
-        :param root_path:
-        :param rel_path: Relative path (from Django MEDIA_ROOT directory).
+        :param max_nb_chars: Max number of chars for the content.
+        :param root_path: Path of your files root directory (in case of Django
+            it would be `settings.MEDIA_ROOT`).
+        :param rel_path: Relative path (from root directory).
         :param wrap_chars_after: If given, the output string would be separated
              by line breaks after the given position.
         :param prefix: File name prefix.
-        :param content_generator:
-        :param content:
-        :return: Relative path (from Django MEDIA_ROOT directory) of the
-            generated file.
+        :param content_generator: Content generator.
+        :param content: File content. If given, used as is.
+        :return: Relative path (from root directory) of the generated file.
         """
         # Generic
         file_name = self._generate_filename(

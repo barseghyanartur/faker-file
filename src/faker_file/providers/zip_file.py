@@ -166,12 +166,12 @@ class ZipFileProvider(BaseProvider, FileMixin):
     ) -> StringValue:
         """Generate a file with random text.
 
-        :param root_path:
-        :param rel_path: Relative path (from Django MEDIA_ROOT directory).
+        :param root_path: Path of your files root directory (in case of Django
+            it would be `settings.MEDIA_ROOT`).
+        :param rel_path: Relative path (from root directory).
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as zip.
-        :return: Relative path (from Django MEDIA_ROOT directory) of the
-            generated file.
+        :return: Relative path (from root directory) of the generated file.
         """
         # Generic
         file_name = self._generate_filename(
