@@ -53,7 +53,7 @@ jobs:
     - name: Coveralls Finished
       id: coveralls-finish
       continue-on-error: true
-      if: strategy.steps.coveralls-setup.outcome == 'success'
+      if: test.steps.coveralls-setup.outcome == 'success'
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
