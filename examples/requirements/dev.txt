@@ -50,6 +50,8 @@ filelock==3.8.0
     #   virtualenv
 idna==3.4
     # via requests
+imgkit==1.2.2
+    # via -r common.in
 importlib-metadata==5.1.0
     # via
     #   keyring
@@ -146,6 +148,7 @@ secretstorage==3.3.3
 six==1.16.0
     # via
     #   bleach
+    #   imgkit
     #   python-dateutil
     #   tox
 sqlparse==0.4.3

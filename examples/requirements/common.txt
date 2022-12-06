@@ -4,6 +4,8 @@
 #
 #    pip-compile common.in
 #
+imgkit==1.2.2
+    # via -r common.in
 lxml==4.9.1
     # via
     #   python-docx
@@ -16,5 +18,7 @@ python-docx==0.8.11
     # via -r common.in
 python-pptx==0.6.21
     # via -r common.in
+six==1.16.0
+    # via imgkit
 xlsxwriter==3.0.3
     # via python-pptx

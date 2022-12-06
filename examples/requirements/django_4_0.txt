@@ -30,6 +30,8 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
+imgkit==1.2.2
+    # via -r common.in
 iniconfig==1.1.1
     # via pytest
 lxml==4.9.1
@@ -82,6 +84,7 @@ python-pptx==0.6.21
     # via -r common.in
 six==1.16.0
     # via
+    #   imgkit
     #   python-dateutil
     #   tox
 sqlparse==0.4.3

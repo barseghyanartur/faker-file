@@ -43,6 +43,8 @@ flask-testing==0.8.1
     # via -r flask.in
 greenlet==2.0.1
     # via sqlalchemy
+imgkit==1.2.2
+    # via -r common.in
 iniconfig==1.1.1
     # via pytest
 itsdangerous==2.1.2
@@ -108,6 +110,7 @@ pytz==2022.6
     # via babel
 six==1.16.0
     # via
+    #   imgkit
     #   python-dateutil
     #   tox
 speaklater==1.3

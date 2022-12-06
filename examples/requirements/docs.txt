@@ -46,6 +46,8 @@ idna==3.4
     # via requests
 imagesize==1.4.1
     # via sphinx
+imgkit==1.2.2
+    # via -r common.in
 importlib-metadata==5.1.0
     # via rst2pdf
 iniconfig==1.1.1
@@ -128,6 +130,7 @@ rst2pdf==0.99
     # via -r docs.in
 six==1.16.0
     # via
+    #   imgkit
     #   python-dateutil
     #   tox
 smartypants==2.0.1
