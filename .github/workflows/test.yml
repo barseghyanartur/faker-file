@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   test:
     name: test ${{ matrix.python-version }} - ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       max-parallel: 4
