@@ -5,6 +5,7 @@ from docx import Document
 from faker.providers import BaseProvider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
+from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..content_generators import BaseContentGenerator
 from ..helpers import wrap_text
 
@@ -38,7 +39,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     def docx_file(
         self,
-        max_nb_chars: int = 100_000,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         wrap_chars_after: Optional[int] = None,

@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.1"
+version = "0.2"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -29,10 +29,15 @@ tests_require = [
 
 extras_require = (
     {
-        "all": ["python-docx", "python-pptx", "pdfkit", "Faker"],
+        "all": ["Faker", "imgkit", "pdfkit", "python-docx", "python-pptx"],
         "docx": ["python-docx"],
         "pptx": ["python-pptx"],
         "pdf": ["pdfkit"],
+        "jpg": ["imgkit"],
+        "png": ["imgkit"],
+        "svg": ["imgkit"],
+        "ico": ["imgkit"],
+        "webp": ["imgkit"],
         "django": ["Django>=2.2"],
         "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     },

@@ -1,45 +1,45 @@
 import os
 from typing import Optional
 
-import pdfkit
+import imgkit
 from faker.providers import BaseProvider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
-from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
 from ..content_generators import BaseContentGenerator
 from ..helpers import wrap_text
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("PdfFileProvider",)
+__all__ = ("SvgFileProvider",)
 
 
-class PdfFileProvider(BaseProvider, FileMixin):
-    """PDF file provider.
+class SvgFileProvider(BaseProvider, FileMixin):
+    """SVG file provider.
 
         Usage example:
 
-        from faker_file.providers.pdf_file import PdfFileProvider
+        from faker_file.providers.svg_file import SvgFileProvider
 
-        file = PdfFileProvider(None).pdf_file()
+        file = SvgFileProvider(None).svg_file()
 
     Usage example with options:
 
-        from faker_file.providers.pdf_file import PdfFileProvider
+        from faker_file.providers.svg_file import SvgFileProvider
 
-        file = PdfFileProvider(None).pdf_file(
+        file = SvgFileProvider(None).svg_file(
             max_nb_chars=100_000,
             wrap_chars_after=80,
             prefix="zzz",
         )
     """
 
-    extension: str = "pdf"
+    extension: str = "svg"
 
-    def pdf_file(
+    def svg_file(
         self,
-        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         wrap_chars_after: Optional[int] = None,
@@ -79,7 +79,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
                 wrap_chars_after=wrap_chars_after,
                 content_generator=content_generator,
             )
-        pdfkit.from_string(content, file_name)
+        imgkit.from_string(content, file_name)
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))

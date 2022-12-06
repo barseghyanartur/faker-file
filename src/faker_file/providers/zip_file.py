@@ -6,6 +6,7 @@ from typing import Any, Dict, Optional
 from faker.providers import BaseProvider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
+from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS, DEFAULT_TEXT_MAX_NB_CHARS
 from ..content_generators import BaseContentGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -17,37 +18,16 @@ __all__ = (
     "create_inner_pdf_file",
     "create_inner_docx_file",
     "create_inner_pptx_file",
+    "create_inner_ico_file",
+    "create_inner_jpeg_file",
+    "create_inner_png_file",
+    "create_inner_svg_file",
+    "create_inner_webp_file",
 )
 
 
-def create_inner_txt_file(
-    max_nb_chars: int = 100_000,
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
-    wrap_chars_after: Optional[int] = None,
-    prefix: Optional[str] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
-    content: Optional[str] = None,
-):
-    try:
-        from .txt_file import TxtFileProvider
-    except ImportError as err:
-        raise err
-
-    """Create inner TXT file."""
-    return TxtFileProvider(None).txt_file(
-        max_nb_chars=max_nb_chars,
-        root_path=root_path,
-        rel_path=rel_path,
-        wrap_chars_after=wrap_chars_after,
-        prefix=prefix,
-        content_generator=content_generator,
-        content=content,
-    )
-
-
 def create_inner_docx_file(
-    max_nb_chars: int = 100_000,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     root_path: str = None,
     rel_path: str = DEFAULT_REL_PATH,
     wrap_chars_after: Optional[int] = None,
@@ -73,7 +53,7 @@ def create_inner_docx_file(
 
 
 def create_inner_pdf_file(
-    max_nb_chars: int = 100_000,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     root_path: str = None,
     rel_path: str = DEFAULT_REL_PATH,
     wrap_chars_after: Optional[int] = None,
@@ -99,7 +79,7 @@ def create_inner_pdf_file(
 
 
 def create_inner_pptx_file(
-    max_nb_chars: int = 100_000,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     root_path: str = None,
     rel_path: str = DEFAULT_REL_PATH,
     wrap_chars_after: Optional[int] = None,
@@ -114,6 +94,162 @@ def create_inner_pptx_file(
         raise err
 
     return PptxFileProvider(None).pptx_file(
+        max_nb_chars=max_nb_chars,
+        root_path=root_path,
+        rel_path=rel_path,
+        wrap_chars_after=wrap_chars_after,
+        prefix=prefix,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_txt_file(
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    wrap_chars_after: Optional[int] = None,
+    prefix: Optional[str] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+):
+    try:
+        from .txt_file import TxtFileProvider
+    except ImportError as err:
+        raise err
+
+    """Create inner TXT file."""
+    return TxtFileProvider(None).txt_file(
+        max_nb_chars=max_nb_chars,
+        root_path=root_path,
+        rel_path=rel_path,
+        wrap_chars_after=wrap_chars_after,
+        prefix=prefix,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_ico_file(
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    wrap_chars_after: Optional[int] = None,
+    prefix: Optional[str] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+):
+    """Create inner ICO file."""
+    try:
+        from .ico_file import IcoFileProvider
+    except ImportError as err:
+        raise err
+
+    return IcoFileProvider(None).ico_file(
+        max_nb_chars=max_nb_chars,
+        root_path=root_path,
+        rel_path=rel_path,
+        wrap_chars_after=wrap_chars_after,
+        prefix=prefix,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_jpeg_file(
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    wrap_chars_after: Optional[int] = None,
+    prefix: Optional[str] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+):
+    """Create inner JPEG file."""
+    try:
+        from .jpeg_file import JpegFileProvider
+    except ImportError as err:
+        raise err
+
+    return JpegFileProvider(None).jpeg_file(
+        max_nb_chars=max_nb_chars,
+        root_path=root_path,
+        rel_path=rel_path,
+        wrap_chars_after=wrap_chars_after,
+        prefix=prefix,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_png_file(
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    wrap_chars_after: Optional[int] = None,
+    prefix: Optional[str] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+):
+    """Create inner PNG file."""
+    try:
+        from .png_file import PngFileProvider
+    except ImportError as err:
+        raise err
+
+    return PngFileProvider(None).png_file(
+        max_nb_chars=max_nb_chars,
+        root_path=root_path,
+        rel_path=rel_path,
+        wrap_chars_after=wrap_chars_after,
+        prefix=prefix,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_svg_file(
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    wrap_chars_after: Optional[int] = None,
+    prefix: Optional[str] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+):
+    """Create inner SVG file."""
+    try:
+        from .svg_file import SvgFileProvider
+    except ImportError as err:
+        raise err
+
+    return SvgFileProvider(None).svg_file(
+        max_nb_chars=max_nb_chars,
+        root_path=root_path,
+        rel_path=rel_path,
+        wrap_chars_after=wrap_chars_after,
+        prefix=prefix,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_webp_file(
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    wrap_chars_after: Optional[int] = None,
+    prefix: Optional[str] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+):
+    """Create inner WEBP file."""
+    try:
+        from .webp_file import WebpFileProvider
+    except ImportError as err:
+        raise err
+
+    return WebpFileProvider(None).webp_file(
         max_nb_chars=max_nb_chars,
         root_path=root_path,
         rel_path=rel_path,
@@ -205,7 +341,9 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _create_inner_file_func = options.get(
                 "create_inner_file_func", create_inner_txt_file
             )
-            _max_nb_chars = options.get("max_nb_chars", 1_024)
+            _max_nb_chars = options.get(
+                "max_nb_chars", DEFAULT_TEXT_MAX_NB_CHARS
+            )
             _prefix = options.get("prefix", Path(file_name).stem)
             _content_generator = options.get("content_generator", None)
             _content = options.get("content", None)
@@ -216,7 +354,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             # Defaults
             _count = 5
             _create_inner_file_func = create_inner_txt_file
-            _max_nb_chars = 1_024
+            _max_nb_chars = DEFAULT_TEXT_MAX_NB_CHARS
             _prefix = None
             _content_generator = None
             _content = None

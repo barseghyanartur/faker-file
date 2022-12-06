@@ -1,13 +1,16 @@
+from random import choice
+
 from django.conf import settings
-from factory import Faker
+from factory import Faker, LazyAttribute
 from factory.django import DjangoModelFactory
-from upload.models import Upload
 
 from faker_file.providers.docx_file import DocxFileProvider
 from faker_file.providers.pdf_file import PdfFileProvider
 from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
+
+from upload.models import Upload
 
 Faker.add_provider(DocxFileProvider)
 Faker.add_provider(PdfFileProvider)
@@ -65,3 +68,22 @@ class ZipUploadFactory(AbstractUploadFactory):
     """ZIP Upload factory."""
 
     file = Faker("zip_file", root_path=settings.MEDIA_ROOT)
+
+
+PROVIDER_CHOICES = [
+    lambda: DocxFileProvider(None).docx_file(root_path=settings.MEDIA_ROOT),
+    lambda: PdfFileProvider(None).pdf_file(root_path=settings.MEDIA_ROOT),
+    lambda: PptxFileProvider(None).pptx_file(root_path=settings.MEDIA_ROOT),
+    lambda: TxtFileProvider(None).txt_file(root_path=settings.MEDIA_ROOT),
+    lambda: ZipFileProvider(None).zip_file(root_path=settings.MEDIA_ROOT),
+]
+
+
+def pick_random_provider(*args, **kwargs):
+    return choice(PROVIDER_CHOICES)()
+
+
+class UploadFactory(AbstractUploadFactory):
+    """Upload factory that randomly picks a file provider."""
+
+    file = LazyAttribute(pick_random_provider)

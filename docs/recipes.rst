@@ -121,6 +121,9 @@ will be triggered) the generated files will reside outside the ``MEDIA_ROOT``
 directory (by default in ``/tmp/tmp/`` on Linux) and further operations with
 those files through Django will cause ``SuspiciousOperation`` exception.
 
+Basic example
+^^^^^^^^^^^^^
+
 **Imaginary `Django` model**
 
 .. code-block:: python
@@ -139,6 +142,7 @@ those files through Django will cause ``SuspiciousOperation`` exception.
         pptx_file = models.FileField()
         txt_file = models.FileField()
         zip_file = models.FileField()
+        file = models.FileField()
 
         class Meta:
             verbose_name = "Upload"
@@ -184,6 +188,34 @@ those files through Django will cause ``SuspiciousOperation`` exception.
         pptx_file = Faker("pptx_file", root_path=settings.MEDIA_ROOT)
         txt_file = Faker("txt_file", root_path=settings.MEDIA_ROOT)
         zip_file = Faker("zip_file", root_path=settings.MEDIA_ROOT)
+        file = Faker("txt_file", root_path=settings.MEDIA_ROOT)
 
         class Meta:
             model = Upload
+
+Randomise provider choice
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    from random import choice
+
+    from factory import LazyAttribute
+
+    PROVIDER_CHOICES = [
+        lambda: DocxFileProvider(None).docx_file(root_path=settings.MEDIA_ROOT),
+        lambda: PdfFileProvider(None).pdf_file(root_path=settings.MEDIA_ROOT),
+        lambda: PptxFileProvider(None).pptx_file(root_path=settings.MEDIA_ROOT),
+        lambda: TxtFileProvider(None).txt_file(root_path=settings.MEDIA_ROOT),
+        lambda: ZipFileProvider(None).zip_file(root_path=settings.MEDIA_ROOT),
+    ]
+
+    def pick_random_provider(*args, **kwargs):
+        return choice(PROVIDER_CHOICES)()
+
+    class UploadFactory(DjangoModelFactory):
+        """Upload factory that randomly picks a file provider."""
+
+        # ...
+        file = LazyAttribute(pick_random_provider)
+        # ...
