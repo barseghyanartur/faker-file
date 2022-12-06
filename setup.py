@@ -41,7 +41,7 @@ extras_require = (
 setup(
     name="faker-file",
     version=version,
-    description="Currencies done right.",
+    description="Generate fake files.",
     long_description=f"{readme}",
     long_description_content_type="text/x-rst",
     classifiers=[
@@ -52,9 +52,8 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Environment :: Web Environment",
-        "License :: OSI Approved :: MIT",
+        "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",
-        "Intended Audience :: Financial and Insurance Industry",
         "Operating System :: OS Independent",
         "Development Status :: 4 - Beta",
     ],
@@ -65,7 +64,7 @@ setup(
         "Changelog": "https://faker-file.readthedocs.io/"
         "en/latest/changelog.html",
     },
-    keywords="faker, faker-file, files",
+    keywords="faker, faker-file, files, testing, factories",
     author="Artur Barseghyan",
     author_email="artur.barseghyan@gmail.com",
     url="https://github.com/barseghyanartur/faker-file/",
