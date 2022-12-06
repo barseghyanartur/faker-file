@@ -15,22 +15,37 @@ With ``Faker``
 
     from faker import Faker
     from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.ico_file import IcoFileProvider
+    from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
+    from faker_file.providers.svg_file import SvgFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.providers.webp_file import WebpFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
     FAKER = Faker()
     FAKER.add_provider(DocxFileProvider)
+    FAKER.add_provider(IcoFileProvider)
+    FAKER.add_provider(JpegFileProvider)
     FAKER.add_provider(PdfFileProvider)
+    FAKER.add_provider(PngFileProvider)
     FAKER.add_provider(PptxFileProvider)
+    FAKER.add_provider(SvgFileProvider)
     FAKER.add_provider(TxtFileProvider)
-    FAKER.add_provider(ZipFileProvider)
+    FAKER.add_provider(TxtFileProvider)
+    FAKER.add_provider(WebpFileProvider)
 
     docx_file = FAKER.docx_file()
+    ico_file = FAKER.ico_file()
+    jpeg_file = FAKER.jpeg_file()
     pdf_file = FAKER.pdf_file()
+    png_file = FAKER.png_file()
     pptx_file = FAKER.pptx_file()
+    svg_file = FAKER.svg_file()
     txt_file = FAKER.txt_file()
+    webp_file = FAKER.webp_file()
     zip_file = FAKER.zip_file()
 
 With ``factory_boy``
