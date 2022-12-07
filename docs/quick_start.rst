@@ -14,6 +14,8 @@ With ``Faker``
 .. code-block:: python
 
     from faker import Faker
+    from faker_file.providers.bin_file import BinFileProvider
+    from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
@@ -26,6 +28,8 @@ With ``Faker``
     from faker_file.providers.zip_file import ZipFileProvider
 
     FAKER = Faker()
+    FAKER.add_provider(BinFileProvider)
+    FAKER.add_provider(CsvFileProvider)
     FAKER.add_provider(DocxFileProvider)
     FAKER.add_provider(IcoFileProvider)
     FAKER.add_provider(JpegFileProvider)
@@ -37,6 +41,8 @@ With ``Faker``
     FAKER.add_provider(TxtFileProvider)
     FAKER.add_provider(WebpFileProvider)
 
+    bin_file = FAKER.bin_file()
+    csv_file = FAKER.csv_file()
     docx_file = FAKER.docx_file()
     ico_file = FAKER.ico_file()
     jpeg_file = FAKER.jpeg_file()
@@ -64,11 +70,11 @@ upload/models.py
         description = models.TextField(null=True, blank=True)
 
         # Files
-        docx_file = models.FileField()
-        pdf_file = models.FileField()
-        pptx_file = models.FileField()
-        txt_file = models.FileField()
-        zip_file = models.FileField()
+        docx_file = models.FileField(null=True)
+        pdf_file = models.FileField(null=True)
+        pptx_file = models.FileField(null=True)
+        txt_file = models.FileField(null=True)
+        zip_file = models.FileField(null=True)
 
         class Meta:
             verbose_name = "Upload"

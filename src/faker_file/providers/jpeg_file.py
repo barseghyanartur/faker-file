@@ -39,11 +39,11 @@ class JpegFileProvider(BaseProvider, FileMixin):
 
     def jpeg_file(
         self,
-        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
-        wrap_chars_after: Optional[int] = None,
         prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
         content_generator: Optional[BaseContentGenerator] = None,
         content: Optional[str] = None,
         **kwargs,
@@ -79,7 +79,7 @@ class JpegFileProvider(BaseProvider, FileMixin):
                 wrap_chars_after=wrap_chars_after,
                 content_generator=content_generator,
             )
-        imgkit.from_string(content, file_name)
+        imgkit.from_string(f"<pre>{content}</pre>", file_name)
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))

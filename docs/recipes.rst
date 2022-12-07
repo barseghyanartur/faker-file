@@ -33,9 +33,9 @@ Create a DOCX file with dynamically generated content
 .. code-block:: python
 
     file = DocxFileProvider(None).docx_file(
+        prefix="zzz",
         max_nb_chars=1_024,
         wrap_chars_after=80,
-        prefix="zzz",
     )
 
 Create a ZIP file consisting of TXT files with static content
@@ -108,9 +108,9 @@ Create a DOCX file with dynamically generated content
 
     file = FAKER(
         "docx_file",
+        prefix="zzz",
         max_nb_chars=1_024,
         wrap_chars_after=80,
-        prefix="zzz",
     )
 
 When using with ``Django``
@@ -122,9 +122,9 @@ directory (by default in ``/tmp/tmp/`` on Linux) and further operations with
 those files through Django will cause ``SuspiciousOperation`` exception.
 
 Basic example
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
-**Imaginary `Django` model**
+**Imaginary ``Django`` model**
 
 .. code-block:: python
 
@@ -151,7 +151,7 @@ Basic example
         def __str__(self):
             return self.name
 
-**Correspondent `factory_boy` factory**
+**Correspondent ``factory_boy`` factory**
 
 .. code-block:: python
 
@@ -194,7 +194,7 @@ Basic example
             model = Upload
 
 Randomise provider choice
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 

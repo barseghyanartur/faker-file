@@ -15,11 +15,18 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.3
+---
+2022-12-08
+
+- Add support for `CSV` and `BIN` files.
+- Better visual representation of generated images and PDFs.
+
 0.2
 ---
 2022-12-07
 
-- Added support for ICO, JPEG, PNG, SVG and WEBP files.
+- Added support for `ICO`, `JPEG`, `PNG`, `SVG` and `WEBP` files.
 - Documentation improvements.
 
 0.1

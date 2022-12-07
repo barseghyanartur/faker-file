@@ -5,6 +5,8 @@ from typing import Optional, Union
 from faker import Faker
 from parametrize import parametrize
 
+from ..providers.bin_file import BinFileProvider
+from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
@@ -16,6 +18,8 @@ from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import WebpFileProvider
 from ..providers.zip_file import (
     ZipFileProvider,
+    create_inner_bin_file,
+    create_inner_csv_file,
     create_inner_docx_file,
     create_inner_pdf_file,
     create_inner_pptx_file,
@@ -31,6 +35,7 @@ __all__ = ("ProvidersTestCase",)
 
 
 FileProvider = Union[
+    CsvFileProvider,
     DocxFileProvider,
     IcoFileProvider,
     JpegFileProvider,
@@ -52,6 +57,8 @@ class ProvidersTestCase(unittest.TestCase):
     @parametrize(
         "provider, method_name",
         [
+            (BinFileProvider, "bin_file"),
+            (CsvFileProvider, "csv_file"),
             (DocxFileProvider, "docx_file"),
             (IcoFileProvider, "ico_file"),
             (JpegFileProvider, "jpeg_file"),
@@ -75,6 +82,8 @@ class ProvidersTestCase(unittest.TestCase):
     @parametrize(
         "provider, method_name",
         [
+            (BinFileProvider, "bin_file"),
+            (CsvFileProvider, "csv_file"),
             (DocxFileProvider, "docx_file"),
             (IcoFileProvider, "ico_file"),
             (JpegFileProvider, "jpeg_file"),
@@ -102,6 +111,8 @@ class ProvidersTestCase(unittest.TestCase):
         "create_inner_file_func",
         [
             (None,),
+            (create_inner_bin_file,),
+            (create_inner_csv_file,),
             (create_inner_docx_file,),
             (create_inner_txt_file,),
             (create_inner_pdf_file,),

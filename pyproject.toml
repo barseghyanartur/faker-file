@@ -1,55 +1,9 @@
-[build-system]
-requires = ["setuptools>=41.0", "setuptools-scm", "wheel"]
-build-backend = "setuptools.build_meta"
+# Example configuration for Black.
 
-#[project]
-#name = "faker-file"
-#description = ''
-#readme = "README.rst"
-#requires-python = ">=3.7"
-#license = {text = "MIT"}
-#keywords = []
-#authors = [
-#  { name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com" },
-#]
-#classifiers = [
-#  "Development Status :: 4 - Beta",
-#  "Programming Language :: Python",
-#  "Programming Language :: Python :: 3.7",
-#  "Programming Language :: Python :: 3.8",
-#  "Programming Language :: Python :: 3.9",
-#  "Programming Language :: Python :: 3.10",
-#  "Programming Language :: Python :: 3.11",
-##  "Programming Language :: Python :: Implementation :: CPython",
-##  "Programming Language :: Python :: Implementation :: PyPy",
-#]
-#dependencies = [
-#  "python-docx",
-#  "python-pptx",
-#  "pdfkit",
-#  "factory-boy",
-#  "Faker",
-#]
-#dynamic = ["version"]
-#
-#[project.urls]
-#Documentation = "https://github.com/barseghyanartur/faker-file#readme"
-#Issues = "https://github.com/barseghyanartur/faker-file/issues"
-#Source = "https://github.com/barseghyanartur/faker-file"
-#
-#[tool.coverage.run]
-#branch = true
-#parallel = true
-#omit = [
-#  "faker_file/__about__.py",
-#]
-#
-#[tool.coverage.report]
-#exclude_lines = [
-#  "no cov",
-#  "if __name__ == .__main__.:",
-#  "if TYPE_CHECKING:",
-#]
+# NOTE: you have to use single-quoted strings in TOML for regular expressions.
+# It's the equivalent of r-strings in Python.  Multiline strings are treated as
+# verbose regular expressions by Black.  Use [ ] to denote a significant space
+# character.
 
 [tool.black]
 line-length = 80
@@ -65,6 +19,12 @@ extend-exclude = '''
 )/
 '''
 
+# Build system information below.
+# NOTE: You don't need this in your own Black configuration.
+[build-system]
+requires = ["setuptools>=41.0", "setuptools-scm", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [tool.isort]
 profile = "black"
 multi_line_output = 3
@@ -79,3 +39,41 @@ skip = ["wsgi.py",]
 
 [tool.ruff]
 line-length = 80
+
+# Enable Pyflakes `E` and `F` codes by default.
+select = ["E", "F"]
+ignore = []
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+per-file-ignores = {}
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Assume Python 3.10.
+target-version = "py310"
+
+[tool.ruff.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10

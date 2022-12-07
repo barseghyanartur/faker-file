@@ -30,12 +30,12 @@ faker-file
 Prerequisites
 =============
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 and 3.11.
-- Django integration (with ``factory_boy``) has been tested with Django 2.2,
+- ``Django`` integration (with ``factory_boy``) has been tested with Django 2.2,
   3.0, 3.1, 3.2, 4.0 and 4.1.
-- DOCX file support requires ``python-docx``.
-- ICO, JPEG, PNG, SVG and WEBP files support requires ``imgkit``.
-- PDF file support requires ``pdfkit``.
-- PPTX file support requires ``python-pptx``.
+- `DOCX` file support requires ``python-docx``.
+- `ICO`, `JPEG`, `PNG`, `SVG` and `WEBP` files support requires ``imgkit``.
+- `PDF` file support requires ``pdfkit``.
+- `PPTX` file support requires ``python-pptx``.
 
 Documentation
 =============
@@ -59,6 +59,8 @@ Or development version from GitHub:
 Supported file types
 ====================
 
+- BIN
+- CSV
 - DOCX
 - ICO
 - JPEG
