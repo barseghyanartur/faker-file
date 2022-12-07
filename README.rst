@@ -23,8 +23,8 @@ faker-file
    :target: https://github.com/barseghyanartur/faker-file/#License
    :alt: MIT
 
-.. image:: https://coveralls.io/repos/github/barseghyanartur/faker-file/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/barseghyanartur/faker-file?branch=master
+.. image:: https://coveralls.io/repos/github/barseghyanartur/faker-file/badge.svg?branch=main&service=github
+    :target: https://coveralls.io/github/barseghyanartur/faker-file?branch=main
     :alt: Coverage
 
 Prerequisites
