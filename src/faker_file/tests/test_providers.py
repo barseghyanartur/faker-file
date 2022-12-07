@@ -5,6 +5,7 @@ from typing import Any, Dict, Optional, Union
 from faker import Faker
 from parametrize import parametrize
 
+from ..content_generators import RandomCharsContentGenerator
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
@@ -51,37 +52,172 @@ FileProvider = Union[
     ZipFileProvider,
 ]
 
+_FAKER = Faker()
 
 class ProvidersTestCase(unittest.TestCase):
     """Providers test case."""
 
     FAKER: Faker
+    __parametrized_data = [
+        # BIN
+        (BinFileProvider, "bin_file", {}),
+        # CSV
+        (CsvFileProvider, "csv_file", {}),
+        # DOCX
+        (DocxFileProvider, "docx_file", {}),
+        (
+            DocxFileProvider,
+            "docx_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            DocxFileProvider,
+            "docx_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # ICO
+        (IcoFileProvider, "ico_file", {}),
+        (
+            IcoFileProvider,
+            "ico_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            IcoFileProvider,
+            "ico_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # JPEG
+        (JpegFileProvider, "jpeg_file", {}),
+        (
+            JpegFileProvider,
+            "jpeg_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            JpegFileProvider,
+            "jpeg_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # PDF
+        (PdfFileProvider, "pdf_file", {}),
+        (
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # PNG
+        (PngFileProvider, "png_file", {}),
+        (
+            PngFileProvider,
+            "png_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            PngFileProvider,
+            "png_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # PPTX
+        (PptxFileProvider, "pptx_file", {}),
+        (
+            PptxFileProvider,
+            "pptx_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            PptxFileProvider,
+            "pptx_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # SVG
+        (SvgFileProvider, "svg_file", {}),
+        (
+            SvgFileProvider,
+            "svg_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            SvgFileProvider,
+            "svg_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # TXT
+        (TxtFileProvider, "txt_file", {}),
+        (
+            TxtFileProvider,
+            "txt_file",
+            {
+                "wrap_chars_after": 40,
+                "content_generator": RandomCharsContentGenerator,
+            },
+        ),
+        (
+            TxtFileProvider,
+            "txt_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+        ),
+        # WEBP
+        # (WebpFileProvider, "webp_file", {}),
+        # XLSX
+        (XlsxFileProvider, "xlsx_file", {}),
+        # ZIP
+        (ZipFileProvider, "zip_file", {}),
+    ]
 
     @parametrize(
         "provider, method_name, kwargs",
-        [
-            (BinFileProvider, "bin_file", {}),
-            (CsvFileProvider, "csv_file", {}),
-            (DocxFileProvider, "docx_file", {}),
-            (DocxFileProvider, "docx_file", {"wrap_chars_after": 40}),
-            (IcoFileProvider, "ico_file", {}),
-            (IcoFileProvider, "ico_file", {"wrap_chars_after": 40}),
-            (JpegFileProvider, "jpeg_file", {}),
-            (JpegFileProvider, "jpeg_file", {"wrap_chars_after": 40}),
-            (PdfFileProvider, "pdf_file", {}),
-            (PdfFileProvider, "pdf_file", {"wrap_chars_after": 40}),
-            (PngFileProvider, "png_file", {}),
-            (PngFileProvider, "png_file", {"wrap_chars_after": 40}),
-            (PptxFileProvider, "pptx_file", {}),
-            (PptxFileProvider, "pptx_file", {"wrap_chars_after": 40}),
-            (SvgFileProvider, "svg_file", {}),
-            (SvgFileProvider, "svg_file", {"wrap_chars_after": 40}),
-            (TxtFileProvider, "txt_file", {}),
-            (TxtFileProvider, "txt_file", {"wrap_chars_after": 40}),
-            # (WebpFileProvider, "webp_file", {}),
-            (XlsxFileProvider, "xlsx_file", {}),
-            (ZipFileProvider, "zip_file", {}),
-        ],
+        __parametrized_data,
     )
     def test_faker(
         self,
@@ -98,29 +234,7 @@ class ProvidersTestCase(unittest.TestCase):
 
     @parametrize(
         "provider, method_name, kwargs",
-        [
-            (BinFileProvider, "bin_file", {}),
-            (CsvFileProvider, "csv_file", {}),
-            (DocxFileProvider, "docx_file", {}),
-            (DocxFileProvider, "docx_file", {"wrap_chars_after": 40}),
-            (IcoFileProvider, "ico_file", {}),
-            (IcoFileProvider, "ico_file", {"wrap_chars_after": 40}),
-            (JpegFileProvider, "jpeg_file", {}),
-            (JpegFileProvider, "jpeg_file", {"wrap_chars_after": 40}),
-            (PdfFileProvider, "pdf_file", {}),
-            (PdfFileProvider, "pdf_file", {"wrap_chars_after": 40}),
-            (PngFileProvider, "png_file", {}),
-            (PngFileProvider, "png_file", {"wrap_chars_after": 40}),
-            (PptxFileProvider, "pptx_file", {}),
-            (PptxFileProvider, "pptx_file", {"wrap_chars_after": 40}),
-            (SvgFileProvider, "svg_file", {}),
-            (SvgFileProvider, "svg_file", {"wrap_chars_after": 40}),
-            (TxtFileProvider, "txt_file", {}),
-            (TxtFileProvider, "txt_file", {"wrap_chars_after": 40}),
-            # (WebpFileProvider, "webp_file", {}),
-            (XlsxFileProvider, "xlsx_file", {}),
-            (ZipFileProvider, "zip_file", {}),
-        ],
+        __parametrized_data,
     )
     def test_standalone_providers(
         self,
