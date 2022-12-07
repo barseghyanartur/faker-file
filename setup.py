@@ -29,7 +29,14 @@ tests_require = [
 
 extras_require = (
     {
-        "all": ["Faker", "imgkit", "pdfkit", "python-docx", "python-pptx"],
+        "all": [
+            "Faker",
+            "imgkit",
+            "openpyxl",
+            "pdfkit",
+            "python-docx",
+            "python-pptx",
+        ],
         "docx": ["python-docx"],
         "pptx": ["python-pptx"],
         "pdf": ["pdfkit"],
@@ -38,6 +45,7 @@ extras_require = (
         "svg": ["imgkit"],
         "ico": ["imgkit"],
         "webp": ["imgkit"],
+        "xlsx": ["openpyxl"],
         "django": ["Django>=2.2"],
         "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     },

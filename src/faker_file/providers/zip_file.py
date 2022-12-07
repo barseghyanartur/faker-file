@@ -17,14 +17,15 @@ __all__ = (
     "create_inner_bin_file",
     "create_inner_csv_file",
     "create_inner_docx_file",
-    "create_inner_pdf_file",
-    "create_inner_pptx_file",
-    "create_inner_txt_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
+    "create_inner_pdf_file",
     "create_inner_png_file",
+    "create_inner_pptx_file",
     "create_inner_svg_file",
+    "create_inner_txt_file",
     "create_inner_webp_file",
+    "create_inner_xlsx_file",
 )
 
 
@@ -107,87 +108,6 @@ def create_inner_docx_file(
     )
 
 
-def create_inner_pdf_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
-    prefix: Optional[str] = None,
-    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
-    wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
-    content: Optional[str] = None,
-    **kwargs,
-):
-    """Create inner PDF file."""
-    try:
-        from .pdf_file import PdfFileProvider
-    except ImportError as err:
-        raise err
-
-    return PdfFileProvider(None).pdf_file(
-        root_path=root_path,
-        rel_path=rel_path,
-        prefix=prefix,
-        max_nb_chars=max_nb_chars,
-        wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
-        content=content,
-    )
-
-
-def create_inner_pptx_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
-    prefix: Optional[str] = None,
-    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
-    wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
-    content: Optional[str] = None,
-    **kwargs,
-):
-    """Create inner PPTX file."""
-    try:
-        from .pptx_file import PptxFileProvider
-    except ImportError as err:
-        raise err
-
-    return PptxFileProvider(None).pptx_file(
-        root_path=root_path,
-        rel_path=rel_path,
-        prefix=prefix,
-        max_nb_chars=max_nb_chars,
-        wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
-        content=content,
-    )
-
-
-def create_inner_txt_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
-    prefix: Optional[str] = None,
-    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
-    wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
-    content: Optional[str] = None,
-    **kwargs,
-):
-    try:
-        from .txt_file import TxtFileProvider
-    except ImportError as err:
-        raise err
-
-    """Create inner TXT file."""
-    return TxtFileProvider(None).txt_file(
-        root_path=root_path,
-        rel_path=rel_path,
-        prefix=prefix,
-        max_nb_chars=max_nb_chars,
-        wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
-        content=content,
-    )
-
-
 def create_inner_ico_file(
     root_path: str = None,
     rel_path: str = DEFAULT_REL_PATH,
@@ -242,6 +162,33 @@ def create_inner_jpeg_file(
     )
 
 
+def create_inner_pdf_file(
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    prefix: Optional[str] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+    **kwargs,
+):
+    """Create inner PDF file."""
+    try:
+        from .pdf_file import PdfFileProvider
+    except ImportError as err:
+        raise err
+
+    return PdfFileProvider(None).pdf_file(
+        root_path=root_path,
+        rel_path=rel_path,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
 def create_inner_png_file(
     root_path: str = None,
     rel_path: str = DEFAULT_REL_PATH,
@@ -259,6 +206,33 @@ def create_inner_png_file(
         raise err
 
     return PngFileProvider(None).png_file(
+        root_path=root_path,
+        rel_path=rel_path,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_pptx_file(
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    prefix: Optional[str] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+    **kwargs,
+):
+    """Create inner PPTX file."""
+    try:
+        from .pptx_file import PptxFileProvider
+    except ImportError as err:
+        raise err
+
+    return PptxFileProvider(None).pptx_file(
         root_path=root_path,
         rel_path=rel_path,
         prefix=prefix,
@@ -296,6 +270,33 @@ def create_inner_svg_file(
     )
 
 
+def create_inner_txt_file(
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    prefix: Optional[str] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content_generator: Optional[BaseContentGenerator] = None,
+    content: Optional[str] = None,
+    **kwargs,
+):
+    try:
+        from .txt_file import TxtFileProvider
+    except ImportError as err:
+        raise err
+
+    """Create inner TXT file."""
+    return TxtFileProvider(None).txt_file(
+        root_path=root_path,
+        rel_path=rel_path,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content_generator=content_generator,
+        content=content,
+    )
+
+
 def create_inner_webp_file(
     root_path: str = None,
     rel_path: str = DEFAULT_REL_PATH,
@@ -319,6 +320,31 @@ def create_inner_webp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content_generator=content_generator,
+        content=content,
+    )
+
+
+def create_inner_xlsx_file(
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    prefix: Optional[str] = None,
+    data_columns: Dict[str, str] = None,
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    **kwargs,
+):
+    """Create inner WEBP file."""
+    try:
+        from .xlsx_file import XlsxFileProvider
+    except ImportError as err:
+        raise err
+
+    return XlsxFileProvider(None).xlsx_file(
+        root_path=root_path,
+        rel_path=rel_path,
+        prefix=prefix,
+        data_columns=data_columns,
+        num_rows=num_rows,
         content=content,
     )
 

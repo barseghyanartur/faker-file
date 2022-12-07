@@ -66,7 +66,6 @@ class TxtFileProvider(BaseProvider, FileMixin):
             rel_path=rel_path,
             prefix=prefix,
         )
-        data = {}
 
         # Specific
         if content is not None:
@@ -86,6 +85,5 @@ class TxtFileProvider(BaseProvider, FileMixin):
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))
-        if data:
-            file_name.data = data
+        file_name.data = {"content": content}
         return file_name

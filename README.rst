@@ -36,6 +36,7 @@ Prerequisites
 - `ICO`, `JPEG`, `PNG`, `SVG` and `WEBP` files support requires ``imgkit``.
 - `PDF` file support requires ``pdfkit``.
 - `PPTX` file support requires ``python-pptx``.
+- `XLSX` file support requires ``openpyxl``.
 
 Documentation
 =============
@@ -70,6 +71,7 @@ Supported file types
 - SVG
 - TXT
 - WEBP
+- XLSX
 - ZIP
 
 Usage examples

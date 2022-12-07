@@ -16,6 +16,8 @@ coverage[toml]==6.5.0
     #   pytest-cov
 distlib==0.3.6
     # via virtualenv
+et-xmlfile==1.1.0
+    # via openpyxl
 factory-boy==3.2.1
     # via -r test.in
 faker==15.3.4
@@ -62,6 +64,8 @@ markupsafe==2.1.1
     #   jinja2
     #   werkzeug
     #   wtforms
+openpyxl==3.0.10
+    # via -r common.in
 packaging==21.3
     # via
     #   pytest

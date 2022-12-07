@@ -67,7 +67,6 @@ class PptxFileProvider(BaseProvider, FileMixin):
             rel_path=rel_path,
             prefix=prefix,
         )
-        data = {}
 
         # Specific
         if content is not None:
@@ -79,6 +78,7 @@ class PptxFileProvider(BaseProvider, FileMixin):
                 wrap_chars_after=wrap_chars_after,
                 content_generator=content_generator,
             )
+
         presentation = Presentation()
         # Make a blank slide with a text box with random text
         slide = presentation.slides.add_slide(presentation.slide_layouts[6])
@@ -88,6 +88,5 @@ class PptxFileProvider(BaseProvider, FileMixin):
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))
-        if data:
-            file_name.data = data
+        file_name.data = {"content": content}
         return file_name

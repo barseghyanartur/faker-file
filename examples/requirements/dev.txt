@@ -38,6 +38,8 @@ django-debug-toolbar==3.8.1
     # via -r django_3_2.in
 docutils==0.19
     # via readme-renderer
+et-xmlfile==1.1.0
+    # via openpyxl
 factory-boy==3.2.1
     # via -r test.in
 faker==15.3.4
@@ -72,6 +74,8 @@ lxml==4.9.1
     #   python-pptx
 more-itertools==9.0.0
     # via jaraco-classes
+openpyxl==3.0.10
+    # via -r common.in
 packaging==21.3
     # via
     #   build

@@ -19,7 +19,7 @@ are used for versioning (schema follows below):
 ---
 2022-12-08
 
-- Add support for `CSV` and `BIN` files.
+- Add support for `BIN`, `CSV` and `XLSX` files.
 - Better visual representation of generated images and PDFs.
 
 0.2

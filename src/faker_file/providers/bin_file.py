@@ -1,5 +1,5 @@
 import os
-from typing import Optional, Sequence, Tuple
+from typing import Optional
 
 from faker import Faker
 from faker.providers import BaseProvider
@@ -61,7 +61,6 @@ class BinFileProvider(BaseProvider, FileMixin):
             rel_path=rel_path,
             prefix=prefix,
         )
-        data = {}
 
         # Specific
         if content is None:
@@ -75,6 +74,5 @@ class BinFileProvider(BaseProvider, FileMixin):
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))
-        if data:
-            file_name.data = data
+        file_name.data = {"content": content}
         return file_name
