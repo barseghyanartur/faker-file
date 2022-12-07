@@ -50,10 +50,13 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+    - name: Install dependencies
+      run: |
+        python -m pip install pyyaml
     - name: Coveralls Finished
       id: coveralls-finish
       continue-on-error: true
-      if: steps.coveralls-setup.outcome == 'success'
+#      if: steps.coveralls-setup.outcome == 'success'
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
