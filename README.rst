@@ -103,7 +103,7 @@ upload/models.py
     class Upload(models.Model):
 
         # ...
-        upload = models.FileField()
+        file = models.FileField()
 
 upload/factory.py
 ~~~~~~~~~~~~~~~~~
