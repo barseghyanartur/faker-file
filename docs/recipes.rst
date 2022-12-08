@@ -1,9 +1,11 @@
 Recipes
 =======
-When using standalone
----------------------
+When using with ``Faker``
+-------------------------
+One way
+~~~~~~~
 Prerequisites
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 **Imports and initializations**
 
 .. code-block:: python
@@ -72,8 +74,8 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
         }
     )
 
-When using with ``Faker``
--------------------------
+Or another
+~~~~~~~~~~
 **Imports and initializations**
 
 .. code-block:: python
@@ -93,14 +95,14 @@ When using with ``Faker``
     FAKER.add_provider(ZipFileProvider)
 
 Create a TXT file with static content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
     file = FAKER("txt_file", content="Lorem ipsum dolor sit amet")
 
 Create a DOCX file with dynamically generated content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - Content is generated dynamically.
 - Content is limited to 1024 chars.
 - Wrap lines after 80 chars.
@@ -116,7 +118,7 @@ Create a DOCX file with dynamically generated content
     )
 
 Create a PDF file with predefined template containing dynamic fixtures
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
@@ -141,10 +143,11 @@ Create a PDF file with predefined template containing dynamic fixtures
     {{address}}
     {{phone_number}}
     """
+
     file = FAKER("pdf_file", content=template, wrap_chars_after=80)
 
-When using with ``Django``
---------------------------
+When using with ``Django`` (and ``factory_boy``)
+------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
 the ``root_path`` argument shall be provided. Otherwise (although no errors
 will be triggered) the generated files will reside outside the ``MEDIA_ROOT``
@@ -225,7 +228,7 @@ Correspondent ``factory_boy`` factory
         class Meta:
             model = Upload
 
-Randomise provider choice
+Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
