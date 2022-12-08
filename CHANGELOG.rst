@@ -19,11 +19,14 @@ are used for versioning (schema follows below):
 ---
 2022-12-09
 
-- Remove the concept of content generators. Instead, allow usage of dynamic
-  fixtures in the provided ``content`` argument.
-- Fixes in docs.
-- Remove temporary files when creating ZIP archives.
+*Note, that this release introduces breaking changes!*
 
+- Remove the concept of content generators (and the
+  correspondent ``content_generator`` arguments in implemented providers).
+  Instead, allow usage of dynamic fixtures in the provided ``content``
+  argument.
+- Remove temporary files when creating ZIP archives.
+- Various improvements and fixes in docs.
 
 0.3
 ---
