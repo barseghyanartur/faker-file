@@ -4,6 +4,7 @@ from typing import Any, Dict, Optional, Union
 
 from faker import Faker
 from parametrize import parametrize
+import pytest
 
 from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
@@ -30,7 +31,7 @@ from ..providers.zip_file import (
     create_inner_jpeg_file,
     create_inner_png_file,
     create_inner_svg_file,
-    # create_inner_webp_file,
+    create_inner_webp_file,
     create_inner_xlsx_file,
 )
 
@@ -250,6 +251,25 @@ class ProvidersTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists(_file))
 
     @parametrize(
+        "provider, method_name, kwargs",
+        [
+            (WebpFileProvider, "webp_file", {}),
+        ],
+    )
+    @pytest.mark.xfail
+    def test_standalone_providers_allow_failures(
+        self: "ProvidersTestCase",
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+    ) -> None:
+        """Test standalone providers, but allow failures."""
+        _provider = provider(None)  # noqa
+        _method = getattr(_provider, method_name)
+        _file = _method(**kwargs)
+        self.assertTrue(os.path.exists(_file))
+
+    @parametrize(
         "create_inner_file_func, content",
         [
             (None, None),
@@ -273,6 +293,26 @@ class ProvidersTestCase(unittest.TestCase):
         content: Union[str, Dict] = None,
     ) -> None:
         """Test standalone ZIP file provider."""
+        _options = {"content": content}
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(os.path.exists(_file))
+
+    @parametrize(
+        "create_inner_file_func, content",
+        [
+            (create_inner_webp_file, "Lorem ipsum"),
+        ],
+    )
+    @pytest.mark.xfail
+    def test_standalone_zip_file_allow_failures(
+            self: "ProvidersTestCase",
+            create_inner_file_func: Optional[callable] = None,
+            content: Union[str, Dict] = None,
+    ) -> None:
+        """Test standalone ZIP file provider, but allow failures."""
         _options = {"content": content}
         if create_inner_file_func is not None:
             _options["create_inner_file_func"] = create_inner_file_func
