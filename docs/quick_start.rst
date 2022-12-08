@@ -25,6 +25,7 @@ With ``Faker``
     from faker_file.providers.svg_file import SvgFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.webp_file import WebpFileProvider
+    from faker_file.providers.xlsx_file import XlsxFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
     FAKER = Faker()
@@ -38,8 +39,9 @@ With ``Faker``
     FAKER.add_provider(PptxFileProvider)
     FAKER.add_provider(SvgFileProvider)
     FAKER.add_provider(TxtFileProvider)
-    FAKER.add_provider(TxtFileProvider)
     FAKER.add_provider(WebpFileProvider)
+    FAKER.add_provider(XlsxFileProvider)
+    FAKER.add_provider(ZipFileProvider)
 
     bin_file = FAKER.bin_file()
     csv_file = FAKER.csv_file()
@@ -52,6 +54,7 @@ With ``Faker``
     svg_file = FAKER.svg_file()
     txt_file = FAKER.txt_file()
     webp_file = FAKER.webp_file()
+    xlsx_file = FAKER.xlsx_file()
     zip_file = FAKER.zip_file()
 
 With ``factory_boy``

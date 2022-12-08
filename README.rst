@@ -76,16 +76,23 @@ Supported file types
 
 Usage examples
 ==============
-Standalone
-----------
-.. code-block:: python
-
-    from faker_file.providers.txt_file import TxtFileProvider
-
-    file = TxtFileProvider(None).txt_file()
-
 With ``Faker``
 --------------
+One way
+~~~~~~~
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+
+    FAKER = Faker()
+
+    file = TxtFileProvider(FAKER).txt_file()
+
+Or another
+~~~~~~~~~~
+
 .. code-block:: python
 
     from faker import Faker

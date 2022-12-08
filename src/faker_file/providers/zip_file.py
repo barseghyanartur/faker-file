@@ -36,7 +36,7 @@ def create_inner_bin_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
-    """Create inner DOCX file."""
+    """Create inner BIN file."""
     try:
         from .bin_file import BinFileProvider
     except ImportError as err:
@@ -62,7 +62,7 @@ def create_inner_csv_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
-    """Create inner DOCX file."""
+    """Create inner CSV file."""
     try:
         from .csv_file import CsvFileProvider
     except ImportError as err:
@@ -314,7 +314,7 @@ def create_inner_xlsx_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
-    """Create inner WEBP file."""
+    """Create inner XLSX file."""
     try:
         from .xlsx_file import XlsxFileProvider
     except ImportError as err:
