@@ -4,7 +4,7 @@ When using standalone
 ---------------------
 Prerequisites
 ~~~~~~~~~~~~~
-**Imports**
+**Imports and initializations**
 
 .. code-block:: python
 
@@ -15,13 +15,15 @@ Prerequisites
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
+    FAKER = Faker()
+
 Create a TXT file with static content
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - Content of the file is ``Lorem ipsum``.
 
 .. code-block:: python
 
-    file = TxtFileProvider(None).txt_file(content="Lorem ipsum")
+    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
 
 Create a DOCX file with dynamically generated content
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -32,7 +34,7 @@ Create a DOCX file with dynamically generated content
 
 .. code-block:: python
 
-    file = DocxFileProvider(None).docx_file(
+    file = DocxFileProvider(FAKER).docx_file(
         prefix="zzz",
         max_nb_chars=1_024,
         wrap_chars_after=80,
@@ -45,7 +47,7 @@ Create a ZIP file consisting of TXT files with static content
 
 .. code-block:: python
 
-    file = ZipFileProvider(None).zip_file(options={"content": "Lorem ipsum"})
+    file = ZipFileProvider(FAKER).zip_file(options={"content": "Lorem ipsum"})
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -59,7 +61,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 .. code-block:: python
 
     from faker_file.providers.zip_file import create_inner_docx_file
-    file = ZipFileProvider(None).zip_file(
+    file = ZipFileProvider(FAKER).zip_file(
         prefix="zzz",
         options={
             "count": 3,
@@ -72,7 +74,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 
 When using with ``Faker``
 -------------------------
-**Imports and initialization**
+**Imports and initializations**
 
 .. code-block:: python
 
@@ -113,6 +115,34 @@ Create a DOCX file with dynamically generated content
         wrap_chars_after=80,
     )
 
+Create a PDF file with predefined template containing dynamic fixtures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Content template is predefined and contains dynamic fixtures.
+- Wrap lines after 80 chars.
+
+.. code-block:: python
+
+    template = """
+    {{date}} {{city}}, {{country}}
+
+    Hello {{name}},
+
+    {{text}} {{text}} {{text}}
+
+    {{text}} {{text}} {{text}}
+
+    {{text}} {{text}} {{text}}
+
+    Address: {{address}}
+
+    Best regards,
+
+    {{name}}
+    {{address}}
+    {{phone_number}}
+    """
+    file = FAKER("pdf_file", content=template, wrap_chars_after=80)
+
 When using with ``Django``
 --------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
@@ -124,7 +154,8 @@ those files through Django will cause ``SuspiciousOperation`` exception.
 Basic example
 ~~~~~~~~~~~~~
 
-**Imaginary ``Django`` model**
+Imaginary ``Django`` model
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -137,12 +168,12 @@ Basic example
         description = models.TextField(null=True, blank=True)
 
         # Files
-        docx_file = models.FileField()
-        pdf_file = models.FileField()
-        pptx_file = models.FileField()
-        txt_file = models.FileField()
-        zip_file = models.FileField()
-        file = models.FileField()
+        docx_file = models.FileField(null=True)
+        pdf_file = models.FileField(null=True)
+        pptx_file = models.FileField(null=True)
+        txt_file = models.FileField(null=True)
+        zip_file = models.FileField(null=True)
+        file = models.FileField(null=True)
 
         class Meta:
             verbose_name = "Upload"
@@ -151,7 +182,8 @@ Basic example
         def __str__(self):
             return self.name
 
-**Correspondent ``factory_boy`` factory**
+Correspondent ``factory_boy`` factory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
