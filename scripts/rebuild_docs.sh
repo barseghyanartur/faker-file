@@ -2,5 +2,5 @@
 ./scripts/uninstall.sh
 ./scripts/install.sh
 ./scripts/clean_up.sh
-sphinx-apidoc src/faker-file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
+sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 cp docs/conf.py.distrib docs/conf.py
