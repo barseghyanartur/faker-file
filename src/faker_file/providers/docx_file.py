@@ -38,7 +38,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     extension: str = "docx"
 
     def docx_file(
-        self,
+        self: "DocxFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

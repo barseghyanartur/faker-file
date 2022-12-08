@@ -38,7 +38,7 @@ class PptxFileProvider(BaseProvider, FileMixin):
     extension: str = "pptx"
 
     def pptx_file(
-        self,
+        self: "PptxFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

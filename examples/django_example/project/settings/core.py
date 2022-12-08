@@ -7,13 +7,13 @@ __all__ = (
 )
 
 
-def project_dir(base):
+def project_dir(base: str) -> str:
     return os.path.abspath(
         os.path.join(os.path.dirname(__file__), base).replace("\\", "/")
     )
 
 
-def gettext(s):
+def gettext(s: str) -> str:
     return s
 
 

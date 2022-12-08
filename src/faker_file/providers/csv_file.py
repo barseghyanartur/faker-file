@@ -39,7 +39,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     extension: str = "csv"
 
     def csv_file(
-        self,
+        self: "CsvFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

@@ -37,7 +37,7 @@ class TxtFileProvider(BaseProvider, FileMixin):
     extension: str = "txt"
 
     def txt_file(
-        self,
+        self: "TxtFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

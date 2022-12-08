@@ -14,5 +14,5 @@ class Upload(models.Model):
         verbose_name = "Upload"
         verbose_name_plural = "Upload"
 
-    def __str__(self):
-        return self.name
+    def __str__(self: "Upload") -> str:
+        return self.name  # noqa

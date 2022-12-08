@@ -37,7 +37,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     extension: str = "bin"
 
     def bin_file(
-        self,
+        self: "BinFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

@@ -54,6 +54,7 @@ FileProvider = Union[
 
 _FAKER = Faker()
 
+
 class ProvidersTestCase(unittest.TestCase):
     """Providers test case."""
 
@@ -220,7 +221,7 @@ class ProvidersTestCase(unittest.TestCase):
         __parametrized_data,
     )
     def test_faker(
-        self,
+        self: "ProvidersTestCase",
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -237,7 +238,7 @@ class ProvidersTestCase(unittest.TestCase):
         __parametrized_data,
     )
     def test_standalone_providers(
-        self,
+        self: "ProvidersTestCase",
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -267,10 +268,10 @@ class ProvidersTestCase(unittest.TestCase):
         ],
     )
     def test_standalone_zip_file(
-        self,
+        self: "ProvidersTestCase",
         create_inner_file_func: Optional[callable] = None,
         content: Union[str, Dict] = None,
-    ):
+    ) -> None:
         """Test standalone ZIP file provider."""
         _options = {"content": content}
         if create_inner_file_func is not None:

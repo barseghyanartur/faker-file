@@ -44,7 +44,7 @@ class XlsxFileProvider(BaseProvider, FileMixin):
     extension: str = "xlsx"
 
     def xlsx_file(
-        self,
+        self: "XlsxFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

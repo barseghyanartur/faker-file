@@ -382,7 +382,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     extension: str = "zip"
 
     def zip_file(
-        self,
+        self: "ZipFileProvider",
         root_path: Optional[str] = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

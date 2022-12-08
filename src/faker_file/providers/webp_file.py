@@ -38,7 +38,7 @@ class WebpFileProvider(BaseProvider, FileMixin):
     extension: str = "webp"
 
     def webp_file(
-        self,
+        self: "WebpFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

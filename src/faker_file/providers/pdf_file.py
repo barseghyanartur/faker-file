@@ -38,7 +38,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
     extension: str = "pdf"
 
     def pdf_file(
-        self,
+        self: "PdfFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

@@ -38,7 +38,7 @@ class IcoFileProvider(BaseProvider, FileMixin):
     extension: str = "ico"
 
     def ico_file(
-        self,
+        self: "IcoFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

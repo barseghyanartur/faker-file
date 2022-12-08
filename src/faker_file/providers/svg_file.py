@@ -38,7 +38,7 @@ class SvgFileProvider(BaseProvider, FileMixin):
     extension: str = "svg"
 
     def svg_file(
-        self,
+        self: "SvgFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

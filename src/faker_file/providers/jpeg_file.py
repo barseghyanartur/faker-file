@@ -38,7 +38,7 @@ class JpegFileProvider(BaseProvider, FileMixin):
     extension: str = "jpg"
 
     def jpeg_file(
-        self,
+        self: "JpegFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,

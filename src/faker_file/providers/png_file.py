@@ -38,7 +38,7 @@ class PngFileProvider(BaseProvider, FileMixin):
     extension: str = "png"
 
     def png_file(
-        self,
+        self: "PngFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,
