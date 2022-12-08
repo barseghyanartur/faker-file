@@ -36,7 +36,7 @@ def create_inner_bin_file(
     length: int = (1 * 1024 * 1024),
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner DOCX file."""
     try:
         from .bin_file import BinFileProvider
@@ -62,7 +62,7 @@ def create_inner_csv_file(
     include_row_ids: bool = False,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner DOCX file."""
     try:
         from .csv_file import CsvFileProvider
@@ -90,7 +90,7 @@ def create_inner_docx_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner DOCX file."""
     try:
         from .docx_file import DocxFileProvider
@@ -117,7 +117,7 @@ def create_inner_ico_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner ICO file."""
     try:
         from .ico_file import IcoFileProvider
@@ -144,7 +144,7 @@ def create_inner_jpeg_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner JPEG file."""
     try:
         from .jpeg_file import JpegFileProvider
@@ -171,7 +171,7 @@ def create_inner_pdf_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner PDF file."""
     try:
         from .pdf_file import PdfFileProvider
@@ -198,7 +198,7 @@ def create_inner_png_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner PNG file."""
     try:
         from .png_file import PngFileProvider
@@ -225,7 +225,7 @@ def create_inner_pptx_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner PPTX file."""
     try:
         from .pptx_file import PptxFileProvider
@@ -252,7 +252,7 @@ def create_inner_svg_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner SVG file."""
     try:
         from .svg_file import SvgFileProvider
@@ -279,7 +279,7 @@ def create_inner_txt_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     try:
         from .txt_file import TxtFileProvider
     except ImportError as err:
@@ -306,7 +306,7 @@ def create_inner_webp_file(
     content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner WEBP file."""
     try:
         from .webp_file import WebpFileProvider
@@ -332,7 +332,7 @@ def create_inner_xlsx_file(
     num_rows: int = 10,
     content: Optional[str] = None,
     **kwargs,
-):
+) -> StringValue:
     """Create inner WEBP file."""
     try:
         from .xlsx_file import XlsxFileProvider
@@ -464,6 +464,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
                     _dir_path / __file,
                     arcname=Path(_directory) / Path(__file).name,
                 )
+                os.remove(__file)  # Clean up temporary files
                 data["files"].append(Path(_directory) / Path(__file).name)
 
         # Generic
