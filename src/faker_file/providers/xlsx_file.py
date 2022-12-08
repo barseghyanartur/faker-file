@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, List, Optional, Sequence, Union
+from typing import Dict, List, Optional, Union
 
 from faker import Faker
 from faker.providers import BaseProvider

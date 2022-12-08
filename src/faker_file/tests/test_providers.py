@@ -5,7 +5,7 @@ from typing import Any, Dict, Optional, Union
 from faker import Faker
 from parametrize import parametrize
 
-from ..content_generators import RandomCharsContentGenerator
+from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
@@ -71,7 +71,7 @@ class ProvidersTestCase(unittest.TestCase):
             "docx_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -89,7 +89,7 @@ class ProvidersTestCase(unittest.TestCase):
             "ico_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -107,7 +107,7 @@ class ProvidersTestCase(unittest.TestCase):
             "jpeg_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -125,7 +125,7 @@ class ProvidersTestCase(unittest.TestCase):
             "pdf_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -143,7 +143,7 @@ class ProvidersTestCase(unittest.TestCase):
             "png_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -161,7 +161,7 @@ class ProvidersTestCase(unittest.TestCase):
             "pptx_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -179,7 +179,7 @@ class ProvidersTestCase(unittest.TestCase):
             "svg_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -197,7 +197,7 @@ class ProvidersTestCase(unittest.TestCase):
             "txt_file",
             {
                 "wrap_chars_after": 40,
-                "content_generator": RandomCharsContentGenerator,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
         ),
         (
@@ -253,7 +253,7 @@ class ProvidersTestCase(unittest.TestCase):
         "create_inner_file_func, content",
         [
             (None, None),
-            (create_inner_bin_file, "Lorem ipsum"),
+            (create_inner_bin_file, b"Lorem ipsum"),
             (create_inner_csv_file, "Lorem ipsum"),
             (create_inner_docx_file, "Lorem ipsum"),
             (create_inner_txt_file, "Lorem ipsum"),

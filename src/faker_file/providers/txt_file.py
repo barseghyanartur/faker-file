@@ -5,8 +5,6 @@ from faker.providers import BaseProvider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
-from ..content_generators import BaseContentGenerator
-from ..helpers import wrap_text
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -28,9 +26,9 @@ class TxtFileProvider(BaseProvider, FileMixin):
         from faker_file.providers.txt_file import TxtFileProvider
 
         file = TxtFileProvider(None).txt_file(
+            prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
-            prefix="zzz",
         )
     """
 
@@ -43,21 +41,20 @@ class TxtFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content_generator: Optional[BaseContentGenerator] = None,
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a file with random text.
+        """Generate a TXT file with random text.
 
-        :param max_nb_chars: Max number of chars for the content.
         :param root_path: Path of your files root directory (in case of Django
             it would be `settings.MEDIA_ROOT`).
         :param rel_path: Relative path (from root directory).
+        :param prefix: File name prefix.
+        :param max_nb_chars: Max number of chars for the content.
         :param wrap_chars_after: If given, the output string would be separated
              by line breaks after the given position.
-        :param prefix: File name prefix.
-        :param content_generator: Content generator.
-        :param content: File content. If given, used as is.
+        :param content: File content. Might contain dynamic elements, which
+            are then replaced by correspondent fixtures.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -67,20 +64,13 @@ class TxtFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
         )
 
-        # Specific
-        if content is not None:
-            if wrap_chars_after:
-                content = wrap_text(content, wrap_chars_after)
-        else:
-            content = self._generate_content(
-                max_nb_chars,
-                wrap_chars_after=wrap_chars_after,
-                content_generator=content_generator,
-            )
-        file_mode = "w"  # str
-        if isinstance(content, bytes):
-            file_mode = "wb"
-        with open(file_name, file_mode) as fakefile:
+        content = self._generate_text_content(
+            max_nb_chars=max_nb_chars,
+            wrap_chars_after=wrap_chars_after,
+            content=content,
+        )
+
+        with open(file_name, "w") as fakefile:
             fakefile.write(content)
 
         # Generic

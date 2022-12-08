@@ -15,6 +15,16 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.4
+---
+2022-12-09
+
+- Remove the concept of content generators. Instead, allow usage of dynamic
+  fixtures in the provided ``content`` argument.
+- Fixes in docs.
+- Remove temporary files when creating ZIP archives.
+
+
 0.3
 ---
 2022-12-08

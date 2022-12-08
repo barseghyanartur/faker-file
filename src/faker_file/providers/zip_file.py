@@ -7,7 +7,6 @@ from faker.providers import BaseProvider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS, DEFAULT_TEXT_MAX_NB_CHARS
-from ..content_generators import BaseContentGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -87,7 +86,6 @@ def create_inner_docx_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -103,7 +101,6 @@ def create_inner_docx_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -114,7 +111,6 @@ def create_inner_ico_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -130,7 +126,6 @@ def create_inner_ico_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -141,7 +136,6 @@ def create_inner_jpeg_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -157,7 +151,6 @@ def create_inner_jpeg_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -168,7 +161,6 @@ def create_inner_pdf_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -184,7 +176,6 @@ def create_inner_pdf_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -195,7 +186,6 @@ def create_inner_png_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -211,7 +201,6 @@ def create_inner_png_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -222,7 +211,6 @@ def create_inner_pptx_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -238,7 +226,6 @@ def create_inner_pptx_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -249,7 +236,6 @@ def create_inner_svg_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -265,7 +251,6 @@ def create_inner_svg_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -276,7 +261,6 @@ def create_inner_txt_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -292,7 +276,6 @@ def create_inner_txt_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -303,7 +286,6 @@ def create_inner_webp_file(
     prefix: Optional[str] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
-    content_generator: Optional[BaseContentGenerator] = None,
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
@@ -319,7 +301,6 @@ def create_inner_webp_file(
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
-        content_generator=content_generator,
         content=content,
     )
 
@@ -389,7 +370,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
         options: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a file with random text.
+        """Generate a ZIP file with random text.
 
         :param root_path: Path of your files root directory (in case of Django
             it would be `settings.MEDIA_ROOT`).

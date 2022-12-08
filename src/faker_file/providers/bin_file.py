@@ -42,7 +42,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
-        content: Optional[str] = None,
+        content: Optional[bytes] = None,
         **kwargs,
     ) -> StringValue:
         """Generate a CSV file with random text.
@@ -66,10 +66,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         if content is None:
             content = FAKER.binary(length=length)
 
-        file_mode = "w"  # str
-        if isinstance(content, bytes):
-            file_mode = "wb"
-        with open(file_name, file_mode) as fakefile:
+        with open(file_name, "wb") as fakefile:
             fakefile.write(content)
 
         # Generic

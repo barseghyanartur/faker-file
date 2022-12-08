@@ -79,19 +79,21 @@ class CsvFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
         )
 
+        if self.generator is None:
+            self.generator = Faker()
+
         # Specific
         if content is None:
-            content = FAKER.csv(
+            content = self.generator.csv(
                 header=header,
                 data_columns=data_columns,
                 num_rows=num_rows,
                 include_row_ids=include_row_ids,
             )
+        else:
+            content = self.generator.pystr_format(content)
 
-        file_mode = "w"  # str
-        if isinstance(content, bytes):
-            file_mode = "wb"
-        with open(file_name, file_mode) as fakefile:
+        with open(file_name, "w") as fakefile:
             fakefile.write(content)
 
         # Generic
