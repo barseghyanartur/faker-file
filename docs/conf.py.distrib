@@ -23,8 +23,9 @@ sys.path.insert(
     0, os.path.abspath(os.path.join("..", "examples", "django_example"))
 )
 try:
-    import faker_file
     from simple import settings as example_settings
+
+    import faker_file
 
     version = faker_file.__version__
     project = faker_file.__title__

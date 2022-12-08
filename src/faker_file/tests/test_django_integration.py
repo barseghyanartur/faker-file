@@ -24,9 +24,7 @@ class DjangoIntegrationTestCase(TestCase):
             (factories.ZipUploadFactory,),
         ],
     )
-    def test_file(
-        self: "DjangoIntegrationTestCase", factory: callable
-    ) -> None:
+    def test_file(self: "DjangoIntegrationTestCase", factory: callable) -> None:
         """Test DOCX file."""
         _upload = factory()
         self.assertTrue(os.path.exists(_upload.file.path))
