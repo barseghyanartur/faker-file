@@ -16,14 +16,13 @@ import sys
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath(os.path.join("..", "src")))
 sys.path.insert(0, os.path.abspath(os.path.join("..", "examples")))
 sys.path.insert(
     0, os.path.abspath(os.path.join("..", "examples", "django_example"))
 )
 try:
-    from simple import settings as example_settings
+    from project import settings as example_settings
 
     import faker_file
 
