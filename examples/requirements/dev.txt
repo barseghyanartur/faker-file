@@ -28,6 +28,8 @@ coverage[toml]==6.5.0
     #   pytest-cov
 cryptography==38.0.4
     # via secretstorage
+defusedxml==0.7.1
+    # via odfpy
 distlib==0.3.6
     # via virtualenv
 django==3.2.16
@@ -74,6 +76,8 @@ lxml==4.9.1
     #   python-pptx
 more-itertools==9.0.0
     # via jaraco-classes
+odfpy==1.4.1
+    # via -r examples/requirements/common.in
 openpyxl==3.0.10
     # via -r examples/requirements/common.in
 packaging==21.3
@@ -159,6 +163,8 @@ sqlparse==0.4.3
     # via
     #   django
     #   django-debug-toolbar
+tablib==3.2.1
+    # via -r examples/requirements/common.in
 toml==0.10.2
     # via pytest
 tomli==2.0.1

@@ -18,6 +18,7 @@ __all__ = (
     "create_inner_docx_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
+    "create_inner_ods_file",
     "create_inner_pdf_file",
     "create_inner_png_file",
     "create_inner_pptx_file",
@@ -48,6 +49,7 @@ def create_inner_bin_file(
         prefix=prefix,
         length=length,
         content=content,
+        # **kwargs,
     )
 
 
@@ -77,6 +79,7 @@ def create_inner_csv_file(
         num_rows=num_rows,
         include_row_ids=include_row_ids,
         content=content,
+        # **kwargs,
     )
 
 
@@ -102,6 +105,7 @@ def create_inner_docx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -127,6 +131,7 @@ def create_inner_ico_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -152,6 +157,33 @@ def create_inner_jpeg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
+    )
+
+
+def create_inner_ods_file(
+    root_path: str = None,
+    rel_path: str = DEFAULT_REL_PATH,
+    prefix: Optional[str] = None,
+    data_columns: Dict[str, str] = None,
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner ODS file."""
+    try:
+        from .ods_file import OdsFileProvider
+    except ImportError as err:
+        raise err
+
+    return OdsFileProvider(None).ods_file(
+        root_path=root_path,
+        rel_path=rel_path,
+        prefix=prefix,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        content=content,
+        # **kwargs,
     )
 
 
@@ -177,6 +209,7 @@ def create_inner_pdf_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -202,6 +235,7 @@ def create_inner_png_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -227,6 +261,7 @@ def create_inner_pptx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -252,6 +287,7 @@ def create_inner_svg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -277,6 +313,7 @@ def create_inner_txt_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -302,6 +339,7 @@ def create_inner_webp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        # **kwargs,
     )
 
 
@@ -327,6 +365,7 @@ def create_inner_xlsx_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
+        # **kwargs,
     )
 
 
@@ -413,9 +452,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _create_inner_file_func = options.get(
                 "create_inner_file_func", create_inner_txt_file
             )
-            _create_inner_file_args = options.get(
-                "create_inner_file_args", {}
-            )
+            _create_inner_file_args = options.get("create_inner_file_args", {})
             _dir_path = Path(os.path.join(root_path or "", rel_path)).parent
             _directory = options.get("directory", "")
 

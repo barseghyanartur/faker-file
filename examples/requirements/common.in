@@ -1,5 +1,7 @@
 imgkit
+odfpy
 openpyxl
 pdfkit
 python-docx
 python-pptx
+tablib

@@ -10,28 +10,28 @@ from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("XlsxFileProvider",)
+__all__ = ("OdsFileProvider",)
 
 
 FAKER = Faker()
 
 
-class XlsxFileProvider(BaseProvider, FileMixin):
-    """XLSX file provider.
+class OdsFileProvider(BaseProvider, FileMixin):
+    """ODS file provider.
 
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.xlsx_file import XlsxFileProvider
+        from faker_file.providers.ods_file import OdsFileProvider
 
-        file = XlsxFileProvider(Faker()).xlsx_file()
+        file = OdsFileProvider(Faker()).ods_file()
 
     Usage example with options:
 
         from faker import Faker
-        from faker_file.providers.xlsx_file import XlsxFileProvider
+        from faker_file.providers.ods_file import OdsFileProvider
 
-        file = XlsxFileProvider(Faker()).xlsx_file(
+        file = OdsFileProvider(Faker()).ods_file(
             prefix="zzz",
             num_rows=100,
             data_columns={
@@ -42,10 +42,10 @@ class XlsxFileProvider(BaseProvider, FileMixin):
         )
     """
 
-    extension: str = "xlsx"
+    extension: str = "ods"
 
-    def xlsx_file(
-        self: "XlsxFileProvider",
+    def ods_file(
+        self: "OdsFileProvider",
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,
@@ -54,7 +54,7 @@ class XlsxFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a XLSX file with random text.
+        """Generate a ODS file with random text.
 
         :param root_path: Path of your files root directory (in case of Django
             it would be `settings.MEDIA_ROOT`).
@@ -99,7 +99,7 @@ class XlsxFileProvider(BaseProvider, FileMixin):
         dataset.load(content, format="json")
 
         with open(file_name, "wb") as fakefile:
-            fakefile.write(dataset.export("xlsx"))
+            fakefile.write(dataset.export("ods"))
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))

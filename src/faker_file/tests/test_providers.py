@@ -12,6 +12,7 @@ from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
+from ..providers.ods_file import OdsFileProvider
 from ..providers.pdf_file import PdfFileProvider
 from ..providers.png_file import PngFileProvider
 from ..providers.pptx_file import PptxFileProvider
@@ -29,6 +30,7 @@ from ..providers.zip_file import (
     create_inner_txt_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
+    create_inner_ods_file,
     create_inner_png_file,
     create_inner_svg_file,
     create_inner_webp_file,
@@ -65,6 +67,7 @@ class ProvidersTestCase(unittest.TestCase):
         (BinFileProvider, "bin_file", {}),
         # CSV
         (CsvFileProvider, "csv_file", {}),
+        (CsvFileProvider, "csv_file", {"content": "{{name}},{{date}}"}),
         # DOCX
         (DocxFileProvider, "docx_file", {}),
         (
@@ -119,6 +122,8 @@ class ProvidersTestCase(unittest.TestCase):
                 "content": _FAKER.text(),
             },
         ),
+        # ODS
+        (OdsFileProvider, "ods_file", {}),
         # PDF
         (PdfFileProvider, "pdf_file", {}),
         (
@@ -281,6 +286,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_pptx_file, "Lorem ipsum"),
             (create_inner_ico_file, "Lorem ipsum"),
             (create_inner_jpeg_file, "Lorem ipsum"),
+            (create_inner_ods_file, None),
             (create_inner_png_file, "Lorem ipsum"),
             (create_inner_svg_file, "Lorem ipsum"),
             # (create_inner_webp_file, "Lorem ipsum"),
@@ -308,9 +314,9 @@ class ProvidersTestCase(unittest.TestCase):
     )
     @pytest.mark.xfail
     def test_standalone_zip_file_allow_failures(
-            self: "ProvidersTestCase",
-            create_inner_file_func: Optional[callable] = None,
-            content: Union[str, Dict] = None,
+        self: "ProvidersTestCase",
+        create_inner_file_func: Optional[callable] = None,
+        content: Union[str, Dict] = None,
     ) -> None:
         """Test standalone ZIP file provider, but allow failures."""
         _options = {"content": content}

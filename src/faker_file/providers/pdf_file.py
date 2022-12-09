@@ -71,7 +71,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        pdfkit.from_string(f"<pre>{content}</pre>", file_name)
+        pdfkit.from_string(f"<pre>{content}</pre>", file_name, options={"quiet": ""})
 
         # Generic
         file_name = StringValue(os.path.relpath(file_name, root_path))

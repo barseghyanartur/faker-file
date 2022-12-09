@@ -29,14 +29,21 @@ faker-file
 
 Prerequisites
 =============
+All of core dependencies of this package are `MIT` licensed.
+Most of optional dependencies of this package are `MIT` licensed, while
+a few are `BSD`- or `Apache 2` licensed. All licenses are mentioned
+below between the brackets.
+
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 and 3.11.
-- ``Django`` integration (with ``factory_boy``) has been tested with Django 2.2,
-  3.0, 3.1, 3.2, 4.0 and 4.1.
-- `DOCX` file support requires ``python-docx``.
-- `ICO`, `JPEG`, `PNG`, `SVG` and `WEBP` files support requires ``imgkit``.
-- `PDF` file support requires ``pdfkit``.
-- `PPTX` file support requires ``python-pptx``.
-- `XLSX` file support requires ``openpyxl``.
+- ``Django`` (`BSD`) integration with ``factory_boy`` (`MIT`) has
+  been tested with ``Django`` 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
+- ``DOCX`` file support requires ``python-docx`` (`MIT`).
+- ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
+  requires ``imgkit`` (`MIT`).
+- ``PDF`` file support requires ``pdfkit`` (`MIT`).
+- ``PPTX`` file support requires ``python-pptx`` (`MIT`).
+- ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
+- ``XLSX`` file support requires ``tablib`` (`MIT`) and ``openpyxl`` (`MIT`).
 
 Documentation
 =============
@@ -65,6 +72,7 @@ Supported file types
 - DOCX
 - ICO
 - JPEG
+- ODS
 - PDF
 - PNG
 - PPTX

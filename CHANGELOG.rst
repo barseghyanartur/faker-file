@@ -21,6 +21,9 @@ are used for versioning (schema follows below):
 
 *Note, that this release introduces breaking changes!*
 
+- Added `ODS` file support.
+- Switched to ``tablib`` for easy, non-variant support of various
+  formats (`XLSX`, `ODS`).
 - `ZipFileProvider` allows to pass arbitrary arguments to inner functions.
   Put all your inner function arguments into a dictionary and pass it
   in `create_inner_file_args` key inside `options` argument. See the

@@ -19,6 +19,7 @@ With ``Faker``
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
+    from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
@@ -34,6 +35,7 @@ With ``Faker``
     FAKER.add_provider(DocxFileProvider)
     FAKER.add_provider(IcoFileProvider)
     FAKER.add_provider(JpegFileProvider)
+    FAKER.add_provider(OdsFileProvider)
     FAKER.add_provider(PdfFileProvider)
     FAKER.add_provider(PngFileProvider)
     FAKER.add_provider(PptxFileProvider)
@@ -48,6 +50,7 @@ With ``Faker``
     docx_file = FAKER.docx_file()
     ico_file = FAKER.ico_file()
     jpeg_file = FAKER.jpeg_file()
+    ods_file = FAKER.ods_file()
     pdf_file = FAKER.pdf_file()
     png_file = FAKER.png_file()
     pptx_file = FAKER.pptx_file()
