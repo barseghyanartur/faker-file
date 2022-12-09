@@ -24,6 +24,7 @@ are used for versioning (schema follows below):
 - Added `ODS` file support.
 - Switched to ``tablib`` for easy, non-variant support of various
   formats (`XLSX`, `ODS`).
+- Silence ``imgkit`` logging output.
 - `ZipFileProvider` allows to pass arbitrary arguments to inner functions.
   Put all your inner function arguments into a dictionary and pass it
   in `create_inner_file_args` key inside `options` argument. See the
