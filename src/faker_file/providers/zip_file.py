@@ -49,7 +49,7 @@ def create_inner_bin_file(
         prefix=prefix,
         length=length,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -79,7 +79,7 @@ def create_inner_csv_file(
         num_rows=num_rows,
         include_row_ids=include_row_ids,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -105,7 +105,7 @@ def create_inner_docx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -131,7 +131,7 @@ def create_inner_ico_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -157,7 +157,7 @@ def create_inner_jpeg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -183,7 +183,7 @@ def create_inner_ods_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -209,7 +209,7 @@ def create_inner_pdf_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -235,7 +235,7 @@ def create_inner_png_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -261,7 +261,7 @@ def create_inner_pptx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -287,7 +287,7 @@ def create_inner_svg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -313,7 +313,7 @@ def create_inner_txt_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -339,7 +339,7 @@ def create_inner_webp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
@@ -365,7 +365,7 @@ def create_inner_xlsx_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
-        # **kwargs,
+        **kwargs,
     )
 
 
