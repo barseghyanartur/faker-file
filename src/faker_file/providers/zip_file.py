@@ -397,9 +397,11 @@ class ZipFileProvider(BaseProvider, FileMixin):
                     options={
                         "count": 5,
                         "create_inner_file_func": create_inner_docx_file,
-                        "max_nb_chars": 1_024,
-                        "prefix": "zzz_file_",
-                        "content_generator": DEFAULT_CONTENT_GENERATOR,
+                        "create_inner_file_args": {
+                            "prefix": "zzz_file_",
+                            "max_nb_chars": 1_024,
+                            "content": "{{date}}\r\n{{text}}\r\n{{name}}",
+                        },
                         "directory": "zzz",
                     }
                 )
@@ -411,12 +413,9 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _create_inner_file_func = options.get(
                 "create_inner_file_func", create_inner_txt_file
             )
-            _max_nb_chars = options.get(
-                "max_nb_chars", DEFAULT_TEXT_MAX_NB_CHARS
+            _create_inner_file_args = options.get(
+                "create_inner_file_args", {}
             )
-            _prefix = options.get("prefix", Path(file_name).stem)
-            _content_generator = options.get("content_generator", None)
-            _content = options.get("content", None)
             _dir_path = Path(os.path.join(root_path or "", rel_path)).parent
             _directory = options.get("directory", "")
 
@@ -424,22 +423,18 @@ class ZipFileProvider(BaseProvider, FileMixin):
             # Defaults
             _count = 5
             _create_inner_file_func = create_inner_txt_file
-            _max_nb_chars = DEFAULT_TEXT_MAX_NB_CHARS
-            _prefix = None
-            _content_generator = None
-            _content = None
+            _create_inner_file_args = {}
             _dir_path = Path("")
             _directory = ""
 
         with zipfile.ZipFile(file_name, "w") as __fake_file:
             data["files"] = []
+            _kwargs = {}
+            _kwargs.update(_create_inner_file_args)
             for __i in range(_count):
                 __file = _create_inner_file_func(
-                    max_nb_chars=_max_nb_chars,
                     rel_path=rel_path,
-                    prefix=_prefix,
-                    content_generator=_content_generator,
-                    content=_content,
+                    **_kwargs,
                 )
                 __fake_file.write(
                     _dir_path / __file,

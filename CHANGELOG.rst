@@ -15,6 +15,33 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.5
+---
+2022-12-10
+
+*Note, that this release introduces breaking changes!*
+
+- `ZipFileProvider` allows to pass arbitrary arguments to inner functions.
+  Put all your inner function arguments into a dictionary and pass it
+  in `create_inner_file_args` key inside `options` argument. See the
+  example below.
+
+    .. code-block:: python
+
+        zip_file = ZipFileProvider(None).file(
+            prefix="zzz_archive_",
+            options={
+                "count": 5,
+                "create_inner_file_func": create_inner_docx_file,
+                "create_inner_file_args": {
+                    "prefix": "zzz_file_",
+                    "max_nb_chars": 1_024,
+                    "content": "{{date}}\r\n{{text}}\r\n{{name}}",
+                },
+                "directory": "zzz",
+            }
+        )
+
 0.4
 ---
 2022-12-09
