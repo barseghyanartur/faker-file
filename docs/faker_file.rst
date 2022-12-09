@@ -29,14 +29,6 @@ faker\_file.constants module
    :undoc-members:
    :show-inheritance:
 
-faker\_file.content\_generators module
---------------------------------------
-
-.. automodule:: faker_file.content_generators
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 faker\_file.helpers module
 --------------------------
 
