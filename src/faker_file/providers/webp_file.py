@@ -74,7 +74,7 @@ class WebpFileProvider(BaseProvider, FileMixin):
         imgkit.from_string(
             f"<pre>{content}</pre>",
             file_name,
-            options={"quiet": "", "xvfb": ""},
+            options={"quiet": ""},
         )
 
         # Generic

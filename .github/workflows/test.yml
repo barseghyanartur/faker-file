@@ -22,8 +22,8 @@ jobs:
           - "3.7"
 
     steps:
-    - name: Install wkhtmltopdf and xvfb
-      run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf xvfb
+    - name: Install wkhtmltopdf
+      run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
