@@ -3,14 +3,13 @@ from random import choice
 from django.conf import settings
 from factory import Faker, LazyAttribute
 from factory.django import DjangoModelFactory
+from upload.models import Upload
 
 from faker_file.providers.docx_file import DocxFileProvider
 from faker_file.providers.pdf_file import PdfFileProvider
 from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
-
-from upload.models import Upload
 
 Faker.add_provider(DocxFileProvider)
 Faker.add_provider(PdfFileProvider)

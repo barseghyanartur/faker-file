@@ -1,10 +1,13 @@
 import os.path
 import unittest
+from imp import reload
+from importlib import import_module
 from typing import Any, Dict, Optional, Union
+from unittest.mock import patch
 
+import pytest
 from faker import Faker
 from parametrize import parametrize
-import pytest
 
 from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
@@ -25,14 +28,14 @@ from ..providers.zip_file import (
     create_inner_bin_file,
     create_inner_csv_file,
     create_inner_docx_file,
-    create_inner_pdf_file,
-    create_inner_pptx_file,
-    create_inner_txt_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
     create_inner_ods_file,
+    create_inner_pdf_file,
     create_inner_png_file,
+    create_inner_pptx_file,
     create_inner_svg_file,
+    create_inner_txt_file,
     create_inner_webp_file,
     create_inner_xlsx_file,
 )
@@ -325,3 +328,95 @@ class ProvidersTestCase(unittest.TestCase):
         _file = ZipFileProvider(None).zip_file(options=_options)
 
         self.assertTrue(os.path.exists(_file))
+
+    @parametrize(
+        "module_path, module_name, create_inner_file_func",
+        [
+            # BIN
+            (
+                "faker_file.providers.bin_file",
+                "BinFileProvider",
+                create_inner_bin_file,
+            ),
+            # CSV
+            (
+                "faker_file.providers.csv_file",
+                "CsvFileProvider",
+                create_inner_csv_file,
+            ),
+            # DOCX
+            (
+                "faker_file.providers.docx_file",
+                "DocxFileProvider",
+                create_inner_docx_file,
+            ),
+            # ICO
+            (
+                "faker_file.providers.ico_file",
+                "IcoFileProvider",
+                create_inner_ico_file,
+            ),
+            # JPEG
+            (
+                "faker_file.providers.jpeg_file",
+                "JpegFileProvider",
+                create_inner_jpeg_file,
+            ),
+            # ODS
+            (
+                "faker_file.providers.ods_file",
+                "OdsFileProvider",
+                create_inner_ods_file,
+            ),
+            # PDF
+            (
+                "faker_file.providers.pdf_file",
+                "PdfFileProvider",
+                create_inner_pdf_file,
+            ),
+            # PNG
+            (
+                "faker_file.providers.png_file",
+                "PngFileProvider",
+                create_inner_png_file,
+            ),
+            # PPTX
+            (
+                "faker_file.providers.pptx_file",
+                "PptxFileProvider",
+                create_inner_pptx_file,
+            ),
+            # SVG
+            (
+                "faker_file.providers.svg_file",
+                "SvgFileProvider",
+                create_inner_svg_file,
+            ),
+            # TXT
+            (
+                "faker_file.providers.txt_file",
+                "TxtFileProvider",
+                create_inner_txt_file,
+            ),
+            # WEBP
+            (
+                "faker_file.providers.webp_file",
+                "WebpFileProvider",
+                create_inner_webp_file,
+            ),
+            # XLSX
+            (
+                "faker_file.providers.xlsx_file",
+                "XlsxFileProvider",
+                create_inner_xlsx_file,
+            ),
+        ],
+    )
+    def test_broken_imports(
+        self, module_path, module_name, create_inner_file_func
+    ):
+        _module = import_module(module_path)
+        del _module.__dict__[module_name]
+        with self.assertRaises(ImportError):
+            create_inner_file_func()
+        reload(_module)

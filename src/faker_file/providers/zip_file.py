@@ -389,8 +389,10 @@ class ZipFileProvider(BaseProvider, FileMixin):
             options={
                 "count": 5,
                 "create_inner_file_func": create_inner_docx_file,
-                "max_nb_chars": 1_024,
-                "prefix": "zzz_docx_file_",
+                "create_inner_file_args": {
+                    "prefix": "zzz_docx_file_",
+                    "max_nb_chars": 1_024,
+                },
                 "directory": "zzz",
             }
         )

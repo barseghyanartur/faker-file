@@ -68,8 +68,10 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
         options={
             "count": 3,
             "create_inner_file_func": create_inner_docx_file,
-            "max_nb_chars": 1_024,
-            "prefix": "xxx_",
+            "create_inner_file_args": {
+                "prefix": "xxx_",
+                "max_nb_chars": 1_024,
+            }
             "directory": "yyy",
         }
     )
@@ -236,13 +238,16 @@ Randomize provider choice
     from random import choice
 
     from factory import LazyAttribute
+    from faker import Faker as FakerFaker
+
+    FAKER = FakerFaker()
 
     PROVIDER_CHOICES = [
-        lambda: DocxFileProvider(None).docx_file(root_path=settings.MEDIA_ROOT),
-        lambda: PdfFileProvider(None).pdf_file(root_path=settings.MEDIA_ROOT),
-        lambda: PptxFileProvider(None).pptx_file(root_path=settings.MEDIA_ROOT),
-        lambda: TxtFileProvider(None).txt_file(root_path=settings.MEDIA_ROOT),
-        lambda: ZipFileProvider(None).zip_file(root_path=settings.MEDIA_ROOT),
+        lambda: DocxFileProvider(FAKER).docx_file(root_path=settings.MEDIA_ROOT),
+        lambda: PdfFileProvider(FAKER).pdf_file(root_path=settings.MEDIA_ROOT),
+        lambda: PptxFileProvider(FAKER).pptx_file(root_path=settings.MEDIA_ROOT),
+        lambda: TxtFileProvider(FAKER).txt_file(root_path=settings.MEDIA_ROOT),
+        lambda: ZipFileProvider(FAKER).zip_file(root_path=settings.MEDIA_ROOT),
     ]
 
     def pick_random_provider(*args, **kwargs):

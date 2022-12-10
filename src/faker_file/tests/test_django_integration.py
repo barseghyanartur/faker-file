@@ -1,10 +1,9 @@
 import os
 
+import factories
 from django.test import TestCase
 from faker import Faker
 from parametrize import parametrize
-
-import factories
 
 __all__ = ("DjangoIntegrationTestCase",)
 
