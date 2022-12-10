@@ -44,6 +44,14 @@ faker\_file.providers.jpeg\_file module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.providers.ods\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.ods_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.pdf\_file module
 --------------------------------------
 
