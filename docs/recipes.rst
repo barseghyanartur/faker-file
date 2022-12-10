@@ -76,6 +76,38 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
         }
     )
 
+Create a ZIP file which contains 5 ZIP files which contain 5 ZIP files which contain 5 DOCX files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+- 5 ZIP files in the ZIP archive.
+- Content is generated dynamically.
+- Prefix the filenames in archive with ``nested_level_1_``.
+- Prefix the filename of the archive itself with ``nested_level_0_``.
+- Each of the ZIP files inside the ZIP file in their turn contains 5 other ZIP
+  files, prefixed with ``nested_level_2_``, which in their turn contain 5
+  DOCX files.
+
+.. code-block:: python
+
+    from faker_file.providers.zip_file import create_inner_docx_file, create_inner_zip_file
+    file = ZipFileProvider(FAKER).zip_file(
+        prefix="nested_level_0_",
+        options={
+            "create_inner_file_func": create_inner_zip_file,
+            "create_inner_file_args": {
+                "prefix": "nested_level_1_",
+                "options": {
+                    "create_inner_file_func": create_inner_zip_file,
+                    "create_inner_file_args": {
+                        "prefix": "nested_level_2_",
+                        "options": {
+                            "create_inner_file_func": create_inner_docx_file,
+                        }
+                    },
+                }
+            },
+        }
+    )
+
 Or another
 ~~~~~~~~~~
 **Imports and initializations**

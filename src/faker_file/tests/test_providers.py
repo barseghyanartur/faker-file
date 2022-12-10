@@ -3,7 +3,6 @@ import unittest
 from imp import reload
 from importlib import import_module
 from typing import Any, Dict, Optional, Union
-from unittest.mock import patch
 
 import pytest
 from faker import Faker
@@ -38,6 +37,7 @@ from ..providers.zip_file import (
     create_inner_txt_file,
     create_inner_webp_file,
     create_inner_xlsx_file,
+    create_inner_zip_file,
 )
 
 __all__ = ("ProvidersTestCase",)
@@ -294,6 +294,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_svg_file, "Lorem ipsum"),
             # (create_inner_webp_file, "Lorem ipsum"),
             (create_inner_xlsx_file, None),
+            (create_inner_zip_file, None),
         ],
     )
     def test_standalone_zip_file(

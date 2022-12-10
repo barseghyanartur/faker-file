@@ -15,6 +15,16 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.6
+---
+2022-12-11
+
+- Pass optional ``generator`` argument to inner functions of
+  the ``ZipFileProvider``.
+- Added ``create_inner_zip_file`` inner function which allows to create
+  nested ZIPs.
+- Reached test coverage of 100%.
+
 0.5
 ---
 2022-12-10
