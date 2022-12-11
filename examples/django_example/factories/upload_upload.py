@@ -3,7 +3,7 @@ from random import choice
 from django.conf import settings
 from factory import Faker, LazyAttribute
 from factory.django import DjangoModelFactory
-from upload.models import Upload
+from upload.models import Upload  # noqa
 
 from faker_file.providers.docx_file import DocxFileProvider
 from faker_file.providers.pdf_file import PdfFileProvider
@@ -22,6 +22,7 @@ __all__ = (
     "PdfUploadFactory",
     "PptxUploadFactory",
     "TxtUploadFactory",
+    "UploadFactory",
     "ZipUploadFactory",
 )
 

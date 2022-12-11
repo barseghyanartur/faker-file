@@ -10,7 +10,8 @@ Prerequisites
 
 .. code-block:: python
 
-    import Faker
+    from faker import Faker
+    from faker_file.providers.bin_file import BinFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
@@ -114,7 +115,7 @@ Or another
 
 .. code-block:: python
 
-    import Faker
+    from faker import Faker
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
@@ -291,3 +292,34 @@ Randomize provider choice
         # ...
         file = LazyAttribute(pick_random_provider)
         # ...
+
+Generate a file of a certain size
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The only two file types for which it is easy to foresee the file size are BIN
+and TXT. Note, that size of BIN files is always exact, while for TXT it is
+approximate.
+
+BIN
+^^^
+
+.. code-block:: python
+
+    file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
+    file = BinFileProvider(FAKER).bin_file(length=3*1024**2)  # 3 Mb
+    file = BinFileProvider(FAKER).bin_file(length=10*1024**2)  # 10 Mb
+
+    file = BinFileProvider(FAKER).bin_file(length=1024)  # 1 Kb
+    file = BinFileProvider(FAKER).bin_file(length=3*1024)  # 3 Kb
+    file = BinFileProvider(FAKER).bin_file(length=10*1024)  # 10 Kb
+
+TXT
+^^^
+.. code-block:: python
+
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024**2)  # 1 Mb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024**2)  # 3 Mb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024**2)  # 10 Mb
+
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024)  # 1 Kb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024)  # 3 Kb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024)  # 10 Kb
