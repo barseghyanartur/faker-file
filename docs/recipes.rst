@@ -301,7 +301,6 @@ approximate.
 
 BIN
 ^^^
-
 .. code-block:: python
 
     file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
