@@ -103,8 +103,11 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
         }
     )
 
-Create a ZIP file which contains 5 ZIP files which contain 5 ZIP files which contain 5 DOCX files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a nested ZIP file
+~~~~~~~~~~~~~~~~~~~~~~~~
+Create a ZIP file which contains 5 ZIP files which contain 5 ZIP files which
+contain 5 DOCX files.
+
 - 5 ZIP files in the ZIP archive.
 - Content is generated dynamically.
 - Prefix the filenames in archive with ``nested_level_1_``.
