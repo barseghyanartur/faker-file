@@ -39,13 +39,18 @@ class FileMixin:
         root_path: str = None,
         rel_path: str = DEFAULT_REL_PATH,
         prefix: Optional[str] = None,
+        extension: Optional[str] = None,
     ) -> str:
         if not root_path:
             root_path = tempfile.gettempdir()
         dir_path = os.path.join(root_path, rel_path)
         os.makedirs(dir_path, exist_ok=True)
+        if not (self.extension or extension):
+            raise Exception("Either self.extension or extension shall be given")
         temp_file = tempfile.NamedTemporaryFile(
-            suffix=f".{self.extension}", prefix=prefix, dir=dir_path
+            prefix=prefix,
+            dir=dir_path,
+            suffix=f".{self.extension or extension}",
         )
         return temp_file.name
 

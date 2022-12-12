@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.7
+---
+2022-12-12
+
+- Added ``RandomFileFromDirProvider`` which picks a random file from
+  directory given.
+- Improved docs.
+
 0.6
 ---
 2022-12-11

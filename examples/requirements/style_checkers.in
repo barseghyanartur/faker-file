@@ -2,6 +2,7 @@
 black
 ruff
 isort
+doc8
 pre-commit
 pydocstyle
 pyflakes

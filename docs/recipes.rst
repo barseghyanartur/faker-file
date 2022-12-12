@@ -2,12 +2,12 @@ Recipes
 =======
 When using with ``Faker``
 -------------------------
-One way
-~~~~~~~
-Prerequisites
-^^^^^^^^^^^^^
-**Imports and initializations**
+When using with ``Faker``, there are two ways of using the providers.
 
+Imports and initializations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+One way
+^^^^^^^
 .. code-block:: python
 
     from faker import Faker
@@ -20,8 +20,34 @@ Prerequisites
 
     FAKER = Faker()
 
+    # Usage example
+    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
+
+Or another
+^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.pptx_file import PptxFileProvider
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.providers.zip_file import ZipFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(DocxFileProvider)
+    FAKER.add_provider(PdfFileProvider)
+    FAKER.add_provider(PptxFileProvider)
+    FAKER.add_provider(TxtFileProvider)
+    FAKER.add_provider(ZipFileProvider)
+
+    # Usage example
+    file = FAKER.txt_file(content="Lorem ipsum")
+
+Throughout documentation we will be mixing these approaches.
+
 Create a TXT file with static content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content of the file is ``Lorem ipsum``.
 
 .. code-block:: python
@@ -29,7 +55,7 @@ Create a TXT file with static content
     file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
 
 Create a DOCX file with dynamically generated content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content is generated dynamically.
 - Content is limited to 1024 chars.
 - Wrap lines after 80 chars.
@@ -44,7 +70,7 @@ Create a DOCX file with dynamically generated content
     )
 
 Create a ZIP file consisting of TXT files with static content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the ZIP archive (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
@@ -53,7 +79,7 @@ Create a ZIP file consisting of TXT files with static content
     file = ZipFileProvider(FAKER).zip_file(options={"content": "Lorem ipsum"})
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 3 DOCX files in the ZIP archive.
 - Content is generated dynamically.
 - Content is limited to 1024 chars.
@@ -78,7 +104,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
     )
 
 Create a ZIP file which contains 5 ZIP files which contain 5 ZIP files which contain 5 DOCX files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 ZIP files in the ZIP archive.
 - Content is generated dynamically.
 - Prefix the filenames in archive with ``nested_level_1_``.
@@ -109,35 +135,15 @@ Create a ZIP file which contains 5 ZIP files which contain 5 ZIP files which con
         }
     )
 
-Or another
-~~~~~~~~~~
-**Imports and initializations**
-
-.. code-block:: python
-
-    from faker import Faker
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(DocxFileProvider)
-    FAKER.add_provider(PdfFileProvider)
-    FAKER.add_provider(PptxFileProvider)
-    FAKER.add_provider(TxtFileProvider)
-    FAKER.add_provider(ZipFileProvider)
-
 Create a TXT file with static content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
-    file = FAKER("txt_file", content="Lorem ipsum dolor sit amet")
+    file = FAKER.txt_file(content="Lorem ipsum dolor sit amet")
 
 Create a DOCX file with dynamically generated content
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content is generated dynamically.
 - Content is limited to 1024 chars.
 - Wrap lines after 80 chars.
@@ -145,15 +151,14 @@ Create a DOCX file with dynamically generated content
 
 .. code-block:: python
 
-    file = FAKER(
-        "docx_file",
+    file = FAKER.docx_file(
         prefix="zzz",
         max_nb_chars=1_024,
         wrap_chars_after=80,
     )
 
 Create a PDF file with predefined template containing dynamic fixtures
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
@@ -179,7 +184,24 @@ Create a PDF file with predefined template containing dynamic fixtures
     {{phone_number}}
     """
 
-    file = FAKER("pdf_file", content=template, wrap_chars_after=80)
+    file = FAKER.pdf_file(content=template, wrap_chars_after=80)
+
+Pick a random file from a directory given
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Create an exact copy of the randomly picked file under a different name.
+- Prefix of the destination file would be ``zzz``.
+- ``source_dir_path`` is the absolute path to the directory to pick files from.
+
+.. code-block:: python
+
+    from faker_file.providers.random_file_from_dir import (
+        RandomFileFromDirProvider,
+    )
+
+    file = RandomFileFromDirProvider(FAKER).random_file_from_dir(
+        source_dir_path="/tmp/tmp/",
+        prefix="zzz",
+    )
 
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------

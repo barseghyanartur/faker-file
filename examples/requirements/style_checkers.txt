@@ -16,6 +16,12 @@ dill==0.3.6
     # via pylint
 distlib==0.3.6
     # via virtualenv
+doc8==1.0.0
+    # via -r examples/requirements/style_checkers.in
+docutils==0.19
+    # via
+    #   doc8
+    #   restructuredtext-lint
 filelock==3.8.0
     # via virtualenv
 identify==2.5.9
@@ -34,6 +40,8 @@ nodeenv==1.7.0
     # via pre-commit
 pathspec==0.10.2
     # via black
+pbr==5.11.0
+    # via stevedore
 platformdirs==2.5.4
     # via
     #   black
@@ -45,19 +53,26 @@ pydocstyle==6.1.1
     # via -r examples/requirements/style_checkers.in
 pyflakes==3.0.1
     # via -r examples/requirements/style_checkers.in
+pygments==2.13.0
+    # via doc8
 pylint==2.15.7
     # via -r examples/requirements/style_checkers.in
 pyyaml==6.0
     # via pre-commit
+restructuredtext-lint==1.4.0
+    # via doc8
 ruff==0.0.157
     # via -r examples/requirements/style_checkers.in
 snowballstemmer==2.2.0
     # via pydocstyle
+stevedore==4.1.1
+    # via doc8
 toml==0.10.2
     # via pre-commit
 tomli==2.0.1
     # via
     #   black
+    #   doc8
     #   pylint
 tomlkit==0.11.6
     # via pylint

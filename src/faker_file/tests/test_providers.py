@@ -1,13 +1,15 @@
 import os.path
+import tempfile
 import unittest
-from imp import reload
-from importlib import import_module
-from typing import Any, Dict, Optional, Union
+from importlib import import_module, reload
+from typing import Any, Callable, Dict, Optional, Union
 
 import pytest
 from faker import Faker
+from faker.providers import BaseProvider
 from parametrize import parametrize
 
+from ..base import DEFAULT_REL_PATH, FileMixin
 from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
@@ -18,6 +20,7 @@ from ..providers.ods_file import OdsFileProvider
 from ..providers.pdf_file import PdfFileProvider
 from ..providers.png_file import PngFileProvider
 from ..providers.pptx_file import PptxFileProvider
+from ..providers.random_file_from_dir import RandomFileFromDirProvider
 from ..providers.svg_file import SvgFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import WebpFileProvider
@@ -179,6 +182,16 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": _FAKER.text(),
+            },
+        ),
+        # RandomFileFromDirProvider
+        (
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
             },
         ),
         # SVG
@@ -414,10 +427,23 @@ class ProvidersTestCase(unittest.TestCase):
         ],
     )
     def test_broken_imports(
-        self, module_path, module_name, create_inner_file_func
-    ):
+        self,
+        module_path: str,
+        module_name: str,
+        create_inner_file_func: Callable,
+    ) -> None:
+        """Test broken imports."""
         _module = import_module(module_path)
         del _module.__dict__[module_name]
         with self.assertRaises(ImportError):
             create_inner_file_func()
         reload(_module)
+
+    def test_generate_filename_failure(self) -> None:
+        """Test generate filename failure."""
+
+        class _TestFileProvider(BaseProvider, FileMixin):
+            extension: str = ""
+
+        with self.assertRaises(Exception):
+            _TestFileProvider(_FAKER)._generate_filename()
