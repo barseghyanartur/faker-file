@@ -312,7 +312,7 @@ class ProvidersTestCase(unittest.TestCase):
     )
     def test_standalone_zip_file(
         self: "ProvidersTestCase",
-        create_inner_file_func: Optional[callable] = None,
+        create_inner_file_func: Optional[Callable] = None,
         content: Union[str, Dict] = None,
     ) -> None:
         """Test standalone ZIP file provider."""
@@ -332,7 +332,7 @@ class ProvidersTestCase(unittest.TestCase):
     @pytest.mark.xfail
     def test_standalone_zip_file_allow_failures(
         self: "ProvidersTestCase",
-        create_inner_file_func: Optional[callable] = None,
+        create_inner_file_func: Optional[Callable] = None,
         content: Union[str, Dict] = None,
     ) -> None:
         """Test standalone ZIP file provider, but allow failures."""

@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.7"
+version = "0.8"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -34,6 +34,7 @@ extras_require = (
             "imgkit",
             "odfpy",
             "openpyxl",
+            "pathy[all]",
             "pdfkit",
             "python-docx",
             "python-pptx",
@@ -51,6 +52,9 @@ extras_require = (
         "webp": ["imgkit"],
         "xlsx": ["tablib", "openpyxl"],
         "ods": ["tablib", "odfpy"],
+        "s3": ["pathy[s3]"],
+        "gcs": ["pathy[gcs"],
+        "azure": ["pathy[azure]"],
     },
 )
 

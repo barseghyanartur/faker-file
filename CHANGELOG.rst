@@ -15,6 +15,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.8
+---
+*Unreleased*
+
+- Added support for cloud storages (S3, GCS and Azure).
+
 0.7
 ---
 2022-12-12

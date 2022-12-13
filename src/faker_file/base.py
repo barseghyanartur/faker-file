@@ -1,7 +1,6 @@
 import os
 import tempfile
-from collections.abc import Callable
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
 from faker import Faker
 from faker.providers.python import Provider
