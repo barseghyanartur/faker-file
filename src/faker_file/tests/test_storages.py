@@ -2,19 +2,18 @@ import tempfile
 import unittest
 from pathlib import Path
 from typing import Any, Dict, Type
+from unittest.mock import patch
 
 from faker import Faker
 from parametrize import parametrize
-from pathy import use_fs, use_fs_cache
+from pathy import get_fs_cache, use_fs, use_fs_cache
 
+from ..storages.aws_s3 import AWSS3Storage
+from ..storages.azure_cloud_storage import AzureCloudStorage
 from ..storages.base import BaseStorage
+from ..storages.cloud import CloudStorage
 from ..storages.filesystem import FileSystemStorage
-from ..storages.cloud import (
-    CloudStorage,
-    authenticate_azure_callback,
-    authenticate_gcs_callback,
-    authenticate_s3_callback,
-)
+from ..storages.google_cloud_storage import GoogleCloudStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -22,12 +21,6 @@ __license__ = "MIT"
 __all__ = ("TestStoragesTestCase",)
 
 FAKER = Faker()
-
-GCS_CREDENTIALS = tempfile.NamedTemporaryFile(suffix="json").name
-with open(GCS_CREDENTIALS, "w") as file:
-    file.write(
-        """{"token_uri": "http://example", "client_email": "a@b.c"}"""
-    )
 
 
 class TestStoragesTestCase(unittest.TestCase):
@@ -54,43 +47,40 @@ class TestStoragesTestCase(unittest.TestCase):
                 "zzz",
                 "docx",
             ),
+            # AWS S3
             (
-                CloudStorage,
+                AWSS3Storage,
                 {
-                    "schema": "s3",
                     "bucket_name": "testing",
                     "rel_path": "tmp",
                     "credentials": {
                         "key_id": "key",
                         "key_secret": "key_secret",
                     },
-                    "callback": authenticate_s3_callback,
                 },
                 "zzz",
                 "docx",
             ),
+            # Google Cloud Storage
             (
-                CloudStorage,
+                GoogleCloudStorage,
                 {
-                    "schema": "gs",
                     "bucket_name": "testing",
                     "rel_path": "tmp",
                     # "credentials": {
                     #     "json_file_path": GCS_CREDENTIALS,
                     # },
-                    # "callback": authenticate_gcs_callback,
                 },
                 "zzz",
                 "docx",
             ),
+            # Azure Cloud Storage
             (
-                CloudStorage,
+                AzureCloudStorage,
                 {
-                    "schema": "azure",
                     "bucket_name": "testing",
                     "rel_path": "tmp",
                     "credentials": {"connection_string": "abcd1234"},
-                    "callback": authenticate_azure_callback,
                 },
                 "zzz",
                 "docx",
