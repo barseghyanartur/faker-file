@@ -42,6 +42,7 @@ from ..providers.zip_file import (
     create_inner_xlsx_file,
     create_inner_zip_file,
 )
+from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -65,6 +66,7 @@ FileProvider = Union[
 ]
 
 _FAKER = Faker()
+FS_STORAGE = FileSystemStorage()
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -256,7 +258,7 @@ class ProvidersTestCase(unittest.TestCase):
         _faker.add_provider(provider)
         _method = getattr(_faker, method_name)
         _file = _method(**kwargs)
-        self.assertTrue(os.path.exists(_file))
+        self.assertTrue(FS_STORAGE.exists(_file))
 
     @parametrize(
         "provider, method_name, kwargs",
@@ -272,7 +274,7 @@ class ProvidersTestCase(unittest.TestCase):
         _provider = provider(None)  # noqa
         _method = getattr(_provider, method_name)
         _file = _method(**kwargs)
-        self.assertTrue(os.path.exists(_file))
+        self.assertTrue(FS_STORAGE.exists(_file))
 
     @parametrize(
         "provider, method_name, kwargs",
@@ -291,7 +293,7 @@ class ProvidersTestCase(unittest.TestCase):
         _provider = provider(None)  # noqa
         _method = getattr(_provider, method_name)
         _file = _method(**kwargs)
-        self.assertTrue(os.path.exists(_file))
+        self.assertTrue(FS_STORAGE.exists(_file))
 
     @parametrize(
         "create_inner_file_func, content",
@@ -324,7 +326,7 @@ class ProvidersTestCase(unittest.TestCase):
             _options["create_inner_file_func"] = create_inner_file_func
         _file = ZipFileProvider(None).zip_file(options=_options)
 
-        self.assertTrue(os.path.exists(_file))
+        self.assertTrue(FS_STORAGE.exists(_file))
 
     @parametrize(
         "create_inner_file_func, content",
@@ -344,7 +346,7 @@ class ProvidersTestCase(unittest.TestCase):
             _options["create_inner_file_func"] = create_inner_file_func
         _file = ZipFileProvider(None).zip_file(options=_options)
 
-        self.assertTrue(os.path.exists(_file))
+        self.assertTrue(FS_STORAGE.exists(_file))
 
     @parametrize(
         "module_path, module_name, create_inner_file_func",

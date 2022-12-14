@@ -1,11 +1,12 @@
-import os
 from typing import Dict, List, Optional, Union
 
 from faker import Faker
 from faker.providers import BaseProvider
 from tablib import Dataset
 
-from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
+from ..base import FileMixin, StringValue
+from ..storages.base import BaseStorage
+from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -40,14 +41,32 @@ class XlsxFileProvider(BaseProvider, FileMixin):
             },
             include_row_ids=True,
         )
+
+    Usage example with `FileSystemStorage` storage (for `Django`):
+
+        from django.conf import settings
+        from faker_file.storages.filesystem import FileSystemStorage
+
+        file = XlsxFileProvider(Faker()).xlsx_file(
+            storage=FileSystemStorage(
+                root_path=settings.MEDIA_ROOT,
+                rel_path="tmp",
+            ),
+            prefix="zzz",
+            num_rows=100,
+            data_columns={
+                "name": "{{name}}",
+                "residency": "{{address}}",
+            },
+            include_row_ids=True,
+        )
     """
 
     extension: str = "xlsx"
 
     def xlsx_file(
         self: "XlsxFileProvider",
-        root_path: str = None,
-        rel_path: str = DEFAULT_REL_PATH,
+        storage: BaseStorage = None,
         prefix: Optional[str] = None,
         data_columns: Dict[str, str] = None,
         num_rows: int = 10,
@@ -56,9 +75,7 @@ class XlsxFileProvider(BaseProvider, FileMixin):
     ) -> StringValue:
         """Generate a XLSX file with random text.
 
-        :param root_path: Path of your files root directory (in case of Django
-            it would be `settings.MEDIA_ROOT`).
-        :param rel_path: Relative path (from root directory).
+        :param storage: Storage. Defaults to `FileSystemStorage`.
         :param data_columns: The ``data_columns`` argument expects a list or a
             tuple of string tokens, and these string tokens will be passed to
             :meth:`pystr_format()
@@ -75,10 +92,12 @@ class XlsxFileProvider(BaseProvider, FileMixin):
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
-        file_name = self._generate_filename(
-            root_path=root_path,
-            rel_path=rel_path,
+        if storage is None:
+            storage = FileSystemStorage()
+
+        filename = storage.generate_filename(
             prefix=prefix,
+            extension=self.extension,
         )
 
         # Specific
@@ -98,10 +117,9 @@ class XlsxFileProvider(BaseProvider, FileMixin):
         dataset = Dataset()
         dataset.load(content, format="json")
 
-        with open(file_name, "wb") as fakefile:
-            fakefile.write(dataset.export("xlsx"))
+        storage.write_bytes(filename, dataset.export("xlsx"))
 
         # Generic
-        file_name = StringValue(os.path.relpath(file_name, root_path))
+        file_name = StringValue(storage.relpath(filename))
         file_name.data = {"content": content}
         return file_name

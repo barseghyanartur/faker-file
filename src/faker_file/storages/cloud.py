@@ -1,6 +1,6 @@
 import os
 import tempfile
-from typing import Dict
+from typing import Any, Dict, Optional
 
 from pathy import Pathy
 
@@ -30,22 +30,31 @@ class CloudStorage(BaseStorage):
         storage.write_bytes(file, b"Lorem ipsum")
     """
 
-    bucket_name: Pathy
+    bucket_name: str
+    bucket: Pathy
     credentials: Dict[str, str]
     schema: str = None
 
-    def __init__(self: "CloudStorage", *args, **kwargs):
+    def __init__(
+        self: "CloudStorage",
+        schema: str = "file",
+        bucket_name: Optional[str] = None,
+        rel_path: Optional[str] = DEFAULT_REL_PATH,
+        credentials: Optional[Dict[str, Any]] = None,
+        *args,
+        **kwargs,
+    ):
         if not self.schema:
-            self.schema = kwargs.pop("schema", "file")
-        self.bucket_name = kwargs.pop("bucket_name", None)
-        self.rel_path = kwargs.pop("rel_path", DEFAULT_REL_PATH)
+            self.schema = schema
+        self.bucket_name = bucket_name
+        self.rel_path = rel_path
         self.cache_dir = None
-        credentials = kwargs.pop("credentials", {})
+        credentials = credentials or {}
 
-        bucket = Pathy(f"{self.schema}://{self.bucket_name}")
+        self.bucket = Pathy(f"{self.schema}://{self.bucket_name}")
         # If bucket does not exist, create
-        if not bucket.exists():
-            bucket.mkdir()
+        if not self.bucket.exists():
+            self.bucket.mkdir()
 
         super().__init__(*args, **kwargs)
 
@@ -80,22 +89,18 @@ class CloudStorage(BaseStorage):
         encoding: str = None,
     ) -> int:
         """Write text."""
-        file = (
-            Pathy(f"{self.schema}://{self.bucket_name}")
-            / self.rel_path
-            / filename
-        )
+        file = self.bucket / self.rel_path / filename
         return file.write_text(data, encoding)
 
     def write_bytes(self: "CloudStorage", filename: Pathy, data: bytes) -> int:
         """Write bytes."""
-        file = (
-            Pathy(f"{self.schema}://{self.bucket_name}")
-            / self.rel_path
-            / filename
-        )
+        file = self.bucket / self.rel_path / filename
         return file.write_bytes(data)
 
-    def exists(self: "CloudStorage", filename: Pathy) -> int:
+    def exists(self: "CloudStorage", filename: Pathy) -> bool:
         """Check if file exists."""
         return filename.exists()
+
+    def relpath(self: "CloudStorage", filename: Pathy) -> str:
+        """Return relative path."""
+        return str(filename.relative_to(self.bucket))

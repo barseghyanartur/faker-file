@@ -1,5 +1,6 @@
 import os
 import tempfile
+from typing import Optional
 
 from ..base import DEFAULT_REL_PATH
 from .base import BaseStorage
@@ -21,11 +22,26 @@ class FileSystemStorage(BaseStorage):
         file = storage.generate_filename(prefix="zzz_", extension="docx")
         storage.write_text(file, "Lorem ipsum")
         storage.write_bytes(file, b"Lorem ipsum")
+
+    Initialization with params:
+
+        storage = FileSystemStorage()
     """
 
-    def __init__(self: "FileSystemStorage", *args, **kwargs) -> None:
-        self.root_path = kwargs.pop("root_path", tempfile.gettempdir())
-        self.rel_path = kwargs.pop("rel_path", DEFAULT_REL_PATH)
+    def __init__(
+        self: "FileSystemStorage",
+        root_path: Optional[str] = tempfile.gettempdir(),
+        rel_path: Optional[str] = DEFAULT_REL_PATH,
+        *args,
+        **kwargs,
+    ) -> None:
+        """
+        :param root_path: Path of your files root directory (in case of Django
+            it would be `settings.MEDIA_ROOT`).
+        :param rel_path: Relative path (from root directory).
+        """
+        self.root_path = root_path
+        self.rel_path = rel_path
         super().__init__(*args, **kwargs)
 
     def generate_filename(
@@ -64,6 +80,10 @@ class FileSystemStorage(BaseStorage):
         with open(filename, "wb") as file:
             return file.write(data)
 
-    def exists(self: "FileSystemStorage", filename: str) -> int:
+    def exists(self: "FileSystemStorage", filename: str) -> bool:
         """Write bytes."""
         return os.path.exists(filename)
+
+    def relpath(self, filename: str) -> str:
+        """Return relative path."""
+        return os.path.relpath(filename, self.root_path)
