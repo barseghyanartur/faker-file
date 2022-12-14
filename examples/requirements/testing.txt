@@ -8,10 +8,38 @@ asgiref==3.5.2
     # via django
 attrs==22.1.0
     # via pytest
+azure-core==1.26.1
+    # via
+    #   azure-storage-blob
+    #   msrest
+azure-storage-blob==12.14.1
+    # via pathy
+boto3==1.26.29
+    # via pathy
+botocore==1.29.29
+    # via
+    #   boto3
+    #   s3transfer
+cachetools==5.2.0
+    # via google-auth
+certifi==2022.12.7
+    # via
+    #   msrest
+    #   requests
+cffi==1.15.1
+    # via cryptography
+charset-normalizer==2.1.1
+    # via requests
+click==7.1.2
+    # via typer
+colorama==0.4.6
+    # via typer-cli
 coverage[toml]==6.5.0
     # via
     #   -r examples/requirements/test.in
     #   pytest-cov
+cryptography==38.0.4
+    # via azure-storage-blob
 defusedxml==0.7.1
     # via odfpy
 distlib==0.3.6
@@ -34,14 +62,47 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
+google-api-core==2.11.0
+    # via
+    #   google-cloud-core
+    #   google-cloud-storage
+google-auth==2.15.0
+    # via
+    #   google-api-core
+    #   google-cloud-core
+    #   google-cloud-storage
+google-cloud-core==2.3.2
+    # via google-cloud-storage
+google-cloud-storage==1.44.0
+    # via pathy
+google-crc32c==1.5.0
+    # via google-resumable-media
+google-resumable-media==2.4.0
+    # via google-cloud-storage
+googleapis-common-protos==1.57.0
+    # via google-api-core
+idna==3.4
+    # via requests
 imgkit==1.2.2
     # via -r examples/requirements/common.in
 iniconfig==1.1.1
     # via pytest
+isodate==0.6.1
+    # via msrest
+jmespath==1.0.1
+    # via
+    #   boto3
+    #   botocore
 lxml==4.9.1
     # via
     #   python-docx
     #   python-pptx
+mock==4.0.3
+    # via pathy
+msrest==0.7.1
+    # via azure-storage-blob
+oauthlib==3.2.2
+    # via requests-oauthlib
 odfpy==1.4.1
     # via -r examples/requirements/common.in
 openpyxl==3.0.10
@@ -52,6 +113,8 @@ packaging==21.3
     #   tox
 parametrize==0.1.1
     # via -r examples/requirements/test.in
+pathy[all]==0.10.1
+    # via -r examples/requirements/common.in
 pdfkit==1.0.0
     # via -r examples/requirements/common.in
 pillow==9.3.0
@@ -62,22 +125,42 @@ pluggy==1.0.0
     # via
     #   pytest
     #   tox
+protobuf==4.21.11
+    # via
+    #   google-api-core
+    #   google-cloud-storage
+    #   googleapis-common-protos
 py==1.11.0
     # via
     #   -r examples/requirements/test.in
     #   pytest
     #   tox
+pyasn1==0.4.8
+    # via
+    #   pyasn1-modules
+    #   rsa
+pyasn1-modules==0.2.8
+    # via google-auth
+pycparser==2.21
+    # via cffi
 pyparsing==3.0.9
     # via packaging
 pytest==6.2.5
     # via
     #   -r examples/requirements/test.in
+    #   pathy
     #   pytest-cov
     #   pytest-django
     #   pytest-ordering
     #   pytest-pythonpath
 pytest-cov==4.0.0
-    # via -r examples/requirements/test.in
+    # via
+    #   -r examples/requirements/test.in
+    #   pytest-cover
+pytest-cover==3.0.0
+    # via pytest-coverage
+pytest-coverage==0.0
+    # via pathy
 pytest-django==4.5.2
     # via -r examples/requirements/test.in
 pytest-ordering==0.6
@@ -85,18 +168,41 @@ pytest-ordering==0.6
 pytest-pythonpath==0.7.4
     # via -r examples/requirements/test.in
 python-dateutil==2.8.2
-    # via faker
+    # via
+    #   botocore
+    #   faker
 python-docx==0.8.11
     # via -r examples/requirements/common.in
 python-pptx==0.6.21
     # via -r examples/requirements/common.in
 pytz==2022.6
     # via django
+requests==2.28.1
+    # via
+    #   azure-core
+    #   google-api-core
+    #   google-cloud-storage
+    #   msrest
+    #   requests-oauthlib
+requests-oauthlib==1.3.1
+    # via msrest
+rsa==4.9
+    # via google-auth
+s3transfer==0.6.0
+    # via boto3
+shellingham==1.5.0
+    # via typer-cli
 six==1.16.0
     # via
+    #   azure-core
+    #   google-auth
+    #   google-cloud-storage
     #   imgkit
+    #   isodate
     #   python-dateutil
     #   tox
+smart-open==6.3.0
+    # via pathy
 sqlparse==0.4.3
     # via
     #   django
@@ -111,6 +217,18 @@ tomli==2.0.1
     #   tox
 tox==3.27.1
     # via -r examples/requirements/test.in
+typer==0.3.2
+    # via
+    #   pathy
+    #   typer-cli
+typer-cli==0.0.12
+    # via pathy
+typing-extensions==4.4.0
+    # via azure-core
+urllib3==1.26.13
+    # via
+    #   botocore
+    #   requests
 virtualenv==20.17.0
     # via tox
 xlsxwriter==3.0.3

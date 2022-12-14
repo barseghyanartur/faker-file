@@ -69,20 +69,20 @@ class TestStoragesTestCase(unittest.TestCase):
                 "zzz",
                 "docx",
             ),
-            # (
-            #     CloudStorage,
-            #     {
-            #         "schema": "gs",
-            #         "bucket_name": "testing",
-            #         "rel_path": "tmp",
-            #         "credentials": {
-            #             "json_file_path": GCS_CREDENTIALS,
-            #         },
-            #         "callback": authenticate_gcs_callback,
-            #     },
-            #     "zzz",
-            #     "docx",
-            # ),
+            (
+                CloudStorage,
+                {
+                    "schema": "gs",
+                    "bucket_name": "testing",
+                    "rel_path": "tmp",
+                    # "credentials": {
+                    #     "json_file_path": GCS_CREDENTIALS,
+                    # },
+                    # "callback": authenticate_gcs_callback,
+                },
+                "zzz",
+                "docx",
+            ),
             (
                 CloudStorage,
                 {
