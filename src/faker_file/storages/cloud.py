@@ -3,7 +3,7 @@ import tempfile
 from pathlib import Path
 from typing import Dict
 
-from pathy import Pathy, get_fs_cache, use_fs, use_fs_cache
+from pathy import Pathy, get_fs_cache, set_client_params, use_fs, use_fs_cache
 
 from ..base import DEFAULT_REL_PATH
 from .base import BaseStorage
@@ -11,7 +11,12 @@ from .base import BaseStorage
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("CloudStorage",)
+__all__ = (
+    "CloudStorage",
+    "authenticate_azure_callback",
+    "authenticate_gcs_callback",
+    "authenticate_s3_callback",
+)
 
 
 class CloudStorage(BaseStorage):
@@ -28,6 +33,7 @@ class CloudStorage(BaseStorage):
         )
         file = storage.generate_filename(prefix="zzz_", extension="docx")
         storage.write_text(file, "Lorem ipsum")
+        storage.write_bytes(file, b"Lorem ipsum")
     """
 
     bucket_name: Pathy
@@ -56,7 +62,7 @@ class CloudStorage(BaseStorage):
         super().__init__(*args, **kwargs)
 
         if callback and callable(callback):
-            callback(self, credentials)
+            callback(**credentials)
 
     def generate_filename(
         self: "CloudStorage",
@@ -88,7 +94,7 @@ class CloudStorage(BaseStorage):
             / self.rel_path
             / filename
         )
-        file.write_text(data, encoding)
+        return file.write_text(data, encoding)
 
     def write_bytes(self: "CloudStorage", filename: Pathy, data: bytes) -> int:
         """Write bytes."""
@@ -97,4 +103,28 @@ class CloudStorage(BaseStorage):
             / self.rel_path
             / filename
         )
-        file.write_bytes(data)
+        return file.write_bytes(data)
+
+    def exists(self: "CloudStorage", filename: Pathy) -> int:
+        """Check if file exists."""
+        return filename.exists()
+
+
+def authenticate_gcs_callback(json_file_path: str):
+    """Authenticate GCS callback."""
+    from google.oauth2 import service_account
+
+    credentials = service_account.Credentials.from_service_account_file(
+        json_file_path
+    )
+    set_client_params("gs", credentials=credentials)
+
+
+def authenticate_s3_callback(key_id: str, key_secret: str):
+    """Authenticate AWS S3 callback."""
+    set_client_params("s3", key_id=key_id, key_secret=key_secret)
+
+
+def authenticate_azure_callback(connection_string: str):
+    """Authenticate Azure callback."""
+    set_client_params("azure", connection_string=connection_string)

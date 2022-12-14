@@ -6,6 +6,9 @@ from django.test import TestCase
 from faker import Faker
 from parametrize import parametrize
 
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2022 Artur Barseghyan"
+__license__ = "MIT"
 __all__ = ("DjangoIntegrationTestCase",)
 
 

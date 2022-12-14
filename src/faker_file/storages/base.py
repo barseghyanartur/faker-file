@@ -26,3 +26,7 @@ class BaseStorage:
     def write_bytes(self, filename: Any, data: bytes) -> int:
         """Write bytes."""
         raise NotImplementedError("Method write_bytes is not implemented!")
+
+    def exists(self, filename: Any) -> bool:
+        """Check if file exists."""
+        raise NotImplementedError("Method exists is not implemented!")

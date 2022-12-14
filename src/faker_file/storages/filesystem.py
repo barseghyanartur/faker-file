@@ -20,6 +20,7 @@ class FileSystemStorage(BaseStorage):
         storage = FileSystemStorage()
         file = storage.generate_filename(prefix="zzz_", extension="docx")
         storage.write_text(file, "Lorem ipsum")
+        storage.write_bytes(file, b"Lorem ipsum")
     """
 
     def __init__(self: "FileSystemStorage", *args, **kwargs) -> None:
@@ -62,3 +63,7 @@ class FileSystemStorage(BaseStorage):
         """Write bytes."""
         with open(filename, "wb") as file:
             return file.write(data)
+
+    def exists(self: "FileSystemStorage", filename: str) -> int:
+        """Write bytes."""
+        return os.path.exists(filename)
