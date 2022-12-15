@@ -53,7 +53,7 @@ extras_require = (
         "xlsx": ["tablib", "openpyxl"],
         "ods": ["tablib", "odfpy"],
         "s3": ["pathy[s3]"],
-        "gcs": ["pathy[gcs"],
+        "gcs": ["pathy[gcs]"],
         "azure": ["pathy[azure]"],
     },
 )
