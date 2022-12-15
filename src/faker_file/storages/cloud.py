@@ -76,9 +76,7 @@ class CloudStorage(BaseStorage):
             prefix=prefix,
             suffix=f".{extension}",
         )
-        return (
-            self.bucket / self.rel_path / os.path.basename(temp_file.name)
-        )
+        return self.bucket / self.rel_path / os.path.basename(temp_file.name)
 
     def write_text(
         self: "CloudStorage",

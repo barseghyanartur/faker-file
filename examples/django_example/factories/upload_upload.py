@@ -27,9 +27,7 @@ __all__ = (
     "ZipUploadFactory",
 )
 
-FS_STORAGE = FileSystemStorage(
-    root_path=settings.MEDIA_ROOT
-)
+FS_STORAGE = FileSystemStorage(root_path=settings.MEDIA_ROOT)
 
 
 class AbstractUploadFactory(DjangoModelFactory):

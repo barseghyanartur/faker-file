@@ -1,4 +1,3 @@
-import os
 from typing import Optional
 
 import imgkit
@@ -81,25 +80,20 @@ class PngFileProvider(BaseProvider, FileMixin):
             extension=self.extension,
         )
 
-        tmp_filename = storage.generate_temporary_local_filename(
-            prefix=prefix,
-            extension=self.extension,
-        )
-
         content = self._generate_text_content(
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
         )
 
-        imgkit.from_string(
-            f"<pre>{content}</pre>", tmp_filename, options={"quiet": ""}
+        storage.write_bytes(
+            filename,
+            imgkit.from_string(
+                f"<pre>{content}</pre>",
+                False,
+                options={"format": self.extension},
+            ),
         )
-
-        with open(tmp_filename, "rb") as _file:
-            storage.write_bytes(filename, _file.read())
-
-        os.remove(tmp_filename)  # Clean up temporary files
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
