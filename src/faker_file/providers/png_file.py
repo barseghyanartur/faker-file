@@ -1,3 +1,5 @@
+import contextlib
+import io
 from typing import Optional
 
 import imgkit
@@ -86,14 +88,15 @@ class PngFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        storage.write_bytes(
-            filename,
-            imgkit.from_string(
-                f"<pre>{content}</pre>",
-                False,
-                options={"format": self.extension},
-            ),
-        )
+        with contextlib.redirect_stdout(io.StringIO()):
+            storage.write_bytes(
+                filename,
+                imgkit.from_string(
+                    f"<pre>{content}</pre>",
+                    False,
+                    options={"format": self.extension},
+                ),
+            )
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
