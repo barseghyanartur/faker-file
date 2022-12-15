@@ -1,13 +1,11 @@
-import os
 from typing import Optional
 
-import imgkit
 from faker.providers import BaseProvider
 
 from ..base import FileMixin, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
 from ..storages.base import BaseStorage
-from ..storages.filesystem import FileSystemStorage
+from .mixins import ImageMixin
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -15,18 +13,17 @@ __license__ = "MIT"
 __all__ = ("JpegFileProvider",)
 
 
-class JpegFileProvider(BaseProvider, FileMixin):
+class JpegFileProvider(BaseProvider, ImageMixin):
     """JPEG file provider.
 
         Usage example:
 
+        from faker import Faker
         from faker_file.providers.jpeg_file import JpegFileProvider
 
         file = JpegFileProvider(None).jpeg_file()
 
     Usage example with options:
-
-        from faker_file.providers.jpeg_file import JpegFileProvider
 
         file = JpegFileProvider(None).jpeg_file(
             prefix="zzz",
@@ -72,36 +69,11 @@ class JpegFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :return: Relative path (from root directory) of the generated file.
         """
-        # Generic
-        if storage is None:
-            storage = FileSystemStorage()
-
-        filename = storage.generate_filename(
+        return self._image_file(
+            storage=storage,
             prefix=prefix,
-            extension=self.extension,
-        )
-
-        tmp_filename = storage.generate_temporary_local_filename(
-            prefix=prefix,
-            extension=self.extension,
-        )
-
-        content = self._generate_text_content(
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
+            **kwargs
         )
-
-        imgkit.from_string(
-            f"<pre>{content}</pre>", tmp_filename, options={"quiet": ""}
-        )
-
-        with open(tmp_filename, "rb") as _file:
-            storage.write_bytes(filename, _file.read())
-
-        os.remove(tmp_filename)  # Clean up temporary files
-
-        # Generic
-        file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
-        return file_name
