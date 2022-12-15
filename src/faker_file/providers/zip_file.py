@@ -7,7 +7,7 @@ from faker import Faker
 from faker.providers import BaseProvider
 from faker.providers.python import Provider
 
-from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
+from ..base import FileMixin, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS, DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -35,8 +35,7 @@ __all__ = (
 
 
 def create_inner_bin_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     length: int = (1 * 1024 * 1024),
@@ -50,8 +49,7 @@ def create_inner_bin_file(
         raise err
 
     return BinFileProvider(generator).bin_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         length=length,
         content=content,
@@ -60,8 +58,7 @@ def create_inner_bin_file(
 
 
 def create_inner_csv_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     header: Optional[Sequence[str]] = None,
@@ -78,8 +75,7 @@ def create_inner_csv_file(
         raise err
 
     return CsvFileProvider(generator).csv_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         header=header,
         data_columns=data_columns,
@@ -91,8 +87,7 @@ def create_inner_csv_file(
 
 
 def create_inner_docx_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -107,8 +102,7 @@ def create_inner_docx_file(
         raise err
 
     return DocxFileProvider(generator).docx_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -118,8 +112,7 @@ def create_inner_docx_file(
 
 
 def create_inner_ico_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -134,8 +127,7 @@ def create_inner_ico_file(
         raise err
 
     return IcoFileProvider(generator).ico_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -145,8 +137,7 @@ def create_inner_ico_file(
 
 
 def create_inner_jpeg_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -161,8 +152,7 @@ def create_inner_jpeg_file(
         raise err
 
     return JpegFileProvider(generator).jpeg_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -172,8 +162,7 @@ def create_inner_jpeg_file(
 
 
 def create_inner_ods_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     data_columns: Dict[str, str] = None,
@@ -188,8 +177,7 @@ def create_inner_ods_file(
         raise err
 
     return OdsFileProvider(generator).ods_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
@@ -199,8 +187,7 @@ def create_inner_ods_file(
 
 
 def create_inner_pdf_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -215,8 +202,7 @@ def create_inner_pdf_file(
         raise err
 
     return PdfFileProvider(generator).pdf_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -226,8 +212,7 @@ def create_inner_pdf_file(
 
 
 def create_inner_png_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -242,8 +227,7 @@ def create_inner_png_file(
         raise err
 
     return PngFileProvider(generator).png_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -253,8 +237,7 @@ def create_inner_png_file(
 
 
 def create_inner_pptx_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -269,8 +252,7 @@ def create_inner_pptx_file(
         raise err
 
     return PptxFileProvider(generator).pptx_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -280,8 +262,7 @@ def create_inner_pptx_file(
 
 
 def create_inner_svg_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -296,8 +277,7 @@ def create_inner_svg_file(
         raise err
 
     return SvgFileProvider(generator).svg_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -307,8 +287,7 @@ def create_inner_svg_file(
 
 
 def create_inner_txt_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -316,6 +295,7 @@ def create_inner_txt_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    """Create inner TXT file."""
     try:
         from .txt_file import TxtFileProvider
     except ImportError as err:
@@ -323,8 +303,7 @@ def create_inner_txt_file(
 
     """Create inner TXT file."""
     return TxtFileProvider(generator).txt_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -334,8 +313,7 @@ def create_inner_txt_file(
 
 
 def create_inner_webp_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -350,8 +328,7 @@ def create_inner_webp_file(
         raise err
 
     return WebpFileProvider(generator).webp_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -361,8 +338,7 @@ def create_inner_webp_file(
 
 
 def create_inner_xlsx_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     data_columns: Dict[str, str] = None,
@@ -377,8 +353,7 @@ def create_inner_xlsx_file(
         raise err
 
     return XlsxFileProvider(generator).xlsx_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
@@ -388,8 +363,7 @@ def create_inner_xlsx_file(
 
 
 def create_inner_zip_file(
-    root_path: str = None,
-    rel_path: str = DEFAULT_REL_PATH,
+    storage: BaseStorage = None,
     prefix: Optional[str] = None,
     generator: Union[Provider, Faker] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -397,8 +371,7 @@ def create_inner_zip_file(
 ) -> StringValue:
     """Create inner ZIP file."""
     return ZipFileProvider(generator).zip_file(
-        root_path=root_path,
-        rel_path=rel_path,
+        storage=storage,
         prefix=prefix,
         options=options,
         **kwargs,
@@ -478,6 +451,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             extension=self.extension,
         )
         data = {}
+        fs_storage = FileSystemStorage()
 
         # Specific
         if options:
@@ -506,7 +480,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
                 "create_inner_file_func", create_inner_txt_file
             )
             _create_inner_file_args = options.get("create_inner_file_args", {})
-            _dir_path = Path(os.path.join(root_path or "", rel_path)).parent
+            _dir_path = Path("")
             _directory = options.get("directory", "")
 
         else:
@@ -517,20 +491,21 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _dir_path = Path("")
             _directory = ""
 
-        with zipfile.ZipFile(file_name, "w") as __fake_file:
+        with zipfile.ZipFile(filename, "w") as __fake_file:
             data["files"] = []
             _kwargs = {"generator": self.generator}
             _kwargs.update(_create_inner_file_args)
             for __i in range(_count):
                 __file = _create_inner_file_func(
-                    rel_path=rel_path,
+                    storage=fs_storage,
                     **_kwargs,
                 )
+                __file_abs_path = fs_storage.abspath(__file)
                 __fake_file.write(
-                    _dir_path / __file,
+                    __file_abs_path,
                     arcname=Path(_directory) / Path(__file).name,
                 )
-                os.remove(__file)  # Clean up temporary files
+                os.remove(__file_abs_path)  # Clean up temporary files
                 data["files"].append(Path(_directory) / Path(__file).name)
 
         # Generic
