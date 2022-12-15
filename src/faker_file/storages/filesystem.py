@@ -82,7 +82,9 @@ class FileSystemStorage(BaseStorage):
 
     def exists(self: "FileSystemStorage", filename: str) -> bool:
         """Write bytes."""
-        return os.path.exists(filename)
+        if os.path.isabs(filename):
+            return os.path.exists(filename)
+        return os.path.exists(os.path.join(self.root_path, filename))
 
     def relpath(self, filename: str) -> str:
         """Return relative path."""

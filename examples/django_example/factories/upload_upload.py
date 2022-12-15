@@ -48,7 +48,7 @@ class AbstractUploadFactory(DjangoModelFactory):
 class TxtUploadFactory(AbstractUploadFactory):
     """TXT Upload factory."""
 
-    file = Faker("txt_file", )
+    file = Faker("txt_file", storage=FS_STORAGE)
 
 
 class DocxUploadFactory(AbstractUploadFactory):

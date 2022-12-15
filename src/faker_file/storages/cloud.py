@@ -77,9 +77,7 @@ class CloudStorage(BaseStorage):
             suffix=f".{extension}",
         )
         return (
-            Pathy(f"{self.schema}://{self.bucket_name}")
-            / self.rel_path
-            / os.path.basename(temp_file.name)
+            self.bucket / self.rel_path / os.path.basename(temp_file.name)
         )
 
     def write_text(
