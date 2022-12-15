@@ -72,11 +72,13 @@ class CloudStorage(BaseStorage):
         """Generate filename."""
         if not extension:
             raise Exception("Extension shall be given!")
-        temp_file = tempfile.NamedTemporaryFile(
+        with tempfile.NamedTemporaryFile(
             prefix=prefix,
             suffix=f".{extension}",
-        )
-        return self.bucket / self.rel_path / os.path.basename(temp_file.name)
+        ) as temp_file:
+            return (
+                self.bucket / self.rel_path / os.path.basename(temp_file.name)
+            )
 
     def write_text(
         self: "CloudStorage",

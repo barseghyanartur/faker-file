@@ -30,12 +30,12 @@ class BaseStorage:
         os.makedirs(dir_path, exist_ok=True)
         if not extension:
             raise Exception("Extension shall be given!")
-        temp_file = tempfile.NamedTemporaryFile(
+        with tempfile.NamedTemporaryFile(
             prefix=prefix,
             dir=dir_path,
             suffix=f".{extension}",
-        )
-        return temp_file.name
+        ) as temp_file:
+            return temp_file.name
 
     def write_text(
         self: "BaseStorage", filename: Any, data: str, encoding: str = None

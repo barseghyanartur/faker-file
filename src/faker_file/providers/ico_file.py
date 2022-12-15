@@ -75,5 +75,5 @@ class IcoFileProvider(BaseProvider, ImageMixin):
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
-            **kwargs
+            **kwargs,
         )
