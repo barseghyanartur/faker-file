@@ -54,3 +54,7 @@ class BaseStorage:
     def relpath(self: "BaseStorage", filename: Any) -> str:
         """Return relative path."""
         raise NotImplementedError("Method relpath is not implemented!")
+
+    def abspath(self: "BaseStorage", filename: Any) -> str:
+        """Return absolute path."""
+        raise NotImplementedError("Method abspath is not implemented!")

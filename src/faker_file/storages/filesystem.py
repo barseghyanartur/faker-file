@@ -86,6 +86,12 @@ class FileSystemStorage(BaseStorage):
             return os.path.exists(filename)
         return os.path.exists(os.path.join(self.root_path, filename))
 
-    def relpath(self, filename: str) -> str:
+    def relpath(self: "FileSystemStorage", filename: str) -> str:
         """Return relative path."""
         return os.path.relpath(filename, self.root_path)
+
+    def abspath(self: "FileSystemStorage", filename: str) -> str:
+        """Return absolute path."""
+        if os.path.isabs(filename):
+            return os.path.abspath(filename)
+        return os.path.abspath(os.path.join(self.root_path, filename))
