@@ -9,6 +9,8 @@ from faker.providers.python import Provider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS, DEFAULT_TEXT_MAX_NB_CHARS
+from ..storages.base import BaseStorage
+from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -455,26 +457,25 @@ class ZipFileProvider(BaseProvider, FileMixin):
 
     def zip_file(
         self: "ZipFileProvider",
-        root_path: Optional[str] = None,
-        rel_path: str = DEFAULT_REL_PATH,
+        storage: BaseStorage = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
         """Generate a ZIP file with random text.
 
-        :param root_path: Path of your files root directory (in case of Django
-            it would be `settings.MEDIA_ROOT`).
-        :param rel_path: Relative path (from root directory).
+        :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as zip.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
-        file_name = self._generate_filename(
-            root_path=root_path,
-            rel_path=rel_path,
+        if storage is None:
+            storage = FileSystemStorage()
+
+        filename = storage.generate_filename(
             prefix=prefix,
+            extension=self.extension,
         )
         data = {}
 
@@ -533,7 +534,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
                 data["files"].append(Path(_directory) / Path(__file).name)
 
         # Generic
-        file_name = StringValue(os.path.relpath(file_name, root_path))
+        file_name = StringValue(storage.relpath(filename))
         if data:
             file_name.data = data
         return file_name
