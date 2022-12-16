@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 20
 
    faker_file.providers
+   faker_file.storages
    faker_file.tests
 
 Submodules

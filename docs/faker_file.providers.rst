@@ -44,6 +44,14 @@ faker\_file.providers.jpeg\_file module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.providers.mixins module
+-----------------------------------
+
+.. automodule:: faker_file.providers.mixins
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.ods\_file module
 --------------------------------------
 
@@ -72,6 +80,14 @@ faker\_file.providers.pptx\_file module
 ---------------------------------------
 
 .. automodule:: faker_file.providers.pptx_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.random\_file\_from\_dir module
+----------------------------------------------------
+
+.. automodule:: faker_file.providers.random_file_from_dir
    :members:
    :undoc-members:
    :show-inheritance:
