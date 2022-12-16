@@ -44,6 +44,13 @@ below between the brackets.
 - ``PPTX`` file support requires ``python-pptx`` (`MIT`).
 - ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
 - ``XLSX`` file support requires ``tablib`` (`MIT`) and ``openpyxl`` (`MIT`).
+- ``PathyFileSystemStorage`` storage support requires ``pathy`` (`Apache 2`).
+- ``AWSS3Storage`` storage support requires ``pathy`` (`Apache 2`)
+  and ``boto3`` (`Apache 2`).
+- ``AzureCloudStorage`` storage support requires ``pathy`` (`Apache 2`)
+  and ``azure-storage-blob`` (`MIT`).
+- ``GoogleCloudStorage`` storage support requires ``pathy`` (`Apache 2`)
+  and ``google-cloud-storage`` (`Apache 2`).
 
 Documentation
 =============
@@ -154,17 +161,19 @@ All file operations are delegated to a separate abstraction layer of storages.
 
 The following storages are implemented:
 
-- `FileSystemStorage`: Does not have additional requirements.
-- `PathyFileSystemStorage`: Requires `pathy`.
-- `AzureCloudStorage`: Requires `pathy` and `Azure` related dependencies.
-- `GoogleCloudStorage`: Requires `pathy` and `Google Cloud` related
+- ``FileSystemStorage``: Does not have additional requirements.
+- ``PathyFileSystemStorage``: Requires `pathy`.
+- ``AzureCloudStorage``: Requires `pathy` and `Azure` related dependencies.
+- ``GoogleCloudStorage``: Requires `pathy` and `Google Cloud` related
   dependencies.
-- `AWSS3Storage`: Requires `pathy` and `AWS S3` related dependencies.
+- ``AWSS3Storage``: Requires `pathy` and `AWS S3` related dependencies.
 
 Usage example with storages
 ---------------------------
 `FileSystemStorage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Native file system storage. Does not have dependencies.
+
 .. code-block:: python
 
     import tempfile
@@ -182,6 +191,8 @@ Usage example with storages
 
 `PathyFileSystemStorage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Native file system storage. Requires `pathy`.
+
 .. code-block:: python
 
     import tempfile
@@ -201,6 +212,8 @@ Usage example with storages
 
 `AWSS3Storage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+AWS S3 storage. Requires `pathy`.
+
 .. code-block:: python
 
     import tempfile
@@ -209,7 +222,7 @@ Usage example with storages
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.storages.aws_s3 import AWSS3Storage
 
-    S3_STORAGE = PathyFileSystemStorage(
+    S3_STORAGE = AWSS3Storage(
         bucket_name="bucket_name",
         rel_path="rel_path",
         credentials={"key_id": "YOUR KEY ID", "key_secret": "YOUR KEY SECRET"},
