@@ -133,7 +133,7 @@ upload/factory.py
 ~~~~~~~~~~~~~~~~~
 Note, that when using ``faker-file`` with ``Django``, you need to pass your
 ``MEDIA_ROOT`` setting as ``root_path`` value (which is by default set
-to ``tempfile.gettempdir()``).
+to ``tempfile.gettempdir()``) to the chosen file storage.
 
 .. code-block:: python
 
@@ -142,21 +142,26 @@ to ``tempfile.gettempdir()``).
     from factory import Faker
     from factory.django import DjangoModelFactory
     from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.storages.filesystem import FileSystemStorage
 
     from upload.models import Upload
 
+    FS_STORAGE = FileSystemStorage(
+        root_path=settings.MEDIA_ROOT,
+        rel_path="tmp"
+    )
     factory.Faker.add_provider(DocxFileProvider)
 
     class UploadFactory(DjangoModelFactory):
 
         # ...
-        file = Faker("docx_file", root_path=settings.MEDIA_ROOT)
+        file = Faker("docx_file", storage=FS_STORAGE)
 
         class Meta:
             model = Upload
 
-Supported storages
-==================
+File storages
+=============
 All file operations are delegated to a separate abstraction layer of storages.
 
 The following storages are implemented:
@@ -181,7 +186,10 @@ Native file system storage. Does not have dependencies.
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.storages.filesystem import FileSystemStorage
 
-    FS_STORAGE = FileSystemStorage("root_path", "rel_path")
+    FS_STORAGE = FileSystemStorage(
+        root_path="root_path",
+        rel_path="rel_path",
+    )
 
     FAKER = Faker()
 
@@ -202,7 +210,10 @@ Native file system storage. Requires `pathy`.
     from faker_file.storages.cloud import PathyFileSystemStorage
 
     use_fs(tempfile.gettempdir())
-    PATHY_FS_STORAGE = PathyFileSystemStorage("bucket_name", "rel_path")
+    PATHY_FS_STORAGE = PathyFileSystemStorage(
+        bucket_name="bucket_name",
+        rel_path="rel_path",
+    )
 
     FAKER = Faker()
 

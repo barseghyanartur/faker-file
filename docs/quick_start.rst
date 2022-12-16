@@ -106,6 +106,10 @@ upload/factories.py
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
+    # Import file storage, because we need to customize things in order for it
+    # to work with Django.
+    from faker_file.storages.filesystem import FileSystemStorage
+
     from upload.models import Upload
 
     # Add all providers we want to use
@@ -115,6 +119,11 @@ upload/factories.py
     Faker.add_provider(TxtFileProvider)
     Faker.add_provider(ZipFileProvider)
 
+    # Define a file storage.
+    FS_STORAGE = FileSystemStorage(
+        root_path=settings.MEDIA_ROOT,
+        rel_path="tmp"
+    )
 
     class UploadFactory(DjangoModelFactory):
         """Upload factory."""
@@ -123,11 +132,11 @@ upload/factories.py
         description = Faker("text", max_nb_chars=1000)
 
         # Files
-        docx_file = Faker("docx_file", root_path=settings.MEDIA_ROOT)
-        pdf_file = Faker("pdf_file", root_path=settings.MEDIA_ROOT)
-        pptx_file = Faker("pptx_file", root_path=settings.MEDIA_ROOT)
-        txt_file = Faker("txt_file", root_path=settings.MEDIA_ROOT)
-        zip_file = Faker("zip_file", root_path=settings.MEDIA_ROOT)
+        docx_file = Faker("docx_file", storage=FS_STORAGE)
+        pdf_file = Faker("pdf_file", storage=FS_STORAGE)
+        pptx_file = Faker("pptx_file", storage=FS_STORAGE)
+        txt_file = Faker("txt_file", storage=FS_STORAGE)
+        zip_file = Faker("zip_file", storage=FS_STORAGE)
 
         class Meta:
             model = Upload
