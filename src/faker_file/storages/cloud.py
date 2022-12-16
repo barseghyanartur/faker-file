@@ -17,21 +17,7 @@ __all__ = (
 
 
 class CloudStorage(BaseStorage):
-    """Base cloud storage.
-
-    Usage example:
-
-        from faker_file.storages.cloud import CloudStorage
-
-        storage = CloudStorage(
-            schema="s3",
-            bucket_name="artur-testing-1",
-            rel_path="tmp",
-        )
-        file = storage.generate_filename(prefix="zzz_", extension="docx")
-        storage.write_text(file, "Lorem ipsum")
-        storage.write_bytes(file, b"Lorem ipsum")
-    """
+    """Base cloud storage."""
 
     bucket_name: str
     bucket: Pathy
