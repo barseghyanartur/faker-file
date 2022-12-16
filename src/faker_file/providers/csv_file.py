@@ -63,6 +63,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
         num_rows: int = 10,
         include_row_ids: bool = False,
         content: Optional[str] = None,
+        encoding: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
         """Generate a CSV file with random text.

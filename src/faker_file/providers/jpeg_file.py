@@ -2,10 +2,10 @@ from typing import Optional
 
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
 from ..storages.base import BaseStorage
-from .mixins import ImageMixin
+from .mixins.image_mixin import ImageMixin
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"

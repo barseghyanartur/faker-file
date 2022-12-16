@@ -84,13 +84,16 @@ class ProvidersTestCase(unittest.TestCase):
     __parametrized_data = [
         # BIN
         (BinFileProvider, "bin_file", {}, None),
+        (BinFileProvider, "bin_file", {}, False),
         (BinFileProvider, "bin_file", {}, PATHY_FS_STORAGE),
         # CSV
         (CsvFileProvider, "csv_file", {}, None),
+        (CsvFileProvider, "csv_file", {}, False),
         (CsvFileProvider, "csv_file", {}, PATHY_FS_STORAGE),
         (CsvFileProvider, "csv_file", {"content": "{{name}},{{date}}"}, None),
         # DOCX
         (DocxFileProvider, "docx_file", {}, None),
+        (DocxFileProvider, "docx_file", {}, False),
         (DocxFileProvider, "docx_file", {}, PATHY_FS_STORAGE),
         (
             DocxFileProvider,
@@ -112,6 +115,7 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # ICO
         (IcoFileProvider, "ico_file", {}, None),
+        (IcoFileProvider, "ico_file", {}, False),
         (IcoFileProvider, "ico_file", {}, PATHY_FS_STORAGE),
         (
             IcoFileProvider,
@@ -133,6 +137,7 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # JPEG
         (JpegFileProvider, "jpeg_file", {}, None),
+        (JpegFileProvider, "jpeg_file", {}, False),
         (JpegFileProvider, "jpeg_file", {}, PATHY_FS_STORAGE),
         (
             JpegFileProvider,
@@ -154,9 +159,11 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # ODS
         (OdsFileProvider, "ods_file", {}, None),
+        (OdsFileProvider, "ods_file", {}, False),
         (OdsFileProvider, "ods_file", {}, PATHY_FS_STORAGE),
         # PDF
         (PdfFileProvider, "pdf_file", {}, None),
+        (PdfFileProvider, "pdf_file", {}, False),
         (PdfFileProvider, "pdf_file", {}, PATHY_FS_STORAGE),
         (
             PdfFileProvider,
@@ -178,6 +185,7 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # PNG
         (PngFileProvider, "png_file", {}, None),
+        (PngFileProvider, "png_file", {}, False),
         (PngFileProvider, "png_file", {}, PATHY_FS_STORAGE),
         (
             PngFileProvider,
@@ -199,6 +207,7 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # PPTX
         (PptxFileProvider, "pptx_file", {}, None),
+        (PptxFileProvider, "pptx_file", {}, False),
         (PptxFileProvider, "pptx_file", {}, PATHY_FS_STORAGE),
         (
             PptxFileProvider,
@@ -231,6 +240,7 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # SVG
         (SvgFileProvider, "svg_file", {}, None),
+        (SvgFileProvider, "svg_file", {}, False),
         (SvgFileProvider, "svg_file", {}, PATHY_FS_STORAGE),
         (
             SvgFileProvider,
@@ -252,6 +262,7 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # TXT
         (TxtFileProvider, "txt_file", {}, None),
+        (TxtFileProvider, "txt_file", {}, False),
         (TxtFileProvider, "txt_file", {}, PATHY_FS_STORAGE),
         (
             TxtFileProvider,
@@ -276,9 +287,11 @@ class ProvidersTestCase(unittest.TestCase):
         # (WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
         # XLSX
         (XlsxFileProvider, "xlsx_file", {}, None),
+        (XlsxFileProvider, "xlsx_file", {}, False),
         (XlsxFileProvider, "xlsx_file", {}, PATHY_FS_STORAGE),
         # ZIP
         (ZipFileProvider, "zip_file", {}, None),
+        (ZipFileProvider, "zip_file", {}, False),
         (ZipFileProvider, "zip_file", {}, PATHY_FS_STORAGE),
     ]
 
@@ -294,14 +307,14 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test faker provider integration."""
-        if storage is None:
+        if storage is False:
             storage = FS_STORAGE
         _faker = Faker()
         _faker.add_provider(provider)
         _method = getattr(_faker, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
-        self.assertTrue(storage.exists(_file))
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
         "provider, method_name, kwargs, storage",
@@ -315,13 +328,13 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test standalone providers."""
-        if storage is None:
+        if storage is False:
             storage = FS_STORAGE
         _provider = provider(None)  # noqa
         _method = getattr(_provider, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
-        self.assertTrue(storage.exists(_file))
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
         "provider, method_name, kwargs, storage",

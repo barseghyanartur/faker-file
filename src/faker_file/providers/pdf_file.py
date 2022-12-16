@@ -4,7 +4,7 @@ import pdfkit
 from faker.providers import BaseProvider
 
 from ..base import FileMixin, StringValue
-from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ..constants import DEFAULT_TEXT_MAX_NB_CHARS, DEFAULT_FILE_ENCODING
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -58,6 +58,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
         **kwargs,
     ) -> StringValue:
         """Generate a PDF file with random text.
@@ -69,6 +70,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
+        :param encoding: Encoding of the file.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -86,8 +88,13 @@ class PdfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
+        options = {"quiet": ""}
+        if encoding is not None:
+            options["encoding"] = encoding
+
         raw_content = pdfkit.from_string(
-            f"<pre>{content}</pre>", options={"quiet": ""}
+            f"<pre>{content}</pre>",
+            options=options,
         )
 
         storage.write_bytes(filename, raw_content)

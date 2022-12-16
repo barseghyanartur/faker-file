@@ -1,12 +1,11 @@
-from typing import Dict, List, Optional, Union
+from typing import Dict, Optional
 
 from faker import Faker
 from faker.providers import BaseProvider
-from tablib import Dataset
 
-from ..base import FileMixin, StringValue
+from ..base import StringValue
 from ..storages.base import BaseStorage
-from ..storages.filesystem import FileSystemStorage
+from .mixins.tablular_data_mixin import TabularDataMixin
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -17,7 +16,7 @@ __all__ = ("OdsFileProvider",)
 FAKER = Faker()
 
 
-class OdsFileProvider(BaseProvider, FileMixin):
+class OdsFileProvider(BaseProvider, TabularDataMixin):
     """ODS file provider.
 
     Usage example:
@@ -73,7 +72,7 @@ class OdsFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a ODS file with random text.
+        """Generate an ODS file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param data_columns: The ``data_columns`` argument expects a list or a
@@ -91,35 +90,11 @@ class OdsFileProvider(BaseProvider, FileMixin):
             If given, used as is.
         :return: Relative path (from root directory) of the generated file.
         """
-        # Generic
-        if storage is None:
-            storage = FileSystemStorage()
-
-        filename = storage.generate_filename(
+        return self._tabular_data_file(
+            storage=storage,
             prefix=prefix,
-            extension=self.extension,
+            data_columns=data_columns,
+            num_rows=num_rows,
+            content=content,
+            **kwargs,
         )
-
-        # Specific
-        if content is None:
-            default_data_columns = {
-                "name": "{{name}}",
-                "residency": "{{address}}",
-            }
-            data_columns: Union[List, Dict] = (
-                data_columns if data_columns else default_data_columns
-            )
-            content = FAKER.json(
-                data_columns=data_columns,
-                num_rows=num_rows,
-            )
-
-        dataset = Dataset()
-        dataset.load(content, format="json")
-
-        storage.write_bytes(filename, dataset.export("ods"))
-
-        # Generic
-        file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
-        return file_name
