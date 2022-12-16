@@ -17,9 +17,16 @@ are used for versioning (schema follows below):
 
 0.8
 ---
-*Unreleased*
+2022-12-16
 
-- Added support for cloud storages (S3, GCS and Azure).
+*Note, that this release introduces breaking changes!*
+
+- All file system based operations are moved to a separate abstraction layer
+  of file storages. The following storages have been implemented:
+  `FileSystemStorage`, `PathyFileSystemStorage`, `AWSS3Storage`,
+  `GoogleCloudStorage` and `AzureStorage`. The `root_path` and `rel_path`
+  params of the providers are deprecated in favour of storages. See the docs
+  more usage examples.
 
 0.7
 ---

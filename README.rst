@@ -86,8 +86,7 @@ Usage examples
 ==============
 With ``Faker``
 --------------
-One way
-~~~~~~~
+**One way**
 
 .. code-block:: python
 
@@ -98,8 +97,7 @@ One way
 
     file = TxtFileProvider(FAKER).txt_file()
 
-Or another
-~~~~~~~~~~
+**Or another**
 
 .. code-block:: python
 
@@ -149,6 +147,79 @@ to ``tempfile.gettempdir()``).
 
         class Meta:
             model = Upload
+
+Supported storages
+==================
+All file operations are delegated to a separate abstraction layer of storages.
+
+The following storages are implemented:
+
+- `FileSystemStorage`: Does not have additional requirements.
+- `PathyFileSystemStorage`: Requires `pathy`.
+- `AzureCloudStorage`: Requires `pathy` and `Azure` related dependencies.
+- `GoogleCloudStorage`: Requires `pathy` and `Google Cloud` related
+  dependencies.
+- `AWSS3Storage`: Requires `pathy` and `AWS S3` related dependencies.
+
+Usage example with storages
+---------------------------
+`FileSystemStorage` example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    import tempfile
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.storages.filesystem import FileSystemStorage
+
+    FS_STORAGE = FileSystemStorage("root_path", "rel_path")
+
+    FAKER = Faker()
+
+    file = TxtFileProvider(FAKER).txt_file(storage=FS_STORAGE)
+
+    FS_STORAGE.exists(file)
+
+`PathyFileSystemStorage` example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    import tempfile
+    from pathy import use_fs
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.storages.cloud import PathyFileSystemStorage
+
+    use_fs(tempfile.gettempdir())
+    PATHY_FS_STORAGE = PathyFileSystemStorage("bucket_name", "rel_path")
+
+    FAKER = Faker()
+
+    file = TxtFileProvider(FAKER).txt_file(storage=PATHY_FS_STORAGE)
+
+    PATHY_FS_STORAGE.exists(file)
+
+`AWSS3Storage` example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    import tempfile
+    from pathy import use_fs
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.storages.aws_s3 import AWSS3Storage
+
+    S3_STORAGE = PathyFileSystemStorage(
+        bucket_name="bucket_name",
+        rel_path="rel_path",
+        credentials={"key_id": "YOUR KEY ID", "key_secret": "YOUR KEY SECRET"},
+    )
+
+    FAKER = Faker()
+
+    file = TxtFileProvider(FAKER).txt_file(storage=S3_STORAGE)
+
+    S3_STORAGE.exists(file)
 
 Testing
 =======

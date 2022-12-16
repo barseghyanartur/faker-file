@@ -1,5 +1,6 @@
 import os
 import zipfile
+from io import BytesIO
 from pathlib import Path
 from typing import Any, Dict, Optional, Sequence, Tuple, Union
 
@@ -491,7 +492,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _dir_path = Path("")
             _directory = ""
 
-        with zipfile.ZipFile(filename, "w") as __fake_file:
+        _zip_content = BytesIO()
+        with zipfile.ZipFile(_zip_content, "w") as __fake_file:
             data["files"] = []
             _kwargs = {"generator": self.generator}
             _kwargs.update(_create_inner_file_args)
@@ -507,6 +509,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
                 )
                 os.remove(__file_abs_path)  # Clean up temporary files
                 data["files"].append(Path(_directory) / Path(__file).name)
+            _zip_content.seek(0)
+            storage.write_bytes(filename, _zip_content.read())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

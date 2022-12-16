@@ -31,6 +31,6 @@ class DjangoIntegrationTestCase(TestCase):
         ],
     )
     def test_file(self: "DjangoIntegrationTestCase", factory: Callable) -> None:
-        """Test DOCX file."""
+        """Test file."""
         _upload = factory()
         self.assertTrue(self.FS_STORAGE.exists(_upload.file.path))

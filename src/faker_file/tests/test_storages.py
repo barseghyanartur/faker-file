@@ -2,16 +2,15 @@ import tempfile
 import unittest
 from pathlib import Path
 from typing import Any, Dict, Type
-from unittest.mock import patch
 
 from faker import Faker
 from parametrize import parametrize
-from pathy import get_fs_cache, use_fs, use_fs_cache
+from pathy import use_fs, use_fs_cache
 
 from ..storages.aws_s3 import AWSS3Storage
 from ..storages.azure_cloud_storage import AzureCloudStorage
 from ..storages.base import BaseStorage
-from ..storages.cloud import CloudStorage
+from ..storages.cloud import CloudStorage, PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
 from ..storages.google_cloud_storage import GoogleCloudStorage
 
@@ -36,11 +35,10 @@ class TestStoragesTestCase(unittest.TestCase):
                 "zzz",
                 "docx",
             ),
-            # CloudStorage
+            # PathyFileSystemStorage
             (
-                CloudStorage,
+                PathyFileSystemStorage,
                 {
-                    "schema": "s3",
                     "bucket_name": "testing",
                     "rel_path": "tmp",
                 },
@@ -133,11 +131,10 @@ class TestStoragesTestCase(unittest.TestCase):
                 "zzz",
                 "",
             ),
-            # CloudStorage
+            # PathyFileSystemStorage
             (
-                CloudStorage,
+                PathyFileSystemStorage,
                 {
-                    "schema": "s3",
                     "bucket_name": "testing",
                     "rel_path": "tmp",
                 },
