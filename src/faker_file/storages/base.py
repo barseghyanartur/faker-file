@@ -1,5 +1,3 @@
-import os
-import tempfile
 from typing import Any
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -22,20 +20,6 @@ class BaseStorage:
         raise NotImplementedError(
             "Method generate_filename is not implemented!"
         )
-
-    def generate_temporary_local_filename(
-        self: "BaseStorage", prefix: str, extension: str
-    ) -> str:
-        dir_path = os.path.join(tempfile.gettempdir(), self.rel_path)
-        os.makedirs(dir_path, exist_ok=True)
-        if not extension:
-            raise Exception("Extension shall be given!")
-        with tempfile.NamedTemporaryFile(
-            prefix=prefix,
-            dir=dir_path,
-            suffix=f".{extension}",
-        ) as temp_file:
-            return temp_file.name
 
     def write_text(
         self: "BaseStorage", filename: Any, data: str, encoding: str = None

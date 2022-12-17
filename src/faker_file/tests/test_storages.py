@@ -191,3 +191,19 @@ class TestStoragesTestCase(unittest.TestCase):
         method = getattr(base_storage, method_name)
         with self.assertRaises(NotImplementedError):
             method(**method_kwargs)
+
+    @parametrize(
+        "method_name, method_kwargs",
+        [
+            ("authenticate", {}),
+        ],
+    )
+    def test_cloud_storage_exceptions(self, method_name, method_kwargs):
+        """Test Base storage exceptions."""
+        class TestCloudStorage(CloudStorage):
+            schema: str = "file"
+
+        test_storage = TestCloudStorage(bucket_name="testing")
+        method = getattr(test_storage, method_name)
+        with self.assertRaises(NotImplementedError):
+            method(**method_kwargs)
