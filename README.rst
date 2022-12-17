@@ -251,7 +251,7 @@ Simply type:
 
 .. code-block:: sh
 
-    pytest -vvv
+    pytest -vrx
 
 Or use tox:
 
