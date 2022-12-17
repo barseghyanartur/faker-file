@@ -74,20 +74,20 @@ Or development version from GitHub:
 Supported file types
 ====================
 
-- BIN
-- CSV
-- DOCX
-- ICO
-- JPEG
-- ODS
-- PDF
-- PNG
-- PPTX
-- SVG
-- TXT
-- WEBP
-- XLSX
-- ZIP
+- ``BIN``
+- ``CSV``
+- ``DOCX``
+- ``ICO``
+- ``JPEG``
+- ``ODS``
+- ``PDF``
+- ``PNG``
+- ``PPTX``
+- ``SVG``
+- ``TXT``
+- ``WEBP``
+- ``XLSX``
+- ``ZIP``
 
 Usage examples
 ==============
@@ -132,8 +132,7 @@ upload/models.py
 upload/factory.py
 ~~~~~~~~~~~~~~~~~
 Note, that when using ``faker-file`` with ``Django``, you need to pass your
-``MEDIA_ROOT`` setting as ``root_path`` value (which is by default set
-to ``tempfile.gettempdir()``) to the chosen file storage.
+``MEDIA_ROOT`` setting as ``root_path`` value to the chosen file storage.
 
 .. code-block:: python
 
@@ -187,8 +186,8 @@ Native file system storage. Does not have dependencies.
     from faker_file.storages.filesystem import FileSystemStorage
 
     FS_STORAGE = FileSystemStorage(
-        root_path="root_path",
-        rel_path="rel_path",
+        root_path=tempfile.gettempdir(),  # Use settings.MEDIA_ROOT for Django
+        rel_path="tmp",
     )
 
     FAKER = Faker()
@@ -212,7 +211,8 @@ Native file system storage. Requires `pathy`.
     use_fs(tempfile.gettempdir())
     PATHY_FS_STORAGE = PathyFileSystemStorage(
         bucket_name="bucket_name",
-        rel_path="rel_path",
+        root_path="tmp"
+        rel_path="sub-tmp",
     )
 
     FAKER = Faker()
@@ -235,7 +235,8 @@ AWS S3 storage. Requires `pathy`.
 
     S3_STORAGE = AWSS3Storage(
         bucket_name="bucket_name",
-        rel_path="rel_path",
+        root_path="tmp",
+        rel_path="sub-tmp",
         credentials={"key_id": "YOUR KEY ID", "key_secret": "YOUR KEY SECRET"},
     )
 

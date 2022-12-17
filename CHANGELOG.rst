@@ -19,8 +19,13 @@ are used for versioning (schema follows below):
 ---
 2022-12-17
 
-- Add optional ``encoding`` argument to providers.
+- Add optional ``encoding`` argument to ``CsvFileProvider`` and
+  ``PdfFileProvider`` providers.
 - Add ``root_path`` argument to cloud storages.
+- Moved all image related code (``IcoFileProvider``, ``JpegFileProvider``,
+  ``PngFileProvider``, ``SvgFileProvider``, ``WebpFileProvider``) to
+  ``ImageMixin``. Moved all tabular data related code (``OdsFileProvider``,
+  ``XlsxFileProvider``) to ``TabularDataMixin``.
 - Documentation improvements.
 
 0.8

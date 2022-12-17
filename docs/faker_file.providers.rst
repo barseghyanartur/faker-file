@@ -1,6 +1,14 @@
 faker\_file.providers package
 =============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 20
+
+   faker_file.providers.mixins
+
 Submodules
 ----------
 
@@ -40,14 +48,6 @@ faker\_file.providers.jpeg\_file module
 ---------------------------------------
 
 .. automodule:: faker_file.providers.jpeg_file
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-faker\_file.providers.mixins module
------------------------------------
-
-.. automodule:: faker_file.providers.mixins
    :members:
    :undoc-members:
    :show-inheritance:

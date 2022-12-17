@@ -240,10 +240,11 @@ TXT
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
-the ``root_path`` argument shall be provided. Otherwise (although no errors
-will be triggered) the generated files will reside outside the ``MEDIA_ROOT``
-directory (by default in ``/tmp/tmp/`` on Linux) and further operations with
-those files through Django will cause ``SuspiciousOperation`` exception.
+the ``root_path`` argument of the correspondent file storage shall be provided.
+Otherwise (although no errors will be triggered) the generated files will
+reside outside the ``MEDIA_ROOT`` directory (by default in ``/tmp/`` on
+Linux) and further operations with those files through Django will cause
+``SuspiciousOperation`` exception.
 
 Basic example
 ~~~~~~~~~~~~~
