@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.9
+---
+2022-12-17
+
+- Add optional ``encoding`` argument to providers.
+- Add ``root_path`` argument to cloud storages.
+- Documentation improvements.
+
 0.8
 ---
 2022-12-16
@@ -23,10 +31,10 @@ are used for versioning (schema follows below):
 
 - All file system based operations are moved to a separate abstraction layer
   of file storages. The following storages have been implemented:
-  `FileSystemStorage`, `PathyFileSystemStorage`, `AWSS3Storage`,
-  `GoogleCloudStorage` and `AzureStorage`. The `root_path` and `rel_path`
-  params of the providers are deprecated in favour of storages. See the docs
-  more usage examples.
+  ``FileSystemStorage``, ``PathyFileSystemStorage``, ``AWSS3Storage``,
+  ``GoogleCloudStorage`` and ``AzureStorage``. The ``root_path``
+  and ``rel_path`` params of the providers are deprecated in favour of
+  storages. See the docs more usage examples.
 
 0.7
 ---

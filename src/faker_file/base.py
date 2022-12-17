@@ -1,5 +1,3 @@
-import os
-import tempfile
 from typing import Any, Callable, Dict, List, Optional, Union
 
 from faker import Faker
@@ -32,26 +30,6 @@ class FileMixin:
     formats: List[str]
     generator: Union[Provider, Faker]
     extension: str  # Desired file extension.
-
-    def _generate_filename(
-        self,
-        root_path: str = None,
-        rel_path: str = DEFAULT_REL_PATH,
-        prefix: Optional[str] = None,
-        extension: Optional[str] = None,
-    ) -> str:
-        if not root_path:
-            root_path = tempfile.gettempdir()
-        dir_path = os.path.join(root_path, rel_path)
-        os.makedirs(dir_path, exist_ok=True)
-        if not (self.extension or extension):
-            raise Exception("Either self.extension or extension shall be given")
-        with tempfile.NamedTemporaryFile(
-            prefix=prefix,
-            dir=dir_path,
-            suffix=f".{self.extension or extension}",
-        ) as temp_file:
-            return temp_file.name
 
     def _generate_text_content(
         self,

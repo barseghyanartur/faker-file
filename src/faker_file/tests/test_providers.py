@@ -238,6 +238,26 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            False,
+        ),
+        (
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            PATHY_FS_STORAGE,
+        ),
         # SVG
         (SvgFileProvider, "svg_file", {}, None),
         (SvgFileProvider, "svg_file", {}, False),
@@ -508,12 +528,3 @@ class ProvidersTestCase(unittest.TestCase):
         with self.assertRaises(ImportError):
             create_inner_file_func()
         reload(_module)
-
-    def test_generate_filename_failure(self) -> None:
-        """Test generate filename failure."""
-
-        class _TestFileProvider(BaseProvider, FileMixin):
-            extension: str = ""
-
-        with self.assertRaises(Exception):
-            _TestFileProvider(_FAKER)._generate_filename()

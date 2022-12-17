@@ -6,7 +6,9 @@ from typing import Optional
 
 from faker.providers import BaseProvider
 
-from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
+from ..base import FileMixin, StringValue
+from ..storages.base import BaseStorage
+from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -44,8 +46,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
-        root_path: str = None,
-        rel_path: str = DEFAULT_REL_PATH,
+        storage: BaseStorage = None,
         prefix: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
@@ -59,6 +60,11 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
         :return: Relative path (from root directory) of the generated file.
         """
+        # Generic
+        if storage is None:
+            storage = FileSystemStorage()
+
+        # Specific
         source_file_choices = [
             os.path.join(source_dir_path, _f)
             for _f in os.listdir(source_dir_path)
@@ -68,14 +74,15 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         source_file = Path(source_file_path)
 
         # Generic
-        file_name = self._generate_filename(
-            root_path=root_path,
-            rel_path=rel_path,
+        filename = storage.generate_filename(
             prefix=prefix,
             extension=source_file.suffix[1:],
         )
-        shutil.copyfile(source_file_path, file_name)
+
+        # Specific
+        with open(source_file_path, "rb") as _file:
+            storage.write_bytes(filename, _file.read())
 
         # Generic
-        file_name = StringValue(os.path.relpath(file_name, root_path))
+        file_name = StringValue(storage.relpath(filename))
         return file_name

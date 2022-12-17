@@ -143,16 +143,33 @@ class TestStoragesTestCase(unittest.TestCase):
             ),
         ],
     )
-    def test_storage_exceptions(
+    def test_storage_generate_filename_exceptions(
         self,
         storage_cls: Type[BaseStorage],
         kwargs: Dict[str, Any],
         prefix: str,
         extension: str,
     ):
-        """Test storage exceptions."""
+        """Test storage `generate_filename` exceptions."""
         storage = storage_cls(**kwargs)
 
         with self.assertRaises(Exception):
             # Generate filename
             storage.generate_filename(prefix=prefix, extension=extension)
+
+    @parametrize(
+        "storage_cls, kwargs",
+        [
+            # CloudStorage
+            (CloudStorage, {"bucket_name": "testing"}),
+        ],
+    )
+    def test_storage_initialization_exceptions(
+        self,
+        storage_cls: Type[BaseStorage],
+        kwargs: Dict[str, Any],
+    ):
+        """Test storage initialization exceptions."""
+        with self.assertRaises(Exception):
+            # Initialize the storage
+            storage_cls(**kwargs)
