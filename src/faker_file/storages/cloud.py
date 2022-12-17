@@ -16,6 +16,9 @@ __all__ = (
 )
 
 
+DEFAULT_ROOT_PATH = "tmp"
+
+
 class CloudStorage(BaseStorage):
     """Base cloud storage."""
 
@@ -27,6 +30,7 @@ class CloudStorage(BaseStorage):
     def __init__(
         self: "CloudStorage",
         bucket_name: str,
+        root_path: Optional[str] = DEFAULT_ROOT_PATH,
         rel_path: Optional[str] = DEFAULT_REL_PATH,
         credentials: Optional[Dict[str, Any]] = None,
         *args,
@@ -35,6 +39,7 @@ class CloudStorage(BaseStorage):
         if self.schema is None:
             raise Exception("The `schema` property should the set!")
         self.bucket_name = bucket_name
+        self.root_path = root_path
         self.rel_path = rel_path
         self.cache_dir = None
         credentials = credentials or {}
@@ -65,7 +70,10 @@ class CloudStorage(BaseStorage):
             suffix=f".{extension}",
         ) as temp_file:
             return (
-                self.bucket / self.rel_path / os.path.basename(temp_file.name)
+                self.bucket
+                / self.root_path
+                / self.rel_path
+                / os.path.basename(temp_file.name)
             )
 
     def write_text(
@@ -75,23 +83,23 @@ class CloudStorage(BaseStorage):
         encoding: str = None,
     ) -> int:
         """Write text."""
-        file = self.bucket / self.rel_path / filename
+        file = self.bucket / self.root_path / self.rel_path / filename
         return file.write_text(data, encoding)
 
     def write_bytes(self: "CloudStorage", filename: Pathy, data: bytes) -> int:
         """Write bytes."""
-        file = self.bucket / self.rel_path / filename
+        file = self.bucket / self.root_path / self.rel_path / filename
         return file.write_bytes(data)
 
     def exists(self: "CloudStorage", filename: Union[Pathy, str]) -> bool:
         """Check if file exists."""
         if isinstance(filename, str):
-            filename = self.bucket / filename
+            filename = self.bucket / self.root_path / filename
         return filename.exists()
 
     def relpath(self: "CloudStorage", filename: Pathy) -> str:
         """Return relative path."""
-        return str(filename.relative_to(self.bucket))
+        return str(filename.relative_to(self.bucket / self.root_path))
 
     def abspath(self: "CloudStorage", filename: Pathy) -> str:
         """Return relative path."""
@@ -116,7 +124,5 @@ class PathyFileSystemStorage(CloudStorage):
 
     schema: str = "file"
 
-    def authenticate(
-        self: "PathyFileSystemStorage", **kwargs
-    ) -> None:
+    def authenticate(self: "PathyFileSystemStorage", **kwargs) -> None:
         """Authenticate. Does nothing."""

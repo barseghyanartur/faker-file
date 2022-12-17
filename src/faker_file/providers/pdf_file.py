@@ -4,7 +4,7 @@ import pdfkit
 from faker.providers import BaseProvider
 
 from ..base import FileMixin, StringValue
-from ..constants import DEFAULT_TEXT_MAX_NB_CHARS, DEFAULT_FILE_ENCODING
+from ..constants import DEFAULT_FILE_ENCODING, DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
