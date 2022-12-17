@@ -13,9 +13,6 @@ __license__ = "MIT"
 __all__ = ("TabularDataMixin",)
 
 
-FAKER = Faker()
-
-
 class TabularDataMixin(FileMixin):
     """Tabular data mixin."""
 
@@ -55,6 +52,9 @@ class TabularDataMixin(FileMixin):
             extension=self.extension,
         )
 
+        if self.generator is None:
+            self.generator = Faker()
+
         # Specific
         if content is None:
             default_data_columns = {
@@ -64,7 +64,7 @@ class TabularDataMixin(FileMixin):
             data_columns: Union[List, Dict] = (
                 data_columns if data_columns else default_data_columns
             )
-            content = FAKER.json(
+            content = self.generator.json(
                 data_columns=data_columns,
                 num_rows=num_rows,
             )

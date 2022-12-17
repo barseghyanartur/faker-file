@@ -6,13 +6,16 @@ from factory.django import DjangoModelFactory
 from upload.models import Upload
 
 from faker_file.providers.docx_file import DocxFileProvider
+from faker_file.providers.ods_file import OdsFileProvider
 from faker_file.providers.pdf_file import PdfFileProvider
 from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
 from faker_file.storages.filesystem import FileSystemStorage
 
+# Faker._DEFAULT_LOCALE = "hy_AM"
 Faker.add_provider(DocxFileProvider)
+Faker.add_provider(OdsFileProvider)
 Faker.add_provider(PdfFileProvider)
 Faker.add_provider(PptxFileProvider)
 Faker.add_provider(TxtFileProvider)
@@ -20,6 +23,7 @@ Faker.add_provider(ZipFileProvider)
 
 __all__ = (
     "DocxUploadFactory",
+    "OdsUploadFactory",
     "PdfUploadFactory",
     "PptxUploadFactory",
     "TxtUploadFactory",
@@ -43,16 +47,16 @@ class AbstractUploadFactory(DjangoModelFactory):
         abstract = True
 
 
-class TxtUploadFactory(AbstractUploadFactory):
-    """TXT Upload factory."""
-
-    file = Faker("txt_file", storage=FS_STORAGE)
-
-
 class DocxUploadFactory(AbstractUploadFactory):
     """DOCX Upload factory."""
 
     file = Faker("docx_file", storage=FS_STORAGE)
+
+
+class OdsUploadFactory(AbstractUploadFactory):
+    """ODS Upload factory."""
+
+    file = Faker("ods_file", storage=FS_STORAGE)
 
 
 class PptxUploadFactory(AbstractUploadFactory):
@@ -65,6 +69,12 @@ class PdfUploadFactory(AbstractUploadFactory):
     """PDF Upload factory."""
 
     file = Faker("pdf_file", storage=FS_STORAGE)
+
+
+class TxtUploadFactory(AbstractUploadFactory):
+    """TXT Upload factory."""
+
+    file = Faker("txt_file", storage=FS_STORAGE)
 
 
 class ZipUploadFactory(AbstractUploadFactory):

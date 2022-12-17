@@ -6,8 +6,8 @@ When using with ``Faker``, there are two ways of using the providers.
 
 Imports and initializations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-One way
-^^^^^^^
+**One way**
+
 .. code-block:: python
 
     from faker import Faker
@@ -23,8 +23,8 @@ One way
     # Usage example
     file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
 
-Or another
-^^^^^^^^^^
+**Or another**
+
 .. code-block:: python
 
     from faker import Faker
@@ -206,6 +206,37 @@ Pick a random file from a directory given
         prefix="zzz",
     )
 
+
+Generate a file of a certain size
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The only two file types for which it is easy to foresee the file size are BIN
+and TXT. Note, that size of BIN files is always exact, while for TXT it is
+approximate.
+
+BIN
+^^^
+.. code-block:: python
+
+    file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
+    file = BinFileProvider(FAKER).bin_file(length=3*1024**2)  # 3 Mb
+    file = BinFileProvider(FAKER).bin_file(length=10*1024**2)  # 10 Mb
+
+    file = BinFileProvider(FAKER).bin_file(length=1024)  # 1 Kb
+    file = BinFileProvider(FAKER).bin_file(length=3*1024)  # 3 Kb
+    file = BinFileProvider(FAKER).bin_file(length=10*1024)  # 10 Kb
+
+TXT
+^^^
+.. code-block:: python
+
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024**2)  # 1 Mb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024**2)  # 3 Mb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024**2)  # 10 Mb
+
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024)  # 1 Kb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024)  # 3 Kb
+    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024)  # 10 Kb
+
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
@@ -328,32 +359,26 @@ Randomize provider choice
         file = LazyAttribute(pick_random_provider)
         # ...
 
-Generate a file of a certain size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The only two file types for which it is easy to foresee the file size are BIN
-and TXT. Note, that size of BIN files is always exact, while for TXT it is
-approximate.
-
-BIN
-^^^
+Use a different locale
+~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: python
 
-    file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
-    file = BinFileProvider(FAKER).bin_file(length=3*1024**2)  # 3 Mb
-    file = BinFileProvider(FAKER).bin_file(length=10*1024**2)  # 10 Mb
+    from factory import Faker
+    from factory.django import DjangoModelFactory
+    from faker_file.providers.ods_file import OdsFileProvider
 
-    file = BinFileProvider(FAKER).bin_file(length=1024)  # 1 Kb
-    file = BinFileProvider(FAKER).bin_file(length=3*1024)  # 3 Kb
-    file = BinFileProvider(FAKER).bin_file(length=10*1024)  # 10 Kb
+    Faker._DEFAULT_LOCALE = "hy_AM"  # Set locale to Armenian
 
-TXT
-^^^
-.. code-block:: python
+    Faker.add_provider(OdsFileProvider)
 
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024**2)  # 1 Mb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024**2)  # 3 Mb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024**2)  # 10 Mb
+    class UploadFactory(DjangoModelFactory):
+        """Base Upload factory."""
 
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024)  # 1 Kb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024)  # 3 Kb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024)  # 10 Kb
+        name = Faker("text", max_nb_chars=100)
+        description = Faker("text", max_nb_chars=1000)
+        file = Faker("ods_file")
+
+        class Meta:
+            """Meta class."""
+
+            model = Upload

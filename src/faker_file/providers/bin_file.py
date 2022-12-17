@@ -13,9 +13,6 @@ __license__ = "MIT"
 __all__ = ("BinFileProvider",)
 
 
-FAKER = Faker()
-
-
 class BinFileProvider(BaseProvider, FileMixin):
     """BIN file provider.
 
@@ -85,9 +82,12 @@ class BinFileProvider(BaseProvider, FileMixin):
             extension=self.extension,
         )
 
+        if self.generator is None:
+            self.generator = Faker()
+
         # Specific
         if content is None:
-            content = FAKER.binary(length=length)
+            content = self.generator.binary(length=length)
 
         storage.write_bytes(filename, content)
 

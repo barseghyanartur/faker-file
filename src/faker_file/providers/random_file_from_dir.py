@@ -4,7 +4,6 @@ from pathlib import Path
 from random import choice
 from typing import Optional
 
-from faker import Faker
 from faker.providers import BaseProvider
 
 from ..base import DEFAULT_REL_PATH, FileMixin, StringValue
@@ -13,9 +12,6 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("RandomFileFromDirProvider",)
-
-
-FAKER = Faker()
 
 
 class RandomFileFromDirProvider(BaseProvider, FileMixin):

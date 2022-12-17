@@ -83,8 +83,8 @@ class CsvFileProvider(BaseProvider, FileMixin):
             data to generate, and the ``include_row_ids`` argument may be set
             to ``True`` to include a sequential row ID column.
         :param include_row_ids:
-
         :param content: File content. If given, used as is.
+        :param encoding: Encoding.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -110,7 +110,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
         else:
             content = self.generator.pystr_format(content)
 
-        storage.write_text(filename, content)
+        storage.write_text(filename, content, encoding=encoding)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
