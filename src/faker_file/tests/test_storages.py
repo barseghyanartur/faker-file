@@ -173,3 +173,21 @@ class TestStoragesTestCase(unittest.TestCase):
         with self.assertRaises(Exception):
             # Initialize the storage
             storage_cls(**kwargs)
+
+    @parametrize(
+        "method_name, method_kwargs",
+        [
+            ("generate_filename", {"prefix": "zzz", "extension": "txt"}),
+            ("write_text", {"filename": "test.txt", "data": "Test"}),
+            ("write_bytes", {"filename": "test.txt", "data": b"Test"}),
+            ("exists", {"filename": "test.txt"}),
+            ("relpath", {"filename": "test.txt"}),
+            ("abspath", {"filename": "test.txt"}),
+        ],
+    )
+    def test_base_storage_exceptions(self, method_name, method_kwargs):
+        """Test Base storage exceptions."""
+        base_storage = BaseStorage()
+        method = getattr(base_storage, method_name)
+        with self.assertRaises(NotImplementedError):
+            method(**method_kwargs)
