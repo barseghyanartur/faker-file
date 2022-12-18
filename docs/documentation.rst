@@ -13,11 +13,3 @@ Contents:
    recipes
    changelog
    package
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
