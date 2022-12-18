@@ -59,21 +59,56 @@ Documentation is available on `Read the Docs
 
 Installation
 ============
-Latest stable version on PyPI:
+Latest stable version from PyPI
+-------------------------------
+**WIth all dependencies**
 
 .. code-block:: sh
 
     pip install faker-file[all]
 
-Or development version from GitHub:
+**Only core**
+
+.. code-block:: sh
+
+    pip install faker-file
+
+**With DOCX support**
+
+.. code-block:: sh
+
+    pip install faker-file[docx]
+
+**With images support**
+
+.. code-block:: sh
+
+    pip install faker-file[images]
+
+**With XLSX support**
+
+.. code-block:: sh
+
+    pip install faker-file[xlsx]
+
+**With ODS support**
+
+.. code-block:: sh
+
+    pip install faker-file[ods]
+
+Or development version from GitHub
+----------------------------------
 
 .. code-block:: sh
 
     pip install https://github.com/barseghyanartur/faker-file/archive/main.tar.gz
 
-Supported file types
-====================
+Features
+========
 
+Supported file types
+--------------------
 - ``BIN``
 - ``CSV``
 - ``DOCX``
@@ -88,6 +123,17 @@ Supported file types
 - ``WEBP``
 - ``XLSX``
 - ``ZIP``
+
+Additional providers
+--------------------
+- ``RandomFileFromDirProvider``: Pick a random file from given directory.
+
+Supported file storages
+-----------------------
+- Native file system storage
+- AWS S3 storage
+- Azure Cloud Storage
+- Google Cloud Storage
 
 Usage examples
 ==============
