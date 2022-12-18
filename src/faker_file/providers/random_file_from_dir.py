@@ -1,5 +1,4 @@
 import os
-import shutil
 from pathlib import Path
 from random import choice
 from typing import Optional

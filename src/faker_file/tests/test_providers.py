@@ -6,11 +6,10 @@ from typing import Any, Callable, Dict, Optional, Union
 
 import pytest
 from faker import Faker
-from faker.providers import BaseProvider
 from parametrize import parametrize
 from pathy import use_fs
 
-from ..base import DEFAULT_REL_PATH, FileMixin
+from ..base import DEFAULT_REL_PATH
 from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
