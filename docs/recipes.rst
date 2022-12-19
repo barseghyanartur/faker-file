@@ -246,8 +246,8 @@ reside outside the ``MEDIA_ROOT`` directory (by default in ``/tmp/`` on
 Linux) and further operations with those files through Django will cause
 ``SuspiciousOperation`` exception.
 
-Basic example 1
-~~~~~~~~~~~~~~~
+Basic example
+~~~~~~~~~~~~~
 
 Imaginary ``Django`` model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -388,7 +388,7 @@ Use a different locale
 
 Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**`Faker` example**
+**Faker example**
 
 .. code-block:: python
 
@@ -407,7 +407,7 @@ Other Django usage examples
 
     file = PdfFileProvider(FAKER).pdf_file(storage=STORAGE)
 
-**`factory-boy` example**
+**factory-boy example**
 
 .. code-block:: python
 
