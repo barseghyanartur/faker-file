@@ -177,8 +177,9 @@ upload/models.py
 
 upload/factory.py
 ~~~~~~~~~~~~~~~~~
-Note, that when using ``faker-file`` with ``Django``, you need to pass your
-``MEDIA_ROOT`` setting as ``root_path`` value to the chosen file storage.
+Note, that when using ``faker-file`` with ``Django`` and native file system
+storages, you need to pass your ``MEDIA_ROOT`` setting as ``root_path`` value
+to the chosen file storage as show below.
 
 .. code-block:: python
 
@@ -281,9 +282,15 @@ AWS S3 storage. Requires `pathy`.
 
     S3_STORAGE = AWSS3Storage(
         bucket_name="bucket_name",
-        root_path="tmp",
-        rel_path="sub-tmp",
-        credentials={"key_id": "YOUR KEY ID", "key_secret": "YOUR KEY SECRET"},
+        root_path="tmp",  # Optional
+        rel_path="sub-tmp",  # Optional
+        # Credentials are optional too. If your AWS credentials are properly
+        # set in the ~/.aws/credentials, you don't need to send them
+        # explicitly.
+        credentials={
+            "key_id": "YOUR KEY ID",
+            "key_secret": "YOUR KEY SECRET"
+        },
     )
 
     FAKER = Faker()

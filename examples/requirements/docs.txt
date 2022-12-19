@@ -52,7 +52,10 @@ django==3.2.16
     # via
     #   -r examples/requirements/django_3_2.in
     #   django-debug-toolbar
+    #   django-storages
 django-debug-toolbar==3.8.1
+    # via -r examples/requirements/django_3_2.in
+django-storages==1.13.1
     # via -r examples/requirements/django_3_2.in
 docutils==0.19
     # via

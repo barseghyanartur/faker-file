@@ -246,8 +246,8 @@ reside outside the ``MEDIA_ROOT`` directory (by default in ``/tmp/`` on
 Linux) and further operations with those files through Django will cause
 ``SuspiciousOperation`` exception.
 
-Basic example
-~~~~~~~~~~~~~
+Basic example 1
+~~~~~~~~~~~~~~~
 
 Imaginary ``Django`` model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -307,7 +307,9 @@ Correspondent ``factory_boy`` factory
     Faker.add_provider(TxtFileProvider)
     Faker.add_provider(ZipFileProvider)
 
-    # Define a file storage.
+    # Define a file storage. When working with Django and FileSystemStorage
+    # you need to set the value of `root_path` argument to
+    # `settings.MEDIA_ROOT`.
     FS_STORAGE = FileSystemStorage(
         root_path=settings.MEDIA_ROOT,
         rel_path="tmp"
@@ -383,3 +385,87 @@ Use a different locale
             """Meta class."""
 
             model = Upload
+
+Other Django usage examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**`Faker` example**
+
+.. code-block:: python
+
+    from django.conf import settings
+    from faker import Faker
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.storages.aws_s3 import AWSS3Storage
+
+    FAKER = Faker()
+    STORAGE = AWSS3Storage(
+        bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
+        root_path="",
+        rel_path="",
+    )
+    FAKER.add_provider(PdfFileProvider)
+
+    file = PdfFileProvider(FAKER).pdf_file(storage=STORAGE)
+
+**`factory-boy` example**
+
+.. code-block:: python
+
+    import factory
+
+    from django.conf import settings
+    from factory import Faker
+    from factory.django import DjangoModelFactory
+    from faker_file.storages.aws_s3 import AWSS3Storage
+
+    from upload.models import Upload
+
+    STORAGE = AWSS3Storage(
+        bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
+        root_path="",
+        rel_path="",
+    )
+
+    Faker.add_provider(PdfFileProvider)
+
+    class UploadFactory(DjangoModelFactory):
+        name = Faker('word')
+        description = Faker('text')
+        file = Faker("pdf_file", storage=STORAGE)
+
+        class Meta:
+            model = Upload
+
+    upload = UploadFactory()
+
+**Flexible storage selection**
+
+.. code-block:: python
+
+    from django.conf import settings
+    from django.core.files.storage import default_storage
+    from faker_file.storages.aws_s3 import AWSS3Storage
+    from faker_file.storages.filesystem import FileSystemStorage
+    from storages.backends.s3boto3 import S3Boto3Storage
+
+    # Faker doesn't know anything about Django. That's why, if we want to
+    # support remove storages, we need to manually check which file storage
+    # backend is used. If `Boto3` storage backend (of the `django-storages`
+    # package) is used we use the correspondent `AWSS3Storage` class of the
+    # `faker-file`.
+    # Otherwise, fall back to native file system storage (`FileSystemStorage`)
+    # of the `faker-file`.
+    if isinstance(default_storage, S3Boto3Storage):
+        STORAGE = AWSS3Storage(
+            bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
+            credentials={
+                "key_id": settings.AWS_ACCESS_KEY_ID,
+                "key_secret": settings.AWS_SECRET_ACCESS_KEY,
+            },
+            rel_path="tmp",
+        )
+    else:
+        STORAGE = FileSystemStorage(
+            root_path=settings.MEDIA_ROOT,
+            rel_path="tmp",
+        )
