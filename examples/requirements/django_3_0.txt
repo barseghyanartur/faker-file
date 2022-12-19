@@ -48,7 +48,10 @@ django==3.0.14
     # via
     #   -r examples/requirements/django_3_0.in
     #   django-debug-toolbar
+    #   django-storages
 django-debug-toolbar==2.2.1
+    # via -r examples/requirements/django_3_0.in
+django-storages==1.12.3
     # via -r examples/requirements/django_3_0.in
 et-xmlfile==1.1.0
     # via openpyxl

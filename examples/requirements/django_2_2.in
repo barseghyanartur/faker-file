@@ -3,4 +3,4 @@
 
 Django>=2.2,<3.0
 django-debug-toolbar>=3.0,<3.1
-django-storages
+django-storages<=1.12.3
