@@ -449,7 +449,7 @@ Other Django usage examples
     from storages.backends.s3boto3 import S3Boto3Storage
 
     # Faker doesn't know anything about Django. That's why, if we want to
-    # support remove storages, we need to manually check which file storage
+    # support remote storages, we need to manually check which file storage
     # backend is used. If `Boto3` storage backend (of the `django-storages`
     # package) is used we use the correspondent `AWSS3Storage` class of the
     # `faker-file`.

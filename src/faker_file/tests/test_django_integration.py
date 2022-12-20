@@ -18,7 +18,7 @@ __all__ = ("DjangoIntegrationTestCase",)
 
 
 # Faker doesn't know anything about Django. That's why, if we want to support
-# remove storages, we need to manually check which file storage backend is
+# remote storages, we need to manually check which file storage backend is
 # used. If `Boto3` storage backend (of the `django-storages` package) is used
 # we use the correspondent `AWSS3Storage` class of the `faker-file`.
 # Otherwise, fall back to native file system storage (`FileSystemStorage`) of
