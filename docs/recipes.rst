@@ -388,7 +388,7 @@ Use a different locale
 
 Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Faker example**
+**Faker example with AWS S3 storage**
 
 .. code-block:: python
 
@@ -407,7 +407,7 @@ Other Django usage examples
 
     file = PdfFileProvider(FAKER).pdf_file(storage=STORAGE)
 
-**factory-boy example**
+**factory-boy example with AWS S3 storage**
 
 .. code-block:: python
 
