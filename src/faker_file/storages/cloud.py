@@ -44,15 +44,15 @@ class CloudStorage(BaseStorage):
         self.cache_dir = None
         credentials = credentials or {}
 
+        if credentials:
+            self.authenticate(**credentials)
+
         self.bucket = Pathy(f"{self.schema}://{self.bucket_name}")
         # If bucket does not exist, create
         if not self.bucket.exists():
-            self.bucket.mkdir()
+            self.bucket.mkdir(exist_ok=True)
 
         super().__init__(*args, **kwargs)
-
-        if credentials:
-            self.authenticate(**credentials)
 
     def authenticate(self, **kwargs):
         raise NotImplementedError("Method authenticate is not implemented!")
@@ -113,10 +113,7 @@ class PathyFileSystemStorage(CloudStorage):
 
         from faker_file.storages.cloud import PathyFileSystemStorage
 
-        fs_storage = PathyFileSystemStorage(
-            bucket_name="artur-testing-1",
-            rel_path="tmp",
-        )
+        fs_storage = PathyFileSystemStorage(bucket_name="artur-testing-1")
         file = fs_storage.generate_filename(prefix="zzz_", extension="docx")
         fs_storage.write_text(file, "Lorem ipsum")
         fs_storage.write_bytes(file, b"Lorem ipsum")

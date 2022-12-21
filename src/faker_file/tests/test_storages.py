@@ -200,6 +200,7 @@ class TestStoragesTestCase(unittest.TestCase):
     )
     def test_cloud_storage_exceptions(self, method_name, method_kwargs):
         """Test Base storage exceptions."""
+
         class TestCloudStorage(CloudStorage):
             schema: str = "file"
 
