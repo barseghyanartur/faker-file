@@ -1,7 +1,4 @@
-from faker_file_admin import db
-
-
-def build_sample_db():
+def build_sample_db(db):
     """Populate a small db with some example entries."""
 
     db.drop_all()
