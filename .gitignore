@@ -22,6 +22,7 @@ codebin/
 /var/
 /examples/django_example/project/media/
 /examples/django_example/project/static/
+/examples/sqlalchemy_example/tmp/
 /examples/tmp/
 /examples/logs/
 /builddocs/

@@ -11,7 +11,7 @@ class Upload(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode(64), unique=True)
-    description = db.Column(db.Integer())
+    description = db.Column(db.Integer(), nullable=True)
     file = db.Column(db.Unicode(255))
 
     def __str__(self) -> str:
