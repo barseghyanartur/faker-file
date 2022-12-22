@@ -1,9 +1,11 @@
 -r common.in
 -r test.in
 
+alembic
 Flask
 Flask-Admin
 Flask-BabelEx
 Flask-SQLAlchemy
 Flask-Testing
+SQLAlchemy
 sqlalchemy_utils
