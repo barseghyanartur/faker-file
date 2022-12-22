@@ -16,9 +16,9 @@ azure-storage-blob==12.14.1
     # via pathy
 babel==2.11.0
     # via flask-babelex
-boto3==1.26.35
+boto3==1.26.36
     # via pathy
-botocore==1.29.35
+botocore==1.29.36
     # via
     #   boto3
     #   s3transfer

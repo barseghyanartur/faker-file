@@ -1,5 +1,6 @@
 from typing import Callable
-from unittest import TestCase
+from unittest import TestCase, skipIf
+from sys import version_info
 
 import sqlalchemy_factories as factories
 from faker import Faker
@@ -27,11 +28,11 @@ class SQLAlchemyIntegrationTestCase(TestCase):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    def setUp(self):
+    def setUp(self: "SQLAlchemyIntegrationTestCase"):
         Upload.metadata.create_all(self.engine)
         self.session.commit()
 
-    def tearDown(self):
+    def tearDown(self: "SQLAlchemyIntegrationTestCase"):
         Upload.metadata.drop_all(self.engine)
 
     FAKER: Faker
@@ -45,6 +46,10 @@ class SQLAlchemyIntegrationTestCase(TestCase):
             (factories.TxtUploadFactory,),
             (factories.ZipUploadFactory,),
         ],
+    )
+    @skipIf(
+        version_info.major == 3 and version_info.minor <= 9,
+        "Due to dependency hell, we don't test Flask and co for Python < 3.10"
     )
     def test_file(
         self: "SQLAlchemyIntegrationTestCase", factory: Callable
