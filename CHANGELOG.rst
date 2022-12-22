@@ -17,7 +17,7 @@ are used for versioning (schema follows below):
 
 0.9.2
 -----
-2022-12-22
+2022-12-23
 
 - Add ``RrfFileProvider``.
 - Added ``SQLAlchemy`` factory example.
