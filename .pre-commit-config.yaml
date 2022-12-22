@@ -46,7 +46,7 @@ repos:
     rev: v0.0.106
     hooks:
       - id: ruff
-        name: lint-backend
+        name: lint
         files: .
         args: [ "--config", "pyproject.toml" ]
 
