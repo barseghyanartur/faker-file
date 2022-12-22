@@ -517,9 +517,9 @@ class ProvidersTestCase(unittest.TestCase):
             ),
             # RTF
             (
-                    "faker_file.providers.rtf_file",
-                    "RtfFileProvider",
-                    create_inner_rtf_file,
+                "faker_file.providers.rtf_file",
+                "RtfFileProvider",
+                create_inner_rtf_file,
             ),
             # SVG
             (
