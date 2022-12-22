@@ -1,6 +1,5 @@
 from typing import Callable
-from unittest import TestCase, skipIf
-from sys import version_info
+from unittest import TestCase, skip
 
 import sqlalchemy_factories as factories
 from faker import Faker
@@ -47,10 +46,7 @@ class SQLAlchemyIntegrationTestCase(TestCase):
             (factories.ZipUploadFactory,),
         ],
     )
-    @skipIf(
-        version_info.major == 3 and version_info.minor <= 9,
-        "Due to dependency hell, we don't test Flask and co for Python < 3.10"
-    )
+    @skip
     def test_file(
         self: "SQLAlchemyIntegrationTestCase", factory: Callable
     ) -> None:
