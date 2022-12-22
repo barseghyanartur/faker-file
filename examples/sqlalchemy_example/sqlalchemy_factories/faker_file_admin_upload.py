@@ -1,10 +1,9 @@
 from random import choice
 
-from factory import Faker, LazyAttribute
+from factory import Faker, LazyAttribute, Sequence
 from factory.alchemy import SQLAlchemyModelFactory
 from faker_file_admin import db
 from faker_file_admin.models import Upload
-from sqlalchemy.orm import scoped_session, sessionmaker
 
 from faker_file.providers.docx_file import DocxFileProvider
 from faker_file.providers.ods_file import OdsFileProvider
@@ -34,12 +33,22 @@ Faker.add_provider(ZipFileProvider)
 
 
 STORAGE = FileSystemStorage(root_path="", rel_path="tmp")
-session = scoped_session(sessionmaker(bind=db))
 
 
 class AbstractUploadFactory(SQLAlchemyModelFactory):
-    """Base Upload factory."""
+    """Base Upload factory.
 
+    Usage example:
+
+        import sqlalchemy_factories as factories
+        from faker_file_admin import app, db
+
+        with app.app_context():
+            document = factories.DocxUploadFactory()
+            db.session.commit()
+    """
+
+    id = Sequence(lambda n: n)
     name = Faker("text", max_nb_chars=100)
     description = Faker("text", max_nb_chars=1000)
 
@@ -47,7 +56,7 @@ class AbstractUploadFactory(SQLAlchemyModelFactory):
         """Meta class."""
 
         model = Upload
-        sqlalchemy_session = session  # the SQLAlchemy session object
+        sqlalchemy_session = db.session  # the SQLAlchemy session object
         abstract = True
 
 

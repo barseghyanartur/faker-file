@@ -11,6 +11,8 @@ Usage
 -----
 With ``Faker``
 ~~~~~~~~~~~~~~
+**Imports and initialization**
+
 .. code-block:: python
 
     from faker import Faker
@@ -23,6 +25,8 @@ With ``Faker``
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
+    from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
+    from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.webp_file import WebpFileProvider
@@ -39,11 +43,17 @@ With ``Faker``
     FAKER.add_provider(PdfFileProvider)
     FAKER.add_provider(PngFileProvider)
     FAKER.add_provider(PptxFileProvider)
+    FAKER.add_provider(RandomFileFromDirProvider)
+    FAKER.add_provider(RtfFileProvider)
     FAKER.add_provider(SvgFileProvider)
     FAKER.add_provider(TxtFileProvider)
     FAKER.add_provider(WebpFileProvider)
     FAKER.add_provider(XlsxFileProvider)
     FAKER.add_provider(ZipFileProvider)
+
+**Usage examples**
+
+.. code-block:: python
 
     bin_file = FAKER.bin_file()
     csv_file = FAKER.csv_file()
@@ -54,6 +64,7 @@ With ``Faker``
     pdf_file = FAKER.pdf_file()
     png_file = FAKER.png_file()
     pptx_file = FAKER.pptx_file()
+    rtf_file = FAKER.rtf_file()
     svg_file = FAKER.svg_file()
     txt_file = FAKER.txt_file()
     webp_file = FAKER.webp_file()
@@ -62,6 +73,44 @@ With ``Faker``
 
 With ``factory_boy``
 ~~~~~~~~~~~~~~~~~~~~
+**Imports and initialization**
+
+.. code-block:: python
+
+    from factory import Faker
+    from faker_file.providers.bin_file import BinFileProvider
+    from faker_file.providers.csv_file import CsvFileProvider
+    from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.ico_file import IcoFileProvider
+    from faker_file.providers.jpeg_file import JpegFileProvider
+    from faker_file.providers.ods_file import OdsFileProvider
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.pptx_file import PptxFileProvider
+    from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
+    from faker_file.providers.rtf_file import RtfFileProvider
+    from faker_file.providers.svg_file import SvgFileProvider
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.providers.webp_file import WebpFileProvider
+    from faker_file.providers.xlsx_file import XlsxFileProvider
+    from faker_file.providers.zip_file import ZipFileProvider
+
+    Faker.add_provider(BinFileProvider)
+    Faker.add_provider(CsvFileProvider)
+    Faker.add_provider(DocxFileProvider)
+    Faker.add_provider(IcoFileProvider)
+    Faker.add_provider(JpegFileProvider)
+    Faker.add_provider(OdsFileProvider)
+    Faker.add_provider(PdfFileProvider)
+    Faker.add_provider(PngFileProvider)
+    Faker.add_provider(PptxFileProvider)
+    Faker.add_provider(RandomFileFromDirProvider)
+    Faker.add_provider(RtfFileProvider)
+    Faker.add_provider(SvgFileProvider)
+    Faker.add_provider(TxtFileProvider)
+    Faker.add_provider(WebpFileProvider)
+    Faker.add_provider(XlsxFileProvider)
+    Faker.add_provider(ZipFileProvider)
 
 upload/models.py
 ^^^^^^^^^^^^^^^^

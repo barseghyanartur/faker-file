@@ -10,20 +10,19 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import sys
 
-from .core import PROJECT_DIR, gettext
+from .core import PROJECT_DIR
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 try:
     from .local_settings import DEBUG_TEMPLATE
-except Exception as err:
+except ImportError:
     DEBUG_TEMPLATE = False
 
 try:
     from .local_settings import USE_CACHED_TEMPLATE_LOADERS
-except Exception as err:
+except ImportError:
     USE_CACHED_TEMPLATE_LOADERS = False
 
 if USE_CACHED_TEMPLATE_LOADERS:
@@ -174,5 +173,5 @@ LOGGING = {
 # Do not put any settings below this line
 try:
     from .local_settings import *
-except Exception as err:
+except ImportError:
     pass

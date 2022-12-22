@@ -21,6 +21,7 @@ from ..providers.pdf_file import PdfFileProvider
 from ..providers.png_file import PngFileProvider
 from ..providers.pptx_file import PptxFileProvider
 from ..providers.random_file_from_dir import RandomFileFromDirProvider
+from ..providers.rtf_file import RtfFileProvider
 from ..providers.svg_file import SvgFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import WebpFileProvider
@@ -36,6 +37,7 @@ from ..providers.zip_file import (
     create_inner_pdf_file,
     create_inner_png_file,
     create_inner_pptx_file,
+    create_inner_rtf_file,
     create_inner_svg_file,
     create_inner_txt_file,
     create_inner_webp_file,
@@ -60,6 +62,7 @@ FileProvider = Union[
     PdfFileProvider,
     PngFileProvider,
     PptxFileProvider,
+    RtfFileProvider,
     SvgFileProvider,
     TxtFileProvider,
     WebpFileProvider,
@@ -257,6 +260,28 @@ class ProvidersTestCase(unittest.TestCase):
             },
             PATHY_FS_STORAGE,
         ),
+        # RTF
+        (RtfFileProvider, "rtf_file", {}, None),
+        (RtfFileProvider, "rtf_file", {}, False),
+        (RtfFileProvider, "rtf_file", {}, PATHY_FS_STORAGE),
+        (
+            RtfFileProvider,
+            "rtf_file",
+            {
+                "wrap_chars_after": 40,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
+            },
+            None,
+        ),
+        (
+            RtfFileProvider,
+            "rtf_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+            None,
+        ),
         # SVG
         (SvgFileProvider, "svg_file", {}, None),
         (SvgFileProvider, "svg_file", {}, False),
@@ -386,14 +411,15 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_bin_file, b"Lorem ipsum"),
             (create_inner_csv_file, "Lorem ipsum"),
             (create_inner_docx_file, "Lorem ipsum"),
-            (create_inner_txt_file, "Lorem ipsum"),
-            (create_inner_pdf_file, "Lorem ipsum"),
-            (create_inner_pptx_file, "Lorem ipsum"),
             (create_inner_ico_file, "Lorem ipsum"),
             (create_inner_jpeg_file, "Lorem ipsum"),
             (create_inner_ods_file, None),
+            (create_inner_pdf_file, "Lorem ipsum"),
             (create_inner_png_file, "Lorem ipsum"),
+            (create_inner_pptx_file, "Lorem ipsum"),
+            (create_inner_rtf_file, "Lorem ipsum"),
             (create_inner_svg_file, "Lorem ipsum"),
+            (create_inner_txt_file, "Lorem ipsum"),
             # (create_inner_webp_file, "Lorem ipsum"),
             (create_inner_xlsx_file, None),
             (create_inner_zip_file, None),
@@ -488,6 +514,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.pptx_file",
                 "PptxFileProvider",
                 create_inner_pptx_file,
+            ),
+            # RTF
+            (
+                    "faker_file.providers.rtf_file",
+                    "RtfFileProvider",
+                    create_inner_rtf_file,
             ),
             # SVG
             (

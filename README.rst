@@ -117,6 +117,7 @@ Supported file types
 - ``ODS``
 - ``PDF``
 - ``PNG``
+- ``RTF``
 - ``PPTX``
 - ``SVG``
 - ``TXT``

@@ -27,6 +27,7 @@ __all__ = (
     "create_inner_pdf_file",
     "create_inner_png_file",
     "create_inner_pptx_file",
+    "create_inner_rtf_file",
     "create_inner_svg_file",
     "create_inner_txt_file",
     "create_inner_webp_file",
@@ -253,6 +254,32 @@ def create_inner_pptx_file(
         raise err
 
     return PptxFileProvider(generator).pptx_file(
+        storage=storage,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content=content,
+        **kwargs,
+    )
+
+
+def create_inner_rtf_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Union[Provider, Faker] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner RTF file."""
+    try:
+        from .rtf_file import RtfFileProvider
+    except ImportError as err:
+        raise err
+
+    """Create inner RTF file."""
+    return RtfFileProvider(generator).rtf_file(
         storage=storage,
         prefix=prefix,
         max_nb_chars=max_nb_chars,

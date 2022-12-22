@@ -22,21 +22,19 @@ sys.path.insert(
     0, os.path.abspath(os.path.join("..", "examples", "django_example"))
 )
 try:
-    from project import settings as example_settings
-
     import faker_file
 
     version = faker_file.__version__
     project = faker_file.__title__
     copyright = faker_file.__copyright__
-except Exception as e:
+except ImportError:
     version = "0.1"
     project = "faker-file"
     copyright = "2022, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # -- Django configuration ------------------------------------------------------
 os.environ["DJANGO_SETTINGS_MODULE"] = "project.settings.docs"
-import django
+import django  # noqa
 
 django.setup()
 
@@ -217,7 +215,8 @@ latex_documents = [
         "index",
         "faker-file.tex",
         "faker-file Documentation",
-        "Artur Barseghyan \\textless{}artur.barseghyan@gmail.com\\textgreater{}",
+        "Artur Barseghyan \\textless{}artur.barseghyan@gmail.com"
+        "\\textgreater{}",
         "manual",
     ),
 ]
@@ -331,8 +330,6 @@ epub_copyright = "2022, Artur Barseghyan <artur.barseghyan@gmail.com>"
 # epub_tocdup = True
 
 # -- Options for PDF output ---------------------------------------------------
-import sys
-
 sys.setrecursionlimit(3000)
 rinoh_documents = [
     (
