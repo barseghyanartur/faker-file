@@ -172,6 +172,6 @@ LOGGING = {
 
 # Do not put any settings below this line
 try:
-    from .local_settings import *
+    from .local_settings import *  # noqa
 except ImportError:
     pass

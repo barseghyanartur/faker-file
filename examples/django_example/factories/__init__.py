@@ -1,1 +1,1 @@
-from .upload_upload import *
+from .upload_upload import *  # noqa

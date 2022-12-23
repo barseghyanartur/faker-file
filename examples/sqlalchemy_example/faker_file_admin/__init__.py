@@ -48,4 +48,4 @@ def get_locale():
     return session.get("lang", "en")
 
 
-import faker_file_admin.main
+import faker_file_admin.main  # noqa

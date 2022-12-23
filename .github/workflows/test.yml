@@ -7,6 +7,8 @@ jobs:
   # ******* Pre-commit ******
   # *************************
   pre-commit:
+    id: pre-commit
+    name: pre-commit ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -20,7 +22,6 @@ jobs:
 #          - "3.9"
 #          - "3.8"
 #          - "3.7"
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -36,7 +37,9 @@ jobs:
   # ***** Optional tests ****
   # *************************
   test-optional:
-    name: test ${{ matrix.python-version }} - ${{ matrix.os }}
+    id: test-optional
+    needs: pre-commit
+    name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -52,7 +55,6 @@ jobs:
           - "3.9"
           - "3.8"
           - "3.7"
-
     steps:
       - name: Install wkhtmltopdf
         run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
@@ -78,6 +80,8 @@ jobs:
   # ******* Main tests ******
   # *************************
   test:
+    id: test
+    needs: pre-commit
     name: test ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -94,7 +98,6 @@ jobs:
           - "3.9"
           - "3.8"
           - "3.7"
-
     steps:
     - name: Install wkhtmltopdf
       run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
@@ -120,7 +123,11 @@ jobs:
         parallel: true
         flag-name: Run Tests
 
+  # *************************
+  # ******* Coveralls *******
+  # *************************
   coveralls_finish:
+    name: coveralls_finish
     needs: test
     runs-on: ubuntu-latest
     steps:
