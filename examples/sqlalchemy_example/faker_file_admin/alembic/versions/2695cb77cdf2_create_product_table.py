@@ -1,7 +1,7 @@
 """create upload table
 
 Revision ID: 2695cb77cdf2
-Revises: 
+Revises:
 Create Date: 2022-12-06 23:46:09.000000
 
 """
