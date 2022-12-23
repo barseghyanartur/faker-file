@@ -3,9 +3,9 @@ name: test
 on: [push, pull_request]
 
 jobs:
-  # *************************
-  # ******* Pre-commit ******
-  # *************************
+  # *************************************
+  # ************* Pre-commit ************
+  # *************************************
   pre-commit:
     name: pre-commit ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -32,9 +32,9 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.0
 
-  # *************************
-  # ***** Optional tests ****
-  # *************************
+  # *************************************
+  # ************ Optional tests *********
+  # *************************************
   test-optional:
     needs: pre-commit
     name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
@@ -74,9 +74,9 @@ jobs:
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
 
-  # *************************
-  # ******* Main tests ******
-  # *************************
+  # *************************************
+  # ************* Main tests ************
+  # *************************************
   test:
     needs: pre-commit
     name: test ${{ matrix.python-version }} - ${{ matrix.os }}
@@ -120,9 +120,9 @@ jobs:
         parallel: true
         flag-name: Run Tests
 
-  # *************************
-  # ******* Coveralls *******
-  # *************************
+  # *************************************
+  # ************** Coveralls ************
+  # *************************************
   coveralls_finish:
     name: coveralls_finish
     needs: test
