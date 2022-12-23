@@ -65,7 +65,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
       - name: Install tox
-        run: python -m pip install tox-gh-actions pip-tools
+        run: python -m pip install tox-gh-actions pip-tools Django
       - name: Compile requirements
         run: pip-compile examples/requirements/flask.in
       - name: Install requirements
