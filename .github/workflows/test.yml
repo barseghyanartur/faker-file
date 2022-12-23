@@ -71,7 +71,7 @@ jobs:
       - name: Install requirements
         run: pip install -r examples/requirements/flask.txt
       - name: Run test suite
-        continue-on-error: true
+#        continue-on-error: true
         run: pytest -vrx -m optional --ignore src/faker_file/tests/test_django_integration.py --ignore src/faker_file/tests/test_providers.py --ignore src/faker_file/tests/test_storages.py
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
