@@ -7,7 +7,6 @@ jobs:
   # ******* Pre-commit ******
   # *************************
   pre-commit:
-    id: pre-commit
     name: pre-commit ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -37,7 +36,6 @@ jobs:
   # ***** Optional tests ****
   # *************************
   test-optional:
-    id: test-optional
     needs: pre-commit
     name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -80,7 +78,6 @@ jobs:
   # ******* Main tests ******
   # *************************
   test:
-    id: test
     needs: pre-commit
     name: test ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
