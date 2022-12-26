@@ -176,8 +176,8 @@ upload/models.py
         # ...
         file = models.FileField()
 
-upload/factory.py
-~~~~~~~~~~~~~~~~~
+upload/factories.py
+~~~~~~~~~~~~~~~~~~~
 Note, that when using ``faker-file`` with ``Django`` and native file system
 storages, you need to pass your ``MEDIA_ROOT`` setting as ``root_path`` value
 to the chosen file storage as show below.
