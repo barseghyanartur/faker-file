@@ -16,7 +16,7 @@ repos:
       - id: doc8
         name: Doc8 linter
         language: python
-        entry: python -m doc8
+        entry: doc8
         args: []
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
