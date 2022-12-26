@@ -3,6 +3,7 @@ import unittest
 from pathlib import Path
 from typing import Any, Dict, Type
 
+# import pytest
 from faker import Faker
 from parametrize import parametrize
 from pathy import use_fs, use_fs_cache
@@ -14,12 +15,20 @@ from ..storages.cloud import CloudStorage, PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
 from ..storages.google_cloud_storage import GoogleCloudStorage
 
+# from unittest.mock import patch
+
+
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("TestStoragesTestCase",)
 
 FAKER = Faker()
+
+
+# class _GoogleCloudCredentials:
+#     token = "1234"
+#     project_id = "1234"
 
 
 class TestStoragesTestCase(unittest.TestCase):
@@ -208,3 +217,42 @@ class TestStoragesTestCase(unittest.TestCase):
         method = getattr(test_storage, method_name)
         with self.assertRaises(NotImplementedError):
             method(**method_kwargs)
+
+    def test_file_system_storage_abspath(self):
+        """Test `FileSystemStorage` `abspath`."""
+        storage = FileSystemStorage(
+            root_path=tempfile.gettempdir(),
+            rel_path="rel_tmp",
+        )
+        filename = storage.generate_filename(prefix="", extension="tmp")
+        self.assertTrue(storage.abspath(filename).startswith("/tmp/rel_tmp/"))
+
+    def test_pathy_file_system_storage_abspath(self):
+        """Test `PathyFileSystemStorage` `abspath`."""
+        storage = PathyFileSystemStorage(
+            bucket_name="faker-file-tmp",
+            root_path="root_tmp",
+            rel_path="rel_tmp",
+        )
+        filename = storage.generate_filename(prefix="", extension="tmp")
+        self.assertTrue(
+            storage.abspath(filename).startswith(
+                "file://faker-file-tmp/root_tmp/rel_tmp/"
+            )
+        )
+
+    # @patch(
+    #     "faker_file.storages.google_cloud_storage.service_account."
+    #     "Credentials.from_service_account_file",
+    #     new_callable=lambda: lambda __x: _GoogleCloudCredentials(),
+    # )
+    # @pytest.mark.xfail
+    # def test_google_cloud_storage_authentication(self, func):
+    #     """Test `GoogleCloudStorage` authentication."""
+    #     GoogleCloudStorage(
+    #         bucket_name="testing",
+    #         rel_path="tmp",
+    #         credentials={
+    #             "json_file_path": "/i/dont/exist.json",
+    #         },
+    #     )
