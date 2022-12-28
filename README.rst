@@ -34,8 +34,8 @@ Most of optional dependencies of this package are `MIT` licensed, while
 a few are `BSD`- or `Apache 2` licensed. All licenses are mentioned
 below between the brackets.
 
-- Core package requires Python 3.7, 3.8, 3.9, 3.10 and 3.11
-  with ``Faker`` (`MIT`) being the only dependency.
+- Core package requires Python 3.7, 3.8, 3.9, 3.10 and 3.11.
+  ``Faker`` (`MIT`) is the only required dependency.
 - ``Django`` (`BSD`) integration with ``factory_boy`` (`MIT`) has
   been tested with ``Django`` 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
 - ``DOCX`` file support requires ``python-docx`` (`MIT`).
