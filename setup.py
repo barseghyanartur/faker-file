@@ -87,6 +87,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages(where="./src"),
     license="MIT",
+    python_requires=">=3.7",
     install_requires=install_requires,
     tests_require=tests_require,
     dependency_links=dependency_links,
