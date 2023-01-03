@@ -39,6 +39,7 @@ below between the brackets.
 - ``Django`` (`BSD`) integration with ``factory_boy`` (`MIT`) has
   been tested with ``Django`` 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
 - ``DOCX`` file support requires ``python-docx`` (`MIT`).
+- ``EPUB`` file support requires ``xml2epub`` (`MIT`) and ``jinja2`` (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires ``imgkit`` (`MIT`).
 - ``PDF`` file support requires ``pdfkit`` (`MIT`).

@@ -14,6 +14,7 @@ from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
+from ..providers.epub_file import EpubFileProvider
 from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
 from ..providers.ods_file import OdsFileProvider
@@ -57,6 +58,7 @@ __all__ = ("ProvidersTestCase",)
 FileProvider = Union[
     CsvFileProvider,
     DocxFileProvider,
+    EpubFileProvider,
     IcoFileProvider,
     JpegFileProvider,
     PdfFileProvider,
@@ -109,6 +111,28 @@ class ProvidersTestCase(unittest.TestCase):
         (
             DocxFileProvider,
             "docx_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+            None,
+        ),
+        # EPUB
+        (EpubFileProvider, "epub_file", {}, None),
+        (EpubFileProvider, "epub_file", {}, False),
+        (EpubFileProvider, "epub_file", {}, PATHY_FS_STORAGE),
+        (
+            EpubFileProvider,
+            "epub_file",
+            {
+                "wrap_chars_after": 40,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
+            },
+            None,
+        ),
+        (
+            EpubFileProvider,
+            "epub_file",
             {
                 "wrap_chars_after": 40,
                 "content": _FAKER.text(),

@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.9.2"
+version = "0.9.3"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -39,12 +39,14 @@ extras_require = (
             "python-docx",
             "python-pptx",
             "tablib",
+            "xml2epub",
         ],
         "django": ["Django>=2.2"],
         "docx": ["python-docx"],
         "images": ["imgkit"],
         "pdf": ["pdfkit"],
         "pptx": ["python-pptx"],
+        "epub": ["xml2epub"],
         "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
         "xlsx": ["tablib", "openpyxl"],
         "ods": ["tablib", "odfpy"],
