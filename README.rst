@@ -114,6 +114,7 @@ Supported file types
 - ``BIN``
 - ``CSV``
 - ``DOCX``
+- ``EPUB``
 - ``ICO``
 - ``JPEG``
 - ``ODS``
