@@ -81,6 +81,12 @@ Latest stable version from PyPI
 
     pip install faker-file[docx]
 
+**With EPUB support**
+
+.. code-block:: sh
+
+    pip install faker-file[epub]
+
 **With images support**
 
 .. code-block:: sh

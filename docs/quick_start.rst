@@ -19,6 +19,7 @@ With ``Faker``
     from faker_file.providers.bin_file import BinFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.epub_file import EpubFileProvider
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
@@ -37,6 +38,7 @@ With ``Faker``
     FAKER.add_provider(BinFileProvider)
     FAKER.add_provider(CsvFileProvider)
     FAKER.add_provider(DocxFileProvider)
+    FAKER.add_provider(EpubFileProvider)
     FAKER.add_provider(IcoFileProvider)
     FAKER.add_provider(JpegFileProvider)
     FAKER.add_provider(OdsFileProvider)
@@ -58,6 +60,7 @@ With ``Faker``
     bin_file = FAKER.bin_file()
     csv_file = FAKER.csv_file()
     docx_file = FAKER.docx_file()
+    epub_file = FAKER.epub_file()
     ico_file = FAKER.ico_file()
     jpeg_file = FAKER.jpeg_file()
     ods_file = FAKER.ods_file()
@@ -81,6 +84,7 @@ With ``factory_boy``
     from faker_file.providers.bin_file import BinFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.epub_file import EpubFileProvider
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
@@ -98,6 +102,7 @@ With ``factory_boy``
     Faker.add_provider(BinFileProvider)
     Faker.add_provider(CsvFileProvider)
     Faker.add_provider(DocxFileProvider)
+    Faker.add_provider(EpubFileProvider)
     Faker.add_provider(IcoFileProvider)
     Faker.add_provider(JpegFileProvider)
     Faker.add_provider(OdsFileProvider)

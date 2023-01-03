@@ -32,6 +32,7 @@ from ..providers.zip_file import (
     create_inner_bin_file,
     create_inner_csv_file,
     create_inner_docx_file,
+    create_inner_epub_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
     create_inner_ods_file,
@@ -435,6 +436,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_bin_file, b"Lorem ipsum"),
             (create_inner_csv_file, "Lorem ipsum"),
             (create_inner_docx_file, "Lorem ipsum"),
+            (create_inner_epub_file, "Lorem ipsum"),
             (create_inner_ico_file, "Lorem ipsum"),
             (create_inner_jpeg_file, "Lorem ipsum"),
             (create_inner_ods_file, None),
@@ -502,6 +504,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.docx_file",
                 "DocxFileProvider",
                 create_inner_docx_file,
+            ),
+            # EPUB
+            (
+                "faker_file.providers.epub_file",
+                "EpubFileProvider",
+                create_inner_epub_file,
             ),
             # ICO
             (

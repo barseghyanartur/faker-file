@@ -21,6 +21,7 @@ __all__ = (
     "create_inner_bin_file",
     "create_inner_csv_file",
     "create_inner_docx_file",
+    "create_inner_epub_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
     "create_inner_ods_file",
@@ -109,6 +110,35 @@ def create_inner_docx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        **kwargs,
+    )
+
+
+def create_inner_epub_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Union[Provider, Faker] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    title: Optional[str] = None,
+    chapter_title: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner EPUB file."""
+    try:
+        from .epub_file import EpubFileProvider
+    except ImportError as err:
+        raise err
+
+    return EpubFileProvider(generator).epub_file(
+        storage=storage,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content=content,
+        title=title,
+        chapter_title=chapter_title,
         **kwargs,
     )
 

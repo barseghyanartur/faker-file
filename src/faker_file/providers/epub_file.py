@@ -61,6 +61,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
         title: Optional[str] = None,
+        chapter_title: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
         """Generate a EPUB file with random text.
@@ -74,6 +75,8 @@ class EpubFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param title: E-book title. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
+        :param chapter_title: Chapter title. Might contain dynamic elements,
+            which are then replaced by correspondent fixtures.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -96,8 +99,15 @@ class EpubFileProvider(BaseProvider, FileMixin):
             content=title,
         )
 
+        chapter_title = self._generate_text_content(
+            max_nb_chars=50,
+            content=chapter_title,
+        )
+
         _book = xml2epub.Epub(title)
-        _chapter = xml2epub.create_chapter_from_string(content)
+        _chapter = xml2epub.create_chapter_from_string(
+            content, title=chapter_title
+        )
         _book.add_chapter(_chapter)
         _local_file_name = _book.create_epub(tempfile.gettempdir())
 
@@ -108,5 +118,9 @@ class EpubFileProvider(BaseProvider, FileMixin):
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = {
+            "content": content,
+            "title": title,
+            "chapter_title": chapter_title,
+        }
         return file_name
