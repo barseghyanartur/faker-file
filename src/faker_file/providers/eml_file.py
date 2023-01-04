@@ -3,7 +3,6 @@ import os
 from email import generator
 from email.message import EmailMessage
 from io import BytesIO
-from pathlib import Path
 from typing import Any, Dict, Optional
 
 from faker.providers import BaseProvider
@@ -114,6 +113,14 @@ class EmlFileProvider(BaseProvider, FileMixin):
         msg["From"] = self.generator.email()
         msg["Subject"] = self.generator.sentence()
         msg.set_content(content)
+        data.update(
+            {
+                "to": msg["To"],
+                "from": msg["From"],
+                "subject": msg["Subject"],
+                "content": content,
+            }
+        )
 
         # Specific
         if options:
@@ -138,14 +145,12 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 "create_inner_file_func", create_inner_txt_file
             )
             _create_inner_file_args = options.get("create_inner_file_args", {})
-            _dir_path = Path("")
 
         else:
             # Defaults
             _count = 5
             _create_inner_file_func = create_inner_txt_file
             _create_inner_file_args = {}
-            _dir_path = Path("")
 
         _kwargs = {"generator": self.generator}
         for __i in range(_count):

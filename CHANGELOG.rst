@@ -17,7 +17,7 @@ are used for versioning (schema follows below):
 
 0.10
 ----
-(Unreleased)
+2023-01-04
 
 *Note, that this release introduces breaking changes!*
 
@@ -26,6 +26,7 @@ are used for versioning (schema follows below):
   ``faker_file.providers.helpers.inner`` module. Adjust your imports
   accordingly.
 - Add ``EmlFileProvider``.
+- Add ``create_inner_eml_file`` inner function.
 
 0.9.3
 -----

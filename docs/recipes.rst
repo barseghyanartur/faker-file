@@ -98,7 +98,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
             "create_inner_file_args": {
                 "prefix": "xxx_",
                 "max_nb_chars": 1_024,
-            }
+            },
             "directory": "yyy",
         }
     )
@@ -127,6 +127,74 @@ contain 5 DOCX files.
                 "prefix": "nested_level_1_",
                 "options": {
                     "create_inner_file_func": create_inner_zip_file,
+                    "create_inner_file_args": {
+                        "prefix": "nested_level_2_",
+                        "options": {
+                            "create_inner_file_func": create_inner_docx_file,
+                        }
+                    },
+                }
+            },
+        }
+    )
+
+
+Create a EML file consisting of TXT files with static content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 5 TXT files in the EML email (default value is 5).
+- Content of all files is ``Lorem ipsum``.
+
+.. code-block:: python
+
+    file = EmlFileProvider(FAKER).eml_file(options={"content": "Lorem ipsum"})
+
+Create a EML file consisting of 3 DOCX files with dynamically generated content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 3 DOCX files in the EML archive.
+- Content is generated dynamically.
+- Content is limited to 1024 chars.
+- Prefix the filenames in email with ``xxx_``.
+- Prefix the filename of the email itself with ``zzz``.
+
+.. code-block:: python
+
+    from faker_file.providers.eml_file import create_inner_docx_file
+    file = EmlFileProvider(FAKER).eml_file(
+        prefix="zzz",
+        options={
+            "count": 3,
+            "create_inner_file_func": create_inner_docx_file,
+            "create_inner_file_args": {
+                "prefix": "xxx_",
+                "max_nb_chars": 1_024,
+            },
+        }
+    )
+
+Create a nested EML file
+~~~~~~~~~~~~~~~~~~~~~~~~
+Create a EML file which contains 5 EML files which contain 5 EML files which
+contain 5 DOCX files.
+
+- 5 EML files in the EML file.
+- Content is generated dynamically.
+- Prefix the filenames in archive with ``nested_level_1_``.
+- Prefix the filename of the archive itself with ``nested_level_0_``.
+- Each of the EML files inside the EML file in their turn contains 5 other EML
+  files, prefixed with ``nested_level_2_``, which in their turn contain 5
+  DOCX files.
+
+.. code-block:: python
+
+    from faker_file.providers.eml_file import create_inner_docx_file, create_inner_eml_file
+    file = EmlFileProvider(FAKER).eml_file(
+        prefix="nested_level_0_",
+        options={
+            "create_inner_file_func": create_inner_eml_file,
+            "create_inner_file_args": {
+                "prefix": "nested_level_1_",
+                "options": {
+                    "create_inner_file_func": create_inner_eml_file,
                     "create_inner_file_args": {
                         "prefix": "nested_level_2_",
                         "options": {

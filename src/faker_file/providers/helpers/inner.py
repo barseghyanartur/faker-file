@@ -14,6 +14,7 @@ __all__ = (
     "create_inner_bin_file",
     "create_inner_csv_file",
     "create_inner_docx_file",
+    "create_inner_eml_file",
     "create_inner_epub_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
@@ -100,6 +101,32 @@ def create_inner_docx_file(
     return DocxFileProvider(generator).docx_file(
         storage=storage,
         prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content=content,
+        **kwargs,
+    )
+
+
+def create_inner_eml_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Union[Provider, Faker] = None,
+    options: Optional[Dict[str, Any]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner EML file."""
+    try:
+        from ..eml_file import EmlFileProvider
+    except ImportError as err:
+        raise err
+    return EmlFileProvider(generator).eml_file(
+        storage=storage,
+        prefix=prefix,
+        options=options,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,

@@ -14,11 +14,13 @@ from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
+from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider
 from ..providers.helpers.inner import (
     create_inner_bin_file,
     create_inner_csv_file,
     create_inner_docx_file,
+    create_inner_eml_file,
     create_inner_epub_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
@@ -59,6 +61,7 @@ __all__ = ("ProvidersTestCase",)
 FileProvider = Union[
     CsvFileProvider,
     DocxFileProvider,
+    EmlFileProvider,
     EpubFileProvider,
     IcoFileProvider,
     JpegFileProvider,
@@ -112,6 +115,44 @@ class ProvidersTestCase(unittest.TestCase):
         (
             DocxFileProvider,
             "docx_file",
+            {
+                "wrap_chars_after": 40,
+                "content": _FAKER.text(),
+            },
+            None,
+        ),
+        # EML
+        (EmlFileProvider, "eml_file", {}, None),
+        (
+            EmlFileProvider,
+            "eml_file",
+            {
+                "options": {
+                    "count": 5,
+                    "create_inner_file_func": create_inner_docx_file,
+                    "create_inner_file_args": {
+                        "prefix": "zzz_file_",
+                        "max_nb_chars": 1_024,
+                        "content": "{{date}}\r\n{{text}}\r\n{{name}}",
+                    },
+                }
+            },
+            None,
+        ),
+        (EmlFileProvider, "eml_file", {}, False),
+        (EmlFileProvider, "eml_file", {}, PATHY_FS_STORAGE),
+        (
+            EmlFileProvider,
+            "eml_file",
+            {
+                "wrap_chars_after": 40,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
+            },
+            None,
+        ),
+        (
+            EmlFileProvider,
+            "eml_file",
             {
                 "wrap_chars_after": 40,
                 "content": _FAKER.text(),
@@ -436,6 +477,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_bin_file, b"Lorem ipsum"),
             (create_inner_csv_file, "Lorem ipsum"),
             (create_inner_docx_file, "Lorem ipsum"),
+            (create_inner_eml_file, None),
             (create_inner_epub_file, "Lorem ipsum"),
             (create_inner_ico_file, "Lorem ipsum"),
             (create_inner_jpeg_file, "Lorem ipsum"),
@@ -504,6 +546,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.docx_file",
                 "DocxFileProvider",
                 create_inner_docx_file,
+            ),
+            # EML
+            (
+                "faker_file.providers.eml_file",
+                "EmlFileProvider",
+                create_inner_eml_file,
             ),
             # EPUB
             (

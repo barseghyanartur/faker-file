@@ -120,6 +120,7 @@ Supported file types
 - ``BIN``
 - ``CSV``
 - ``DOCX``
+- ``EML``
 - ``EPUB``
 - ``ICO``
 - ``JPEG``
