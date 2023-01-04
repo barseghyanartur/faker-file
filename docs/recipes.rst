@@ -150,7 +150,7 @@ Create a EML file consisting of TXT files with static content
 
 Create a EML file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 3 DOCX files in the EML archive.
+- 3 DOCX files in the EML email.
 - Content is generated dynamically.
 - Content is limited to 1024 chars.
 - Prefix the filenames in email with ``xxx_``.
@@ -178,8 +178,8 @@ contain 5 DOCX files.
 
 - 5 EML files in the EML file.
 - Content is generated dynamically.
-- Prefix the filenames in archive with ``nested_level_1_``.
-- Prefix the filename of the archive itself with ``nested_level_0_``.
+- Prefix the filenames in EML email with ``nested_level_1_``.
+- Prefix the filename of the EML email itself with ``nested_level_0_``.
 - Each of the EML files inside the EML file in their turn contains 5 other EML
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
