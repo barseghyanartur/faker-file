@@ -153,6 +153,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
             _create_inner_file_args = {}
 
         _kwargs = {"generator": self.generator}
+        _kwargs.update(_create_inner_file_args)
+
         for __i in range(_count):
             __file = _create_inner_file_func(
                 storage=fs_storage,
