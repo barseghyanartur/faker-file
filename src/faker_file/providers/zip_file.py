@@ -145,8 +145,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
                 )
                 os.remove(__file_abs_path)  # Clean up temporary files
                 data["files"].append(Path(_directory) / Path(__file).name)
-            _zip_content.seek(0)
-            storage.write_bytes(filename, _zip_content.read())
+        _zip_content.seek(0)
+        storage.write_bytes(filename, _zip_content.read())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
