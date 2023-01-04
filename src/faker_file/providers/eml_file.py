@@ -1,5 +1,7 @@
+import mimetypes
 import os
-import zipfile
+from email import generator
+from email.message import EmailMessage
 from io import BytesIO
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -7,6 +9,7 @@ from typing import Any, Dict, Optional
 from faker.providers import BaseProvider
 
 from ..base import FileMixin, StringValue
+from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 from .helpers.inner import create_inner_txt_file
@@ -14,28 +17,28 @@ from .helpers.inner import create_inner_txt_file
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("ZipFileProvider",)
+__all__ = ("EmlFileProvider",)
 
 
-class ZipFileProvider(BaseProvider, FileMixin):
-    """ZIP file provider.
+class EmlFileProvider(BaseProvider, FileMixin):
+    """EML file provider.
 
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.zip_file import ZipFileProvider
+        from faker_file.providers.eml_file import EmlFileProvider
 
         FAKER = Faker()
 
-        file = ZipFileProvider(FAKER).zip_file()
+        file = EmlFileProvider(FAKER).eml_file()
 
     Usage example with options:
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
-        from faker_file.providers.zip_file import ZipFileProvider
+        from faker_file.providers.eml_file import EmlFileProvider
 
-        file = ZipFileProvider(FAKER).zip_file(
-            prefix="zzz_archive_",
+        file = EmlFileProvider(FAKER).eml_file(
+            prefix="zzz_email_",
             options={
                 "count": 5,
                 "create_inner_file_func": create_inner_docx_file,
@@ -43,17 +46,16 @@ class ZipFileProvider(BaseProvider, FileMixin):
                     "prefix": "zzz_docx_file_",
                     "max_nb_chars": 1_024,
                 },
-                "directory": "zzz",
             }
         )
 
-    Usage example of nested ZIPs:
+    Usage example of nested EMLs:
 
-        from faker_file.providers.helpers.inner import create_inner_zip_file
+        from faker_file.providers.helpers.inner import create_inner_eml_file
 
-        file = ZipFileProvider(FAKER).zip_file(
+        file = EmlFileProvider(FAKER).eml_file(
             options={
-                "create_inner_file_func": create_inner_zip_file,
+                "create_inner_file_func": create_inner_eml_file,
                 "create_inner_file_args": {
                     "options": {
                         "create_inner_file_func": create_inner_docx_file,
@@ -62,24 +64,32 @@ class ZipFileProvider(BaseProvider, FileMixin):
             }
         )
 
-    If you want to see, which files were included inside the ZIP, check
+    If you want to see, which files were included inside the EML, check
     the ``file.data["files"]``.
     """
 
-    extension: str = "zip"
+    extension: str = "eml"
 
-    def zip_file(
-        self: "ZipFileProvider",
+    def eml_file(
+        self: "EmlFileProvider",
         storage: BaseStorage = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a ZIP file with random text.
+        """Generate an EML file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
+        :param max_nb_chars: Max number of chars for the content.
+        :param wrap_chars_after: If given, the output string would be separated
+             by line breaks after the given position.
+        :param content: File content. Might contain dynamic elements, which
+            are then replaced by correspondent fixtures.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -93,13 +103,25 @@ class ZipFileProvider(BaseProvider, FileMixin):
         data = {}
         fs_storage = FileSystemStorage()
 
+        content = self._generate_text_content(
+            max_nb_chars=max_nb_chars,
+            wrap_chars_after=wrap_chars_after,
+            content=content,
+        )
+
+        msg = EmailMessage()
+        msg["To"] = self.generator.email()
+        msg["From"] = self.generator.email()
+        msg["Subject"] = self.generator.sentence()
+        msg.set_content(content)
+
         # Specific
         if options:
             """
             A complex case. Could be initialized as follows:
 
-                zip_file = ZipFileProvider(None).zip_file(
-                    prefix="zzz_archive_",
+                eml_file = EmlFileProvider(FAKER).eml_file(
+                    prefix="zzz_email_",
                     options={
                         "count": 5,
                         "create_inner_file_func": create_inner_docx_file,
@@ -108,7 +130,6 @@ class ZipFileProvider(BaseProvider, FileMixin):
                             "max_nb_chars": 1_024,
                             "content": "{{date}}\r\n{{text}}\r\n{{name}}",
                         },
-                        "directory": "zzz",
                     }
                 )
             """
@@ -118,7 +139,6 @@ class ZipFileProvider(BaseProvider, FileMixin):
             )
             _create_inner_file_args = options.get("create_inner_file_args", {})
             _dir_path = Path("")
-            _directory = options.get("directory", "")
 
         else:
             # Defaults
@@ -126,27 +146,35 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _create_inner_file_func = create_inner_txt_file
             _create_inner_file_args = {}
             _dir_path = Path("")
-            _directory = ""
 
-        _zip_content = BytesIO()
-        with zipfile.ZipFile(_zip_content, "w") as __fake_file:
-            data["files"] = []
-            _kwargs = {"generator": self.generator}
-            _kwargs.update(_create_inner_file_args)
-            for __i in range(_count):
-                __file = _create_inner_file_func(
-                    storage=fs_storage,
-                    **_kwargs,
+        _kwargs = {"generator": self.generator}
+        for __i in range(_count):
+            __file = _create_inner_file_func(
+                storage=fs_storage,
+                **_kwargs,
+            )
+            __file_abs_path = fs_storage.abspath(__file)
+            _content_type, _encoding = mimetypes.guess_type(__file_abs_path)
+            if _content_type is None or _encoding is not None:
+                # No guess could be made, or the file is encoded (compressed),
+                # so use a generic bag-of-bits type.
+                _content_type = "application/octet-stream"
+            _maintype, _subtype = _content_type.split("/", 1)
+            with open(__file_abs_path, "rb") as _fp:
+                _file_data = _fp.read()
+                msg.add_attachment(
+                    _file_data,
+                    maintype=_maintype,
+                    subtype=_subtype,
+                    filename=os.path.basename(__file),
                 )
-                __file_abs_path = fs_storage.abspath(__file)
-                __fake_file.write(
-                    __file_abs_path,
-                    arcname=Path(_directory) / Path(__file).name,
-                )
-                os.remove(__file_abs_path)  # Clean up temporary files
-                data["files"].append(Path(_directory) / Path(__file).name)
-            _zip_content.seek(0)
-            storage.write_bytes(filename, _zip_content.read())
+            os.remove(__file_abs_path)  # Clean up temporary files
+
+        with BytesIO() as _eml_content:
+            eml_generator = generator.BytesGenerator(_eml_content)
+            eml_generator.flatten(msg)
+            _eml_content.seek(0)
+            storage.write_bytes(filename, _eml_content.read())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

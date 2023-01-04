@@ -15,6 +15,18 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10
+----
+(Unreleased)
+
+*Note, that this release introduces breaking changes!*
+
+- Move all ``create_inner_*_file`` functions from
+  ``faker_file.providers.zip_file`` to
+  ``faker_file.providers.helpers.inner`` module. Adjust your imports
+  accordingly.
+- Add ``EmlFileProvider``.
+
 0.9.3
 -----
 2023-01-03

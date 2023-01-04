@@ -15,20 +15,7 @@ from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.epub_file import EpubFileProvider
-from ..providers.ico_file import IcoFileProvider
-from ..providers.jpeg_file import JpegFileProvider
-from ..providers.ods_file import OdsFileProvider
-from ..providers.pdf_file import PdfFileProvider
-from ..providers.png_file import PngFileProvider
-from ..providers.pptx_file import PptxFileProvider
-from ..providers.random_file_from_dir import RandomFileFromDirProvider
-from ..providers.rtf_file import RtfFileProvider
-from ..providers.svg_file import SvgFileProvider
-from ..providers.txt_file import TxtFileProvider
-from ..providers.webp_file import WebpFileProvider
-from ..providers.xlsx_file import XlsxFileProvider
-from ..providers.zip_file import (
-    ZipFileProvider,
+from ..providers.helpers.inner import (
     create_inner_bin_file,
     create_inner_csv_file,
     create_inner_docx_file,
@@ -46,6 +33,19 @@ from ..providers.zip_file import (
     create_inner_xlsx_file,
     create_inner_zip_file,
 )
+from ..providers.ico_file import IcoFileProvider
+from ..providers.jpeg_file import JpegFileProvider
+from ..providers.ods_file import OdsFileProvider
+from ..providers.pdf_file import PdfFileProvider
+from ..providers.png_file import PngFileProvider
+from ..providers.pptx_file import PptxFileProvider
+from ..providers.random_file_from_dir import RandomFileFromDirProvider
+from ..providers.rtf_file import RtfFileProvider
+from ..providers.svg_file import SvgFileProvider
+from ..providers.txt_file import TxtFileProvider
+from ..providers.webp_file import WebpFileProvider
+from ..providers.xlsx_file import XlsxFileProvider
+from ..providers.zip_file import ZipFileProvider
 from ..storages.base import BaseStorage
 from ..storages.cloud import PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
@@ -576,6 +576,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.xlsx_file",
                 "XlsxFileProvider",
                 create_inner_xlsx_file,
+            ),
+            # ZIP
+            (
+                "faker_file.providers.zip_file",
+                "ZipFileProvider",
+                create_inner_zip_file,
             ),
         ],
     )
