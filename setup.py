@@ -59,7 +59,7 @@ extras_require = (
 setup(
     name="faker-file",
     version=version,
-    description="Generate fake files.",
+    description="Generate files with fake data.",
     long_description=f"{readme}",
     long_description_content_type="text/x-rst",
     classifiers=[
