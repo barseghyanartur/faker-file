@@ -31,7 +31,7 @@ Prerequisites
 =============
 All of core dependencies of this package are `MIT` licensed.
 Most of optional dependencies of this package are `MIT` licensed, while
-a few are `BSD`- or `Apache 2` licensed. All licenses are mentioned
+a few are `BSD`-, `Apache 2`- or `GPLv3` licensed. All licenses are mentioned
 below between the brackets.
 
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
@@ -42,7 +42,7 @@ below between the brackets.
 - ``EPUB`` file support requires ``xml2epub`` (`MIT`) and ``jinja2`` (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires ``imgkit`` (`MIT`).
-- ``MP3`` file support requires ``gtts`` (`MIT`).
+- ``MP3`` file support requires ``gtts`` (`MIT`) or ``edge-tts`` (`GPLv3`).
 - ``PDF`` file support requires ``pdfkit`` (`MIT`).
 - ``PPTX`` file support requires ``python-pptx`` (`MIT`).
 - ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
@@ -264,7 +264,7 @@ Native file system storage. Does not have dependencies.
 
 `PathyFileSystemStorage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Native file system storage. Requires `pathy`.
+Native file system storage. Requires ``pathy``.
 
 .. code-block:: python
 
@@ -289,7 +289,7 @@ Native file system storage. Requires `pathy`.
 
 `AWSS3Storage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-AWS S3 storage. Requires `pathy`.
+AWS S3 storage. Requires ``pathy``.
 
 .. code-block:: python
 

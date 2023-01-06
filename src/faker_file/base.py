@@ -1,6 +1,7 @@
 from typing import Any, Callable, Dict, List, Optional, Union
 
 from faker import Faker
+from faker.generator import Generator
 from faker.providers.python import Provider
 
 from .helpers import wrap_text
@@ -28,7 +29,7 @@ class FileMixin:
     numerify: Callable
     random_element: Callable
     formats: List[str]
-    generator: Union[Provider, Faker]
+    generator: Union[Faker, Generator, Provider]
     extension: str  # Desired file extension.
 
     def _generate_text_content(

@@ -1,4 +1,4 @@
-from typing import Optional, Type
+from typing import Any, Dict, Optional, Type
 
 from faker.providers import BaseProvider
 
@@ -82,6 +82,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
         mp3_generator_cls: Type[BaseMp3Generator] = GttsMp3Generator,
+        mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
         """Generate a MP3 file with random text.
@@ -92,6 +93,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
         :param mp3_generator_cls: Mp3 generator class.
+        :param mp3_generator_kwargs: Mp3 generator kwargs.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -111,7 +113,13 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         if mp3_generator_cls is None:
             mp3_generator_cls = GttsMp3Generator
 
-        mp3_generator = mp3_generator_cls(content)
+        if not mp3_generator_kwargs:
+            mp3_generator_kwargs = {}
+        mp3_generator = mp3_generator_cls(
+            content=content,
+            generator=self.generator,
+            **mp3_generator_kwargs,
+        )
         storage.write_bytes(filename, mp3_generator.generate())
 
         # Generic

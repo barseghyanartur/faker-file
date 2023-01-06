@@ -10,6 +10,10 @@ __license__ = "MIT"
 __all__ = ("GttsMp3Generator",)
 
 
+DEFAULT_LANG = "en"
+DEFAULT_TLD = "com"
+
+
 class GttsMp3Generator(BaseMp3Generator):
     """Google Text-to-Speech generator.
 
@@ -28,9 +32,19 @@ class GttsMp3Generator(BaseMp3Generator):
         )
     """
 
+    lang: str = DEFAULT_LANG
+    tld: str = DEFAULT_TLD
+
+    def handle_kwargs(self: "GttsMp3Generator", **kwargs) -> None:
+        if "lang" in kwargs:
+            self.lang = kwargs["lang"]
+        if "tld" in kwargs:
+            self.tld = kwargs["tld"]
+
     def generate(self: "GttsMp3Generator") -> bytes:
+        """Generate MP3."""
         with BytesIO() as __fake_file:
-            tts = gTTS(self.content)
+            tts = gTTS(self.content, lang=self.lang, tld=self.tld)
             tts.write_to_fp(__fake_file)
             __fake_file.seek(0)
             return __fake_file.read()

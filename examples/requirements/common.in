@@ -1,4 +1,4 @@
-https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
+edge-tts
 imgkit
 odfpy
 openpyxl
@@ -8,3 +8,5 @@ python-docx
 python-pptx
 tablib
 xml2epub
+
+https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
