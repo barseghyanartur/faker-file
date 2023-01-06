@@ -23,6 +23,7 @@ With ``Faker``
     from faker_file.providers.epub_file import EpubFileProvider
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
+    from faker_file.providers.mp3_file import Mp3FileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.png_file import PngFileProvider
@@ -43,6 +44,7 @@ With ``Faker``
     FAKER.add_provider(EpubFileProvider)
     FAKER.add_provider(IcoFileProvider)
     FAKER.add_provider(JpegFileProvider)
+    FAKER.add_provider(Mp3FileProvider)
     FAKER.add_provider(OdsFileProvider)
     FAKER.add_provider(PdfFileProvider)
     FAKER.add_provider(PngFileProvider)
@@ -66,6 +68,7 @@ With ``Faker``
     epub_file = FAKER.epub_file()
     ico_file = FAKER.ico_file()
     jpeg_file = FAKER.jpeg_file()
+    mp3_file = FAKER.mp3_file()
     ods_file = FAKER.ods_file()
     pdf_file = FAKER.pdf_file()
     png_file = FAKER.png_file()
@@ -91,6 +94,7 @@ With ``factory_boy``
     from faker_file.providers.epub_file import EpubFileProvider
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
+    from faker_file.providers.mp3_file import Mp3FileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.png_file import PngFileProvider
@@ -110,6 +114,7 @@ With ``factory_boy``
     Faker.add_provider(EpubFileProvider)
     Faker.add_provider(IcoFileProvider)
     Faker.add_provider(JpegFileProvider)
+    Faker.add_provider(Mp3FileProvider)
     Faker.add_provider(OdsFileProvider)
     Faker.add_provider(PdfFileProvider)
     Faker.add_provider(PngFileProvider)

@@ -35,7 +35,9 @@ cffi==1.15.1
 charset-normalizer==2.1.1
     # via requests
 click==7.1.2
-    # via typer
+    # via
+    #   gtts
+    #   typer
 colorama==0.4.6
     # via typer-cli
 commonmark==0.9.1
@@ -94,6 +96,8 @@ google-resumable-media==2.4.0
     # via google-cloud-storage
 googleapis-common-protos==1.57.0
     # via google-api-core
+gtts @ https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
+    # via -r examples/requirements/common.in
 idna==3.4
     # via requests
 imgkit==1.2.2
@@ -224,6 +228,7 @@ requests==2.28.1
     #   azure-core
     #   google-api-core
     #   google-cloud-storage
+    #   gtts
     #   msrest
     #   requests-oauthlib
     #   requests-toolbelt
@@ -251,6 +256,7 @@ six==1.16.0
     #   bleach
     #   google-auth
     #   google-cloud-storage
+    #   gtts
     #   imgkit
     #   isodate
     #   python-dateutil

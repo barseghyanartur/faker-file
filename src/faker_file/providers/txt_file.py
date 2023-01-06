@@ -18,15 +18,14 @@ class TxtFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+        from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider
 
-        file = TxtFileProvider(None).txt_file()
+        file = TxtFileProvider(Faker()).txt_file()
 
     Usage example with options:
 
-        from faker_file.providers.txt_file import TxtFileProvider
-
-        file = TxtFileProvider(None).txt_file(
+        file = TxtFileProvider(Faker()).txt_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,

@@ -24,6 +24,7 @@ from ..providers.helpers.inner import (
     create_inner_epub_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
+    create_inner_mp3_file,
     create_inner_ods_file,
     create_inner_pdf_file,
     create_inner_png_file,
@@ -37,6 +38,8 @@ from ..providers.helpers.inner import (
 )
 from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
+from ..providers.mp3_file import Mp3FileProvider
+from ..providers.mp3_file.generators.base import BaseMp3Generator
 from ..providers.ods_file import OdsFileProvider
 from ..providers.pdf_file import PdfFileProvider
 from ..providers.png_file import PngFileProvider
@@ -65,6 +68,7 @@ FileProvider = Union[
     EpubFileProvider,
     IcoFileProvider,
     JpegFileProvider,
+    Mp3FileProvider,
     PdfFileProvider,
     PngFileProvider,
     PptxFileProvider,
@@ -84,7 +88,7 @@ PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 class ProvidersTestCase(unittest.TestCase):
     """Providers test case."""
 
-    def setUp(self, *args, **kwargs):
+    def setUp(self: "ProvidersTestCase", *args, **kwargs):
         super().setUp(*args, **kwargs)
         use_fs(tempfile.gettempdir())
 
@@ -225,6 +229,10 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # MP3
+        (Mp3FileProvider, "mp3_file", {}, None),
+        (Mp3FileProvider, "mp3_file", {}, False),
+        (Mp3FileProvider, "mp3_file", {}, PATHY_FS_STORAGE),
         # ODS
         (OdsFileProvider, "ods_file", {}, None),
         (OdsFileProvider, "ods_file", {}, False),
@@ -481,6 +489,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_epub_file, "Lorem ipsum"),
             (create_inner_ico_file, "Lorem ipsum"),
             (create_inner_jpeg_file, "Lorem ipsum"),
+            (create_inner_mp3_file, "Lorem ipsum"),
             (create_inner_ods_file, None),
             (create_inner_pdf_file, "Lorem ipsum"),
             (create_inner_png_file, "Lorem ipsum"),
@@ -571,6 +580,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "JpegFileProvider",
                 create_inner_jpeg_file,
             ),
+            # MP3
+            (
+                "faker_file.providers.mp3_file",
+                "Mp3FileProvider",
+                create_inner_mp3_file,
+            ),
             # ODS
             (
                 "faker_file.providers.ods_file",
@@ -634,7 +649,7 @@ class ProvidersTestCase(unittest.TestCase):
         ],
     )
     def test_broken_imports(
-        self,
+        self: "ProvidersTestCase",
         module_path: str,
         module_name: str,
         create_inner_file_func: Callable,
@@ -645,3 +660,15 @@ class ProvidersTestCase(unittest.TestCase):
         with self.assertRaises(ImportError):
             create_inner_file_func()
         reload(_module)
+
+    def test_mp3_file_generate_not_implemented_exception(
+        self: "ProvidersTestCase",
+    ):
+        with self.assertRaises(NotImplementedError):
+            Mp3FileProvider(_FAKER).mp3_file(mp3_generator_cls=BaseMp3Generator)
+
+        class MyMp3Generator(BaseMp3Generator):
+            """Test MP3 generator."""
+
+        with self.assertRaises(NotImplementedError):
+            Mp3FileProvider(_FAKER).mp3_file(mp3_generator_cls=MyMp3Generator)

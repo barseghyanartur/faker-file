@@ -20,6 +20,14 @@ faker\_file.tests.test\_providers module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.tests.test\_sqlalchemy\_integration module
+------------------------------------------------------
+
+.. automodule:: faker_file.tests.test_sqlalchemy_integration
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.tests.test\_storages module
 ---------------------------------------
 

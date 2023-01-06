@@ -1,11 +1,16 @@
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Optional, Sequence, Tuple, Type, Union
 
 from faker import Faker
 from faker.providers.python import Provider
 
 from ...base import StringValue
-from ...constants import DEFAULT_IMAGE_MAX_NB_CHARS, DEFAULT_TEXT_MAX_NB_CHARS
+from ...constants import (
+    DEFAULT_AUDIO_MAX_NB_CHARS,
+    DEFAULT_IMAGE_MAX_NB_CHARS,
+    DEFAULT_TEXT_MAX_NB_CHARS,
+)
 from ...storages.base import BaseStorage
+from ..mp3_file.generators.base import BaseMp3Generator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022 Artur Barseghyan"
@@ -18,6 +23,7 @@ __all__ = (
     "create_inner_epub_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
+    "create_inner_mp3_file",
     "create_inner_ods_file",
     "create_inner_pdf_file",
     "create_inner_png_file",
@@ -209,6 +215,31 @@ def create_inner_jpeg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        **kwargs,
+    )
+
+
+def create_inner_mp3_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Union[Provider, Faker] = None,
+    max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
+    content: Optional[str] = None,
+    mp3_generator_cls: Type[BaseMp3Generator] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner ODS file."""
+    try:
+        from ..mp3_file import Mp3FileProvider
+    except ImportError as err:
+        raise err
+
+    return Mp3FileProvider(generator).mp3_file(
+        storage=storage,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        content=content,
+        mp3_generator_cls=mp3_generator_cls,
         **kwargs,
     )
 

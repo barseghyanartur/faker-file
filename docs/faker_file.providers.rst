@@ -7,7 +7,9 @@ Subpackages
 .. toctree::
    :maxdepth: 20
 
+   faker_file.providers.helpers
    faker_file.providers.mixins
+   faker_file.providers.mp3_file
 
 Submodules
 ----------
@@ -32,6 +34,22 @@ faker\_file.providers.docx\_file module
 ---------------------------------------
 
 .. automodule:: faker_file.providers.docx_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.eml\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.eml_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.epub\_file module
+---------------------------------------
+
+.. automodule:: faker_file.providers.epub_file
    :members:
    :undoc-members:
    :show-inheritance:
@@ -88,6 +106,14 @@ faker\_file.providers.random\_file\_from\_dir module
 ----------------------------------------------------
 
 .. automodule:: faker_file.providers.random_file_from_dir
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.rtf\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.rtf_file
    :members:
    :undoc-members:
    :show-inheritance:
