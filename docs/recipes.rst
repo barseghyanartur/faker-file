@@ -265,13 +265,14 @@ Create a MP3 file
 
 Create a MP3 file with custom MP3 generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Default MP3 generator class is `GttsMp3Generator` which uses Google
+Default MP3 generator class is ``GttsMp3Generator`` which uses Google
 Text-to-Speech services to generate an MP3 file from given or
 randomly generated text. It does not require additional services to
-run and the only dependency here is the `gtts` package. You can
+run and the only dependency here is the ``gtts`` package. You can
 however implement your own custom MP3 generator class and pass it to
-te `mp3_file` method in `mp3_generator_cls` argument instead of the
-default `GttsMp3Generator`.
+te ``mp3_file`` method in ``mp3_generator_cls`` argument instead of the
+default ``GttsMp3Generator``. Read about quotas of Google Text-to-Speech
+services `here <https://cloud.google.com/text-to-speech/quotas>`_.
 
 Usage with custom MP3 generator class.
 
