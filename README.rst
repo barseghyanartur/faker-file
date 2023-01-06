@@ -42,6 +42,7 @@ below between the brackets.
 - ``EPUB`` file support requires ``xml2epub`` (`MIT`) and ``jinja2`` (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires ``imgkit`` (`MIT`).
+- ``MP3`` file support requires ``gtts`` (`MIT`).
 - ``PDF`` file support requires ``pdfkit`` (`MIT`).
 - ``PPTX`` file support requires ``python-pptx`` (`MIT`).
 - ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
@@ -93,6 +94,12 @@ Latest stable version from PyPI
 
     pip install faker-file[images]
 
+**With MP3 support**
+
+.. code-block:: sh
+
+    pip install faker-file[mp3]
+
 **With XLSX support**
 
 .. code-block:: sh
@@ -124,6 +131,7 @@ Supported file types
 - ``EPUB``
 - ``ICO``
 - ``JPEG``
+- ``MP3``
 - ``ODS``
 - ``PDF``
 - ``PNG``
