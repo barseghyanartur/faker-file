@@ -15,6 +15,20 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.3
+------
+2023-01-07
+
+Improvements of the ``Mp3FileProvider`` module:
+
+- Pass active generator to the ``Mp3FileProvider`` in the ``generator``
+  argument if ``BaseMp3Generator`` (and all implementations).
+- Introduce ``handle_kwargs`` method in the ``BaseMp3Generator`` to handle
+  arbitrary provider specific tuning.
+- Add ``EdgeTtsMp3Generator`` MP3 generator.
+- Add ``mp3_generator_kwargs`` argument to the ``Mp3FileProvider.mp3_file``
+  method.
+
 0.10.2
 ------
 2023-01-06

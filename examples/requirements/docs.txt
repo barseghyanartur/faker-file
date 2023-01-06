@@ -4,12 +4,20 @@
 #
 #    pip-compile examples/requirements/docs.in
 #
+aiohttp==3.8.3
+    # via edge-tts
+aiosignal==1.3.1
+    # via aiohttp
 alabaster==0.7.12
     # via sphinx
 asgiref==3.5.2
     # via django
+async-timeout==4.0.2
+    # via aiohttp
 attrs==22.1.0
-    # via pytest
+    # via
+    #   aiohttp
+    #   pytest
 azure-core==1.26.1
     # via
     #   azure-storage-blob
@@ -35,7 +43,9 @@ certifi==2022.9.24
 cffi==1.15.1
     # via cryptography
 charset-normalizer==2.1.1
-    # via requests
+    # via
+    #   aiohttp
+    #   requests
 click==7.1.2
     # via
     #   gtts
@@ -65,6 +75,8 @@ docutils==0.19
     # via
     #   rst2pdf
     #   sphinx
+edge-tts==6.0.8
+    # via -r examples/requirements/common.in
 et-xmlfile==1.1.0
     # via openpyxl
 factory-boy==3.2.1
@@ -77,6 +89,10 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
+frozenlist==1.3.3
+    # via
+    #   aiohttp
+    #   aiosignal
 google-api-core==2.11.0
     # via
     #   google-cloud-core
@@ -99,7 +115,9 @@ googleapis-common-protos==1.57.0
 gtts @ https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
     # via -r examples/requirements/common.in
 idna==3.4
-    # via requests
+    # via
+    #   requests
+    #   yarl
 imagesize==1.4.1
     # via sphinx
 imgkit==1.2.2
@@ -130,6 +148,10 @@ mock==4.0.3
     # via pathy
 msrest==0.7.1
     # via azure-storage-blob
+multidict==6.0.4
+    # via
+    #   aiohttp
+    #   yarl
 oauthlib==3.2.2
     # via requests-oauthlib
 odfpy==1.4.1
@@ -307,6 +329,8 @@ xlsxwriter==3.0.3
     # via python-pptx
 xml2epub==2.6.2
     # via -r examples/requirements/common.in
+yarl==1.8.2
+    # via aiohttp
 zipp==3.11.0
     # via importlib-metadata
 

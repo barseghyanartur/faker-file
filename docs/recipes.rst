@@ -263,6 +263,83 @@ Create a MP3 file
 
     file = FAKER.mp3_file()
 
+Create a MP3 file by explicitly specifying MP3 generator class
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Google Text-to-Speech
+^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.mp3_file.generators.gtts_generator import (
+        GttsMp3Generator,
+    )
+
+    FAKER = Faker()
+
+    file = Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=GttsMp3Generator)
+
+You can tune arguments too:
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.mp3_file.generators.gtts_generator import (
+        GttsMp3Generator,
+    )
+
+    FAKER = Faker()
+
+    file = Mp3FileProvider(FAKER).mp3_file(
+        mp3_generator_cls=GttsMp3Generator,
+        mp3_generator_kwargs={
+            "lang": "en",
+            "tld": "co.uk",
+        }
+    )
+
+Refer to https://gtts.readthedocs.io/en/latest/module.html#languages-gtts-lang
+for list of accepted values for ``lang`` argument.
+
+Refer to https://gtts.readthedocs.io/en/latest/module.html#localized-accents
+for list of accepted values for ``tld`` argument.
+
+Microsoft Edge Text-to-Speech
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.mp3_file.generators.edge_tts_generator import (
+        EdgeTtsMp3Generator,
+    )
+
+    FAKER = Faker()
+
+    file = Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=EdgeTtsMp3Generator)
+
+You can tune arguments too:
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.mp3_file.generators.edge_tts_generator import (
+        EdgeTtsMp3Generator,
+    )
+
+    FAKER = Faker()
+
+    file = Mp3FileProvider(FAKER).mp3_file(
+        mp3_generator_cls=EdgeTtsMp3Generator,
+        mp3_generator_kwargs={
+            "voice": "en-GB-LibbyNeural",
+        }
+    )
+
+Run ``edge-tts -l`` from terminal for list of available voices.
+
 Create a MP3 file with custom MP3 generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Default MP3 generator class is ``GttsMp3Generator`` which uses Google
@@ -286,7 +363,11 @@ Usage with custom MP3 generator class.
     # Define custom MP3 generator
     class MerryTtsMp3Generator(BaseMp3Generator):
         def generate(self) -> bytes:
-            # ... your implementation here
+            # Your implementation here. Note, that `self.content`
+            # in this context is the text to make MP3 from.
+            # `self.generator` would be the `Faker` or `Generator`
+            # instance from which you could extract information on
+            # active locale.
 
     # Generate MP3 file from random text
     file = FAKER.mp3_file(

@@ -40,6 +40,10 @@ from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
 from ..providers.mp3_file import Mp3FileProvider
 from ..providers.mp3_file.generators.base import BaseMp3Generator
+from ..providers.mp3_file.generators.edge_tts_generator import (
+    EdgeTtsMp3Generator,
+)
+from ..providers.mp3_file.generators.gtts_generator import GttsMp3Generator
 from ..providers.ods_file import OdsFileProvider
 from ..providers.pdf_file import PdfFileProvider
 from ..providers.png_file import PngFileProvider
@@ -233,6 +237,29 @@ class ProvidersTestCase(unittest.TestCase):
         (Mp3FileProvider, "mp3_file", {}, None),
         (Mp3FileProvider, "mp3_file", {}, False),
         (Mp3FileProvider, "mp3_file", {}, PATHY_FS_STORAGE),
+        (
+            Mp3FileProvider,
+            "mp3_file",
+            {
+                "mp3_generator_cls": EdgeTtsMp3Generator,
+                "mp3_generator_kwargs": {
+                    "voice": "en-GB-LibbyNeural",
+                },
+            },
+            None,
+        ),
+        (
+            Mp3FileProvider,
+            "mp3_file",
+            {
+                "mp3_generator_cls": GttsMp3Generator,
+                "mp3_generator_kwargs": {
+                    "lang": "en",
+                    "tld": "co.uk",
+                },
+            },
+            None,
+        ),
         # ODS
         (OdsFileProvider, "ods_file", {}, None),
         (OdsFileProvider, "ods_file", {}, False),
