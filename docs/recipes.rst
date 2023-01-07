@@ -355,6 +355,8 @@ Usage with custom MP3 generator class.
 
 .. code-block:: python
 
+    import marrytts  # Imaginary import of marrytts library
+
     # Import BaseMp3Generator
     from faker_file.providers.mp3_file.generators.base import (
         BaseMp3Generator,
@@ -362,12 +364,31 @@ Usage with custom MP3 generator class.
 
     # Define custom MP3 generator
     class MerryTtsMp3Generator(BaseMp3Generator):
+
+        locale: str = "cmu-rms-hsmm"
+        voice: str = "en_US"
+
+        def handle_kwargs(self) -> None:
+            # Since it's impossible to unify all TTS systems it's allowed to
+            # pass arbitrary arguments to the `BaseMp3Generator` constructor.
+            # Each implementation class contains its' own additional
+            # tuning arguments. Check the source code of the implemented
+            # MP3 generators as an example.
+            if "locale" in kwargs:
+                self.locale = kwargs["locale"]
+            if "voice" in kwargs:
+                self.voice = kwargs["voice"]
+
         def generate(self) -> bytes:
             # Your implementation here. Note, that `self.content`
             # in this context is the text to make MP3 from.
             # `self.generator` would be the `Faker` or `Generator`
             # instance from which you could extract information on
             # active locale.
+            # What comes below is pseudo implementation.
+            marytts.locale = self.locale
+            marytts.voice  = self.voice
+            return marytts.synth_mp3(self.content)
 
     # Generate MP3 file from random text
     file = FAKER.mp3_file(

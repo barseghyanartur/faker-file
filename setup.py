@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.10.3"
+version = "0.10.4"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -87,7 +87,7 @@ setup(
         "Changelog": "https://faker-file.readthedocs.io/"
         "en/latest/changelog.html",
     },
-    keywords="faker, faker-file, files, testing, factories",
+    keywords="faker, faker-file, fake files, files, testing, factories",
     author="Artur Barseghyan",
     author_email="artur.barseghyan@gmail.com",
     url="https://github.com/barseghyanartur/faker-file/",

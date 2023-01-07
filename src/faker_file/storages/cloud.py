@@ -8,7 +8,7 @@ from ..base import DEFAULT_REL_PATH
 from .base import BaseStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022 Artur Barseghyan"
+__copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "CloudStorage",

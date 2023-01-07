@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.4
+------
+2023-01-08
+
+- Add missing ``mp3_generator_kwargs`` argument to
+  the ``create_inner_mp3_file`` function.
+- Clean-up.
+
 0.10.3
 ------
 2023-01-07

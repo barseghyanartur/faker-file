@@ -10,7 +10,7 @@ from .generators.base import BaseMp3Generator
 from .generators.gtts_generator import GttsMp3Generator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022 Artur Barseghyan"
+__copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("Mp3FileProvider",)
 
