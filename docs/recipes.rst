@@ -355,7 +355,7 @@ Usage with custom MP3 generator class.
 
 .. code-block:: python
 
-    import marrytts  # Imaginary import of marrytts library
+    import marytts  # Imaginary import of marytts Python library
 
     # Import BaseMp3Generator
     from faker_file.providers.mp3_file.generators.base import (
@@ -363,7 +363,7 @@ Usage with custom MP3 generator class.
     )
 
     # Define custom MP3 generator
-    class MerryTtsMp3Generator(BaseMp3Generator):
+    class MaryTtsMp3Generator(BaseMp3Generator):
 
         locale: str = "cmu-rms-hsmm"
         voice: str = "en_US"
@@ -392,7 +392,7 @@ Usage with custom MP3 generator class.
 
     # Generate MP3 file from random text
     file = FAKER.mp3_file(
-        mp3_generator_cls=MerryTtsMp3Generator,
+        mp3_generator_cls=MaryTtsMp3Generator,
     )
 
 Pick a random file from a directory given
