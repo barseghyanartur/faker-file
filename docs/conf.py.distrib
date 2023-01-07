@@ -30,7 +30,7 @@ try:
 except ImportError:
     version = "0.1"
     project = "faker-file"
-    copyright = "2022, Artur Barseghyan <artur.barseghyan@gmail.com>"
+    copyright = "2022-2023, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # -- Django configuration ------------------------------------------------------
 os.environ["DJANGO_SETTINGS_MODULE"] = "project.settings.docs"
@@ -293,7 +293,7 @@ texinfo_documents = [
 epub_title = "faker-file"
 epub_author = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 epub_publisher = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-epub_copyright = "2022, Artur Barseghyan <artur.barseghyan@gmail.com>"
+epub_copyright = "2022-2023, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
