@@ -359,7 +359,6 @@ def create_inner_rtf_file(
     except ImportError as err:
         raise err
 
-    """Create inner RTF file."""
     return RtfFileProvider(generator).rtf_file(
         storage=storage,
         prefix=prefix,
