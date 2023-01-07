@@ -410,7 +410,6 @@ def create_inner_txt_file(
     except ImportError as err:
         raise err
 
-    """Create inner TXT file."""
     return TxtFileProvider(generator).txt_file(
         storage=storage,
         prefix=prefix,
