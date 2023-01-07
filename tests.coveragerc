@@ -1,4 +1,8 @@
+[run]
+relative_files = True
+
 [report]
+show_missing = True
 exclude_lines =
     pragma: no cover
-    raise NotImplementedError
+#    raise NotImplementedError
