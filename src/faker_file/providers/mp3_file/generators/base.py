@@ -13,6 +13,9 @@ __all__ = ("BaseMp3Generator",)
 class BaseMp3Generator:
     """Base MP3 generator."""
 
+    content: str
+    generator: Union[Faker, Generator, Provider]
+
     def __init__(
         self: "BaseMp3Generator",
         content: str,

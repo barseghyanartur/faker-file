@@ -369,11 +369,11 @@ Usage with custom MP3 generator class.
         voice: str = "en_US"
 
         def handle_kwargs(self, **kwargs) -> None:
-            # Since it's impossible to unify all TTS systems it's allowed to
-            # pass arbitrary arguments to the `BaseMp3Generator` constructor.
-            # Each implementation class contains its' own additional
-            # tuning arguments. Check the source code of the implemented
-            # MP3 generators as an example.
+            # Since it's impossible to unify all TTS systems it's allowed
+            # to pass arbitrary arguments to the `BaseMp3Generator`
+            # constructor. Each implementation class contains its own
+            # additional tuning arguments. Check the source code of the
+            # implemented MP3 generators as an example.
             if "locale" in kwargs:
                 self.locale = kwargs["locale"]
             if "voice" in kwargs:
