@@ -55,7 +55,9 @@ class EdgeTtsMp3Generator(BaseMp3Generator):
                     elif chunk["type"] == "WordBoundary":
                         LOGGER.debug(f"WordBoundary: {chunk}")
 
+            # Run the async function
             loop = asyncio.get_event_loop()
             loop.run_until_complete(_generate())
+            # Return result
             _fake_file.seek(0)
             return _fake_file.read()
