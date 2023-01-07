@@ -368,7 +368,7 @@ Usage with custom MP3 generator class.
         locale: str = "cmu-rms-hsmm"
         voice: str = "en_US"
 
-        def handle_kwargs(self) -> None:
+        def handle_kwargs(self, **kwargs) -> None:
             # Since it's impossible to unify all TTS systems it's allowed to
             # pass arbitrary arguments to the `BaseMp3Generator` constructor.
             # Each implementation class contains its' own additional
