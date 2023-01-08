@@ -57,7 +57,8 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
     Usage with custom MP3 generator class.
 
-        from marytts import MaryTTS  # Imaginary `marytts` Python library
+        # Imaginary `marytts` Python library
+        from marytts import MaryTTS
 
         # Import BaseMp3Generator
         from faker_file.providers.mp3_file.generators.base import (

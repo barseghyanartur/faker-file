@@ -232,11 +232,11 @@ All file operations are delegated to a separate abstraction layer of storages.
 The following storages are implemented:
 
 - ``FileSystemStorage``: Does not have additional requirements.
-- ``PathyFileSystemStorage``: Requires `pathy`.
-- ``AzureCloudStorage``: Requires `pathy` and `Azure` related dependencies.
-- ``GoogleCloudStorage``: Requires `pathy` and `Google Cloud` related
+- ``PathyFileSystemStorage``: Requires ``pathy``.
+- ``AzureCloudStorage``: Requires ``pathy`` and `Azure` related dependencies.
+- ``GoogleCloudStorage``: Requires ``pathy`` and `Google Cloud` related
   dependencies.
-- ``AWSS3Storage``: Requires `pathy` and `AWS S3` related dependencies.
+- ``AWSS3Storage``: Requires ``pathy`` and `AWS S3` related dependencies.
 
 Usage example with storages
 ---------------------------
