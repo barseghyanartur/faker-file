@@ -395,7 +395,7 @@ Usage with custom MP3 generator class.
     )
 
 See exact implementation of
-`marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/marytts_mp3_generator>`_
+`marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/customizations/marytts_mp3_generator>`_
 in the examples.
 
 Pick a random file from a directory given
