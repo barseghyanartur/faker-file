@@ -33,12 +33,9 @@ Generate MP3 from random text using custom MP3 generator:
         0, os.path.abspath(os.path.join("examples", "customizations"))
     )
 
-    from marytts_mp3_generator import MaryTtsMp3Generator
     from faker import Faker
     from faker_file.providers.mp3_file import Mp3FileProvider
-    from marytts_mp3_generator import (
-        MaryTtsMp3Generator,
-    )
+    from marytts_mp3_generator import MaryTtsMp3Generator
 
     FAKER = Faker()
 
