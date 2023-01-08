@@ -197,6 +197,8 @@ py==1.11.0
     #   -r examples/requirements/test.in
     #   pytest
     #   tox
+py-cpuinfo==9.0.0
+    # via pytest-benchmark
 pyasn1==0.4.8
     # via
     #   pyasn1-modules
@@ -215,10 +217,13 @@ pytest==6.2.5
     # via
     #   -r examples/requirements/test.in
     #   pathy
+    #   pytest-benchmark
     #   pytest-cov
     #   pytest-django
     #   pytest-ordering
     #   pytest-pythonpath
+pytest-benchmark==4.0.0
+    # via -r examples/requirements/test.in
 pytest-cov==4.0.0
     # via
     #   -r examples/requirements/test.in
