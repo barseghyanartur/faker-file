@@ -355,7 +355,7 @@ Usage with custom MP3 generator class.
 
 .. code-block:: python
 
-    import marytts  # Imaginary import of marytts Python library
+    from marytts import MaryTTS  # Imaginary `marytts` Python library
 
     # Import BaseMp3Generator
     from faker_file.providers.mp3_file.generators.base import (
@@ -386,14 +386,17 @@ Usage with custom MP3 generator class.
             # instance from which you could extract information on
             # active locale.
             # What comes below is pseudo implementation.
-            marytts.locale = self.locale
-            marytts.voice  = self.voice
-            return marytts.synth_mp3(self.content)
+            mary_tts = MaryTTS(locale=self.locale, voice=self.voice)
+            return mary_tts.synth_mp3(self.content)
 
     # Generate MP3 file from random text
     file = FAKER.mp3_file(
         mp3_generator_cls=MaryTtsMp3Generator,
     )
+
+See exact implementation of
+`marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/marytts_mp3_generator>`_
+in the examples.
 
 Pick a random file from a directory given
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -57,7 +57,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
     Usage with custom MP3 generator class.
 
-        import marytts  # Imaginary import of marytts Python library
+        from marytts import MaryTTS  # Imaginary `marytts` Python library
 
         # Import BaseMp3Generator
         from faker_file.providers.mp3_file.generators.base import (
@@ -88,9 +88,8 @@ class Mp3FileProvider(BaseProvider, FileMixin):
                 # instance from which you could extract information on
                 # active locale.
                 # What comes below is pseudo implementation.
-                marytts.locale = self.locale
-                marytts.voice  = self.voice
-                return marytts.synth_mp3(self.content)
+                mary_tts = MaryTTS(locale=self.locale, voice=self.voice)
+                return mary_tts.synth_mp3(self.content)
 
         # Generate MP3 file from random text
         file = Mp3FileProvider(FAKER).mp3_file(
