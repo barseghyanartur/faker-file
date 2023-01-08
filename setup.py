@@ -87,7 +87,27 @@ setup(
         "Changelog": "https://faker-file.readthedocs.io/"
         "en/latest/changelog.html",
     },
-    keywords="faker, faker-file, fake files, files, testing, factories",
+    keywords=(
+        ", ".join(
+            [
+                "factories",
+                "fake file",
+                "fake files",
+                "fake-file-generator",
+                "fake-files-generator",
+                "faker",
+                "faker-file",
+                "file-generator",
+                "files",
+                "files-generator",
+                "test file",
+                "test files",
+                "test-file-generator",
+                "test-files-generator",
+                "testing",
+            ]
+        )
+    ),
     author="Artur Barseghyan",
     author_email="artur.barseghyan@gmail.com",
     url="https://github.com/barseghyanartur/faker-file/",
