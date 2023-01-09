@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.5
+------
+2023-01-09
+
+- Add ``fuzzy_choice_create_inner_file`` inner function.
+- Documentation improvements.
+- Add ``MaryTTS`` example (another MP3 generator for ``Mp3FileProvider``).
+
 0.10.4
 ------
 2023-01-08

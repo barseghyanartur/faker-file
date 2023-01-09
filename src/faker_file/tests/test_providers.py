@@ -35,6 +35,7 @@ from ..providers.helpers.inner import (
     create_inner_webp_file,
     create_inner_xlsx_file,
     create_inner_zip_file,
+    fuzzy_choice_create_inner_file,
 )
 from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
@@ -506,38 +507,61 @@ class ProvidersTestCase(unittest.TestCase):
         self.assertTrue(storage.exists(_file))
 
     @parametrize(
-        "create_inner_file_func, content",
+        "create_inner_file_func, content, create_inner_file_args",
         [
-            (None, None),
-            (create_inner_bin_file, b"Lorem ipsum"),
-            (create_inner_csv_file, "Lorem ipsum"),
-            (create_inner_docx_file, "Lorem ipsum"),
-            (create_inner_eml_file, None),
-            (create_inner_epub_file, "Lorem ipsum"),
-            (create_inner_ico_file, "Lorem ipsum"),
-            (create_inner_jpeg_file, "Lorem ipsum"),
-            (create_inner_mp3_file, "Lorem ipsum"),
-            (create_inner_ods_file, None),
-            (create_inner_pdf_file, "Lorem ipsum"),
-            (create_inner_png_file, "Lorem ipsum"),
-            (create_inner_pptx_file, "Lorem ipsum"),
-            (create_inner_rtf_file, "Lorem ipsum"),
-            (create_inner_svg_file, "Lorem ipsum"),
-            (create_inner_txt_file, "Lorem ipsum"),
-            # (create_inner_webp_file, "Lorem ipsum"),
-            (create_inner_xlsx_file, None),
-            (create_inner_zip_file, None),
+            (None, None, None),
+            (create_inner_bin_file, b"Lorem ipsum", {}),
+            (create_inner_csv_file, "Lorem ipsum", {}),
+            (create_inner_docx_file, "Lorem ipsum", {}),
+            (create_inner_eml_file, None, {}),
+            (create_inner_epub_file, "Lorem ipsum", {}),
+            (create_inner_ico_file, "Lorem ipsum", {}),
+            (create_inner_jpeg_file, "Lorem ipsum", {}),
+            (create_inner_mp3_file, "Lorem ipsum", {}),
+            (create_inner_ods_file, None, {}),
+            (create_inner_pdf_file, "Lorem ipsum", {}),
+            (create_inner_png_file, "Lorem ipsum", {}),
+            (create_inner_pptx_file, "Lorem ipsum", {}),
+            (create_inner_rtf_file, "Lorem ipsum", {}),
+            (create_inner_svg_file, "Lorem ipsum", {}),
+            (create_inner_txt_file, "Lorem ipsum", {}),
+            # (create_inner_webp_file, "Lorem ipsum", {}),
+            (create_inner_xlsx_file, None, {}),
+            (create_inner_zip_file, None, {}),
+            (
+                fuzzy_choice_create_inner_file,
+                None,
+                {
+                    "func_choices": [
+                        (
+                            create_inner_docx_file,
+                            {"storage": FS_STORAGE, "generator": _FAKER},
+                        ),
+                        (
+                            create_inner_epub_file,
+                            {"storage": FS_STORAGE, "generator": _FAKER},
+                        ),
+                        (
+                            create_inner_txt_file,
+                            {"storage": FS_STORAGE, "generator": _FAKER},
+                        ),
+                    ]
+                },
+            ),
         ],
     )
     def test_standalone_zip_file(
         self: "ProvidersTestCase",
         create_inner_file_func: Optional[Callable] = None,
         content: Union[str, Dict] = None,
+        create_inner_file_args: Dict[str, Any] = None,
     ) -> None:
         """Test standalone ZIP file provider."""
         _options = {"content": content}
         if create_inner_file_func is not None:
             _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
         _file = ZipFileProvider(None).zip_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))

@@ -1,4 +1,15 @@
-from typing import Any, Dict, Optional, Sequence, Tuple, Type, Union
+from random import choice
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+)
 
 from faker import Faker
 from faker.generator import Generator
@@ -35,6 +46,7 @@ __all__ = (
     "create_inner_webp_file",
     "create_inner_xlsx_file",
     "create_inner_zip_file",
+    "fuzzy_choice_create_inner_file",
 )
 
 
@@ -490,3 +502,72 @@ def create_inner_zip_file(
         options=options,
         **kwargs,
     )
+
+
+def fuzzy_choice_create_inner_file(
+    func_choices: List[Tuple[Callable, Dict[str, Any]]],
+    **kwargs,
+) -> StringValue:
+    """Create inner file from given list of function choices.
+
+    :param func_choices: List of functions to choose from.
+    :return: StringValue.
+
+    Usage example:
+
+        from faker import Faker
+        from faker_file.providers.helpers.inner import (
+            create_inner_docx_file,
+            create_inner_epub_file,
+            create_inner_txt_file,
+            fuzzy_choice_create_inner_file,
+        )
+        from faker_file.storages.filesystem import FileSystemStorage
+
+        FAKER = Faker()
+        STORAGE = FileSystemStorage()
+
+        kwargs = {"storage": STORAGE, "generator": FAKER}
+        file = fuzzy_choice_create_inner_file(
+            [
+                (create_inner_docx_file, kwargs),
+                (create_inner_epub_file, kwargs),
+                (create_inner_txt_file, kwargs),
+            ]
+        )
+
+    You could use it in archives to make a variety of different file types
+    within the archive.
+
+        from faker import Faker
+        from faker_file.providers.helpers.inner import (
+            create_inner_docx_file,
+            create_inner_epub_file,
+            create_inner_txt_file,
+            fuzzy_choice_create_inner_file,
+        )
+        from faker_file.providers.zip_file import ZipFileProvider
+        from faker_file.storages.filesystem import FileSystemStorage
+
+        FAKER = Faker()
+        STORAGE = FileSystemStorage()
+
+        kwargs = {"storage": STORAGE, "generator": FAKER}
+        file = ZipFileProvider(FAKER).zip_file(
+            prefix="zzz_archive_",
+            options={
+                "count": 50,
+                "create_inner_file_func": fuzzy_choice_create_inner_file,
+                "create_inner_file_args": {
+                    "func_choices": [
+                        (create_inner_docx_file, kwargs),
+                        (create_inner_epub_file, kwargs),
+                        (create_inner_txt_file, kwargs),
+                    ],
+                },
+                "directory": "zzz",
+            }
+        )
+    """
+    _func, _kwargs = choice(func_choices)
+    return _func(**_kwargs)

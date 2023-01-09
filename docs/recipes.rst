@@ -138,6 +138,44 @@ contain 5 DOCX files.
         }
     )
 
+Create a ZIP file with variety of different file types within
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 50 files in the ZIP archive (limited to DOCX, EPUB and TXT types).
+- Content is generated dynamically.
+- Prefix the filename of the archive itself with ``zzz_archive_``.
+- Inside the ZIP, put all files in directory ``zzz``.
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.helpers.inner import (
+        create_inner_docx_file,
+        create_inner_epub_file,
+        create_inner_txt_file,
+        fuzzy_choice_create_inner_file,
+    )
+    from faker_file.providers.zip_file import ZipFileProvider
+    from faker_file.storages.filesystem import FileSystemStorage
+
+    FAKER = Faker()
+    STORAGE = FileSystemStorage()
+
+    kwargs = {"storage": STORAGE, "generator": FAKER}
+    file = ZipFileProvider(FAKER).zip_file(
+        prefix="zzz_archive_",
+        options={
+            "count": 50,
+            "create_inner_file_func": fuzzy_choice_create_inner_file,
+            "create_inner_file_args": {
+                "func_choices": [
+                    (create_inner_docx_file, kwargs),
+                    (create_inner_epub_file, kwargs),
+                    (create_inner_txt_file, kwargs),
+                ],
+            },
+            "directory": "zzz",
+        }
+    )
 
 Create a EML file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -145,6 +183,11 @@ Create a EML file consisting of TXT files with static content
 - Content of all files is ``Lorem ipsum``.
 
 .. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.eml_file import EmlFileProvider
+
+    FAKER = Faker()
 
     file = EmlFileProvider(FAKER).eml_file(options={"content": "Lorem ipsum"})
 
@@ -158,7 +201,12 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 
 .. code-block:: python
 
-    from faker_file.providers.eml_file import create_inner_docx_file
+    from faker import Faker
+    from faker_file.providers.eml_file import EmlFileProvider
+    from faker_file.providers.helpers.inner import create_inner_docx_file
+
+    FAKER = Faker()
+
     file = EmlFileProvider(FAKER).eml_file(
         prefix="zzz",
         options={
@@ -186,7 +234,15 @@ contain 5 DOCX files.
 
 .. code-block:: python
 
-    from faker_file.providers.eml_file import create_inner_docx_file, create_inner_eml_file
+    from faker import Faker
+    from faker_file.providers.eml_file import EmlFileProvider
+    from faker_file.providers.helpers.inner import (
+        create_inner_docx_file,
+        create_inner_eml_file,
+    )
+
+    FAKER = Faker()
+
     file = EmlFileProvider(FAKER).eml_file(
         prefix="nested_level_0_",
         options={
@@ -202,6 +258,44 @@ contain 5 DOCX files.
                         }
                     },
                 }
+            },
+        }
+    )
+
+Create an EML file with variety of different file types within
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 10 files in the EML file (limited to DOCX, EPUB and TXT types).
+- Content is generated dynamically.
+- Prefix the filename of the EML itself with ``zzz``.
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.helpers.inner import (
+        create_inner_docx_file,
+        create_inner_epub_file,
+        create_inner_txt_file,
+        fuzzy_choice_create_inner_file,
+    )
+    from faker_file.providers.eml_file import EmlFileProvider
+    from faker_file.storages.filesystem import FileSystemStorage
+
+    FAKER = Faker()
+    STORAGE = FileSystemStorage()
+
+    kwargs = {"storage": STORAGE, "generator": FAKER}
+
+    file = EmlFileProvider(FAKER).eml_file(
+        prefix="zzz",
+        options={
+            "count": 10,
+            "create_inner_file_func": fuzzy_choice_create_inner_file,
+            "create_inner_file_args": {
+                "func_choices": [
+                    (create_inner_docx_file, kwargs),
+                    (create_inner_epub_file, kwargs),
+                    (create_inner_txt_file, kwargs),
+                ],
             },
         }
     )
