@@ -52,9 +52,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         """Pick a random file from given directory.
 
         :param source_dir_path: Source files directory.
-        :param root_path: Path of your files root directory (in case of Django
-            it would be `settings.MEDIA_ROOT`).
-        :param rel_path: Relative path (from root directory).
+        :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
 
         :return: Relative path (from root directory) of the generated file.

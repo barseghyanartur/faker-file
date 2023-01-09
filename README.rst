@@ -11,7 +11,7 @@ faker-file
     :target: https://pypi.python.org/pypi/faker-file/
     :alt: Supported Python versions
 
-.. image:: https://github.com/barseghyanartur/faker-file/workflows/test/badge.svg
+.. image:: https://github.com/barseghyanartur/faker-file/workflows/test/badge.svg?branch=main
    :target: https://github.com/barseghyanartur/faker-file/actions
    :alt: Build Status
 
