@@ -3,7 +3,6 @@ coverage
 factory_boy
 py
 parametrize
-pytest-benchmark
 pytest-cov
 pytest-django
 pytest-ordering

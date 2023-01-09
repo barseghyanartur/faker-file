@@ -447,6 +447,53 @@ TXT
     file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024)  # 3 Kb
     file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024)  # 10 Kb
 
+Generate a lot of files using multiprocessing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Use template.
+- Generate 100 files.
+
+.. code-block:: python
+
+    from multiprocessing import Pool
+    from faker import Faker
+    from faker_file.providers.helpers.inner import create_inner_docx_file
+    from faker_file.storages.filesystem import FileSystemStorage
+
+    FAKER = Faker()
+    STORAGE = FileSystemStorage()
+
+    # Document template
+    TEMPLATE = """
+    {{date}} {{city}}, {{country}}
+
+    Hello {{name}},
+
+    {{text}} {{text}} {{text}}
+
+    {{text}} {{text}} {{text}}
+
+    {{text}} {{text}} {{text}}
+
+    Address: {{address}}
+
+    Best regards,
+
+    {{name}}
+    {{address}}
+    {{phone_number}}
+    """
+
+    with Pool(processes=8) as pool:
+        for _ in range(100):  # Number of times we want to run our function
+            pool.apply_async(
+                create_inner_docx_file,
+                # Apply async doesn't support kwargs. We have to pass all
+                # arguments.
+                [STORAGE, "mp", FAKER, None, None, TEMPLATE],
+            )
+        pool.close()
+        pool.join()
+
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
