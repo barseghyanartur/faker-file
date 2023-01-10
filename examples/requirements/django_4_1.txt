@@ -23,7 +23,9 @@ azure-core==1.26.1
 azure-storage-blob==12.14.1
     # via pathy
 beautifulsoup4==4.11.1
-    # via xml2epub
+    # via
+    #   gdown
+    #   xml2epub
 boto3==1.26.29
     # via pathy
 botocore==1.29.29
@@ -79,12 +81,17 @@ faker==15.3.4
     #   factory-boy
 filelock==3.8.0
     # via
+    #   gdown
+    #   huggingface-hub
     #   tox
+    #   transformers
     #   virtualenv
 frozenlist==1.3.3
     # via
     #   aiohttp
     #   aiosignal
+gdown==4.6.0
+    # via nlpaug
 google-api-core==2.11.0
     # via
     #   google-cloud-core
@@ -106,6 +113,8 @@ googleapis-common-protos==1.57.0
     # via google-api-core
 gtts @ https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
     # via -r examples/requirements/common.in
+huggingface-hub==0.11.1
+    # via transformers
 idna==3.4
     # via
     #   requests
@@ -137,6 +146,23 @@ multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
+nlpaug==1.1.11
+    # via -r examples/requirements/common.in
+numpy==1.24.1
+    # via
+    #   nlpaug
+    #   pandas
+    #   transformers
+nvidia-cublas-cu11==11.10.3.66
+    # via
+    #   nvidia-cudnn-cu11
+    #   torch
+nvidia-cuda-nvrtc-cu11==11.7.99
+    # via torch
+nvidia-cuda-runtime-cu11==11.7.99
+    # via torch
+nvidia-cudnn-cu11==8.5.0.96
+    # via torch
 oauthlib==3.2.2
     # via requests-oauthlib
 odfpy==1.4.1
@@ -145,8 +171,12 @@ openpyxl==3.0.10
     # via -r examples/requirements/common.in
 packaging==21.3
     # via
+    #   huggingface-hub
     #   pytest
     #   tox
+    #   transformers
+pandas==1.5.2
+    # via nlpaug
 parametrize==0.1.1
     # via -r examples/requirements/test.in
 pathy[all]==0.10.1
@@ -183,6 +213,8 @@ pycparser==2.21
     # via cffi
 pyparsing==3.0.9
     # via packaging
+pysocks==1.7.1
+    # via requests
 pytest==6.2.5
     # via
     #   -r examples/requirements/test.in
@@ -209,18 +241,32 @@ python-dateutil==2.8.2
     # via
     #   botocore
     #   faker
+    #   pandas
 python-docx==0.8.11
     # via -r examples/requirements/common.in
 python-pptx==0.6.21
     # via -r examples/requirements/common.in
-requests==2.28.1
+pytz==2022.7
+    # via pandas
+pyyaml==6.0
+    # via
+    #   huggingface-hub
+    #   transformers
+regex==2022.10.31
+    # via transformers
+requests[socks]==2.28.1
     # via
     #   azure-core
+    #   gdown
     #   google-api-core
     #   google-cloud-storage
     #   gtts
+    #   huggingface-hub
     #   msrest
+    #   nlpaug
     #   requests-oauthlib
+    #   tika
+    #   transformers
     #   xml2epub
 requests-oauthlib==1.3.1
     # via msrest
@@ -233,6 +279,7 @@ shellingham==1.5.0
 six==1.16.0
     # via
     #   azure-core
+    #   gdown
     #   google-auth
     #   google-cloud-storage
     #   gtts
@@ -250,14 +297,27 @@ sqlparse==0.4.3
     #   django-debug-toolbar
 tablib==3.2.1
     # via -r examples/requirements/common.in
+tika==2.6.0
+    # via -r examples/requirements/common.in
+tokenizers==0.13.2
+    # via transformers
 toml==0.10.2
     # via pytest
 tomli==2.0.1
     # via
     #   coverage
     #   tox
+torch==1.13.1
+    # via -r examples/requirements/common.in
 tox==3.27.1
     # via -r examples/requirements/test.in
+tqdm==4.64.1
+    # via
+    #   gdown
+    #   huggingface-hub
+    #   transformers
+transformers==4.25.1
+    # via -r examples/requirements/common.in
 typer==0.3.2
     # via
     #   pathy
@@ -265,16 +325,26 @@ typer==0.3.2
 typer-cli==0.0.12
     # via pathy
 typing-extensions==4.4.0
-    # via azure-core
+    # via
+    #   azure-core
+    #   huggingface-hub
+    #   torch
 urllib3==1.26.13
     # via
     #   botocore
     #   requests
 virtualenv==20.17.0
     # via tox
+wheel==0.38.4
+    # via
+    #   nvidia-cublas-cu11
+    #   nvidia-cuda-runtime-cu11
 xlsxwriter==3.0.3
     # via python-pptx
 xml2epub==2.6.2
     # via -r examples/requirements/common.in
 yarl==1.8.2
     # via aiohttp
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
