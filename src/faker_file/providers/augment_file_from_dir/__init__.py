@@ -11,7 +11,6 @@ from ...storages.filesystem import FileSystemStorage
 from ..helpers.inner import (
     create_inner_docx_file,
     create_inner_epub_file,
-    create_inner_ods_file,
     create_inner_pdf_file,
     create_inner_rtf_file,
     create_inner_txt_file,
@@ -30,7 +29,7 @@ from .extractors.tika_extractor import TikaTextExtractor
 # create_inner_ico_file: Not supported
 # create_inner_jpeg_file: Not supported
 # create_inner_mp3_file: Not supported
-# create_inner_ods_file: Support
+# create_inner_ods_file: Not supported
 # create_inner_pdf_file: Support
 # create_inner_png_file: Not supported
 # create_inner_pptx_file: Not supported
@@ -50,7 +49,6 @@ __all__ = ("AugmentFileFromDirProvider",)
 FILE_TYPE_TO_INNER_FUNC_MAPPING = {
     "docx": create_inner_docx_file,
     "epub": create_inner_epub_file,
-    "ods": create_inner_ods_file,
     "pdf": create_inner_pdf_file,
     "rtf": create_inner_rtf_file,
     "txt": create_inner_txt_file,
