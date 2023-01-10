@@ -116,6 +116,7 @@ setup(
     license="MIT",
     python_requires=">=3.7",
     install_requires=install_requires,
+    extras_require=extras_require,
     tests_require=tests_require,
     dependency_links=dependency_links,
     include_package_data=True,
