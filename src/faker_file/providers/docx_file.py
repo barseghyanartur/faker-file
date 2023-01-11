@@ -86,13 +86,13 @@ class DocxFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        stream = BytesIO()
-        document = Document()
-        document.add_paragraph(content)
-        document.save(stream)
-        stream.seek(0)
+        with BytesIO() as _fake_file:
+            document = Document()
+            document.add_paragraph(content)
+            document.save(_fake_file)
+            _fake_file.seek(0)
 
-        storage.write_bytes(filename, stream.read())
+            storage.write_bytes(filename, _fake_file.read())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
