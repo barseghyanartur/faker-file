@@ -12,9 +12,6 @@ pip-compile examples/requirements/deployment.in "$@"
 echo "dev.in"
 pip-compile examples/requirements/dev.in "$@"
 
-echo "flask.in"
-pip-compile examples/requirements/flask.in "$@"
-
 echo "django_2_2.in"
 pip-compile examples/requirements/django_2_2.in "$@"
 
@@ -53,6 +50,12 @@ pip-compile examples/requirements/django_4_1_and_flask.in "$@"
 
 echo "docs.in"
 pip-compile examples/requirements/docs.in "$@"
+
+echo "flask.in"
+pip-compile examples/requirements/flask.in "$@"
+
+echo "ml.in"
+pip-compile examples/requirements/ml.in "$@"
 
 echo "style_checkers.in"
 pip-compile examples/requirements/style_checkers.in "$@"

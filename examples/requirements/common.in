@@ -10,11 +10,3 @@ tablib
 xml2epub
 
 https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
-
-# Text extraction
-tika
-
-# Data augmentation
-nlpaug
-torch
-transformers
