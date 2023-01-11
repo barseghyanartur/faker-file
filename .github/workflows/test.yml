@@ -37,7 +37,7 @@ jobs:
   # *************************************
   test-sqlalchemy-integration:
     needs: pre-commit
-    name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
+    name: test-sqlalchemy-integration ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -78,7 +78,7 @@ jobs:
 
   test-augmented-file-from-dir-provider:
     needs: pre-commit
-    name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
+    name: test-augmented-file-from-dir-provider ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
