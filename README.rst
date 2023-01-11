@@ -54,6 +54,9 @@ below between the brackets.
   and ``azure-storage-blob`` (`MIT`).
 - ``GoogleCloudStorage`` storage support requires ``pathy`` (`Apache 2`)
   and ``google-cloud-storage`` (`Apache 2`).
+- ``AugmentFileFromDirProvider`` provider requires ``nlpaug`` (`MIT`),
+  ``torch`` (`BSD`), ``transformers`` (`Apache 2`), ``numpy`` (`BSD`),
+  ``pandas`` (`BSD`) and ``tika`` (`Apache 2`).
 
 Documentation
 =============
@@ -112,6 +115,12 @@ Latest stable version from PyPI
 
     pip install faker-file[ods]
 
+**With data augmentation support**
+
+.. code-block:: sh
+
+    pip install faker-file[data-augmentation]
+
 Or development version from GitHub
 ----------------------------------
 
@@ -145,6 +154,9 @@ Supported file types
 
 Additional providers
 --------------------
+- ``AugmentFileFromDirProvider``: Make an augmented copy of randomly picked
+  file from given directory. The following types are supported : ``DOCX``,
+  ``EML``, ``EPUB``, ``PDF``, ``RTF``, ``TXT``.
 - ``RandomFileFromDirProvider``: Pick a random file from given directory.
 
 Supported file storages

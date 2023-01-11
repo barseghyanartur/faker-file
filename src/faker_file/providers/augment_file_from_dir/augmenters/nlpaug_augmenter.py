@@ -5,10 +5,10 @@ from .base import BaseTextAugmenter
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("NlpAugContextualWordEmbsAug",)
+__all__ = ("ContextualWordEmbeddingsAugmenter",)
 
 
-class NlpAugContextualWordEmbsAug(BaseTextAugmenter):
+class ContextualWordEmbeddingsAugmenter(BaseTextAugmenter):
     """Text extractor based on `ContextualWordEmbsAug` of `nlpaug`.
 
     Usage example:
@@ -28,11 +28,13 @@ class NlpAugContextualWordEmbsAug(BaseTextAugmenter):
         )
     """
 
-    def handle_kwargs(self: "NlpAugContextualWordEmbsAug", **kwargs) -> None:
+    def handle_kwargs(
+        self: "ContextualWordEmbeddingsAugmenter", **kwargs
+    ) -> None:
         """Handle kwargs."""
 
     def augment(
-        self: "NlpAugContextualWordEmbsAug",
+        self: "ContextualWordEmbeddingsAugmenter",
         text: str,
     ) -> str:
         """Augment text."""

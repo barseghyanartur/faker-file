@@ -19,15 +19,17 @@ are used for versioning (schema follows below):
 ------
 2023-01-11
 
-- Fixes in setup.
+- Add ``AugmentFileFromDirProvider`` provider for making augmented copies of
+  randomly picked files from given directory.
 - Documentation improvements.
-- Add ``AugmentFileFromDirProvider`` provider.
+- Fixes in setup.
 
 0.10.5
 ------
 2023-01-09
 
-- Add ``fuzzy_choice_create_inner_file`` inner function.
+- Add ``fuzzy_choice_create_inner_file`` inner function for easy
+  diversion of files within archives (``ZIP``, ``EML``).
 - Documentation improvements.
 - Add ``MaryTTS`` example (another MP3 generator for ``Mp3FileProvider``).
 

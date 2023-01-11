@@ -17,26 +17,26 @@ from ..helpers.inner import (
     create_inner_txt_file,
 )
 from .augmenters.base import BaseTextAugmenter
-from .augmenters.nlpaug_augmenter import NlpAugContextualWordEmbsAug
+from .augmenters.nlpaug_augmenter import ContextualWordEmbeddingsAugmenter
 from .extractors.base import BaseTextExtractor
 from .extractors.tika_extractor import TikaTextExtractor
 
 # Full list:
 # create_inner_bin_file: N/A
 # create_inner_csv_file: Not supported
-# create_inner_docx_file: Support
-# create_inner_eml_file: Support
-# create_inner_epub_file: Support
+# create_inner_docx_file: Supported
+# create_inner_eml_file: Supported
+# create_inner_epub_file: Supported
 # create_inner_ico_file: Not supported
 # create_inner_jpeg_file: Not supported
 # create_inner_mp3_file: Not supported
 # create_inner_ods_file: Not supported
-# create_inner_pdf_file: Support
+# create_inner_pdf_file: Supported
 # create_inner_png_file: Not supported
 # create_inner_pptx_file: Not supported
-# create_inner_rtf_file: Support
+# create_inner_rtf_file: Supported
 # create_inner_svg_file: Not supported
-# create_inner_txt_file: Support
+# create_inner_txt_file: Supported
 # create_inner_webp_file: Not supported
 # create_inner_xlsx_file: Not supported
 # create_inner_zip_file: Not supported
@@ -81,6 +81,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         file = AugmentFileFromDirProvider(None).augment_file_from_dir(
             source_dir_path="/tmp/tmp/",
             prefix="zzz",
+            extensions={"docx", "pdf"}
         )
     """
 
@@ -97,7 +98,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         text_extractor_kwargs: Optional[Dict[str, Any]] = None,
         text_augmenter_cls: Type[
             BaseTextAugmenter
-        ] = NlpAugContextualWordEmbsAug,
+        ] = ContextualWordEmbeddingsAugmenter,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
@@ -145,7 +146,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         file_type = source_file.suffix[1:]
 
         if text_augmenter_cls is None:
-            text_augmenter_cls = NlpAugContextualWordEmbsAug
+            text_augmenter_cls = ContextualWordEmbeddingsAugmenter
 
         if not text_augmenter_kwargs:
             text_augmenter_kwargs = {}

@@ -29,34 +29,39 @@ tests_require = [
 
 extras_require = {
     "all": [
-        "Faker",
-        "imgkit",
-        "odfpy",
-        "openpyxl",
-        "pathy[all]",
-        "pdfkit",
-        "python-docx",
-        "python-pptx",
-        "tablib",
-        "xml2epub",
-        "gtts",
-        "edge-tts",
+        "Faker",  # core
+        "imgkit",  # images
+        "odfpy",  # ods
+        "openpyxl",  # xlsx
+        "pathy[all]",  # remote storages: azure, gcs, s3
+        "pdfkit",  # pdf
+        "python-docx",  # docx
+        "python-pptx",  # pptx
+        "tablib",  # ods, xlsx
+        "xml2epub",  # epub
+        "gtts",  # mp3
+        "edge-tts",  # mp3
+        "nlpaug",  # data-augmentation
+        "torch",  # data-augmentation
+        "transformers",  # data-augmentation
+        "tika",  # data-augmentation
     ],
+    "azure": ["pathy[azure]"],
     "django": ["Django>=2.2"],
     "docx": ["python-docx"],
+    "epub": ["xml2epub"],
+    "gcs": ["pathy[gcs]"],
     "images": ["imgkit"],
+    "mp3": ["gtts", "edge-tts"],
+    "mp3-edge-tts": ["edge-tts"],
+    "mp3-gtts": ["gtts"],
+    "ods": ["tablib", "odfpy"],
     "pdf": ["pdfkit"],
     "pptx": ["python-pptx"],
-    "epub": ["xml2epub"],
+    "s3": ["pathy[s3]"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     "xlsx": ["tablib", "openpyxl"],
-    "mp3": ["gtts", "edge-tts"],
-    "mp3-gtts": ["gtts"],
-    "mp3-edge-tts": ["edge-tts"],
-    "ods": ["tablib", "odfpy"],
-    "s3": ["pathy[s3]"],
-    "gcs": ["pathy[gcs]"],
-    "azure": ["pathy[azure]"],
+    "data-augmentation": ["nlpaug", "torch", "transformers", "tika"],
 }
 
 setup(
