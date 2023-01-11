@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.6
+------
+2023-01-11
+
+- Fixes in setup.
+- Documentation improvements.
+- Add ``AugmentFileFromDirProvider`` provider.
+
 0.10.5
 ------
 2023-01-09
