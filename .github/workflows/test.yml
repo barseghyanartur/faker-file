@@ -116,6 +116,13 @@ jobs:
         run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
+      - name: Coveralls
+        id: coveralls-setup
+        continue-on-error: true
+        uses: AndreMiras/coveralls-python-action@develop
+        with:
+          parallel: true
+          flag-name: Run Tests
 
   # *************************************
   # ************* Main tests ************
