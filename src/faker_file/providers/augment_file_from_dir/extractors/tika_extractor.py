@@ -34,8 +34,6 @@ class TikaTextExtractor(BaseTextExtractor):
 
     def handle_kwargs(self: "TikaTextExtractor", **kwargs) -> None:
         """Handle kwargs."""
-        # if "voice" in kwargs:
-        #     self.voice = kwargs["voice"]
 
     def extract(
         self: "TikaTextExtractor",
@@ -44,4 +42,4 @@ class TikaTextExtractor(BaseTextExtractor):
         """Extract text."""
         tika.initVM()
         parsed = parser.from_file(str(source_file))
-        return parsed["content"].strip()
+        return parsed["content"]

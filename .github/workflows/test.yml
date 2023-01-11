@@ -33,9 +33,9 @@ jobs:
         uses: pre-commit/action@v3.0.0
 
   # *************************************
-  # ************ Optional tests *********
+  # *********** Additional tests ********
   # *************************************
-  test-optional:
+  test-sqlalchemy-integration:
     needs: pre-commit
     name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -72,7 +72,48 @@ jobs:
         run: pip install -r examples/requirements/flask.txt
       - name: Run test suite
 #        continue-on-error: true
-        run: pytest -vrx -m optional --ignore src/faker_file/tests/test_django_integration.py --ignore src/faker_file/tests/test_providers.py --ignore src/faker_file/tests/test_storages.py
+        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
+        env:
+          PYTEST_ADDOPTS: "-vv --durations=10"
+
+  test-augmented-file-from-dir-provider:
+    needs: pre-commit
+    name: test-optional ${{ matrix.python-version }} - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        os:
+          - ubuntu-22.04
+        #          - Windows
+        #          - MacOs
+        python-version:
+          - "3.11"
+          - "3.10"
+          - "3.9"
+          - "3.8"
+#          - "3.7"
+    steps:
+      - name: Install wkhtmltopdf
+        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+      - name: Install tox
+        run: python -m pip install tox-gh-actions pip-tools Django
+      - name: Compile requirements
+        run: pip-compile examples/requirements/flask.in
+      - name: Install requirements
+        run: pip install -r examples/requirements/flask.txt
+      - name: Run test suite
+#        continue-on-error: true
+        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
 

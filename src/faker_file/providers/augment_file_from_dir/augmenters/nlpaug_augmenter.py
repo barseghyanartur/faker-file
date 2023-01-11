@@ -1,12 +1,6 @@
-# import nlpaug.augmenter.char as nac
 import nlpaug.augmenter.word as naw
 
 from .base import BaseTextAugmenter
-
-# import nlpaug.augmenter.sentence as nas
-# import nlpaug.flow as nafc
-# from nlpaug.util import Action
-
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -36,8 +30,6 @@ class NlpAugContextualWordEmbsAug(BaseTextAugmenter):
 
     def handle_kwargs(self: "NlpAugContextualWordEmbsAug", **kwargs) -> None:
         """Handle kwargs."""
-        # if "voice" in kwargs:
-        #     self.voice = kwargs["voice"]
 
     def augment(
         self: "NlpAugContextualWordEmbsAug",

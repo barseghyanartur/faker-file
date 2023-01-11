@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from random import choice
-from typing import Any, Dict, Optional, Type
+from typing import Any, Dict, Iterable, Optional, Type
 
 from faker.providers import BaseProvider
 
@@ -10,6 +10,7 @@ from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..helpers.inner import (
     create_inner_docx_file,
+    create_inner_eml_file,
     create_inner_epub_file,
     create_inner_pdf_file,
     create_inner_rtf_file,
@@ -24,7 +25,7 @@ from .extractors.tika_extractor import TikaTextExtractor
 # create_inner_bin_file: N/A
 # create_inner_csv_file: Not supported
 # create_inner_docx_file: Support
-# create_inner_eml_file: Not supported
+# create_inner_eml_file: Support
 # create_inner_epub_file: Support
 # create_inner_ico_file: Not supported
 # create_inner_jpeg_file: Not supported
@@ -48,11 +49,14 @@ __all__ = ("AugmentFileFromDirProvider",)
 
 FILE_TYPE_TO_INNER_FUNC_MAPPING = {
     "docx": create_inner_docx_file,
+    "eml": create_inner_eml_file,
     "epub": create_inner_epub_file,
     "pdf": create_inner_pdf_file,
     "rtf": create_inner_rtf_file,
     "txt": create_inner_txt_file,
 }
+
+EXTENSIONS = set(FILE_TYPE_TO_INNER_FUNC_MAPPING.keys())
 
 
 class AugmentFileFromDirProvider(BaseProvider, FileMixin):
@@ -85,6 +89,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
+        extensions: Iterable[str] = None,
         storage: BaseStorage = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
@@ -99,6 +104,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         """Augment a random file from given directory.
 
         :param source_dir_path: Source files directory.
+        :param extensions: Allowed extensions.
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
         :param wrap_chars_after: If given, the output string would be separated
@@ -113,11 +119,17 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         if storage is None:
             storage = FileSystemStorage()
 
+        if extensions is None:
+            extensions = EXTENSIONS
+
         # Specific
         source_file_choices = [
             os.path.join(source_dir_path, _f)
             for _f in os.listdir(source_dir_path)
-            if os.path.isfile(os.path.join(source_dir_path, _f))
+            if (
+                os.path.isfile(os.path.join(source_dir_path, _f))
+                and os.path.splitext(_f)[1][1:] in extensions
+            )
         ]
         source_file_path = choice(source_file_choices)
         source_file = Path(source_file_path)
@@ -140,28 +152,10 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
 
         text_augmenter = text_augmenter_cls(**text_augmenter_kwargs)
         content = text_augmenter.augment(extracted_content)
-        # import ipdb; ipdb.set_trace()
-        if file_type in FILE_TYPE_TO_INNER_FUNC_MAPPING:
-            return FILE_TYPE_TO_INNER_FUNC_MAPPING[file_type](
-                storage=storage,
-                prefix=prefix,
-                content=content,
-                wrap_chars_after=wrap_chars_after,
-            )
 
-        # If file_type is not in the list of supported types, return just
-        # the file itself (same behaviour as `RandomFileFromDir` provider).
-
-        # Generic
-        filename = storage.generate_filename(
+        return FILE_TYPE_TO_INNER_FUNC_MAPPING[file_type](
+            storage=storage,
             prefix=prefix,
-            extension=file_type,
+            content=content,
+            wrap_chars_after=wrap_chars_after,
         )
-
-        # Specific
-        with open(source_file_path, "rb") as _file:
-            storage.write_bytes(filename, _file.read())
-
-        # Generic
-        file_name = StringValue(storage.relpath(filename))
-        return file_name
