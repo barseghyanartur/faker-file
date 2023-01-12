@@ -27,6 +27,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
       - name: Install detect-secrets
         run: pip install detect-secrets doc8
       - name: Run pre-commit
@@ -61,6 +62,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
@@ -72,7 +74,7 @@ jobs:
         run: pip install -r examples/requirements/flask.txt
       - name: Run test suite
 #        continue-on-error: true
-        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
+        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py --workers 2
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
 
@@ -102,6 +104,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
@@ -113,7 +116,7 @@ jobs:
         run: pip install -r examples/requirements/ml.txt
       - name: Run test suite
 #        continue-on-error: true
-        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
+        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py --workers 2
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
       - name: Coveralls
@@ -153,6 +156,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+        cache: 'pip'
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip

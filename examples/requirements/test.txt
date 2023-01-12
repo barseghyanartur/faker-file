@@ -49,12 +49,15 @@ pytest==6.2.5
     #   pytest-cov
     #   pytest-django
     #   pytest-ordering
+    #   pytest-parallel
     #   pytest-pythonpath
 pytest-cov==4.0.0
     # via -r examples/requirements/test.in
 pytest-django==4.5.2
     # via -r examples/requirements/test.in
 pytest-ordering==0.6
+    # via -r examples/requirements/test.in
+pytest-parallel==0.1.1
     # via -r examples/requirements/test.in
 pytest-pythonpath==0.7.4
     # via -r examples/requirements/test.in
@@ -64,6 +67,8 @@ six==1.16.0
     # via
     #   python-dateutil
     #   tox
+tblib==1.7.0
+    # via pytest-parallel
 toml==0.10.2
     # via pytest
 tomli==2.0.1

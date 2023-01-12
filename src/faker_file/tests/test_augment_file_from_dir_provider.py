@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from typing import Any, Dict, Union
 
+import tika
 from faker import Faker
 from parametrize import parametrize
 from pathy import use_fs
@@ -48,6 +49,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
 
     def setUp(self: "AugmentFileFromDirProviderTestCase"):
         super().setUp()
+        tika.initVM()
         use_fs(tempfile.gettempdir())
 
     @classmethod

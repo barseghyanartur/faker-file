@@ -16,6 +16,7 @@ With ``Faker``
 .. code-block:: python
 
     from faker import Faker
+    from faker_file.providers.augment_file_from_dir import AugmentFileFromDirProvider
     from faker_file.providers.bin_file import BinFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
@@ -37,6 +38,7 @@ With ``Faker``
     from faker_file.providers.zip_file import ZipFileProvider
 
     FAKER = Faker()
+    FAKER.add_provider(AugmentFileFromDirProvider)
     FAKER.add_provider(BinFileProvider)
     FAKER.add_provider(CsvFileProvider)
     FAKER.add_provider(DocxFileProvider)
@@ -61,6 +63,7 @@ With ``Faker``
 
 .. code-block:: python
 
+    augmented_file = FAKER.augment_file_from_dir(source_dir_path="/path/to/source/",)
     bin_file = FAKER.bin_file()
     csv_file = FAKER.csv_file()
     docx_file = FAKER.docx_file()
@@ -73,6 +76,7 @@ With ``Faker``
     pdf_file = FAKER.pdf_file()
     png_file = FAKER.png_file()
     pptx_file = FAKER.pptx_file()
+    random_file = FAKER.random_file_from_dir(source_dir_path="/path/to/source/",)
     rtf_file = FAKER.rtf_file()
     svg_file = FAKER.svg_file()
     txt_file = FAKER.txt_file()
@@ -87,6 +91,8 @@ With ``factory_boy``
 .. code-block:: python
 
     from factory import Faker
+
+    from faker_file.providers.augment_file_from_dir import AugmentFileFromDirProvider
     from faker_file.providers.bin_file import BinFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
@@ -107,6 +113,7 @@ With ``factory_boy``
     from faker_file.providers.xlsx_file import XlsxFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
+    Faker.add_provider(AugmentFileFromDirProvider)
     Faker.add_provider(BinFileProvider)
     Faker.add_provider(CsvFileProvider)
     Faker.add_provider(DocxFileProvider)
