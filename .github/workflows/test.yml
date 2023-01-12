@@ -76,7 +76,7 @@ jobs:
         run: pip install -r examples/requirements/flask.txt
       - name: Run test suite
 #        continue-on-error: true
-        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py --workers 2
+        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py #--workers 2
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
 
@@ -119,7 +119,7 @@ jobs:
         run: pip install -r examples/requirements/ml.txt
       - name: Run test suite
 #        continue-on-error: true
-        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py --workers 2
+        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py #--workers 2
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
       - name: Coveralls
