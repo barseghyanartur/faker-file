@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Any, Callable, Dict
 
 import factories
 from django.conf import settings
@@ -42,16 +42,22 @@ class DjangoIntegrationTestCase(TestCase):
     FAKER: Faker
 
     @parametrize(
-        "factory",
+        "factory, kwargs",
         [
-            (factories.DocxUploadFactory,),
-            (factories.PdfUploadFactory,),
-            (factories.PptxUploadFactory,),
-            (factories.TxtUploadFactory,),
-            (factories.ZipUploadFactory,),
+            (factories.UploadFactory, {}),
+            (factories.UploadFactory, {"random_file": True}),
+            (factories.UploadFactory, {"pdf_file": True}),
+            (factories.UploadFactory, {"pptx_file": True}),
+            (factories.UploadFactory, {"txt_file": True}),
+            (factories.UploadFactory, {"zip_file": True}),
         ],
     )
-    def test_file(self: "DjangoIntegrationTestCase", factory: Callable) -> None:
+    def test_file(
+        self: "DjangoIntegrationTestCase",
+        factory: Callable,
+        kwargs: Dict[str, Any],
+    ) -> None:
         """Test file."""
-        _upload = factory()
-        self.assertTrue(STORAGE.exists(_upload.file.name))
+        _upload = factory(**kwargs)
+        if kwargs:
+            self.assertTrue(STORAGE.exists(_upload.file.name))
