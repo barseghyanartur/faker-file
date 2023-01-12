@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.10.6"
+version = "0.10.7"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -30,17 +30,17 @@ tests_require = [
 extras_require = {
     "all": [
         "Faker",  # core
-        "imgkit",  # images
-        "odfpy",  # ods
-        "openpyxl",  # xlsx
-        "pathy[all]",  # remote storages: azure, gcs, s3
-        "pdfkit",  # pdf
-        "python-docx",  # docx
-        "python-pptx",  # pptx
-        "tablib",  # ods, xlsx
-        "xml2epub",  # epub
-        "gtts",  # mp3
-        "edge-tts",  # mp3
+        "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
+        "odfpy",  # ODS, ODT
+        "openpyxl",  # XLSX
+        "pathy[all]",  # remote storages: Azure, GCS, S3
+        "pdfkit",  # PDF
+        "python-docx",  # DOCX
+        "python-pptx",  # PPTX
+        "tablib",  # ODS, XLSX
+        "xml2epub",  # EPUB
+        "gtts",  # MP3
+        "edge-tts",  # MP3
         "nlpaug",  # data-augmentation
         "torch",  # data-augmentation
         "transformers",  # data-augmentation
@@ -56,6 +56,7 @@ extras_require = {
     "mp3-edge-tts": ["edge-tts"],
     "mp3-gtts": ["gtts"],
     "ods": ["tablib", "odfpy"],
+    "odt": ["odfpy"],
     "pdf": ["pdfkit"],
     "pptx": ["python-pptx"],
     "s3": ["pathy[s3]"],

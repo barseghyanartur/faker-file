@@ -46,6 +46,7 @@ below between the brackets.
 - ``PDF`` file support requires ``pdfkit`` (`MIT`).
 - ``PPTX`` file support requires ``python-pptx`` (`MIT`).
 - ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
+- ``ODT`` file support requires ``odfpy`` (`Apache 2`).
 - ``XLSX`` file support requires ``tablib`` (`MIT`) and ``openpyxl`` (`MIT`).
 - ``PathyFileSystemStorage`` storage support requires ``pathy`` (`Apache 2`).
 - ``AWSS3Storage`` storage support requires ``pathy`` (`Apache 2`)
@@ -115,6 +116,12 @@ Latest stable version from PyPI
 
     pip install faker-file[ods]
 
+**With ODT support**
+
+.. code-block:: sh
+
+    pip install faker-file[odt]
+
 **With data augmentation support**
 
 .. code-block:: sh
@@ -142,6 +149,7 @@ Supported file types
 - ``JPEG``
 - ``MP3``
 - ``ODS``
+- ``ODT``
 - ``PDF``
 - ``PNG``
 - ``RTF``
@@ -156,7 +164,7 @@ Additional providers
 --------------------
 - ``AugmentFileFromDirProvider``: Make an augmented copy of randomly picked
   file from given directory. The following types are supported : ``DOCX``,
-  ``EML``, ``EPUB``, ``PDF``, ``RTF``, ``TXT``.
+  ``EML``, ``EPUB``, ``ODT``,  ``PDF``, ``RTF`` and ``TXT``.
 - ``RandomFileFromDirProvider``: Pick a random file from given directory.
 
 Supported file storages

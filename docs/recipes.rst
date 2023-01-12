@@ -613,6 +613,7 @@ The following file types are supported:
 - ``DOCX``
 - ``EML``
 - ``EPUB``
+- ``ODT``
 - ``PDF``
 - ``RTF``
 - ``TXT``

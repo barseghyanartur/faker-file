@@ -26,6 +26,7 @@ With ``Faker``
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
     from faker_file.providers.ods_file import OdsFileProvider
+    from faker_file.providers.odt_file import OdtFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
@@ -48,6 +49,7 @@ With ``Faker``
     FAKER.add_provider(JpegFileProvider)
     FAKER.add_provider(Mp3FileProvider)
     FAKER.add_provider(OdsFileProvider)
+    FAKER.add_provider(OdtFileProvider)
     FAKER.add_provider(PdfFileProvider)
     FAKER.add_provider(PngFileProvider)
     FAKER.add_provider(PptxFileProvider)
@@ -73,6 +75,7 @@ With ``Faker``
     jpeg_file = FAKER.jpeg_file()
     mp3_file = FAKER.mp3_file()
     ods_file = FAKER.ods_file()
+    odt_file = FAKER.odt_file()
     pdf_file = FAKER.pdf_file()
     png_file = FAKER.png_file()
     pptx_file = FAKER.pptx_file()
@@ -102,6 +105,7 @@ With ``factory_boy``
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
     from faker_file.providers.ods_file import OdsFileProvider
+    from faker_file.providers.odt_file import OdtFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
@@ -123,6 +127,7 @@ With ``factory_boy``
     Faker.add_provider(JpegFileProvider)
     Faker.add_provider(Mp3FileProvider)
     Faker.add_provider(OdsFileProvider)
+    Faker.add_provider(OdtFileProvider)
     Faker.add_provider(PdfFileProvider)
     Faker.add_provider(PngFileProvider)
     Faker.add_provider(PptxFileProvider)

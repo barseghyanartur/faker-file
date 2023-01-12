@@ -26,6 +26,7 @@ from ..providers.helpers.inner import (
     create_inner_jpeg_file,
     create_inner_mp3_file,
     create_inner_ods_file,
+    create_inner_odt_file,
     create_inner_pdf_file,
     create_inner_png_file,
     create_inner_pptx_file,
@@ -46,6 +47,7 @@ from ..providers.mp3_file.generators.edge_tts_generator import (
 )
 from ..providers.mp3_file.generators.gtts_generator import GttsMp3Generator
 from ..providers.ods_file import OdsFileProvider
+from ..providers.odt_file import OdtFileProvider
 from ..providers.pdf_file import PdfFileProvider
 from ..providers.png_file import PngFileProvider
 from ..providers.pptx_file import PptxFileProvider
@@ -67,6 +69,7 @@ __all__ = ("ProvidersTestCase",)
 
 
 FileProvider = Union[
+    BinFileProvider,
     CsvFileProvider,
     DocxFileProvider,
     EmlFileProvider,
@@ -74,6 +77,8 @@ FileProvider = Union[
     IcoFileProvider,
     JpegFileProvider,
     Mp3FileProvider,
+    OdsFileProvider,
+    OdtFileProvider,
     PdfFileProvider,
     PngFileProvider,
     PptxFileProvider,
@@ -265,6 +270,19 @@ class ProvidersTestCase(unittest.TestCase):
         (OdsFileProvider, "ods_file", {}, None),
         (OdsFileProvider, "ods_file", {}, False),
         (OdsFileProvider, "ods_file", {}, PATHY_FS_STORAGE),
+        # ODT
+        (OdtFileProvider, "odt_file", {}, None),
+        (OdtFileProvider, "odt_file", {}, False),
+        (OdtFileProvider, "odt_file", {}, PATHY_FS_STORAGE),
+        (
+            OdtFileProvider,
+            "odt_file",
+            {
+                "wrap_chars_after": 40,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
+            },
+            None,
+        ),
         # PDF
         (PdfFileProvider, "pdf_file", {}, None),
         (PdfFileProvider, "pdf_file", {}, False),
@@ -519,6 +537,7 @@ class ProvidersTestCase(unittest.TestCase):
             (create_inner_jpeg_file, "Lorem ipsum", {}),
             (create_inner_mp3_file, "Lorem ipsum", {}),
             (create_inner_ods_file, None, {}),
+            (create_inner_odt_file, "Lorem ipsum", {}),
             (create_inner_pdf_file, "Lorem ipsum", {}),
             (create_inner_png_file, "Lorem ipsum", {}),
             (create_inner_pptx_file, "Lorem ipsum", {}),
@@ -642,6 +661,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.ods_file",
                 "OdsFileProvider",
                 create_inner_ods_file,
+            ),
+            # ODT
+            (
+                "faker_file.providers.odt_file",
+                "OdtFileProvider",
+                create_inner_odt_file,
             ),
             # PDF
             (

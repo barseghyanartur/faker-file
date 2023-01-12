@@ -37,6 +37,7 @@ __all__ = (
     "create_inner_jpeg_file",
     "create_inner_mp3_file",
     "create_inner_ods_file",
+    "create_inner_odt_file",
     "create_inner_pdf_file",
     "create_inner_png_file",
     "create_inner_pptx_file",
@@ -279,6 +280,31 @@ def create_inner_ods_file(
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
+        content=content,
+        **kwargs,
+    )
+
+
+def create_inner_odt_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner ODT file."""
+    try:
+        from ..odt_file import OdtFileProvider
+    except ImportError as err:
+        raise err
+
+    return OdtFileProvider(generator).odt_file(
+        storage=storage,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
         content=content,
         **kwargs,
     )

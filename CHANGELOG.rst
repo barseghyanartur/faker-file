@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.7
+------
+2023-01-12
+
+- Add ``OdtFileProvider`` and ``create_inner_odt_file`` function.
+- Documentation improvements.
+- Async related deprecation fixes in ``EdgeTtsMp3Generator``.
+
 0.10.6
 ------
 2023-01-11
