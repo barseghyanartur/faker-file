@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Any, Callable, Dict
 from unittest import TestCase
 
 import pytest
@@ -38,21 +38,25 @@ class SQLAlchemyIntegrationTestCase(TestCase):
     FAKER: Faker
 
     @parametrize(
-        "factory",
+        "factory, kwargs",
         [
-            (factories.DocxUploadFactory,),
-            (factories.PdfUploadFactory,),
-            (factories.PptxUploadFactory,),
-            (factories.TxtUploadFactory,),
-            (factories.ZipUploadFactory,),
+            (factories.UploadFactory, {}),
+            (factories.UploadFactory, {"random_file": True}),
+            (factories.UploadFactory, {"pdf_file": True}),
+            (factories.UploadFactory, {"pptx_file": True}),
+            (factories.UploadFactory, {"txt_file": True}),
+            (factories.UploadFactory, {"zip_file": True}),
         ],
     )
     @pytest.mark.optional
     def test_file(
-        self: "SQLAlchemyIntegrationTestCase", factory: Callable
+        self: "SQLAlchemyIntegrationTestCase",
+        factory: Callable,
+        kwargs: Dict[str, Any],
     ) -> None:
         """Test file."""
         with app.app_context():
-            _upload = factory()
+            _upload = factory(**kwargs)
             self.session.commit()
-            self.assertTrue(STORAGE.exists(_upload.file))
+            if kwargs:
+                self.assertTrue(STORAGE.exists(_upload.file))

@@ -17,11 +17,12 @@ are used for versioning (schema follows below):
 
 0.10.7
 ------
-2023-01-12
+2023-01-13
 
 - Add ``OdtFileProvider`` and ``create_inner_odt_file`` function.
 - Documentation improvements.
 - Async related deprecation fixes in ``EdgeTtsMp3Generator``.
+- Optimize example factories.
 
 0.10.6
 ------
