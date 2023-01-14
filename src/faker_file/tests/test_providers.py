@@ -98,12 +98,10 @@ PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 class ProvidersTestCase(unittest.TestCase):
     """Providers test case."""
 
-    def setUp(self: "ProvidersTestCase", *args, **kwargs):
-        super().setUp(*args, **kwargs)
-        use_fs(tempfile.gettempdir())
-
     FAKER: Faker
-    __parametrized_data = [
+
+    # provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA = [
         # BIN
         (BinFileProvider, "bin_file", {}, None),
         (BinFileProvider, "bin_file", {}, False),
@@ -236,33 +234,6 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": _FAKER.text(),
-            },
-            None,
-        ),
-        # MP3
-        (Mp3FileProvider, "mp3_file", {}, None),
-        (Mp3FileProvider, "mp3_file", {}, False),
-        (Mp3FileProvider, "mp3_file", {}, PATHY_FS_STORAGE),
-        (
-            Mp3FileProvider,
-            "mp3_file",
-            {
-                "mp3_generator_cls": EdgeTtsMp3Generator,
-                "mp3_generator_kwargs": {
-                    "voice": "en-GB-LibbyNeural",
-                },
-            },
-            None,
-        ),
-        (
-            Mp3FileProvider,
-            "mp3_file",
-            {
-                "mp3_generator_cls": GttsMp3Generator,
-                "mp3_generator_kwargs": {
-                    "lang": "en",
-                    "tld": "co.uk",
-                },
             },
             None,
         ),
@@ -459,9 +430,50 @@ class ProvidersTestCase(unittest.TestCase):
         (ZipFileProvider, "zip_file", {}, PATHY_FS_STORAGE),
     ]
 
+    # provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA_RETRY_FAILURES = [
+        # MP3
+        (Mp3FileProvider, "mp3_file", {}, None),
+        (Mp3FileProvider, "mp3_file", {}, False),
+        (Mp3FileProvider, "mp3_file", {}, PATHY_FS_STORAGE),
+        (
+            Mp3FileProvider,
+            "mp3_file",
+            {
+                "mp3_generator_cls": EdgeTtsMp3Generator,
+                "mp3_generator_kwargs": {
+                    "voice": "en-GB-LibbyNeural",
+                },
+            },
+            None,
+        ),
+        (
+            Mp3FileProvider,
+            "mp3_file",
+            {
+                "mp3_generator_cls": GttsMp3Generator,
+                "mp3_generator_kwargs": {
+                    "lang": "en",
+                    "tld": "co.uk",
+                },
+            },
+            None,
+        ),
+    ]
+
+    # provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA_ALLOW_FAILURES = [
+        (WebpFileProvider, "webp_file", {}, None),
+        (WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
+    ]
+
+    def setUp(self: "ProvidersTestCase"):
+        super().setUp()
+        use_fs(tempfile.gettempdir())
+
     @parametrize(
         "provider, method_name, kwargs, storage",
-        __parametrized_data,
+        __PARAMETRIZED_DATA,
     )
     def test_faker(
         self: "ProvidersTestCase",
@@ -482,7 +494,29 @@ class ProvidersTestCase(unittest.TestCase):
 
     @parametrize(
         "provider, method_name, kwargs, storage",
-        __parametrized_data,
+        __PARAMETRIZED_DATA_RETRY_FAILURES,
+    )
+    @pytest.mark.flaky(reruns=5)
+    def test_faker_retry_failures(
+        self: "ProvidersTestCase",
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: BaseStorage = None,
+    ) -> None:
+        """Test faker provider integration, retry on failures."""
+        if storage is False:
+            storage = FS_STORAGE
+        _faker = Faker()
+        _faker.add_provider(provider)
+        _method = getattr(_faker, method_name)
+        kwargs["storage"] = storage
+        _file = _method(**kwargs)
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
+
+    @parametrize(
+        "provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA,
     )
     def test_standalone_providers(
         self: "ProvidersTestCase",
@@ -502,10 +536,28 @@ class ProvidersTestCase(unittest.TestCase):
 
     @parametrize(
         "provider, method_name, kwargs, storage",
-        [
-            (WebpFileProvider, "webp_file", {}, None),
-            (WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
-        ],
+        __PARAMETRIZED_DATA_RETRY_FAILURES,
+    )
+    @pytest.mark.flaky(reruns=5)
+    def test_standalone_providers_retry_failures(
+        self: "ProvidersTestCase",
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: BaseStorage = None,
+    ) -> None:
+        """Test standalone providers."""
+        if storage is False:
+            storage = FS_STORAGE
+        _provider = provider(None)  # noqa
+        _method = getattr(_provider, method_name)
+        kwargs["storage"] = storage
+        _file = _method(**kwargs)
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
+
+    @parametrize(
+        "provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA_ALLOW_FAILURES,
     )
     @pytest.mark.xfail
     def test_standalone_providers_allow_failures(

@@ -636,8 +636,6 @@ Randomize the file format
         for _ in range(100):  # Number of times we want to run our function
             pool.apply_async(
                 fuzzy_choice_create_inner_file,
-                # Apply async doesn't support kwargs. We have to pass all
-                # arguments.
                 [
                     [
                         (create_inner_docx_file, kwargs),

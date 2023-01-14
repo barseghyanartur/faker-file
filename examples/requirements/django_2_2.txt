@@ -144,6 +144,7 @@ openpyxl==3.0.10
 packaging==21.3
     # via
     #   pytest
+    #   pytest-rerunfailures
     #   tox
 parametrize==0.1.1
     # via -r examples/requirements/test.in
@@ -190,6 +191,7 @@ pytest==6.2.5
     #   pytest-ordering
     #   pytest-parallel
     #   pytest-pythonpath
+    #   pytest-rerunfailures
 pytest-cov==4.0.0
     # via
     #   -r examples/requirements/test.in
@@ -205,6 +207,8 @@ pytest-ordering==0.6
 pytest-parallel==0.1.1
     # via -r examples/requirements/test.in
 pytest-pythonpath==0.7.4
+    # via -r examples/requirements/test.in
+pytest-rerunfailures==11.0
     # via -r examples/requirements/test.in
 python-dateutil==2.8.2
     # via
