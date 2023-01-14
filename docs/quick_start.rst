@@ -244,26 +244,26 @@ upload/factories.py
         class Meta:
             model = Upload
 
-    class Params:
-        bin_file = Trait(file=Faker("bin_file", storage=STORAGE))
-        csv_file = Trait(file=Faker("csv_file", storage=STORAGE))
-        docx_file = Trait(file=Faker("docx_file", storage=STORAGE))
-        eml_file = Trait(file=Faker("eml_file", storage=STORAGE))
-        epub_file = Trait(file=Faker("epub_file", storage=STORAGE))
-        ico_file = Trait(file=Faker("ico_file", storage=STORAGE))
-        jpeg_file = Trait(file=Faker("jpeg_file", storage=STORAGE))
-        mp3_file = Trait(file=Faker("mp3_file", storage=STORAGE))
-        ods_file = Trait(file=Faker("ods_file", storage=STORAGE))
-        odt_file = Trait(file=Faker("odt_file", storage=STORAGE))
-        pdf_file = Trait(file=Faker("pdf_file", storage=STORAGE))
-        png_file = Trait(file=Faker("png_file", storage=STORAGE))
-        pptx_file = Trait(file=Faker("pptx_file", storage=STORAGE))
-        rtf_file = Trait(file=Faker("rtf_file", storage=STORAGE))
-        svg_file = Trait(file=Faker("svg_file", storage=STORAGE))
-        txt_file = Trait(file=Faker("txt_file", storage=STORAGE))
-        webp_file = Trait(file=Faker("webp_file", storage=STORAGE))
-        xlsx_file = Trait(file=Faker("xlsx_file", storage=STORAGE))
-        zip_file = Trait(file=Faker("zip_file", storage=STORAGE))
+        class Params:
+            bin_file = Trait(file=Faker("bin_file", storage=STORAGE))
+            csv_file = Trait(file=Faker("csv_file", storage=STORAGE))
+            docx_file = Trait(file=Faker("docx_file", storage=STORAGE))
+            eml_file = Trait(file=Faker("eml_file", storage=STORAGE))
+            epub_file = Trait(file=Faker("epub_file", storage=STORAGE))
+            ico_file = Trait(file=Faker("ico_file", storage=STORAGE))
+            jpeg_file = Trait(file=Faker("jpeg_file", storage=STORAGE))
+            mp3_file = Trait(file=Faker("mp3_file", storage=STORAGE))
+            ods_file = Trait(file=Faker("ods_file", storage=STORAGE))
+            odt_file = Trait(file=Faker("odt_file", storage=STORAGE))
+            pdf_file = Trait(file=Faker("pdf_file", storage=STORAGE))
+            png_file = Trait(file=Faker("png_file", storage=STORAGE))
+            pptx_file = Trait(file=Faker("pptx_file", storage=STORAGE))
+            rtf_file = Trait(file=Faker("rtf_file", storage=STORAGE))
+            svg_file = Trait(file=Faker("svg_file", storage=STORAGE))
+            txt_file = Trait(file=Faker("txt_file", storage=STORAGE))
+            webp_file = Trait(file=Faker("webp_file", storage=STORAGE))
+            xlsx_file = Trait(file=Faker("xlsx_file", storage=STORAGE))
+            zip_file = Trait(file=Faker("zip_file", storage=STORAGE))
 
 Usage example
 ^^^^^^^^^^^^^
