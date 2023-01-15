@@ -1,12 +1,20 @@
+from io import BytesIO
 from typing import Optional
 
-import pdfkit
 from faker.providers import BaseProvider
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.platypus import Paragraph, SimpleDocTemplate
 
 from ..base import FileMixin, StringValue
 from ..constants import DEFAULT_FILE_ENCODING, DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
+
+# from reportlab.pdfbase import pdfmetrics
+# from reportlab.pdfbase.ttfonts import TTFont
+
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -92,12 +100,29 @@ class PdfFileProvider(BaseProvider, FileMixin):
         if encoding is not None:
             options["encoding"] = encoding
 
-        raw_content = pdfkit.from_string(
-            f"<pre>{content}</pre>",
-            options=options,
-        )
+        styles = getSampleStyleSheet()
+        style_paragraph = styles["Normal"]
+        # pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
+        # pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
+        # pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
+        # pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
 
-        storage.write_bytes(filename, raw_content)
+        story = []
+        buffer = BytesIO()
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=letter,
+            bottomMargin=0.4 * inch,
+            topMargin=0.6 * inch,
+            rightMargin=0.8 * inch,
+            leftMargin=0.8 * inch,
+            # initialFontName="Vera",
+        )
+        paragraph = Paragraph(content, style_paragraph)
+        story.append(paragraph)
+        doc.build(story)
+
+        storage.write_bytes(filename, buffer.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
