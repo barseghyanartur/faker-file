@@ -15,6 +15,15 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.8
+------
+2023-01-16
+
+- Switch to PyPI releases of ``gtts``.
+- Stop testing against Django 3.0 and 3.1.
+- Documentation improvements.
+- Tests improvements.
+
 0.10.7
 ------
 2023-01-13

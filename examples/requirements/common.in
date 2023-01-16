@@ -1,5 +1,6 @@
 edge-tts
 imgkit
+gTTS
 odfpy
 openpyxl
 pathy[all]
@@ -10,4 +11,4 @@ reportlab
 tablib
 xml2epub
 
-https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
+#https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
