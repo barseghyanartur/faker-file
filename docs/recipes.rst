@@ -89,7 +89,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 
 .. code-block:: python
 
-    from faker_file.providers.zip_file import create_inner_docx_file
+    from faker_file.providers.helpers.inner import create_inner_docx_file
     file = ZipFileProvider(FAKER).zip_file(
         prefix="zzz",
         options={
@@ -118,7 +118,10 @@ contain 5 DOCX files.
 
 .. code-block:: python
 
-    from faker_file.providers.zip_file import create_inner_docx_file, create_inner_zip_file
+    from faker_file.providers.helpers.inner import (
+        create_inner_docx_file,
+        create_inner_zip_file,
+    )
     file = ZipFileProvider(FAKER).zip_file(
         prefix="nested_level_0_",
         options={
