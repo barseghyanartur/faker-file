@@ -5,6 +5,8 @@ from faker.providers import BaseProvider
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph, SimpleDocTemplate
 
 from ..base import FileMixin, StringValue
@@ -16,10 +18,6 @@ from ..constants import (
 )
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
-
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
