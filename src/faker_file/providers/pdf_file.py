@@ -8,12 +8,17 @@ from reportlab.lib.units import inch
 from reportlab.platypus import Paragraph, SimpleDocTemplate
 
 from ..base import FileMixin, StringValue
-from ..constants import DEFAULT_FILE_ENCODING, DEFAULT_TEXT_MAX_NB_CHARS
+from ..constants import (
+    DEFAULT_FILE_ENCODING,
+    DEFAULT_FONT_NAME,
+    DEFAULT_FONT_PATH,
+    DEFAULT_TEXT_MAX_NB_CHARS,
+)
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
-# from reportlab.pdfbase import pdfmetrics
-# from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -67,6 +72,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
         encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        font: Optional[str] = DEFAULT_FONT_NAME,
+        font_path: Optional[str] = DEFAULT_FONT_PATH,
         **kwargs,
     ) -> StringValue:
         """Generate a PDF file with random text.
@@ -102,10 +109,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
         styles = getSampleStyleSheet()
         style_paragraph = styles["Normal"]
-        # pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
-        # pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
-        # pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
-        # pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
+        pdfmetrics.registerFont(TTFont(font, font_path))
 
         story = []
         buffer = BytesIO()
@@ -116,7 +120,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             topMargin=0.6 * inch,
             rightMargin=0.8 * inch,
             leftMargin=0.8 * inch,
-            # initialFontName="Vera",
+            initialFontName=font,
         )
         paragraph = Paragraph(content, style_paragraph)
         story.append(paragraph)
