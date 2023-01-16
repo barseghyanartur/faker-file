@@ -128,7 +128,7 @@ googleapis-common-protos==1.57.0
     # via google-api-core
 greenlet==2.0.1
     # via sqlalchemy
-gtts @ https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
+gtts==2.3.1
     # via -r examples/requirements/common.in
 idna==3.4
     # via
@@ -283,7 +283,6 @@ six==1.16.0
     #   azure-core
     #   google-auth
     #   google-cloud-storage
-    #   gtts
     #   imgkit
     #   isodate
     #   python-dateutil

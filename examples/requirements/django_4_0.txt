@@ -104,7 +104,7 @@ google-resumable-media==2.4.0
     # via google-cloud-storage
 googleapis-common-protos==1.57.0
     # via google-api-core
-gtts @ https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip
+gtts==2.3.1
     # via -r examples/requirements/common.in
 idna==3.4
     # via
@@ -242,7 +242,6 @@ six==1.16.0
     #   azure-core
     #   google-auth
     #   google-cloud-storage
-    #   gtts
     #   imgkit
     #   isodate
     #   python-dateutil
