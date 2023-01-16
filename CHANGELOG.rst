@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.9
+------
+Unreleased
+
+- Switch from ``pdfkit`` to ``fpdf2`` (for more accurate output and improved
+  performance).
+
 0.10.8
 ------
 2023-01-16
