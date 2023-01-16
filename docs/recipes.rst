@@ -76,7 +76,9 @@ Create a ZIP file consisting of TXT files with static content
 
 .. code-block:: python
 
-    file = ZipFileProvider(FAKER).zip_file(options={"content": "Lorem ipsum"})
+    file = ZipFileProvider(FAKER).zip_file(
+        options={"create_inner_file_args": {"content": "Lorem ipsum"}}
+    )
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +91,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 
 .. code-block:: python
 
-    from faker_file.providers.zip_file import create_inner_docx_file
+    from faker_file.providers.helpers.inner import create_inner_docx_file
     file = ZipFileProvider(FAKER).zip_file(
         prefix="zzz",
         options={
@@ -118,7 +120,10 @@ contain 5 DOCX files.
 
 .. code-block:: python
 
-    from faker_file.providers.zip_file import create_inner_docx_file, create_inner_zip_file
+    from faker_file.providers.helpers.inner import (
+        create_inner_docx_file,
+        create_inner_zip_file,
+    )
     file = ZipFileProvider(FAKER).zip_file(
         prefix="nested_level_0_",
         options={
@@ -189,7 +194,9 @@ Create a EML file consisting of TXT files with static content
 
     FAKER = Faker()
 
-    file = EmlFileProvider(FAKER).eml_file(options={"content": "Lorem ipsum"})
+    file = EmlFileProvider(FAKER).eml_file(
+        options={"create_inner_file_args": {"content": "Lorem ipsum"}}
+    )
 
 Create a EML file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -509,7 +516,6 @@ Pick a random file from a directory given
         source_dir_path="/tmp/tmp/",
         prefix="zzz",
     )
-
 
 Generate a file of a certain size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -834,27 +840,30 @@ Randomize provider choice
 .. code-block:: python
 
     from factory import LazyAttribute
+    from faker import Faker
     from random import choice
 
+    FAKER = Faker()
+
     PROVIDER_CHOICES = [
-        lambda: BinFileProvider(None).bin_file(storage=STORAGE),
-        lambda: CsvFileProvider(None).csv_file(storage=STORAGE),
-        lambda: DocxFileProvider(None).docx_file(storage=STORAGE),
-        lambda: EmlFileProvider(None).eml_file(storage=STORAGE),
-        lambda: EpubFileProvider(None).epub_file(storage=STORAGE),
-        lambda: IcoFileProvider(None).ico_file(storage=STORAGE),
-        lambda: JpegFileProvider(None).jpeg_file(storage=STORAGE),
-        lambda: Mp3FileProvider(None).mp3_file(storage=STORAGE),
-        lambda: OdsFileProvider(None).ods_file(storage=STORAGE),
-        lambda: OdtFileProvider(None).odt_file(storage=STORAGE),
-        lambda: PdfFileProvider(None).pdf_file(storage=STORAGE),
-        lambda: PngFileProvider(None).png_file(storage=STORAGE),
-        lambda: PptxFileProvider(None).pptx_file(storage=STORAGE),
-        lambda: RtfFileProvider(None).rtf_file(storage=STORAGE),
-        lambda: SvgFileProvider(None).svg_file(storage=STORAGE),
-        lambda: TxtFileProvider(None).txt_file(storage=STORAGE),
-        lambda: XlsxFileProvider(None).xlsx_file(storage=STORAGE),
-        lambda: ZipFileProvider(None).zip_file(storage=STORAGE),
+        lambda: BinFileProvider(FAKER).bin_file(storage=STORAGE),
+        lambda: CsvFileProvider(FAKER).csv_file(storage=STORAGE),
+        lambda: DocxFileProvider(FAKER).docx_file(storage=STORAGE),
+        lambda: EmlFileProvider(FAKER).eml_file(storage=STORAGE),
+        lambda: EpubFileProvider(FAKER).epub_file(storage=STORAGE),
+        lambda: IcoFileProvider(FAKER).ico_file(storage=STORAGE),
+        lambda: JpegFileProvider(FAKER).jpeg_file(storage=STORAGE),
+        lambda: Mp3FileProvider(FAKER).mp3_file(storage=STORAGE),
+        lambda: OdsFileProvider(FAKER).ods_file(storage=STORAGE),
+        lambda: OdtFileProvider(FAKER).odt_file(storage=STORAGE),
+        lambda: PdfFileProvider(FAKER).pdf_file(storage=STORAGE),
+        lambda: PngFileProvider(FAKER).png_file(storage=STORAGE),
+        lambda: PptxFileProvider(FAKER).pptx_file(storage=STORAGE),
+        lambda: RtfFileProvider(FAKER).rtf_file(storage=STORAGE),
+        lambda: SvgFileProvider(FAKER).svg_file(storage=STORAGE),
+        lambda: TxtFileProvider(FAKER).txt_file(storage=STORAGE),
+        lambda: XlsxFileProvider(FAKER).xlsx_file(storage=STORAGE),
+        lambda: ZipFileProvider(FAKER).zip_file(storage=STORAGE),
     ]
 
     def pick_random_provider(*args, **kwargs):

@@ -151,7 +151,7 @@ upload/models.py
         name = models.CharField(max_length=255, unique=True)
         description = models.TextField(null=True, blank=True)
 
-        # Files
+        # File
         file = models.FileField(null=True)
 
         class Meta:
