@@ -98,7 +98,6 @@ class EmlFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
             extension=self.extension,
         )
-        data = {}
         fs_storage = FileSystemStorage()
 
         content = self._generate_text_content(
@@ -106,6 +105,10 @@ class EmlFileProvider(BaseProvider, FileMixin):
             wrap_chars_after=wrap_chars_after,
             content=content,
         )
+        data = {
+            "content": content,
+            "inner": {},
+        }
 
         msg = EmailMessage()
         msg["To"] = self.generator.email()
@@ -159,6 +162,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 storage=fs_storage,
                 **_kwargs,
             )
+            data["inner"][str(__file)] = __file
             __file_abs_path = fs_storage.abspath(__file)
             # _content_type, _encoding = mimetypes.guess_type(__file_abs_path)
             # if _content_type is None or _encoding is not None:
