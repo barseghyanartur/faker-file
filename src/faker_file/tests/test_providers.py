@@ -90,7 +90,8 @@ FileProvider = Union[
     ZipFileProvider,
 ]
 
-_FAKER = Faker()
+FAKER = Faker()
+FAKER_HY = Faker(locale="hy_AM")
 FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 
@@ -98,24 +99,31 @@ PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 class ProvidersTestCase(unittest.TestCase):
     """Providers test case."""
 
-    FAKER: Faker
-
-    # provider, method_name, kwargs, storage
+    # fake, provider, method_name, kwargs, storage
     __PARAMETRIZED_DATA = [
         # BIN
-        (BinFileProvider, "bin_file", {}, None),
-        (BinFileProvider, "bin_file", {}, False),
-        (BinFileProvider, "bin_file", {}, PATHY_FS_STORAGE),
+        (FAKER, BinFileProvider, "bin_file", {}, None),
+        (FAKER, BinFileProvider, "bin_file", {}, False),
+        (FAKER, BinFileProvider, "bin_file", {}, PATHY_FS_STORAGE),
         # CSV
-        (CsvFileProvider, "csv_file", {}, None),
-        (CsvFileProvider, "csv_file", {}, False),
-        (CsvFileProvider, "csv_file", {}, PATHY_FS_STORAGE),
-        (CsvFileProvider, "csv_file", {"content": "{{name}},{{date}}"}, None),
-        # DOCX
-        (DocxFileProvider, "docx_file", {}, None),
-        (DocxFileProvider, "docx_file", {}, False),
-        (DocxFileProvider, "docx_file", {}, PATHY_FS_STORAGE),
+        (FAKER, CsvFileProvider, "csv_file", {}, None),
+        (FAKER_HY, CsvFileProvider, "csv_file", {}, None),
+        (FAKER, CsvFileProvider, "csv_file", {}, False),
+        (FAKER, CsvFileProvider, "csv_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
+            CsvFileProvider,
+            "csv_file",
+            {"content": "{{name}},{{date}}"},
+            None,
+        ),
+        # DOCX
+        (FAKER, DocxFileProvider, "docx_file", {}, None),
+        (FAKER_HY, DocxFileProvider, "docx_file", {}, None),
+        (FAKER, DocxFileProvider, "docx_file", {}, False),
+        (FAKER, DocxFileProvider, "docx_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
             DocxFileProvider,
             "docx_file",
             {
@@ -125,17 +133,20 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             DocxFileProvider,
             "docx_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # EML
-        (EmlFileProvider, "eml_file", {}, None),
+        (FAKER, EmlFileProvider, "eml_file", {}, None),
+        (FAKER_HY, EmlFileProvider, "eml_file", {}, None),
         (
+            FAKER,
             EmlFileProvider,
             "eml_file",
             {
@@ -151,9 +162,10 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
-        (EmlFileProvider, "eml_file", {}, False),
-        (EmlFileProvider, "eml_file", {}, PATHY_FS_STORAGE),
+        (FAKER, EmlFileProvider, "eml_file", {}, False),
+        (FAKER, EmlFileProvider, "eml_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             EmlFileProvider,
             "eml_file",
             {
@@ -163,19 +175,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             EmlFileProvider,
             "eml_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # EPUB
-        (EpubFileProvider, "epub_file", {}, None),
-        (EpubFileProvider, "epub_file", {}, False),
-        (EpubFileProvider, "epub_file", {}, PATHY_FS_STORAGE),
+        (FAKER, EpubFileProvider, "epub_file", {}, None),
+        (FAKER_HY, EpubFileProvider, "epub_file", {}, None),
+        (FAKER, EpubFileProvider, "epub_file", {}, False),
+        (FAKER, EpubFileProvider, "epub_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             EpubFileProvider,
             "epub_file",
             {
@@ -185,19 +200,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             EpubFileProvider,
             "epub_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # ICO
-        (IcoFileProvider, "ico_file", {}, None),
-        (IcoFileProvider, "ico_file", {}, False),
-        (IcoFileProvider, "ico_file", {}, PATHY_FS_STORAGE),
+        (FAKER, IcoFileProvider, "ico_file", {}, None),
+        (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
+        (FAKER, IcoFileProvider, "ico_file", {}, False),
+        (FAKER, IcoFileProvider, "ico_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             IcoFileProvider,
             "ico_file",
             {
@@ -207,19 +225,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             IcoFileProvider,
             "ico_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # JPEG
-        (JpegFileProvider, "jpeg_file", {}, None),
-        (JpegFileProvider, "jpeg_file", {}, False),
-        (JpegFileProvider, "jpeg_file", {}, PATHY_FS_STORAGE),
+        (FAKER, JpegFileProvider, "jpeg_file", {}, None),
+        (FAKER_HY, JpegFileProvider, "jpeg_file", {}, None),
+        (FAKER, JpegFileProvider, "jpeg_file", {}, False),
+        (FAKER, JpegFileProvider, "jpeg_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             JpegFileProvider,
             "jpeg_file",
             {
@@ -229,23 +250,27 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             JpegFileProvider,
             "jpeg_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # ODS
-        (OdsFileProvider, "ods_file", {}, None),
-        (OdsFileProvider, "ods_file", {}, False),
-        (OdsFileProvider, "ods_file", {}, PATHY_FS_STORAGE),
+        (FAKER, OdsFileProvider, "ods_file", {}, None),
+        (FAKER_HY, OdsFileProvider, "ods_file", {}, None),
+        (FAKER, OdsFileProvider, "ods_file", {}, False),
+        (FAKER, OdsFileProvider, "ods_file", {}, PATHY_FS_STORAGE),
         # ODT
-        (OdtFileProvider, "odt_file", {}, None),
-        (OdtFileProvider, "odt_file", {}, False),
-        (OdtFileProvider, "odt_file", {}, PATHY_FS_STORAGE),
+        (FAKER, OdtFileProvider, "odt_file", {}, None),
+        (FAKER_HY, OdtFileProvider, "odt_file", {}, None),
+        (FAKER, OdtFileProvider, "odt_file", {}, False),
+        (FAKER, OdtFileProvider, "odt_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             OdtFileProvider,
             "odt_file",
             {
@@ -255,10 +280,12 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         # PDF
-        (PdfFileProvider, "pdf_file", {}, None),
-        (PdfFileProvider, "pdf_file", {}, False),
-        (PdfFileProvider, "pdf_file", {}, PATHY_FS_STORAGE),
+        (FAKER, PdfFileProvider, "pdf_file", {}, None),
+        (FAKER_HY, PdfFileProvider, "pdf_file", {}, None),
+        (FAKER, PdfFileProvider, "pdf_file", {}, False),
+        (FAKER, PdfFileProvider, "pdf_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             PdfFileProvider,
             "pdf_file",
             {
@@ -268,19 +295,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             PdfFileProvider,
             "pdf_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # PNG
-        (PngFileProvider, "png_file", {}, None),
-        (PngFileProvider, "png_file", {}, False),
-        (PngFileProvider, "png_file", {}, PATHY_FS_STORAGE),
+        (FAKER, PngFileProvider, "png_file", {}, None),
+        (FAKER_HY, PngFileProvider, "png_file", {}, None),
+        (FAKER, PngFileProvider, "png_file", {}, False),
+        (FAKER, PngFileProvider, "png_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             PngFileProvider,
             "png_file",
             {
@@ -290,19 +320,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             PngFileProvider,
             "png_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # PPTX
-        (PptxFileProvider, "pptx_file", {}, None),
-        (PptxFileProvider, "pptx_file", {}, False),
-        (PptxFileProvider, "pptx_file", {}, PATHY_FS_STORAGE),
+        (FAKER, PptxFileProvider, "pptx_file", {}, None),
+        (FAKER_HY, PptxFileProvider, "pptx_file", {}, None),
+        (FAKER, PptxFileProvider, "pptx_file", {}, False),
+        (FAKER, PptxFileProvider, "pptx_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             PptxFileProvider,
             "pptx_file",
             {
@@ -312,16 +345,18 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             PptxFileProvider,
             "pptx_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # RandomFileFromDirProvider
         (
+            FAKER,
             RandomFileFromDirProvider,
             "random_file_from_dir",
             {
@@ -332,6 +367,7 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             RandomFileFromDirProvider,
             "random_file_from_dir",
             {
@@ -342,6 +378,7 @@ class ProvidersTestCase(unittest.TestCase):
             False,
         ),
         (
+            FAKER,
             RandomFileFromDirProvider,
             "random_file_from_dir",
             {
@@ -352,10 +389,12 @@ class ProvidersTestCase(unittest.TestCase):
             PATHY_FS_STORAGE,
         ),
         # RTF
-        (RtfFileProvider, "rtf_file", {}, None),
-        (RtfFileProvider, "rtf_file", {}, False),
-        (RtfFileProvider, "rtf_file", {}, PATHY_FS_STORAGE),
+        (FAKER, RtfFileProvider, "rtf_file", {}, None),
+        (FAKER_HY, RtfFileProvider, "rtf_file", {}, None),
+        (FAKER, RtfFileProvider, "rtf_file", {}, False),
+        (FAKER, RtfFileProvider, "rtf_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             RtfFileProvider,
             "rtf_file",
             {
@@ -365,19 +404,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             RtfFileProvider,
             "rtf_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # SVG
-        (SvgFileProvider, "svg_file", {}, None),
-        (SvgFileProvider, "svg_file", {}, False),
-        (SvgFileProvider, "svg_file", {}, PATHY_FS_STORAGE),
+        (FAKER, SvgFileProvider, "svg_file", {}, None),
+        (FAKER_HY, SvgFileProvider, "svg_file", {}, None),
+        (FAKER, SvgFileProvider, "svg_file", {}, False),
+        (FAKER, SvgFileProvider, "svg_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             SvgFileProvider,
             "svg_file",
             {
@@ -387,19 +429,22 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             SvgFileProvider,
             "svg_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # TXT
-        (TxtFileProvider, "txt_file", {}, None),
-        (TxtFileProvider, "txt_file", {}, False),
-        (TxtFileProvider, "txt_file", {}, PATHY_FS_STORAGE),
+        (FAKER, TxtFileProvider, "txt_file", {}, None),
+        (FAKER_HY, TxtFileProvider, "txt_file", {}, None),
+        (FAKER, TxtFileProvider, "txt_file", {}, False),
+        (FAKER, TxtFileProvider, "txt_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             TxtFileProvider,
             "txt_file",
             {
@@ -409,34 +454,37 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             TxtFileProvider,
             "txt_file",
             {
                 "wrap_chars_after": 40,
-                "content": _FAKER.text(),
+                "content": FAKER.text(),
             },
             None,
         ),
         # WEBP
-        # (WebpFileProvider, "webp_file", {}, None),
-        # (WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
+        # (FAKER, WebpFileProvider, "webp_file", {}, None),
+        # (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
         # XLSX
-        (XlsxFileProvider, "xlsx_file", {}, None),
-        (XlsxFileProvider, "xlsx_file", {}, False),
-        (XlsxFileProvider, "xlsx_file", {}, PATHY_FS_STORAGE),
+        (FAKER, XlsxFileProvider, "xlsx_file", {}, None),
+        (FAKER_HY, XlsxFileProvider, "xlsx_file", {}, None),
+        (FAKER, XlsxFileProvider, "xlsx_file", {}, False),
+        (FAKER, XlsxFileProvider, "xlsx_file", {}, PATHY_FS_STORAGE),
         # ZIP
-        (ZipFileProvider, "zip_file", {}, None),
-        (ZipFileProvider, "zip_file", {}, False),
-        (ZipFileProvider, "zip_file", {}, PATHY_FS_STORAGE),
+        (FAKER, ZipFileProvider, "zip_file", {}, None),
+        (FAKER, ZipFileProvider, "zip_file", {}, False),
+        (FAKER, ZipFileProvider, "zip_file", {}, PATHY_FS_STORAGE),
     ]
 
     # provider, method_name, kwargs, storage
     __PARAMETRIZED_DATA_RETRY_FAILURES = [
         # MP3
-        (Mp3FileProvider, "mp3_file", {}, None),
-        (Mp3FileProvider, "mp3_file", {}, False),
-        (Mp3FileProvider, "mp3_file", {}, PATHY_FS_STORAGE),
+        (FAKER, Mp3FileProvider, "mp3_file", {}, None),
+        (FAKER, Mp3FileProvider, "mp3_file", {}, False),
+        (FAKER, Mp3FileProvider, "mp3_file", {}, PATHY_FS_STORAGE),
         (
+            FAKER,
             Mp3FileProvider,
             "mp3_file",
             {
@@ -448,6 +496,7 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
+            FAKER,
             Mp3FileProvider,
             "mp3_file",
             {
@@ -461,10 +510,10 @@ class ProvidersTestCase(unittest.TestCase):
         ),
     ]
 
-    # provider, method_name, kwargs, storage
+    # fake, provider, method_name, kwargs, storage
     __PARAMETRIZED_DATA_ALLOW_FAILURES = [
-        (WebpFileProvider, "webp_file", {}, None),
-        (WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
+        (FAKER, WebpFileProvider, "webp_file", {}, None),
+        (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
     ]
 
     def setUp(self: "ProvidersTestCase"):
@@ -472,11 +521,12 @@ class ProvidersTestCase(unittest.TestCase):
         use_fs(tempfile.gettempdir())
 
     @parametrize(
-        "provider, method_name, kwargs, storage",
+        "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
     def test_faker(
         self: "ProvidersTestCase",
+        fake: Faker,
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -485,20 +535,20 @@ class ProvidersTestCase(unittest.TestCase):
         """Test faker provider integration."""
         if storage is False:
             storage = FS_STORAGE
-        _faker = Faker()
-        _faker.add_provider(provider)
-        _method = getattr(_faker, method_name)
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
-        "provider, method_name, kwargs, storage",
+        "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_RETRY_FAILURES,
     )
     @pytest.mark.flaky(reruns=5)
     def test_faker_retry_failures(
         self: "ProvidersTestCase",
+        fake: Faker,
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -507,19 +557,19 @@ class ProvidersTestCase(unittest.TestCase):
         """Test faker provider integration, retry on failures."""
         if storage is False:
             storage = FS_STORAGE
-        _faker = Faker()
-        _faker.add_provider(provider)
-        _method = getattr(_faker, method_name)
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
-        "provider, method_name, kwargs, storage",
+        "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
     def test_standalone_providers(
         self: "ProvidersTestCase",
+        fake: Faker,
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -528,19 +578,20 @@ class ProvidersTestCase(unittest.TestCase):
         """Test standalone providers."""
         if storage is False:
             storage = FS_STORAGE
-        _provider = provider(None)  # noqa
+        _provider = provider(fake)  # noqa
         _method = getattr(_provider, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
-        "provider, method_name, kwargs, storage",
+        "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_RETRY_FAILURES,
     )
     @pytest.mark.flaky(reruns=5)
     def test_standalone_providers_retry_failures(
         self: "ProvidersTestCase",
+        fake: Faker,
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -549,19 +600,20 @@ class ProvidersTestCase(unittest.TestCase):
         """Test standalone providers."""
         if storage is False:
             storage = FS_STORAGE
-        _provider = provider(None)  # noqa
+        _provider = provider(fake)  # noqa
         _method = getattr(_provider, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
-        "provider, method_name, kwargs, storage",
+        "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_ALLOW_FAILURES,
     )
     @pytest.mark.xfail
     def test_standalone_providers_allow_failures(
         self: "ProvidersTestCase",
+        fake: Faker,
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
@@ -570,7 +622,7 @@ class ProvidersTestCase(unittest.TestCase):
         """Test standalone providers, but allow failures."""
         if storage is None:
             storage = FS_STORAGE
-        _provider = provider(None)  # noqa
+        _provider = provider(fake)  # noqa
         _method = getattr(_provider, method_name)
         kwargs["storage"] = storage
         _file = _method(**kwargs)
@@ -606,15 +658,15 @@ class ProvidersTestCase(unittest.TestCase):
                     "func_choices": [
                         (
                             create_inner_docx_file,
-                            {"storage": FS_STORAGE, "generator": _FAKER},
+                            {"storage": FS_STORAGE, "generator": FAKER},
                         ),
                         (
                             create_inner_epub_file,
-                            {"storage": FS_STORAGE, "generator": _FAKER},
+                            {"storage": FS_STORAGE, "generator": FAKER},
                         ),
                         (
                             create_inner_txt_file,
-                            {"storage": FS_STORAGE, "generator": _FAKER},
+                            {"storage": FS_STORAGE, "generator": FAKER},
                         ),
                     ]
                 },
@@ -793,10 +845,10 @@ class ProvidersTestCase(unittest.TestCase):
         self: "ProvidersTestCase",
     ):
         with self.assertRaises(NotImplementedError):
-            Mp3FileProvider(_FAKER).mp3_file(mp3_generator_cls=BaseMp3Generator)
+            Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=BaseMp3Generator)
 
         class MyMp3Generator(BaseMp3Generator):
             """Test MP3 generator."""
 
         with self.assertRaises(NotImplementedError):
-            Mp3FileProvider(_FAKER).mp3_file(mp3_generator_cls=MyMp3Generator)
+            Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=MyMp3Generator)
