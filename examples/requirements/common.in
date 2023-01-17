@@ -1,6 +1,5 @@
 edge-tts
 imgkit
-fpdf
 gTTS
 odfpy
 openpyxl
@@ -8,5 +7,6 @@ pathy[all]
 pdfkit
 python-docx
 python-pptx
+reportlab
 tablib
 xml2epub

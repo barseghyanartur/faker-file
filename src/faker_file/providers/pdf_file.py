@@ -2,7 +2,12 @@ from io import BytesIO
 from typing import Optional
 
 from faker.providers import BaseProvider
-from fpdf import FPDF
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.platypus import Paragraph, SimpleDocTemplate
 
 from ..base import FileMixin, StringValue
 from ..constants import (
@@ -95,14 +100,24 @@ class PdfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        pdf = FPDF()
-        pdf.add_page()
-        pdf.add_font(fname=font_path, family=font_name)
-        pdf.set_font(font_name)
-        pdf.write(txt=content)
+        styles = getSampleStyleSheet()
+        style_paragraph = styles["Normal"]
+        pdfmetrics.registerFont(TTFont(font_name, font_path))
 
+        story = []
         buffer = BytesIO()
-        pdf.output(buffer)
+        doc = SimpleDocTemplate(
+            buffer,
+            pagesize=letter,
+            bottomMargin=0.4 * inch,
+            topMargin=0.6 * inch,
+            rightMargin=0.8 * inch,
+            leftMargin=0.8 * inch,
+            initialFontName=font_name,
+        )
+        paragraph = Paragraph(content, style_paragraph)
+        story.append(paragraph)
+        doc.build(story)
 
         storage.write_bytes(filename, buffer.getvalue())
 

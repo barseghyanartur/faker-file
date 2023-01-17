@@ -58,8 +58,6 @@ et-xmlfile==1.1.0
     # via openpyxl
 exceptiongroup==1.0.4
     # via pytest
-fpdf==1.7.2
-    # via -r examples/requirements/common.in
 frozenlist==1.3.3
     # via
     #   aiohttp
@@ -131,6 +129,7 @@ pdfkit==1.0.0
 pillow==9.3.0
     # via
     #   python-pptx
+    #   reportlab
     #   xml2epub
 pluggy==1.0.0
     # via pytest
@@ -162,6 +161,8 @@ python-dateutil==2.8.2
 python-docx==0.8.11
     # via -r examples/requirements/common.in
 python-pptx==0.6.21
+    # via -r examples/requirements/common.in
+reportlab==3.6.12
     # via -r examples/requirements/common.in
 requests==2.28.1
     # via
