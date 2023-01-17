@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.9
+------
+2023-01-18
+
+- Add an installation directive ``[common]`` to install everything except
+  ML libraries.
+- Added testing of UTF8 content.
+
 0.10.8
 ------
 2023-01-16

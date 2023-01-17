@@ -80,6 +80,14 @@ Latest stable version from PyPI
 
     pip install faker-file
 
+**With most common dependencies**
+
+*Everything, except ML libraries which are required for data augmentation only*
+
+.. code-block:: sh
+
+    pip install faker-file[common]
+
 **With DOCX support**
 
 .. code-block:: sh
