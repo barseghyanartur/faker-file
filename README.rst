@@ -317,12 +317,10 @@ Native file system storage. Requires ``pathy``.
 
 `AWSS3Storage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-AWS S3 storage. Requires ``pathy``.
+AWS S3 storage. Requires ``pathy`` and ``boto3``.
 
 .. code-block:: python
 
-    import tempfile
-    from pathy import use_fs
     from faker import Faker
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.storages.aws_s3 import AWSS3Storage
