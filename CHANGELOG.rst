@@ -15,6 +15,17 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.10
+-------
+2023-01-19
+
+- Allow passing ``model_name`` and ``action`` arguments to
+  the ``ContextualWordEmbeddingsAugmenter``.
+- Replace ``bert-base-cased`` with ``bert-base-multilingual-cased`` as a
+  default model for ``ContextualWordEmbeddingsAugmenter``.
+- Improve ``PPTX`` document layout.
+- Minor fixes in documentation.
+
 0.10.9
 ------
 2023-01-18

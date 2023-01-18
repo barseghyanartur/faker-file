@@ -105,6 +105,27 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
         }
     )
 
+Create a ZIP file of 9 DOCX files with content generated from template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 9 DOCX files in the ZIP archive.
+- Content is generated dynamically from given template.
+
+.. code-block:: python
+
+    from faker_file.providers.helpers.inner import create_inner_docx_file
+
+    TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
+
+    file = ZipFileProvider(FAKER).zip_file(
+        options={
+            "count": 9,
+            "create_inner_file_func": create_inner_docx_file,
+            "create_inner_file_args": {
+                "content": TEMPLATE,
+            },
+        }
+    )
+
 Create a nested ZIP file
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Create a ZIP file which contains 5 ZIP files which contain 5 ZIP files which
@@ -124,6 +145,7 @@ contain 5 DOCX files.
         create_inner_docx_file,
         create_inner_zip_file,
     )
+
     file = ZipFileProvider(FAKER).zip_file(
         prefix="nested_level_0_",
         options={
@@ -336,7 +358,7 @@ Create a PDF file with predefined template containing dynamic fixtures
 
 .. code-block:: python
 
-    template = """
+    TEMPLATE = """
     {{date}} {{city}}, {{country}}
 
     Hello {{name}},
@@ -356,7 +378,7 @@ Create a PDF file with predefined template containing dynamic fixtures
     {{phone_number}}
     """
 
-    file = FAKER.pdf_file(content=template, wrap_chars_after=80)
+    file = FAKER.pdf_file(content=TEMPLATE, wrap_chars_after=80)
 
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
@@ -660,11 +682,14 @@ See the following example:
 
 .. code-block:: python
 
+    from faker import Faker
     from faker_file.providers.augment_file_from_dir import (
         AugmentFileFromDirProvider,
     )
 
-    file = AugmentFileFromDirProvider(None).augment_file_from_dir(
+    FAKER = Faker()
+
+    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
         source_dir_path="/path/to/source/",
     )
 
@@ -689,10 +714,43 @@ however narrow that list by providing ``extensions`` argument:
 
 .. code-block:: python
 
-    file = AugmentFileFromDirProvider(None).augment_file_from_dir(
+    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
         source_dir_path="/path/to/source/",
         extensions={"docx", "pdf"},  # Pick only DOCX or PDF
     )
+
+By default ``bert-base-multilingual-cased`` model is used, which is
+pretrained on the top 104 languages with the largest Wikipedia using a
+masked language modeling (MLM) objective. If you want to use a different
+model, specify the proper identifier in the ``model_path`` argument.
+Some well working options for `model_path` are:
+
+- ``bert-base-multilingual-cased``
+- ``bert-base-multilingual-uncased``
+- ``bert-base-cased``
+- ``bert-base-uncased``
+- ``bert-base-german-cased``
+- ``GroNLP/bert-base-dutch-cased``
+
+.. code-block:: python
+
+    from faker_file.providers.augment_file_from_dir.augmenters import (
+        nlpaug_augmenter
+    )
+
+    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
+        text_augmenter_cls=(
+            nlpaug_augmenter.ContextualWordEmbeddingsAugmenter
+        ),
+        text_augmenter_kwargs={
+            "model_path": "bert-base-cased",
+            "action": "substitute",  # or "insert"
+        }
+    )
+
+Refer to `nlpaug`
+`docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
+and check `Textual augmenters` examples.
 
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------

@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.10.9"
+version = "0.10.10"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -68,7 +68,7 @@ extras_require = {
     "s3": ["pathy[s3]"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     "xlsx": ["tablib", "openpyxl"],
-    "data-augmentation": ["nlpaug", "torch", "transformers", "tika"],
+    "data-augmentation": _ml,
 }
 
 setup(
