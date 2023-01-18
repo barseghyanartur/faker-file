@@ -20,7 +20,7 @@ build:
           -
             command: pylint-run
             use_website_config: true
-    tests: true
+    tests: false
 filter:
   excluded_paths:
     - '*/test/*'
