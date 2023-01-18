@@ -9,18 +9,18 @@ build:
       # Whether to setup a virtual environment in the repository root directory.
       # Defaults to true if omitted.
       virtualenv: true
-    nodes:
-      analysis:
-        project_setup:
-          override:
-            - 'true'
-        tests:
-          override:
-            - py-scrutinizer-run
-            -
-              command: pylint-run
-              use_website_config: true
-      tests: true
+  nodes:
+    analysis:
+      project_setup:
+        override:
+          - 'true'
+      tests:
+        override:
+          - py-scrutinizer-run
+          -
+            command: pylint-run
+            use_website_config: true
+    tests: true
 filter:
   excluded_paths:
     - '*/test/*'
