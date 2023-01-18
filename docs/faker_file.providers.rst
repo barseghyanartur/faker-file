@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 20
 
+   faker_file.providers.augment_file_from_dir
    faker_file.providers.helpers
    faker_file.providers.mixins
    faker_file.providers.mp3_file
@@ -74,6 +75,14 @@ faker\_file.providers.ods\_file module
 --------------------------------------
 
 .. automodule:: faker_file.providers.ods_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.odt\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.odt_file
    :members:
    :undoc-members:
    :show-inheritance:
