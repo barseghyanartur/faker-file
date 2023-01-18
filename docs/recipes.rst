@@ -587,25 +587,7 @@ Generate 100 DOCX files
     STORAGE = FileSystemStorage()
 
     # Document template
-    TEMPLATE = """
-    {{date}} {{city}}, {{country}}
-
-    Hello {{name}},
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    Address: {{address}}
-
-    Best regards,
-
-    {{name}}
-    {{address}}
-    {{phone_number}}
-    """
+    TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
 
     with Pool(processes=8) as pool:
         for _ in range(100):  # Number of times we want to run our function
@@ -723,7 +705,7 @@ By default ``bert-base-multilingual-cased`` model is used, which is
 pretrained on the top 104 languages with the largest Wikipedia using a
 masked language modeling (MLM) objective. If you want to use a different
 model, specify the proper identifier in the ``model_path`` argument.
-Some well working options for `model_path` are:
+Some well working options for ``model_path`` are:
 
 - ``bert-base-multilingual-cased``
 - ``bert-base-multilingual-uncased``
@@ -748,7 +730,7 @@ Some well working options for `model_path` are:
         }
     )
 
-Refer to `nlpaug`
+Refer to ``nlpaug``
 `docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
 and check `Textual augmenters` examples.
 
