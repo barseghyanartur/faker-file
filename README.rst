@@ -27,6 +27,10 @@ faker-file
     :target: https://coveralls.io/github/barseghyanartur/faker-file?branch=main
     :alt: Coverage
 
+.. _Read the Docs: http://faker-file.readthedocs.io/
+.. _Quick start: https://faker-file.readthedocs.io/en/latest/quick_start.html
+.. _Recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
+
 Prerequisites
 =============
 All of core dependencies of this package are `MIT` licensed.
@@ -61,8 +65,9 @@ below between the brackets.
 
 Documentation
 =============
-Documentation is available on `Read the Docs
-<http://faker-file.readthedocs.io/>`_.
+- Documentation is available on `Read the Docs`_.
+- For bootstrapping check the `Quick start`_.
+- For various ready to use code examples see the `Recipes`_.
 
 Installation
 ============
