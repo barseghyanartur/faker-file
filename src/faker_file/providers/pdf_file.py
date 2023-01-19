@@ -93,7 +93,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             options["encoding"] = encoding
 
         raw_content = pdfkit.from_string(
-            f"<pre>{content}</pre>",
+            f"<pre style='white-space: pre-wrap;'>{content}</pre>",
             options=options,
         )
 
