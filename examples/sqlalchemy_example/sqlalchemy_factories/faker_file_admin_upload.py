@@ -13,6 +13,7 @@ from faker_file.providers.epub_file import EpubFileProvider
 from faker_file.providers.ico_file import IcoFileProvider
 from faker_file.providers.jpeg_file import JpegFileProvider
 from faker_file.providers.mp3_file import Mp3FileProvider
+from faker_file.providers.odp_file import OdpFileProvider
 from faker_file.providers.ods_file import OdsFileProvider
 from faker_file.providers.odt_file import OdtFileProvider
 from faker_file.providers.pdf_file import PdfFileProvider
@@ -38,6 +39,7 @@ Faker.add_provider(EpubFileProvider)
 Faker.add_provider(IcoFileProvider)
 Faker.add_provider(JpegFileProvider)
 Faker.add_provider(Mp3FileProvider)
+Faker.add_provider(OdpFileProvider)
 Faker.add_provider(OdsFileProvider)
 Faker.add_provider(OdtFileProvider)
 Faker.add_provider(PdfFileProvider)
@@ -64,6 +66,7 @@ PROVIDER_CHOICES = [
     lambda: IcoFileProvider(None).ico_file(storage=STORAGE),
     lambda: JpegFileProvider(None).jpeg_file(storage=STORAGE),
     lambda: Mp3FileProvider(None).mp3_file(storage=STORAGE),
+    lambda: OdpFileProvider(None).odp_file(storage=STORAGE),
     lambda: OdsFileProvider(None).ods_file(storage=STORAGE),
     lambda: OdtFileProvider(None).odt_file(storage=STORAGE),
     lambda: PdfFileProvider(None).pdf_file(storage=STORAGE),
@@ -119,6 +122,7 @@ class UploadFactory(AbstractUploadFactory):
         ico_file = Trait(file=Faker("ico_file", storage=STORAGE))
         jpeg_file = Trait(file=Faker("jpeg_file", storage=STORAGE))
         mp3_file = Trait(file=Faker("mp3_file", storage=STORAGE))
+        odp_file = Trait(file=Faker("odp_file", storage=STORAGE))
         ods_file = Trait(file=Faker("ods_file", storage=STORAGE))
         odt_file = Trait(file=Faker("odt_file", storage=STORAGE))
         pdf_file = Trait(file=Faker("pdf_file", storage=STORAGE))

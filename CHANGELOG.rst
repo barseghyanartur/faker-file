@@ -20,6 +20,7 @@ are used for versioning (schema follows below):
 2023-01-21
 
 - Add ``TarFileProvider`` and ``create_inner_tar_file`` function.
+- Add ``OdpFileProvider`` and ``create_inner_odp_file`` function.
 
 0.10.11
 -------

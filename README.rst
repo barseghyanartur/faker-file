@@ -49,6 +49,7 @@ below between the brackets.
 - ``MP3`` file support requires ``gtts`` (`MIT`) or ``edge-tts`` (`GPLv3`).
 - ``PDF`` file support requires ``pdfkit`` (`MIT`).
 - ``PPTX`` file support requires ``python-pptx`` (`MIT`).
+- ``ODP`` file support requires ``odfpy`` (`Apache 2`).
 - ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
 - ``ODT`` file support requires ``odfpy`` (`Apache 2`).
 - ``XLSX`` file support requires ``tablib`` (`MIT`) and ``openpyxl`` (`MIT`).
@@ -163,6 +164,7 @@ Supported file types
 - ``MP3``
 - ``ODS``
 - ``ODT``
+- ``ODP``
 - ``PDF``
 - ``PNG``
 - ``RTF``

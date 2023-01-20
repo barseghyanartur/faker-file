@@ -25,6 +25,7 @@ from ..providers.helpers.inner import (
     create_inner_ico_file,
     create_inner_jpeg_file,
     create_inner_mp3_file,
+    create_inner_odp_file,
     create_inner_ods_file,
     create_inner_odt_file,
     create_inner_pdf_file,
@@ -47,6 +48,7 @@ from ..providers.mp3_file.generators.edge_tts_generator import (
     EdgeTtsMp3Generator,
 )
 from ..providers.mp3_file.generators.gtts_generator import GttsMp3Generator
+from ..providers.odp_file import OdpFileProvider
 from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
 from ..providers.pdf_file import PdfFileProvider
@@ -79,6 +81,7 @@ FileProvider = Union[
     IcoFileProvider,
     JpegFileProvider,
     Mp3FileProvider,
+    OdpFileProvider,
     OdsFileProvider,
     OdtFileProvider,
     PdfFileProvider,
@@ -259,6 +262,21 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
+            },
+            None,
+        ),
+        # ODP
+        (FAKER, OdpFileProvider, "odp_file", {}, None),
+        (FAKER_HY, OdpFileProvider, "odp_file", {}, None),
+        (FAKER, OdpFileProvider, "odp_file", {}, False),
+        (FAKER, OdpFileProvider, "odp_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            OdpFileProvider,
+            "odp_file",
+            {
+                "wrap_chars_after": 40,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
             None,
         ),
@@ -537,6 +555,7 @@ class ProvidersTestCase(unittest.TestCase):
         (create_inner_ico_file, "Lorem ipsum", {}),
         (create_inner_jpeg_file, "Lorem ipsum", {}),
         (create_inner_mp3_file, "Lorem ipsum", {}),
+        (create_inner_odp_file, "Lorem ipsum", {}),
         (create_inner_ods_file, None, {}),
         (create_inner_odt_file, "Lorem ipsum", {}),
         (create_inner_pdf_file, "Lorem ipsum", {}),
@@ -813,6 +832,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.mp3_file",
                 "Mp3FileProvider",
                 create_inner_mp3_file,
+            ),
+            # ODP
+            (
+                "faker_file.providers.odp_file",
+                "OdpFileProvider",
+                create_inner_odp_file,
             ),
             # ODS
             (

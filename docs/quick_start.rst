@@ -25,6 +25,7 @@ With ``Faker``
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.odp_file import OdpFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.odt_file import OdtFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
@@ -49,6 +50,7 @@ With ``Faker``
     FAKER.add_provider(IcoFileProvider)
     FAKER.add_provider(JpegFileProvider)
     FAKER.add_provider(Mp3FileProvider)
+    FAKER.add_provider(OdpFileProvider)
     FAKER.add_provider(OdsFileProvider)
     FAKER.add_provider(OdtFileProvider)
     FAKER.add_provider(PdfFileProvider)
@@ -76,6 +78,7 @@ With ``Faker``
     ico_file = FAKER.ico_file()
     jpeg_file = FAKER.jpeg_file()
     mp3_file = FAKER.mp3_file()
+    odp_file = FAKER.odp_file()
     ods_file = FAKER.ods_file()
     odt_file = FAKER.odt_file()
     pdf_file = FAKER.pdf_file()
@@ -107,6 +110,7 @@ With ``factory_boy``
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.odp_file import OdpFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.odt_file import OdtFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
@@ -130,6 +134,7 @@ With ``factory_boy``
     Faker.add_provider(IcoFileProvider)
     Faker.add_provider(JpegFileProvider)
     Faker.add_provider(Mp3FileProvider)
+    Faker.add_provider(OdpFileProvider)
     Faker.add_provider(OdsFileProvider)
     Faker.add_provider(OdtFileProvider)
     Faker.add_provider(PdfFileProvider)
@@ -189,6 +194,7 @@ upload/factories.py
     from faker_file.providers.ico_file import IcoFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
+    from faker_file.providers.odp_file import OdpFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.odt_file import OdtFileProvider
     from faker_file.providers.pdf_file import PdfFileProvider
@@ -221,6 +227,7 @@ upload/factories.py
     Faker.add_provider(IcoFileProvider)
     Faker.add_provider(JpegFileProvider)
     Faker.add_provider(Mp3FileProvider)
+    Faker.add_provider(OdpFileProvider)
     Faker.add_provider(OdsFileProvider)
     Faker.add_provider(OdtFileProvider)
     Faker.add_provider(PdfFileProvider)
@@ -260,6 +267,7 @@ upload/factories.py
             ico_file = Trait(file=Faker("ico_file", storage=STORAGE))
             jpeg_file = Trait(file=Faker("jpeg_file", storage=STORAGE))
             mp3_file = Trait(file=Faker("mp3_file", storage=STORAGE))
+            odp_file = Trait(file=Faker("odp_file", storage=STORAGE))
             ods_file = Trait(file=Faker("ods_file", storage=STORAGE))
             odt_file = Trait(file=Faker("odt_file", storage=STORAGE))
             pdf_file = Trait(file=Faker("pdf_file", storage=STORAGE))

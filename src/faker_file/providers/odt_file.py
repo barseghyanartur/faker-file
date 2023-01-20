@@ -63,7 +63,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a ODT file with random text.
+        """Generate an ODT file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.

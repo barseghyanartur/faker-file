@@ -36,6 +36,7 @@ __all__ = (
     "create_inner_ico_file",
     "create_inner_jpeg_file",
     "create_inner_mp3_file",
+    "create_inner_odp_file",
     "create_inner_ods_file",
     "create_inner_odt_file",
     "create_inner_pdf_file",
@@ -257,6 +258,31 @@ def create_inner_mp3_file(
         content=content,
         mp3_generator_cls=mp3_generator_cls,
         mp3_generator_kwargs=mp3_generator_kwargs,
+        **kwargs,
+    )
+
+
+def create_inner_odp_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner ODP file."""
+    try:
+        from ..odp_file import OdpFileProvider
+    except ImportError as err:
+        raise err
+
+    return OdpFileProvider(generator).odp_file(
+        storage=storage,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content=content,
         **kwargs,
     )
 

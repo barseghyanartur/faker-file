@@ -30,7 +30,7 @@ tests_require = [
 _common = [
     "Faker",  # core
     "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
-    "odfpy",  # ODS, ODT
+    "odfpy",  # ODP, ODS, ODT
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
     "pdfkit",  # PDF
@@ -61,6 +61,7 @@ extras_require = {
     "mp3": ["gtts", "edge-tts"],
     "mp3-edge-tts": ["edge-tts"],
     "mp3-gtts": ["gtts"],
+    "odp": ["odfpy"],
     "ods": ["tablib", "odfpy"],
     "odt": ["odfpy"],
     "pdf": ["pdfkit"],
