@@ -90,7 +90,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
             extension=self.extension,
         )
-        data = {}
+        data = {"inner": {}, "files": []}
         fs_storage = FileSystemStorage()
 
         # Specific
@@ -130,7 +130,6 @@ class ZipFileProvider(BaseProvider, FileMixin):
 
         _zip_content = BytesIO()
         with zipfile.ZipFile(_zip_content, "w") as __fake_file:
-            data["files"] = []
             _kwargs = {"generator": self.generator}
             _kwargs.update(_create_inner_file_args)
             for __i in range(_count):
@@ -138,6 +137,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
                     storage=fs_storage,
                     **_kwargs,
                 )
+                data["inner"][str(__file)] = __file
                 __file_abs_path = fs_storage.abspath(__file)
                 __fake_file.write(
                     __file_abs_path,

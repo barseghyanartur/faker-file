@@ -11,6 +11,11 @@ from pathy import use_fs
 from ..base import DEFAULT_REL_PATH
 from ..providers.augment_file_from_dir import AugmentFileFromDirProvider
 from ..providers.augment_file_from_dir.augmenters.base import BaseTextAugmenter
+from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
+    DEFAULT_ACTION,
+    DEFAULT_MODEL_PATH,
+    ContextualWordEmbeddingsAugmenter,
+)
 from ..providers.augment_file_from_dir.extractors.base import BaseTextExtractor
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
@@ -87,8 +92,22 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         )
 
     FAKER: Faker
+    # provider, method_name, kwargs, storage
     __parametrized_data = [
         # AugmentFileFromDirProvider
+        (
+            AugmentFileFromDirProvider,
+            "augment_file_from_dir",
+            {
+                "source_dir_path": SOURCE_DIR_PATH,
+                "text_augmenter_cls": ContextualWordEmbeddingsAugmenter,
+                "text_augmenter_kwargs": {
+                    "model_path": DEFAULT_MODEL_PATH,
+                    "action": DEFAULT_ACTION,
+                },
+            },
+            None,
+        ),
         (
             AugmentFileFromDirProvider,
             "augment_file_from_dir",

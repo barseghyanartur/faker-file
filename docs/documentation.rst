@@ -11,5 +11,6 @@ Contents:
    index
    quick_start
    recipes
+   security
    changelog
    package

@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.10.8"
+version = "0.10.11"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -27,25 +27,31 @@ tests_require = [
     "coverage",
 ]
 
+_common = [
+    "Faker",  # core
+    "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
+    "odfpy",  # ODS, ODT
+    "openpyxl",  # XLSX
+    "pathy[all]",  # remote storages: Azure, GCS, S3
+    "fpdf2",  # PDF
+    "python-docx",  # DOCX
+    "python-pptx",  # PPTX
+    "tablib",  # ODS, XLSX
+    "xml2epub",  # EPUB
+    "gtts",  # MP3
+    "edge-tts",  # MP3
+]
+
+_ml = [
+    "nlpaug",  # data-augmentation
+    "torch",  # data-augmentation
+    "transformers",  # data-augmentation
+    "tika",  # data-augmentation
+]
+
 extras_require = {
-    "all": [
-        "Faker",  # core
-        "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
-        "odfpy",  # ODS, ODT
-        "openpyxl",  # XLSX
-        "pathy[all]",  # remote storages: Azure, GCS, S3
-        "fpdf2",  # PDF
-        "python-docx",  # DOCX
-        "python-pptx",  # PPTX
-        "tablib",  # ODS, XLSX
-        "xml2epub",  # EPUB
-        "gtts",  # MP3
-        "edge-tts",  # MP3
-        "nlpaug",  # data-augmentation
-        "torch",  # data-augmentation
-        "transformers",  # data-augmentation
-        "tika",  # data-augmentation
-    ],
+    "all": _common + _ml,
+    "common": _common,
     "azure": ["pathy[azure]"],
     "django": ["Django>=2.2"],
     "docx": ["python-docx"],
@@ -62,7 +68,7 @@ extras_require = {
     "s3": ["pathy[s3]"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     "xlsx": ["tablib", "openpyxl"],
-    "data-augmentation": ["nlpaug", "torch", "transformers", "tika"],
+    "data-augmentation": _ml,
 }
 
 setup(

@@ -27,6 +27,10 @@ faker-file
     :target: https://coveralls.io/github/barseghyanartur/faker-file?branch=main
     :alt: Coverage
 
+.. _Read the Docs: http://faker-file.readthedocs.io/
+.. _Quick start: https://faker-file.readthedocs.io/en/latest/quick_start.html
+.. _Recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
+
 Prerequisites
 =============
 All of core dependencies of this package are `MIT` licensed.
@@ -61,8 +65,9 @@ below between the brackets.
 
 Documentation
 =============
-Documentation is available on `Read the Docs
-<http://faker-file.readthedocs.io/>`_.
+- Documentation is available on `Read the Docs`_.
+- For bootstrapping check the `Quick start`_.
+- For various ready to use code examples see the `Recipes`_.
 
 Installation
 ============
@@ -79,6 +84,14 @@ Latest stable version from PyPI
 .. code-block:: sh
 
     pip install faker-file
+
+**With most common dependencies**
+
+*Everything, except ML libraries which are required for data augmentation only*
+
+.. code-block:: sh
+
+    pip install faker-file[common]
 
 **With DOCX support**
 
@@ -309,12 +322,10 @@ Native file system storage. Requires ``pathy``.
 
 `AWSS3Storage` example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-AWS S3 storage. Requires ``pathy``.
+AWS S3 storage. Requires ``pathy`` and ``boto3``.
 
 .. code-block:: python
 
-    import tempfile
-    from pathy import use_fs
     from faker import Faker
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.storages.aws_s3 import AWSS3Storage

@@ -15,6 +15,33 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.11
+-------
+2023-01-20
+
+- Improve ``EPUB`` document layout.
+- Improve ``PDF`` document layout.
+- Minor documentation improvements.
+
+0.10.10
+-------
+2023-01-19
+
+- Allow passing ``model_name`` and ``action`` arguments to
+  the ``ContextualWordEmbeddingsAugmenter``.
+- Replace ``bert-base-cased`` with ``bert-base-multilingual-cased`` as a
+  default model for ``ContextualWordEmbeddingsAugmenter``.
+- Improve ``PPTX`` document layout.
+- Minor fixes in documentation.
+
+0.10.9
+------
+2023-01-18
+
+- Add an installation directive ``[common]`` to install everything except
+  ML libraries.
+- Added testing of UTF8 content.
+
 0.10.8
 ------
 2023-01-16

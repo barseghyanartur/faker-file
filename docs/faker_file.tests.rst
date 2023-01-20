@@ -4,6 +4,14 @@ faker\_file.tests package
 Submodules
 ----------
 
+faker\_file.tests.test\_augment\_file\_from\_dir\_provider module
+-----------------------------------------------------------------
+
+.. automodule:: faker_file.tests.test_augment_file_from_dir_provider
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.tests.test\_django\_integration module
 --------------------------------------------------
 
@@ -32,6 +40,14 @@ faker\_file.tests.test\_storages module
 ---------------------------------------
 
 .. automodule:: faker_file.tests.test_storages
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.tests.texts module
+------------------------------
+
+.. automodule:: faker_file.tests.texts
    :members:
    :undoc-members:
    :show-inheritance:

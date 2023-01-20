@@ -92,7 +92,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
-        )
+        ).replace("\n", "<br>")
 
         title = self._generate_text_content(
             max_nb_chars=50,
