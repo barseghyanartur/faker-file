@@ -71,6 +71,14 @@ faker\_file.providers.jpeg\_file module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.providers.odp\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.odp_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.ods\_file module
 --------------------------------------
 
@@ -131,6 +139,14 @@ faker\_file.providers.svg\_file module
 --------------------------------------
 
 .. automodule:: faker_file.providers.svg_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.tar\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.tar_file
    :members:
    :undoc-members:
    :show-inheritance:
