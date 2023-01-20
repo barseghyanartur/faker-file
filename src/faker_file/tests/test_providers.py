@@ -25,6 +25,7 @@ from ..providers.helpers.inner import (
     create_inner_ico_file,
     create_inner_jpeg_file,
     create_inner_mp3_file,
+    create_inner_odp_file,
     create_inner_ods_file,
     create_inner_odt_file,
     create_inner_pdf_file,
@@ -32,6 +33,7 @@ from ..providers.helpers.inner import (
     create_inner_pptx_file,
     create_inner_rtf_file,
     create_inner_svg_file,
+    create_inner_tar_file,
     create_inner_txt_file,
     create_inner_webp_file,
     create_inner_xlsx_file,
@@ -46,6 +48,7 @@ from ..providers.mp3_file.generators.edge_tts_generator import (
     EdgeTtsMp3Generator,
 )
 from ..providers.mp3_file.generators.gtts_generator import GttsMp3Generator
+from ..providers.odp_file import OdpFileProvider
 from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
 from ..providers.pdf_file import PdfFileProvider
@@ -54,6 +57,7 @@ from ..providers.pptx_file import PptxFileProvider
 from ..providers.random_file_from_dir import RandomFileFromDirProvider
 from ..providers.rtf_file import RtfFileProvider
 from ..providers.svg_file import SvgFileProvider
+from ..providers.tar_file import TarFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import WebpFileProvider
 from ..providers.xlsx_file import XlsxFileProvider
@@ -77,6 +81,7 @@ FileProvider = Union[
     IcoFileProvider,
     JpegFileProvider,
     Mp3FileProvider,
+    OdpFileProvider,
     OdsFileProvider,
     OdtFileProvider,
     PdfFileProvider,
@@ -84,6 +89,7 @@ FileProvider = Union[
     PptxFileProvider,
     RtfFileProvider,
     SvgFileProvider,
+    TarFileProvider,
     TxtFileProvider,
     WebpFileProvider,
     XlsxFileProvider,
@@ -256,6 +262,21 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
+            },
+            None,
+        ),
+        # ODP
+        (FAKER, OdpFileProvider, "odp_file", {}, None),
+        (FAKER_HY, OdpFileProvider, "odp_file", {}, None),
+        (FAKER, OdpFileProvider, "odp_file", {}, False),
+        (FAKER, OdpFileProvider, "odp_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            OdpFileProvider,
+            "odp_file",
+            {
+                "wrap_chars_after": 40,
+                "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
             },
             None,
         ),
@@ -438,6 +459,13 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # TAR
+        (FAKER, TarFileProvider, "tar_file", {}, None),
+        (FAKER, TarFileProvider, "tar_file", {}, False),
+        (FAKER, TarFileProvider, "tar_file", {}, PATHY_FS_STORAGE),
+        (FAKER, TarFileProvider, "tar_file", {"compression": "gz"}, None),
+        (FAKER, TarFileProvider, "tar_file", {"compression": "bz2"}, None),
+        (FAKER, TarFileProvider, "tar_file", {"compression": "xz"}, None),
         # TXT
         (FAKER, TxtFileProvider, "txt_file", {}, None),
         (FAKER_HY, TxtFileProvider, "txt_file", {}, None),
@@ -514,6 +542,52 @@ class ProvidersTestCase(unittest.TestCase):
     __PARAMETRIZED_DATA_ALLOW_FAILURES = [
         (FAKER, WebpFileProvider, "webp_file", {}, None),
         (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
+    ]
+
+    # create_inner_file_func, content, create_inner_file_args
+    __PARAMETRIZED_DATA_ARCHIVES = [
+        (None, None, None),
+        (create_inner_bin_file, b"Lorem ipsum", {}),
+        (create_inner_csv_file, "Lorem ipsum", {}),
+        (create_inner_docx_file, "Lorem ipsum", {}),
+        (create_inner_eml_file, None, {}),
+        (create_inner_epub_file, "Lorem ipsum", {}),
+        (create_inner_ico_file, "Lorem ipsum", {}),
+        (create_inner_jpeg_file, "Lorem ipsum", {}),
+        (create_inner_mp3_file, "Lorem ipsum", {}),
+        (create_inner_odp_file, "Lorem ipsum", {}),
+        (create_inner_ods_file, None, {}),
+        (create_inner_odt_file, "Lorem ipsum", {}),
+        (create_inner_pdf_file, "Lorem ipsum", {}),
+        (create_inner_png_file, "Lorem ipsum", {}),
+        (create_inner_pptx_file, "Lorem ipsum", {}),
+        (create_inner_rtf_file, "Lorem ipsum", {}),
+        (create_inner_svg_file, "Lorem ipsum", {}),
+        (create_inner_tar_file, None, {}),
+        (create_inner_txt_file, "Lorem ipsum", {}),
+        # (create_inner_webp_file, "Lorem ipsum", {}),
+        (create_inner_xlsx_file, None, {}),
+        (create_inner_zip_file, None, {}),
+        (
+            fuzzy_choice_create_inner_file,
+            None,
+            {
+                "func_choices": [
+                    (
+                        create_inner_docx_file,
+                        {"storage": FS_STORAGE, "generator": FAKER},
+                    ),
+                    (
+                        create_inner_epub_file,
+                        {"storage": FS_STORAGE, "generator": FAKER},
+                    ),
+                    (
+                        create_inner_txt_file,
+                        {"storage": FS_STORAGE, "generator": FAKER},
+                    ),
+                ]
+            },
+        ),
     ]
 
     def setUp(self: "ProvidersTestCase"):
@@ -630,48 +704,7 @@ class ProvidersTestCase(unittest.TestCase):
 
     @parametrize(
         "create_inner_file_func, content, create_inner_file_args",
-        [
-            (None, None, None),
-            (create_inner_bin_file, b"Lorem ipsum", {}),
-            (create_inner_csv_file, "Lorem ipsum", {}),
-            (create_inner_docx_file, "Lorem ipsum", {}),
-            (create_inner_eml_file, None, {}),
-            (create_inner_epub_file, "Lorem ipsum", {}),
-            (create_inner_ico_file, "Lorem ipsum", {}),
-            (create_inner_jpeg_file, "Lorem ipsum", {}),
-            (create_inner_mp3_file, "Lorem ipsum", {}),
-            (create_inner_ods_file, None, {}),
-            (create_inner_odt_file, "Lorem ipsum", {}),
-            (create_inner_pdf_file, "Lorem ipsum", {}),
-            (create_inner_png_file, "Lorem ipsum", {}),
-            (create_inner_pptx_file, "Lorem ipsum", {}),
-            (create_inner_rtf_file, "Lorem ipsum", {}),
-            (create_inner_svg_file, "Lorem ipsum", {}),
-            (create_inner_txt_file, "Lorem ipsum", {}),
-            # (create_inner_webp_file, "Lorem ipsum", {}),
-            (create_inner_xlsx_file, None, {}),
-            (create_inner_zip_file, None, {}),
-            (
-                fuzzy_choice_create_inner_file,
-                None,
-                {
-                    "func_choices": [
-                        (
-                            create_inner_docx_file,
-                            {"storage": FS_STORAGE, "generator": FAKER},
-                        ),
-                        (
-                            create_inner_epub_file,
-                            {"storage": FS_STORAGE, "generator": FAKER},
-                        ),
-                        (
-                            create_inner_txt_file,
-                            {"storage": FS_STORAGE, "generator": FAKER},
-                        ),
-                    ]
-                },
-            ),
-        ],
+        __PARAMETRIZED_DATA_ARCHIVES,
     )
     def test_standalone_zip_file(
         self: "ProvidersTestCase",
@@ -686,6 +719,26 @@ class ProvidersTestCase(unittest.TestCase):
         if create_inner_file_args is not None:
             _options["create_inner_file_args"] = create_inner_file_args
         _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+    @parametrize(
+        "create_inner_file_func, content, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_tar_file(
+        self: "ProvidersTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        content: Union[str, Dict] = None,
+        create_inner_file_args: Dict[str, Any] = None,
+    ) -> None:
+        """Test standalone TAR file provider."""
+        _options = {"content": content}
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = TarFileProvider(None).tar_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
@@ -706,6 +759,26 @@ class ProvidersTestCase(unittest.TestCase):
         if create_inner_file_func is not None:
             _options["create_inner_file_func"] = create_inner_file_func
         _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+    @parametrize(
+        "create_inner_file_func, content",
+        [
+            (create_inner_webp_file, "Lorem ipsum"),
+        ],
+    )
+    @pytest.mark.xfail
+    def test_standalone_tar_file_allow_failures(
+        self: "ProvidersTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        content: Union[str, Dict] = None,
+    ) -> None:
+        """Test standalone TAR file provider, but allow failures."""
+        _options = {"content": content}
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        _file = TarFileProvider(None).tar_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
@@ -760,6 +833,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "Mp3FileProvider",
                 create_inner_mp3_file,
             ),
+            # ODP
+            (
+                "faker_file.providers.odp_file",
+                "OdpFileProvider",
+                create_inner_odp_file,
+            ),
             # ODS
             (
                 "faker_file.providers.ods_file",
@@ -801,6 +880,12 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.svg_file",
                 "SvgFileProvider",
                 create_inner_svg_file,
+            ),
+            # TAR
+            (
+                "faker_file.providers.tar_file",
+                "TarFileProvider",
+                create_inner_tar_file,
             ),
             # TXT
             (

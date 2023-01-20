@@ -89,18 +89,17 @@ class PptxFileProvider(BaseProvider, FileMixin):
         )
 
         stream = BytesIO()
-        presentation = Presentation()
-        presentation.slide_width = Inches(25)
-        presentation.slide_height = Inches(16)
+        prs = Presentation()
+        prs.slide_width = Inches(25)
+        prs.slide_height = Inches(16)
         # Make a blank slide with a text box with random text
-        slide = presentation.slides.add_slide(presentation.slide_layouts[6])
+        slide = prs.slides.add_slide(prs.slide_layouts[6])
         text_box = slide.shapes.add_textbox(0, 0, Inches(25), Inches(16))
         text_box.text = content
         text_box.text_frame.word_wrap = True
-        presentation.save(stream)
-        stream.seek(0)
+        prs.save(stream)
 
-        storage.write_bytes(filename, stream.read())
+        storage.write_bytes(filename, stream.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

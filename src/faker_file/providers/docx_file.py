@@ -90,9 +90,8 @@ class DocxFileProvider(BaseProvider, FileMixin):
             document = Document()
             document.add_paragraph(content)
             document.save(_fake_file)
-            _fake_file.seek(0)
 
-            storage.write_bytes(filename, _fake_file.read())
+            storage.write_bytes(filename, _fake_file.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

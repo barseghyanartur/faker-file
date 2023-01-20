@@ -46,5 +46,4 @@ class GttsMp3Generator(BaseMp3Generator):
         with BytesIO() as __fake_file:
             tts = gTTS(self.content, lang=self.lang, tld=self.tld)
             tts.write_to_fp(__fake_file)
-            __fake_file.seek(0)
-            return __fake_file.read()
+            return __fake_file.getvalue()

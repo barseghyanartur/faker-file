@@ -36,6 +36,7 @@ __all__ = (
     "create_inner_ico_file",
     "create_inner_jpeg_file",
     "create_inner_mp3_file",
+    "create_inner_odp_file",
     "create_inner_ods_file",
     "create_inner_odt_file",
     "create_inner_pdf_file",
@@ -43,6 +44,7 @@ __all__ = (
     "create_inner_pptx_file",
     "create_inner_rtf_file",
     "create_inner_svg_file",
+    "create_inner_tar_file",
     "create_inner_txt_file",
     "create_inner_webp_file",
     "create_inner_xlsx_file",
@@ -260,6 +262,31 @@ def create_inner_mp3_file(
     )
 
 
+def create_inner_odp_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner ODP file."""
+    try:
+        from ..odp_file import OdpFileProvider
+    except ImportError as err:
+        raise err
+
+    return OdpFileProvider(generator).odp_file(
+        storage=storage,
+        prefix=prefix,
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content=content,
+        **kwargs,
+    )
+
+
 def create_inner_ods_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -431,6 +458,28 @@ def create_inner_svg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        **kwargs,
+    )
+
+
+def create_inner_tar_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    compression: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner TAR file."""
+    try:
+        from ..tar_file import TarFileProvider
+    except ImportError as err:
+        raise err
+    return TarFileProvider(generator).tar_file(
+        storage=storage,
+        prefix=prefix,
+        options=options,
+        compression=compression,
         **kwargs,
     )
 

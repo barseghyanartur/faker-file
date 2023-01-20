@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.10.11"
+version = "0.10.12"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -30,7 +30,7 @@ tests_require = [
 _common = [
     "Faker",  # core
     "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
-    "odfpy",  # ODS, ODT
+    "odfpy",  # ODP, ODS, ODT
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
     "fpdf2",  # PDF
@@ -61,6 +61,7 @@ extras_require = {
     "mp3": ["gtts", "edge-tts"],
     "mp3-edge-tts": ["edge-tts"],
     "mp3-gtts": ["gtts"],
+    "odp": ["odfpy"],
     "ods": ["tablib", "odfpy"],
     "odt": ["odfpy"],
     "pdf": ["fpdf2"],

@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.10.12
+-------
+2023-01-21
+
+- Add ``TarFileProvider`` and ``create_inner_tar_file`` function.
+- Add ``OdpFileProvider`` and ``create_inner_odp_file`` function.
+
 0.10.11
 -------
 2023-01-20

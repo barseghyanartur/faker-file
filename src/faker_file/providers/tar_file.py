@@ -1,5 +1,5 @@
 import os
-import zipfile
+import tarfile
 from io import BytesIO
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -14,72 +14,79 @@ from .helpers.inner import create_inner_txt_file
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("ZipFileProvider",)
+__all__ = ("TarFileProvider",)
+
+COMPRESSION_OPTIONS = {"gz", "bz2", "xz"}
 
 
-class ZipFileProvider(BaseProvider, FileMixin):
-    """ZIP file provider.
+class TarFileProvider(BaseProvider, FileMixin):
+    """TAR file provider.
 
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.zip_file import ZipFileProvider
+        from faker_file.providers.tar_file import TarFileProvider
 
         FAKER = Faker()
 
-        file = ZipFileProvider(FAKER).zip_file()
+        file = TarFileProvider(FAKER).tar_file()
 
     Usage example with options:
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
-        from faker_file.providers.zip_file import ZipFileProvider
+        from faker_file.providers.tar_file import TarFileProvider
 
-        file = ZipFileProvider(FAKER).zip_file(
-            prefix="zzz_archive_",
+        file = TarFileProvider(FAKER).tar_file(
+            prefix="ttt_archive_",
             options={
                 "count": 5,
                 "create_inner_file_func": create_inner_docx_file,
                 "create_inner_file_args": {
-                    "prefix": "zzz_docx_file_",
+                    "prefix": "ttt_docx_file_",
                     "max_nb_chars": 1_024,
                 },
-                "directory": "zzz",
+                "directory": "ttt",
             },
         )
 
-    Usage example of nested ZIPs:
+    Usage example of nested TARs:
 
-        from faker_file.providers.helpers.inner import create_inner_zip_file
+        from faker_file.providers.helpers.inner import create_inner_tar_file
 
-        file = ZipFileProvider(FAKER).zip_file(
+        file = TarFileProvider(FAKER).tar_file(
             options={
-                "create_inner_file_func": create_inner_zip_file,
+                "create_inner_file_func": create_inner_tar_file,
                 "create_inner_file_args": {
                     "options": {
                         "create_inner_file_func": create_inner_docx_file,
-                    },
-                },
+                    }
+                }
             },
         )
 
-    If you want to see, which files were included inside the ZIP, check
+    If you want to see, which files were included inside the TAR, check
     the ``file.data["files"]``.
     """
 
-    extension: str = "zip"
+    extension: str = "tar"
 
-    def zip_file(
-        self: "ZipFileProvider",
+    def tar_file(
+        self: "TarFileProvider",
         storage: BaseStorage = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
+        # Once Python 3.7 is deprecated, add the following annotation:
+        #     Optional[Literal["gz", "bz2", "xz"]] = None
+        compression: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
-        """Generate a ZIP file with random text.
+        """Generate a TAR file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
+        :param compression: Desired compression. Can be None or `gz`, `bz2`
+            or `xz`.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -98,17 +105,17 @@ class ZipFileProvider(BaseProvider, FileMixin):
             """
             A complex case. Could be initialized as follows:
 
-                zip_file = ZipFileProvider(None).zip_file(
-                    prefix="zzz_archive_",
+                zip_file = TarFileProvider(None).tar_file(
+                    prefix="ttt_archive_",
                     options={
                         "count": 5,
                         "create_inner_file_func": create_inner_docx_file,
                         "create_inner_file_args": {
-                            "prefix": "zzz_file_",
+                            "prefix": "ttt_file_",
                             "max_nb_chars": 1_024,
                             "content": "{{date}}\r\n{{text}}\r\n{{name}}",
                         },
-                        "directory": "zzz",
+                        "directory": "ttt",
                     },
                 )
             """
@@ -128,8 +135,11 @@ class ZipFileProvider(BaseProvider, FileMixin):
             _dir_path = Path("")
             _directory = ""
 
-        _zip_content = BytesIO()
-        with zipfile.ZipFile(_zip_content, "w") as __fake_file:
+        _tar_content = BytesIO()
+        _mode = "w"
+        if compression and compression in COMPRESSION_OPTIONS:
+            _mode += f":{compression}"
+        with tarfile.open(fileobj=_tar_content, mode=_mode) as __fake_file:
             _kwargs = {"generator": self.generator}
             _kwargs.update(_create_inner_file_args)
             for __i in range(_count):
@@ -139,14 +149,14 @@ class ZipFileProvider(BaseProvider, FileMixin):
                 )
                 data["inner"][str(__file)] = __file
                 __file_abs_path = fs_storage.abspath(__file)
-                __fake_file.write(
+                __fake_file.add(
                     __file_abs_path,
                     arcname=Path(_directory) / Path(__file).name,
                 )
                 os.remove(__file_abs_path)  # Clean up temporary files
                 data["files"].append(Path(_directory) / Path(__file).name)
 
-        storage.write_bytes(filename, _zip_content.getvalue())
+        storage.write_bytes(filename, _tar_content.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
