@@ -94,6 +94,8 @@ flask-sqlalchemy==3.0.2
     # via -r examples/requirements/flask.in
 flask-testing==0.8.1
     # via -r examples/requirements/flask.in
+fpdf==1.7.2
+    # via -r examples/requirements/common.in
 frozenlist==1.3.3
     # via
     #   aiohttp

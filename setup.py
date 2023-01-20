@@ -33,7 +33,7 @@ _common = [
     "odfpy",  # ODS, ODT
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
-    "pdfkit",  # PDF
+    "fpdf2",  # PDF
     "python-docx",  # DOCX
     "python-pptx",  # PPTX
     "tablib",  # ODS, XLSX
@@ -63,7 +63,7 @@ extras_require = {
     "mp3-gtts": ["gtts"],
     "ods": ["tablib", "odfpy"],
     "odt": ["odfpy"],
-    "pdf": ["pdfkit"],
+    "pdf": ["fpdf2"],
     "pptx": ["python-pptx"],
     "s3": ["pathy[s3]"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],

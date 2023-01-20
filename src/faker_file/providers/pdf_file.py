@@ -1,10 +1,15 @@
+from io import BytesIO
 from typing import Optional
 
-import pdfkit
 from faker.providers import BaseProvider
+from fpdf import FPDF
 
 from ..base import FileMixin, StringValue
-from ..constants import DEFAULT_FILE_ENCODING, DEFAULT_TEXT_MAX_NB_CHARS
+from ..constants import (
+    DEFAULT_FONT_NAME,
+    DEFAULT_FONT_PATH,
+    DEFAULT_TEXT_MAX_NB_CHARS,
+)
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -58,7 +63,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        font_name: Optional[str] = DEFAULT_FONT_NAME,
+        font_path: Optional[str] = DEFAULT_FONT_PATH,
         **kwargs,
     ) -> StringValue:
         """Generate a PDF file with random text.
@@ -70,7 +76,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :param encoding: Encoding of the file.
+        :param font_name: Font name.
+        :param font_path: Font path.
         :return: Relative path (from root directory) of the generated file.
         """
         # Generic
@@ -88,16 +95,16 @@ class PdfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        options = {"quiet": ""}
-        if encoding is not None:
-            options["encoding"] = encoding
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.add_font(fname=font_path, family=font_name)
+        pdf.set_font(font_name)
+        pdf.write(txt=content)
 
-        raw_content = pdfkit.from_string(
-            f"<pre style='white-space: pre-wrap;'>{content}</pre>",
-            options=options,
-        )
+        buffer = BytesIO()
+        pdf.output(buffer)
 
-        storage.write_bytes(filename, raw_content)
+        storage.write_bytes(filename, buffer.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

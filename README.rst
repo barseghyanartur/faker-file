@@ -47,7 +47,7 @@ below between the brackets.
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires ``imgkit`` (`MIT`).
 - ``MP3`` file support requires ``gtts`` (`MIT`) or ``edge-tts`` (`GPLv3`).
-- ``PDF`` file support requires ``pdfkit`` (`MIT`).
+- ``PDF`` file support requires ``fpdf2`` (`LGPLv3+`).
 - ``PPTX`` file support requires ``python-pptx`` (`MIT`).
 - ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
 - ``ODT`` file support requires ``odfpy`` (`Apache 2`).
