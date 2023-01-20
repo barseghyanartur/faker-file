@@ -7,7 +7,6 @@ pathy[all]
 pdfkit
 python-docx
 python-pptx
+reportlab
 tablib
 xml2epub
-
-#https://github.com/barseghyanartur/gTTS/archive/refs/heads/loosen-click-version-reqs.zip

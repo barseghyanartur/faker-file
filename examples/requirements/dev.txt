@@ -179,6 +179,7 @@ pdfkit==1.0.0
 pillow==9.3.0
     # via
     #   python-pptx
+    #   reportlab
     #   xml2epub
 pkginfo==1.9.2
     # via twine
@@ -252,6 +253,8 @@ pytz==2022.6
     # via django
 readme-renderer==37.3
     # via twine
+reportlab==3.6.12
+    # via -r examples/requirements/common.in
 requests==2.28.1
     # via
     #   azure-core
