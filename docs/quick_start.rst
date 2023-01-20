@@ -33,6 +33,7 @@ With ``Faker``
     from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
     from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
+    from faker_file.providers.tar_file import TarFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.webp_file import WebpFileProvider
     from faker_file.providers.xlsx_file import XlsxFileProvider
@@ -56,6 +57,7 @@ With ``Faker``
     FAKER.add_provider(RandomFileFromDirProvider)
     FAKER.add_provider(RtfFileProvider)
     FAKER.add_provider(SvgFileProvider)
+    FAKER.add_provider(TarFileProvider)
     FAKER.add_provider(TxtFileProvider)
     FAKER.add_provider(WebpFileProvider)
     FAKER.add_provider(XlsxFileProvider)
@@ -82,6 +84,7 @@ With ``Faker``
     random_file = FAKER.random_file_from_dir(source_dir_path="/path/to/source/",)
     rtf_file = FAKER.rtf_file()
     svg_file = FAKER.svg_file()
+    tar_file = FAKER.tar_file()
     txt_file = FAKER.txt_file()
     webp_file = FAKER.webp_file()
     xlsx_file = FAKER.xlsx_file()
@@ -112,6 +115,7 @@ With ``factory_boy``
     from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
     from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
+    from faker_file.providers.tar_file import TarFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.webp_file import WebpFileProvider
     from faker_file.providers.xlsx_file import XlsxFileProvider
@@ -134,6 +138,7 @@ With ``factory_boy``
     Faker.add_provider(RandomFileFromDirProvider)
     Faker.add_provider(RtfFileProvider)
     Faker.add_provider(SvgFileProvider)
+    Faker.add_provider(TarFileProvider)
     Faker.add_provider(TxtFileProvider)
     Faker.add_provider(WebpFileProvider)
     Faker.add_provider(XlsxFileProvider)
@@ -194,6 +199,7 @@ upload/factories.py
     )
     from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
+    from faker_file.providers.tar_file import TarFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.webp_file import WebpFileProvider
     from faker_file.providers.xlsx_file import XlsxFileProvider
@@ -223,6 +229,7 @@ upload/factories.py
     Faker.add_provider(RandomFileFromDirProvider)
     Faker.add_provider(RtfFileProvider)
     Faker.add_provider(SvgFileProvider)
+    Faker.add_provider(TarFileProvider)
     Faker.add_provider(TxtFileProvider)
     Faker.add_provider(WebpFileProvider)
     Faker.add_provider(XlsxFileProvider)
@@ -260,6 +267,7 @@ upload/factories.py
             pptx_file = Trait(file=Faker("pptx_file", storage=STORAGE))
             rtf_file = Trait(file=Faker("rtf_file", storage=STORAGE))
             svg_file = Trait(file=Faker("svg_file", storage=STORAGE))
+            tar_file = Trait(file=Faker("tar_file", storage=STORAGE))
             txt_file = Trait(file=Faker("txt_file", storage=STORAGE))
             webp_file = Trait(file=Faker("webp_file", storage=STORAGE))
             xlsx_file = Trait(file=Faker("xlsx_file", storage=STORAGE))

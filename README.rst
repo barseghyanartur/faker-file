@@ -168,6 +168,7 @@ Supported file types
 - ``RTF``
 - ``PPTX``
 - ``SVG``
+- ``TAR``
 - ``TXT``
 - ``WEBP``
 - ``XLSX``

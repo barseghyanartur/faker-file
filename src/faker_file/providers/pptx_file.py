@@ -98,9 +98,8 @@ class PptxFileProvider(BaseProvider, FileMixin):
         text_box.text = content
         text_box.text_frame.word_wrap = True
         presentation.save(stream)
-        stream.seek(0)
 
-        storage.write_bytes(filename, stream.read())
+        storage.write_bytes(filename, stream.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

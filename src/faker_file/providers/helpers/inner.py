@@ -4,6 +4,7 @@ from typing import (
     Callable,
     Dict,
     List,
+    Literal,
     Optional,
     Sequence,
     Tuple,
@@ -43,6 +44,7 @@ __all__ = (
     "create_inner_pptx_file",
     "create_inner_rtf_file",
     "create_inner_svg_file",
+    "create_inner_tar_file",
     "create_inner_txt_file",
     "create_inner_webp_file",
     "create_inner_xlsx_file",
@@ -431,6 +433,28 @@ def create_inner_svg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        **kwargs,
+    )
+
+
+def create_inner_tar_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    compression: Optional[Literal["gz", "bz2", "xz"]] = None,
+    **kwargs,
+) -> StringValue:
+    """Create inner TAR file."""
+    try:
+        from ..tar_file import TarFileProvider
+    except ImportError as err:
+        raise err
+    return TarFileProvider(generator).tar_file(
+        storage=storage,
+        prefix=prefix,
+        options=options,
+        compression=compression,
         **kwargs,
     )
 

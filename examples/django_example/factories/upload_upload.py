@@ -22,6 +22,7 @@ from faker_file.providers.png_file import PngFileProvider
 from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.rtf_file import RtfFileProvider
 from faker_file.providers.svg_file import SvgFileProvider
+from faker_file.providers.tar_file import TarFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
 from faker_file.providers.webp_file import WebpFileProvider
 from faker_file.providers.xlsx_file import XlsxFileProvider
@@ -47,6 +48,7 @@ Faker.add_provider(PngFileProvider)
 Faker.add_provider(PptxFileProvider)
 Faker.add_provider(RtfFileProvider)
 Faker.add_provider(SvgFileProvider)
+Faker.add_provider(TarFileProvider)
 Faker.add_provider(TxtFileProvider)
 Faker.add_provider(WebpFileProvider)
 Faker.add_provider(XlsxFileProvider)
@@ -88,6 +90,7 @@ PROVIDER_CHOICES = [
     lambda: PptxFileProvider(None).pptx_file(storage=STORAGE),
     lambda: RtfFileProvider(None).rtf_file(storage=STORAGE),
     lambda: SvgFileProvider(None).svg_file(storage=STORAGE),
+    lambda: TarFileProvider(None).tar_file(storage=STORAGE),
     lambda: TxtFileProvider(None).txt_file(storage=STORAGE),
     lambda: XlsxFileProvider(None).xlsx_file(storage=STORAGE),
     lambda: ZipFileProvider(None).zip_file(storage=STORAGE),
@@ -99,7 +102,7 @@ def pick_random_provider(*args, **kwargs):
 
 
 class AbstractUploadFactory(DjangoModelFactory):
-    """Base Upload factory."""
+    """Abstract Upload factory."""
 
     name = Faker("text", max_nb_chars=100)
     description = Faker("text", max_nb_chars=1000)
@@ -130,6 +133,7 @@ class UploadFactory(AbstractUploadFactory):
         pptx_file = Trait(file=Faker("pptx_file", storage=STORAGE))
         rtf_file = Trait(file=Faker("rtf_file", storage=STORAGE))
         svg_file = Trait(file=Faker("svg_file", storage=STORAGE))
+        tar_file = Trait(file=Faker("tar_file", storage=STORAGE))
         txt_file = Trait(file=Faker("txt_file", storage=STORAGE))
         webp_file = Trait(file=Faker("webp_file", storage=STORAGE))
         xlsx_file = Trait(file=Faker("xlsx_file", storage=STORAGE))
