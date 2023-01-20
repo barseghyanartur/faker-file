@@ -4,7 +4,6 @@ from typing import (
     Callable,
     Dict,
     List,
-    Literal,
     Optional,
     Sequence,
     Tuple,
@@ -442,7 +441,7 @@ def create_inner_tar_file(
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
-    compression: Optional[Literal["gz", "bz2", "xz"]] = None,
+    compression: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
     """Create inner TAR file."""

@@ -2,7 +2,7 @@ import os
 import tarfile
 from io import BytesIO
 from pathlib import Path
-from typing import Any, Dict, Literal, Optional
+from typing import Any, Dict, Optional
 
 from faker.providers import BaseProvider
 
@@ -15,6 +15,8 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("TarFileProvider",)
+
+COMPRESSION_OPTIONS = {"gz", "bz2", "xz"}
 
 
 class TarFileProvider(BaseProvider, FileMixin):
@@ -73,7 +75,9 @@ class TarFileProvider(BaseProvider, FileMixin):
         storage: BaseStorage = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
-        compression: Optional[Literal["gz", "bz2", "xz"]] = None,
+        # Once Python 3.7 is deprecated, add the following annotation:
+        #     Optional[Literal["gz", "bz2", "xz"]] = None
+        compression: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
         """Generate a TAR file with random text.
@@ -133,7 +137,7 @@ class TarFileProvider(BaseProvider, FileMixin):
 
         _tar_content = BytesIO()
         _mode = "w"
-        if compression:
+        if compression and compression in COMPRESSION_OPTIONS:
             _mode += f":{compression}"
         with tarfile.open(fileobj=_tar_content, mode=_mode) as __fake_file:
             _kwargs = {"generator": self.generator}
