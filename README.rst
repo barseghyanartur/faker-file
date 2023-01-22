@@ -1,7 +1,7 @@
 ==========
 faker-file
 ==========
-**Generate files with fake data**
+**Create files with fake data** in many formats *with no efforts*
 
 .. image:: https://img.shields.io/pypi/v/faker-file.svg
    :target: https://pypi.python.org/pypi/faker-file

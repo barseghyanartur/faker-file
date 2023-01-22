@@ -35,3 +35,4 @@ db.sqlite3
 sample_db.sqlite
 local_settings.py
 /prof/
+*.cast
