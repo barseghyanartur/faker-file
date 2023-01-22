@@ -12,5 +12,6 @@ Contents:
    quick_start
    recipes
    security
+   code_of_conduct
    changelog
    package
