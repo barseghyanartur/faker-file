@@ -1,11 +1,11 @@
 import os
 from pathlib import Path
 from random import choice
-from typing import Any, Dict, Iterable, Optional, Type
+from typing import Any, Dict, Iterable, Optional, Type, Union, overload
 
 from faker.providers import BaseProvider
 
-from ...base import FileMixin, StringValue
+from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..helpers.inner import (
@@ -90,6 +90,26 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
 
     extension: str = ""
 
+    @overload
+    def augment_file_from_dir(
+        self: "AugmentFileFromDirProvider",
+        source_dir_path: str,
+        extensions: Iterable[str] = None,
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        wrap_chars_after: Optional[int] = None,
+        text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
+        text_extractor_kwargs: Optional[Dict[str, Any]] = None,
+        text_augmenter_cls: Type[
+            BaseTextAugmenter
+        ] = ContextualWordEmbeddingsAugmenter,
+        text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
@@ -105,6 +125,24 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def augment_file_from_dir(
+        self: "AugmentFileFromDirProvider",
+        source_dir_path: str,
+        extensions: Iterable[str] = None,
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        wrap_chars_after: Optional[int] = None,
+        text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
+        text_extractor_kwargs: Optional[Dict[str, Any]] = None,
+        text_augmenter_cls: Type[
+            BaseTextAugmenter
+        ] = ContextualWordEmbeddingsAugmenter,
+        text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Augment a random file from given directory.
 
         :param source_dir_path: Source files directory.
@@ -117,7 +155,11 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         :param text_extractor_kwargs: Text extractor kwargs.
         :param text_augmenter_cls: Text augmenter class.
         :param text_augmenter_kwargs: Text augmenter kwargs.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -162,4 +204,5 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
             prefix=prefix,
             content=content,
             wrap_chars_after=wrap_chars_after,
+            raw=raw,
         )

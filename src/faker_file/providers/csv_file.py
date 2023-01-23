@@ -146,14 +146,16 @@ class CsvFileProvider(BaseProvider, FileMixin):
         else:
             content = self.generator.pystr_format(content)
 
+        data = {"content": content}
+
         if raw:
             raw_content = BytesValue(content.encode("utf8"))
-            raw_content.data = {"content": content}
+            raw_content.data = data
             return raw_content
 
         storage.write_text(filename, content, encoding=encoding)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = data
         return file_name

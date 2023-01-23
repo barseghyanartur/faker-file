@@ -117,14 +117,16 @@ class BinFileProvider(BaseProvider, FileMixin):
         if content is None:
             content = self.generator.binary(length=length)
 
+        data = {"content": content}
+
         if raw:
             raw_content = BytesValue(content)
-            raw_content.data = {"content": content}
+            raw_content.data = data
             return raw_content
 
         storage.write_bytes(filename, content)
 
         # Generic
         filename = StringValue(storage.relpath(filename))
-        filename.data = {"content": content}
+        filename.data = data
         return filename
