@@ -1,8 +1,8 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import StringValue
+from ..base import BytesValue, StringValue
 from ..storages.base import BaseStorage
 from .mixins.tablular_data_mixin import TabularDataMixin
 
@@ -59,6 +59,20 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
 
     extension: str = "ods"
 
+    @overload
+    def ods_file(
+        self: "OdsFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        data_columns: Dict[str, str] = None,
+        num_rows: int = 10,
+        content: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def ods_file(
         self: "OdsFileProvider",
         storage: BaseStorage = None,
@@ -68,6 +82,18 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def ods_file(
+        self: "OdsFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        data_columns: Dict[str, str] = None,
+        num_rows: int = 10,
+        content: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate an ODS file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -84,7 +110,11 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         :param prefix: File name prefix.
         :param content: List of dicts with content (JSON-like format).
             If given, used as is.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         return self._tabular_data_file(
             storage=storage,
@@ -92,5 +122,6 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
             data_columns=data_columns,
             num_rows=num_rows,
             content=content,
+            raw=raw,
             **kwargs,
         )
