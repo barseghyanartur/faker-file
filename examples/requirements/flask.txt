@@ -69,6 +69,8 @@ edge-tts==6.0.8
     # via -r examples/requirements/common.in
 et-xmlfile==1.1.0
     # via openpyxl
+exceptiongroup==1.1.0
+    # via pytest
 factory-boy==3.2.1
     # via -r examples/requirements/test.in
 faker==15.3.4
@@ -201,9 +203,7 @@ protobuf==4.21.12
     #   google-cloud-storage
     #   googleapis-common-protos
 py==1.11.0
-    # via
-    #   -r examples/requirements/test.in
-    #   pytest
+    # via -r examples/requirements/test.in
 pyasn1==0.4.8
     # via
     #   pyasn1-modules
@@ -214,7 +214,7 @@ pycparser==2.21
     # via cffi
 pyproject-api==1.2.1
     # via tox
-pytest==6.2.5
+pytest==7.2.1
     # via
     #   -r examples/requirements/test.in
     #   pathy
@@ -222,7 +222,6 @@ pytest==6.2.5
     #   pytest-django
     #   pytest-ordering
     #   pytest-parallel
-    #   pytest-pythonpath
     #   pytest-rerunfailures
 pytest-cov==4.0.0
     # via
@@ -237,8 +236,6 @@ pytest-django==4.5.2
 pytest-ordering==0.6
     # via -r examples/requirements/test.in
 pytest-parallel==0.1.1
-    # via -r examples/requirements/test.in
-pytest-pythonpath==0.7.4
     # via -r examples/requirements/test.in
 pytest-rerunfailures==11.0
     # via -r examples/requirements/test.in
@@ -293,12 +290,11 @@ tablib==3.3.0
     # via -r examples/requirements/common.in
 tblib==1.7.0
     # via pytest-parallel
-toml==0.10.2
-    # via pytest
 tomli==2.0.1
     # via
     #   coverage
     #   pyproject-api
+    #   pytest
     #   tox
 tox==4.0.16
     # via -r examples/requirements/test.in

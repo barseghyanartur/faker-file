@@ -7,7 +7,6 @@ pytest-cov
 pytest-django
 pytest-ordering
 pytest-parallel
-pytest-pythonpath
 pytest-rerunfailures
-pytest
+pytest>=7.0.1
 tox

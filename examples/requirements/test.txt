@@ -12,6 +12,8 @@ coverage[toml]==6.5.0
     #   pytest-cov
 distlib==0.3.6
     # via virtualenv
+exceptiongroup==1.1.0
+    # via pytest
 factory-boy==3.2.1
     # via -r examples/requirements/test.in
 faker==15.3.4
@@ -40,18 +42,16 @@ pluggy==1.0.0
 py==1.11.0
     # via
     #   -r examples/requirements/test.in
-    #   pytest
     #   tox
 pyparsing==3.0.9
     # via packaging
-pytest==6.2.5
+pytest==7.2.1
     # via
     #   -r examples/requirements/test.in
     #   pytest-cov
     #   pytest-django
     #   pytest-ordering
     #   pytest-parallel
-    #   pytest-pythonpath
     #   pytest-rerunfailures
 pytest-cov==4.0.0
     # via -r examples/requirements/test.in
@@ -60,8 +60,6 @@ pytest-django==4.5.2
 pytest-ordering==0.6
     # via -r examples/requirements/test.in
 pytest-parallel==0.1.1
-    # via -r examples/requirements/test.in
-pytest-pythonpath==0.7.4
     # via -r examples/requirements/test.in
 pytest-rerunfailures==11.0
     # via -r examples/requirements/test.in
@@ -73,11 +71,10 @@ six==1.16.0
     #   tox
 tblib==1.7.0
     # via pytest-parallel
-toml==0.10.2
-    # via pytest
 tomli==2.0.1
     # via
     #   coverage
+    #   pytest
     #   tox
 tox==3.27.1
     # via -r examples/requirements/test.in
