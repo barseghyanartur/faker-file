@@ -122,63 +122,57 @@ class OdpFileProvider(BaseProvider, FileMixin):
 
         data = {"content": content}
 
-        with BytesIO() as _fake_file:
-            pres_doc = OpenDocumentPresentation()
-            # We must describe the dimensions of the page
-            page_layout = style.PageLayout(name="MyLayout")
-            pres_doc.automaticstyles.addElement(page_layout)
-            page_layout.addElement(
-                style.PageLayoutProperties(
-                    margin="0cm",
-                    pagewidth="28cm",
-                    pageheight="21cm",
-                    printorientation="landscape",
-                )
+        _fake_file = BytesIO()
+        pres_doc = OpenDocumentPresentation()
+        # We must describe the dimensions of the page
+        page_layout = style.PageLayout(name="MyLayout")
+        pres_doc.automaticstyles.addElement(page_layout)
+        page_layout.addElement(
+            style.PageLayoutProperties(
+                margin="0cm",
+                pagewidth="28cm",
+                pageheight="21cm",
+                printorientation="landscape",
             )
+        )
 
-            # Every drawing page must have a master page assigned to it.
-            master_page = style.MasterPage(
-                name="MyMaster", pagelayoutname=page_layout
-            )
-            pres_doc.masterstyles.addElement(master_page)
+        # Every drawing page must have a master page assigned to it.
+        master_page = style.MasterPage(
+            name="MyMaster", pagelayoutname=page_layout
+        )
+        pres_doc.masterstyles.addElement(master_page)
 
-            # Style for the title frame of the page
-            # We set a centered 34pt font with yellowish background
-            title_style = style.Style(
-                name="MyMaster-title", family="presentation"
-            )
-            title_style.addElement(
-                style.ParagraphProperties(textalign="center")
-            )
-            title_style.addElement(style.TextProperties(fontsize="12pt"))
-            title_style.addElement(style.GraphicProperties(fillcolor="#ffff99"))
-            pres_doc.styles.addElement(title_style)
+        # Style for the title frame of the page
+        # We set a centered 34pt font with yellowish background
+        title_style = style.Style(name="MyMaster-title", family="presentation")
+        title_style.addElement(style.ParagraphProperties(textalign="center"))
+        title_style.addElement(style.TextProperties(fontsize="12pt"))
+        title_style.addElement(style.GraphicProperties(fillcolor="#ffff99"))
+        pres_doc.styles.addElement(title_style)
 
-            # Style for the photo frame
-            main_style = style.Style(
-                name="MyMaster-main", family="presentation"
-            )
-            pres_doc.styles.addElement(main_style)
+        # Style for the photo frame
+        main_style = style.Style(name="MyMaster-main", family="presentation")
+        pres_doc.styles.addElement(main_style)
 
-            # Create style for drawing page
-            dp_style = style.Style(name="dp1", family="drawing-page")
-            pres_doc.automaticstyles.addElement(dp_style)
+        # Create style for drawing page
+        dp_style = style.Style(name="dp1", family="drawing-page")
+        pres_doc.automaticstyles.addElement(dp_style)
 
-            page = draw.Page(stylename=dp_style, masterpagename=master_page)
-            pres_doc.presentation.addElement(page)
+        page = draw.Page(stylename=dp_style, masterpagename=master_page)
+        pres_doc.presentation.addElement(page)
 
-            title_frame = draw.Frame(
-                stylename=title_style,
-                width="720pt",
-                height="56pt",
-                x="40pt",
-                y="10pt",
-            )
-            page.addElement(title_frame)
-            textbox = draw.TextBox()
-            title_frame.addElement(textbox)
-            textbox.addElement(P(text=content))
-            pres_doc.save(_fake_file)
+        title_frame = draw.Frame(
+            stylename=title_style,
+            width="720pt",
+            height="56pt",
+            x="40pt",
+            y="10pt",
+        )
+        page.addElement(title_frame)
+        textbox = draw.TextBox()
+        title_frame.addElement(textbox)
+        textbox.addElement(P(text=content))
+        pres_doc.save(_fake_file)
 
         if raw:
             raw_content = BytesValue(_fake_file.getvalue())

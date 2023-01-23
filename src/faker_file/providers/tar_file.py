@@ -105,7 +105,7 @@ class TarFileProvider(BaseProvider, FileMixin):
         # Once Python 3.7 is deprecated, add the following annotation:
         #     Optional[Literal["gz", "bz2", "xz"]] = None
         compression: Optional[str] = None,
-        raw: bool = True,
+        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a TAR file with random text.

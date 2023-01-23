@@ -70,7 +70,6 @@ class IcoFileProvider(BaseProvider, ImageMixin):
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> StringValue:
         ...
