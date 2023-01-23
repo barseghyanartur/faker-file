@@ -1,8 +1,8 @@
-from typing import Optional
+from typing import Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import StringValue
+from ..base import BytesValue, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from .mixins.image_mixin import ImageMixin
@@ -49,6 +49,7 @@ class IcoFileProvider(BaseProvider, ImageMixin):
 
     extension: str = "ico"
 
+    @overload
     def ico_file(
         self: "IcoFileProvider",
         storage: BaseStorage = None,
@@ -56,8 +57,34 @@ class IcoFileProvider(BaseProvider, ImageMixin):
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
+    def ico_file(
+        self: "IcoFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        raw: bool = False,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def ico_file(
+        self: "IcoFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate an ICO file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -67,7 +94,11 @@ class IcoFileProvider(BaseProvider, ImageMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         return self._image_file(
             storage=storage,
@@ -75,5 +106,6 @@ class IcoFileProvider(BaseProvider, ImageMixin):
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
+            raw=raw,
             **kwargs,
         )

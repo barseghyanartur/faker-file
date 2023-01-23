@@ -10,6 +10,7 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
+    "BytesValue",
     "DEFAULT_REL_PATH",
     "FileMixin",
     "StringValue",
@@ -20,6 +21,10 @@ DEFAULT_REL_PATH = "tmp"
 
 
 class StringValue(str):
+    data: Dict[str, Any] = {}
+
+
+class BytesValue(bytes):
     data: Dict[str, Any] = {}
 
 
