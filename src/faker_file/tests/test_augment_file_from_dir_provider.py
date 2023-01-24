@@ -1,6 +1,7 @@
 import os.path
 import tempfile
 import unittest
+from copy import deepcopy
 from typing import Any, Dict, Union
 
 import tika
@@ -93,7 +94,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
 
     FAKER: Faker
     # provider, method_name, kwargs, storage
-    __parametrized_data = [
+    __PARAMETRIZED_DATA = [
         # AugmentFileFromDirProvider
         (
             AugmentFileFromDirProvider,
@@ -187,9 +188,22 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         ),
     ]
 
+    # provider, method_name, kwargs, storage
+    __RAW_PARAMETRIZED_DATA = [
+        # AugmentFileFromDirProvider
+        (
+            AugmentFileFromDirProvider,
+            "augment_file_from_dir",
+            {
+                "source_dir_path": SOURCE_DIR_PATH,
+            },
+            None,
+        ),
+    ]
+
     @parametrize(
         "provider, method_name, kwargs, storage",
-        __parametrized_data,
+        __PARAMETRIZED_DATA,
     )
     def test_standalone(
         self: "AugmentFileFromDirProviderTestCase",
@@ -199,12 +213,13 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test standalone."""
+        _kwargs = deepcopy(kwargs)
         if storage is False:
             storage = FS_STORAGE
         _provider = provider(None)  # noqa
         _method = getattr(_provider, method_name)
-        kwargs["storage"] = storage
-        _file = _method(**kwargs)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     def test_augment_file_from_dir_extract_not_implemented_exception(
@@ -242,3 +257,26 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
                 source_dir_path=SOURCE_DIR_PATH,
                 text_augmenter_cls=MyTextAugmenter,
             )
+
+    @parametrize(
+        "provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA,
+    )
+    def test_raw_standalone(
+        self: "AugmentFileFromDirProviderTestCase",
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: BaseStorage = None,
+    ) -> None:
+        """Test standalone."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        _provider = provider(None)  # noqa
+        _method = getattr(_provider, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
