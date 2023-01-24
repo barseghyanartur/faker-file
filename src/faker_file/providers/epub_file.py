@@ -1,12 +1,12 @@
 import os
 import shutil
 import tempfile
-from typing import Optional
+from typing import Optional, Union, overload
 
 import xml2epub
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -53,6 +53,22 @@ class EpubFileProvider(BaseProvider, FileMixin):
 
     extension: str = "epub"
 
+    @overload
+    def epub_file(
+        self: "EpubFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        title: Optional[str] = None,
+        chapter_title: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def epub_file(
         self: "EpubFileProvider",
         storage: BaseStorage = None,
@@ -64,6 +80,20 @@ class EpubFileProvider(BaseProvider, FileMixin):
         chapter_title: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def epub_file(
+        self: "EpubFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        title: Optional[str] = None,
+        chapter_title: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a EPUB file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -77,7 +107,11 @@ class EpubFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param chapter_title: Chapter title. Might contain dynamic elements,
             which are then replaced by correspondent fixtures.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -111,16 +145,26 @@ class EpubFileProvider(BaseProvider, FileMixin):
         _book.add_chapter(_chapter)
         _local_file_name = _book.create_epub(tempfile.gettempdir())
 
-        with open(_local_file_name, "rb") as fakefile:
-            storage.write_bytes(filename, fakefile.read())
-        os.remove(_local_file_name)
-        shutil.rmtree(_book.EPUB_DIR)
-
-        # Generic
-        file_name = StringValue(storage.relpath(filename))
-        file_name.data = {
+        data = {
             "content": content,
             "title": title,
             "chapter_title": chapter_title,
         }
+
+        _raw_content = bytes()
+        with open(_local_file_name, "rb") as fakefile:
+            _raw_content = fakefile.read()
+            os.remove(_local_file_name)
+            shutil.rmtree(_book.EPUB_DIR)
+
+        if raw:
+            raw_content = BytesValue(_raw_content)
+            raw_content.data = data
+            return raw_content
+
+        storage.write_bytes(filename, _raw_content)
+
+        # Generic
+        file_name = StringValue(storage.relpath(filename))
+        file_name.data = data
         return file_name

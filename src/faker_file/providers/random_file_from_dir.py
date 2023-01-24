@@ -1,11 +1,11 @@
 import os
 from pathlib import Path
 from random import choice
-from typing import Optional
+from typing import Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -42,6 +42,18 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
     extension: str = ""
 
+    @overload
+    def random_file_from_dir(
+        self: "RandomFileFromDirProvider",
+        source_dir_path: str,
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
@@ -49,13 +61,26 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def random_file_from_dir(
+        self: "RandomFileFromDirProvider",
+        source_dir_path: str,
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Pick a random file from given directory.
 
         :param source_dir_path: Source files directory.
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
-
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -78,6 +103,10 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
         # Specific
         with open(source_file_path, "rb") as _file:
+            if raw:
+                raw_content = BytesValue(_file.read())
+                return raw_content
+
             storage.write_bytes(filename, _file.read())
 
         # Generic

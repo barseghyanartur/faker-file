@@ -1,9 +1,9 @@
-from typing import Optional, Sequence, Tuple
+from typing import Optional, Sequence, Tuple, Union, overload
 
 from faker import Faker
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -54,6 +54,23 @@ class CsvFileProvider(BaseProvider, FileMixin):
 
     extension: str = "csv"
 
+    @overload
+    def csv_file(
+        self: "CsvFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        header: Optional[Sequence[str]] = None,
+        data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+        num_rows: int = 10,
+        include_row_ids: bool = False,
+        content: Optional[str] = None,
+        encoding: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def csv_file(
         self: "CsvFileProvider",
         storage: BaseStorage = None,
@@ -66,6 +83,21 @@ class CsvFileProvider(BaseProvider, FileMixin):
         encoding: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def csv_file(
+        self: "CsvFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        header: Optional[Sequence[str]] = None,
+        data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+        num_rows: int = 10,
+        include_row_ids: bool = False,
+        content: Optional[str] = None,
+        encoding: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a CSV file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -85,7 +117,11 @@ class CsvFileProvider(BaseProvider, FileMixin):
         :param include_row_ids:
         :param content: File content. If given, used as is.
         :param encoding: Encoding.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -110,9 +146,16 @@ class CsvFileProvider(BaseProvider, FileMixin):
         else:
             content = self.generator.pystr_format(content)
 
+        data = {"content": content}
+
+        if raw:
+            raw_content = BytesValue(content.encode("utf8"))
+            raw_content.data = data
+            return raw_content
+
         storage.write_text(filename, content, encoding=encoding)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = data
         return file_name

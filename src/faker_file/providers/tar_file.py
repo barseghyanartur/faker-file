@@ -2,11 +2,11 @@ import os
 import tarfile
 from io import BytesIO
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 from .helpers.inner import create_inner_txt_file
@@ -70,6 +70,21 @@ class TarFileProvider(BaseProvider, FileMixin):
 
     extension: str = "tar"
 
+    @overload
+    def tar_file(
+        self: "TarFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        options: Optional[Dict[str, Any]] = None,
+        # Once Python 3.7 is deprecated, add the following annotation:
+        #     Optional[Literal["gz", "bz2", "xz"]] = None
+        compression: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def tar_file(
         self: "TarFileProvider",
         storage: BaseStorage = None,
@@ -80,6 +95,19 @@ class TarFileProvider(BaseProvider, FileMixin):
         compression: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def tar_file(
+        self: "TarFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        options: Optional[Dict[str, Any]] = None,
+        # Once Python 3.7 is deprecated, add the following annotation:
+        #     Optional[Literal["gz", "bz2", "xz"]] = None
+        compression: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a TAR file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -87,7 +115,11 @@ class TarFileProvider(BaseProvider, FileMixin):
         :param options: Options (non-structured) for complex types, such as ZIP.
         :param compression: Desired compression. Can be None or `gz`, `bz2`
             or `xz`.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -156,10 +188,14 @@ class TarFileProvider(BaseProvider, FileMixin):
                 os.remove(__file_abs_path)  # Clean up temporary files
                 data["files"].append(Path(_directory) / Path(__file).name)
 
+        if raw:
+            raw_content = BytesValue(_tar_content.getvalue())
+            raw_content.data = data
+            return raw_content
+
         storage.write_bytes(filename, _tar_content.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        if data:
-            file_name.data = data
+        file_name.data = data
         return file_name

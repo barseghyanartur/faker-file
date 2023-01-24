@@ -1,9 +1,9 @@
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union, overload
 
 from faker import Faker
 from tablib import Dataset
 
-from ...base import FileMixin, StringValue
+from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 
@@ -16,6 +16,20 @@ __all__ = ("TabularDataMixin",)
 class TabularDataMixin(FileMixin):
     """Tabular data mixin."""
 
+    @overload
+    def _tabular_data_file(
+        self: "TabularDataMixin",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        data_columns: Dict[str, str] = None,
+        num_rows: int = 10,
+        content: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def _tabular_data_file(
         self: "TabularDataMixin",
         storage: BaseStorage = None,
@@ -25,6 +39,18 @@ class TabularDataMixin(FileMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def _tabular_data_file(
+        self: "TabularDataMixin",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        data_columns: Dict[str, str] = None,
+        num_rows: int = 10,
+        content: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a tabular data file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -41,7 +67,11 @@ class TabularDataMixin(FileMixin):
         :param prefix: File name prefix.
         :param content: List of dicts with content (JSON-like format).
             If given, used as is.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -69,12 +99,21 @@ class TabularDataMixin(FileMixin):
                 num_rows=num_rows,
             )
 
+        data = {"content": content}
+
         dataset = Dataset()
         dataset.load(content, format="json")
 
-        storage.write_bytes(filename, dataset.export(self.extension))
+        _raw_content = dataset.export(self.extension)
+
+        if raw:
+            raw_content = BytesValue(_raw_content)
+            raw_content.data = data
+            return raw_content
+
+        storage.write_bytes(filename, _raw_content)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = data
         return file_name

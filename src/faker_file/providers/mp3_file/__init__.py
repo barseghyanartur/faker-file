@@ -1,8 +1,8 @@
-from typing import Any, Dict, Optional, Type
+from typing import Any, Dict, Optional, Type, Union, overload
 
 from faker.providers import BaseProvider
 
-from ...base import FileMixin, StringValue
+from ...base import BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_AUDIO_MAX_NB_CHARS
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
@@ -100,6 +100,21 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
     extension: str = "mp3"
 
+    @overload
+    def mp3_file(
+        self: "Mp3FileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
+        content: Optional[str] = None,
+        mp3_generator_cls: Type[BaseMp3Generator] = GttsMp3Generator,
+        mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def mp3_file(
         self: "Mp3FileProvider",
         storage: BaseStorage = None,
@@ -110,6 +125,19 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def mp3_file(
+        self: "Mp3FileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
+        content: Optional[str] = None,
+        mp3_generator_cls: Type[BaseMp3Generator] = GttsMp3Generator,
+        mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a MP3 file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -119,7 +147,11 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param mp3_generator_cls: Mp3 generator class.
         :param mp3_generator_kwargs: Mp3 generator kwargs.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -134,6 +166,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             max_nb_chars=max_nb_chars,
             content=content,
         )
+        data = {"content": content}
 
         if mp3_generator_cls is None:
             mp3_generator_cls = GttsMp3Generator
@@ -145,9 +178,16 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             generator=self.generator,
             **mp3_generator_kwargs,
         )
-        storage.write_bytes(filename, mp3_generator.generate())
+        _raw_content = mp3_generator.generate()
+
+        if raw:
+            raw_content = BytesValue(_raw_content)
+            raw_content.data = data
+            return raw_content
+
+        storage.write_bytes(filename, _raw_content)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = data
         return file_name

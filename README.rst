@@ -205,6 +205,14 @@ With ``Faker``
 
     file = TxtFileProvider(FAKER).txt_file()
 
+If you just need bytes back (instead of creating the file), provide
+the ``raw=True`` argument (works with all provider classes and inner
+functions):
+
+.. code-block:: python
+
+    raw = TxtFileProvider(FAKER).txt_file(raw=True)
+
 **Or another**
 
 .. code-block:: python
@@ -216,6 +224,12 @@ With ``Faker``
     FAKER.add_provider(TxtFileProvider)
 
     file = FAKER.txt_file()
+
+If you just need bytes back:
+
+.. code-block:: python
+
+    file = FAKER.txt_file(raw=True)
 
 With ``factory_boy``
 --------------------

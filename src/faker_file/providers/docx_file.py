@@ -1,10 +1,10 @@
 from io import BytesIO
-from typing import Optional
+from typing import Optional, Union, overload
 
 from docx import Document
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -51,6 +51,20 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     extension: str = "docx"
 
+    @overload
+    def docx_file(
+        self: "DocxFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def docx_file(
         self: "DocxFileProvider",
         storage: BaseStorage = None,
@@ -60,6 +74,18 @@ class DocxFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def docx_file(
+        self: "DocxFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a DOCX file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -69,7 +95,11 @@ class DocxFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -86,14 +116,21 @@ class DocxFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
+        data = {"content": content}
+
         with BytesIO() as _fake_file:
             document = Document()
             document.add_paragraph(content)
             document.save(_fake_file)
 
+            if raw:
+                raw_content = BytesValue(_fake_file.getvalue())
+                raw_content.data = data
+                return raw_content
+
             storage.write_bytes(filename, _fake_file.getvalue())
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = data
         return file_name

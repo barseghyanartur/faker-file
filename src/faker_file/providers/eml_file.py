@@ -2,11 +2,11 @@
 import os
 from email.message import EmailMessage
 from email.policy import default
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -68,6 +68,21 @@ class EmlFileProvider(BaseProvider, FileMixin):
 
     extension: str = "eml"
 
+    @overload
+    def eml_file(
+        self: "EmlFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        options: Optional[Dict[str, Any]] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def eml_file(
         self: "EmlFileProvider",
         storage: BaseStorage = None,
@@ -78,6 +93,19 @@ class EmlFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def eml_file(
+        self: "EmlFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        options: Optional[Dict[str, Any]] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate an EML file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -88,7 +116,11 @@ class EmlFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -181,10 +213,14 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 )
             os.remove(__file_abs_path)  # Clean up temporary files
 
+        if raw:
+            raw_content = BytesValue(msg.as_bytes(policy=default))
+            raw_content.data = data
+            return raw_content
+
         storage.write_bytes(filename, msg.as_bytes(policy=default))
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        if data:
-            file_name.data = data
+        file_name.data = data
         return file_name

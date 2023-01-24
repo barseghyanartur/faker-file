@@ -1,9 +1,9 @@
-from typing import Optional
+from typing import Optional, Union, overload
 
 from faker import Faker
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -57,6 +57,19 @@ class BinFileProvider(BaseProvider, FileMixin):
 
     extension: str = "bin"
 
+    @overload
+    def bin_file(
+        self: "BinFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        length: int = (1 * 1024 * 1024),
+        content: Optional[bytes] = None,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def bin_file(
         self: "BinFileProvider",
         storage: BaseStorage = None,
@@ -65,13 +78,28 @@ class BinFileProvider(BaseProvider, FileMixin):
         content: Optional[bytes] = None,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def bin_file(
+        self: "BinFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        length: int = (1 * 1024 * 1024),
+        content: Optional[bytes] = None,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a CSV file with random text.
 
         :param storage: Storage class. Defaults to `FileSystemStorage`.
         :param prefix: File name prefix.
         :param length:
         :param content: File content. If given, used as is.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -89,9 +117,16 @@ class BinFileProvider(BaseProvider, FileMixin):
         if content is None:
             content = self.generator.binary(length=length)
 
+        data = {"content": content}
+
+        if raw:
+            raw_content = BytesValue(content)
+            raw_content.data = data
+            return raw_content
+
         storage.write_bytes(filename, content)
 
         # Generic
         filename = StringValue(storage.relpath(filename))
-        filename.data = {"content": content}
+        filename.data = data
         return filename

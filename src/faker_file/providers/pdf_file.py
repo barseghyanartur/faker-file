@@ -1,9 +1,9 @@
-from typing import Optional
+from typing import Optional, Union, overload
 
 import pdfkit
 from faker.providers import BaseProvider
 
-from ..base import FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_FILE_ENCODING, DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -51,6 +51,21 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
     extension: str = "pdf"
 
+    @overload
+    def pdf_file(
+        self: "PdfFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        raw: bool = True,
+        **kwargs,
+    ) -> BytesValue:
+        ...
+
+    @overload
     def pdf_file(
         self: "PdfFileProvider",
         storage: BaseStorage = None,
@@ -61,6 +76,19 @@ class PdfFileProvider(BaseProvider, FileMixin):
         encoding: Optional[str] = DEFAULT_FILE_ENCODING,
         **kwargs,
     ) -> StringValue:
+        ...
+
+    def pdf_file(
+        self: "PdfFileProvider",
+        storage: BaseStorage = None,
+        prefix: Optional[str] = None,
+        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        wrap_chars_after: Optional[int] = None,
+        content: Optional[str] = None,
+        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        raw: bool = False,
+        **kwargs,
+    ) -> Union[BytesValue, StringValue]:
         """Generate a PDF file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
@@ -71,7 +99,11 @@ class PdfFileProvider(BaseProvider, FileMixin):
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
         :param encoding: Encoding of the file.
-        :return: Relative path (from root directory) of the generated file.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
         """
         # Generic
         if storage is None:
@@ -88,18 +120,25 @@ class PdfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
+        data = {"content": content}
+
         options = {"quiet": ""}
         if encoding is not None:
             options["encoding"] = encoding
 
-        raw_content = pdfkit.from_string(
+        _raw_content = pdfkit.from_string(
             f"<pre style='white-space: pre-wrap;'>{content}</pre>",
             options=options,
         )
 
-        storage.write_bytes(filename, raw_content)
+        if raw:
+            raw_content = BytesValue(_raw_content)
+            raw_content.data = data
+            return raw_content
+
+        storage.write_bytes(filename, _raw_content)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
-        file_name.data = {"content": content}
+        file_name.data = data
         return file_name

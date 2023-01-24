@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.11
+----
+2023-01-25
+
+- Allow returning binary contents of the file by providing the ``raw=True``
+  argument (works with all provider classes and inner functions).
+
 0.10.12
 -------
 2023-01-21
