@@ -11,4 +11,5 @@ omit =
 show_missing = True
 exclude_lines =
     pragma: no cover
+    @overload
 #    raise NotImplementedError

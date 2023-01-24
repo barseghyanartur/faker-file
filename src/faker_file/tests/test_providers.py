@@ -1,6 +1,7 @@
 import os.path
 import tempfile
 import unittest
+from copy import deepcopy
 from importlib import import_module, reload
 from typing import Any, Callable, Dict, Optional, Union
 
@@ -590,6 +591,88 @@ class ProvidersTestCase(unittest.TestCase):
         ),
     ]
 
+    __RAW_PARAMETRIZED_DATA = [
+        # BIN
+        (FAKER, BinFileProvider, "bin_file", {}, None),
+        # CSV
+        (FAKER, CsvFileProvider, "csv_file", {}, None),
+        (FAKER_HY, CsvFileProvider, "csv_file", {}, None),
+        # DOCX
+        (FAKER, DocxFileProvider, "docx_file", {}, None),
+        (FAKER_HY, DocxFileProvider, "docx_file", {}, None),
+        # EML
+        (FAKER, EmlFileProvider, "eml_file", {}, None),
+        (FAKER_HY, EmlFileProvider, "eml_file", {}, None),
+        # EPUB
+        (FAKER, EpubFileProvider, "epub_file", {}, None),
+        (FAKER_HY, EpubFileProvider, "epub_file", {}, None),
+        # ICO
+        (FAKER, IcoFileProvider, "ico_file", {}, None),
+        (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
+        # JPEG
+        (FAKER, JpegFileProvider, "jpeg_file", {}, None),
+        (FAKER_HY, JpegFileProvider, "jpeg_file", {}, None),
+        # ODP
+        (FAKER, OdpFileProvider, "odp_file", {}, None),
+        (FAKER_HY, OdpFileProvider, "odp_file", {}, None),
+        # ODS
+        (FAKER, OdsFileProvider, "ods_file", {}, None),
+        (FAKER_HY, OdsFileProvider, "ods_file", {}, None),
+        # ODT
+        (FAKER, OdtFileProvider, "odt_file", {}, None),
+        (FAKER_HY, OdtFileProvider, "odt_file", {}, None),
+        # PDF
+        (FAKER, PdfFileProvider, "pdf_file", {}, None),
+        (FAKER_HY, PdfFileProvider, "pdf_file", {}, None),
+        # PNG
+        (FAKER, PngFileProvider, "png_file", {}, None),
+        (FAKER_HY, PngFileProvider, "png_file", {}, None),
+        # PPTX
+        (FAKER, PptxFileProvider, "pptx_file", {}, None),
+        (FAKER_HY, PptxFileProvider, "pptx_file", {}, None),
+        # RandomFileFromDirProvider
+        (
+            FAKER,
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            None,
+        ),
+        # RTF
+        (FAKER, RtfFileProvider, "rtf_file", {}, None),
+        (FAKER_HY, RtfFileProvider, "rtf_file", {}, None),
+        # SVG
+        (FAKER, SvgFileProvider, "svg_file", {}, None),
+        (FAKER_HY, SvgFileProvider, "svg_file", {}, None),
+        # TAR
+        (FAKER, TarFileProvider, "tar_file", {}, None),
+        # TXT
+        (FAKER, TxtFileProvider, "txt_file", {}, None),
+        (FAKER_HY, TxtFileProvider, "txt_file", {}, None),
+        # WEBP
+        # (FAKER, WebpFileProvider, "webp_file", {}, None),
+        # XLSX
+        (FAKER, XlsxFileProvider, "xlsx_file", {}, None),
+        (FAKER_HY, XlsxFileProvider, "xlsx_file", {}, None),
+        # ZIP
+        (FAKER, ZipFileProvider, "zip_file", {}, None),
+    ]
+
+    # provider, method_name, kwargs, storage
+    __RAW_PARAMETRIZED_DATA_RETRY_FAILURES = [
+        # MP3
+        (FAKER, Mp3FileProvider, "mp3_file", {}, None),
+    ]
+
+    # fake, provider, method_name, kwargs, storage
+    __RAW_PARAMETRIZED_DATA_ALLOW_FAILURES = [
+        (FAKER, WebpFileProvider, "webp_file", {}, None),
+    ]
+
     def setUp(self: "ProvidersTestCase"):
         super().setUp()
         use_fs(tempfile.gettempdir())
@@ -607,12 +690,13 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test faker provider integration."""
+        _kwargs = deepcopy(kwargs)
         if storage is False:
             storage = FS_STORAGE
         fake.add_provider(provider)
         _method = getattr(fake, method_name)
-        kwargs["storage"] = storage
-        _file = _method(**kwargs)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
@@ -629,12 +713,13 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test faker provider integration, retry on failures."""
+        _kwargs = deepcopy(kwargs)
         if storage is False:
             storage = FS_STORAGE
         fake.add_provider(provider)
         _method = getattr(fake, method_name)
-        kwargs["storage"] = storage
-        _file = _method(**kwargs)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
@@ -650,12 +735,13 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test standalone providers."""
+        _kwargs = deepcopy(kwargs)
         if storage is False:
             storage = FS_STORAGE
         _provider = provider(fake)  # noqa
         _method = getattr(_provider, method_name)
-        kwargs["storage"] = storage
-        _file = _method(**kwargs)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
@@ -672,12 +758,13 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test standalone providers."""
+        _kwargs = deepcopy(kwargs)
         if storage is False:
             storage = FS_STORAGE
         _provider = provider(fake)  # noqa
         _method = getattr(_provider, method_name)
-        kwargs["storage"] = storage
-        _file = _method(**kwargs)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
@@ -694,12 +781,13 @@ class ProvidersTestCase(unittest.TestCase):
         storage: BaseStorage = None,
     ) -> None:
         """Test standalone providers, but allow failures."""
+        _kwargs = deepcopy(kwargs)
         if storage is None:
             storage = FS_STORAGE
         _provider = provider(fake)  # noqa
         _method = getattr(_provider, method_name)
-        kwargs["storage"] = storage
-        _file = _method(**kwargs)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
         self.assertTrue(storage.exists(_file))
 
     @parametrize(
@@ -937,3 +1025,77 @@ class ProvidersTestCase(unittest.TestCase):
 
         with self.assertRaises(NotImplementedError):
             Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=MyMp3Generator)
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA,
+    )
+    def test_raw_standalone_providers(
+        self: "ProvidersTestCase",
+        fake: Faker,
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: BaseStorage = None,
+    ) -> None:
+        """Test standalone providers with raw=True."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        _provider = provider(fake)  # noqa
+        _method = getattr(_provider, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA_RETRY_FAILURES,
+    )
+    @pytest.mark.flaky(reruns=5)
+    def test_raw_standalone_providers_retry_failures(
+        self: "ProvidersTestCase",
+        fake: Faker,
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: BaseStorage = None,
+    ) -> None:
+        """Test standalone providers."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        _provider = provider(fake)  # noqa
+        _method = getattr(_provider, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA_ALLOW_FAILURES,
+    )
+    @pytest.mark.xfail
+    def test_raw_standalone_providers_allow_failures(
+        self: "ProvidersTestCase",
+        fake: Faker,
+        provider: FileProvider,
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: BaseStorage = None,
+    ) -> None:
+        """Test standalone providers, but allow failures."""
+        _kwargs = deepcopy(kwargs)
+        if storage is None:
+            storage = FS_STORAGE
+        _provider = provider(fake)  # noqa
+        _method = getattr(_provider, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
