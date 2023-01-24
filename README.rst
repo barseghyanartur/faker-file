@@ -229,7 +229,7 @@ If you just need bytes back:
 
 .. code-block:: python
 
-    file = FAKER.txt_file(raw=True)
+    raw = FAKER.txt_file(raw=True)
 
 With ``factory_boy``
 --------------------
