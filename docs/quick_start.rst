@@ -93,6 +93,42 @@ With ``Faker``
     xlsx_file = FAKER.xlsx_file()
     zip_file = FAKER.zip_file()
 
+If you just need bytes back (instead of creating the file), provide
+the ``raw=True`` argument (works with all provider classes and inner
+functions):
+
+.. code-block:: python
+
+    augmented_raw = FAKER.augment_file_from_dir(
+        source_dir_path="/path/to/source/",
+        raw=True,
+    )
+    bin_raw = FAKER.bin_file(raw=True)
+    csv_raw = FAKER.csv_file(raw=True)
+    docx_raw = FAKER.docx_file(raw=True)
+    eml_raw = FAKER.eml_file(raw=True)
+    epub_raw = FAKER.epub_file(raw=True)
+    ico_raw = FAKER.ico_file(raw=True)
+    jpeg_raw = FAKER.jpeg_file(raw=True)
+    mp3_raw = FAKER.mp3_file(raw=True)
+    odp_raw = FAKER.odp_file(raw=True)
+    ods_raw = FAKER.ods_file(raw=True)
+    odt_raw = FAKER.odt_file(raw=True)
+    pdf_raw = FAKER.pdf_file(raw=True)
+    png_raw = FAKER.png_file(raw=True)
+    pptx_raw = FAKER.pptx_file(raw=True)
+    random_raw = FAKER.random_file_from_dir(
+        source_dir_path="/path/to/source/",
+        raw=True,
+    )
+    rtf_raw = FAKER.rtf_file(raw=True)
+    svg_raw = FAKER.svg_file(raw=True)
+    tar_raw = FAKER.tar_file(raw=True)
+    txt_raw = FAKER.txt_file(raw=True)
+    webp_raw = FAKER.webp_file(raw=True)
+    xlsx_raw = FAKER.xlsx_file(raw=True)
+    zip_raw = FAKER.zip_file(raw=True)
+
 With ``factory_boy``
 ~~~~~~~~~~~~~~~~~~~~
 **Imports and initialization**
