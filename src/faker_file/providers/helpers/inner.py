@@ -9,13 +9,14 @@ from typing import (
     Tuple,
     Type,
     Union,
+    overload,
 )
 
 from faker import Faker
 from faker.generator import Generator
 from faker.providers.python import Provider
 
-from ...base import StringValue
+from ...base import BytesValue, StringValue
 from ...constants import (
     DEFAULT_AUDIO_MAX_NB_CHARS,
     DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -53,6 +54,25 @@ __all__ = (
 )
 
 
+# ************************************************
+# ********************* BIN **********************
+# ************************************************
+
+
+@overload
+def create_inner_bin_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    length: int = (1 * 1024 * 1024),
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_bin_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -61,6 +81,18 @@ def create_inner_bin_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_bin_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    length: int = (1 * 1024 * 1024),
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner BIN file."""
     try:
         from ..bin_file import BinFileProvider
@@ -72,10 +104,33 @@ def create_inner_bin_file(
         prefix=prefix,
         length=length,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* CSV **********************
+# ************************************************
+
+
+@overload
+def create_inner_csv_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    header: Optional[Sequence[str]] = None,
+    data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+    num_rows: int = 10,
+    include_row_ids: bool = False,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_csv_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -87,6 +142,21 @@ def create_inner_csv_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_csv_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    header: Optional[Sequence[str]] = None,
+    data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
+    num_rows: int = 10,
+    include_row_ids: bool = False,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner CSV file."""
     try:
         from ..csv_file import CsvFileProvider
@@ -101,10 +171,31 @@ def create_inner_csv_file(
         num_rows=num_rows,
         include_row_ids=include_row_ids,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ******************** DOCX **********************
+# ************************************************
+
+
+@overload
+def create_inner_docx_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_docx_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -114,6 +205,19 @@ def create_inner_docx_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_docx_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner DOCX file."""
     try:
         from ..docx_file import DocxFileProvider
@@ -126,10 +230,32 @@ def create_inner_docx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* EML **********************
+# ************************************************
+
+
+@overload
+def create_inner_eml_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_eml_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -140,6 +266,20 @@ def create_inner_eml_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_eml_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner EML file."""
     try:
         from ..eml_file import EmlFileProvider
@@ -152,10 +292,33 @@ def create_inner_eml_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ******************** EPUB **********************
+# ************************************************
+
+
+@overload
+def create_inner_epub_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    title: Optional[str] = None,
+    chapter_title: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_epub_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -167,6 +330,21 @@ def create_inner_epub_file(
     chapter_title: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_epub_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    title: Optional[str] = None,
+    chapter_title: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner EPUB file."""
     try:
         from ..epub_file import EpubFileProvider
@@ -181,10 +359,31 @@ def create_inner_epub_file(
         content=content,
         title=title,
         chapter_title=chapter_title,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* ICO **********************
+# ************************************************
+
+
+@overload
+def create_inner_ico_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_ico_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -194,6 +393,19 @@ def create_inner_ico_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_ico_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner ICO file."""
     try:
         from ..ico_file import IcoFileProvider
@@ -206,10 +418,31 @@ def create_inner_ico_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ******************** JPEG **********************
+# ************************************************
+
+
+@overload
+def create_inner_jpeg_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_jpeg_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -219,6 +452,19 @@ def create_inner_jpeg_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_jpeg_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner JPEG file."""
     try:
         from ..jpeg_file import JpegFileProvider
@@ -231,10 +477,32 @@ def create_inner_jpeg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* MP3 **********************
+# ************************************************
+
+
+@overload
+def create_inner_mp3_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
+    content: Optional[str] = None,
+    mp3_generator_cls: Type[BaseMp3Generator] = None,
+    mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_mp3_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -245,6 +513,20 @@ def create_inner_mp3_file(
     mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_mp3_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
+    content: Optional[str] = None,
+    mp3_generator_cls: Type[BaseMp3Generator] = None,
+    mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner ODS file."""
     try:
         from ..mp3_file import Mp3FileProvider
@@ -258,8 +540,41 @@ def create_inner_mp3_file(
         content=content,
         mp3_generator_cls=mp3_generator_cls,
         mp3_generator_kwargs=mp3_generator_kwargs,
+        raw=raw,
         **kwargs,
     )
+
+
+# ************************************************
+# ********************* ODP **********************
+# ************************************************
+
+
+@overload
+def create_inner_odp_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_odp_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    ...
 
 
 def create_inner_odp_file(
@@ -269,8 +584,9 @@ def create_inner_odp_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    raw: bool = False,
     **kwargs,
-) -> StringValue:
+) -> Union[BytesValue, StringValue]:
     """Create inner ODP file."""
     try:
         from ..odp_file import OdpFileProvider
@@ -283,10 +599,31 @@ def create_inner_odp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* ODS **********************
+# ************************************************
+
+
+@overload
+def create_inner_ods_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Dict[str, str] = None,
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_ods_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -296,6 +633,19 @@ def create_inner_ods_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_ods_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Dict[str, str] = None,
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner ODS file."""
     try:
         from ..ods_file import OdsFileProvider
@@ -308,10 +658,31 @@ def create_inner_ods_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* ODT **********************
+# ************************************************
+
+
+@overload
+def create_inner_odt_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_odt_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -321,6 +692,19 @@ def create_inner_odt_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_odt_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner ODT file."""
     try:
         from ..odt_file import OdtFileProvider
@@ -333,10 +717,31 @@ def create_inner_odt_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* PDF **********************
+# ************************************************
+
+
+@overload
+def create_inner_pdf_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_pdf_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -346,6 +751,19 @@ def create_inner_pdf_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_pdf_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner PDF file."""
     try:
         from ..pdf_file import PdfFileProvider
@@ -358,10 +776,31 @@ def create_inner_pdf_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* PNG **********************
+# ************************************************
+
+
+@overload
+def create_inner_png_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_png_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -371,6 +810,19 @@ def create_inner_png_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_png_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner PNG file."""
     try:
         from ..png_file import PngFileProvider
@@ -383,10 +835,31 @@ def create_inner_png_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ******************** PPTX **********************
+# ************************************************
+
+
+@overload
+def create_inner_pptx_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_pptx_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -396,6 +869,19 @@ def create_inner_pptx_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_pptx_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner PPTX file."""
     try:
         from ..pptx_file import PptxFileProvider
@@ -408,10 +894,31 @@ def create_inner_pptx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* RTF **********************
+# ************************************************
+
+
+@overload
+def create_inner_rtf_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_rtf_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -421,6 +928,19 @@ def create_inner_rtf_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_rtf_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner RTF file."""
     try:
         from ..rtf_file import RtfFileProvider
@@ -433,10 +953,31 @@ def create_inner_rtf_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* SVG **********************
+# ************************************************
+
+
+@overload
+def create_inner_svg_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_svg_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -446,6 +987,19 @@ def create_inner_svg_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_svg_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner SVG file."""
     try:
         from ..svg_file import SvgFileProvider
@@ -458,10 +1012,30 @@ def create_inner_svg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* TAR **********************
+# ************************************************
+
+
+@overload
+def create_inner_tar_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    compression: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_tar_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -470,6 +1044,18 @@ def create_inner_tar_file(
     compression: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_tar_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    compression: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner TAR file."""
     try:
         from ..tar_file import TarFileProvider
@@ -480,10 +1066,31 @@ def create_inner_tar_file(
         prefix=prefix,
         options=options,
         compression=compression,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* TXT **********************
+# ************************************************
+
+
+@overload
+def create_inner_txt_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_txt_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -493,6 +1100,19 @@ def create_inner_txt_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_txt_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner TXT file."""
     try:
         from ..txt_file import TxtFileProvider
@@ -505,10 +1125,31 @@ def create_inner_txt_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ******************** WEBP **********************
+# ************************************************
+
+
+@overload
+def create_inner_webp_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_webp_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -518,6 +1159,19 @@ def create_inner_webp_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_webp_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
+    wrap_chars_after: Optional[int] = None,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner WEBP file."""
     try:
         from ..webp_file import WebpFileProvider
@@ -530,10 +1184,31 @@ def create_inner_webp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ******************** XLSX **********************
+# ************************************************
+
+
+@overload
+def create_inner_xlsx_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Dict[str, str] = None,
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_xlsx_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -543,6 +1218,19 @@ def create_inner_xlsx_file(
     content: Optional[str] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_xlsx_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Dict[str, str] = None,
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner XLSX file."""
     try:
         from ..xlsx_file import XlsxFileProvider
@@ -555,10 +1243,29 @@ def create_inner_xlsx_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
+        raw=raw,
         **kwargs,
     )
 
 
+# ************************************************
+# ********************* ZIP **********************
+# ************************************************
+
+
+@overload
+def create_inner_zip_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
 def create_inner_zip_file(
     storage: BaseStorage = None,
     prefix: Optional[str] = None,
@@ -566,6 +1273,17 @@ def create_inner_zip_file(
     options: Optional[Dict[str, Any]] = None,
     **kwargs,
 ) -> StringValue:
+    ...
+
+
+def create_inner_zip_file(
+    storage: BaseStorage = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    options: Optional[Dict[str, Any]] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
     """Create inner ZIP file."""
     try:
         from ..zip_file import ZipFileProvider
@@ -575,8 +1293,14 @@ def create_inner_zip_file(
         storage=storage,
         prefix=prefix,
         options=options,
+        raw=raw,
         **kwargs,
     )
+
+
+# ************************************************
+# ******************** OTHER *********************
+# ************************************************
 
 
 def fuzzy_choice_create_inner_file(
