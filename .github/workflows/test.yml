@@ -3,7 +3,7 @@ name: test
 on:
   push:
   pull_request:
-    types: [synchronize, opened, reopened, ready_for_review]
+    types: [review_requested, ready_for_review]
 
 jobs:
   # *************************************
@@ -43,7 +43,6 @@ jobs:
   test-sqlalchemy-integration:
     needs: pre-commit
     name: test-sqlalchemy-integration ${{ matrix.python-version }} - ${{ matrix.os }}
-    if: github.event.pull_request.draft == 'false'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -87,7 +86,6 @@ jobs:
   test-augmented-file-from-dir-provider:
     needs: pre-commit
     name: test-augmented-file-from-dir-provider ${{ matrix.python-version }} - ${{ matrix.os }}
-    if: github.event.pull_request.draft == 'false'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -141,7 +139,6 @@ jobs:
   test:
     needs: pre-commit
     name: test ${{ matrix.python-version }} - ${{ matrix.os }}
-    if: github.event.pull_request.draft == 'false'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -190,7 +187,6 @@ jobs:
   coveralls_finish:
     name: coveralls_finish
     needs: test
-    if: github.event.pull_request.draft == 'false'
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
