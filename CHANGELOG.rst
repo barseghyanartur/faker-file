@@ -20,7 +20,10 @@ are used for versioning (schema follows below):
 2023-01-25
 
 - Allow returning binary contents of the file by providing the ``raw=True``
-  argument (works with all provider classes and inner functions).
+  argument (``False`` by default, works with all provider classes and inner
+  functions). If you  have subclassed or overriden provider classes or
+  written custom inner functions, make sure to reflect the changes in your
+  code.
 
 0.10.12
 -------
