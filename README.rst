@@ -205,7 +205,7 @@ With ``Faker``
 
     file = TxtFileProvider(FAKER).txt_file()
 
-If you just need bytes back (instead of creating the file), provide
+If you just need ``bytes`` back (instead of creating the file), provide
 the ``raw=True`` argument (works with all provider classes and inner
 functions):
 
@@ -225,7 +225,7 @@ functions):
 
     file = FAKER.txt_file()
 
-If you just need bytes back:
+If you just need ``bytes`` back:
 
 .. code-block:: python
 
