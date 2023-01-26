@@ -15,6 +15,7 @@ async-timeout==4.0.2
 attrs==22.2.0
     # via
     #   aiohttp
+    #   jsonschema
     #   pytest
 azure-core==1.26.1
     # via
@@ -69,10 +70,21 @@ django==2.2.28
     # via
     #   -r examples/requirements/django_2_2.in
     #   django-debug-toolbar
+    #   django-extensions
     #   django-storages
+    #   djangorestframework
+    #   drf-spectacular
 django-debug-toolbar==3.0
     # via -r examples/requirements/django_2_2.in
+django-extensions==3.1.5
+    # via -r examples/requirements/django_2_2.in
 django-storages==1.12.3
+    # via -r examples/requirements/django_2_2.in
+djangorestframework==3.11.2
+    # via
+    #   -r examples/requirements/django_2_2.in
+    #   drf-spectacular
+drf-spectacular==0.25.1
     # via -r examples/requirements/django_2_2.in
 edge-tts==6.0.8
     # via -r examples/requirements/common.in
@@ -140,6 +152,8 @@ imgkit==1.2.2
     # via -r examples/requirements/common.in
 importlib-metadata==1.7.0
     # via typer-cli
+inflection==0.5.1
+    # via drf-spectacular
 iniconfig==1.1.1
     # via pytest
 isodate==0.6.1
@@ -155,6 +169,8 @@ jmespath==1.0.1
     # via
     #   boto3
     #   botocore
+jsonschema==4.17.3
+    # via drf-spectacular
 lxml==4.9.2
     # via
     #   python-docx
@@ -223,6 +239,8 @@ pycparser==2.21
     # via cffi
 pyproject-api==1.2.1
     # via tox
+pyrsistent==0.19.3
+    # via jsonschema
 pytest==7.2.1
     # via
     #   -r examples/requirements/test.in
@@ -260,6 +278,8 @@ pytz==2022.7
     # via
     #   babel
     #   django
+pyyaml==6.0
+    # via drf-spectacular
 requests==2.28.1
     # via
     #   azure-core
@@ -319,6 +339,8 @@ typer-cli==0.0.1
     # via pathy
 typing-extensions==4.4.0
     # via azure-core
+uritemplate==4.1.1
+    # via drf-spectacular
 urllib3==1.26.13
     # via
     #   botocore
