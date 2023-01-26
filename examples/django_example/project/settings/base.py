@@ -84,7 +84,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Handy apps
-    #"django_extensions",
+    # "django_extensions",
     # REST framework specific
     "drf_spectacular",
     "rest_framework",
