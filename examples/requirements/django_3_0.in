@@ -3,7 +3,7 @@
 
 Django>=3.0,<3.1
 django-debug-toolbar>=2.2,<3.0
-django-extensions<3.2.0
+#django-extensions<3.2.0
 djangorestframework>=3.10.0,<3.12
 django-storages<=1.12.3
 drf_spectacular
