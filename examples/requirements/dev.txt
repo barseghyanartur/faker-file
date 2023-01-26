@@ -15,6 +15,7 @@ async-timeout==4.0.2
 attrs==22.1.0
     # via
     #   aiohttp
+    #   jsonschema
     #   pytest
 azure-core==1.26.1
     # via
@@ -68,13 +69,24 @@ django==3.2.16
     # via
     #   -r examples/requirements/django_3_2.in
     #   django-debug-toolbar
+    #   django-extensions
     #   django-storages
+    #   djangorestframework
+    #   drf-spectacular
 django-debug-toolbar==3.8.1
+    # via -r examples/requirements/django_3_2.in
+django-extensions==3.2.1
     # via -r examples/requirements/django_3_2.in
 django-storages==1.13.1
     # via -r examples/requirements/django_3_2.in
+djangorestframework==3.12.4
+    # via
+    #   -r examples/requirements/django_3_2.in
+    #   drf-spectacular
 docutils==0.19
     # via readme-renderer
+drf-spectacular==0.25.1
+    # via -r examples/requirements/django_3_2.in
 edge-tts==6.0.8
     # via -r examples/requirements/common.in
 et-xmlfile==1.1.0
@@ -126,6 +138,8 @@ importlib-metadata==5.1.0
     # via
     #   keyring
     #   twine
+inflection==0.5.1
+    # via drf-spectacular
 iniconfig==1.1.1
     # via pytest
 isodate==0.6.1
@@ -142,6 +156,8 @@ jmespath==1.0.1
     # via
     #   boto3
     #   botocore
+jsonschema==4.17.3
+    # via drf-spectacular
 keyring==23.11.0
     # via twine
 lxml==4.9.1
@@ -213,6 +229,8 @@ pygments==2.13.0
     #   rich
 pyparsing==3.0.9
     # via packaging
+pyrsistent==0.19.3
+    # via jsonschema
 pytest==7.2.1
     # via
     #   -r examples/requirements/test.in
@@ -248,6 +266,8 @@ python-pptx==0.6.21
     # via -r examples/requirements/common.in
 pytz==2022.6
     # via django
+pyyaml==6.0
+    # via drf-spectacular
 readme-renderer==37.3
     # via twine
 requests==2.28.1
@@ -316,6 +336,8 @@ typer-cli==0.0.12
     # via pathy
 typing-extensions==4.4.0
     # via azure-core
+uritemplate==4.1.1
+    # via drf-spectacular
 urllib3==1.26.13
     # via
     #   botocore

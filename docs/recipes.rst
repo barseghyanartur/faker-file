@@ -734,6 +734,59 @@ Refer to ``nlpaug``
 `docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
 and check `Textual augmenters` examples.
 
+Using `raw=True` features in tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you pass ``raw=True`` argument to any provider or inner function,
+instead of creating a file, you will get ``bytes`` back (or to be
+totally correct, ``bytes``-like object ``BytesValue``, which is basically
+bytes enriched with meta-data). You could then use the ``bytes`` content
+of the file to build a test payload as shown in the example test below:
+
+.. code-block:: python
+
+    from io import BytesIO
+    from uuid import uuid4
+
+    from django.test import TestCase
+    from django.urls import reverse
+    from faker import Faker
+    from faker_file.providers.docx_file import DocxFileProvider
+    from rest_framework.status import HTTP_201_CREATED
+    from upload.models import Upload
+
+    FAKER = Faker()
+    FAKER.add_provider(DocxFileProvider)
+
+    class UploadTestCase(TestCase):
+        """Upload test case."""
+
+        def test_create_docx_upload(self) -> None:
+            """Test create an Upload."""
+            url = reverse("api:upload-list")
+
+            raw = FAKER.docx_file(raw=True)
+            test_file = BytesIO(raw)
+            test_file.name = f"test{uuid4()}.docx"
+
+            payload = {
+                "name": FAKER.word(),
+                "description": FAKER.paragraph(),
+                "file": test_file,
+            }
+
+            response = self.client.post(url, payload, format="json")
+
+            # Test if request is handled properly (HTTP 201)
+            self.assertEqual(response.status_code, HTTP_201_CREATED)
+
+            test_upload = Upload.objects.get(id=response.data["id"])
+
+            # Test if the name is properly recorded
+            self.assertEqual(str(test_upload.name), payload["name"])
+
+            # Test if file name recorded properly
+            self.assertEqual(str(test_upload.file.name), test_file.name)
+
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
