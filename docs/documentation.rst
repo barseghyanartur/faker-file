@@ -13,5 +13,6 @@ Contents:
    recipes
    security
    code_of_conduct
+   contributor_guidelines
    changelog
    package
