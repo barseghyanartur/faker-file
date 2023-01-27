@@ -27,9 +27,40 @@ faker-file
     :target: https://coveralls.io/github/barseghyanartur/faker-file?branch=main
     :alt: Coverage
 
+.. Internal references
+
 .. _Read the Docs: http://faker-file.readthedocs.io/
 .. _Quick start: https://faker-file.readthedocs.io/en/latest/quick_start.html
 .. _Recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
+
+.. External references
+
+.. _Faker: https://faker.readthedocs.io/
+.. _Django: https://www.djangoproject.com/
+.. _factory_boy: https://factoryboy.readthedocs.io/
+.. _python-docx: https://python-docx.readthedocs.io/
+.. _xml2epub: https://pypi.org/project/xml2epub/
+.. _Jinja2: https://jinja.palletsprojects.com/
+.. _imgkit: https://pypi.org/project/imgkit/
+.. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _gTTS: https://gtts.readthedocs.io/
+.. _edge-tts: https://pypi.org/project/edge-tts/
+.. _pdfkit: https://pypi.org/project/pdfkit/
+.. _python-pptx: https://python-pptx.readthedocs.io/
+.. _odfpy: https://pypi.org/project/odfpy/
+.. _tablib: https://tablib.readthedocs.io/
+.. _openpyxl: https://openpyxl.readthedocs.io/
+.. _pathy: https://pypi.org/project/pathy/
+.. _boto3: https://pypi.org/project/boto3/
+.. _azure-storage-blob: https://pypi.org/project/azure-storage-blob/
+.. _google-cloud-storage: https://pypi.org/project/google-cloud-storage/
+.. _nlpaug: https://nlpaug.readthedocs.io/
+.. _PyTorch: https://pytorch.org/
+.. _transformers: https://pypi.org/project/transformers/
+.. _numpy: https://numpy.org/
+.. _pandas: https://pandas.pydata.org/
+.. _tika: https://pypi.org/project/tika/
+.. _Apache Tika: https://tika.apache.org/
 
 Prerequisites
 =============
@@ -39,30 +70,30 @@ a few are `BSD`-, `Apache 2`- or `GPLv3` licensed. All licenses are mentioned
 below between the brackets.
 
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
-- ``Faker`` (`MIT`) is the only required dependency.
-- ``Django`` (`BSD`) integration with ``factory_boy`` (`MIT`) has
+- `Faker`_ (`MIT`) is the only required dependency.
+- `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
   been tested with ``Django`` 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
-- ``DOCX`` file support requires ``python-docx`` (`MIT`).
-- ``EPUB`` file support requires ``xml2epub`` (`MIT`) and ``jinja2`` (`BSD`).
+- ``DOCX`` file support requires `python-docx`_ (`MIT`).
+- ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
-  requires ``imgkit`` (`MIT`).
-- ``MP3`` file support requires ``gtts`` (`MIT`) or ``edge-tts`` (`GPLv3`).
-- ``PDF`` file support requires ``pdfkit`` (`MIT`).
-- ``PPTX`` file support requires ``python-pptx`` (`MIT`).
-- ``ODP`` file support requires ``odfpy`` (`Apache 2`).
-- ``ODS`` file support requires ``tablib`` (`MIT`) and ``odfpy`` (`Apache 2`).
-- ``ODT`` file support requires ``odfpy`` (`Apache 2`).
-- ``XLSX`` file support requires ``tablib`` (`MIT`) and ``openpyxl`` (`MIT`).
-- ``PathyFileSystemStorage`` storage support requires ``pathy`` (`Apache 2`).
-- ``AWSS3Storage`` storage support requires ``pathy`` (`Apache 2`)
-  and ``boto3`` (`Apache 2`).
-- ``AzureCloudStorage`` storage support requires ``pathy`` (`Apache 2`)
-  and ``azure-storage-blob`` (`MIT`).
-- ``GoogleCloudStorage`` storage support requires ``pathy`` (`Apache 2`)
-  and ``google-cloud-storage`` (`Apache 2`).
-- ``AugmentFileFromDirProvider`` provider requires ``nlpaug`` (`MIT`),
-  ``torch`` (`BSD`), ``transformers`` (`Apache 2`), ``numpy`` (`BSD`),
-  ``pandas`` (`BSD`) and ``tika`` (`Apache 2`).
+  requires `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
+- ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
+- ``PDF`` file support requires `pdfkit`_ (`MIT`).
+- ``PPTX`` file support requires `python-pptx`_ (`MIT`).
+- ``ODP`` file support requires `odfpy`_ (`Apache 2`).
+- ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
+- ``ODT`` file support requires `odfpy`_ (`Apache 2`).
+- ``XLSX`` file support requires `tablib`_ (`MIT`) and `openpyxl`_ (`MIT`).
+- ``PathyFileSystemStorage`` storage support requires `pathy`_ (`Apache 2`).
+- ``AWSS3Storage`` storage support requires `pathy`_ (`Apache 2`)
+  and `boto3`_ (`Apache 2`).
+- ``AzureCloudStorage`` storage support requires `pathy`_ (`Apache 2`)
+  and `azure-storage-blob`_ (`MIT`).
+- ``GoogleCloudStorage`` storage support requires `pathy`_ (`Apache 2`)
+  and `google-cloud-storage`_ (`Apache 2`).
+- ``AugmentFileFromDirProvider`` provider requires `nlpaug`_ (`MIT`),
+  `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`), `numpy`_ (`BSD`),
+  `pandas`_ (`BSD`) and `tika`_ (`Apache 2`) and `Apache Tika`_ (`Apache 2`).
 
 Documentation
 =============
@@ -282,11 +313,11 @@ All file operations are delegated to a separate abstraction layer of storages.
 The following storages are implemented:
 
 - ``FileSystemStorage``: Does not have additional requirements.
-- ``PathyFileSystemStorage``: Requires ``pathy``.
-- ``AzureCloudStorage``: Requires ``pathy`` and `Azure` related dependencies.
-- ``GoogleCloudStorage``: Requires ``pathy`` and `Google Cloud` related
+- ``PathyFileSystemStorage``: Requires `pathy`_.
+- ``AzureCloudStorage``: Requires `pathy`_ and `Azure` related dependencies.
+- ``GoogleCloudStorage``: Requires `pathy`_ and `Google Cloud` related
   dependencies.
-- ``AWSS3Storage``: Requires ``pathy`` and `AWS S3` related dependencies.
+- ``AWSS3Storage``: Requires `pathy`_ and `AWS S3` related dependencies.
 
 Usage example with storages
 ---------------------------

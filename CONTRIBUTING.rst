@@ -15,9 +15,11 @@ Contributor guidelines
 .. _installation: https://faker-file.readthedocs.io/#installation
 .. _features: https://faker-file.readthedocs.io/#features
 .. _recipes: https://faker-file.readthedocs.io/recipes.html
+.. _quick start: https://faker-file.readthedocs.io/quick_start.html
+.. _prerequisites: https://faker-file.readthedocs.io/#prerequisites
 
-Prerequisites
--------------
+Developer prerequisites
+-----------------------
 pre-commit
 ~~~~~~~~~~
 Refer to `pre-commit`_ for installation instructions.
@@ -100,8 +102,11 @@ When fixing bugs:
 
 When adding a new feature:
 
+- Take licenses of added dependencies carefully and make sure to list them
+  in `prerequisites`_.
 - Make sure to add tests.
-- Make sure to update the documentation (.
+- Make sure to update the documentation (check whether the `installation`_,
+  `features`_, `recipes`_ and `quick start`_ require changes).
 
 Questions
 ---------
