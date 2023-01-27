@@ -61,13 +61,10 @@ django==2.2.28
     # via
     #   -r examples/requirements/django_2_2.in
     #   django-debug-toolbar
-    #   django-extensions
     #   django-storages
     #   djangorestframework
     #   drf-spectacular
 django-debug-toolbar==3.0
-    # via -r examples/requirements/django_2_2.in
-django-extensions==3.1.5
     # via -r examples/requirements/django_2_2.in
 django-storages==1.12.3
     # via -r examples/requirements/django_2_2.in
