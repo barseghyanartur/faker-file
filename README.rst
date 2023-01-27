@@ -94,7 +94,7 @@ below between the brackets.
   and `google-cloud-storage`_ (`Apache 2`).
 - ``AugmentFileFromDirProvider`` provider requires `nlpaug`_ (`MIT`),
   `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`), `numpy`_ (`BSD`),
-  `pandas`_ (`BSD`) and `tika`_ (`Apache 2`) and `Apache Tika`_ (`Apache 2`).
+  `pandas`_ (`BSD`), `tika`_ (`Apache 2`) and `Apache Tika`_ (`Apache 2`).
 
 Documentation
 =============
