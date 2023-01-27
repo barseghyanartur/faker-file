@@ -1,7 +1,7 @@
 Contributor guidelines
 ======================
 
-.. _documentation: https://faker-file.readthedocs.io/#project-documentation
+.. _documentation: https://faker-file.readthedocs.io/#writing-documentation
 .. _testing: https://faker-file.readthedocs.io/#testing
 .. _pre-commit: https://pre-commit.com/#installation
 .. _black: https://black.readthedocs.io/
