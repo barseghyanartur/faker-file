@@ -96,15 +96,28 @@ For example:
 - To introduce a new feature (for instance, add support for a non-supported
   file type).
 
-When fixing bugs:
+**Good to know:**
 
-- Make sure to add tests.
+- Test suite makes extensive use of parametrization. Make sure you have added
+  your changes in the right place.
 
-When adding a new feature:
+**General list to go through:**
 
-- Take licenses of added dependencies carefully and make sure to list them
+- Does your change require documentation update?
+- Does your change require update to tests?
+- Did you test both Latin and Unicode characters?
+- Does your change rely on third-party cloud based service? If so, please
+  make sure it's added to tests that should be retried a couple of times.
+  Example: ``@pytest.mark.flaky(reruns=5)``.
+
+**When fixing bugs (in addition to the general list):**
+
+- Make sure to add regression tests.
+
+**When adding a new feature (in addition to the general list):**
+
+- Check the licenses of added dependencies carefully and make sure to list them
   in `prerequisites`_.
-- Make sure to add tests.
 - Make sure to update the documentation (check whether the `installation`_,
   `features`_, `recipes`_ and `quick start`_ require changes).
 
