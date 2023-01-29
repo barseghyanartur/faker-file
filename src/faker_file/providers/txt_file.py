@@ -52,7 +52,7 @@ class TxtFileProvider(BaseProvider, FileMixin):
     @overload
     def txt_file(
         self: "TxtFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,

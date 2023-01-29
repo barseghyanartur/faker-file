@@ -65,7 +65,7 @@ class FileSystemStorage(BaseStorage):
         self: "FileSystemStorage",
         filename: str,
         data: str,
-        encoding: str = None,
+        encoding: Optional[str] = None,
     ) -> int:
         """Write text."""
         with open(filename, "w") as file:

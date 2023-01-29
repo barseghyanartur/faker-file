@@ -25,7 +25,7 @@ class CloudStorage(BaseStorage):
     bucket_name: str
     bucket: Pathy
     credentials: Dict[str, str]
-    schema: str = None
+    schema: Optional[str] = None
 
     def __init__(
         self: "CloudStorage",
@@ -80,7 +80,7 @@ class CloudStorage(BaseStorage):
         self: "CloudStorage",
         filename: Pathy,
         data: str,
-        encoding: str = None,
+        encoding: Optional[str] = None,
     ) -> int:
         """Write text."""
         file = self.bucket / self.root_path / self.rel_path / filename

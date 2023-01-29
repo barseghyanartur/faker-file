@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -22,7 +22,10 @@ class BaseStorage:
         )
 
     def write_text(
-        self: "BaseStorage", filename: Any, data: str, encoding: str = None
+        self: "BaseStorage",
+        filename: Any,
+        data: str,
+        encoding: Optional[str] = None,
     ) -> int:
         """Write text."""
         raise NotImplementedError("Method write_text is not implemented!")
