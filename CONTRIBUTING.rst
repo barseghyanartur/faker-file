@@ -14,8 +14,8 @@ Contributor guidelines
 .. _support: https://faker-file.readthedocs.io/#support
 .. _installation: https://faker-file.readthedocs.io/#installation
 .. _features: https://faker-file.readthedocs.io/#features
-.. _recipes: https://faker-file.readthedocs.io/recipes.html
-.. _quick start: https://faker-file.readthedocs.io/quick_start.html
+.. _recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
+.. _quick start: https://faker-file.readthedocs.io/en/latest/quick_start.html
 .. _prerequisites: https://faker-file.readthedocs.io/#prerequisites
 
 Developer prerequisites
