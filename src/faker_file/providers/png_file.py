@@ -52,7 +52,7 @@ class PngFileProvider(BaseProvider, ImageMixin):
     @overload
     def png_file(
         self: "PngFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -65,7 +65,7 @@ class PngFileProvider(BaseProvider, ImageMixin):
     @overload
     def png_file(
         self: "PngFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -76,7 +76,7 @@ class PngFileProvider(BaseProvider, ImageMixin):
 
     def png_file(
         self: "PngFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,

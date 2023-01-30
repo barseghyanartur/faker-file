@@ -52,7 +52,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
     @overload
     def jpeg_file(
         self: "JpegFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -65,7 +65,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
     @overload
     def jpeg_file(
         self: "JpegFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -76,7 +76,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
 
     def jpeg_file(
         self: "JpegFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,

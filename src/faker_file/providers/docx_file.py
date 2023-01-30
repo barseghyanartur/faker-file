@@ -54,7 +54,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     @overload
     def docx_file(
         self: "DocxFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -67,7 +67,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     @overload
     def docx_file(
         self: "DocxFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -78,7 +78,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     def docx_file(
         self: "DocxFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,

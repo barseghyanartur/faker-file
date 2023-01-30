@@ -1,7 +1,16 @@
 import os
 from pathlib import Path
 from random import choice
-from typing import Any, Dict, Iterable, Optional, Type, Union, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    Optional,
+    Type,
+    Union,
+    overload,
+)
 
 from faker.providers import BaseProvider
 
@@ -49,7 +58,7 @@ __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("AugmentFileFromDirProvider",)
 
-FILE_TYPE_TO_INNER_FUNC_MAPPING = {
+FILE_TYPE_TO_INNER_FUNC_MAPPING: Dict[str, Callable] = {
     "docx": create_inner_docx_file,
     "eml": create_inner_eml_file,
     "epub": create_inner_epub_file,
@@ -94,8 +103,8 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
-        extensions: Iterable[str] = None,
-        storage: BaseStorage = None,
+        extensions: Optional[Iterable[str]] = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
         text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
@@ -113,8 +122,8 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
-        extensions: Iterable[str] = None,
-        storage: BaseStorage = None,
+        extensions: Optional[Iterable[str]] = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
         text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
@@ -130,8 +139,8 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
-        extensions: Iterable[str] = None,
-        storage: BaseStorage = None,
+        extensions: Optional[Iterable[str]] = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
         text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,

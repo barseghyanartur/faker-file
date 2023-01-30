@@ -687,7 +687,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test faker provider integration."""
         _kwargs = deepcopy(kwargs)
@@ -710,7 +710,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test faker provider integration, retry on failures."""
         _kwargs = deepcopy(kwargs)
@@ -732,7 +732,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone providers."""
         _kwargs = deepcopy(kwargs)
@@ -755,7 +755,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone providers."""
         _kwargs = deepcopy(kwargs)
@@ -778,7 +778,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone providers, but allow failures."""
         _kwargs = deepcopy(kwargs)
@@ -797,8 +797,8 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_zip_file(
         self: "ProvidersTestCase",
         create_inner_file_func: Optional[Callable] = None,
-        content: Union[str, Dict] = None,
-        create_inner_file_args: Dict[str, Any] = None,
+        content: Optional[Union[str, Dict]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
     ) -> None:
         """Test standalone ZIP file provider."""
         _options = {"content": content}
@@ -817,8 +817,8 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_tar_file(
         self: "ProvidersTestCase",
         create_inner_file_func: Optional[Callable] = None,
-        content: Union[str, Dict] = None,
-        create_inner_file_args: Dict[str, Any] = None,
+        content: Optional[Union[str, Dict]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
     ) -> None:
         """Test standalone TAR file provider."""
         _options = {"content": content}
@@ -840,7 +840,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_zip_file_allow_failures(
         self: "ProvidersTestCase",
         create_inner_file_func: Optional[Callable] = None,
-        content: Union[str, Dict] = None,
+        content: Optional[Union[str, Dict]] = None,
     ) -> None:
         """Test standalone ZIP file provider, but allow failures."""
         _options = {"content": content}
@@ -860,7 +860,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_tar_file_allow_failures(
         self: "ProvidersTestCase",
         create_inner_file_func: Optional[Callable] = None,
-        content: Union[str, Dict] = None,
+        content: Optional[Union[str, Dict]] = None,
     ) -> None:
         """Test standalone TAR file provider, but allow failures."""
         _options = {"content": content}
@@ -1036,7 +1036,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone providers with raw=True."""
         _kwargs = deepcopy(kwargs)
@@ -1061,7 +1061,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone providers."""
         _kwargs = deepcopy(kwargs)
@@ -1086,7 +1086,7 @@ class ProvidersTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone providers, but allow failures."""
         _kwargs = deepcopy(kwargs)

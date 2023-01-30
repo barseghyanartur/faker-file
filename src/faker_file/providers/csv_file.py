@@ -57,7 +57,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     @overload
     def csv_file(
         self: "CsvFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         header: Optional[Sequence[str]] = None,
         data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
@@ -73,7 +73,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     @overload
     def csv_file(
         self: "CsvFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         header: Optional[Sequence[str]] = None,
         data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),
@@ -87,7 +87,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
 
     def csv_file(
         self: "CsvFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         header: Optional[Sequence[str]] = None,
         data_columns: Tuple[str, str] = ("{{name}}", "{{address}}"),

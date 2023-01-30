@@ -2,7 +2,7 @@ import os.path
 import tempfile
 import unittest
 from copy import deepcopy
-from typing import Any, Dict, Union
+from typing import Any, Dict, Optional, Type, Union
 
 import tika
 from faker import Faker
@@ -59,7 +59,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         use_fs(tempfile.gettempdir())
 
     @classmethod
-    def setUpClass(cls: "AugmentFileFromDirProviderTestCase"):
+    def setUpClass(cls: Type["AugmentFileFromDirProviderTestCase"]):
         super().setUpClass()
         DocxFileProvider(_FAKER).docx_file(
             prefix="source_",
@@ -210,7 +210,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone."""
         _kwargs = deepcopy(kwargs)
@@ -267,7 +267,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         provider: FileProvider,
         method_name: str,
         kwargs: Dict[str, Any],
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
     ) -> None:
         """Test standalone."""
         _kwargs = deepcopy(kwargs)

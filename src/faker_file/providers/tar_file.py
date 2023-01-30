@@ -73,7 +73,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     @overload
     def tar_file(
         self: "TarFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         # Once Python 3.7 is deprecated, add the following annotation:
@@ -87,7 +87,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     @overload
     def tar_file(
         self: "TarFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         # Once Python 3.7 is deprecated, add the following annotation:
@@ -99,7 +99,7 @@ class TarFileProvider(BaseProvider, FileMixin):
 
     def tar_file(
         self: "TarFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         # Once Python 3.7 is deprecated, add the following annotation:

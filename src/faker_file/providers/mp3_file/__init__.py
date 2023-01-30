@@ -103,11 +103,11 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     @overload
     def mp3_file(
         self: "Mp3FileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
-        mp3_generator_cls: Type[BaseMp3Generator] = GttsMp3Generator,
+        mp3_generator_cls: Optional[Type[BaseMp3Generator]] = GttsMp3Generator,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
@@ -117,11 +117,11 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     @overload
     def mp3_file(
         self: "Mp3FileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
-        mp3_generator_cls: Type[BaseMp3Generator] = GttsMp3Generator,
+        mp3_generator_cls: Optional[Type[BaseMp3Generator]] = GttsMp3Generator,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
@@ -129,11 +129,11 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
     def mp3_file(
         self: "Mp3FileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
-        mp3_generator_cls: Type[BaseMp3Generator] = GttsMp3Generator,
+        mp3_generator_cls: Optional[Type[BaseMp3Generator]] = GttsMp3Generator,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = False,
         **kwargs,

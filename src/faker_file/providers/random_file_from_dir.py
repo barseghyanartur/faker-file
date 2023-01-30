@@ -46,7 +46,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         raw: bool = True,
         **kwargs,
@@ -57,7 +57,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
@@ -66,7 +66,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         raw: bool = False,
         **kwargs,

@@ -59,8 +59,8 @@ class CloudStorage(BaseStorage):
 
     def generate_filename(
         self: "CloudStorage",
-        prefix: str,
         extension: str,
+        prefix: Optional[str] = None,
     ) -> Pathy:
         """Generate filename."""
         if not extension:

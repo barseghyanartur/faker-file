@@ -46,8 +46,8 @@ class FileSystemStorage(BaseStorage):
 
     def generate_filename(
         self: "FileSystemStorage",
-        prefix: str,
         extension: str,
+        prefix: Optional[str] = None,
     ) -> str:
         """Generate filename."""
         dir_path = os.path.join(self.root_path, self.rel_path)

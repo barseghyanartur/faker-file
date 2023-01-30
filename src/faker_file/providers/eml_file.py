@@ -71,7 +71,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
     @overload
     def eml_file(
         self: "EmlFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -85,7 +85,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
     @overload
     def eml_file(
         self: "EmlFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -97,7 +97,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
 
     def eml_file(
         self: "EmlFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,

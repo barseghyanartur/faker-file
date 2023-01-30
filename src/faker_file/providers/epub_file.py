@@ -56,7 +56,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
     @overload
     def epub_file(
         self: "EpubFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -71,7 +71,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
     @overload
     def epub_file(
         self: "EpubFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -84,7 +84,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
 
     def epub_file(
         self: "EpubFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,

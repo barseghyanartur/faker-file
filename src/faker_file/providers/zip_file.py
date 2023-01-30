@@ -71,7 +71,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     @overload
     def zip_file(
         self: "ZipFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         raw: bool = True,
@@ -82,7 +82,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     @overload
     def zip_file(
         self: "ZipFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         **kwargs,
@@ -91,7 +91,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
 
     def zip_file(
         self: "ZipFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         raw: bool = False,
@@ -116,7 +116,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
             extension=self.extension,
         )
-        data = {"inner": {}, "files": []}
+        data: [Dict[str, Any]] = {"inner": {}, "files": []}
         fs_storage = FileSystemStorage()
 
         # Specific

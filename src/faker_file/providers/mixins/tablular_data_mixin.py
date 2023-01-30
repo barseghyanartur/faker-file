@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Union, overload
+from typing import Dict, Optional, Union, overload
 
 from faker import Faker
 from tablib import Dataset
@@ -19,9 +19,9 @@ class TabularDataMixin(FileMixin):
     @overload
     def _tabular_data_file(
         self: "TabularDataMixin",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
-        data_columns: Dict[str, str] = None,
+        data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
         raw: bool = True,
@@ -32,9 +32,9 @@ class TabularDataMixin(FileMixin):
     @overload
     def _tabular_data_file(
         self: "TabularDataMixin",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
-        data_columns: Dict[str, str] = None,
+        data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
         **kwargs,
@@ -43,9 +43,9 @@ class TabularDataMixin(FileMixin):
 
     def _tabular_data_file(
         self: "TabularDataMixin",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
-        data_columns: Dict[str, str] = None,
+        data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
         raw: bool = False,
@@ -91,7 +91,7 @@ class TabularDataMixin(FileMixin):
                 "name": "{{name}}",
                 "residency": "{{address}}",
             }
-            data_columns: Union[List, Dict] = (
+            data_columns = (
                 data_columns if data_columns else default_data_columns
             )
             content = self.generator.json(

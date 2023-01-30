@@ -60,7 +60,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     @overload
     def bin_file(
         self: "BinFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
@@ -72,7 +72,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     @overload
     def bin_file(
         self: "BinFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
@@ -82,7 +82,7 @@ class BinFileProvider(BaseProvider, FileMixin):
 
     def bin_file(
         self: "BinFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,

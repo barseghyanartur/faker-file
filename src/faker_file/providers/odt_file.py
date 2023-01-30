@@ -57,7 +57,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
     @overload
     def odt_file(
         self: "OdtFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -70,7 +70,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
     @overload
     def odt_file(
         self: "OdtFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -81,7 +81,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
 
     def odt_file(
         self: "OdtFileProvider",
-        storage: BaseStorage = None,
+        storage: Optional[BaseStorage] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
