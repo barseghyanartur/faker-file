@@ -137,7 +137,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
             wrap_chars_after=wrap_chars_after,
             content=content,
         )
-        data = {
+        data: Dict[str, Any] = {
             "content": content,
             "inner": {},
         }

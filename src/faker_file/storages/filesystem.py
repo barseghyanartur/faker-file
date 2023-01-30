@@ -40,8 +40,8 @@ class FileSystemStorage(BaseStorage):
             it would be `settings.MEDIA_ROOT`).
         :param rel_path: Relative path (from root directory).
         """
-        self.root_path = root_path
-        self.rel_path = rel_path
+        self.root_path = root_path or ""
+        self.rel_path = rel_path or ""
         super().__init__(*args, **kwargs)
 
     def generate_filename(

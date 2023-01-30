@@ -39,8 +39,8 @@ class CloudStorage(BaseStorage):
         if self.schema is None:
             raise Exception("The `schema` property should the set!")
         self.bucket_name = bucket_name
-        self.root_path = root_path
-        self.rel_path = rel_path
+        self.root_path = root_path or ""
+        self.rel_path = rel_path or ""
         self.cache_dir = None
         credentials = credentials or {}
 
