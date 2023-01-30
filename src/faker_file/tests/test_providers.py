@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from copy import deepcopy
 from importlib import import_module, reload
-from typing import Any, Callable, Dict, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
 import pytest
 from faker import Faker
@@ -88,6 +88,7 @@ FileProvider = Union[
     PdfFileProvider,
     PngFileProvider,
     PptxFileProvider,
+    RandomFileFromDirProvider,
     RtfFileProvider,
     SvgFileProvider,
     TarFileProvider,
@@ -107,7 +108,15 @@ class ProvidersTestCase(unittest.TestCase):
     """Providers test case."""
 
     # fake, provider, method_name, kwargs, storage
-    __PARAMETRIZED_DATA = [
+    __PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         # BIN
         (FAKER, BinFileProvider, "bin_file", {}, None),
         (FAKER, BinFileProvider, "bin_file", {}, False),
@@ -507,7 +516,15 @@ class ProvidersTestCase(unittest.TestCase):
     ]
 
     # provider, method_name, kwargs, storage
-    __PARAMETRIZED_DATA_RETRY_FAILURES = [
+    __PARAMETRIZED_DATA_RETRY_FAILURES: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         # MP3
         (FAKER, Mp3FileProvider, "mp3_file", {}, None),
         (FAKER, Mp3FileProvider, "mp3_file", {}, False),
@@ -540,13 +557,27 @@ class ProvidersTestCase(unittest.TestCase):
     ]
 
     # fake, provider, method_name, kwargs, storage
-    __PARAMETRIZED_DATA_ALLOW_FAILURES = [
+    __PARAMETRIZED_DATA_ALLOW_FAILURES: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         (FAKER, WebpFileProvider, "webp_file", {}, None),
         (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
     ]
 
     # create_inner_file_func, content, create_inner_file_args
-    __PARAMETRIZED_DATA_ARCHIVES = [
+    __PARAMETRIZED_DATA_ARCHIVES: List[
+        Tuple[
+            Optional[Callable],
+            Optional[Union[bytes, str]],
+            Optional[Dict[str, Any]],
+        ]
+    ] = [
         (None, None, None),
         (create_inner_bin_file, b"Lorem ipsum", {}),
         (create_inner_csv_file, "Lorem ipsum", {}),
@@ -591,7 +622,15 @@ class ProvidersTestCase(unittest.TestCase):
         ),
     ]
 
-    __RAW_PARAMETRIZED_DATA = [
+    __RAW_PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         # BIN
         (FAKER, BinFileProvider, "bin_file", {}, None),
         # CSV
@@ -663,13 +702,29 @@ class ProvidersTestCase(unittest.TestCase):
     ]
 
     # provider, method_name, kwargs, storage
-    __RAW_PARAMETRIZED_DATA_RETRY_FAILURES = [
+    __RAW_PARAMETRIZED_DATA_RETRY_FAILURES: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         # MP3
         (FAKER, Mp3FileProvider, "mp3_file", {}, None),
     ]
 
     # fake, provider, method_name, kwargs, storage
-    __RAW_PARAMETRIZED_DATA_ALLOW_FAILURES = [
+    __RAW_PARAMETRIZED_DATA_ALLOW_FAILURES: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         (FAKER, WebpFileProvider, "webp_file", {}, None),
     ]
 
@@ -684,7 +739,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_faker(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -707,7 +762,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_faker_retry_failures(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -729,7 +784,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_providers(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -752,7 +807,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_providers_retry_failures(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -775,7 +830,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_standalone_providers_allow_failures(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -1033,7 +1088,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_raw_standalone_providers(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -1058,7 +1113,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_raw_standalone_providers_retry_failures(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -1083,7 +1138,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_raw_standalone_providers_allow_failures(
         self: "ProvidersTestCase",
         fake: Faker,
-        provider: FileProvider,
+        provider: Type[FileProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,

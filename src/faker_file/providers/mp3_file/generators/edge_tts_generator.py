@@ -37,7 +37,7 @@ class EdgeTtsMp3Generator(BaseMp3Generator):
         if "voice" in kwargs:
             self.voice = kwargs["voice"]
 
-    def generate(self: "EdgeTtsMp3Generator") -> bytes:
+    def generate(self: "EdgeTtsMp3Generator", **kwargs) -> bytes:
         """Generate MP3."""
         with BytesIO() as _fake_file:
 

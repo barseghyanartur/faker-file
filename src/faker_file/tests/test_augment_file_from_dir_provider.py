@@ -2,7 +2,7 @@ import os.path
 import tempfile
 import unittest
 from copy import deepcopy
-from typing import Any, Dict, Optional, Type, Union
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
 import tika
 from faker import Faker
@@ -94,7 +94,14 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
 
     FAKER: Faker
     # provider, method_name, kwargs, storage
-    __PARAMETRIZED_DATA = [
+    __PARAMETRIZED_DATA: List[
+        Tuple[
+            Type[AugmentFileFromDirProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         # AugmentFileFromDirProvider
         (
             AugmentFileFromDirProvider,
@@ -189,7 +196,14 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
     ]
 
     # provider, method_name, kwargs, storage
-    __RAW_PARAMETRIZED_DATA = [
+    __RAW_PARAMETRIZED_DATA: List[
+        Tuple[
+            Type[AugmentFileFromDirProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
         # AugmentFileFromDirProvider
         (
             AugmentFileFromDirProvider,
@@ -207,7 +221,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
     )
     def test_standalone(
         self: "AugmentFileFromDirProviderTestCase",
-        provider: FileProvider,
+        provider: Type[AugmentFileFromDirProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,
@@ -264,7 +278,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
     )
     def test_raw_standalone(
         self: "AugmentFileFromDirProviderTestCase",
-        provider: FileProvider,
+        provider: Type[AugmentFileFromDirProvider],
         method_name: str,
         kwargs: Dict[str, Any],
         storage: Optional[BaseStorage] = None,

@@ -41,7 +41,7 @@ class GttsMp3Generator(BaseMp3Generator):
         if "tld" in kwargs:
             self.tld = kwargs["tld"]
 
-    def generate(self: "GttsMp3Generator") -> bytes:
+    def generate(self: "GttsMp3Generator", **kwargs) -> bytes:
         """Generate MP3."""
         with BytesIO() as __fake_file:
             tts = gTTS(self.content, lang=self.lang, tld=self.tld)

@@ -65,7 +65,7 @@ def create_inner_bin_file(
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     length: int = (1 * 1024 * 1024),
-    content: Optional[str] = None,
+    content: Optional[bytes] = None,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -78,7 +78,7 @@ def create_inner_bin_file(
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     length: int = (1 * 1024 * 1024),
-    content: Optional[str] = None,
+    content: Optional[bytes] = None,
     **kwargs,
 ) -> StringValue:
     ...
@@ -89,7 +89,7 @@ def create_inner_bin_file(
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     length: int = (1 * 1024 * 1024),
-    content: Optional[str] = None,
+    content: Optional[bytes] = None,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
