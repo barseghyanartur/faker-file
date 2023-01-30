@@ -17,9 +17,10 @@ are used for versioning (schema follows below):
 
 0.11.1
 ------
-Unreleased
+2023-01-31
 
 - Documentation improvements.
+- MyPy fixes.
 
 0.11
 ----
