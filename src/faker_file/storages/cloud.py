@@ -1,5 +1,6 @@
 import os
 import tempfile
+from abc import abstractmethod
 from typing import Any, Dict, Optional, Union
 
 from pathy import Pathy
@@ -54,7 +55,8 @@ class CloudStorage(BaseStorage):
 
         super().__init__(*args, **kwargs)
 
-    def authenticate(self, **kwargs):
+    @abstractmethod
+    def authenticate(self, *args, **kwargs):
         raise NotImplementedError("Method authenticate is not implemented!")
 
     def generate_filename(
