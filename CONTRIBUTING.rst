@@ -7,6 +7,7 @@ Contributor guidelines
 .. _black: https://black.readthedocs.io/
 .. _isort: https://pycqa.github.io/isort/
 .. _doc8: https://doc8.readthedocs.io/
+.. _ruff: https://beta.ruff.rs/docs/
 .. _pip-tools: https://pip-tools.readthedocs.io/
 .. _issues: https://github.com/barseghyanartur/faker-file/issues
 .. _discussions: https://github.com/barseghyanartur/faker-file/discussions
@@ -37,7 +38,7 @@ standards.
 
 Code standards
 --------------
-`black`_, `isort`_ and `doc8`_ will be automatically triggered by
+`black`_, `isort`_, `ruff`_ and `doc8`_ will be automatically triggered by
 `pre-commit`_. Still, if you want to run checks manually:
 
 .. code-block:: sh
@@ -45,6 +46,7 @@ Code standards
     ./scripts/black.sh
     ./scripts/doc8.sh
     ./scripts/isort.sh
+    ./scripts/ruff.sh
 
 Requirements
 ------------
