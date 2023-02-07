@@ -744,8 +744,8 @@ of the file to build a test payload as shown in the example test below:
 
 .. code-block:: python
 
+    import os
     from io import BytesIO
-    from uuid import uuid4
 
     from django.test import TestCase
     from django.urls import reverse
@@ -766,7 +766,7 @@ of the file to build a test payload as shown in the example test below:
 
             raw = FAKER.docx_file(raw=True)
             test_file = BytesIO(raw)
-            test_file.name = f"test{uuid4()}.docx"
+            test_file.name = os.path.basename(raw.data["filename"])
 
             payload = {
                 "name": FAKER.word(),

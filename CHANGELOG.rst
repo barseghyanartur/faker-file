@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.11.2
+------
+2023-02-07
+
+- Add ``filename`` to ``data`` of response objects (``StringValue``,
+  ``BytesValue``).
+
 0.11.1
 ------
 2023-01-31
