@@ -118,7 +118,7 @@ class PptxFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         stream = BytesIO()
         prs = Presentation()

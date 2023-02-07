@@ -115,7 +115,7 @@ class RtfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         if raw:
             raw_content = BytesValue(content.encode("utf8"))

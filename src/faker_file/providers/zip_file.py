@@ -116,7 +116,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
             extension=self.extension,
         )
-        data: Dict[str, Any] = {"inner": {}, "files": []}
+        data: Dict[str, Any] = {"inner": {}, "files": [], "filename": filename}
         fs_storage = FileSystemStorage()
 
         # Specific

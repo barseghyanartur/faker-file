@@ -120,7 +120,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         _fake_file = BytesIO()
         pres_doc = OpenDocumentPresentation()

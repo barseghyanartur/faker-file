@@ -83,7 +83,7 @@ class ImageMixin(FileMixin):
             content=content,
         )
 
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         with contextlib.redirect_stdout(io.StringIO()):
             buffer = imgkit.from_string(

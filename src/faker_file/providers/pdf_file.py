@@ -120,7 +120,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             content=content,
         )
 
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         options = {"quiet": ""}
         if encoding is not None:

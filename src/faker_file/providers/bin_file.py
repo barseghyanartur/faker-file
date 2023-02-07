@@ -117,7 +117,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         if content is None:
             content = self.generator.binary(length=length)
 
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         if raw:
             raw_content = BytesValue(content)

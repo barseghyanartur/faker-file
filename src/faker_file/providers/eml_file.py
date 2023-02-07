@@ -140,6 +140,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
         data: Dict[str, Any] = {
             "content": content,
             "inner": {},
+            "filename": filename,
         }
 
         msg = EmailMessage()
