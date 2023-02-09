@@ -36,6 +36,7 @@ faker-file
 
 .. External references
 
+.. _REST API demo: https://faker-file-api.onrender.com/docs/
 .. _Faker: https://faker.readthedocs.io/
 .. _Django: https://www.djangoproject.com/
 .. _factory_boy: https://factoryboy.readthedocs.io/
@@ -103,6 +104,12 @@ Documentation
 - For bootstrapping check the `Quick start`_.
 - For various ready to use code examples see the `Recipes`_.
 - For guidelines on contributing check the `Contributor guidelines`_.
+
+Online demos
+============
+Check the demo(s):
+
+- `REST API demo`_
 
 Installation
 ============
