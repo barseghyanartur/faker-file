@@ -17,6 +17,8 @@ from faker.providers import BaseProvider
 from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
+from ..base.text_augmenter import BaseTextAugmenter
+from ..base.text_extractor import BaseTextExtractor
 from ..helpers.inner import (
     create_inner_docx_file,
     create_inner_eml_file,
@@ -26,9 +28,7 @@ from ..helpers.inner import (
     create_inner_rtf_file,
     create_inner_txt_file,
 )
-from .augmenters.base import BaseTextAugmenter
 from .augmenters.nlpaug_augmenter import ContextualWordEmbeddingsAugmenter
-from .extractors.base import BaseTextExtractor
 from .extractors.tika_extractor import TikaTextExtractor
 
 # Full list:

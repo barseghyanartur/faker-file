@@ -6,7 +6,7 @@ from ...base import BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_AUDIO_MAX_NB_CHARS
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
-from .generators.base import BaseMp3Generator
+from ..base.mp3_generator import BaseMp3Generator
 from .generators.gtts_generator import GttsMp3Generator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -61,7 +61,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         from marytts import MaryTTS
 
         # Import BaseMp3Generator
-        from faker_file.providers.mp3_file.generators.base import (
+        from faker_file.providers.base.mp3_generator import (
             BaseMp3Generator,
         )
 

@@ -23,7 +23,7 @@ from ...constants import (
     DEFAULT_TEXT_MAX_NB_CHARS,
 )
 from ...storages.base import BaseStorage
-from ..mp3_file.generators.base import BaseMp3Generator
+from ..base.mp3_generator import BaseMp3Generator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"

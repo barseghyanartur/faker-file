@@ -15,6 +15,24 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.11.3
+------
+2023-02-10
+
+- Moved several interface classes from one location to another. If you haven't
+  implemented custom generators, this won't affect you. If you did, make sure
+  to update your imports:
+
+    - ``BaseTextAugmenter`` has been moved from
+      ``faker_file.providers.augment_file_from_dir.augmenters.base`` to
+      ``faker_file.providers.base.text_augmenter``.
+    - ``BaseTextExtractor`` has been moved from
+      ``faker_file.providers.augment_file_from_dir.extractors.base`` to
+      ``faker_file.providers.base.text_extractor``.
+    - ``BaseMp3Generator`` has been moved from
+      ``faker_file.providers.mp3_file.generators.base`` to
+      ``faker_file.providers.base.mp3_generator``.
+
 0.11.2
 ------
 2023-02-07

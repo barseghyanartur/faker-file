@@ -11,13 +11,13 @@ from pathy import use_fs
 
 from ..base import DEFAULT_REL_PATH
 from ..providers.augment_file_from_dir import AugmentFileFromDirProvider
-from ..providers.augment_file_from_dir.augmenters.base import BaseTextAugmenter
 from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
     DEFAULT_ACTION,
     DEFAULT_MODEL_PATH,
     ContextualWordEmbeddingsAugmenter,
 )
-from ..providers.augment_file_from_dir.extractors.base import BaseTextExtractor
+from ..providers.base.text_augmenter import BaseTextAugmenter
+from ..providers.base.text_extractor import BaseTextExtractor
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider

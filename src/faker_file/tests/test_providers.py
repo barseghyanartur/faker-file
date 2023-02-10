@@ -12,6 +12,7 @@ from pathy import use_fs
 
 from ..base import DEFAULT_REL_PATH
 from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
+from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
@@ -44,7 +45,6 @@ from ..providers.helpers.inner import (
 from ..providers.ico_file import IcoFileProvider
 from ..providers.jpeg_file import JpegFileProvider
 from ..providers.mp3_file import Mp3FileProvider
-from ..providers.mp3_file.generators.base import BaseMp3Generator
 from ..providers.mp3_file.generators.edge_tts_generator import (
     EdgeTtsMp3Generator,
 )

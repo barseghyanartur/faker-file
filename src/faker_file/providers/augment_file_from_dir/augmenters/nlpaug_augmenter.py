@@ -1,6 +1,6 @@
 import nlpaug.augmenter.word as naw
 
-from .base import BaseTextAugmenter
+from ...base.text_augmenter import BaseTextAugmenter
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"

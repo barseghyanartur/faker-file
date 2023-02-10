@@ -4,7 +4,7 @@ from io import BytesIO
 
 import edge_tts
 
-from .base import BaseMp3Generator
+from ...base.mp3_generator import BaseMp3Generator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"

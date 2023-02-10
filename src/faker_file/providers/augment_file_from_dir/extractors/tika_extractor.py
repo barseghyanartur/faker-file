@@ -4,7 +4,7 @@ from typing import Union
 import tika
 from tika import parser
 
-from .base import BaseTextExtractor
+from ...base.text_extractor import BaseTextExtractor
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
