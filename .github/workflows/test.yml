@@ -33,7 +33,7 @@ jobs:
 #          cache: 'pip'
 #          cache-dependency-path: '**/setup.py'
       - name: Install detect-secrets
-        run: pip install detect-secrets doc8
+        run: pip install detect-secrets doc8 isort==5.11.5
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.0
 
