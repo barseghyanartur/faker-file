@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.11.4
+------
+2023-02-16
+
+- Added ``filename`` to ``data`` property of values returned by
+  ``Mp3FileProvider`` provider (``StringValue``, ``BytesValue``).
+
 0.11.3
 ------
 2023-02-10
@@ -37,8 +44,8 @@ are used for versioning (schema follows below):
 ------
 2023-02-07
 
-- Add ``filename`` to ``data`` of response objects (``StringValue``,
-  ``BytesValue``).
+- Add ``filename`` to ``data`` property of values returned by providers
+  (``StringValue``, ``BytesValue``).
 
 0.11.1
 ------

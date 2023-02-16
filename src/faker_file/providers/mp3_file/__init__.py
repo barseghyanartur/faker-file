@@ -166,7 +166,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             max_nb_chars=max_nb_chars,
             content=content,
         )
-        data = {"content": content}
+        data = {"content": content, "filename": filename}
 
         if mp3_generator_cls is None:
             mp3_generator_cls = GttsMp3Generator
