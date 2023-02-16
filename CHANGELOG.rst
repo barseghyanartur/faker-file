@@ -19,6 +19,10 @@ are used for versioning (schema follows below):
 ------
 2023-02-16
 
+.. note::
+
+    Release dedicated to my dear valentine - Anahit.
+
 - Added ``filename`` to ``data`` property of values returned by
   ``Mp3FileProvider`` provider (``StringValue``, ``BytesValue``).
 
