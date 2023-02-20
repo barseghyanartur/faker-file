@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.11.5
+------
+2023-02-20
+
+- Fixes in typing of ``CsvFileProvider``. ``Tuple[str, str]``
+  becomes ``Tuple[str, ...]``.
+
 0.11.4
 ------
 2023-02-16
