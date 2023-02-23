@@ -26,7 +26,6 @@ except ImportError:
     USE_CACHED_TEMPLATE_LOADERS = False
 
 if USE_CACHED_TEMPLATE_LOADERS:
-
     _TEMPLATE_LOADERS = [
         (
             "django.template.loaders.cached.Loader",
@@ -37,7 +36,6 @@ if USE_CACHED_TEMPLATE_LOADERS:
         ),
     ]
 else:
-
     _TEMPLATE_LOADERS = [
         "django.template.loaders.filesystem.Loader",
         "django.template.loaders.app_directories.Loader",

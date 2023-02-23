@@ -35,7 +35,6 @@ __all__ = ("UploadViewSet",)
     ),
 )
 class UploadViewSet(viewsets.ModelViewSet):
-
     queryset = Upload.objects.all()
     serializer_class = default_serializer_class = UploadInSerializer
     serializer_classes = {
