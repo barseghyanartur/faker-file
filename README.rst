@@ -34,9 +34,18 @@ faker-file
 .. _Recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
 .. _Contributor guidelines: https://faker-file.readthedocs.io/en/latest/contributor_guidelines.html
 
-.. External references
+.. Related projects
+
+.. _faker-file-api: https://github.com/barseghyanartur/faker-file-api
+.. _faker-file-ui: https://github.com/barseghyanartur/faker-file-ui
+
+.. Demos
 
 .. _REST API demo: https://faker-file-api.onrender.com/docs/
+.. _UI frontend demo: https://faker-file-ui.vercel.app/
+
+.. External references
+
 .. _Faker: https://faker.readthedocs.io/
 .. _Django: https://www.djangoproject.com/
 .. _factory_boy: https://factoryboy.readthedocs.io/
@@ -109,7 +118,8 @@ Online demos
 ============
 Check the demo(s):
 
-- `REST API demo`_
+- `REST API demo`_ (based on `faker-file-api`_ REST API)
+- `UI frontend demo`_ (based on `faker-file-ui`_ UI frontend)
 
 Installation
 ============
