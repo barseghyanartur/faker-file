@@ -24,5 +24,5 @@ class BasePdfGenerator:
     def generate(
         self: "BasePdfGenerator",
         content: str,
-    ) -> str:
+    ) -> bytes:
         raise NotImplementedError("Method `generate` is not implemented.")
