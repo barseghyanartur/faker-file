@@ -13,6 +13,7 @@ from pathy import use_fs
 from ..base import DEFAULT_REL_PATH
 from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
 from ..providers.base.mp3_generator import BaseMp3Generator
+from ..providers.base.pdf_generator import BasePdfGenerator
 from ..providers.bin_file import BinFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
@@ -53,6 +54,9 @@ from ..providers.odp_file import OdpFileProvider
 from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
 from ..providers.pdf_file import PdfFileProvider
+from ..providers.pdf_file.generators.reportlab_generator import (
+    ReportlabPdfGenerator,
+)
 from ..providers.png_file import PngFileProvider
 from ..providers.pptx_file import PptxFileProvider
 from ..providers.random_file_from_dir import RandomFileFromDirProvider
@@ -332,6 +336,16 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": ReportlabPdfGenerator,
+                # "pdf_generator_kwargs": {},
             },
             None,
         ),
@@ -1080,6 +1094,18 @@ class ProvidersTestCase(unittest.TestCase):
 
         with self.assertRaises(NotImplementedError):
             Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=MyMp3Generator)
+
+    def test_pdf_file_generate_not_implemented_exception(
+        self: "ProvidersTestCase",
+    ):
+        with self.assertRaises(NotImplementedError):
+            PdfFileProvider(FAKER).pdf_file(pdf_generator_cls=BasePdfGenerator)
+
+        class MyPdfGenerator(BasePdfGenerator):
+            """Test PDF generator."""
+
+        with self.assertRaises(NotImplementedError):
+            PdfFileProvider(FAKER).pdf_file(pdf_generator_cls=MyPdfGenerator)
 
     @parametrize(
         "fake, provider, method_name, kwargs, storage",
