@@ -48,6 +48,23 @@ class PdfFileProvider(BaseProvider, FileMixin):
             max_nb_chars=100_000,
             wrap_chars_after=80,
         )
+
+    Default PDF generator class is `PdfkitPdfGenerator` which uses `pdfkit`
+    Python package and `wkhtmltopdf` system package for generating PDFs from
+    randomly generated text. The quality of the produced PDFs is very good,
+    but it's less performant than `ReportlabPdfGenerator` (factor 40x), which
+    does not require additional system dependencies to run. To use it, pass
+    `ReportlabPdfGenerator` class in `pdf_generator_cls` argument.
+
+        from faker_file.providers.pdf_file.generators import (
+            reportlab_generator,
+        )
+
+        file = PdfFileProvider(None).pdf_file(
+            max_nb_chars=1_000,
+            wrap_chars_after=80,
+            pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator,
+        )
     """
 
     extension: str = "pdf"

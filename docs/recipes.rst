@@ -380,6 +380,29 @@ Create a PDF file with predefined template containing dynamic fixtures
 
     file = FAKER.pdf_file(content=TEMPLATE, wrap_chars_after=80)
 
+Create a PDF using `reportlab` generator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: python
+
+    from faker_file.providers.pdf_file.generators.reportlab_generator import (
+        ReportlabPdfGenerator,
+    )
+
+    file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
+
+Create a PDF using `pdfkit` generator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Note, that at the moment, ``pdfkit`` is the default generator. However,
+you could set it explicitly as follows:
+
+.. code-block:: python
+
+    from faker_file.providers.pdf_file.generators.pdfkit_generator import (
+        PdfkitPdfGenerator,
+    )
+
+    file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
+
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
 .. code-block:: python

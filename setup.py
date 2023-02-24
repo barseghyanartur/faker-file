@@ -34,6 +34,7 @@ _common = [
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
     "pdfkit",  # PDF
+    "reportlab",  # PDF
     "python-docx",  # DOCX
     "python-pptx",  # PPTX
     "tablib",  # ODS, XLSX
@@ -59,14 +60,10 @@ extras_require = {
     "gcs": ["pathy[gcs]"],
     "images": ["imgkit"],
     "mp3": ["gtts", "edge-tts"],
-    "mp3-edge-tts": ["edge-tts"],
-    "mp3-gtts": ["gtts"],
     "odp": ["odfpy"],
     "ods": ["tablib", "odfpy"],
     "odt": ["odfpy"],
     "pdf": ["pdfkit", "reportlab"],
-    "pdf-pdfkit": ["pdfkit"],
-    "pdf-reportlab": ["reportlab"],
     "pptx": ["python-pptx"],
     "s3": ["pathy[s3]"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],

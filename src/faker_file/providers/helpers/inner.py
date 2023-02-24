@@ -24,6 +24,7 @@ from ...constants import (
 )
 from ...storages.base import BaseStorage
 from ..base.mp3_generator import BaseMp3Generator
+from ..base.pdf_generator import BasePdfGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -735,6 +736,8 @@ def create_inner_pdf_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    pdf_generator_cls: Optional[Type[BasePdfGenerator]] = None,
+    pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -749,6 +752,8 @@ def create_inner_pdf_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    pdf_generator_cls: Optional[Type[BasePdfGenerator]] = None,
+    pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
     **kwargs,
 ) -> StringValue:
     ...
@@ -761,6 +766,8 @@ def create_inner_pdf_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    pdf_generator_cls: Optional[Type[BasePdfGenerator]] = None,
+    pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -776,6 +783,8 @@ def create_inner_pdf_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        pdf_generator_cls=pdf_generator_cls,
+        pdf_generator_kwargs=pdf_generator_kwargs,
         raw=raw,
         **kwargs,
     )

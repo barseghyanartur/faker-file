@@ -164,6 +164,12 @@ Latest stable version from PyPI
 
     pip install faker-file[images]
 
+**With PDF support**
+
+.. code-block:: sh
+
+    pip install faker-file[pdf]
+
 **With MP3 support**
 
 .. code-block:: sh
