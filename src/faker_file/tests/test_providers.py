@@ -11,7 +11,12 @@ from parametrize import parametrize
 from pathy import use_fs
 
 from ..base import DEFAULT_REL_PATH
-from ..constants import DEFAULT_TEXT_CONTENT_TEMPLATE
+from ..constants import (
+    DEFAULT_FILE_ENCODING,
+    DEFAULT_FONT_NAME,
+    DEFAULT_FONT_PATH,
+    DEFAULT_TEXT_CONTENT_TEMPLATE,
+)
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
 from ..providers.bin_file import BinFileProvider
@@ -54,6 +59,7 @@ from ..providers.odp_file import OdpFileProvider
 from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
 from ..providers.pdf_file import PdfFileProvider
+from ..providers.pdf_file.generators.pdfkit_generator import PdfkitPdfGenerator
 from ..providers.pdf_file.generators.reportlab_generator import (
     ReportlabPdfGenerator,
 )
@@ -345,7 +351,40 @@ class ProvidersTestCase(unittest.TestCase):
             "pdf_file",
             {
                 "pdf_generator_cls": ReportlabPdfGenerator,
+                "pdf_generator_kwargs": {},
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": ReportlabPdfGenerator,
+                "pdf_generator_kwargs": {
+                    "font_name": DEFAULT_FONT_NAME,
+                    "font_path": DEFAULT_FONT_PATH,
+                },
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": None,
                 # "pdf_generator_kwargs": {},
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": PdfkitPdfGenerator,
+                "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
             },
             None,
         ),
