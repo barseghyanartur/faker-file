@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.11.5"
+version = "0.12"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -64,7 +64,9 @@ extras_require = {
     "odp": ["odfpy"],
     "ods": ["tablib", "odfpy"],
     "odt": ["odfpy"],
-    "pdf": ["pdfkit"],
+    "pdf": ["pdfkit", "reportlab"],
+    "pdf-pdfkit": ["pdfkit"],
+    "pdf-reportlab": ["reportlab"],
     "pptx": ["python-pptx"],
     "s3": ["pathy[s3]"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],

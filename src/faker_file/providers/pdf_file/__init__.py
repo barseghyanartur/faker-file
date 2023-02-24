@@ -1,12 +1,13 @@
-from typing import Optional, Union, overload
+from typing import Any, Dict, Optional, Type, Union, overload
 
-import pdfkit
 from faker.providers import BaseProvider
 
-from ..base import BytesValue, FileMixin, StringValue
-from ..constants import DEFAULT_FILE_ENCODING, DEFAULT_TEXT_MAX_NB_CHARS
-from ..storages.base import BaseStorage
-from ..storages.filesystem import FileSystemStorage
+from ...base import BytesValue, FileMixin, StringValue
+from ...constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ...storages.base import BaseStorage
+from ...storages.filesystem import FileSystemStorage
+from ..base.pdf_generator import BasePdfGenerator
+from .generators.pdfkit_generator import PdfkitPdfGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -59,7 +60,10 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        pdf_generator_cls: Optional[Type[BasePdfGenerator]] = (
+            PdfkitPdfGenerator
+        ),
+        pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -73,7 +77,10 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        pdf_generator_cls: Optional[Type[BasePdfGenerator]] = (
+            PdfkitPdfGenerator
+        ),
+        pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
         ...
@@ -85,7 +92,10 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        encoding: Optional[str] = DEFAULT_FILE_ENCODING,
+        pdf_generator_cls: Optional[Type[BasePdfGenerator]] = (
+            PdfkitPdfGenerator
+        ),
+        pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -98,7 +108,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :param encoding: Encoding of the file.
+        :param pdf_generator_cls: PDF generator class.
+        :param pdf_generator_kwargs: PDF generator kwargs.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -122,13 +133,17 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
         data = {"content": content, "filename": filename}
 
-        options = {"quiet": ""}
-        if encoding is not None:
-            options["encoding"] = encoding
+        if pdf_generator_cls is None:
+            pdf_generator_cls = PdfkitPdfGenerator
 
-        _raw_content = pdfkit.from_string(
-            f"<pre style='white-space: pre-wrap;'>{content}</pre>",
-            options=options,
+        if not pdf_generator_kwargs:
+            pdf_generator_kwargs = {}
+        pdf_generator = pdf_generator_cls(
+            generator=self.generator,
+            **pdf_generator_kwargs,
+        )
+        _raw_content = pdf_generator.generate(
+            content=content,
         )
 
         if raw:

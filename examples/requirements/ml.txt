@@ -185,6 +185,7 @@ pdfkit==1.0.0
 pillow==9.4.0
     # via
     #   python-pptx
+    #   reportlab
     #   xml2epub
 platformdirs==2.6.2
     # via
@@ -255,6 +256,8 @@ pyyaml==6.0
     #   transformers
 regex==2022.10.31
     # via transformers
+reportlab==3.6.12
+    # via -r examples/requirements/common.in
 requests[socks]==2.28.1
     # via
     #   azure-core
