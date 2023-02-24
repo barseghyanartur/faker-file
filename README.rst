@@ -90,8 +90,8 @@ below between the brackets.
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
-- ``PDF`` file support requires either `pdfkit`_ (`MIT`)
-  and `wkhtmltopdf`_ (`LGPLv3`) combination, or `reportlab`_ (`BSD`).
+- ``PDF`` file support requires either combination of `pdfkit`_ (`MIT`)
+  and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
 - ``PPTX`` file support requires `python-pptx`_ (`MIT`).
 - ``ODP`` file support requires `odfpy`_ (`Apache 2`).
 - ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
