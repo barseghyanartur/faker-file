@@ -25,7 +25,7 @@ are used for versioning (schema follows below):
   adding ``pdf_generator_cls`` and ``pdf_generator_kwargs`` optional arguments
   to the ``pdf_file`` method. Added ``ReportlabPdfGenerator`` class based on
   the famous ``reportlab`` library. Default is still ``PdfkitPdfGenerator``.
-  Since ``encoding`` was something specific for ``pdfkit`` library, that
+  Since ``encoding`` was something specific for ``pdfkit`` library,
   it was moved from ``pdf_file`` method to ``PdfkitPdfGenerator``, to which it
   can be passed in ``pdf_generator_kwargs``. If you have passed the
   ``encoding`` argument explicitly, make sure to make correspondent changes.
