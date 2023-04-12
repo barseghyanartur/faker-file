@@ -38,11 +38,13 @@ faker-file
 
 .. _faker-file-api: https://github.com/barseghyanartur/faker-file-api
 .. _faker-file-ui: https://github.com/barseghyanartur/faker-file-ui
+.. _faker-file-wasm: https://github.com/barseghyanartur/faker-file-wasm
 
 .. Demos
 
 .. _REST API demo: https://faker-file-api.onrender.com/docs/
 .. _UI frontend demo: https://faker-file-ui.vercel.app/
+.. _WASM frontend demo: https://faker-file-wasm.vercel.app/
 
 .. External references
 
@@ -121,6 +123,7 @@ Check the demo(s):
 
 - `REST API demo`_ (based on `faker-file-api`_ REST API)
 - `UI frontend demo`_ (based on `faker-file-ui`_ UI frontend)
+- `WASM frontend demo`_ (based on `faker-file-wasm`_ WASM frontend)
 
 Installation
 ============
