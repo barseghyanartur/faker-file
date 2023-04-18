@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.12"
+version = "0.12.1"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -123,6 +123,7 @@ setup(
     url="https://github.com/barseghyanartur/faker-file/",
     package_dir={"": "src"},
     packages=find_packages(where="./src"),
+    entry_points={"console_scripts": ["faker-file = faker_file.cli:main"]},
     license="MIT",
     python_requires=">=3.7",
     install_requires=install_requires,
