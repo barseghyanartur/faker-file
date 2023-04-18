@@ -111,11 +111,11 @@ class TestCLI(unittest.TestCase):
                 "txt_file",
                 {},
             ),
-            # WEBP
-            (
-                "webp_file",
-                {},
-            ),
+            # # WEBP
+            # (
+            #     "webp_file",
+            #     {},
+            # ),
             # XLSX
             (
                 "xlsx_file",

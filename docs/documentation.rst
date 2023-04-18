@@ -11,6 +11,7 @@ Contents:
    index
    quick_start
    recipes
+   cli
    security
    code_of_conduct
    contributor_guidelines
