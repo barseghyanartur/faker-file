@@ -15,6 +15,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.12.2
+------
+2023-04-20
+
+- Fixes in CLI options.
+
 0.12.1
 ------
 2023-04-19

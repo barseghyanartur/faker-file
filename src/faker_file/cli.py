@@ -1,33 +1,34 @@
 import argparse
 import inspect
 import sys
+import typing
 from copy import deepcopy
-from typing import Type
+from typing import Any, Dict, Tuple, Type
 
 from faker import Faker
 
-from faker_file.base import FileMixin
-from faker_file.providers.bin_file import BinFileProvider
-from faker_file.providers.csv_file import CsvFileProvider
-from faker_file.providers.docx_file import DocxFileProvider
-from faker_file.providers.eml_file import EmlFileProvider
-from faker_file.providers.epub_file import EpubFileProvider
-from faker_file.providers.ico_file import IcoFileProvider
-from faker_file.providers.jpeg_file import JpegFileProvider
-from faker_file.providers.mp3_file import Mp3FileProvider
-from faker_file.providers.odp_file import OdpFileProvider
-from faker_file.providers.ods_file import OdsFileProvider
-from faker_file.providers.odt_file import OdtFileProvider
-from faker_file.providers.pdf_file import PdfFileProvider
-from faker_file.providers.png_file import PngFileProvider
-from faker_file.providers.pptx_file import PptxFileProvider
-from faker_file.providers.rtf_file import RtfFileProvider
-from faker_file.providers.svg_file import SvgFileProvider
-from faker_file.providers.tar_file import TarFileProvider
-from faker_file.providers.txt_file import TxtFileProvider
-from faker_file.providers.webp_file import WebpFileProvider
-from faker_file.providers.xlsx_file import XlsxFileProvider
-from faker_file.providers.zip_file import ZipFileProvider
+from .base import FileMixin, StringValue
+from .providers.bin_file import BinFileProvider
+from .providers.csv_file import CsvFileProvider
+from .providers.docx_file import DocxFileProvider
+from .providers.eml_file import EmlFileProvider
+from .providers.epub_file import EpubFileProvider
+from .providers.ico_file import IcoFileProvider
+from .providers.jpeg_file import JpegFileProvider
+from .providers.mp3_file import Mp3FileProvider
+from .providers.odp_file import OdpFileProvider
+from .providers.ods_file import OdsFileProvider
+from .providers.odt_file import OdtFileProvider
+from .providers.pdf_file import PdfFileProvider
+from .providers.png_file import PngFileProvider
+from .providers.pptx_file import PptxFileProvider
+from .providers.rtf_file import RtfFileProvider
+from .providers.svg_file import SvgFileProvider
+from .providers.tar_file import TarFileProvider
+from .providers.txt_file import TxtFileProvider
+from .providers.webp_file import WebpFileProvider
+from .providers.xlsx_file import XlsxFileProvider
+from .providers.zip_file import ZipFileProvider
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2023 Artur Barseghyan"
@@ -73,29 +74,28 @@ PROVIDERS = {
 }
 
 
-def get_method_kwargs(cls: Type[FileMixin], method_name: str):
+def get_method_kwargs(
+    cls: Type[FileMixin], method_name: str
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     method = getattr(cls, method_name)
     method_specs = inspect.getfullargspec(method)
 
     kwargs = deepcopy(method_specs.args[1:])  # Omit `self`
     defaults = deepcopy(method_specs.defaults)
     model_props = dict(zip(kwargs, defaults))
-    # annotations = deepcopy(method_specs.annotations)
+    annotations = deepcopy(method_specs.annotations)
     for kwarg_name in KWARGS_DROP:
-        # annotations.pop(kwarg_name, None)
+        annotations.pop(kwarg_name, None)
         model_props.pop(kwarg_name, None)
 
-    return model_props
+    return model_props, annotations
 
 
-def generate_file(method_name: str, output_dir: str, **kwargs):
+def generate_file(method_name: str, **kwargs) -> StringValue:
     faker = Faker()
     cls = PROVIDERS[method_name]
     method = getattr(cls(faker), method_name)
     value = method(**kwargs)
-    # output_file = os.path.join(
-    #     output_dir, os.path.basename(value.data["filename"])
-    # )
     return value
 
 
@@ -112,33 +112,27 @@ def main():
             method_name,
             help=f"Generate a {method_name.split('_file')[0]} file.",
         )
-        method_kwargs = get_method_kwargs(provider, method_name)
+        method_kwargs, annotations = get_method_kwargs(provider, method_name)
         for arg, default in method_kwargs.items():
+            _arg_type = annotations[arg]
             arg_kwargs = {
                 "default": default,
                 "help": f"{arg} (default: {default})",
+                "type": (
+                    annotations[arg].__args__[0]
+                    if isinstance(_arg_type, typing._GenericAlias)
+                    and _arg_type._name == "Optional"
+                    else _arg_type
+                ),
             }
-
-            if default is not None:
-                arg_kwargs["type"] = type(default)
 
             subparser.add_argument(f"--{arg}", **arg_kwargs)
 
-    parser.add_argument(
-        "-o",
-        "--output-dir",
-        default=".",
-        help="Output directory for the generated files.",
-    )
     args = parser.parse_args()
 
     if args.provider:
-        kwargs = {
-            k: v
-            for k, v in vars(args).items()
-            if k not in ("provider", "output_dir")
-        }
-        output_file = generate_file(args.provider, args.output_dir, **kwargs)
+        kwargs = {k: v for k, v in vars(args).items() if k not in ("provider",)}
+        output_file = generate_file(args.provider, **kwargs)
         print(f"Generated {args.provider} file: {output_file}")
     else:
         parser.print_help()
