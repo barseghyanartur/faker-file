@@ -45,8 +45,6 @@ Output:
 
     options:
       -h, --help            show this help message and exit
-      -o OUTPUT_DIR, --output-dir OUTPUT_DIR
-                            Output directory for the generated files.
 
 List options for a certain provider
 -----------------------------------
@@ -80,3 +78,34 @@ Output:
 .. code-block:: text
 
     Generated docx_file file: tmp/tmpva0mp3lp.docx
+
+Shell auto-completion
+---------------------
+First, generate shell auto-completion file.
+
+.. code-block:: sh
+
+    faker-file generate-completion
+
+Then, source the generated file:
+
+.. code-block:: sh
+
+    source ~/faker_file_completion.sh
+
+Now you can use auto-completion. Simply type faker-file [tab-tab] to see the
+list of available options:
+
+.. code-block:: sh
+
+    $ faker-file
+    bin_file   eml_file   jpeg_file  ods_file   png_file   svg_file   webp_file
+    csv_file   epub_file  mp3_file   odt_file   pptx_file  tar_file   xlsx_file
+    docx_file  ico_file   odp_file   pdf_file   rtf_file   txt_file   zip_file
+
+It works with sub options too:
+
+.. code-block:: sh
+
+    $ faker-file docx_file --
+    --content           --max_nb_chars      --prefix            --wrap_chars_after

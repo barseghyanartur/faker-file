@@ -1,5 +1,6 @@
 import argparse
 import inspect
+import os
 import sys
 import typing
 from copy import deepcopy
@@ -105,12 +106,57 @@ def is_optional_type(t: Any) -> bool:
     return False
 
 
+def generate_completion_file():
+    completion_script = f"""#!/bin/bash
+
+_faker_file_completion() {{
+    local cur prev providers
+    cur="${{COMP_WORDS[COMP_CWORD]}}"
+    prev="${{COMP_WORDS[COMP_CWORD - 1]}}"
+    providers="{(' '.join(PROVIDERS.keys()))}"
+
+    case $prev in"""
+
+    for method_name, provider in PROVIDERS.items():
+        method_kwargs, _ = get_method_kwargs(provider, method_name)
+        completion_script += f"""
+        {method_name})
+            COMPREPLY=($(compgen -W "{(' '.join('--' + k for k in method_kwargs.keys()))}" -- "$cur"))
+            ;;
+        """  # noqa
+
+    completion_script += """
+        *)
+            COMPREPLY=($(compgen -W "$providers" -- "$cur"))
+            ;;
+    esac
+
+    return 0
+}
+
+complete -F _faker_file_completion faker-file
+"""
+
+    user_home_dir = os.path.expanduser("~")
+    file_path = os.path.join(user_home_dir, "faker_file_completion.sh")
+    with open(file_path, "w") as f:
+        f.write(completion_script)
+
+    print(f"Generated bash completion file: {file_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="CLI for the faker-file package."
     )
     subparsers = parser.add_subparsers(
-        dest="provider", help="Available file providers."
+        dest="command", help="Available file providers."
+    )
+
+    # Add generate-completion subparser
+    __generate_completion_subparser = subparsers.add_parser(
+        "generate-completion",
+        help="Generate bash completion file.",
     )
 
     for method_name, provider in PROVIDERS.items():
@@ -136,10 +182,12 @@ def main():
 
     args = parser.parse_args()
 
-    if args.provider:
-        kwargs = {k: v for k, v in vars(args).items() if k not in ("provider",)}
-        output_file = generate_file(args.provider, **kwargs)
-        print(f"Generated {args.provider} file: {output_file}")
+    if args.command == "generate-completion":
+        generate_completion_file()
+    elif args.command:
+        kwargs = {k: v for k, v in vars(args).items() if k not in ("command",)}
+        output_file = generate_file(args.command, **kwargs)
+        print(f"Generated {args.command} file: {output_file}")
     else:
         parser.print_help()
         sys.exit(1)
