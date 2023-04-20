@@ -99,6 +99,12 @@ def generate_file(method_name: str, **kwargs) -> StringValue:
     return value
 
 
+def is_optional_type(t: Any) -> bool:
+    if getattr(t, "__origin__", None) is typing.Union:
+        return any(arg is type(None) for arg in t.__args__)
+    return False
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="CLI for the faker-file package."
@@ -114,15 +120,15 @@ def main():
         )
         method_kwargs, annotations = get_method_kwargs(provider, method_name)
         for arg, default in method_kwargs.items():
-            _arg_type = annotations[arg]
+            arg_type = annotations[arg]
             arg_kwargs = {
                 "default": default,
                 "help": f"{arg} (default: {default})",
                 "type": (
-                    annotations[arg].__args__[0]
-                    if isinstance(_arg_type, typing._GenericAlias)
-                    and _arg_type._name == "Optional"
-                    else _arg_type
+                    arg_type.__args__[0]
+                    if isinstance(arg_type, typing._GenericAlias)
+                    and is_optional_type(arg_type)
+                    else arg_type
                 ),
             }
 
