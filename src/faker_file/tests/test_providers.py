@@ -17,6 +17,7 @@ from ..constants import (
     DEFAULT_FONT_PATH,
     DEFAULT_TEXT_CONTENT_TEMPLATE,
 )
+from ..helpers import load_class_from_path
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
 from ..providers.bin_file import BinFileProvider
@@ -388,6 +389,19 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": (
+                    "faker_file.providers.pdf_file.generators"
+                    ".pdfkit_generator.PdfkitPdfGenerator"
+                ),
+                "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
+            },
+            None,
+        ),
         # PNG
         (FAKER, PngFileProvider, "png_file", {}, None),
         (FAKER_HY, PngFileProvider, "png_file", {}, None),
@@ -600,6 +614,37 @@ class ProvidersTestCase(unittest.TestCase):
             "mp3_file",
             {
                 "mp3_generator_cls": GttsMp3Generator,
+                "mp3_generator_kwargs": {
+                    "lang": "en",
+                    "tld": "co.uk",
+                },
+            },
+            None,
+        ),
+        (
+            FAKER,
+            Mp3FileProvider,
+            "mp3_file",
+            {
+                "mp3_generator_cls": (
+                    "faker_file.providers.mp3_file.generators"
+                    ".edge_tts_generator.EdgeTtsMp3Generator"
+                ),
+                "mp3_generator_kwargs": {
+                    "voice": "en-GB-LibbyNeural",
+                },
+            },
+            None,
+        ),
+        (
+            FAKER,
+            Mp3FileProvider,
+            "mp3_file",
+            {
+                "mp3_generator_cls": (
+                    "faker_file.providers.mp3_file.generators"
+                    ".gtts_generator.GttsMp3Generator"
+                ),
                 "mp3_generator_kwargs": {
                     "lang": "en",
                     "tld": "co.uk",
@@ -1219,3 +1264,24 @@ class ProvidersTestCase(unittest.TestCase):
         _bytes = _method(**_kwargs)
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
+
+    def test_load_class_from_path_class_not_found(self) -> None:
+        """Test load_class_from_path class not found."""
+        with self.assertRaises(ImportError):
+            load_class_from_path(
+                "faker_file.providers.mp3_file.generators"
+                ".gtts_generator.ClassDoesNotExist"
+            )
+
+    def test_load_class_from_path_no_class_type(self) -> None:
+        """Test load_class_from_path imported is not class."""
+        with self.assertRaises(ImportError):
+            load_class_from_path(
+                "faker_file.providers.mp3_file.generators"
+                ".gtts_generator.DEFAULT_LANG"
+            )
+
+    def test_load_class_from_non_existing_path(self) -> None:
+        """Test load_class_from_path invalid path."""
+        with self.assertRaises(ImportError):
+            load_class_from_path("faker_file.providers.does_not_exist.MyClass")

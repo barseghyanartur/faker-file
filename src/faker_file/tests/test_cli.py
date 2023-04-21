@@ -12,7 +12,7 @@ __all__ = ("TestCLI",)
 LOGGER = logging.getLogger(__name__)
 
 
-def convert_value_to_cli_arg(value):
+def convert_value_to_cli_arg(value) -> str:
     if isinstance(value, bool):
         return str(value).lower()
     elif isinstance(value, (int, float, str)):
@@ -221,7 +221,7 @@ class TestCLI(unittest.TestCase):
             ),
         ],
     )
-    def test_cli(self: "TestCLI", method_name: str, kwargs: dict):
+    def test_cli(self: "TestCLI", method_name: str, kwargs: dict) -> None:
         """Test CLI."""
         # Convert kwargs to command-line arguments
         args = [
@@ -236,8 +236,14 @@ class TestCLI(unittest.TestCase):
         res = subprocess.check_output(cmd).strip()
         self.assertTrue(res)
 
-    def test_cli_error_no_provider(self: "TestCLI"):
+    def test_cli_error_no_provider(self: "TestCLI") -> None:
         """Test CLI, no provider given."""
         with self.assertRaises(subprocess.CalledProcessError):
             res = subprocess.check_output(["faker-file"]).strip()
             self.assertFalse(res)
+
+    def test_cli_generate_completion(self: "TestCLI") -> None:
+        """Test CLI, generate-completion."""
+        cmd = ["faker-file", "generate-completion"]
+        res = subprocess.check_output(cmd).strip()
+        self.assertTrue(res)

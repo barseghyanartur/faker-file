@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.12.4
+------
+2023-04-22
+
+- Make it possible to load classes from strings for passing as arguments
+  to ``mp3_file`` and ``pdf_file`` providers.
+
 0.12.3
 ------
 2023-04-21

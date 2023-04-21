@@ -4,6 +4,7 @@ from faker.providers import BaseProvider
 
 from ...base import BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.pdf_generator import BasePdfGenerator
@@ -77,7 +78,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        pdf_generator_cls: Optional[Type[BasePdfGenerator]] = (
+        pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
             PdfkitPdfGenerator
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
@@ -94,7 +95,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        pdf_generator_cls: Optional[Type[BasePdfGenerator]] = (
+        pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
             PdfkitPdfGenerator
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
@@ -109,7 +110,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        pdf_generator_cls: Optional[Type[BasePdfGenerator]] = (
+        pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
             PdfkitPdfGenerator
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
@@ -152,6 +153,9 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
         if pdf_generator_cls is None:
             pdf_generator_cls = PdfkitPdfGenerator
+
+        if isinstance(pdf_generator_cls, str):
+            pdf_generator_cls = load_class_from_path(pdf_generator_cls)
 
         if not pdf_generator_kwargs:
             pdf_generator_kwargs = {}

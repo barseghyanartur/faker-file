@@ -4,6 +4,7 @@ from faker.providers import BaseProvider
 
 from ...base import BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_AUDIO_MAX_NB_CHARS
+from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.mp3_generator import BaseMp3Generator
@@ -107,7 +108,9 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
-        mp3_generator_cls: Optional[Type[BaseMp3Generator]] = GttsMp3Generator,
+        mp3_generator_cls: Optional[
+            Union[str, Type[BaseMp3Generator]]
+        ] = GttsMp3Generator,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
@@ -121,7 +124,9 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
-        mp3_generator_cls: Optional[Type[BaseMp3Generator]] = GttsMp3Generator,
+        mp3_generator_cls: Optional[
+            Union[str, Type[BaseMp3Generator]]
+        ] = GttsMp3Generator,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
@@ -133,7 +138,9 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
-        mp3_generator_cls: Optional[Type[BaseMp3Generator]] = GttsMp3Generator,
+        mp3_generator_cls: Optional[
+            Union[str, Type[BaseMp3Generator]]
+        ] = GttsMp3Generator,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = False,
         **kwargs,
@@ -170,6 +177,9 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
         if mp3_generator_cls is None:
             mp3_generator_cls = GttsMp3Generator
+
+        if isinstance(mp3_generator_cls, str):
+            mp3_generator_cls = load_class_from_path(mp3_generator_cls)
 
         if not mp3_generator_kwargs:
             mp3_generator_kwargs = {}
