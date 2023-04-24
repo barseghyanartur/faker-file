@@ -15,6 +15,19 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.12.5
+------
+2023-04-24
+
+.. note::
+
+    In memory of the victims of the
+    `Armenian Genocide <https://en.wikipedia.org/wiki/Armenian_genocide>`_.
+
+- Expose ``mp3_generator_cls`` and ``pdf_generator_cls`` CLI options
+  for ``mp3_file`` and ``pdf_file`` respectively.
+- Add ``num_files`` CLI option for all providers.
+
 0.12.4
 ------
 2023-04-22

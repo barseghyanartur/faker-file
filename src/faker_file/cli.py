@@ -44,11 +44,35 @@ KWARGS_DROP = {
     "self",  # Drop as irrelevant
     "storage",  # Drop as non-supported arg
     "return",  # Drop as irrelevant
-    "mp3_generator_cls",  # Drop as non-supported arg
+    # "mp3_generator_cls",  # Drop as non-supported arg
     # "mp3_generator_kwargs",  # Drop as non-supported arg
-    "pdf_generator_cls",  # Drop as non-supported arg
+    # "pdf_generator_cls",  # Drop as non-supported arg
     # "pdf_generator_kwargs",  # Drop as non-supported arg
     "raw",  # Drop `raw`, because we will be forcing raw=True for streaming
+}
+OVERRIDES = {
+    "Mp3FileProvider.mp3_file": {
+        "annotations": {
+            "mp3_generator_cls": str,
+        },
+        "model_props": {
+            "mp3_generator_cls": (
+                "faker_file.providers.mp3_file.generators"
+                ".gtts_generator.GttsMp3Generator"
+            ),
+        },
+    },
+    "PdfFileProvider.pdf_file": {
+        "annotations": {
+            "pdf_generator_cls": str,
+        },
+        "model_props": {
+            "pdf_generator_cls": (
+                "faker_file.providers.pdf_file.generators"
+                ".pdfkit_generator.PdfkitPdfGenerator"
+            ),
+        },
+    },
 }
 PROVIDERS = {
     BinFileProvider.bin_file.__name__: BinFileProvider,
@@ -85,6 +109,13 @@ def get_method_kwargs(
     defaults = deepcopy(method_specs.defaults)
     model_props = dict(zip(kwargs, defaults))
     annotations = deepcopy(method_specs.annotations)
+
+    # Override the type definition for mp3_generator_cls
+    override = OVERRIDES.get(f"{cls.__name__}.{method_name}", None)
+    if override:
+        annotations.update(override["annotations"])
+        model_props.update(override["model_props"])
+
     for kwarg_name in KWARGS_DROP:
         annotations.pop(kwarg_name, None)
         model_props.pop(kwarg_name, None)
@@ -121,7 +152,7 @@ _faker_file_completion() {{
         method_kwargs, _ = get_method_kwargs(provider, method_name)
         completion_script += f"""
         {method_name})
-            COMPREPLY=($(compgen -W "{(' '.join('--' + k for k in method_kwargs.keys()))}" -- "$cur"))
+            COMPREPLY=($(compgen -W "{(' '.join('--' + k for k in method_kwargs.keys()))} --num_files" -- "$cur"))
             ;;
         """  # noqa
 
@@ -180,14 +211,23 @@ def main():
 
             subparser.add_argument(f"--{arg}", **arg_kwargs)
 
+        # Add the optional num_files argument
+        subparser.add_argument(
+            "--num_files",
+            default=1,
+            type=int,
+            help="number of files to generate (default: 1)",
+        )
+
     args = parser.parse_args()
 
     if args.command == "generate-completion":
         generate_completion_file()
     elif args.command:
         kwargs = {k: v for k, v in vars(args).items() if k not in ("command",)}
-        output_file = generate_file(args.command, **kwargs)
-        print(f"Generated {args.command} file: {output_file}")
+        for _ in range(args.num_files):
+            output_file = generate_file(args.command, **kwargs)
+            print(f"Generated {args.command} file: {output_file}")
     else:
         parser.print_help()
         sys.exit(1)

@@ -66,6 +66,8 @@ Output:
       --wrap_chars_after WRAP_CHARS_AFTER
                             wrap_chars_after (default: None)
       --content CONTENT     content (default: None)
+      --num_files NUM_FILES
+                            number of files to generate (default: 1)
 
 Generate a file using certain provider
 --------------------------------------
