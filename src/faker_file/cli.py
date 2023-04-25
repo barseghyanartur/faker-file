@@ -152,7 +152,7 @@ _faker_file_completion() {{
         method_kwargs, _ = get_method_kwargs(provider, method_name)
         completion_script += f"""
         {method_name})
-            COMPREPLY=($(compgen -W "{(' '.join('--' + k for k in method_kwargs.keys()))} --num_files" -- "$cur"))
+            COMPREPLY=($(compgen -W "{(' '.join('--' + k for k in method_kwargs.keys()))} --nb_files" -- "$cur"))
             ;;
         """  # noqa
 
@@ -213,7 +213,7 @@ def main():
 
         # Add the optional num_files argument
         subparser.add_argument(
-            "--num_files",
+            "--nb_files",
             default=1,
             type=int,
             help="number of files to generate (default: 1)",
@@ -225,9 +225,12 @@ def main():
         generate_completion_file()
     elif args.command:
         kwargs = {k: v for k, v in vars(args).items() if k not in ("command",)}
-        for _ in range(args.num_files):
+        for counter in range(args.nb_files):
             output_file = generate_file(args.command, **kwargs)
-            print(f"Generated {args.command} file: {output_file}")
+            print(
+                f"Generated {args.command} file "
+                f"({counter+1} of {args.nb_files}): {output_file}"
+            )
     else:
         parser.print_help()
         sys.exit(1)

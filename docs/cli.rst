@@ -56,7 +56,7 @@ Output:
 
 .. code-block:: text
 
-    usage: faker-file docx_file [-h] [--prefix PREFIX] [--max_nb_chars MAX_NB_CHARS] [--wrap_chars_after WRAP_CHARS_AFTER] [--content CONTENT]
+    usage: faker-file docx_file [-h] [--prefix PREFIX] [--max_nb_chars MAX_NB_CHARS] [--wrap_chars_after WRAP_CHARS_AFTER] [--content CONTENT] [--nb_files NB_FILES]
 
     options:
       -h, --help            show this help message and exit
@@ -66,8 +66,7 @@ Output:
       --wrap_chars_after WRAP_CHARS_AFTER
                             wrap_chars_after (default: None)
       --content CONTENT     content (default: None)
-      --num_files NUM_FILES
-                            number of files to generate (default: 1)
+      --nb_files NB_FILES   number of files to generate (default: 1)
 
 Generate a file using certain provider
 --------------------------------------
@@ -110,4 +109,4 @@ It works with sub options too:
 .. code-block:: sh
 
     $ faker-file docx_file --
-    --content           --max_nb_chars      --prefix            --wrap_chars_after
+    --content    --max_nb_chars    --prefix    --wrap_chars_after    --nb_files
