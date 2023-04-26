@@ -2,6 +2,14 @@ CLI
 ===
 It's possible to generate files from CLI.
 
+.. note::
+
+    For using CLI you should install all common dependencies:
+
+.. code-block:: sh
+
+    pip install faker-file[common]
+
 List available provider options
 -------------------------------
 .. code-block:: sh
