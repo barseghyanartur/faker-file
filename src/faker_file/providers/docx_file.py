@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import Optional, Union, overload
+from typing import Any, Dict, List, Optional, Tuple, Union, overload
 
 from docx import Document
 from faker.providers import BaseProvider
@@ -47,6 +47,54 @@ class DocxFileProvider(BaseProvider, FileMixin):
             max_nb_chars=100_000,
             wrap_chars_after=80,
         )
+
+    Usage example with content modifiers:
+
+        def add_table(provider, document, data, counter, **kwargs):
+            table = document.add_table(
+                kwargs.get("rows", 3),
+                kwargs.get("cols", 4),
+            )
+            if not "content_modifiers" in data:
+                 data["content_modifiers"] = {}
+            if not "add_table" in data["content_modifiers"]:
+                data["content_modifiers"]["add_table"] = {}
+            if not counter in data["content_modifiers"]["add_table"]:
+                data["content_modifiers"]["add_table"][counter] = []
+
+            for row in table.rows:
+                for cell in row.cells:
+                    text = provider.generator.text()
+                    cell.text = text
+                    data["content_modifiers"]["add_table"][counter].append(
+                        text
+                    )
+            return table
+
+        def add_picture(provider, document, data, counter, **kwargs):
+            from faker_file.providers.jpeg_file import JpegFileProvider
+            from io import BytesIO
+            jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
+                raw=True
+            )
+            picture = document.add_picture(BytesIO(jpeg_file))
+            if not "content_modifiers" in data:
+                 data["content_modifiers"] = {}
+            if not "add_picture" in data["content_modifiers"]:
+                data["content_modifiers"]["add_picture"] = {}
+            if not counter in data["content_modifiers"]["add_picture"]:
+                data["content_modifiers"]["add_picture"][counter] = []
+
+            data["content_modifiers"]["add_picture"][counter].append(
+                jpeg_file.data["content"]
+            )
+
+            return picture
+
+        file = DocxFileProvider(Faker()).docx_file(
+            content="",
+            content_modifiers=[(add_table, {}), (add_picture, {})],
+        )
     """
 
     extension: str = "docx"
@@ -59,6 +107,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        content_modifiers: Optional[
+            List[Tuple[callable, Dict[str, Any]]]
+        ] = None,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -72,6 +123,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        content_modifiers: Optional[
+            List[Tuple[callable, Dict[str, Any]]]
+        ] = None,
         **kwargs,
     ) -> StringValue:
         ...
@@ -83,6 +137,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        content_modifiers: Optional[
+            List[Tuple[callable, Dict[str, Any]]]
+        ] = None,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -95,6 +152,10 @@ class DocxFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
+        :param content_modifiers: List of content modifiers (callables to call
+            after the document instance has been created). Each callable should
+            accept the following arguments: provider, document, data, counter
+            and **kwargs.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -121,6 +182,18 @@ class DocxFileProvider(BaseProvider, FileMixin):
         with BytesIO() as _fake_file:
             document = Document()
             document.add_paragraph(content)
+
+            for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
+                content_modifiers
+            ):
+                ct_modifier(
+                    self,
+                    document,
+                    data,
+                    counter,
+                    **ct_modifier_kwargs,
+                )
+
             document.save(_fake_file)
 
             if raw:
