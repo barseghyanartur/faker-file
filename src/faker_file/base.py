@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 from faker import Faker
 from faker.generator import Generator
@@ -12,6 +12,7 @@ __license__ = "MIT"
 __all__ = (
     "BytesValue",
     "DEFAULT_REL_PATH",
+    "DynamicTemplate",
     "FileMixin",
     "StringValue",
 )
@@ -63,3 +64,12 @@ class FileMixin:
             content = wrap_text(content, wrap_chars_after)
 
         return content
+
+
+class DynamicTemplate:
+    """Dynamic template."""
+
+    def __init__(
+        self, content_modifiers: List[Tuple[callable, Dict[str, Any]]]
+    ):
+        self.content_modifiers = content_modifiers

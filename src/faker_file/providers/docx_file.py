@@ -1,10 +1,10 @@
 from io import BytesIO
-from typing import Any, Dict, List, Optional, Tuple, Union, overload
+from typing import Optional, Union, overload
 
 from docx import Document
 from faker.providers import BaseProvider
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import BytesValue, DynamicTemplate, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -50,6 +50,10 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     Usage example with content modifiers:
 
+        from io import BytesIO
+        from faker_file.base import DynamicTemplate
+        from faker_file.providers.jpeg_file import JpegFileProvider
+
         def add_table(provider, document, data, counter, **kwargs):
             table = document.add_table(
                 kwargs.get("rows", 3),
@@ -69,11 +73,10 @@ class DocxFileProvider(BaseProvider, FileMixin):
                     data["content_modifiers"]["add_table"][counter].append(
                         text
                     )
+                    data["content"] += ("\r\n" + text)
             return table
 
         def add_picture(provider, document, data, counter, **kwargs):
-            from faker_file.providers.jpeg_file import JpegFileProvider
-            from io import BytesIO
             jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
                 raw=True
             )
@@ -88,12 +91,12 @@ class DocxFileProvider(BaseProvider, FileMixin):
             data["content_modifiers"]["add_picture"][counter].append(
                 jpeg_file.data["content"]
             )
+            data["content"] += ("\r\n" + jpeg_file.data["content"])
 
             return picture
 
         file = DocxFileProvider(Faker()).docx_file(
-            content="",
-            content_modifiers=[(add_table, {}), (add_picture, {})],
+            content=DynamicTemplate([(add_table, {}), (add_picture, {})])
         )
     """
 
@@ -106,10 +109,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
-        content_modifiers: Optional[
-            List[Tuple[callable, Dict[str, Any]]]
-        ] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -122,10 +122,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
-        content_modifiers: Optional[
-            List[Tuple[callable, Dict[str, Any]]]
-        ] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         **kwargs,
     ) -> StringValue:
         ...
@@ -136,10 +133,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
-        content_modifiers: Optional[
-            List[Tuple[callable, Dict[str, Any]]]
-        ] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -150,12 +144,12 @@ class DocxFileProvider(BaseProvider, FileMixin):
         :param max_nb_chars: Max number of chars for the content.
         :param wrap_chars_after: If given, the output string would be separated
              by line breaks after the given position.
-        :param content: File content. Might contain dynamic elements, which
-            are then replaced by correspondent fixtures.
-        :param content_modifiers: List of content modifiers (callables to call
-            after the document instance has been created). Each callable should
-            accept the following arguments: provider, document, data, counter
-            and **kwargs.
+        :param content: File content. Might contain dynamic elements (still
+            being a string), which are then replaced by correspondent
+            fixtures. Can alternatively be a `DynamicTemplate` - list of content
+            modifiers (callables to call after the document instance has been
+            created). Each callable should accept the following
+            arguments: provider, document, data, counter and **kwargs.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -171,28 +165,31 @@ class DocxFileProvider(BaseProvider, FileMixin):
             extension=self.extension,
         )
 
-        content = self._generate_text_content(
-            max_nb_chars=max_nb_chars,
-            wrap_chars_after=wrap_chars_after,
-            content=content,
-        )
-
-        data = {"content": content, "filename": filename}
+        if isinstance(content, DynamicTemplate):
+            _content = ""
+        else:
+            _content = self._generate_text_content(
+                max_nb_chars=max_nb_chars,
+                wrap_chars_after=wrap_chars_after,
+                content=content,
+            )
+        data = {"content": _content, "filename": filename}
 
         with BytesIO() as _fake_file:
             document = Document()
-            document.add_paragraph(content)
-
-            for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
-                content_modifiers
-            ):
-                ct_modifier(
-                    self,
-                    document,
-                    data,
-                    counter,
-                    **ct_modifier_kwargs,
-                )
+            if _content:
+                document.add_paragraph(_content)
+            elif isinstance(content, DynamicTemplate):
+                for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
+                    content.content_modifiers
+                ):
+                    ct_modifier(
+                        self,
+                        document,
+                        data,
+                        counter,
+                        **ct_modifier_kwargs,
+                    )
 
             document.save(_fake_file)
 
