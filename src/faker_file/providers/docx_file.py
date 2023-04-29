@@ -59,11 +59,11 @@ class DocxFileProvider(BaseProvider, FileMixin):
                 kwargs.get("rows", 3),
                 kwargs.get("cols", 4),
             )
-            if not "content_modifiers" in data:
+            if "content_modifiers" not in data:
                  data["content_modifiers"] = {}
-            if not "add_table" in data["content_modifiers"]:
+            if "add_table" not in data["content_modifiers"]:
                 data["content_modifiers"]["add_table"] = {}
-            if not counter in data["content_modifiers"]["add_table"]:
+            if counter not in data["content_modifiers"]["add_table"]:
                 data["content_modifiers"]["add_table"][counter] = []
 
             for row in table.rows:
@@ -81,11 +81,11 @@ class DocxFileProvider(BaseProvider, FileMixin):
                 raw=True
             )
             picture = document.add_picture(BytesIO(jpeg_file))
-            if not "content_modifiers" in data:
+            if "content_modifiers" not in data:
                  data["content_modifiers"] = {}
-            if not "add_picture" in data["content_modifiers"]:
+            if "add_picture" not in data["content_modifiers"]:
                 data["content_modifiers"]["add_picture"] = {}
-            if not counter in data["content_modifiers"]["add_picture"]:
+            if counter not in data["content_modifiers"]["add_picture"]:
                 data["content_modifiers"]["add_picture"][counter] = []
 
             data["content_modifiers"]["add_picture"][counter].append(
