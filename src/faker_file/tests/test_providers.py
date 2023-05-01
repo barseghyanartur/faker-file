@@ -3,7 +3,6 @@ import tempfile
 import unittest
 from copy import deepcopy
 from importlib import import_module, reload
-from io import BytesIO
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
 import pytest
@@ -78,6 +77,12 @@ from ..providers.zip_file import ZipFileProvider
 from ..storages.base import BaseStorage
 from ..storages.cloud import PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
+from .helpers import (
+    docx_add_picture,
+    docx_add_table,
+    odt_add_picture,
+    odt_add_table,
+)
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -114,45 +119,6 @@ FAKER = Faker()
 FAKER_HY = Faker(locale="hy_AM")
 FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
-
-
-def docx_add_table(provider, document, data, counter, **kwargs):
-    table = document.add_table(
-        kwargs.get("rows", 3),
-        kwargs.get("cols", 4),
-    )
-    if "content_modifiers" not in data:
-        data["content_modifiers"] = {}
-    if "add_table" not in data["content_modifiers"]:
-        data["content_modifiers"]["add_table"] = {}
-    if counter not in data["content_modifiers"]["add_table"]:
-        data["content_modifiers"]["add_table"][counter] = []
-
-    for row in table.rows:
-        for cell in row.cells:
-            text = provider.generator.text()
-            cell.text = text
-            data["content_modifiers"]["add_table"][counter].append(text)
-            data["content"] += "\r\n" + text
-    return table
-
-
-def docx_add_picture(provider, document, data, counter, **kwargs):
-    jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
-    picture = document.add_picture(BytesIO(jpeg_file))
-    if "content_modifiers" not in data:
-        data["content_modifiers"] = {}
-    if "add_picture" not in data["content_modifiers"]:
-        data["content_modifiers"]["add_picture"] = {}
-    if counter not in data["content_modifiers"]["add_picture"]:
-        data["content_modifiers"]["add_picture"][counter] = []
-
-    data["content_modifiers"]["add_picture"][counter].append(
-        jpeg_file.data["content"]
-    )
-    data["content"] += "\r\n" + jpeg_file.data["content"]
-
-    return picture
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -369,6 +335,17 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": DEFAULT_TEXT_CONTENT_TEMPLATE,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            OdtFileProvider,
+            "odt_file",
+            {
+                "content": DynamicTemplate(
+                    [(odt_add_table, {}), (odt_add_picture, {})]
+                ),
             },
             None,
         ),

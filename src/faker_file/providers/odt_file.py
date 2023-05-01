@@ -5,7 +5,7 @@ from faker.providers import BaseProvider
 from odf.opendocument import OpenDocumentText
 from odf.text import P
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import BytesValue, DynamicTemplate, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -50,6 +50,87 @@ class OdtFileProvider(BaseProvider, FileMixin):
             max_nb_chars=100_000,
             wrap_chars_after=80,
         )
+
+    Usage example with content modifiers:
+
+        from faker_file.base import DynamicTemplate
+        from faker_file.providers.jpeg_file import JpegFileProvider
+        from odf.draw import Frame, Image
+        from odf.style import (
+            Style, TextProperties,
+            TableColumnProperties,
+            TableRowProperties,
+            TableCellProperties,
+            GraphicProperties,
+        )
+        from odf.table import Table, TableRow, TableCell, TableColumn
+        from odf.text import P
+
+        def add_table(provider, document, data, counter, **kwargs):
+            table = Table()
+            rows = kwargs.get("rows", 3)
+            cols = kwargs.get("cols", 4)
+            table_col_style = Style(name="TableColumn", family="table-column")
+            table_col_style.addElement(
+                TableColumnProperties(columnwidth="2cm")
+            )
+            document.automaticstyles.addElement(table_col_style)
+
+            table_row_style = Style(name="TableRow", family="table-row")
+            table_row_style.addElement(TableRowProperties(rowheight="1cm"))
+            document.automaticstyles.addElement(table_row_style)
+
+            table_cell_style = Style(name="TableCell", family="table-cell")
+            table_cell_style.addElement(
+                TableCellProperties(
+                    padding="0.1cm", border="0.05cm solid #000000"
+                )
+            )
+            document.automaticstyles.addElement(table_cell_style)
+
+            # Create table
+            table = Table()
+            for i in range(rows):
+                table.addElement(TableColumn(stylename=table_col_style))
+
+            for row in range(cols):
+                tr = TableRow(stylename=table_row_style)
+                table.addElement(tr)
+                for col in range(4):
+                    tc = TableCell(stylename=table_cell_style)
+                    tr.addElement(tc)
+                    p = P(text=provider.generator.paragraph())
+                    tc.addElement(p)
+
+            document.text.addElement(table)
+
+        def add_picture(
+            provider,
+            document,
+            data,
+            counter,
+            width="10cm",
+            height="5cm",
+            **kwargs,
+        ):
+            paragraph = P()
+            document.text.addElement(paragraph)
+            jpeg_file = JpegFileProvider(provider.generator).jpeg_file()
+            image_data = jpeg_file.data["content"]
+            image_frame = Frame(
+                width=width,
+                height=height,
+                x="56pt",
+                y="56pt",
+                anchortype="paragraph",
+            )
+            href = document.addPicture(jpeg_file.data["filename"])
+            image_frame.addElement(Image(href=href))
+            paragraph.addElement(image_frame)
+
+        file = OdtFileProvider(FAKER).odt_file(
+            content=DynamicTemplate([(add_table, {}), (add_picture, {})])
+        )
     """
 
     extension: str = "odt"
@@ -61,7 +142,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -74,7 +155,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         **kwargs,
     ) -> StringValue:
         ...
@@ -85,7 +166,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -113,17 +194,32 @@ class OdtFileProvider(BaseProvider, FileMixin):
             extension=self.extension,
         )
 
-        content = self._generate_text_content(
-            max_nb_chars=max_nb_chars,
-            wrap_chars_after=wrap_chars_after,
-            content=content,
-        )
-
-        data = {"content": content, "filename": filename}
+        if isinstance(content, DynamicTemplate):
+            _content = ""
+        else:
+            _content = self._generate_text_content(
+                max_nb_chars=max_nb_chars,
+                wrap_chars_after=wrap_chars_after,
+                content=content,
+            )
+        data = {"content": _content, "filename": filename}
 
         with BytesIO() as _fake_file:
             document = OpenDocumentText()
-            document.text.addElement(P(text=content))
+            if _content:
+                document.text.addElement(P(text=_content))
+            elif isinstance(content, DynamicTemplate):
+                for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
+                    content.content_modifiers
+                ):
+                    ct_modifier(
+                        self,
+                        document,
+                        data,
+                        counter,
+                        **ct_modifier_kwargs,
+                    )
+
             document.save(_fake_file)
 
             if raw:
