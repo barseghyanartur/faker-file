@@ -25,12 +25,9 @@ def docx_add_table(provider, document, data, counter, **kwargs):
         kwargs.get("rows", 3),
         kwargs.get("cols", 4),
     )
-    if "content_modifiers" not in data:
-        data["content_modifiers"] = {}
-    if "add_table" not in data["content_modifiers"]:
-        data["content_modifiers"]["add_table"] = {}
-    if counter not in data["content_modifiers"]["add_table"]:
-        data["content_modifiers"]["add_table"][counter] = []
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_table", {})
+    data["content_modifiers"]["add_table"].setdefault(counter, [])
 
     for row in table.rows:
         for cell in row.cells:
@@ -43,12 +40,10 @@ def docx_add_table(provider, document, data, counter, **kwargs):
 def docx_add_picture(provider, document, data, counter, **kwargs):
     jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
     document.add_picture(BytesIO(jpeg_file))
-    if "content_modifiers" not in data:
-        data["content_modifiers"] = {}
-    if "add_picture" not in data["content_modifiers"]:
-        data["content_modifiers"]["add_picture"] = {}
-    if counter not in data["content_modifiers"]["add_picture"]:
-        data["content_modifiers"]["add_picture"][counter] = []
+
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_picture", {})
+    data["content_modifiers"]["add_picture"].setdefault(counter, [])
 
     data["content_modifiers"]["add_picture"][counter].append(
         jpeg_file.data["content"]
@@ -73,12 +68,9 @@ def odt_add_table(provider, document, data, counter, **kwargs):
     )
     document.automaticstyles.addElement(table_cell_style)
 
-    if "content_modifiers" not in data:
-        data["content_modifiers"] = {}
-    if "add_table" not in data["content_modifiers"]:
-        data["content_modifiers"]["add_table"] = {}
-    if counter not in data["content_modifiers"]["add_table"]:
-        data["content_modifiers"]["add_table"][counter] = []
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_table", {})
+    data["content_modifiers"]["add_table"].setdefault(counter, [])
 
     # Create table
     table = Table()
@@ -124,12 +116,10 @@ def odt_add_picture(
     paragraph.addElement(image_frame)
 
     data["content"] += "\r\n" + jpeg_file.data["content"]
-    if "content_modifiers" not in data:
-        data["content_modifiers"] = {}
-    if "add_picture" not in data["content_modifiers"]:
-        data["content_modifiers"]["add_picture"] = {}
-    if counter not in data["content_modifiers"]["add_picture"]:
-        data["content_modifiers"]["add_picture"][counter] = []
+
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_picture", {})
+    data["content_modifiers"]["add_picture"].setdefault(counter, [])
 
     data["content_modifiers"]["add_picture"][counter].append(
         jpeg_file.data["content"]

@@ -59,41 +59,35 @@ class DocxFileProvider(BaseProvider, FileMixin):
                 kwargs.get("rows", 3),
                 kwargs.get("cols", 4),
             )
-            if "content_modifiers" not in data:
-                 data["content_modifiers"] = {}
-            if "add_table" not in data["content_modifiers"]:
-                data["content_modifiers"]["add_table"] = {}
-            if counter not in data["content_modifiers"]["add_table"]:
-                data["content_modifiers"]["add_table"][counter] = []
+            data.setdefault("content_modifiers", {})
+            data["content_modifiers"].setdefault("add_table", {})
+            data["content_modifiers"]["add_table"].setdefault(counter, [])
 
             for row in table.rows:
                 for cell in row.cells:
-                    text = provider.generator.text()
+                    text = provider.generator.paragraph()
                     cell.text = text
                     data["content_modifiers"]["add_table"][counter].append(
                         text
                     )
                     data["content"] += ("\r\n" + text)
-            return table
+
 
         def add_picture(provider, document, data, counter, **kwargs):
             jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
                 raw=True
             )
             picture = document.add_picture(BytesIO(jpeg_file))
-            if "content_modifiers" not in data:
-                 data["content_modifiers"] = {}
-            if "add_picture" not in data["content_modifiers"]:
-                data["content_modifiers"]["add_picture"] = {}
-            if counter not in data["content_modifiers"]["add_picture"]:
-                data["content_modifiers"]["add_picture"][counter] = []
+
+            data.setdefault("content_modifiers", {})
+            data["content_modifiers"].setdefault("add_picture", {})
+            data["content_modifiers"]["add_picture"].setdefault(counter, [])
 
             data["content_modifiers"]["add_picture"][counter].append(
                 jpeg_file.data["content"]
             )
             data["content"] += ("\r\n" + jpeg_file.data["content"])
 
-            return picture
 
         file = DocxFileProvider(Faker()).docx_file(
             content=DynamicTemplate([(add_table, {}), (add_picture, {})])

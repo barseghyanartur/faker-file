@@ -80,6 +80,10 @@ class OdtFileProvider(BaseProvider, FileMixin):
             table_row_style.addElement(TableRowProperties(rowheight="1cm"))
             document.automaticstyles.addElement(table_row_style)
 
+            data.setdefault("content_modifiers", {})
+            data["content_modifiers"].setdefault("add_table", {})
+            data["content_modifiers"]["add_table"].setdefault(counter, [])
+
             table_cell_style = Style(name="TableCell", family="table-cell")
             table_cell_style.addElement(
                 TableCellProperties(
@@ -99,8 +103,11 @@ class OdtFileProvider(BaseProvider, FileMixin):
                 for col in range(4):
                     tc = TableCell(stylename=table_cell_style)
                     tr.addElement(tc)
-                    p = P(text=provider.generator.paragraph())
+                    text = provider.generator.paragraph()
+                    p = P(text=text)
                     tc.addElement(p)
+                    data["content_modifiers"]["add_table"][counter].append(text)
+                    data["content"] += "\r\n" + text
 
             document.text.addElement(table)
 
@@ -127,6 +134,15 @@ class OdtFileProvider(BaseProvider, FileMixin):
             href = document.addPicture(jpeg_file.data["filename"])
             image_frame.addElement(Image(href=href))
             paragraph.addElement(image_frame)
+
+            data["content"] += "\r\n" + jpeg_file.data["content"]
+            data.setdefault("content_modifiers", {})
+            data["content_modifiers"].setdefault("add_picture", {})
+            data["content_modifiers"]["add_picture"].setdefault(counter, [])
+
+            data["content_modifiers"]["add_picture"][counter].append(
+                jpeg_file.data["content"]
+            )
 
         file = OdtFileProvider(FAKER).odt_file(
             content=DynamicTemplate([(add_table, {}), (add_picture, {})])

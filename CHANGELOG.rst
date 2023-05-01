@@ -15,6 +15,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.12.6
+------
+2023-05-02
+
+- Added ``DynamicTemplate`` support for ``DOCX`` and ``ODT`` files.
+
 0.12.5
 ------
 2023-04-24

@@ -380,6 +380,165 @@ Create a PDF file with predefined template containing dynamic fixtures
 
     file = FAKER.pdf_file(content=TEMPLATE, wrap_chars_after=80)
 
+Create a DOCX file with table and image using ``DynamicTemplate``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from io import BytesIO
+
+    from faker import Faker
+    from faker_file.base import DynamicTemplate
+    from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.jpeg_file import JpegFileProvider
+
+    def add_table(provider, document, data, counter, **kwargs):
+        table = document.add_table(
+            kwargs.get("rows", 3),
+            kwargs.get("cols", 4),
+        )
+        data.setdefault("content_modifiers", {})
+        data["content_modifiers"].setdefault("add_table", {})
+        data["content_modifiers"]["add_table"].setdefault(counter, [])
+
+        for row in table.rows:
+            for cell in row.cells:
+                text = provider.generator.paragraph()
+                cell.text = text
+                data["content_modifiers"]["add_table"][counter].append(
+                    text
+                )
+                data["content"] += ("\r\n" + text)
+
+
+    def add_picture(provider, document, data, counter, **kwargs):
+        jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
+            raw=True
+        )
+        picture = document.add_picture(BytesIO(jpeg_file))
+
+        data.setdefault("content_modifiers", {})
+        data["content_modifiers"].setdefault("add_picture", {})
+        data["content_modifiers"]["add_picture"].setdefault(counter, [])
+
+        data["content_modifiers"]["add_picture"][counter].append(
+            jpeg_file.data["content"]
+        )
+        data["content"] += ("\r\n" + jpeg_file.data["content"])
+
+
+    file = DocxFileProvider(Faker()).docx_file(
+        content=DynamicTemplate([(add_table, {}), (add_picture, {})])
+    )
+
+
+Create a ODT file with table and image using ``DynamicTemplate``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.odt_file import OdtFileProvider
+    from faker_file.base import DynamicTemplate
+    from faker_file.providers.jpeg_file import JpegFileProvider
+    from odf.draw import Frame, Image
+    from odf.style import (
+        Style, TextProperties,
+        TableColumnProperties,
+        TableRowProperties,
+        TableCellProperties,
+        GraphicProperties,
+    )
+    from odf.table import Table, TableRow, TableCell, TableColumn
+    from odf.text import P
+
+    FAKER = Faker()
+
+
+    def add_table(provider, document, data, counter, **kwargs):
+        table = Table()
+        rows = kwargs.get("rows", 3)
+        cols = kwargs.get("cols", 4)
+        table_col_style = Style(name="TableColumn", family="table-column")
+        table_col_style.addElement(
+            TableColumnProperties(columnwidth="2cm")
+        )
+        document.automaticstyles.addElement(table_col_style)
+
+        table_row_style = Style(name="TableRow", family="table-row")
+        table_row_style.addElement(TableRowProperties(rowheight="1cm"))
+        document.automaticstyles.addElement(table_row_style)
+
+        data.setdefault("content_modifiers", {})
+        data["content_modifiers"].setdefault("add_table", {})
+        data["content_modifiers"]["add_table"].setdefault(counter, [])
+
+        table_cell_style = Style(name="TableCell", family="table-cell")
+        table_cell_style.addElement(
+            TableCellProperties(
+                padding="0.1cm", border="0.05cm solid #000000"
+            )
+        )
+        document.automaticstyles.addElement(table_cell_style)
+
+        # Create table
+        table = Table()
+        for i in range(rows):
+            table.addElement(TableColumn(stylename=table_col_style))
+
+        for row in range(cols):
+            tr = TableRow(stylename=table_row_style)
+            table.addElement(tr)
+            for col in range(4):
+                tc = TableCell(stylename=table_cell_style)
+                tr.addElement(tc)
+                text = provider.generator.paragraph()
+                p = P(text=text)
+                tc.addElement(p)
+                data["content_modifiers"]["add_table"][counter].append(text)
+                data["content"] += "\r\n" + text
+
+        document.text.addElement(table)
+
+
+    def add_picture(
+        provider,
+        document,
+        data,
+        counter,
+        width="10cm",
+        height="5cm",
+        **kwargs,
+    ):
+        paragraph = P()
+        document.text.addElement(paragraph)
+        jpeg_file = JpegFileProvider(provider.generator).jpeg_file()
+        image_data = jpeg_file.data["content"]
+        image_frame = Frame(
+            width=width,
+            height=height,
+            x="56pt",
+            y="56pt",
+            anchortype="paragraph",
+        )
+        href = document.addPicture(jpeg_file.data["filename"])
+        image_frame.addElement(Image(href=href))
+        paragraph.addElement(image_frame)
+
+        data["content"] += "\r\n" + jpeg_file.data["content"]
+        data.setdefault("content_modifiers", {})
+        data["content_modifiers"].setdefault("add_picture", {})
+        data["content_modifiers"]["add_picture"].setdefault(counter, [])
+
+        data["content_modifiers"]["add_picture"][counter].append(
+            jpeg_file.data["content"]
+        )
+
+
+    file = OdtFileProvider(FAKER).odt_file(
+        content=DynamicTemplate([(add_table, {}), (add_picture, {})])
+    )
+
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: python
