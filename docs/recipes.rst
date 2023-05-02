@@ -382,6 +382,19 @@ Create a PDF file with predefined template containing dynamic fixtures
 
 Create a DOCX file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When pre-defined templating and dynamic fixtures are not enough and
+full control is needed, you can use ``DynamicTemplate`` wrapper.
+It takes a list of content modifiers
+(tuples): ``(func: Callable, kwargs: dict)``. Each callable should accept
+the following arguments:
+
+- provider: Faker ``Generator`` instance or ``Faker`` instance.
+- document: Document instance. Implementation specific.
+- data: Dictionary. Used primarily for observability.
+- counter: Integer. Index number of the content modifier.
+- **kwargs: Dictionary. Useful to pass implementation-specific arguments.
+
+The following example shows how to generate a DOCX file with table and image.
 
 .. code-block:: python
 
@@ -392,7 +405,8 @@ Create a DOCX file with table and image using ``DynamicTemplate``
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.jpeg_file import JpegFileProvider
 
-    def add_table(provider, document, data, counter, **kwargs):
+    def docx_add_table(provider, document, data, counter, **kwargs):
+        """Callable responsible for the table generation."""
         table = document.add_table(
             kwargs.get("rows", 3),
             kwargs.get("cols", 4),
@@ -413,11 +427,10 @@ Create a DOCX file with table and image using ``DynamicTemplate``
                 data["content"] += ("\r\n" + text)
 
 
-    def add_picture(provider, document, data, counter, **kwargs):
-        jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
-            raw=True
-        )
-        picture = document.add_picture(BytesIO(jpeg_file))
+    def docx_add_picture(provider, document, data, counter, **kwargs):
+        """Callable responsible for the picture generation."""
+        jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
+        document.add_picture(BytesIO(jpeg_file))
 
         # Modifications of `data` is not required for generation
         # of the file, but is useful for when you want to get
@@ -432,12 +445,14 @@ Create a DOCX file with table and image using ``DynamicTemplate``
 
 
     file = DocxFileProvider(Faker()).docx_file(
-        content=DynamicTemplate([(add_table, {}), (add_picture, {})])
+        content=DynamicTemplate([(docx_add_table, {}), (docx_add_picture, {})])
     )
 
 
 Create a ODT file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Similarly to previous section, the following example shows how to generate an
+ODT file with table and image.
 
 .. code-block:: python
 
@@ -459,7 +474,8 @@ Create a ODT file with table and image using ``DynamicTemplate``
     FAKER = Faker()
 
 
-    def add_table(provider, document, data, counter, **kwargs):
+    def odt_add_table(provider, document, data, counter, **kwargs):
+        """Callable responsible for the table generation."""
         table = Table()
         rows = kwargs.get("rows", 3)
         cols = kwargs.get("cols", 4)
@@ -509,15 +525,10 @@ Create a ODT file with table and image using ``DynamicTemplate``
         document.text.addElement(table)
 
 
-    def add_picture(
-        provider,
-        document,
-        data,
-        counter,
-        width="10cm",
-        height="5cm",
-        **kwargs,
-    ):
+    def odt_add_picture(provider, document, data, counter, **kwargs):
+        """Callable responsible for the picture generation."""
+        width = kwargs.get("width", "10cm")
+        height = kwargs.get("height", "5cm")
         paragraph = P()
         document.text.addElement(paragraph)
         jpeg_file = JpegFileProvider(provider.generator).jpeg_file()
@@ -546,7 +557,7 @@ Create a ODT file with table and image using ``DynamicTemplate``
 
 
     file = OdtFileProvider(FAKER).odt_file(
-        content=DynamicTemplate([(add_table, {}), (add_picture, {})])
+        content=DynamicTemplate([(odt_add_table, {}), (odt_add_picture, {})])
     )
 
 Create a PDF using `reportlab` generator

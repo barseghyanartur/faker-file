@@ -21,10 +21,15 @@ __all__ = (
 
 
 def docx_add_table(provider, document, data, counter, **kwargs):
+    """Callable responsible for the table generation."""
     table = document.add_table(
         kwargs.get("rows", 3),
         kwargs.get("cols", 4),
     )
+
+    # Modifications of `data` is not required for generation
+    # of the file, but is useful for when you want to get
+    # the text content of the file.
     data.setdefault("content_modifiers", {})
     data["content_modifiers"].setdefault("add_table", {})
     data["content_modifiers"]["add_table"].setdefault(counter, [])
@@ -33,18 +38,22 @@ def docx_add_table(provider, document, data, counter, **kwargs):
         for cell in row.cells:
             text = provider.generator.paragraph()
             cell.text = text
+            # Useful when you want to get the text content of the file.
             data["content_modifiers"]["add_table"][counter].append(text)
             data["content"] += "\r\n" + text
 
 
 def docx_add_picture(provider, document, data, counter, **kwargs):
+    """Callable responsible for the picture generation."""
     jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
     document.add_picture(BytesIO(jpeg_file))
 
+    # Modifications of `data` is not required for generation
+    # of the file, but is useful for when you want to get
+    # the text content of the file.
     data.setdefault("content_modifiers", {})
     data["content_modifiers"].setdefault("add_picture", {})
     data["content_modifiers"]["add_picture"].setdefault(counter, [])
-
     data["content_modifiers"]["add_picture"][counter].append(
         jpeg_file.data["content"]
     )
@@ -52,6 +61,7 @@ def docx_add_picture(provider, document, data, counter, **kwargs):
 
 
 def odt_add_table(provider, document, data, counter, **kwargs):
+    """Callable responsible for the table generation."""
     rows = kwargs.get("rows", 3)
     cols = kwargs.get("cols", 4)
     table_col_style = Style(name="TableColumn", family="table-column")
@@ -68,6 +78,9 @@ def odt_add_table(provider, document, data, counter, **kwargs):
     )
     document.automaticstyles.addElement(table_cell_style)
 
+    # Modifications of `data` is not required for generation
+    # of the file, but is useful for when you want to get
+    # the text content of the file.
     data.setdefault("content_modifiers", {})
     data["content_modifiers"].setdefault("add_table", {})
     data["content_modifiers"]["add_table"].setdefault(counter, [])
@@ -86,21 +99,17 @@ def odt_add_table(provider, document, data, counter, **kwargs):
             text = provider.generator.paragraph()
             p = P(text=text)
             tc.addElement(p)
+            # Useful when you want to get the text content of the file.
             data["content_modifiers"]["add_table"][counter].append(text)
             data["content"] += "\r\n" + text
 
     document.text.addElement(table)
 
 
-def odt_add_picture(
-    provider,
-    document,
-    data,
-    counter,
-    width="10cm",
-    height="5cm",
-    **kwargs,
-):
+def odt_add_picture(provider, document, data, counter, **kwargs):
+    """Callable responsible for the picture generation."""
+    width = kwargs.get("width", "10cm")
+    height = kwargs.get("height", "5cm")
     paragraph = P()
     document.text.addElement(paragraph)
     jpeg_file = JpegFileProvider(provider.generator).jpeg_file()
@@ -115,12 +124,13 @@ def odt_add_picture(
     image_frame.addElement(Image(href=href))
     paragraph.addElement(image_frame)
 
+    # Modifications of `data` is not required for generation
+    # of the file, but is useful for when you want to get
+    # the text content of the file.
     data["content"] += "\r\n" + jpeg_file.data["content"]
-
     data.setdefault("content_modifiers", {})
     data["content_modifiers"].setdefault("add_picture", {})
     data["content_modifiers"]["add_picture"].setdefault(counter, [])
-
     data["content_modifiers"]["add_picture"][counter].append(
         jpeg_file.data["content"]
     )
