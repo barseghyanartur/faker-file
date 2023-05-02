@@ -51,6 +51,14 @@ KWARGS_DROP = {
     "raw",  # Drop `raw`, because we will be forcing raw=True for streaming
 }
 OVERRIDES = {
+    "DocxFileProvider.docx_file": {
+        "annotations": {
+            "content": str,
+        },
+        "model_props": {
+            "content": None,
+        },
+    },
     "Mp3FileProvider.mp3_file": {
         "annotations": {
             "mp3_generator_cls": str,
@@ -60,6 +68,14 @@ OVERRIDES = {
                 "faker_file.providers.mp3_file.generators"
                 ".gtts_generator.GttsMp3Generator"
             ),
+        },
+    },
+    "OdtFileProvider.odt_file": {
+        "annotations": {
+            "content": str,
+        },
+        "model_props": {
+            "content": None,
         },
     },
     "PdfFileProvider.pdf_file": {

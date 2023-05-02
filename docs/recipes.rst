@@ -397,6 +397,9 @@ Create a DOCX file with table and image using ``DynamicTemplate``
             kwargs.get("rows", 3),
             kwargs.get("cols", 4),
         )
+        # Modifications of `data` is not required for generation
+        # of the file, but is useful for when you want to get
+        # the text content of the file.
         data.setdefault("content_modifiers", {})
         data["content_modifiers"].setdefault("add_table", {})
         data["content_modifiers"]["add_table"].setdefault(counter, [])
@@ -405,9 +408,8 @@ Create a DOCX file with table and image using ``DynamicTemplate``
             for cell in row.cells:
                 text = provider.generator.paragraph()
                 cell.text = text
-                data["content_modifiers"]["add_table"][counter].append(
-                    text
-                )
+                # Useful when you want to get the text content of the file.
+                data["content_modifiers"]["add_table"][counter].append(text)
                 data["content"] += ("\r\n" + text)
 
 
@@ -417,10 +419,12 @@ Create a DOCX file with table and image using ``DynamicTemplate``
         )
         picture = document.add_picture(BytesIO(jpeg_file))
 
+        # Modifications of `data` is not required for generation
+        # of the file, but is useful for when you want to get
+        # the text content of the file.
         data.setdefault("content_modifiers", {})
         data["content_modifiers"].setdefault("add_picture", {})
         data["content_modifiers"]["add_picture"].setdefault(counter, [])
-
         data["content_modifiers"]["add_picture"][counter].append(
             jpeg_file.data["content"]
         )
@@ -469,6 +473,9 @@ Create a ODT file with table and image using ``DynamicTemplate``
         table_row_style.addElement(TableRowProperties(rowheight="1cm"))
         document.automaticstyles.addElement(table_row_style)
 
+        # Modifications of `data` is not required for generation
+        # of the file, but is useful for when you want to get
+        # the text content of the file.
         data.setdefault("content_modifiers", {})
         data["content_modifiers"].setdefault("add_table", {})
         data["content_modifiers"]["add_table"].setdefault(counter, [])
@@ -495,6 +502,7 @@ Create a ODT file with table and image using ``DynamicTemplate``
                 text = provider.generator.paragraph()
                 p = P(text=text)
                 tc.addElement(p)
+                # Useful when you want to get the text content of the file.
                 data["content_modifiers"]["add_table"][counter].append(text)
                 data["content"] += "\r\n" + text
 
@@ -525,11 +533,13 @@ Create a ODT file with table and image using ``DynamicTemplate``
         image_frame.addElement(Image(href=href))
         paragraph.addElement(image_frame)
 
+        # Modifications of `data` is not required for generation
+        # of the file, but is useful for when you want to get
+        # the text content of the file.
         data["content"] += "\r\n" + jpeg_file.data["content"]
         data.setdefault("content_modifiers", {})
         data["content_modifiers"].setdefault("add_picture", {})
         data["content_modifiers"]["add_picture"].setdefault(counter, [])
-
         data["content_modifiers"]["add_picture"][counter].append(
             jpeg_file.data["content"]
         )
