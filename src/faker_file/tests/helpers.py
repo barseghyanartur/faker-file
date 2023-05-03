@@ -1,3 +1,4 @@
+import base64
 from io import BytesIO
 
 from odf.draw import Frame, Image
@@ -13,10 +14,12 @@ from odf.text import P
 from ..providers.jpeg_file import JpegFileProvider
 
 __all__ = (
-    "docx_add_table",
     "docx_add_picture",
-    "odt_add_table",
+    "docx_add_table",
     "odt_add_picture",
+    "odt_add_table",
+    "pdf_pdfkit_add_picture",
+    "pdf_pdfkit_add_table",
 )
 
 
@@ -134,3 +137,48 @@ def odt_add_picture(provider, document, data, counter, **kwargs):
     data["content_modifiers"]["add_picture"][counter].append(
         jpeg_file.data["content"]
     )
+
+
+def create_data_url(image_bytes, image_format):
+    encoded_image = base64.b64encode(image_bytes).decode("utf-8")
+    return f"data:image/{image_format};base64,{encoded_image}"
+
+
+def pdf_pdfkit_add_table(provider, document, data, counter, **kwargs):
+    rows = kwargs.get("rows", 3)
+    cols = kwargs.get("cols", 4)
+
+    # Begin the HTML table
+    table_html = "<table>"
+
+    for row_num in range(rows):
+        table_html += "<tr>"
+
+        for col_num in range(cols):
+            text = provider.generator.paragraph()
+            table_html += f"<td>{text}</td>"
+
+            data.setdefault("content_modifiers", {})
+            data["content_modifiers"].setdefault("add_table", {})
+            data["content_modifiers"]["add_table"].setdefault(counter, [])
+            data["content_modifiers"]["add_table"][counter].append(text)
+
+        table_html += "</tr>"
+
+    # End the HTML table
+    table_html += "</table>"
+
+    document += "\r\n" + table_html
+
+
+def pdf_pdfkit_add_picture(provider, document, data, counter, **kwargs):
+    jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
+    data_url = create_data_url(jpeg_file, "jpg")
+    document += f"<img src='{data_url}' alt='Inline Image' />"
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_picture", {})
+    data["content_modifiers"]["add_picture"].setdefault(counter, [])
+    data["content_modifiers"]["add_picture"][counter].append(
+        jpeg_file.data["content"]
+    )
+    data["content"] += "\r\n" + jpeg_file.data["content"]

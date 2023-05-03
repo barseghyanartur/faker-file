@@ -82,6 +82,8 @@ from .helpers import (
     docx_add_table,
     odt_add_picture,
     odt_add_table,
+    pdf_pdfkit_add_picture,
+    pdf_pdfkit_add_table,
 )
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -427,6 +429,17 @@ class ProvidersTestCase(unittest.TestCase):
                     ".pdfkit_generator.PdfkitPdfGenerator"
                 ),
                 "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
+            },
+            None,
+        ),
+        (
+            FAKER,
+            OdtFileProvider,
+            "odt_file",
+            {
+                "content": DynamicTemplate(
+                    [(pdf_pdfkit_add_table, {}), (pdf_pdfkit_add_picture, {})]
+                ),
             },
             None,
         ),
