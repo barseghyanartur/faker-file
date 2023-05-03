@@ -136,7 +136,6 @@ class PdfkitPdfGenerator(BasePdfGenerator):
         else:
             _content = f"<pre style='white-space: pre-wrap;'>{content}</pre>"
 
-        print(_content)
         return pdfkit.from_string(
             str(_content),
             options=options,
