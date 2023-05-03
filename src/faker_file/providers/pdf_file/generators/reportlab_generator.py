@@ -1,6 +1,10 @@
 import logging
 from io import BytesIO
+from typing import Any, Dict, Union
 
+from faker import Faker
+from faker.generator import Generator
+from faker.providers.python import Provider
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
@@ -8,6 +12,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph, SimpleDocTemplate
 
+from ....base import DynamicTemplate
 from ....constants import DEFAULT_FONT_NAME, DEFAULT_FONT_PATH
 from ...base.pdf_generator import BasePdfGenerator
 
@@ -33,6 +38,8 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         file = PdfFileProvider(FAKER).pdf_file(
             pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator
         )
+
+    Using `DynamicContent`:
     """
 
     font_name: str = DEFAULT_FONT_NAME
@@ -46,7 +53,11 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             self.font_path = kwargs["font_path"]
 
     def generate(
-        self: "ReportlabPdfGenerator", content: str, **kwargs
+        self: "ReportlabPdfGenerator",
+        content: Union[str, DynamicTemplate],
+        data: Dict[str, Any],
+        provider: Union[Faker, Generator, Provider],
+        **kwargs,
     ) -> bytes:
         """Generate PDF."""
         styles = getSampleStyleSheet()
@@ -64,8 +75,21 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             rightMargin=0.8 * inch,
             leftMargin=0.8 * inch,
         )
-        paragraph = Paragraph(content, style_paragraph)
-        story.append(paragraph)
+        if isinstance(content, DynamicTemplate):
+            for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
+                content.content_modifiers
+            ):
+                ct_modifier(
+                    self,
+                    doc,
+                    data,
+                    counter,
+                    **ct_modifier_kwargs,
+                )
+        else:
+            paragraph = Paragraph(content, style_paragraph)
+            story.append(paragraph)
+
         doc.build(story)
 
         return buffer.getvalue()

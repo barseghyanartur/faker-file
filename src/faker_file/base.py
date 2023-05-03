@@ -14,6 +14,7 @@ __all__ = (
     "DEFAULT_REL_PATH",
     "DynamicTemplate",
     "FileMixin",
+    "StringList",
     "StringValue",
 )
 
@@ -73,3 +74,40 @@ class DynamicTemplate:
         self, content_modifiers: List[Tuple[callable, Dict[str, Any]]]
     ):
         self.content_modifiers = content_modifiers
+
+
+class StringList:
+    """String list.
+
+    Usage example:
+
+        my_string = StringList(separator="\r\n")
+        my_string += "grape"
+        my_string += "peaches"
+        print(my_string)
+    """
+
+    def __init__(
+        self: "StringList",
+        strings: Optional[List[str]] = None,
+        separator: str = " ",
+    ) -> None:
+        self.strings = strings if strings is not None else []
+        self.separator = separator
+
+    def __repr__(self: "StringList") -> str:
+        return self.__str__()
+
+    def __str__(self: "StringList") -> str:
+        return self.separator.join(self.strings)
+
+    def __iadd__(self: "StringList", value: str) -> "StringList":
+        self.add_string(value)
+        return self
+
+    def add_string(self: "StringList", value: str) -> None:
+        self.strings.append(value)
+
+    def remove_string(self: "StringList", value: str) -> None:
+        if value in self.strings:
+            self.strings.remove(value)

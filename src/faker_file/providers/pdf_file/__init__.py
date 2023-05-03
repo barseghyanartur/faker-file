@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional, Type, Union, overload
 
 from faker.providers import BaseProvider
 
-from ...base import BytesValue, FileMixin, StringValue
+from ...base import BytesValue, DynamicTemplate, FileMixin, StringValue
 from ...constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
@@ -77,7 +77,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
             PdfkitPdfGenerator
         ),
@@ -94,7 +94,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
             PdfkitPdfGenerator
         ),
@@ -109,7 +109,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[str] = None,
+        content: Optional[Union[str, DynamicTemplate]] = None,
         pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
             PdfkitPdfGenerator
         ),
@@ -143,14 +143,6 @@ class PdfFileProvider(BaseProvider, FileMixin):
             extension=self.extension,
         )
 
-        content = self._generate_text_content(
-            max_nb_chars=max_nb_chars,
-            wrap_chars_after=wrap_chars_after,
-            content=content,
-        )
-
-        data = {"content": content, "filename": filename}
-
         if pdf_generator_cls is None:
             pdf_generator_cls = PdfkitPdfGenerator
 
@@ -163,8 +155,21 @@ class PdfFileProvider(BaseProvider, FileMixin):
             generator=self.generator,
             **pdf_generator_kwargs,
         )
+        data = {"content": "", "filename": filename}
+        if isinstance(content, DynamicTemplate):
+            _content = content
+        else:
+            _content = self._generate_text_content(
+                max_nb_chars=max_nb_chars,
+                wrap_chars_after=wrap_chars_after,
+                content=content,
+            )
+            data["content"] = _content
+
         _raw_content = pdf_generator.generate(
-            content=content,
+            content=_content,
+            data=data,
+            provider=self,
         )
 
         if raw:
