@@ -434,9 +434,14 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         (
             FAKER,
-            OdtFileProvider,
-            "odt_file",
+            PdfFileProvider,
+            "pdf_file",
             {
+                "pdf_generator_cls": (
+                    "faker_file.providers.pdf_file.generators"
+                    ".pdfkit_generator.PdfkitPdfGenerator"
+                ),
+                "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
                 "content": DynamicTemplate(
                     [(pdf_pdfkit_add_table, {}), (pdf_pdfkit_add_picture, {})]
                 ),

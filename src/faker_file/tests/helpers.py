@@ -145,6 +145,7 @@ def create_data_url(image_bytes, image_format):
 
 
 def pdf_pdfkit_add_table(provider, document, data, counter, **kwargs):
+    """Callable responsible for the table generation."""
     rows = kwargs.get("rows", 3)
     cols = kwargs.get("cols", 4)
 
@@ -158,6 +159,9 @@ def pdf_pdfkit_add_table(provider, document, data, counter, **kwargs):
             text = provider.generator.paragraph()
             table_html += f"<td>{text}</td>"
 
+            # Modifications of `data` is not required for generation
+            # of the file, but is useful for when you want to get
+            # the text content of the file.
             data.setdefault("content_modifiers", {})
             data["content_modifiers"].setdefault("add_table", {})
             data["content_modifiers"]["add_table"].setdefault(counter, [])
@@ -172,9 +176,14 @@ def pdf_pdfkit_add_table(provider, document, data, counter, **kwargs):
 
 
 def pdf_pdfkit_add_picture(provider, document, data, counter, **kwargs):
+    """Callable responsible for the picture generation."""
     jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
     data_url = create_data_url(jpeg_file, "jpg")
     document += f"<img src='{data_url}' alt='Inline Image' />"
+
+    # Modifications of `data` is not required for generation
+    # of the file, but is useful for when you want to get
+    # the text content of the file.
     data.setdefault("content_modifiers", {})
     data["content_modifiers"].setdefault("add_picture", {})
     data["content_modifiers"]["add_picture"].setdefault(counter, [])
