@@ -15,6 +15,22 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.13
+----
+2023-05-04
+
+.. note::
+
+    This release introduces minor backwards incompatible changes.
+
+- Display full path to the created file in the CLI.
+- Added ``DynamicTemplate`` support for ``PDF`` file. The ``generate``
+  method of the ``BasePdfGenerator`` and classes derived from it,
+  got two new arguments: ``data`` (``Dict[str, Any]``),
+  and ``provider`` (``Union[Faker, Generator, Provider]``). If you have
+  implemented custom generators for ``PDF`` (``pdf_file`` provider),
+  make sure to reflect mentioned changes in your code.
+
 0.12.6
 ------
 2023-05-02

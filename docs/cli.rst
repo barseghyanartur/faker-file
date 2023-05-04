@@ -118,3 +118,6 @@ It works with sub options too:
 
     $ faker-file docx_file --
     --content    --max_nb_chars    --prefix    --wrap_chars_after    --nb_files
+
+To update the completion script, simply run the ``generate-completion`` command
+again and source the ``~/faker_file_completion.sh`` as already shown above.

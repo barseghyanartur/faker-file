@@ -245,7 +245,8 @@ def main():
             output_file = generate_file(args.command, **kwargs)
             print(
                 f"Generated {args.command} file "
-                f"({counter+1} of {args.nb_files}): {output_file}"
+                f"({counter+1} of {args.nb_files}): "
+                f"{output_file.data['filename']}"
             )
     else:
         parser.print_help()
