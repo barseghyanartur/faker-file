@@ -93,6 +93,7 @@ class PdfkitPdfGenerator(BasePdfGenerator):
             data["content"] += ("\r\n" + jpeg_file.data["content"])
 
         file = PdfFileProvider(Faker()).pdf_file(
+            pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator,
             content=DynamicTemplate(
                 [
                     (pdf_add_table, {}),

@@ -84,6 +84,8 @@ from .helpers import (
     odt_add_table,
     pdf_pdfkit_add_picture,
     pdf_pdfkit_add_table,
+    pdf_reportlab_add_picture,
+    pdf_reportlab_add_table,
 )
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -444,6 +446,25 @@ class ProvidersTestCase(unittest.TestCase):
                 "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
                 "content": DynamicTemplate(
                     [(pdf_pdfkit_add_table, {}), (pdf_pdfkit_add_picture, {})]
+                ),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": (
+                    "faker_file.providers.pdf_file.generators"
+                    ".reportlab_generator.ReportlabPdfGenerator"
+                ),
+                "pdf_generator_kwargs": {},
+                "content": DynamicTemplate(
+                    [
+                        (pdf_reportlab_add_table, {}),
+                        (pdf_reportlab_add_picture, {}),
+                    ]
                 ),
             },
             None,

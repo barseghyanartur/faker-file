@@ -24,3 +24,4 @@ class TestStringListTestCase(unittest.TestCase):
 
         my_string += "grape"
         self.assertEqual(str(my_string), "apple | cherry | orange | grape")
+        self.assertEqual(repr(my_string), "apple | cherry | orange | grape")
