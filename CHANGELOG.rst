@@ -15,6 +15,26 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.14
+----
+2023-05-06
+
+.. note::
+
+    This release introduces minor backwards incompatible changes.
+
+- A new argument ``basename`` has been added to all providers, inner
+  functions and storage classes. If you have customized things or created
+  your own providers, make sure to make appropriate changes in your code.
+  See the source code for more implementation examples.
+- A new inner function ``list_create_inner_file`` has been added, using which
+  it's possible to create just a list of given files (ignoring ``count`` value)
+  using given arguments. The amount of files is determined by
+  the ``func_list`` (each pair ``(Callable, kwargs)`` corresponds to a single
+  file. Both ``ZipFileProvider`` and ``TarFileProvider`` have been altered to
+  reflect these changes.
+- Added to support for ``XML`` files through ``XmlFileProvider``.
+
 0.13
 ----
 2023-05-05

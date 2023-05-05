@@ -237,6 +237,7 @@ Supported file types
 - ``TXT``
 - ``WEBP``
 - ``XLSX``
+- ``XML``
 - ``ZIP``
 
 Additional providers
