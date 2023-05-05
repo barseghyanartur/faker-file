@@ -155,6 +155,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
     def odt_file(
         self: "OdtFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -168,6 +169,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
     def odt_file(
         self: "OdtFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -179,6 +181,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
     def odt_file(
         self: "OdtFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -189,6 +192,7 @@ class OdtFileProvider(BaseProvider, FileMixin):
         """Generate an ODT file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param max_nb_chars: Max number of chars for the content.
         :param wrap_chars_after: If given, the output string would be separated
@@ -206,8 +210,9 @@ class OdtFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         if isinstance(content, DynamicTemplate):

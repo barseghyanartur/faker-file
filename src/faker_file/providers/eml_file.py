@@ -72,6 +72,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
     def eml_file(
         self: "EmlFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -86,6 +87,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
     def eml_file(
         self: "EmlFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -98,6 +100,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
     def eml_file(
         self: "EmlFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -109,6 +112,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
         """Generate an EML file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
         :param max_nb_chars: Max number of chars for the content.
@@ -127,8 +131,9 @@ class EmlFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
         fs_storage = FileSystemStorage()
 

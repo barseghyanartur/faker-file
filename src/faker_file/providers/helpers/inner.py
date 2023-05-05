@@ -63,6 +63,7 @@ __all__ = (
 @overload
 def create_inner_bin_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     length: int = (1 * 1024 * 1024),
@@ -76,6 +77,7 @@ def create_inner_bin_file(
 @overload
 def create_inner_bin_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     length: int = (1 * 1024 * 1024),
@@ -87,6 +89,7 @@ def create_inner_bin_file(
 
 def create_inner_bin_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     length: int = (1 * 1024 * 1024),
@@ -102,6 +105,7 @@ def create_inner_bin_file(
 
     return BinFileProvider(generator).bin_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         length=length,
         content=content,
@@ -118,6 +122,7 @@ def create_inner_bin_file(
 @overload
 def create_inner_csv_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     header: Optional[Sequence[str]] = None,
@@ -134,6 +139,7 @@ def create_inner_csv_file(
 @overload
 def create_inner_csv_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     header: Optional[Sequence[str]] = None,
@@ -148,6 +154,7 @@ def create_inner_csv_file(
 
 def create_inner_csv_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     header: Optional[Sequence[str]] = None,
@@ -166,6 +173,7 @@ def create_inner_csv_file(
 
     return CsvFileProvider(generator).csv_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         header=header,
         data_columns=data_columns,
@@ -185,6 +193,7 @@ def create_inner_csv_file(
 @overload
 def create_inner_docx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -199,6 +208,7 @@ def create_inner_docx_file(
 @overload
 def create_inner_docx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -211,6 +221,7 @@ def create_inner_docx_file(
 
 def create_inner_docx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -227,6 +238,7 @@ def create_inner_docx_file(
 
     return DocxFileProvider(generator).docx_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -244,6 +256,7 @@ def create_inner_docx_file(
 @overload
 def create_inner_eml_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -259,6 +272,7 @@ def create_inner_eml_file(
 @overload
 def create_inner_eml_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -272,6 +286,7 @@ def create_inner_eml_file(
 
 def create_inner_eml_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -288,6 +303,7 @@ def create_inner_eml_file(
         raise err
     return EmlFileProvider(generator).eml_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         options=options,
         max_nb_chars=max_nb_chars,
@@ -306,6 +322,7 @@ def create_inner_eml_file(
 @overload
 def create_inner_epub_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -322,6 +339,7 @@ def create_inner_epub_file(
 @overload
 def create_inner_epub_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -336,6 +354,7 @@ def create_inner_epub_file(
 
 def create_inner_epub_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -354,6 +373,7 @@ def create_inner_epub_file(
 
     return EpubFileProvider(generator).epub_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -373,6 +393,7 @@ def create_inner_epub_file(
 @overload
 def create_inner_ico_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -387,6 +408,7 @@ def create_inner_ico_file(
 @overload
 def create_inner_ico_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -399,6 +421,7 @@ def create_inner_ico_file(
 
 def create_inner_ico_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -415,6 +438,7 @@ def create_inner_ico_file(
 
     return IcoFileProvider(generator).ico_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -432,6 +456,7 @@ def create_inner_ico_file(
 @overload
 def create_inner_jpeg_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -446,6 +471,7 @@ def create_inner_jpeg_file(
 @overload
 def create_inner_jpeg_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -458,6 +484,7 @@ def create_inner_jpeg_file(
 
 def create_inner_jpeg_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -474,6 +501,7 @@ def create_inner_jpeg_file(
 
     return JpegFileProvider(generator).jpeg_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -491,6 +519,7 @@ def create_inner_jpeg_file(
 @overload
 def create_inner_mp3_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
@@ -506,6 +535,7 @@ def create_inner_mp3_file(
 @overload
 def create_inner_mp3_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
@@ -519,6 +549,7 @@ def create_inner_mp3_file(
 
 def create_inner_mp3_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
@@ -536,6 +567,7 @@ def create_inner_mp3_file(
 
     return Mp3FileProvider(generator).mp3_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         content=content,
@@ -554,6 +586,7 @@ def create_inner_mp3_file(
 @overload
 def create_inner_odp_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -568,6 +601,7 @@ def create_inner_odp_file(
 @overload
 def create_inner_odp_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -580,6 +614,7 @@ def create_inner_odp_file(
 
 def create_inner_odp_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -596,6 +631,7 @@ def create_inner_odp_file(
 
     return OdpFileProvider(generator).odp_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -613,6 +649,7 @@ def create_inner_odp_file(
 @overload
 def create_inner_ods_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     data_columns: Optional[Dict[str, str]] = None,
@@ -627,6 +664,7 @@ def create_inner_ods_file(
 @overload
 def create_inner_ods_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     data_columns: Optional[Dict[str, str]] = None,
@@ -639,6 +677,7 @@ def create_inner_ods_file(
 
 def create_inner_ods_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     data_columns: Optional[Dict[str, str]] = None,
@@ -655,6 +694,7 @@ def create_inner_ods_file(
 
     return OdsFileProvider(generator).ods_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
@@ -672,6 +712,7 @@ def create_inner_ods_file(
 @overload
 def create_inner_odt_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -686,6 +727,7 @@ def create_inner_odt_file(
 @overload
 def create_inner_odt_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -698,6 +740,7 @@ def create_inner_odt_file(
 
 def create_inner_odt_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -714,6 +757,7 @@ def create_inner_odt_file(
 
     return OdtFileProvider(generator).odt_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -731,6 +775,7 @@ def create_inner_odt_file(
 @overload
 def create_inner_pdf_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -747,6 +792,7 @@ def create_inner_pdf_file(
 @overload
 def create_inner_pdf_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -761,6 +807,7 @@ def create_inner_pdf_file(
 
 def create_inner_pdf_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -779,6 +826,7 @@ def create_inner_pdf_file(
 
     return PdfFileProvider(generator).pdf_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -798,6 +846,7 @@ def create_inner_pdf_file(
 @overload
 def create_inner_png_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -812,6 +861,7 @@ def create_inner_png_file(
 @overload
 def create_inner_png_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -824,6 +874,7 @@ def create_inner_png_file(
 
 def create_inner_png_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -840,6 +891,7 @@ def create_inner_png_file(
 
     return PngFileProvider(generator).png_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -857,6 +909,7 @@ def create_inner_png_file(
 @overload
 def create_inner_pptx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -871,6 +924,7 @@ def create_inner_pptx_file(
 @overload
 def create_inner_pptx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -883,6 +937,7 @@ def create_inner_pptx_file(
 
 def create_inner_pptx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -899,6 +954,7 @@ def create_inner_pptx_file(
 
     return PptxFileProvider(generator).pptx_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -916,6 +972,7 @@ def create_inner_pptx_file(
 @overload
 def create_inner_rtf_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -930,6 +987,7 @@ def create_inner_rtf_file(
 @overload
 def create_inner_rtf_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -942,6 +1000,7 @@ def create_inner_rtf_file(
 
 def create_inner_rtf_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -958,6 +1017,7 @@ def create_inner_rtf_file(
 
     return RtfFileProvider(generator).rtf_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -975,6 +1035,7 @@ def create_inner_rtf_file(
 @overload
 def create_inner_svg_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -989,6 +1050,7 @@ def create_inner_svg_file(
 @overload
 def create_inner_svg_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -1001,6 +1063,7 @@ def create_inner_svg_file(
 
 def create_inner_svg_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -1017,6 +1080,7 @@ def create_inner_svg_file(
 
     return SvgFileProvider(generator).svg_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -1034,6 +1098,7 @@ def create_inner_svg_file(
 @overload
 def create_inner_tar_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -1047,6 +1112,7 @@ def create_inner_tar_file(
 @overload
 def create_inner_tar_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -1058,6 +1124,7 @@ def create_inner_tar_file(
 
 def create_inner_tar_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -1072,6 +1139,7 @@ def create_inner_tar_file(
         raise err
     return TarFileProvider(generator).tar_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         options=options,
         compression=compression,
@@ -1088,6 +1156,7 @@ def create_inner_tar_file(
 @overload
 def create_inner_txt_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -1102,6 +1171,7 @@ def create_inner_txt_file(
 @overload
 def create_inner_txt_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -1114,6 +1184,7 @@ def create_inner_txt_file(
 
 def create_inner_txt_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
@@ -1130,6 +1201,7 @@ def create_inner_txt_file(
 
     return TxtFileProvider(generator).txt_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -1147,6 +1219,7 @@ def create_inner_txt_file(
 @overload
 def create_inner_webp_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -1161,6 +1234,7 @@ def create_inner_webp_file(
 @overload
 def create_inner_webp_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -1173,6 +1247,7 @@ def create_inner_webp_file(
 
 def create_inner_webp_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -1189,6 +1264,7 @@ def create_inner_webp_file(
 
     return WebpFileProvider(generator).webp_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
@@ -1206,6 +1282,7 @@ def create_inner_webp_file(
 @overload
 def create_inner_xlsx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     data_columns: Optional[Dict[str, str]] = None,
@@ -1220,6 +1297,7 @@ def create_inner_xlsx_file(
 @overload
 def create_inner_xlsx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     data_columns: Optional[Dict[str, str]] = None,
@@ -1232,6 +1310,7 @@ def create_inner_xlsx_file(
 
 def create_inner_xlsx_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     data_columns: Optional[Dict[str, str]] = None,
@@ -1248,6 +1327,7 @@ def create_inner_xlsx_file(
 
     return XlsxFileProvider(generator).xlsx_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
@@ -1265,6 +1345,7 @@ def create_inner_xlsx_file(
 @overload
 def create_inner_zip_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -1277,6 +1358,7 @@ def create_inner_zip_file(
 @overload
 def create_inner_zip_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -1287,6 +1369,7 @@ def create_inner_zip_file(
 
 def create_inner_zip_file(
     storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
@@ -1300,6 +1383,7 @@ def create_inner_zip_file(
         raise err
     return ZipFileProvider(generator).zip_file(
         storage=storage,
+        basename=basename,
         prefix=prefix,
         options=options,
         raw=raw,

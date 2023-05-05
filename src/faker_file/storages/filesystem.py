@@ -48,18 +48,23 @@ class FileSystemStorage(BaseStorage):
         self: "FileSystemStorage",
         extension: str,
         prefix: Optional[str] = None,
+        basename: Optional[str] = None,
     ) -> str:
         """Generate filename."""
         dir_path = os.path.join(self.root_path, self.rel_path)
         os.makedirs(dir_path, exist_ok=True)
         if not extension:
             raise Exception("Extension shall be given!")
-        with tempfile.NamedTemporaryFile(
-            prefix=prefix,
-            dir=dir_path,
-            suffix=f".{extension}",
-        ) as temp_file:
-            return temp_file.name
+
+        if basename:
+            return os.path.join(dir_path, f"{basename}.{extension}")
+        else:
+            with tempfile.NamedTemporaryFile(
+                prefix=prefix,
+                dir=dir_path,
+                suffix=f".{extension}",
+            ) as temp_file:
+                return temp_file.name
 
     def write_text(
         self: "FileSystemStorage",

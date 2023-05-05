@@ -58,6 +58,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     def csv_file(
         self: "CsvFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         header: Optional[Sequence[str]] = None,
         data_columns: Tuple[str, ...] = ("{{name}}", "{{address}}"),
@@ -74,6 +75,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     def csv_file(
         self: "CsvFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         header: Optional[Sequence[str]] = None,
         data_columns: Tuple[str, ...] = ("{{name}}", "{{address}}"),
@@ -88,6 +90,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     def csv_file(
         self: "CsvFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         header: Optional[Sequence[str]] = None,
         data_columns: Tuple[str, ...] = ("{{name}}", "{{address}}"),
@@ -101,6 +104,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
         """Generate a CSV file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param header: The ``header`` argument expects a list or a tuple of
             strings that will serve as the header row if supplied.
@@ -128,8 +132,9 @@ class CsvFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         if self.generator is None:

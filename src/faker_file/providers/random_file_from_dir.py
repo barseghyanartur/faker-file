@@ -47,6 +47,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         raw: bool = True,
         **kwargs,
@@ -58,6 +59,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         **kwargs,
     ) -> StringValue:
@@ -67,6 +69,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         raw: bool = False,
         **kwargs,
@@ -75,6 +78,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
         :param source_dir_path: Source files directory.
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
@@ -97,8 +101,9 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
         # Generic
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=source_file.suffix[1:],
+            prefix=prefix,
+            basename=basename,
         )
 
         # Specific

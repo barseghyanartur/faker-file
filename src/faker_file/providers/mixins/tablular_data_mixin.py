@@ -20,6 +20,7 @@ class TabularDataMixin(FileMixin):
     def _tabular_data_file(
         self: "TabularDataMixin",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
@@ -33,6 +34,7 @@ class TabularDataMixin(FileMixin):
     def _tabular_data_file(
         self: "TabularDataMixin",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
@@ -44,6 +46,7 @@ class TabularDataMixin(FileMixin):
     def _tabular_data_file(
         self: "TabularDataMixin",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
@@ -54,6 +57,8 @@ class TabularDataMixin(FileMixin):
         """Generate a tabular data file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
+        :param prefix: File name prefix.
         :param data_columns: The ``data_columns`` argument expects a list or a
             tuple of string tokens, and these string tokens will be passed to
             :meth:`pystr_format()
@@ -64,7 +69,6 @@ class TabularDataMixin(FileMixin):
         :param num_rows: The ``num_rows`` argument controls how many rows of
             data to generate, and the ``include_row_ids`` argument may be set
             to ``True`` to include a sequential row ID column.
-        :param prefix: File name prefix.
         :param content: List of dicts with content (JSON-like format).
             If given, used as is.
         :param raw: If set to True, return `BytesValue` (binary content of
@@ -78,8 +82,9 @@ class TabularDataMixin(FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         if self.generator is None:

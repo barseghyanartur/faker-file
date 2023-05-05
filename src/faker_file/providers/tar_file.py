@@ -74,6 +74,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     def tar_file(
         self: "TarFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         # Once Python 3.7 is deprecated, add the following annotation:
@@ -88,6 +89,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     def tar_file(
         self: "TarFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         # Once Python 3.7 is deprecated, add the following annotation:
@@ -100,6 +102,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     def tar_file(
         self: "TarFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         # Once Python 3.7 is deprecated, add the following annotation:
@@ -111,6 +114,7 @@ class TarFileProvider(BaseProvider, FileMixin):
         """Generate a TAR file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
         :param compression: Desired compression. Can be None or `gz`, `bz2`
@@ -126,8 +130,9 @@ class TarFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
         data: Dict[str, Any] = {"inner": {}, "files": [], "filename": filename}
         fs_storage = FileSystemStorage()

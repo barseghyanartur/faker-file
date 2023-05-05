@@ -59,6 +59,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
     def odp_file(
         self: "OdpFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -72,6 +73,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
     def odp_file(
         self: "OdpFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -83,6 +85,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
     def odp_file(
         self: "OdpFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -93,6 +96,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
         """Generate an ODP file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param max_nb_chars: Max number of chars for the content.
         :param wrap_chars_after: If given, the output string would be separated
@@ -110,8 +114,9 @@ class OdpFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         content = self._generate_text_content(

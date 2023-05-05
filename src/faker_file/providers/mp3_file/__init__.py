@@ -105,6 +105,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     def mp3_file(
         self: "Mp3FileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
@@ -121,6 +122,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     def mp3_file(
         self: "Mp3FileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
@@ -135,6 +137,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     def mp3_file(
         self: "Mp3FileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS,
         content: Optional[str] = None,
@@ -148,6 +151,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         """Generate a MP3 file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param max_nb_chars: Max number of chars for the content.
         :param content: File content. Might contain dynamic elements, which
@@ -165,8 +169,9 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         content = self._generate_text_content(

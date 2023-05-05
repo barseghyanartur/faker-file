@@ -105,6 +105,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         source_dir_path: str,
         extensions: Optional[Iterable[str]] = None,
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
         text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
@@ -124,6 +125,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         source_dir_path: str,
         extensions: Optional[Iterable[str]] = None,
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
         text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
@@ -141,6 +143,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         source_dir_path: str,
         extensions: Optional[Iterable[str]] = None,
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
         text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
@@ -157,6 +160,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         :param source_dir_path: Source files directory.
         :param extensions: Allowed extensions.
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param wrap_chars_after: If given, the output string would be separated
              by line breaks after the given position.
@@ -210,6 +214,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
 
         return FILE_TYPE_TO_INNER_FUNC_MAPPING[file_type](
             storage=storage,
+            basename=basename,
             prefix=prefix,
             content=content,
             wrap_chars_after=wrap_chars_after,

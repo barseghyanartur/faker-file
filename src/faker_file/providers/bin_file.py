@@ -61,6 +61,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     def bin_file(
         self: "BinFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
@@ -73,6 +74,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     def bin_file(
         self: "BinFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
@@ -83,6 +85,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     def bin_file(
         self: "BinFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
@@ -92,6 +95,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         """Generate a CSV file with random text.
 
         :param storage: Storage class. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param length:
         :param content: File content. If given, used as is.
@@ -106,8 +110,9 @@ class BinFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         if self.generator is None:

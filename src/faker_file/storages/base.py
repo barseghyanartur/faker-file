@@ -14,7 +14,10 @@ class BaseStorage:
         self.kwargs = kwargs
 
     def generate_filename(
-        self: "BaseStorage", extension: str, prefix: Optional[str] = None
+        self: "BaseStorage",
+        extension: str,
+        prefix: Optional[str] = None,
+        basename: Optional[str] = None,
     ) -> Any:
         """Generate filename."""
         raise NotImplementedError(

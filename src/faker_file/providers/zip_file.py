@@ -72,6 +72,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     def zip_file(
         self: "ZipFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         raw: bool = True,
@@ -83,6 +84,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     def zip_file(
         self: "ZipFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         **kwargs,
@@ -92,6 +94,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     def zip_file(
         self: "ZipFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         raw: bool = False,
@@ -100,6 +103,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
         """Generate a ZIP file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
         :param raw: If set to True, return `BytesValue` (binary content of
@@ -113,9 +117,11 @@ class ZipFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
+
         data: Dict[str, Any] = {"inner": {}, "files": [], "filename": filename}
         fs_storage = FileSystemStorage()
 

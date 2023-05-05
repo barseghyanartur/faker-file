@@ -100,6 +100,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     def docx_file(
         self: "DocxFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -113,6 +114,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     def docx_file(
         self: "DocxFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -124,6 +126,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     def docx_file(
         self: "DocxFileProvider",
         storage: Optional[BaseStorage] = None,
+        basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
@@ -134,6 +137,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
         """Generate a DOCX file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param max_nb_chars: Max number of chars for the content.
         :param wrap_chars_after: If given, the output string would be separated
@@ -155,8 +159,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         filename = storage.generate_filename(
-            prefix=prefix,
             extension=self.extension,
+            prefix=prefix,
+            basename=basename,
         )
 
         if isinstance(content, DynamicTemplate):
