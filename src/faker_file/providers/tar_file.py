@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue, returns_list
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 from .helpers.inner import create_inner_txt_file
@@ -179,19 +179,38 @@ class TarFileProvider(BaseProvider, FileMixin):
         with tarfile.open(fileobj=_tar_content, mode=_mode) as __fake_file:
             _kwargs = {"generator": self.generator}
             _kwargs.update(_create_inner_file_args)
-            for __i in range(_count):
-                __file = _create_inner_file_func(
+
+            # If _create_inner_file_func returns a list of values
+            if returns_list(_create_inner_file_func):
+                _files = _create_inner_file_func(
                     storage=fs_storage,
                     **_kwargs,
                 )
-                data["inner"][str(__file)] = __file
-                __file_abs_path = fs_storage.abspath(__file)
-                __fake_file.add(
-                    __file_abs_path,
-                    arcname=Path(_directory) / Path(__file).name,
-                )
-                os.remove(__file_abs_path)  # Clean up temporary files
-                data["files"].append(Path(_directory) / Path(__file).name)
+                for __file in _files:
+                    data["inner"][str(__file)] = __file
+                    __file_abs_path = fs_storage.abspath(__file)
+                    __fake_file.add(
+                        __file_abs_path,
+                        arcname=Path(_directory) / Path(__file).name,
+                    )
+                    os.remove(__file_abs_path)  # Clean up temporary files
+                    data["files"].append(Path(_directory) / Path(__file).name)
+
+            # If _create_inner_file_func returns a single value
+            else:
+                for __i in range(_count):
+                    __file = _create_inner_file_func(
+                        storage=fs_storage,
+                        **_kwargs,
+                    )
+                    data["inner"][str(__file)] = __file
+                    __file_abs_path = fs_storage.abspath(__file)
+                    __fake_file.add(
+                        __file_abs_path,
+                        arcname=Path(_directory) / Path(__file).name,
+                    )
+                    os.remove(__file_abs_path)  # Clean up temporary files
+                    data["files"].append(Path(_directory) / Path(__file).name)
 
         if raw:
             raw_content = BytesValue(_tar_content.getvalue())

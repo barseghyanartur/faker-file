@@ -1,4 +1,13 @@
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Tuple,
+    Union,
+    get_type_hints,
+)
 
 from faker import Faker
 from faker.generator import Generator
@@ -16,6 +25,7 @@ __all__ = (
     "FileMixin",
     "StringList",
     "StringValue",
+    "returns_list",
 )
 
 
@@ -111,3 +121,28 @@ class StringList:
     def remove_string(self: "StringList", value: str) -> None:
         if value in self.strings:
             self.strings.remove(value)
+
+
+def returns_list(func: Callable) -> bool:
+    """Checks if callable returns a list of Union[BytesValue, StringValue].
+
+    Returns True if it's a List. Returns False otherwise.
+    """
+    try:
+        return_type = get_type_hints(func).get("return", None)
+    except Exception:
+        return False
+
+    if not return_type:
+        return False
+
+    if return_type.__origin__ is list or return_type.__origin__ is List:
+        # If it's a list, check the type of its elements
+        if return_type.__args__[0].__origin__ is Union:
+            if set(return_type.__args__[0].__args__) == {
+                BytesValue,
+                StringValue,
+            }:
+                return True
+
+    return False

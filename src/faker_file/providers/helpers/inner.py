@@ -52,6 +52,7 @@ __all__ = (
     "create_inner_xlsx_file",
     "create_inner_zip_file",
     "fuzzy_choice_create_inner_file",
+    "list_create_inner_file",
 )
 
 
@@ -1399,7 +1400,7 @@ def create_inner_zip_file(
 def fuzzy_choice_create_inner_file(
     func_choices: List[Tuple[Callable, Dict[str, Any]]],
     **kwargs,
-) -> StringValue:
+) -> Union[BytesValue, StringValue]:
     """Create inner file from given list of function choices.
 
     :param func_choices: List of functions to choose from.
@@ -1463,3 +1464,21 @@ def fuzzy_choice_create_inner_file(
     """
     _func, _kwargs = choice(func_choices)
     return _func(**_kwargs)
+
+
+def list_create_inner_file(
+    func_list: List[Tuple[Callable, Dict[str, Any]]],
+    **kwargs,
+) -> List[Union[BytesValue, StringValue]]:
+    """Generates multiple files based on the provided list of functions
+    and arguments.
+
+    :param func_list: List of tuples, each containing a function to generate a
+        file and its arguments.
+    :return: List of generated file names.
+    """
+    created_files = []
+    for func, kwargs in func_list:
+        file = func(**kwargs)
+        created_files.append(file)
+    return created_files
