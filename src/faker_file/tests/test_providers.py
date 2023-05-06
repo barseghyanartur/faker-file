@@ -75,11 +75,17 @@ from ..providers.tar_file import TarFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import WebpFileProvider
 from ..providers.xlsx_file import XlsxFileProvider
+from ..providers.xml_file import XmlFileProvider
 from ..providers.zip_file import ZipFileProvider
 from ..storages.base import BaseStorage
 from ..storages.cloud import PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
-from .data import DOCX_KWARGS, XML_ISBN_KWARGS, XML_METADATA_KWARGS
+from .data import (
+    DOCX_KWARGS,
+    XML_DOWNLOAD_KWARGS,
+    XML_ISBN_KWARGS,
+    XML_METADATA_KWARGS,
+)
 from .helpers import (
     docx_add_picture,
     docx_add_table,
@@ -613,6 +619,25 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER, TarFileProvider, "tar_file", {"compression": "gz"}, None),
         (FAKER, TarFileProvider, "tar_file", {"compression": "bz2"}, None),
         (FAKER, TarFileProvider, "tar_file", {"compression": "xz"}, None),
+        (
+            FAKER,
+            TarFileProvider,
+            "tar_file",
+            {
+                "basename": "alice-looking-through-the-glass",
+                "options": {
+                    "create_inner_file_func": list_create_inner_file,
+                    "create_inner_file_args": {
+                        "func_list": [
+                            (create_inner_xml_file, XML_METADATA_KWARGS),
+                            (create_inner_xml_file, XML_ISBN_KWARGS),
+                            (create_inner_docx_file, DOCX_KWARGS),
+                        ]
+                    },
+                },
+            },
+            None,
+        ),
         # TXT
         (FAKER, TxtFileProvider, "txt_file", {}, None),
         (FAKER_HY, TxtFileProvider, "txt_file", {}, None),
@@ -638,25 +663,6 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
-        (
-            FAKER,
-            TxtFileProvider,
-            "txt_file",
-            {
-                "basename": "alice-looking-through-the-glass",
-                "options": {
-                    "create_inner_file_func": list_create_inner_file,
-                    "create_inner_file_args": {
-                        "func_list": [
-                            (create_inner_xml_file, XML_METADATA_KWARGS),
-                            (create_inner_xml_file, XML_ISBN_KWARGS),
-                            (create_inner_docx_file, DOCX_KWARGS),
-                        ]
-                    },
-                },
-            },
-            None,
-        ),
         # WEBP
         # (FAKER, WebpFileProvider, "webp_file", {}, None),
         # (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
@@ -665,10 +671,16 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER_HY, XlsxFileProvider, "xlsx_file", {}, None),
         (FAKER, XlsxFileProvider, "xlsx_file", {}, False),
         (FAKER, XlsxFileProvider, "xlsx_file", {}, PATHY_FS_STORAGE),
+        # XML
+        (FAKER, XmlFileProvider, "xml_file", {}, None),
+        (FAKER_HY, XmlFileProvider, "xml_file", {}, None),
+        (FAKER, XmlFileProvider, "xml_file", {}, False),
+        (FAKER, XmlFileProvider, "xml_file", {}, PATHY_FS_STORAGE),
         # ZIP
         (FAKER, ZipFileProvider, "zip_file", {}, None),
         (FAKER, ZipFileProvider, "zip_file", {}, False),
         (FAKER, ZipFileProvider, "zip_file", {}, PATHY_FS_STORAGE),
+        (FAKER, ZipFileProvider, "zip_file", XML_DOWNLOAD_KWARGS, None),
         (
             FAKER,
             ZipFileProvider,
@@ -903,6 +915,9 @@ class ProvidersTestCase(unittest.TestCase):
         # XLSX
         (FAKER, XlsxFileProvider, "xlsx_file", {}, None),
         (FAKER_HY, XlsxFileProvider, "xlsx_file", {}, None),
+        # XML
+        (FAKER, XmlFileProvider, "xml_file", {}, None),
+        (FAKER_HY, XmlFileProvider, "xml_file", {}, None),
         # ZIP
         (FAKER, ZipFileProvider, "zip_file", {}, None),
     ]

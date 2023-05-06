@@ -1,7 +1,7 @@
 import tempfile
 import unittest
 from pathlib import Path
-from typing import Any, Dict, Type
+from typing import Any, Dict, Type, Union
 
 # import pytest
 from faker import Faker
@@ -35,13 +35,21 @@ class TestStoragesTestCase(unittest.TestCase):
     """Test storages."""
 
     @parametrize(
-        "storage_cls, kwargs, prefix, extension",
+        "storage_cls, kwargs, prefix, basename, extension",
         [
             # FileSystemStorage
             (
                 FileSystemStorage,
                 {},
                 "zzz",
+                None,
+                "docx",
+            ),
+            (
+                FileSystemStorage,
+                {},
+                None,
+                "my_zzz_filename",
                 "docx",
             ),
             # PathyFileSystemStorage
@@ -52,6 +60,17 @@ class TestStoragesTestCase(unittest.TestCase):
                     "rel_path": "tmp",
                 },
                 "zzz",
+                None,
+                "docx",
+            ),
+            (
+                PathyFileSystemStorage,
+                {
+                    "bucket_name": "testing",
+                    "rel_path": "tmp",
+                },
+                None,
+                "my_zzz_filename",
                 "docx",
             ),
             # AWS S3
@@ -66,6 +85,21 @@ class TestStoragesTestCase(unittest.TestCase):
                     },
                 },
                 "zzz",
+                None,
+                "docx",
+            ),
+            (
+                AWSS3Storage,
+                {
+                    "bucket_name": "testing",
+                    "rel_path": "tmp",
+                    "credentials": {
+                        "key_id": "key",
+                        "key_secret": "key_secret",
+                    },
+                },
+                None,
+                "my_zzz_filename",
                 "docx",
             ),
             # Google Cloud Storage
@@ -79,6 +113,20 @@ class TestStoragesTestCase(unittest.TestCase):
                     # },
                 },
                 "zzz",
+                None,
+                "docx",
+            ),
+            (
+                GoogleCloudStorage,
+                {
+                    "bucket_name": "testing",
+                    "rel_path": "tmp",
+                    # "credentials": {
+                    #     "json_file_path": GCS_CREDENTIALS,
+                    # },
+                },
+                None,
+                "my_zzz_filename",
                 "docx",
             ),
             # Azure Cloud Storage
@@ -90,6 +138,18 @@ class TestStoragesTestCase(unittest.TestCase):
                     "credentials": {"connection_string": "abcd1234"},
                 },
                 "zzz",
+                None,
+                "docx",
+            ),
+            (
+                AzureCloudStorage,
+                {
+                    "bucket_name": "testing",
+                    "rel_path": "tmp",
+                    "credentials": {"connection_string": "abcd1234"},
+                },
+                None,
+                "my_zzz_filename",
                 "docx",
             ),
         ],
@@ -98,7 +158,8 @@ class TestStoragesTestCase(unittest.TestCase):
         self,
         storage_cls: Type[BaseStorage],
         kwargs: Dict[str, Any],
-        prefix: str,
+        prefix: Union[str, None],
+        basename: Union[str, None],
         extension: str,
     ):
         """Test storage."""
@@ -110,7 +171,7 @@ class TestStoragesTestCase(unittest.TestCase):
         storage = storage_cls(**kwargs)
         # Text file
         file_text = storage.generate_filename(
-            prefix=prefix, extension=extension
+            basename=basename, prefix=prefix, extension=extension
         )
         # Write to the text file
         text_result = storage.write_text(file_text, "Lorem ipsum")
@@ -121,7 +182,7 @@ class TestStoragesTestCase(unittest.TestCase):
 
         # Bytes
         file_bytes = storage.generate_filename(
-            prefix=prefix, extension=extension
+            basename=basename, prefix=prefix, extension=extension
         )
         # Write to bytes file
         bytes_result = storage.write_bytes(file_bytes, b"Lorem ipsum")
@@ -166,6 +227,10 @@ class TestStoragesTestCase(unittest.TestCase):
             # Generate filename
             storage.generate_filename(prefix=prefix, extension=extension)
 
+        with self.assertRaises(Exception):
+            # Generate filename
+            storage.generate_filename(basename=prefix, extension=extension)
+
     @parametrize(
         "storage_cls, kwargs",
         [
@@ -187,6 +252,10 @@ class TestStoragesTestCase(unittest.TestCase):
         "method_name, method_kwargs",
         [
             ("generate_filename", {"prefix": "zzz", "extension": "txt"}),
+            (
+                "generate_filename",
+                {"basename": "my_zzz_file", "extension": "txt"},
+            ),
             ("write_text", {"filename": "test.txt", "data": "Test"}),
             ("write_bytes", {"filename": "test.txt", "data": b"Test"}),
             ("exists", {"filename": "test.txt"}),

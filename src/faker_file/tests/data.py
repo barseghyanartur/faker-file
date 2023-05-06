@@ -5,6 +5,7 @@ __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "DOCX_KWARGS",
+    "XML_DOWNLOAD_KWARGS",
     "XML_DOWNLOAD_TEMPLATE",
     "XML_ISBN_KWARGS",
     "XML_ISBN_TEMPLATE",
@@ -45,6 +46,10 @@ XML_DOWNLOAD_TEMPLATE = f"""
 XML_METADATA_KWARGS = {
     "content": XML_METADATA_TEMPLATE,
     "basename": f"{BOOK_ID}_metadata",
+}
+XML_DOWNLOAD_KWARGS = {
+    "content": XML_DOWNLOAD_TEMPLATE,
+    "basename": f"{BOOK_ID}_download",
 }
 XML_ISBN_KWARGS = {
     "content": XML_ISBN_TEMPLATE,
