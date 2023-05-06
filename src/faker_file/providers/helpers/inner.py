@@ -50,6 +50,7 @@ __all__ = (
     "create_inner_txt_file",
     "create_inner_webp_file",
     "create_inner_xlsx_file",
+    "create_inner_xml_file",
     "create_inner_zip_file",
     "fuzzy_choice_create_inner_file",
     "list_create_inner_file",
@@ -1333,6 +1334,90 @@ def create_inner_xlsx_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# ************************************************
+# ********************* XML **********************
+# ************************************************
+
+
+@overload
+def create_inner_xml_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    root_element: str = "root",
+    row_element: str = "row",
+    data_columns: Sequence[Tuple[str, str]] = (
+        ("name", "{{name}}"),
+        ("address", "{{address}}"),
+    ),
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    encoding: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_xml_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    root_element: str = "root",
+    row_element: str = "row",
+    data_columns: Sequence[Tuple[str, str]] = (
+        ("name", "{{name}}"),
+        ("address", "{{address}}"),
+    ),
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    encoding: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_xml_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    root_element: str = "root",
+    row_element: str = "row",
+    data_columns: Sequence[Tuple[str, str]] = (
+        ("name", "{{name}}"),
+        ("address", "{{address}}"),
+    ),
+    num_rows: int = 10,
+    content: Optional[str] = None,
+    encoding: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner XML file."""
+    try:
+        from ..xml_file import XmlFileProvider
+    except ImportError as err:
+        raise err
+
+    return XmlFileProvider(generator).xml_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        root_element=root_element,
+        row_element=row_element,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        content=content,
+        encoding=encoding,
         raw=raw,
         **kwargs,
     )

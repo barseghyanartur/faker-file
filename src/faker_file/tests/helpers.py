@@ -18,6 +18,9 @@ from reportlab.platypus import TableStyle as PdfTableStyle
 
 from ..providers.jpeg_file import JpegFileProvider
 
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2022-2023 Artur Barseghyan"
+__license__ = "MIT"
 __all__ = (
     "docx_add_picture",
     "docx_add_table",

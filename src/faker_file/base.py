@@ -136,10 +136,13 @@ def returns_list(func: Callable) -> bool:
     if not return_type:
         return False
 
-    if return_type.__origin__ is list or return_type.__origin__ is List:
+    return_origin = getattr(return_type, "__origin__", None)
+    if return_origin is list or return_origin is List:
         # If it's a list, check the type of its elements
-        if return_type.__args__[0].__origin__ is Union:
-            if set(return_type.__args__[0].__args__) == {
+        element_type = getattr(return_type, "__args__", [None])[0]
+        element_origin = getattr(element_type, "__origin__", None)
+        if element_origin is Union:
+            if set(getattr(element_type, "__args__", [])) == {
                 BytesValue,
                 StringValue,
             }:
