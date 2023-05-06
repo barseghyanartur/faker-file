@@ -204,6 +204,42 @@ Create a ZIP file with variety of different file types within
         }
     )
 
+Another way to create a ZIP file with variety of different file types within
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 3 files in the ZIP archive (1 DOCX, and 2 XML types).
+- Content is generated dynamically.
+- Filename of the archive itself is ``alice-looking-through-the-glass.zip``.
+- Files inside the archive have fixed name (passed with ``basename`` argument).
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.helpers.inner import (
+        create_inner_docx_file,
+        create_inner_xml_file,
+        list_create_inner_file,
+    )
+    from faker_file.providers.zip_file import ZipFileProvider
+    from faker_file.storages.filesystem import FileSystemStorage
+
+    FAKER = Faker()
+    STORAGE = FileSystemStorage()
+
+    kwargs = {"storage": STORAGE, "generator": FAKER}
+    file = ZipFileProvider(FAKER).zip_file(
+        basename="alice-looking-through-the-glass",
+        options={
+            "create_inner_file_func": list_create_inner_file,
+            "create_inner_file_args": {
+                "func_list": [
+                    (create_inner_docx_file, {"basename": "doc"}),
+                    (create_inner_xml_file, {"basename": "doc_metadata"}),
+                    (create_inner_xml_file, {"basename": "doc_isbn"}),
+                ],
+            },
+        }
+    )
+
 Create a EML file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the EML email (default value is 5).
