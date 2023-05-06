@@ -1,3 +1,4 @@
+import sys
 import unittest
 from typing import List, Union
 
@@ -81,6 +82,7 @@ class TestReturnsList(unittest.TestCase):
 
         self.assertTrue(returns_list(func_correct_hint_reversed))
 
+    @unittest.skipIf(sys.version_info < (3, 9), "Skip on Python < 3.9")
     def test_correct_hint_builtin_list(self):
         def func_correct_hint_builtin_list(
             a,
@@ -89,6 +91,7 @@ class TestReturnsList(unittest.TestCase):
 
         self.assertTrue(returns_list(func_correct_hint_builtin_list))
 
+    @unittest.skipIf(sys.version_info < (3, 9), "Skip on Python < 3.9")
     def test_correct_hint_builtin_list_reversed(self):
         def func_correct_hint_builtin_list_reversed(
             a,
