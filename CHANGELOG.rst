@@ -19,8 +19,10 @@ are used for versioning (schema follows below):
 ------
 2023-05-08
 
-- Added support for ``list_create_inner_file``-like functions to the ``EML``
-  file provider.
+- Add support for ``list_create_inner_file``-like functions to the ``EML``
+  file provider. If you are using CLI and CLI-completion, make sure to
+  re-generate the completion file.
+- Add ``GenericFileProvider`` provider to support generic file types.
 
 0.14
 ----
@@ -33,7 +35,8 @@ are used for versioning (schema follows below):
 - A new argument ``basename`` has been added to all providers, inner
   functions and storage classes. If you have customized things or created
   your own providers, make sure to make appropriate changes in your code.
-  See the source code for more implementation examples.
+  See the source code for more implementation examples. If you are using
+  CLI and CLI-completion, make sure to re-generate the completion file.
 - A new inner function ``list_create_inner_file`` has been added, using which
   it's possible to create just a list of given files (ignoring ``count`` value)
   using given arguments. The amount of files is determined by

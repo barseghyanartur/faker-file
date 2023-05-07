@@ -10,24 +10,28 @@ from ..storages.filesystem import FileSystemStorage
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("BinFileProvider",)
+__all__ = ("GenericFileProvider",)
 
 
-class BinFileProvider(BaseProvider, FileMixin):
-    """BIN file provider.
+class GenericFileProvider(BaseProvider, FileMixin):
+    """Generic file provider.
 
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.bin_file import BinFileProvider
+        from faker_file.providers.generic_file import GenericFileProvider
 
-        file = BinFileProvider(Faker()).bin_file()
+        file = GenericFileProvider(Faker()).generic_file(
+            content="<html><body><p>{{text}}</p></body></html>",
+            extension="html",
+        )
 
     Usage example with options:
 
-        file = BinFileProvider(Faker()).bin_file(
+        file = GenericFileProvider(Faker()).generic_file(
+            content="<html><body><p>{{text}}</p></body></html>",
+            extension="html",
             prefix="zzz",
-            length=1024**2,
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
@@ -35,76 +39,79 @@ class BinFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = BinFileProvider(Faker()).bin_file(
+        file = GenericFileProvider(Faker()).generic_file(
+            content="<html><body><p>{{text}}</p></body></html>",
+            extension="html",
+            basename="index",
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
             ),
-            prefix="zzz",
-            length=1024**2,
         )
 
     Usage example with AWS S3 storage:
 
         from faker_file.storages.aws_s3 import AWSS3Storage
 
-        file = BinFileProvider(Faker()).bin_file(
+        file = GenericFileProvider(Faker()).generic_file(
             storage=AWSS3Storage(bucket_name="My-test-bucket"),
-            prefix="zzz",
-            length=1024**2,
+            content="<html><body><p>{{text}}</p></body></html>",
+            extension="html",
         )
     """
 
-    extension: str = "bin"
+    extension: str = None
 
     @overload
-    def bin_file(
-        self: "BinFileProvider",
+    def generic_file(
+        self: "GenericFileProvider",
+        content: Union[bytes, str],
+        extension: str,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        length: int = (1 * 1024 * 1024),
-        content: Optional[bytes] = None,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
 
     @overload
-    def bin_file(
-        self: "BinFileProvider",
+    def generic_file(
+        self: "GenericFileProvider",
+        content: Union[bytes, str],
+        extension: str,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        length: int = (1 * 1024 * 1024),
-        content: Optional[bytes] = None,
         **kwargs,
     ) -> StringValue:
         ...
 
-    def bin_file(
-        self: "BinFileProvider",
+    def generic_file(
+        self: "GenericFileProvider",
+        content: Union[bytes, str],
+        extension: str,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        length: int = (1 * 1024 * 1024),
-        content: Optional[bytes] = None,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate a BIN file with random bytes.
+        """Generate a generic file with given content.
 
+        :param content: File content. If given, used as is.
+        :param extension: File extension.
         :param storage: Storage class. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
-        :param length:
-        :param content: File content. If given, used as is.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """
+        self.extension = extension
+
         # Generic
         if storage is None:
             storage = FileSystemStorage()
@@ -118,18 +125,23 @@ class BinFileProvider(BaseProvider, FileMixin):
         if self.generator is None:
             self.generator = Faker()
 
-        # Specific
-        if content is None:
-            content = self.generator.binary(length=length)
-
         data = {"content": content, "filename": filename}
 
         if raw:
-            raw_content = BytesValue(content)
+            if isinstance(content, bytes):
+                raw_content = BytesValue(content)
+            else:
+                raw_content = BytesValue(content.encode())
             raw_content.data = data
             return raw_content
 
-        storage.write_bytes(filename, content)
+        if isinstance(content, bytes):
+            storage.write_bytes(filename, content)
+        else:
+            storage.write_text(
+                filename,
+                self.generator.pystr_format(content),
+            )
 
         # Generic
         filename = StringValue(storage.relpath(filename))

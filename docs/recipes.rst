@@ -1029,6 +1029,22 @@ of the file to build a test payload as shown in the example test below:
             # Test if file name recorded properly
             self.assertEqual(str(test_upload.file.name), test_file.name)
 
+Create a HTML file predefined template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you want to generate a file in a format that is not (yet) supported,
+you can try to use ``GenericFileProvider``. In the following example,
+an HTML file is generated from a template.
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.generic_file import GenericFileProvider
+
+    file = GenericFileProvider(Faker()).generic_file(
+        content="<html><body><p>{{text}}</p></body></html>",
+        extension="html",
+    )
+
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),

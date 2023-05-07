@@ -25,6 +25,7 @@ from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider
+from ..providers.generic_file import GenericFileProvider
 from ..providers.helpers.inner import (
     create_inner_bin_file,
     create_inner_csv_file,
@@ -109,6 +110,7 @@ FileProvider = Union[
     DocxFileProvider,
     EmlFileProvider,
     EpubFileProvider,
+    GenericFileProvider,
     IcoFileProvider,
     JpegFileProvider,
     Mp3FileProvider,
@@ -282,6 +284,69 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
+            },
+            None,
+        ),
+        # Generic
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            None,
+        ),
+        (
+            FAKER_HY,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            None,
+        ),
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            False,
+        ),
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            PATHY_FS_STORAGE,
+        ),
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+                "basename": "index",
+            },
+            None,
+        ),
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": b"<html><body><p>Hello world</p></body></html>",
+                "extension": "html",
+                "prefix": "index_",
             },
             None,
         ),
@@ -882,6 +947,47 @@ class ProvidersTestCase(unittest.TestCase):
         # EPUB
         (FAKER, EpubFileProvider, "epub_file", {}, None),
         (FAKER_HY, EpubFileProvider, "epub_file", {}, None),
+        # Generic
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            None,
+        ),
+        (
+            FAKER_HY,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            None,
+        ),
+        (
+            None,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+            None,
+        ),
+        (
+            None,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": b"<html><body><p>Hello, World</p></body></html>",
+                "extension": "html",
+            },
+            None,
+        ),
         # ICO
         (FAKER, IcoFileProvider, "ico_file", {}, None),
         (FAKER_HY, IcoFileProvider, "ico_file", {}, None),

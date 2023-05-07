@@ -14,6 +14,8 @@ from .providers.csv_file import CsvFileProvider
 from .providers.docx_file import DocxFileProvider
 from .providers.eml_file import EmlFileProvider
 from .providers.epub_file import EpubFileProvider
+
+# from .providers.generic_file import GenericFileProvider
 from .providers.ico_file import IcoFileProvider
 from .providers.jpeg_file import JpegFileProvider
 from .providers.mp3_file import Mp3FileProvider
@@ -29,6 +31,7 @@ from .providers.tar_file import TarFileProvider
 from .providers.txt_file import TxtFileProvider
 from .providers.webp_file import WebpFileProvider
 from .providers.xlsx_file import XlsxFileProvider
+from .providers.xml_file import XmlFileProvider
 from .providers.zip_file import ZipFileProvider
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -59,6 +62,14 @@ OVERRIDES = {
             "content": None,
         },
     },
+    # "GenericFileProvider.docx_file": {
+    #     "annotations": {
+    #         "content": str,
+    #     },
+    #     "model_props": {
+    #         "content": None,
+    #     },
+    # },
     "Mp3FileProvider.mp3_file": {
         "annotations": {
             "mp3_generator_cls": str,
@@ -96,6 +107,7 @@ PROVIDERS = {
     DocxFileProvider.docx_file.__name__: DocxFileProvider,
     EmlFileProvider.eml_file.__name__: EmlFileProvider,
     EpubFileProvider.epub_file.__name__: EpubFileProvider,
+    # GenericFileProvider.generic_file.__name__: GenericFileProvider,
     IcoFileProvider.ico_file.__name__: IcoFileProvider,
     JpegFileProvider.jpeg_file.__name__: JpegFileProvider,
     Mp3FileProvider.mp3_file.__name__: Mp3FileProvider,
@@ -111,6 +123,7 @@ PROVIDERS = {
     TxtFileProvider.txt_file.__name__: TxtFileProvider,
     WebpFileProvider.webp_file.__name__: WebpFileProvider,
     XlsxFileProvider.xlsx_file.__name__: XlsxFileProvider,
+    XmlFileProvider.xml_file.__name__: XmlFileProvider,
     ZipFileProvider.zip_file.__name__: ZipFileProvider,
 }
 
