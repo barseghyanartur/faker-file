@@ -240,6 +240,9 @@ Another way to create a ZIP file with variety of different file types within
         }
     )
 
+Note, that ``count`` argument (not shown in the example, but commonly
+accepted by inner functions) will be simply ignored here.
+
 Create a EML file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the EML email (default value is 5).

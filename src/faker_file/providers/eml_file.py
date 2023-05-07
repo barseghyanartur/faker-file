@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue, returns_list
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -195,29 +195,62 @@ class EmlFileProvider(BaseProvider, FileMixin):
         _kwargs = {"generator": self.generator}
         _kwargs.update(_create_inner_file_args)
 
-        for __i in range(_count):
-            __file = _create_inner_file_func(
+        # If _create_inner_file_func returns a list of values
+        if returns_list(_create_inner_file_func):
+            _files = _create_inner_file_func(
                 storage=fs_storage,
                 **_kwargs,
             )
-            data["inner"][str(__file)] = __file
-            __file_abs_path = fs_storage.abspath(__file)
-            # _content_type, _encoding = mimetypes.guess_type(__file_abs_path)
-            # if _content_type is None or _encoding is not None:
-            #     # No guess could be made, or the file is
-            #     # encoded (compressed), so use a generic bag-of-bits type.
-            #     _content_type = "application/octet-stream"
-            _content_type = "application/octet-stream"
-            _maintype, _subtype = _content_type.split("/", 1)
-            with open(__file_abs_path, "rb") as _fp:
-                _file_data = _fp.read()
-                msg.add_attachment(
-                    _file_data,
-                    maintype=_maintype,
-                    subtype=_subtype,
-                    filename=os.path.basename(__file),
+            for __file in _files:
+                data["inner"][str(__file)] = __file
+                __file_abs_path = fs_storage.abspath(__file)
+                # _content_type, _encoding = mimetypes.guess_type(
+                #     __file_abs_path
+                # )
+                # if _content_type is None or _encoding is not None:
+                #     # No guess could be made, or the file is
+                #     # encoded (compressed), so use a generic bag-of-bits
+                #     # type.
+                #     _content_type = "application/octet-stream"
+                _content_type = "application/octet-stream"
+                _maintype, _subtype = _content_type.split("/", 1)
+                with open(__file_abs_path, "rb") as _fp:
+                    _file_data = _fp.read()
+                    msg.add_attachment(
+                        _file_data,
+                        maintype=_maintype,
+                        subtype=_subtype,
+                        filename=os.path.basename(__file),
+                    )
+                os.remove(__file_abs_path)  # Clean up temporary files
+        # If _create_inner_file_func returns a single value
+        else:
+            for __i in range(_count):
+                __file = _create_inner_file_func(
+                    storage=fs_storage,
+                    **_kwargs,
                 )
-            os.remove(__file_abs_path)  # Clean up temporary files
+                data["inner"][str(__file)] = __file
+                __file_abs_path = fs_storage.abspath(__file)
+                # _content_type, _encoding = mimetypes.guess_type(
+                #     __file_abs_path
+                # )
+                # if _content_type is None or _encoding is not None:
+                #     # No guess could be made, or the file is
+                #     # encoded (compressed), so use a generic bag-of-bits
+                #     # type.
+                #     _content_type = "application/octet-stream"
+                _content_type = "application/octet-stream"
+                _maintype, _subtype = _content_type.split("/", 1)
+                with open(__file_abs_path, "rb") as _fp:
+                    _file_data = _fp.read()
+                    msg.add_attachment(
+                        _file_data,
+                        maintype=_maintype,
+                        subtype=_subtype,
+                        filename=os.path.basename(__file),
+                    )
+                os.remove(__file_abs_path)  # Clean up temporary files
 
         if raw:
             raw_content = BytesValue(msg.as_bytes(policy=default))

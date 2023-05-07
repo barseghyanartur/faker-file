@@ -1561,6 +1561,46 @@ def list_create_inner_file(
     :param func_list: List of tuples, each containing a function to generate a
         file and its arguments.
     :return: List of generated file names.
+
+    Usage example:
+
+        from faker import Faker
+        from faker_file.providers.helpers.inner import (
+            create_inner_docx_file,
+            create_inner_xml_file,
+            list_create_inner_file,
+        )
+        from faker_file.providers.zip_file import ZipFileProvider
+        from faker_file.storages.filesystem import FileSystemStorage
+
+        FAKER = Faker()
+        STORAGE = FileSystemStorage()
+
+        kwargs = {"storage": STORAGE, "generator": FAKER}
+        file = ZipFileProvider(FAKER).zip_file(
+            basename="alice-looking-through-the-glass",
+            options={
+                "create_inner_file_func": list_create_inner_file,
+                "create_inner_file_args": {
+                    "func_list": [
+                        (create_inner_docx_file, {"basename": "doc"}),
+                        (create_inner_xml_file, {"basename": "doc_metadata"}),
+                        (create_inner_xml_file, {"basename": "doc_isbn"}),
+                    ],
+                },
+            }
+        )
+
+    Note, that while all other inner functions return
+    back `Union[BytesValue, StringValue]` value, `list_create_inner_file`
+    returns back a `List[Union[BytesValue, StringValue]]` value.
+
+    Notably, all inner functions were designed to support archives (such as
+    ZIP, TAR and EML, but the list may grow in the future). If the inner
+    function passed in the `create_inner_file_func` argument returns a List
+    of `Union[BytesValue, StringValue]` values, the `option` argument is being
+    ignored and generated files are simply limited to what has been passed
+    in the `func_list` list of tuples.
     """
     created_files = []
     for func, kwargs in func_list:

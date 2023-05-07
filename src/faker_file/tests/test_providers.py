@@ -241,6 +241,25 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            EmlFileProvider,
+            "eml_file",
+            {
+                "basename": "alice-looking-through-the-glass",
+                "options": {
+                    "create_inner_file_func": list_create_inner_file,
+                    "create_inner_file_args": {
+                        "func_list": [
+                            (create_inner_xml_file, XML_METADATA_KWARGS),
+                            (create_inner_xml_file, XML_ISBN_KWARGS),
+                            (create_inner_docx_file, DOCX_KWARGS),
+                        ]
+                    },
+                },
+            },
+            None,
+        ),
         # EPUB
         (FAKER, EpubFileProvider, "epub_file", {}, None),
         (FAKER_HY, EpubFileProvider, "epub_file", {}, None),

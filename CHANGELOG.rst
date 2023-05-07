@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.14.1
+------
+2023-05-08
+
+- Added support for ``list_create_inner_file``-like functions to the ``EML``
+  file provider.
+
 0.14
 ----
 2023-05-07
