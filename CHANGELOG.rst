@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.14.2
+------
+2023-05-09
+
+- Add ``create_inner_generic_file`` inner function.
+- Add ``generic_file`` support to CLI.
+
 0.14.1
 ------
 2023-05-08

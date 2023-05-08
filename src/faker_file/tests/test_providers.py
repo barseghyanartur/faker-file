@@ -32,6 +32,7 @@ from ..providers.helpers.inner import (
     create_inner_docx_file,
     create_inner_eml_file,
     create_inner_epub_file,
+    create_inner_generic_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
     create_inner_mp3_file,
@@ -886,6 +887,14 @@ class ProvidersTestCase(unittest.TestCase):
         (create_inner_docx_file, "Lorem ipsum", {}),
         (create_inner_eml_file, None, {}),
         (create_inner_epub_file, "Lorem ipsum", {}),
+        (
+            create_inner_generic_file,
+            None,
+            {
+                "content": "<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+            },
+        ),
         (create_inner_ico_file, "Lorem ipsum", {}),
         (create_inner_jpeg_file, "Lorem ipsum", {}),
         (create_inner_mp3_file, "Lorem ipsum", {}),
@@ -1272,139 +1281,174 @@ class ProvidersTestCase(unittest.TestCase):
         self.assertTrue(FS_STORAGE.exists(_file))
 
     @parametrize(
-        "module_path, module_name, create_inner_file_func",
+        "module_path, "
+        "module_name, "
+        "create_inner_file_func, "
+        "create_inner_file_args",
         [
             # BIN
             (
                 "faker_file.providers.bin_file",
                 "BinFileProvider",
                 create_inner_bin_file,
+                {},
             ),
             # CSV
             (
                 "faker_file.providers.csv_file",
                 "CsvFileProvider",
                 create_inner_csv_file,
+                {},
             ),
             # DOCX
             (
                 "faker_file.providers.docx_file",
                 "DocxFileProvider",
                 create_inner_docx_file,
+                {},
             ),
             # EML
             (
                 "faker_file.providers.eml_file",
                 "EmlFileProvider",
                 create_inner_eml_file,
+                {},
             ),
             # EPUB
             (
                 "faker_file.providers.epub_file",
                 "EpubFileProvider",
                 create_inner_epub_file,
+                {},
+            ),
+            # Generic
+            (
+                "faker_file.providers.generic_file",
+                "GenericFileProvider",
+                create_inner_generic_file,
+                {
+                    "content": "<html><body><p>{{text}}</p></body></html>",
+                    "extension": "html",
+                },
             ),
             # ICO
             (
                 "faker_file.providers.ico_file",
                 "IcoFileProvider",
                 create_inner_ico_file,
+                {},
             ),
             # JPEG
             (
                 "faker_file.providers.jpeg_file",
                 "JpegFileProvider",
                 create_inner_jpeg_file,
+                {},
             ),
             # MP3
             (
                 "faker_file.providers.mp3_file",
                 "Mp3FileProvider",
                 create_inner_mp3_file,
+                {},
             ),
             # ODP
             (
                 "faker_file.providers.odp_file",
                 "OdpFileProvider",
                 create_inner_odp_file,
+                {},
             ),
             # ODS
             (
                 "faker_file.providers.ods_file",
                 "OdsFileProvider",
                 create_inner_ods_file,
+                {},
             ),
             # ODT
             (
                 "faker_file.providers.odt_file",
                 "OdtFileProvider",
                 create_inner_odt_file,
+                {},
             ),
             # PDF
             (
                 "faker_file.providers.pdf_file",
                 "PdfFileProvider",
                 create_inner_pdf_file,
+                {},
             ),
             # PNG
             (
                 "faker_file.providers.png_file",
                 "PngFileProvider",
                 create_inner_png_file,
+                {},
             ),
             # PPTX
             (
                 "faker_file.providers.pptx_file",
                 "PptxFileProvider",
                 create_inner_pptx_file,
+                {},
             ),
             # RTF
             (
                 "faker_file.providers.rtf_file",
                 "RtfFileProvider",
                 create_inner_rtf_file,
+                {},
             ),
             # SVG
             (
                 "faker_file.providers.svg_file",
                 "SvgFileProvider",
                 create_inner_svg_file,
+                {},
             ),
             # TAR
             (
                 "faker_file.providers.tar_file",
                 "TarFileProvider",
                 create_inner_tar_file,
+                {},
             ),
             # TXT
             (
                 "faker_file.providers.txt_file",
                 "TxtFileProvider",
                 create_inner_txt_file,
+                {},
             ),
             # WEBP
             (
                 "faker_file.providers.webp_file",
                 "WebpFileProvider",
                 create_inner_webp_file,
+                {},
             ),
             # XLSX
             (
                 "faker_file.providers.xlsx_file",
                 "XlsxFileProvider",
                 create_inner_xlsx_file,
+                {},
             ),
             # XML
             (
                 "faker_file.providers.xml_file",
                 "XmlFileProvider",
                 create_inner_xml_file,
+                {},
             ),
             # ZIP
             (
                 "faker_file.providers.zip_file",
                 "ZipFileProvider",
                 create_inner_zip_file,
+                {},
             ),
         ],
     )
@@ -1413,12 +1457,13 @@ class ProvidersTestCase(unittest.TestCase):
         module_path: str,
         module_name: str,
         create_inner_file_func: Callable,
+        create_inner_file_args: Dict[str, Any],
     ) -> None:
         """Test broken imports."""
         _module = import_module(module_path)
         del _module.__dict__[module_name]
         with self.assertRaises(ImportError):
-            create_inner_file_func()
+            create_inner_file_func(**create_inner_file_args)
         reload(_module)
 
     def test_mp3_file_generate_not_implemented_exception(

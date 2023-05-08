@@ -14,8 +14,7 @@ from .providers.csv_file import CsvFileProvider
 from .providers.docx_file import DocxFileProvider
 from .providers.eml_file import EmlFileProvider
 from .providers.epub_file import EpubFileProvider
-
-# from .providers.generic_file import GenericFileProvider
+from .providers.generic_file import GenericFileProvider
 from .providers.ico_file import IcoFileProvider
 from .providers.jpeg_file import JpegFileProvider
 from .providers.mp3_file import Mp3FileProvider
@@ -62,14 +61,12 @@ OVERRIDES = {
             "content": None,
         },
     },
-    # "GenericFileProvider.docx_file": {
-    #     "annotations": {
-    #         "content": str,
-    #     },
-    #     "model_props": {
-    #         "content": None,
-    #     },
-    # },
+    "GenericFileProvider.generic_file": {
+        "annotations": {
+            "content": str,
+        },
+        "model_props": {},
+    },
     "Mp3FileProvider.mp3_file": {
         "annotations": {
             "mp3_generator_cls": str,
@@ -107,7 +104,7 @@ PROVIDERS = {
     DocxFileProvider.docx_file.__name__: DocxFileProvider,
     EmlFileProvider.eml_file.__name__: EmlFileProvider,
     EpubFileProvider.epub_file.__name__: EpubFileProvider,
-    # GenericFileProvider.generic_file.__name__: GenericFileProvider,
+    GenericFileProvider.generic_file.__name__: GenericFileProvider,
     IcoFileProvider.ico_file.__name__: IcoFileProvider,
     JpegFileProvider.jpeg_file.__name__: JpegFileProvider,
     Mp3FileProvider.mp3_file.__name__: Mp3FileProvider,

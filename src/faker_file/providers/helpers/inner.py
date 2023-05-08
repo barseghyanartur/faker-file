@@ -35,6 +35,7 @@ __all__ = (
     "create_inner_docx_file",
     "create_inner_eml_file",
     "create_inner_epub_file",
+    "create_inner_generic_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
     "create_inner_mp3_file",
@@ -382,6 +383,65 @@ def create_inner_epub_file(
         content=content,
         title=title,
         chapter_title=chapter_title,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# ************************************************
+# ******************** Generic *******************
+# ************************************************
+
+
+@overload
+def create_inner_generic_file(
+    content: Union[bytes, str],
+    extension: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_generic_file(
+    content: Union[bytes, str],
+    extension: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_generic_file(
+    content: Union[bytes, str],
+    extension: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner generic file."""
+    try:
+        from ..generic_file import GenericFileProvider
+    except ImportError as err:
+        raise err
+
+    return GenericFileProvider(generator).generic_file(
+        content=content,
+        extension=extension,
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
         raw=raw,
         **kwargs,
     )

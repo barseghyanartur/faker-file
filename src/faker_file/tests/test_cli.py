@@ -71,6 +71,14 @@ class TestCLI(unittest.TestCase):
                 "epub_file",
                 {},
             ),
+            # Generic
+            (
+                "generic_file",
+                {
+                    "content": "<html><body><p>{{text}}</p></body></html>",
+                    "extension": "html",
+                },
+            ),
             (
                 "epub_file",
                 {"wrap_chars_after": 40},
