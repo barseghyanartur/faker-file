@@ -131,7 +131,9 @@ class GenericFileProvider(BaseProvider, FileMixin):
             if isinstance(content, bytes):
                 raw_content = BytesValue(content)
             else:
-                raw_content = BytesValue(content.encode())
+                raw_content = BytesValue(
+                    self.generator.pystr_format(content).encode()
+                )
             raw_content.data = data
             return raw_content
 
