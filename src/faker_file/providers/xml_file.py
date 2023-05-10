@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from typing import Optional, Sequence, Tuple, Union, overload
+from typing import Dict, Optional, Union, overload
 
 from faker import Faker
 from faker.providers import BaseProvider
@@ -34,11 +34,11 @@ class XmlFileProvider(BaseProvider, FileMixin):
         file = XmlFileProvider(Faker()).xml_file(
             prefix="zzz",
             num_rows=100,
-            data_columns=(
-                ("name", "{{name}}"),
-                ("sentence", "{{sentence}}"),
-                ("address", "{{address}}"),
-            ),
+            data_columns={
+                "name": "{{name}}",
+                "sentence": "{{sentence}}",
+                "address": "{{address}}",
+            },
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
@@ -97,10 +97,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         root_element: str = "root",
         row_element: str = "row",
-        data_columns: Sequence[Tuple[str, str]] = (
-            ("name", "{{name}}"),
-            ("address", "{{address}}"),
-        ),
+        data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
@@ -117,10 +114,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         root_element: str = "root",
         row_element: str = "row",
-        data_columns: Sequence[Tuple[str, str]] = (
-            ("name", "{{name}}"),
-            ("address", "{{address}}"),
-        ),
+        data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
@@ -135,10 +129,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         root_element: str = "root",
         row_element: str = "row",
-        data_columns: Sequence[Tuple[str, str]] = (
-            ("name", "{{name}}"),
-            ("address", "{{address}}"),
-        ),
+        data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
@@ -160,10 +151,17 @@ class XmlFileProvider(BaseProvider, FileMixin):
             self.generator = Faker()
 
         if content is None:
+            default_data_columns = {
+                "name": "{{name}}",
+                "address": "{{address}}",
+            }
+            data_columns = (
+                data_columns if data_columns else default_data_columns
+            )
             root = ET.Element(root_element)
             for _ in range(num_rows):
                 row = ET.SubElement(root, row_element)
-                for col_name, col_template in data_columns:
+                for col_name, col_template in data_columns.items():
                     row.append(
                         self._generate_xml_element(col_name, col_template)
                     )

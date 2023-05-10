@@ -8,12 +8,16 @@ from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.mp3_generator import BaseMp3Generator
-from .generators.gtts_generator import GttsMp3Generator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("Mp3FileProvider",)
+
+DEFAULT_MP3_GENERATOR = (
+    "faker_file.providers.mp3_file.generators.gtts_generator"
+    ".GttsMp3Generator"
+)
 
 
 class Mp3FileProvider(BaseProvider, FileMixin):
@@ -111,7 +115,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         mp3_generator_cls: Optional[
             Union[str, Type[BaseMp3Generator]]
-        ] = GttsMp3Generator,
+        ] = DEFAULT_MP3_GENERATOR,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
@@ -128,7 +132,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         mp3_generator_cls: Optional[
             Union[str, Type[BaseMp3Generator]]
-        ] = GttsMp3Generator,
+        ] = DEFAULT_MP3_GENERATOR,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
@@ -143,7 +147,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         mp3_generator_cls: Optional[
             Union[str, Type[BaseMp3Generator]]
-        ] = GttsMp3Generator,
+        ] = DEFAULT_MP3_GENERATOR,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = False,
         **kwargs,
@@ -181,7 +185,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         data = {"content": content, "filename": filename}
 
         if mp3_generator_cls is None:
-            mp3_generator_cls = GttsMp3Generator
+            mp3_generator_cls = DEFAULT_MP3_GENERATOR
 
         if isinstance(mp3_generator_cls, str):
             mp3_generator_cls = load_class_from_path(mp3_generator_cls)

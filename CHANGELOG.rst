@@ -15,6 +15,19 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.14.4
+------
+2023-05-11
+
+- Changed type of ``data_columns`` for ``xml_file`` provider from
+  ``Sequence[Tuple[str, str]]`` to ``Dict[str, str]``.
+- In the ``pdf_file`` provider, changed default value of ``pdf_generator_cls``
+  from concrete ``PdfkitPdfGenerator`` value to its' string representation
+  faker_file.providers.pdf_file.generators.pdfkit_generator.PdfkitPdfGenerator.
+- In the ``mp3_file`` provider, changed default value of ``mp3_generator_cls``
+  from concrete ``GttsMp3Generator`` value to its' string representation
+  faker_file.providers.mp3_file.generators.gtts_generator.GttsMp3Generator.
+
 0.14.3
 ------
 2023-05-10

@@ -8,12 +8,16 @@ from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.pdf_generator import BasePdfGenerator
-from .generators.pdfkit_generator import PdfkitPdfGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("PdfFileProvider",)
+
+DEFAULT_PDF_GENERATOR = (
+    "faker_file.providers.pdf_file.generators.pdfkit_generator"
+    ".PdfkitPdfGenerator"
+)
 
 
 class PdfFileProvider(BaseProvider, FileMixin):
@@ -80,7 +84,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
         pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
-            PdfkitPdfGenerator
+            DEFAULT_PDF_GENERATOR
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
@@ -98,7 +102,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
         pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
-            PdfkitPdfGenerator
+            DEFAULT_PDF_GENERATOR
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
@@ -114,7 +118,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
         pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
-            PdfkitPdfGenerator
+            DEFAULT_PDF_GENERATOR
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = False,
@@ -149,7 +153,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         )
 
         if pdf_generator_cls is None:
-            pdf_generator_cls = PdfkitPdfGenerator
+            pdf_generator_cls = DEFAULT_PDF_GENERATOR
 
         if isinstance(pdf_generator_cls, str):
             pdf_generator_cls = load_class_from_path(pdf_generator_cls)
