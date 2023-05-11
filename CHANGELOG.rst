@@ -15,6 +15,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.14.5
+------
+2023-05-11
+
+- Minor fixes in ``xml_file`` provider.
+
 0.14.4
 ------
 2023-05-11

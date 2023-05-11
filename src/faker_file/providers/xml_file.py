@@ -5,6 +5,7 @@ from faker import Faker
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue
+from ..constants import DEFAULT_XML_DATA_COLUMNS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -12,7 +13,6 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("XmlFileProvider",)
-
 
 FAKER = Faker()
 
@@ -151,12 +151,8 @@ class XmlFileProvider(BaseProvider, FileMixin):
             self.generator = Faker()
 
         if content is None:
-            default_data_columns = {
-                "name": "{{name}}",
-                "address": "{{address}}",
-            }
             data_columns = (
-                data_columns if data_columns else default_data_columns
+                data_columns if data_columns else DEFAULT_XML_DATA_COLUMNS
             )
             root = ET.Element(root_element)
             for _ in range(num_rows):

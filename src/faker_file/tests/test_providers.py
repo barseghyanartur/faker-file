@@ -910,6 +910,7 @@ class ProvidersTestCase(unittest.TestCase):
         (create_inner_txt_file, "Lorem ipsum", {}),
         # (create_inner_webp_file, "Lorem ipsum", {}),
         (create_inner_xlsx_file, None, {}),
+        (create_inner_xml_file, None, {}),
         (create_inner_zip_file, None, {}),
         (
             fuzzy_choice_create_inner_file,
