@@ -159,7 +159,7 @@ def generate_file(method_name: str, **kwargs) -> StringValue:
 
 def is_optional_type(t: Any) -> bool:
     if getattr(t, "__origin__", None) is typing.Union:
-        return any(arg is type(None) for arg in t.__args__)
+        return any(arg is type(None) for arg in t.__args__)  # noqa
     return False
 
 

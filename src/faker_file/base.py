@@ -81,7 +81,7 @@ class DynamicTemplate:
     """Dynamic template."""
 
     def __init__(
-        self, content_modifiers: List[Tuple[callable, Dict[str, Any]]]
+        self, content_modifiers: List[Tuple[Callable, Dict[str, Any]]]
     ):
         self.content_modifiers = content_modifiers
 

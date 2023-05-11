@@ -30,72 +30,76 @@ class TestStringListTestCase(unittest.TestCase):
 
 
 class TestReturnsList(unittest.TestCase):
-    def test_returns_list(self: "TestStringListTestCase") -> None:
+    def test_returns_list(self: "TestReturnsList") -> None:
         def func_1() -> Union[BytesValue, StringValue]:
             """Returns Union[BytesValue, StringValue]"""
+            return StringValue("func_1")
 
         def func_2() -> Union[StringValue, BytesValue]:
             """Returns Union[StringValue, BytesValue]"""
+            return BytesValue(b"func_2")
 
         def func_3() -> List[Union[BytesValue, StringValue]]:
             """Returns List[Union[BytesValue, StringValue]]"""
+            return [BytesValue(b"func_3"), StringValue("func_3")]
 
         def func_4() -> List[Union[StringValue, BytesValue]]:
             """Returns List[Union[StringValue, BytesValue]]"""
+            return [StringValue("func_4"), BytesValue(b"func_4")]
 
         self.assertFalse(returns_list(func_1))
         self.assertFalse(returns_list(func_2))
         self.assertTrue(returns_list(func_3))
         self.assertTrue(returns_list(func_4))
 
-    def test_no_return_hint(self):
+    def test_no_return_hint(self: "TestReturnsList"):
         def func_no_hint(a, b):
             pass
 
         self.assertFalse(returns_list(func_no_hint))
 
-    def test_incorrect_hint(self):
+    def test_incorrect_hint(self: "TestReturnsList"):
         def func_incorrect_hint(a) -> str:
-            pass
+            return "func_incorrect_hint"
 
         self.assertFalse(returns_list(func_incorrect_hint))
 
-    def test_undefined_type_hint(self):
+    def test_undefined_type_hint(self: "TestReturnsList"):
         def func_undefined_hint(
             a: "UndefinedType",  # noqa
         ) -> List[Union[BytesValue, StringValue]]:
-            pass
+            return [BytesValue(b"fn_undef_hint"), StringValue("fn_undef_hint")]
 
         self.assertFalse(returns_list(func_undefined_hint))
 
-    def test_correct_hint(self):
+    def test_correct_hint(self: "TestReturnsList"):
         def func_correct_hint(a) -> List[Union[BytesValue, StringValue]]:
-            pass
+            return [BytesValue(b"fn_corr_hint"), StringValue("fn_corr_hint")]
 
         self.assertTrue(returns_list(func_correct_hint))
 
-    def test_correct_hint_reversed(self):
+    def test_correct_hint_reversed(self: "TestReturnsList"):
         def func_correct_hint_reversed(
             a,
         ) -> List[Union[StringValue, BytesValue]]:
-            pass
+            return [BytesValue(b"fn_corr_hint"), StringValue("fn_corr_hint")]
 
         self.assertTrue(returns_list(func_correct_hint_reversed))
 
     @unittest.skipIf(sys.version_info < (3, 9), "Skip on Python < 3.9")
-    def test_correct_hint_builtin_list(self):
+    def test_correct_hint_builtin_list(self: "TestReturnsList"):
         def func_correct_hint_builtin_list(
             a,
         ) -> list[Union[BytesValue, StringValue]]:
-            pass
+            return [BytesValue(b"fn_corr_hint"), StringValue("fn_corr_hint")]
 
         self.assertTrue(returns_list(func_correct_hint_builtin_list))
 
     @unittest.skipIf(sys.version_info < (3, 9), "Skip on Python < 3.9")
-    def test_correct_hint_builtin_list_reversed(self):
+    def test_correct_hint_builtin_list_reversed(self: "TestReturnsList"):
         def func_correct_hint_builtin_list_reversed(
             a,
         ) -> list[Union[StringValue, BytesValue]]:
-            pass
+            return [BytesValue(b"fn_corr_hint"), StringValue("fn_corr_hint")]
 
         self.assertTrue(returns_list(func_correct_hint_builtin_list_reversed))
