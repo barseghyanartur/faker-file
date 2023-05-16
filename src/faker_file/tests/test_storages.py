@@ -155,13 +155,13 @@ class TestStoragesTestCase(unittest.TestCase):
         ],
     )
     def test_storage(
-        self,
+        self: "TestStoragesTestCase",
         storage_cls: Type[BaseStorage],
         kwargs: Dict[str, Any],
         prefix: Union[str, None],
         basename: Union[str, None],
         extension: str,
-    ):
+    ) -> None:
         """Test storage."""
         # Just for testing purposes
         if issubclass(storage_cls, CloudStorage):
@@ -214,12 +214,12 @@ class TestStoragesTestCase(unittest.TestCase):
         ],
     )
     def test_storage_generate_filename_exceptions(
-        self,
+        self: "TestStoragesTestCase",
         storage_cls: Type[BaseStorage],
         kwargs: Dict[str, Any],
         prefix: str,
         extension: str,
-    ):
+    ) -> None:
         """Test storage `generate_filename` exceptions."""
         storage = storage_cls(**kwargs)
 
@@ -239,10 +239,10 @@ class TestStoragesTestCase(unittest.TestCase):
         ],
     )
     def test_storage_initialization_exceptions(
-        self,
+        self: "TestStoragesTestCase",
         storage_cls: Type[BaseStorage],
         kwargs: Dict[str, Any],
-    ):
+    ) -> None:
         """Test storage initialization exceptions."""
         with self.assertRaises(Exception):
             # Initialize the storage
@@ -263,7 +263,11 @@ class TestStoragesTestCase(unittest.TestCase):
             ("abspath", {"filename": "test.txt"}),
         ],
     )
-    def test_base_storage_exceptions(self, method_name, method_kwargs):
+    def test_base_storage_exceptions(
+        self: "TestStoragesTestCase",
+        method_name: str,
+        method_kwargs: Dict[str, Any],
+    ) -> None:
         """Test Base storage exceptions."""
         base_storage = BaseStorage()
         method = getattr(base_storage, method_name)
@@ -276,18 +280,22 @@ class TestStoragesTestCase(unittest.TestCase):
             ("authenticate", {}),
         ],
     )
-    def test_cloud_storage_exceptions(self, method_name, method_kwargs):
+    def test_cloud_storage_exceptions(
+        self: "TestStoragesTestCase",
+        method_name: str,
+        method_kwargs: Dict[str, Any],
+    ) -> None:
         """Test Base storage exceptions."""
 
         class TestCloudStorage(CloudStorage):
             schema: str = "file"
 
-        test_storage = TestCloudStorage(bucket_name="testing")
+        test_storage = TestCloudStorage(bucket_name="testing")  # type: ignore
         method = getattr(test_storage, method_name)
         with self.assertRaises(NotImplementedError):
             method(**method_kwargs)
 
-    def test_file_system_storage_abspath(self):
+    def test_file_system_storage_abspath(self: "TestStoragesTestCase") -> None:
         """Test `FileSystemStorage` `abspath`."""
         storage = FileSystemStorage(
             root_path=tempfile.gettempdir(),
@@ -296,7 +304,9 @@ class TestStoragesTestCase(unittest.TestCase):
         filename = storage.generate_filename(prefix="", extension="tmp")
         self.assertTrue(storage.abspath(filename).startswith("/tmp/rel_tmp/"))
 
-    def test_pathy_file_system_storage_abspath(self):
+    def test_pathy_file_system_storage_abspath(
+        self: "TestStoragesTestCase",
+    ) -> None:
         """Test `PathyFileSystemStorage` `abspath`."""
         storage = PathyFileSystemStorage(
             bucket_name="faker-file-tmp",

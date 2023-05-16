@@ -128,6 +128,7 @@ FileProvider = Union[
     TxtFileProvider,
     WebpFileProvider,
     XlsxFileProvider,
+    XmlFileProvider,
     ZipFileProvider,
 ]
 
@@ -979,7 +980,7 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
-            None,
+            FAKER,
             GenericFileProvider,
             "generic_file",
             {
@@ -989,7 +990,7 @@ class ProvidersTestCase(unittest.TestCase):
             None,
         ),
         (
-            None,
+            FAKER,
             GenericFileProvider,
             "generic_file",
             {
