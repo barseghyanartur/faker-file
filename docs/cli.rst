@@ -21,19 +21,20 @@ Output:
 .. code-block:: text
 
     usage: faker-file [-h] [-o OUTPUT_DIR]
-                      {bin_file,csv_file,docx_file,eml_file,epub_file,ico_file,jpeg_file,mp3_file,odp_file,ods_file,odt_file,pdf_file,png_file,pptx_file,rtf_file,svg_file,tar_file,txt_file,webp_file,xlsx_file,zip_file}
+                      {bin_file,csv_file,docx_file,eml_file,epub_file,generic_file,ico_file,jpeg_file,mp3_file,odp_file,ods_file,odt_file,pdf_file,png_file,pptx_file,rtf_file,svg_file,tar_file,txt_file,webp_file,xlsx_file,xml_file,zip_file}
                       ...
 
     CLI for the faker-file package.
 
     positional arguments:
-      {bin_file,csv_file,docx_file,eml_file,epub_file,ico_file,jpeg_file,mp3_file,odp_file,ods_file,odt_file,pdf_file,png_file,pptx_file,rtf_file,svg_file,tar_file,txt_file,webp_file,xlsx_file,zip_file}
+      {bin_file,csv_file,docx_file,eml_file,epub_file,generic_file,ico_file,jpeg_file,mp3_file,odp_file,ods_file,odt_file,pdf_file,png_file,pptx_file,rtf_file,svg_file,tar_file,txt_file,webp_file,xlsx_file,xml_file,zip_file}
                             Available file providers.
         bin_file            Generate a bin file.
         csv_file            Generate a csv file.
         docx_file           Generate a docx file.
         eml_file            Generate a eml file.
         epub_file           Generate a epub file.
+        generic_file        Generate a generic file.
         ico_file            Generate a ico file.
         jpeg_file           Generate a jpeg file.
         mp3_file            Generate a mp3 file.
@@ -49,6 +50,7 @@ Output:
         txt_file            Generate a txt file.
         webp_file           Generate a webp file.
         xlsx_file           Generate a xlsx file.
+        xml_file            Generate a xml file.
         zip_file            Generate a zip file.
 
     options:
@@ -108,9 +110,11 @@ list of available options:
 .. code-block:: sh
 
     $ faker-file
-    bin_file   eml_file   jpeg_file  ods_file   png_file   svg_file   webp_file
-    csv_file   epub_file  mp3_file   odt_file   pptx_file  tar_file   xlsx_file
-    docx_file  ico_file   odp_file   pdf_file   rtf_file   txt_file   zip_file
+    bin_file      generic_file  ods_file      rtf_file      xlsx_file
+    csv_file      ico_file      odt_file      svg_file      xml_file
+    docx_file     jpeg_file     pdf_file      tar_file      zip_file
+    eml_file      mp3_file      png_file      txt_file
+    epub_file     odp_file      pptx_file     webp_file
 
 It works with sub options too:
 
