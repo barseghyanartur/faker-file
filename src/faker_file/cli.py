@@ -132,7 +132,7 @@ def get_method_kwargs(
     method_specs = inspect.getfullargspec(method)
 
     kwargs = deepcopy(method_specs.args[1:])  # Omit `self`
-    defaults = deepcopy(method_specs.defaults)
+    defaults = deepcopy(method_specs.defaults if method_specs.defaults else [])
     model_props = dict(zip(kwargs, defaults))
     annotations = deepcopy(method_specs.annotations)
 
