@@ -4,14 +4,6 @@ faker\_file.providers.mp3\_file.generators package
 Submodules
 ----------
 
-faker\_file.providers.mp3\_file.generators.base module
-------------------------------------------------------
-
-.. automodule:: faker_file.providers.mp3_file.generators.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 faker\_file.providers.mp3\_file.generators.edge\_tts\_generator module
 ----------------------------------------------------------------------
 

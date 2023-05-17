@@ -8,9 +8,11 @@ Subpackages
    :maxdepth: 20
 
    faker_file.providers.augment_file_from_dir
+   faker_file.providers.base
    faker_file.providers.helpers
    faker_file.providers.mixins
    faker_file.providers.mp3_file
+   faker_file.providers.pdf_file
 
 Submodules
 ----------
@@ -55,6 +57,14 @@ faker\_file.providers.epub\_file module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.providers.generic\_file module
+------------------------------------------
+
+.. automodule:: faker_file.providers.generic_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.ico\_file module
 --------------------------------------
 
@@ -91,14 +101,6 @@ faker\_file.providers.odt\_file module
 --------------------------------------
 
 .. automodule:: faker_file.providers.odt_file
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-faker\_file.providers.pdf\_file module
---------------------------------------
-
-.. automodule:: faker_file.providers.pdf_file
    :members:
    :undoc-members:
    :show-inheritance:
@@ -171,6 +173,14 @@ faker\_file.providers.xlsx\_file module
 ---------------------------------------
 
 .. automodule:: faker_file.providers.xlsx_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.xml\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.xml_file
    :members:
    :undoc-members:
    :show-inheritance:

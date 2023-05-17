@@ -22,6 +22,14 @@ faker\_file.base module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.cli module
+----------------------
+
+.. automodule:: faker_file.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.constants module
 ----------------------------
 
