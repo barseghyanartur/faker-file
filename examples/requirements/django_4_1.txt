@@ -59,7 +59,7 @@ defusedxml==0.7.1
     # via odfpy
 distlib==0.3.6
     # via virtualenv
-django==4.1.3
+django==4.1.9
     # via
     #   -r examples/requirements/django_4_1.in
     #   django-debug-toolbar
