@@ -14,6 +14,7 @@ dependency_links = []
 # Dependencies
 install_requires = [
     "Faker",
+    "typing-extensions",
 ]
 
 tests_require = [
