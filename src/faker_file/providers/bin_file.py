@@ -2,6 +2,7 @@ from typing import Optional, Union, overload
 
 from faker import Faker
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
@@ -60,12 +61,12 @@ class BinFileProvider(BaseProvider, FileMixin):
     @overload
     def bin_file(
         self: "BinFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -73,6 +74,7 @@ class BinFileProvider(BaseProvider, FileMixin):
     @overload
     def bin_file(
         self: "BinFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -84,12 +86,12 @@ class BinFileProvider(BaseProvider, FileMixin):
 
     def bin_file(
         self: "BinFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a BIN file with random bytes.
