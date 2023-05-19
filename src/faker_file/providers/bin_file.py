@@ -96,14 +96,14 @@ class BinFileProvider(BaseProvider, FileMixin):
     ) -> Union[BytesValue, StringValue]:
         """Generate a BIN file with random bytes.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage class. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param length:
         :param content: File content. If given, used as is.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

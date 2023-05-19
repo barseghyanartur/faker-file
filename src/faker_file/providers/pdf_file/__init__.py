@@ -1,6 +1,7 @@
 from typing import Any, Dict, Optional, Type, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ...base import BytesValue, DynamicTemplate, FileMixin, StringValue
 from ...constants import DEFAULT_TEXT_MAX_NB_CHARS
@@ -77,6 +78,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
     @overload
     def pdf_file(
         self: "PdfFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -87,7 +89,6 @@ class PdfFileProvider(BaseProvider, FileMixin):
             DEFAULT_PDF_GENERATOR
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -95,6 +96,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
     @overload
     def pdf_file(
         self: "PdfFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -111,6 +113,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
     def pdf_file(
         self: "PdfFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -121,11 +124,13 @@ class PdfFileProvider(BaseProvider, FileMixin):
             DEFAULT_PDF_GENERATOR
         ),
         pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a PDF file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -136,9 +141,6 @@ class PdfFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param pdf_generator_cls: PDF generator class.
         :param pdf_generator_kwargs: PDF generator kwargs.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

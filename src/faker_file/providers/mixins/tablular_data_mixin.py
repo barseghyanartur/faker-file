@@ -2,6 +2,7 @@ from typing import Dict, Optional, Union, overload
 
 from faker import Faker
 from tablib import Dataset
+from typing_extensions import Literal
 
 from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
@@ -19,13 +20,13 @@ class TabularDataMixin(FileMixin):
     @overload
     def _tabular_data_file(
         self: "TabularDataMixin",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -33,6 +34,7 @@ class TabularDataMixin(FileMixin):
     @overload
     def _tabular_data_file(
         self: "TabularDataMixin",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -45,17 +47,20 @@ class TabularDataMixin(FileMixin):
 
     def _tabular_data_file(
         self: "TabularDataMixin",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a tabular data file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -71,9 +76,6 @@ class TabularDataMixin(FileMixin):
             to ``True`` to include a sequential row ID column.
         :param content: List of dicts with content (JSON-like format).
             If given, used as is.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

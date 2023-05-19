@@ -2,6 +2,7 @@ from typing import Optional, Sequence, Tuple, Union, overload
 
 from faker import Faker
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
@@ -57,6 +58,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     @overload
     def csv_file(
         self: "CsvFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -66,7 +68,6 @@ class CsvFileProvider(BaseProvider, FileMixin):
         include_row_ids: bool = False,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -74,6 +75,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
     @overload
     def csv_file(
         self: "CsvFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -89,6 +91,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
 
     def csv_file(
         self: "CsvFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -98,11 +101,13 @@ class CsvFileProvider(BaseProvider, FileMixin):
         include_row_ids: bool = False,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a CSV file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -121,9 +126,6 @@ class CsvFileProvider(BaseProvider, FileMixin):
         :param include_row_ids:
         :param content: File content. If given, used as is.
         :param encoding: Encoding.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

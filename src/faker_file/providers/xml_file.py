@@ -3,6 +3,7 @@ from typing import Dict, Optional, Union, overload
 
 from faker import Faker
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_XML_DATA_COLUMNS
@@ -92,6 +93,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
     @overload
     def xml_file(
         self: "XmlFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -101,7 +103,6 @@ class XmlFileProvider(BaseProvider, FileMixin):
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -109,6 +110,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
     @overload
     def xml_file(
         self: "XmlFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -123,7 +125,8 @@ class XmlFileProvider(BaseProvider, FileMixin):
         ...
 
     def xml_file(
-        self,
+        self: "XmlFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -133,10 +136,25 @@ class XmlFileProvider(BaseProvider, FileMixin):
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate an XML file with random text."""
+        """Generate an XML file with random text.
+
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :param storage: Storage class. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
+        :param prefix: File name prefix.
+        :param root_element: XML root element.
+        :param row_element: XML row element.
+        :param data_columns: Dictionary describing the data columns.
+        :param num_rows: Number of rows to generate.
+        :param content: File content. If given, used as is.
+        :param encoding: Encoding.
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
+        """
 
         if storage is None:
             storage = FileSystemStorage()

@@ -13,6 +13,7 @@ from typing import (
 )
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
@@ -103,6 +104,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
+        raw: Literal[True],
         extensions: Optional[Iterable[str]] = None,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
@@ -114,7 +116,6 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
             BaseTextAugmenter
         ] = ContextualWordEmbeddingsAugmenter,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -123,6 +124,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
+        raw: Literal[False],
         extensions: Optional[Iterable[str]] = None,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
@@ -141,6 +143,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",
         source_dir_path: str,
+        raw: bool = False,
         extensions: Optional[Iterable[str]] = None,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
@@ -152,12 +155,14 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
             BaseTextAugmenter
         ] = ContextualWordEmbeddingsAugmenter,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Augment a random file from given directory.
 
         :param source_dir_path: Source files directory.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param extensions: Allowed extensions.
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
@@ -168,9 +173,6 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         :param text_extractor_kwargs: Text extractor kwargs.
         :param text_augmenter_cls: Text augmenter class.
         :param text_augmenter_kwargs: Text augmenter kwargs.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

@@ -3,6 +3,7 @@ from typing import Optional, Union, overload
 
 from docx import Document
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, DynamicTemplate, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
@@ -99,13 +100,13 @@ class DocxFileProvider(BaseProvider, FileMixin):
     @overload
     def docx_file(
         self: "DocxFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -113,6 +114,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
     @overload
     def docx_file(
         self: "DocxFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -125,17 +127,20 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     def docx_file(
         self: "DocxFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a DOCX file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -148,9 +153,6 @@ class DocxFileProvider(BaseProvider, FileMixin):
             modifiers (callables to call after the document instance has been
             created). Each callable should accept the following
             arguments: provider, document, data, counter and **kwargs.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

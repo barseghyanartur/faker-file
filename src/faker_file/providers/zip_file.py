@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue, returns_list
 from ..storages.base import BaseStorage
@@ -71,11 +72,11 @@ class ZipFileProvider(BaseProvider, FileMixin):
     @overload
     def zip_file(
         self: "ZipFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -83,6 +84,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
     @overload
     def zip_file(
         self: "ZipFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -93,22 +95,22 @@ class ZipFileProvider(BaseProvider, FileMixin):
 
     def zip_file(
         self: "ZipFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a ZIP file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue, returns_list
 from ..storages.base import BaseStorage
@@ -73,6 +74,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     @overload
     def tar_file(
         self: "TarFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -80,7 +82,6 @@ class TarFileProvider(BaseProvider, FileMixin):
         # Once Python 3.7 is deprecated, add the following annotation:
         #     Optional[Literal["gz", "bz2", "xz"]] = None
         compression: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -88,6 +89,7 @@ class TarFileProvider(BaseProvider, FileMixin):
     @overload
     def tar_file(
         self: "TarFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -101,6 +103,7 @@ class TarFileProvider(BaseProvider, FileMixin):
 
     def tar_file(
         self: "TarFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -108,20 +111,19 @@ class TarFileProvider(BaseProvider, FileMixin):
         # Once Python 3.7 is deprecated, add the following annotation:
         #     Optional[Literal["gz", "bz2", "xz"]] = None
         compression: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a TAR file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
         :param options: Options (non-structured) for complex types, such as ZIP.
         :param compression: Desired compression. Can be None or `gz`, `bz2`
             or `xz`.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

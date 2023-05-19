@@ -1,6 +1,7 @@
 from typing import Any, Dict, Optional, Type, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ...base import BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_AUDIO_MAX_NB_CHARS
@@ -108,6 +109,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     @overload
     def mp3_file(
         self: "Mp3FileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -117,7 +119,6 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             Union[str, Type[BaseMp3Generator]]
         ] = DEFAULT_MP3_GENERATOR,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -125,6 +126,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     @overload
     def mp3_file(
         self: "Mp3FileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -140,6 +142,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
     def mp3_file(
         self: "Mp3FileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -149,11 +152,13 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             Union[str, Type[BaseMp3Generator]]
         ] = DEFAULT_MP3_GENERATOR,
         mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a MP3 file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -162,9 +167,6 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param mp3_generator_cls: Mp3 generator class.
         :param mp3_generator_kwargs: Mp3 generator kwargs.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

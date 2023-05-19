@@ -5,6 +5,7 @@ from typing import Optional, Union, overload
 
 import xml2epub
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
@@ -56,6 +57,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
     @overload
     def epub_file(
         self: "EpubFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -64,7 +66,6 @@ class EpubFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         title: Optional[str] = None,
         chapter_title: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -72,6 +73,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
     @overload
     def epub_file(
         self: "EpubFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -86,6 +88,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
 
     def epub_file(
         self: "EpubFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -94,11 +97,13 @@ class EpubFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         title: Optional[str] = None,
         chapter_title: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate a EPUB file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -111,9 +116,6 @@ class EpubFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param chapter_title: Chapter title. Might contain dynamic elements,
             which are then replaced by correspondent fixtures.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

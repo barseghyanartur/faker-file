@@ -1,6 +1,7 @@
 from typing import Optional, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
@@ -52,13 +53,13 @@ class IcoFileProvider(BaseProvider, ImageMixin):
     @overload
     def ico_file(
         self: "IcoFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -66,6 +67,7 @@ class IcoFileProvider(BaseProvider, ImageMixin):
     @overload
     def ico_file(
         self: "IcoFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -78,17 +80,20 @@ class IcoFileProvider(BaseProvider, ImageMixin):
 
     def ico_file(
         self: "IcoFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate an ICO file with random text.
 
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -97,9 +102,6 @@ class IcoFileProvider(BaseProvider, ImageMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :param raw: If set to True, return `BytesValue` (binary content of
-            the file). Otherwise, return `StringValue` (path to the saved
-            file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

@@ -4,6 +4,7 @@ from random import choice
 from typing import Optional, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
@@ -46,10 +47,10 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -58,6 +59,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -68,21 +70,21 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",
         source_dir_path: str,
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Pick a random file from given directory.
 
         :param source_dir_path: Source files directory.
-        :param storage: Storage. Defaults to `FileSystemStorage`.
-        :param basename: File basename (without extension).
-        :param prefix: File name prefix.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
+        :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
+        :param prefix: File name prefix.
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """

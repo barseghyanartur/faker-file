@@ -1,6 +1,7 @@
 from typing import Optional, Union, overload
 
 from faker.providers import BaseProvider
+from typing_extensions import Literal
 
 from ..base import BytesValue, StringValue
 from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
@@ -52,13 +53,13 @@ class SvgFileProvider(BaseProvider, ImageMixin):
     @overload
     def svg_file(
         self: "SvgFileProvider",
+        raw: Literal[True],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        raw: bool = True,
         **kwargs,
     ) -> BytesValue:
         ...
@@ -66,6 +67,7 @@ class SvgFileProvider(BaseProvider, ImageMixin):
     @overload
     def svg_file(
         self: "SvgFileProvider",
+        raw: Literal[False],
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -78,13 +80,13 @@ class SvgFileProvider(BaseProvider, ImageMixin):
 
     def svg_file(
         self: "SvgFileProvider",
+        raw: bool = False,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
-        raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
         """Generate an SVG file with random text.

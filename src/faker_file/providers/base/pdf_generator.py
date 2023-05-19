@@ -4,6 +4,8 @@ from faker import Faker
 from faker.generator import Generator
 from faker.providers.python import Provider
 
+from ...base import DynamicTemplate
+
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
@@ -29,7 +31,7 @@ class BasePdfGenerator:
 
     def generate(
         self: "BasePdfGenerator",
-        content: str,
+        content: Union[str, DynamicTemplate],
         data: Dict[str, Any],
         provider: Union[Faker, Generator, Provider],
     ) -> bytes:
