@@ -831,15 +831,15 @@ def create_inner_odt_file(
         raise err
 
     return OdtFileProvider(generator).odt_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -901,6 +901,7 @@ def create_inner_pdf_file(
         raise err
 
     return PdfFileProvider(generator).pdf_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
@@ -909,9 +910,8 @@ def create_inner_pdf_file(
         content=content,
         pdf_generator_cls=pdf_generator_cls,
         pdf_generator_kwargs=pdf_generator_kwargs,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -967,15 +967,15 @@ def create_inner_png_file(
         raise err
 
     return PngFileProvider(generator).png_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1031,15 +1031,15 @@ def create_inner_pptx_file(
         raise err
 
     return PptxFileProvider(generator).pptx_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1095,15 +1095,15 @@ def create_inner_rtf_file(
         raise err
 
     return RtfFileProvider(generator).rtf_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1159,15 +1159,15 @@ def create_inner_svg_file(
         raise err
 
     return SvgFileProvider(generator).svg_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1219,14 +1219,14 @@ def create_inner_tar_file(
     except ImportError as err:
         raise err
     return TarFileProvider(generator).tar_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         options=options,
         compression=compression,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1282,15 +1282,15 @@ def create_inner_txt_file(
         raise err
 
     return TxtFileProvider(generator).txt_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1346,15 +1346,15 @@ def create_inner_webp_file(
         raise err
 
     return WebpFileProvider(generator).webp_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1410,15 +1410,15 @@ def create_inner_xlsx_file(
         raise err
 
     return XlsxFileProvider(generator).xlsx_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1483,6 +1483,7 @@ def create_inner_xml_file(
         raise err
 
     return XmlFileProvider(generator).xml_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
@@ -1492,9 +1493,8 @@ def create_inner_xml_file(
         num_rows=num_rows,
         content=content,
         encoding=encoding,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -1543,13 +1543,13 @@ def create_inner_zip_file(
     except ImportError as err:
         raise err
     return ZipFileProvider(generator).zip_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         options=options,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
