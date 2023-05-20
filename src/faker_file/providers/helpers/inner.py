@@ -109,14 +109,14 @@ def create_inner_bin_file(
         raise err
 
     return BinFileProvider(generator).bin_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         length=length,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -178,6 +178,7 @@ def create_inner_csv_file(
         raise err
 
     return CsvFileProvider(generator).csv_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
@@ -186,9 +187,8 @@ def create_inner_csv_file(
         num_rows=num_rows,
         include_row_ids=include_row_ids,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -244,15 +244,15 @@ def create_inner_docx_file(
         raise err
 
     return DocxFileProvider(generator).docx_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -310,6 +310,7 @@ def create_inner_eml_file(
     except ImportError as err:
         raise err
     return EmlFileProvider(generator).eml_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
@@ -317,9 +318,8 @@ def create_inner_eml_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -381,6 +381,7 @@ def create_inner_epub_file(
         raise err
 
     return EpubFileProvider(generator).epub_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
@@ -389,9 +390,8 @@ def create_inner_epub_file(
         content=content,
         title=title,
         chapter_title=chapter_title,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -446,12 +446,12 @@ def create_inner_generic_file(
     return GenericFileProvider(generator).generic_file(
         content=content,
         extension=extension,
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -507,15 +507,15 @@ def create_inner_ico_file(
         raise err
 
     return IcoFileProvider(generator).ico_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -571,15 +571,15 @@ def create_inner_jpeg_file(
         raise err
 
     return JpegFileProvider(generator).jpeg_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -638,6 +638,7 @@ def create_inner_mp3_file(
         raise err
 
     return Mp3FileProvider(generator).mp3_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
@@ -645,9 +646,8 @@ def create_inner_mp3_file(
         content=content,
         mp3_generator_cls=mp3_generator_cls,
         mp3_generator_kwargs=mp3_generator_kwargs,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -703,15 +703,15 @@ def create_inner_odp_file(
         raise err
 
     return OdpFileProvider(generator).odp_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
@@ -767,15 +767,15 @@ def create_inner_ods_file(
         raise err
 
     return OdsFileProvider(generator).ods_file(
+        raw=raw,
         storage=storage,
         basename=basename,
         prefix=prefix,
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
-        raw=raw,
         **kwargs,
-    )
+    )  # type: ignore
 
 
 # ************************************************
