@@ -1,6 +1,6 @@
 import logging
 from io import BytesIO
-from typing import Any, Dict, Union
+from typing import Any, Dict, List, Union
 
 from faker import Faker
 from faker.generator import Generator
@@ -10,7 +10,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import Paragraph, SimpleDocTemplate
+from reportlab.platypus import Flowable, Paragraph, SimpleDocTemplate
 
 from ....base import DynamicTemplate
 from ....constants import DEFAULT_FONT_NAME, DEFAULT_FONT_PATH
@@ -158,7 +158,7 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         style_paragraph.fontName = self.font_name
         pdfmetrics.registerFont(TTFont(self.font_name, self.font_path))
 
-        story = []
+        story: List[Flowable] = []
         buffer = BytesIO()
         doc = SimpleDocTemplate(
             buffer,

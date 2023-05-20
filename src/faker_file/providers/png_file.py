@@ -106,12 +106,12 @@ class PngFileProvider(BaseProvider, ImageMixin):
             or raw content of the file.
         """
         return self._image_file(
+            raw=raw,
             storage=storage,
             basename=basename,
             prefix=prefix,
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
-            raw=raw,
             **kwargs,
-        )
+        )  # type: ignore

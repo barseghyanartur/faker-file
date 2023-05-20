@@ -123,12 +123,12 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
             or raw content of the file.
         """
         return self._tabular_data_file(
+            raw=raw,
             storage=storage,
             basename=basename,
             prefix=prefix,
             data_columns=data_columns,
             num_rows=num_rows,
             content=content,
-            raw=raw,
             **kwargs,
-        )
+        )  # type: ignore
