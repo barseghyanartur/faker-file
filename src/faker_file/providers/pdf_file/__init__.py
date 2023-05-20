@@ -167,6 +167,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             **pdf_generator_kwargs,
         )
         data = {"content": "", "filename": filename}
+        _content: Union[str, DynamicTemplate]
         if isinstance(content, DynamicTemplate):
             _content = content
         else:
