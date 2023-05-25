@@ -36,3 +36,4 @@ sample_db.sqlite
 local_settings.py
 /prof/
 *.cast
+.ipynb_checkpoints/
