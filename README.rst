@@ -87,7 +87,8 @@ below between the brackets.
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
 - `Faker`_ (`MIT`) is the only required dependency.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
-  been tested with ``Django`` 2.2, 3.0, 3.1, 3.2, 4.0 and 4.1.
+  been tested with ``Django`` starting from version 2.2 to 4.2 (although only
+  maintained versions of Django are currently being tested against).
 - ``DOCX`` file support requires `python-docx`_ (`MIT`).
 - ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
