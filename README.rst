@@ -246,8 +246,8 @@ Additional providers
 - ``AugmentFileFromDirProvider``: Make an augmented copy of randomly picked
   file from given directory. The following types are supported : ``DOCX``,
   ``EML``, ``EPUB``, ``ODT``,  ``PDF``, ``RTF`` and ``TXT``.
-- ``GenericFileProvider``: Create files in any format from a predefined
-  template.
+- ``GenericFileProvider``: Create files in any format from raw bytes or a
+  predefined template.
 - ``RandomFileFromDirProvider``: Pick a random file from given directory.
 
 Supported file storages
