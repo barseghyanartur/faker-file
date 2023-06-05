@@ -25,6 +25,7 @@ __all__ = (
     "FileMixin",
     "StringList",
     "StringValue",
+    "DEFAULT_FORMAT_FUNC",
     "returns_list",
 )
 
@@ -38,6 +39,21 @@ class StringValue(str):
 
 class BytesValue(bytes):
     data: Dict[str, Any] = {}
+
+
+def parse_format_func(
+    generator: Union[Faker, Generator, Provider], content: str
+) -> str:
+    return generator.parse(content)
+
+
+def pystr_format_func(
+    generator: Union[Faker, Generator, Provider], content: str
+) -> str:
+    return generator.pystr_format(content)
+
+
+DEFAULT_FORMAT_FUNC = parse_format_func
 
 
 class FileMixin:
@@ -54,6 +70,9 @@ class FileMixin:
         max_nb_chars: int,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
     ) -> str:
         """Generate text content.
 
@@ -69,7 +88,7 @@ class FileMixin:
         if content is None:
             content = self.generator.text(max_nb_chars)
         else:
-            content = self.generator.pystr_format(content)
+            content = format_func(self.generator, content)
 
         if wrap_chars_after:
             content = wrap_text(content, wrap_chars_after)

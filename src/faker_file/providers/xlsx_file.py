@@ -1,8 +1,11 @@
-from typing import Dict, Optional, Union, overload
+from typing import Callable, Dict, Optional, Union, overload
 
+from faker import Faker
+from faker.generator import Generator
 from faker.providers import BaseProvider
+from faker.providers.python import Provider
 
-from ..base import BytesValue, StringValue
+from ..base import DEFAULT_FORMAT_FUNC, BytesValue, StringValue
 from ..storages.base import BaseStorage
 from .mixins.tablular_data_mixin import TabularDataMixin
 
@@ -68,6 +71,9 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -82,6 +88,9 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
     ) -> StringValue:
         ...
@@ -94,6 +103,9 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -114,6 +126,8 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
             to ``True`` to include a sequential row ID column.
         :param content: List of dicts with content (JSON-like format).
             If given, used as is.
+        :param format_func: Callable responsible for formatting template
+            strings.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -127,6 +141,7 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
             data_columns=data_columns,
             num_rows=num_rows,
             content=content,
+            format_func=format_func,
             raw=raw,
             **kwargs,
         )

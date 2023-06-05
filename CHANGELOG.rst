@@ -15,6 +15,23 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.15
+----
+2023-06-5
+
+- Added ``format_func`` argument to most of the providers. This allows to
+  control which formatter function will be used as a default formatter.
+  Previous it has been ``faker.provider.Python.pystr_format``, which has
+  been changed to ``faker.provider.Python.parse``, since the latter is
+  more convenient (as it does not transform characters
+  like ``?``, ``!``, ``#`` into something else using ``bothify`` method).
+  To revert this behaviour, make sure to pass a callable
+  function ``faker_file.base.pystr_format_func`` in ``format_func`` argument
+  to each correspondent provider or inner function.
+- Added ``create_inner_random_file_from_dir`` inner function.
+- Tested against Django 4.2.
+- Stop testing against Django 2.2.
+
 0.14.5
 ------
 2023-05-11

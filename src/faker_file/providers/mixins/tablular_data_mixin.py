@@ -1,9 +1,11 @@
-from typing import Dict, Optional, Union, overload
+from typing import Callable, Dict, Optional, Union, overload
 
 from faker import Faker
+from faker.generator import Generator
+from faker.providers.python import Provider
 from tablib import Dataset
 
-from ...base import BytesValue, FileMixin, StringValue
+from ...base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 
@@ -25,6 +27,9 @@ class TabularDataMixin(FileMixin):
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -39,6 +44,9 @@ class TabularDataMixin(FileMixin):
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
     ) -> StringValue:
         ...
@@ -51,6 +59,9 @@ class TabularDataMixin(FileMixin):
         data_columns: Optional[Dict[str, str]] = None,
         num_rows: int = 10,
         content: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -71,6 +82,8 @@ class TabularDataMixin(FileMixin):
             to ``True`` to include a sequential row ID column.
         :param content: List of dicts with content (JSON-like format).
             If given, used as is.
+        :param format_func: Callable responsible for formatting template
+            strings.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).

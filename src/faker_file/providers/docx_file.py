@@ -1,10 +1,19 @@
 from io import BytesIO
-from typing import Optional, Union, overload
+from typing import Callable, Optional, Union, overload
 
 from docx import Document
+from faker import Faker
+from faker.generator import Generator
 from faker.providers import BaseProvider
+from faker.providers.python import Provider
 
-from ..base import BytesValue, DynamicTemplate, FileMixin, StringValue
+from ..base import (
+    DEFAULT_FORMAT_FUNC,
+    BytesValue,
+    DynamicTemplate,
+    FileMixin,
+    StringValue,
+)
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -105,6 +114,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -119,6 +131,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
     ) -> StringValue:
         ...
@@ -131,6 +146,9 @@ class DocxFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[Union[str, DynamicTemplate]] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -148,6 +166,8 @@ class DocxFileProvider(BaseProvider, FileMixin):
             modifiers (callables to call after the document instance has been
             created). Each callable should accept the following
             arguments: provider, document, data, counter and **kwargs.
+        :param format_func: Callable responsible for formatting template
+            strings.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -171,6 +191,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
                 max_nb_chars=max_nb_chars,
                 wrap_chars_after=wrap_chars_after,
                 content=content,
+                format_func=format_func,
             )
         data = {"content": _content, "filename": filename}
 

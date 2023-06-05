@@ -1,12 +1,15 @@
 import os
 import shutil
 import tempfile
-from typing import Optional, Union, overload
+from typing import Callable, Optional, Union, overload
 
 import xml2epub
+from faker import Faker
+from faker.generator import Generator
 from faker.providers import BaseProvider
+from faker.providers.python import Provider
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -64,6 +67,9 @@ class EpubFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         title: Optional[str] = None,
         chapter_title: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -80,6 +86,9 @@ class EpubFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         title: Optional[str] = None,
         chapter_title: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
     ) -> StringValue:
         ...
@@ -94,6 +103,9 @@ class EpubFileProvider(BaseProvider, FileMixin):
         content: Optional[str] = None,
         title: Optional[str] = None,
         chapter_title: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -111,6 +123,8 @@ class EpubFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param chapter_title: Chapter title. Might contain dynamic elements,
             which are then replaced by correspondent fixtures.
+        :param format_func: Callable responsible for formatting template
+            strings.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -131,16 +145,19 @@ class EpubFileProvider(BaseProvider, FileMixin):
             max_nb_chars=max_nb_chars,
             wrap_chars_after=wrap_chars_after,
             content=content,
+            format_func=format_func,
         ).replace("\n", "<br>")
 
         title = self._generate_text_content(
             max_nb_chars=50,
             content=title,
+            format_func=format_func,
         )
 
         chapter_title = self._generate_text_content(
             max_nb_chars=50,
             content=chapter_title,
+            format_func=format_func,
         )
 
         _book = xml2epub.Epub(title)
