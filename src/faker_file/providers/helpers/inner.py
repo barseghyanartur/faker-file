@@ -16,7 +16,7 @@ from faker import Faker
 from faker.generator import Generator
 from faker.providers.python import Provider
 
-from ...base import BytesValue, StringValue
+from ...base import DEFAULT_FORMAT_FUNC, BytesValue, StringValue
 from ...constants import (
     DEFAULT_AUDIO_MAX_NB_CHARS,
     DEFAULT_IMAGE_MAX_NB_CHARS,
@@ -45,6 +45,7 @@ __all__ = (
     "create_inner_pdf_file",
     "create_inner_png_file",
     "create_inner_pptx_file",
+    "create_inner_random_file_from_dir",
     "create_inner_rtf_file",
     "create_inner_svg_file",
     "create_inner_tar_file",
@@ -133,6 +134,9 @@ def create_inner_csv_file(
     num_rows: int = 10,
     include_row_ids: bool = False,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -150,6 +154,9 @@ def create_inner_csv_file(
     num_rows: int = 10,
     include_row_ids: bool = False,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -165,6 +172,9 @@ def create_inner_csv_file(
     num_rows: int = 10,
     include_row_ids: bool = False,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -183,6 +193,7 @@ def create_inner_csv_file(
         num_rows=num_rows,
         include_row_ids=include_row_ids,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -202,6 +213,9 @@ def create_inner_docx_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -217,6 +231,9 @@ def create_inner_docx_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -230,6 +247,9 @@ def create_inner_docx_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -247,6 +267,7 @@ def create_inner_docx_file(
         wrap_chars_after=wrap_chars_after,
         content=content,
         raw=raw,
+        format_func=format_func,
         **kwargs,
     )
 
@@ -266,6 +287,9 @@ def create_inner_eml_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -282,6 +306,9 @@ def create_inner_eml_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -296,6 +323,9 @@ def create_inner_eml_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -312,6 +342,7 @@ def create_inner_eml_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -333,6 +364,9 @@ def create_inner_epub_file(
     content: Optional[str] = None,
     title: Optional[str] = None,
     chapter_title: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -350,6 +384,9 @@ def create_inner_epub_file(
     content: Optional[str] = None,
     title: Optional[str] = None,
     chapter_title: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -365,6 +402,9 @@ def create_inner_epub_file(
     content: Optional[str] = None,
     title: Optional[str] = None,
     chapter_title: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -383,6 +423,7 @@ def create_inner_epub_file(
         content=content,
         title=title,
         chapter_title=chapter_title,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -401,6 +442,9 @@ def create_inner_generic_file(
     basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -415,6 +459,9 @@ def create_inner_generic_file(
     basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -427,6 +474,9 @@ def create_inner_generic_file(
     basename: Optional[str] = None,
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -442,6 +492,7 @@ def create_inner_generic_file(
         storage=storage,
         basename=basename,
         prefix=prefix,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -461,6 +512,9 @@ def create_inner_ico_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -476,6 +530,9 @@ def create_inner_ico_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -489,6 +546,9 @@ def create_inner_ico_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -505,6 +565,7 @@ def create_inner_ico_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -524,6 +585,9 @@ def create_inner_jpeg_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -539,6 +603,9 @@ def create_inner_jpeg_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -552,6 +619,9 @@ def create_inner_jpeg_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -568,6 +638,7 @@ def create_inner_jpeg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -588,6 +659,9 @@ def create_inner_mp3_file(
     content: Optional[str] = None,
     mp3_generator_cls: Optional[Union[str, Type[BaseMp3Generator]]] = None,
     mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -604,6 +678,9 @@ def create_inner_mp3_file(
     content: Optional[str] = None,
     mp3_generator_cls: Optional[Union[str, Type[BaseMp3Generator]]] = None,
     mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -618,6 +695,9 @@ def create_inner_mp3_file(
     content: Optional[str] = None,
     mp3_generator_cls: Optional[Union[str, Type[BaseMp3Generator]]] = None,
     mp3_generator_kwargs: Optional[Dict[str, Any]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -635,6 +715,7 @@ def create_inner_mp3_file(
         content=content,
         mp3_generator_cls=mp3_generator_cls,
         mp3_generator_kwargs=mp3_generator_kwargs,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -654,6 +735,9 @@ def create_inner_odp_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -669,6 +753,9 @@ def create_inner_odp_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
     ...
@@ -682,6 +769,9 @@ def create_inner_odp_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -698,6 +788,7 @@ def create_inner_odp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -717,6 +808,9 @@ def create_inner_ods_file(
     data_columns: Optional[Dict[str, str]] = None,
     num_rows: int = 10,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -732,6 +826,9 @@ def create_inner_ods_file(
     data_columns: Optional[Dict[str, str]] = None,
     num_rows: int = 10,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -745,6 +842,9 @@ def create_inner_ods_file(
     data_columns: Optional[Dict[str, str]] = None,
     num_rows: int = 10,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -761,6 +861,7 @@ def create_inner_ods_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -780,6 +881,9 @@ def create_inner_odt_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -795,6 +899,9 @@ def create_inner_odt_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -808,6 +915,9 @@ def create_inner_odt_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -824,6 +934,7 @@ def create_inner_odt_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -845,6 +956,9 @@ def create_inner_pdf_file(
     content: Optional[str] = None,
     pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = None,
     pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -862,6 +976,9 @@ def create_inner_pdf_file(
     content: Optional[str] = None,
     pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = None,
     pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -877,6 +994,9 @@ def create_inner_pdf_file(
     content: Optional[str] = None,
     pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = None,
     pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -895,6 +1015,7 @@ def create_inner_pdf_file(
         content=content,
         pdf_generator_cls=pdf_generator_cls,
         pdf_generator_kwargs=pdf_generator_kwargs,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -914,6 +1035,9 @@ def create_inner_png_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -929,6 +1053,9 @@ def create_inner_png_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -942,6 +1069,9 @@ def create_inner_png_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -958,6 +1088,7 @@ def create_inner_png_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -977,6 +1108,9 @@ def create_inner_pptx_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -992,6 +1126,9 @@ def create_inner_pptx_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1005,6 +1142,9 @@ def create_inner_pptx_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1021,6 +1161,64 @@ def create_inner_pptx_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# ************************************************
+# *********** RandomFileFromDirProvider **********
+# ************************************************
+
+
+@overload
+def create_inner_random_file_from_dir(
+    source_dir_path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_random_file_from_dir(
+    source_dir_path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_random_file_from_dir(
+    source_dir_path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner random_file_from_dir file."""
+    try:
+        from faker_file.providers.random_file_from_dir import (
+            RandomFileFromDirProvider,
+        )
+    except ImportError as err:
+        raise err
+
+    return RandomFileFromDirProvider(generator).random_file_from_dir(
+        source_dir_path=source_dir_path,
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
         raw=raw,
         **kwargs,
     )
@@ -1040,6 +1238,9 @@ def create_inner_rtf_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -1055,6 +1256,9 @@ def create_inner_rtf_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1068,6 +1272,9 @@ def create_inner_rtf_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1084,6 +1291,7 @@ def create_inner_rtf_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -1103,6 +1311,9 @@ def create_inner_svg_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -1118,6 +1329,9 @@ def create_inner_svg_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1131,6 +1345,9 @@ def create_inner_svg_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1147,6 +1364,7 @@ def create_inner_svg_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -1224,6 +1442,9 @@ def create_inner_txt_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -1239,6 +1460,9 @@ def create_inner_txt_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1252,6 +1476,9 @@ def create_inner_txt_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1268,6 +1495,7 @@ def create_inner_txt_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -1287,6 +1515,9 @@ def create_inner_webp_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -1302,6 +1533,9 @@ def create_inner_webp_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1315,6 +1549,9 @@ def create_inner_webp_file(
     max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1331,6 +1568,7 @@ def create_inner_webp_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -1350,6 +1588,9 @@ def create_inner_xlsx_file(
     data_columns: Optional[Dict[str, str]] = None,
     num_rows: int = 10,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -1365,6 +1606,9 @@ def create_inner_xlsx_file(
     data_columns: Optional[Dict[str, str]] = None,
     num_rows: int = 10,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1378,6 +1622,9 @@ def create_inner_xlsx_file(
     data_columns: Optional[Dict[str, str]] = None,
     num_rows: int = 10,
     content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1394,6 +1641,7 @@ def create_inner_xlsx_file(
         data_columns=data_columns,
         num_rows=num_rows,
         content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )
@@ -1416,6 +1664,9 @@ def create_inner_xml_file(
     num_rows: int = 10,
     content: Optional[str] = None,
     encoding: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
 ) -> BytesValue:
@@ -1434,6 +1685,9 @@ def create_inner_xml_file(
     num_rows: int = 10,
     content: Optional[str] = None,
     encoding: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
 ) -> StringValue:
     ...
@@ -1450,6 +1704,9 @@ def create_inner_xml_file(
     num_rows: int = 10,
     content: Optional[str] = None,
     encoding: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
     raw: bool = False,
     **kwargs,
 ) -> Union[BytesValue, StringValue]:
@@ -1469,6 +1726,7 @@ def create_inner_xml_file(
         num_rows=num_rows,
         content=content,
         encoding=encoding,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )

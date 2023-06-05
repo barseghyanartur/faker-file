@@ -50,6 +50,7 @@ KWARGS_DROP = {
     # "mp3_generator_kwargs",  # Drop as non-supported arg
     # "pdf_generator_cls",  # Drop as non-supported arg
     # "pdf_generator_kwargs",  # Drop as non-supported arg
+    "format_func",  # Drop as non-supported arg
     "raw",  # Drop `raw`, because we will be forcing raw=True for streaming
 }
 OVERRIDES = {

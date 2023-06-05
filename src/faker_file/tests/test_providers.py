@@ -10,7 +10,7 @@ from faker import Faker
 from parametrize import parametrize
 from pathy import use_fs
 
-from ..base import DEFAULT_REL_PATH, DynamicTemplate
+from ..base import DEFAULT_REL_PATH, DynamicTemplate, pystr_format_func
 from ..constants import (
     DEFAULT_FILE_ENCODING,
     DEFAULT_FONT_NAME,
@@ -42,6 +42,7 @@ from ..providers.helpers.inner import (
     create_inner_pdf_file,
     create_inner_png_file,
     create_inner_pptx_file,
+    create_inner_random_file_from_dir,
     create_inner_rtf_file,
     create_inner_svg_file,
     create_inner_tar_file,
@@ -167,6 +168,13 @@ class ProvidersTestCase(unittest.TestCase):
             {"content": "{{name}},{{date}}"},
             None,
         ),
+        (
+            FAKER,
+            CsvFileProvider,
+            "csv_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # DOCX
         (FAKER, DocxFileProvider, "docx_file", {}, None),
         (FAKER_HY, DocxFileProvider, "docx_file", {}, None),
@@ -201,6 +209,13 @@ class ProvidersTestCase(unittest.TestCase):
                     [(docx_add_table, {}), (docx_add_picture, {})]
                 ),
             },
+            None,
+        ),
+        (
+            FAKER,
+            DocxFileProvider,
+            "docx_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # EML
@@ -264,6 +279,13 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            EmlFileProvider,
+            "eml_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # EPUB
         (FAKER, EpubFileProvider, "epub_file", {}, None),
         (FAKER_HY, EpubFileProvider, "epub_file", {}, None),
@@ -287,6 +309,13 @@ class ProvidersTestCase(unittest.TestCase):
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
             },
+            None,
+        ),
+        (
+            FAKER,
+            EpubFileProvider,
+            "epub_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # Generic
@@ -352,6 +381,17 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            GenericFileProvider,
+            "generic_file",
+            {
+                "content": b"<html><body><p>{{text}}</p></body></html>",
+                "extension": "html",
+                "format_func": pystr_format_func,
+            },
+            None,
+        ),
         # ICO
         (FAKER, IcoFileProvider, "ico_file", {}, None),
         (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
@@ -375,6 +415,13 @@ class ProvidersTestCase(unittest.TestCase):
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
             },
+            None,
+        ),
+        (
+            FAKER,
+            IcoFileProvider,
+            "ico_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # JPEG
@@ -417,11 +464,25 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            OdpFileProvider,
+            "odp_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # ODS
         (FAKER, OdsFileProvider, "ods_file", {}, None),
         (FAKER_HY, OdsFileProvider, "ods_file", {}, None),
         (FAKER, OdsFileProvider, "ods_file", {}, False),
         (FAKER, OdsFileProvider, "ods_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            OdsFileProvider,
+            "ods_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # ODT
         (FAKER, OdtFileProvider, "odt_file", {}, None),
         (FAKER_HY, OdtFileProvider, "odt_file", {}, None),
@@ -446,6 +507,13 @@ class ProvidersTestCase(unittest.TestCase):
                     [(odt_add_table, {}), (odt_add_picture, {})]
                 ),
             },
+            None,
+        ),
+        (
+            FAKER,
+            OdtFileProvider,
+            "odt_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # PDF
@@ -564,6 +632,13 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # PNG
         (FAKER, PngFileProvider, "png_file", {}, None),
         (FAKER_HY, PngFileProvider, "png_file", {}, None),
@@ -612,6 +687,13 @@ class ProvidersTestCase(unittest.TestCase):
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
             },
+            None,
+        ),
+        (
+            FAKER,
+            PptxFileProvider,
+            "pptx_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # RandomFileFromDirProvider
@@ -671,6 +753,13 @@ class ProvidersTestCase(unittest.TestCase):
                 "wrap_chars_after": 40,
                 "content": FAKER.text(),
             },
+            None,
+        ),
+        (
+            FAKER,
+            RtfFileProvider,
+            "rtf_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # SVG
@@ -749,6 +838,13 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            TxtFileProvider,
+            "txt_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # WEBP
         # (FAKER, WebpFileProvider, "webp_file", {}, None),
         # (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
@@ -757,11 +853,25 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER_HY, XlsxFileProvider, "xlsx_file", {}, None),
         (FAKER, XlsxFileProvider, "xlsx_file", {}, False),
         (FAKER, XlsxFileProvider, "xlsx_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            XlsxFileProvider,
+            "xlsx_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # XML
         (FAKER, XmlFileProvider, "xml_file", {}, None),
         (FAKER_HY, XmlFileProvider, "xml_file", {}, None),
         (FAKER, XmlFileProvider, "xml_file", {}, False),
         (FAKER, XmlFileProvider, "xml_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            XmlFileProvider,
+            "xml_file",
+            {"format_func": pystr_format_func},
+            None,
+        ),
         # ZIP
         (FAKER, ZipFileProvider, "zip_file", {}, None),
         (FAKER, ZipFileProvider, "zip_file", {}, False),
@@ -905,6 +1015,15 @@ class ProvidersTestCase(unittest.TestCase):
         (create_inner_pdf_file, "Lorem ipsum", {}),
         (create_inner_png_file, "Lorem ipsum", {}),
         (create_inner_pptx_file, "Lorem ipsum", {}),
+        (
+            create_inner_random_file_from_dir,
+            None,
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+        ),
         (create_inner_rtf_file, "Lorem ipsum", {}),
         (create_inner_svg_file, "Lorem ipsum", {}),
         (create_inner_tar_file, None, {}),
@@ -1395,6 +1514,17 @@ class ProvidersTestCase(unittest.TestCase):
                 "PptxFileProvider",
                 create_inner_pptx_file,
                 {},
+            ),
+            # RandomFileFromDirProvider
+            (
+                "faker_file.providers.random_file_from_dir",
+                "RandomFileFromDirProvider",
+                create_inner_random_file_from_dir,
+                {
+                    "source_dir_path": os.path.join(
+                        tempfile.gettempdir(), DEFAULT_REL_PATH
+                    )
+                },
             ),
             # RTF
             (

@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Handy apps
+    "django_extensions",
     # REST framework specific
     "drf_spectacular",
     "rest_framework",
@@ -187,6 +188,16 @@ LOGGING = {
         },
     },
 }
+
+# Jupyter notebook config
+NOTEBOOK_ARGUMENTS = [
+    "--ip",
+    "0.0.0.0",
+    "--port",
+    "8888",
+]
+IPYTHON_KERNEL_DISPLAY_NAME = "Django Kernel"
+
 
 # Do not put any settings below this line
 try:

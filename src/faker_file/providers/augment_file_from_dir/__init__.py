@@ -37,6 +37,7 @@ from .extractors.tika_extractor import TikaTextExtractor
 # create_inner_docx_file: Supported
 # create_inner_eml_file: Supported
 # create_inner_epub_file: Supported
+# create_inner_generic_file: Not supported
 # create_inner_ico_file: Not supported
 # create_inner_jpeg_file: Not supported
 # create_inner_mp3_file: Not supported
@@ -47,9 +48,11 @@ from .extractors.tika_extractor import TikaTextExtractor
 # create_inner_pptx_file: Not supported
 # create_inner_rtf_file: Supported
 # create_inner_svg_file: Not supported
+# create_inner_tar_file: Not supported
 # create_inner_txt_file: Supported
 # create_inner_webp_file: Not supported
 # create_inner_xlsx_file: Not supported
+# create_inner_xml_file: Not supported
 # create_inner_zip_file: Not supported
 
 

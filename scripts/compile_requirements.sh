@@ -30,6 +30,9 @@ pip-compile examples/requirements/django_4_0.in "$@"
 echo "django_4_1.in"
 pip-compile examples/requirements/django_4_1.in "$@"
 
+echo "django_4_2.in"
+pip-compile examples/requirements/django_4_2.in "$@"
+
 echo "django_2_2_and_flask.in"
 pip-compile examples/requirements/django_2_2_and_flask.in "$@"
 
@@ -47,6 +50,9 @@ pip-compile examples/requirements/django_4_0_and_flask.in "$@"
 
 echo "django_4_1_and_flask.in"
 pip-compile examples/requirements/django_4_1_and_flask.in "$@"
+
+echo "django_4_2_and_flask.in"
+pip-compile examples/requirements/django_4_2_and_flask.in "$@"
 
 echo "docs.in"
 pip-compile examples/requirements/docs.in "$@"
