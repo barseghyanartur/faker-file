@@ -1,10 +1,12 @@
 import xml.etree.ElementTree as ET
-from typing import Dict, Optional, Union, overload
+from typing import Callable, Dict, Optional, Union, overload
 
 from faker import Faker
+from faker.generator import Generator
 from faker.providers import BaseProvider
+from faker.providers.python import Provider
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_XML_DATA_COLUMNS
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -83,10 +85,15 @@ class XmlFileProvider(BaseProvider, FileMixin):
     extension: str = "xml"
 
     def _generate_xml_element(
-        self, element_name: str, content_template: str
+        self,
+        element_name: str,
+        content_template: str,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
     ) -> ET.Element:
         element = ET.Element(element_name)
-        element.text = self.generator.pystr_format(content_template)
+        element.text = format_func(self.generator, content_template)
         return element
 
     @overload
@@ -101,6 +108,9 @@ class XmlFileProvider(BaseProvider, FileMixin):
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -118,6 +128,9 @@ class XmlFileProvider(BaseProvider, FileMixin):
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
     ) -> StringValue:
         ...
@@ -133,10 +146,40 @@ class XmlFileProvider(BaseProvider, FileMixin):
         num_rows: int = 10,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate an XML file with random text."""
+        """Generate an XML file with random text.
+
+        :param storage: Storage. Defaults to `FileSystemStorage`.
+        :param basename: File basename (without extension).
+        :param prefix: File name prefix.
+        :param root_element: Root XML element.
+        :param row_element: Row XML element.
+        :param data_columns: The ``data_columns`` argument expects a list or a
+            tuple of string tokens, and these string tokens will be passed to
+            :meth:`pystr_format()
+            <faker.providers.python.Provider.pystr_format>`
+            for data generation. Argument Groups are used to pass arguments
+            to the provider methods. Both ``header`` and ``data_columns`` must
+            be of the same length.
+        :param num_rows: The ``num_rows`` argument controls how many rows of
+            data to generate, and the ``include_row_ids`` argument may be set
+            to ``True`` to include a sequential row ID column.
+        :param content: File content. Might contain dynamic elements, which
+            are then replaced by correspondent fixtures.
+        :param encoding: Encoding.
+        :param format_func: Callable responsible for formatting template
+            strings.
+        :param raw: If set to True, return `BytesValue` (binary content of
+            the file). Otherwise, return `StringValue` (path to the saved
+            file).
+        :return: Relative path (from root directory) of the generated file
+            or raw content of the file.
+        """
 
         if storage is None:
             storage = FileSystemStorage()
@@ -159,11 +202,13 @@ class XmlFileProvider(BaseProvider, FileMixin):
                 row = ET.SubElement(root, row_element)
                 for col_name, col_template in data_columns.items():
                     row.append(
-                        self._generate_xml_element(col_name, col_template)
+                        self._generate_xml_element(
+                            col_name, col_template, format_func=format_func
+                        )
                     )
             content = ET.tostring(root, encoding="utf-8").decode("utf-8")
         else:
-            content = self.generator.pystr_format(content)
+            content = format_func(self.generator, content)
 
         data = {"content": content, "filename": filename}
 

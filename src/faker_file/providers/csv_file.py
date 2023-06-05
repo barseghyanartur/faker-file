@@ -1,9 +1,11 @@
-from typing import Optional, Sequence, Tuple, Union, overload
+from typing import Callable, Optional, Sequence, Tuple, Union, overload
 
 from faker import Faker
+from faker.generator import Generator
 from faker.providers import BaseProvider
+from faker.providers.python import Provider
 
-from ..base import BytesValue, FileMixin, StringValue
+from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -66,6 +68,9 @@ class CsvFileProvider(BaseProvider, FileMixin):
         include_row_ids: bool = False,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -83,6 +88,9 @@ class CsvFileProvider(BaseProvider, FileMixin):
         include_row_ids: bool = False,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
     ) -> StringValue:
         ...
@@ -98,6 +106,9 @@ class CsvFileProvider(BaseProvider, FileMixin):
         include_row_ids: bool = False,
         content: Optional[str] = None,
         encoding: Optional[str] = None,
+        format_func: Callable[
+            [Union[Faker, Generator, Provider], str], str
+        ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -110,8 +121,8 @@ class CsvFileProvider(BaseProvider, FileMixin):
             strings that will serve as the header row if supplied.
         :param data_columns: The ``data_columns`` argument expects a list or a
             tuple of string tokens, and these string tokens will be passed to
-            :meth:`pystr_format()
-            <faker.providers.python.Provider.pystr_format>`
+            :meth:`parse()
+            <faker.providers.python.Provider.parse>`
             for data generation. Argument Groups are used to pass arguments
             to the provider methods. Both ``header`` and ``data_columns`` must
             be of the same length.
@@ -121,6 +132,8 @@ class CsvFileProvider(BaseProvider, FileMixin):
         :param include_row_ids:
         :param content: File content. If given, used as is.
         :param encoding: Encoding.
+        :param format_func: Callable responsible for formatting template
+            strings.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -149,7 +162,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
                 include_row_ids=include_row_ids,
             )
         else:
-            content = self.generator.pystr_format(content)
+            content = format_func(self.generator, content)
 
         data = {"content": content, "filename": filename}
 
