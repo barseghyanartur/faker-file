@@ -17,7 +17,7 @@ are used for versioning (schema follows below):
 
 0.15
 ----
-2023-06-5
+2023-06-05
 
 - Added ``format_func`` argument to most of the providers. This allows to
   control which formatter function will be used as a default formatter.
