@@ -30,6 +30,7 @@ are used for versioning (schema follows below):
   to each correspondent provider or inner function.
 - Added ``create_inner_random_file_from_dir`` inner function.
 - Tested against Django 4.2.
+- Stop testing against Django 2.2.
 
 0.14.5
 ------
