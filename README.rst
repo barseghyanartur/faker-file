@@ -362,6 +362,13 @@ Usage example with storages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Native file system storage. Does not have dependencies.
 
+- ``root_path``: Path to the root directory. Given the example of Django,
+  this would be the path to the ``MEDIA_ROOT`` directory. It's important
+  to know, that ``root_path`` will not be embedded into the string
+  representation of the file. Only ``rel_path`` will.
+- ``rel_path``: Relative path from the root directory. Given the example of
+  Django, this would be the rest of the path to the file.
+
 .. code-block:: python
 
     import tempfile

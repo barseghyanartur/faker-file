@@ -781,6 +781,24 @@ Pick a random file from a directory given
         prefix="zzz",
     )
 
+
+File from path given
+~~~~~~~~~~~~~~~~~~~~
+- Create an exact copy of a file under a different name.
+- Prefix of the destination file would be ``zzz``.
+- ``path`` is the absolute path to the file to copy.
+
+.. code-block:: python
+
+    from faker_file.providers.file_from_path import (
+        FileFromPathProvider,
+    )
+
+    file = FileFromPathProvider(FAKER).file_from_path(
+        path="/path/to/file.docx",
+        prefix="zzz",
+    )
+
 Generate a file of a certain size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The only two file types for which it is easy to foresee the file size are BIN
