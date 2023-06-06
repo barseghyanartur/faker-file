@@ -37,3 +37,4 @@ local_settings.py
 /prof/
 *.cast
 .ipynb_checkpoints/
+.scannerwork/
