@@ -249,6 +249,7 @@ Additional providers
 - ``GenericFileProvider``: Create files in any format from raw bytes or a
   predefined template.
 - ``RandomFileFromDirProvider``: Pick a random file from given directory.
+- ``FileFromPathProvider``: File from given path.
 
 Supported file storages
 -----------------------
