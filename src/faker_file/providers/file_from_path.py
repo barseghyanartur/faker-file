@@ -1,6 +1,4 @@
-import os
 from pathlib import Path
-from random import choice
 from typing import Optional, Union, overload
 
 from faker.providers import BaseProvider
@@ -12,30 +10,30 @@ from ..storages.filesystem import FileSystemStorage
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("RandomFileFromDirProvider",)
+__all__ = ("FileFromPathProvider",)
 
 
-class RandomFileFromDirProvider(BaseProvider, FileMixin):
-    """Random file from given directory provider.
+class FileFromPathProvider(BaseProvider, FileMixin):
+    """File from given path provider.
 
     Usage example:
 
-        from faker_file.providers.random_file_from_dir import (
-            RandomFileFromDirProvider,
+        from faker_file.providers.file_from_path import (
+            FileFromPathProvider,
         )
 
-        file = RandomFileFromDirProvider(None).random_file_from_dir(
-            source_dir_path="/tmp/tmp/",
+        file = FileFromPathProvider(None).file_from_path(
+            path="/path/to/file.pdf",
         )
 
     Usage example with options:
 
-        from faker_file.providers.random_file_from_dir import (
-            RandomFileFromDirProvider,
+        from faker_file.providers.file_from_path import (
+            FileFromPathProvider,
         )
 
-        file = RandomFileFromDirProvider(None).random_file_from_dir(
-            source_dir_path="/tmp/tmp/",
+        file = FileFromPathProvider(None).file_from_path(
+            path="/path/to/file.pdf",
             prefix="zzz",
         )
     """
@@ -43,9 +41,9 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     extension: str = ""
 
     @overload
-    def random_file_from_dir(
-        self: "RandomFileFromDirProvider",
-        source_dir_path: str,
+    def file_from_path(
+        self: "FileFromPathProvider",
+        path: str,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -55,9 +53,9 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         ...
 
     @overload
-    def random_file_from_dir(
-        self: "RandomFileFromDirProvider",
-        source_dir_path: str,
+    def file_from_path(
+        self: "FileFromPathProvider",
+        path: str,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -65,18 +63,18 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
     ) -> StringValue:
         ...
 
-    def random_file_from_dir(
-        self: "RandomFileFromDirProvider",
-        source_dir_path: str,
+    def file_from_path(
+        self: "FileFromPathProvider",
+        path: str,
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Pick a random file from given directory.
+        """File from given path.
 
-        :param source_dir_path: Source files directory.
+        :param path: Path to source file.
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
@@ -91,13 +89,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
             storage = FileSystemStorage()
 
         # Specific
-        source_file_choices = [
-            os.path.join(source_dir_path, _f)
-            for _f in os.listdir(source_dir_path)
-            if os.path.isfile(os.path.join(source_dir_path, _f))
-        ]
-        source_file_path = choice(source_file_choices)
-        source_file = Path(source_file_path)
+        source_file = Path(path)
 
         # Generic
         filename = storage.generate_filename(
@@ -108,7 +100,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         data = {"filename": filename}
 
         # Specific
-        with open(source_file_path, "rb") as _file:
+        with open(path, "rb") as _file:
             if raw:
                 raw_content = BytesValue(_file.read())
                 raw_content.data = data

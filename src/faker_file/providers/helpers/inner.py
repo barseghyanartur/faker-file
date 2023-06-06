@@ -35,6 +35,7 @@ __all__ = (
     "create_inner_docx_file",
     "create_inner_eml_file",
     "create_inner_epub_file",
+    "create_inner_file_from_path",
     "create_inner_generic_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
@@ -424,6 +425,61 @@ def create_inner_epub_file(
         title=title,
         chapter_title=chapter_title,
         format_func=format_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# ************************************************
+# ***************** FileFromPath *****************
+# ************************************************
+
+
+@overload
+def create_inner_file_from_path(
+    path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_file_from_path(
+    path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_file_from_path(
+    path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner file from path."""
+    try:
+        from ..file_from_path import FileFromPathProvider
+    except ImportError as err:
+        raise err
+
+    return FileFromPathProvider(generator).file_from_path(
+        path,
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
         raw=raw,
         **kwargs,
     )
