@@ -25,6 +25,7 @@ from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider
+from ..providers.file_from_path import FileFromPathProvider
 from ..providers.generic_file import GenericFileProvider
 from ..providers.helpers.inner import (
     create_inner_bin_file,
@@ -32,6 +33,7 @@ from ..providers.helpers.inner import (
     create_inner_docx_file,
     create_inner_eml_file,
     create_inner_epub_file,
+    create_inner_file_from_path,
     create_inner_generic_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
@@ -112,6 +114,7 @@ FileProvider = Union[
     DocxFileProvider,
     EmlFileProvider,
     EpubFileProvider,
+    FileFromPathProvider,
     GenericFileProvider,
     IcoFileProvider,
     JpegFileProvider,
@@ -137,6 +140,8 @@ FAKER = Faker()
 FAKER_HY = Faker(locale="hy_AM")
 FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
+
+SOURCE_FILE_FROM_PATH = TxtFileProvider(FAKER).txt_file(max_nb_chars=100)
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -317,6 +322,34 @@ class ProvidersTestCase(unittest.TestCase):
             "epub_file",
             {"format_func": pystr_format_func},
             None,
+        ),
+        # FileFromPathProvider
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            None,
+        ),
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            False,
+        ),
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            PATHY_FS_STORAGE,
         ),
         # Generic
         (
@@ -993,11 +1026,25 @@ class ProvidersTestCase(unittest.TestCase):
         ]
     ] = [
         (None, None, None),
+        # BIN
         (create_inner_bin_file, b"Lorem ipsum", {}),
+        # CSV
         (create_inner_csv_file, "Lorem ipsum", {}),
+        # DOCX
         (create_inner_docx_file, "Lorem ipsum", {}),
+        # EML
         (create_inner_eml_file, None, {}),
+        # EPUB
         (create_inner_epub_file, "Lorem ipsum", {}),
+        # FileFromPath
+        (
+            create_inner_file_from_path,
+            None,
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+        ),
+        # Generic
         (
             create_inner_generic_file,
             None,
@@ -1006,15 +1053,25 @@ class ProvidersTestCase(unittest.TestCase):
                 "extension": "html",
             },
         ),
+        # ICO
         (create_inner_ico_file, "Lorem ipsum", {}),
+        # JPEG
         (create_inner_jpeg_file, "Lorem ipsum", {}),
+        # MP3
         (create_inner_mp3_file, "Lorem ipsum", {}),
+        # ODP
         (create_inner_odp_file, "Lorem ipsum", {}),
+        # ODS
         (create_inner_ods_file, None, {}),
+        # ODT
         (create_inner_odt_file, "Lorem ipsum", {}),
+        # PDF
         (create_inner_pdf_file, "Lorem ipsum", {}),
+        # PNG
         (create_inner_png_file, "Lorem ipsum", {}),
+        # PPTX
         (create_inner_pptx_file, "Lorem ipsum", {}),
+        # RandomFileFromDir
         (
             create_inner_random_file_from_dir,
             None,
@@ -1024,14 +1081,23 @@ class ProvidersTestCase(unittest.TestCase):
                 )
             },
         ),
+        # RTF
         (create_inner_rtf_file, "Lorem ipsum", {}),
+        # SVG
         (create_inner_svg_file, "Lorem ipsum", {}),
+        # TAR
         (create_inner_tar_file, None, {}),
+        # TXT
         (create_inner_txt_file, "Lorem ipsum", {}),
+        # WEBP
         # (create_inner_webp_file, "Lorem ipsum", {}),
+        # XLSX
         (create_inner_xlsx_file, None, {}),
+        # XML
         (create_inner_xml_file, None, {}),
+        # ZIP
         (create_inner_zip_file, None, {}),
+        # fuzzy_choice_create_inner_file
         (
             fuzzy_choice_create_inner_file,
             None,
@@ -1077,6 +1143,16 @@ class ProvidersTestCase(unittest.TestCase):
         # EPUB
         (FAKER, EpubFileProvider, "epub_file", {}, None),
         (FAKER_HY, EpubFileProvider, "epub_file", {}, None),
+        # FileFromPathProvider
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            None,
+        ),
         # Generic
         (
             FAKER,
@@ -1441,6 +1517,15 @@ class ProvidersTestCase(unittest.TestCase):
                 "EpubFileProvider",
                 create_inner_epub_file,
                 {},
+            ),
+            # FileFromPathProvider
+            (
+                "faker_file.providers.file_from_path",
+                "FileFromPathProvider",
+                create_inner_file_from_path,
+                {
+                    "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                },
             ),
             # Generic
             (

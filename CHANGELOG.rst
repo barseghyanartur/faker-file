@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.15.1
+------
+2023-06-06
+
+- Added ``FileFromPathProvider`` provider, which simply picks a file
+  from path given. Add correspondent ``create_inner_file_from_path``
+  inner function.
+
 0.15
 ----
 2023-06-05
