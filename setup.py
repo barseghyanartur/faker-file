@@ -18,6 +18,7 @@ install_requires = [
 
 tests_require = [
     "factory_boy",
+    "fuzzywuzzy",
     "parametrize",
     "pytest",
     "pytest-cov",

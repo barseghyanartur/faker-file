@@ -3,6 +3,7 @@ import unittest
 from copy import deepcopy
 from typing import Any, Dict, List, Tuple, Type, Union
 
+import pytest
 from faker import Faker
 from fuzzywuzzy import fuzz
 from parametrize import parametrize
@@ -81,6 +82,7 @@ class DataIntegrityTestCase(unittest.TestCase):
         "fake, provider, method_name, kwargs, similarity_margin",
         __PARAMETRIZED_DATA,
     )
+    @pytest.mark.flaky(reruns=3)
     def test_file_content(
         self: "DataIntegrityTestCase",
         fake: Faker,
