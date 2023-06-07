@@ -57,6 +57,14 @@ faker\_file.providers.epub\_file module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.providers.file\_from\_path module
+---------------------------------------------
+
+.. automodule:: faker_file.providers.file_from_path
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.generic\_file module
 ------------------------------------------
 
