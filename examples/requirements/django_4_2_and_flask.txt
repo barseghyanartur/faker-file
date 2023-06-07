@@ -81,7 +81,7 @@ django-extensions==3.2.1
     # via -r examples/requirements/django_4_2.in
 django-storages==1.13.2
     # via -r examples/requirements/django_4_2.in
-djangorestframework==3.13.1
+djangorestframework @ https://github.com/encode/django-rest-framework/archive/refs/heads/master.zip
     # via
     #   -r examples/requirements/django_4_2.in
     #   drf-spectacular
@@ -272,8 +272,6 @@ python-docx==0.8.11
     # via -r examples/requirements/common.in
 python-pptx==0.6.21
     # via -r examples/requirements/common.in
-pytz==2023.3
-    # via djangorestframework
 pyyaml==6.0
     # via drf-spectacular
 reportlab==3.6.12
