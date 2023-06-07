@@ -74,7 +74,7 @@ django-extensions==3.2.1
     # via -r examples/requirements/django_4_2.in
 django-storages==1.13.2
     # via -r examples/requirements/django_4_2.in
-https://github.com/encode/django-rest-framework/archive/refs/heads/master.zip
+djangorestframework==3.13.1
     # via
     #   -r examples/requirements/django_4_2.in
     #   drf-spectacular
@@ -96,13 +96,12 @@ filelock==3.12.0
     # via
     #   tox
     #   virtualenv
-freetype-py==2.3.0
-    # via
-    #   reportlab
 frozenlist==1.3.3
     # via
     #   aiohttp
     #   aiosignal
+fuzzywuzzy==0.18.0
+    # via -r examples/requirements/test.in
 google-api-core==2.11.0
     # via
     #   google-cloud-core

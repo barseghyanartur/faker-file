@@ -24,6 +24,8 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
+fuzzywuzzy==0.18.0
+    # via -r examples/requirements/test.in
 iniconfig==1.1.1
     # via pytest
 packaging==21.3
