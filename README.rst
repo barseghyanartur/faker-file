@@ -29,6 +29,7 @@ faker-file
 
 .. Internal references
 
+.. _faker-file: https://github.com/barseghyanartur/faker-file/
 .. _Read the Docs: http://faker-file.readthedocs.io/
 .. _Quick start: https://faker-file.readthedocs.io/en/latest/quick_start.html
 .. _Recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
@@ -503,3 +504,18 @@ For overall issues, go to `GitHub <https://github.com/barseghyanartur/faker-file
 Author
 ======
 Artur Barseghyan <artur.barseghyan@gmail.com>
+
+Citation
+========
+Please, use the following entry when citing `faker-file`_ in your research:
+
+.. code-block:: latex
+
+    @software{faker-file,
+      author = {Artur Barseghyan},
+      title = {faker-file: Create files with fake data. In many formats. With no efforts.},
+      year = {2023},
+      publisher = {GitHub},
+      journal = {GitHub repository},
+      howpublished = {https://github.com/barseghyanartur/faker-file},
+    }
