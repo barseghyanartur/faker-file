@@ -45,7 +45,17 @@ LOGGER = logging.getLogger(__name__)
 
 
 class DataIntegrityTestCase(unittest.TestCase):
-    # fake, provider, method_name, kwargs
+    """Data integrity tests.
+
+    Methodology:
+
+    - Generate file using given provider.
+    - Extract text using Apache Tika.
+    - Compare original text to the extracted text. If match is less
+      than the specified margin, test fails.
+    """
+
+    # fake, provider, method_name, kwargs, similarity_margin
     __PARAMETRIZED_DATA: List[
         Tuple[
             Faker,
