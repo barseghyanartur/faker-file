@@ -24,10 +24,12 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
-fuzzywuzzy==0.18.0
+fuzzywuzzy[speedup]==0.18.0
     # via -r examples/requirements/test.in
 iniconfig==1.1.1
     # via pytest
+levenshtein==0.21.0
+    # via python-levenshtein
 packaging==21.3
     # via
     #   pytest
@@ -67,6 +69,10 @@ pytest-rerunfailures==11.0
     # via -r examples/requirements/test.in
 python-dateutil==2.8.2
     # via faker
+python-levenshtein==0.21.0
+    # via fuzzywuzzy
+rapidfuzz==3.1.1
+    # via levenshtein
 six==1.16.0
     # via
     #   python-dateutil

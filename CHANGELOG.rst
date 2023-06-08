@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.15.2
+------
+2023-06-08
+
+- Add optional ``subject`` argument to the ``EmlFileProvider``. Update
+  tests accordingly.
+- Add data integrity tests.
+
 0.15.1
 ------
 2023-06-06

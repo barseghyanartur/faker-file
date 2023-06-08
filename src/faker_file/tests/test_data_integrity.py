@@ -11,13 +11,20 @@ from tika import parser
 
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
+from ..providers.epub_file import EpubFileProvider
+from ..providers.odp_file import OdpFileProvider
+from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
 from ..providers.pdf_file import PdfFileProvider
+from ..providers.pdf_file.generators.pdfkit_generator import PdfkitPdfGenerator
 from ..providers.pdf_file.generators.reportlab_generator import (
     ReportlabPdfGenerator,
 )
+from ..providers.pptx_file import PptxFileProvider
 from ..providers.rtf_file import RtfFileProvider
 from ..providers.txt_file import TxtFileProvider
+from ..providers.xlsx_file import XlsxFileProvider
+from ..providers.xml_file import XmlFileProvider
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -27,18 +34,30 @@ __all__ = ("DataIntegrityTestCase",)
 FAKER = Faker()
 FAKER.add_provider(DocxFileProvider)
 FAKER.add_provider(EmlFileProvider)
+FAKER.add_provider(EpubFileProvider)
+FAKER.add_provider(OdpFileProvider)
+FAKER.add_provider(OdsFileProvider)
 FAKER.add_provider(OdtFileProvider)
 FAKER.add_provider(PdfFileProvider)
+FAKER.add_provider(PptxFileProvider)
 FAKER.add_provider(RtfFileProvider)
 FAKER.add_provider(TxtFileProvider)
+FAKER.add_provider(XlsxFileProvider)
+FAKER.add_provider(XmlFileProvider)
 
 FileProvider = Union[
     DocxFileProvider,
     EmlFileProvider,
+    EpubFileProvider,
+    OdpFileProvider,
+    OdsFileProvider,
     OdtFileProvider,
     PdfFileProvider,
+    PptxFileProvider,
     RtfFileProvider,
     TxtFileProvider,
+    XlsxFileProvider,
+    XmlFileProvider,
 ]
 
 LOGGER = logging.getLogger(__name__)
@@ -66,12 +85,28 @@ class DataIntegrityTestCase(unittest.TestCase):
         ]
     ] = [
         # DOCX
-        (FAKER, DocxFileProvider, "docx_file", {"max_nb_chars": 2_048}, 90),
+        (FAKER, DocxFileProvider, "docx_file", {"max_nb_chars": 2_048}, 95),
         # EML
-        (FAKER, EmlFileProvider, "eml_file", {"max_nb_chars": 2_048}, 90),
+        (FAKER, EmlFileProvider, "eml_file", {"max_nb_chars": 2_048}, 95),
+        # EPUB
+        (FAKER, EpubFileProvider, "epub_file", {"max_nb_chars": 2_048}, 90),
+        # ODP
+        (FAKER, OdpFileProvider, "odp_file", {"max_nb_chars": 2_048}, 100),
+        # ODS
+        (FAKER, OdsFileProvider, "ods_file", {}, 75),
         # ODT
         (FAKER, OdtFileProvider, "odt_file", {"max_nb_chars": 2_048}, 100),
         # PDF
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "max_nb_chars": 2_048,
+                "pdf_generator_cls": PdfkitPdfGenerator,
+            },
+            85,
+        ),
         (
             FAKER,
             PdfFileProvider,
@@ -82,10 +117,16 @@ class DataIntegrityTestCase(unittest.TestCase):
             },
             85,
         ),
+        # PPTX
+        (FAKER, PptxFileProvider, "pptx_file", {"max_nb_chars": 2_048}, 95),
         # RTF
         (FAKER, RtfFileProvider, "rtf_file", {"max_nb_chars": 2_048}, 100),
         # TXT
         (FAKER, TxtFileProvider, "txt_file", {"max_nb_chars": 2_048}, 100),
+        # XLSX
+        (FAKER, XlsxFileProvider, "xlsx_file", {}, 75),
+        # XML
+        (FAKER, XmlFileProvider, "xml_file", {}, 95),
     ]
 
     @parametrize(
@@ -111,8 +152,12 @@ class DataIntegrityTestCase(unittest.TestCase):
         parsed = parser.from_file(_file.data["filename"])
         extracted_content = parsed["content"]
 
-        # Compare the original file content to the extracted content
-        similarity = fuzz.ratio(_file.data["content"], extracted_content)
+        # Compare the original file content to the extracted content after
+        # cleaning up both (remove double white-spaces).
+        similarity = fuzz.ratio(
+            " ".join(_file.data["content"].split()),
+            " ".join(extracted_content.split()),
+        )
 
         LOGGER.info(f"Provider: {method_name}, Similarity: {similarity}")
         if similarity < 100:
