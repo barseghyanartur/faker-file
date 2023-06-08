@@ -87,6 +87,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        subject: Optional[str] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -105,6 +106,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        subject: Optional[str] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -121,6 +123,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
         max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        subject: Optional[str] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -137,6 +140,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         :param wrap_chars_after: If given, the output string would be separated
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
+            are then replaced by correspondent fixtures.
+        :param subject: Email subject. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
         :param format_func: Callable responsible for formatting template
             strings.
@@ -163,8 +168,14 @@ class EmlFileProvider(BaseProvider, FileMixin):
             content=content,
             format_func=format_func,
         )
+        subject = self._generate_text_content(
+            max_nb_chars=20,
+            wrap_chars_after=wrap_chars_after,
+            content=subject,
+            format_func=format_func,
+        )
         data: Dict[str, Any] = {
-            "content": content,
+            "content": f"{subject}\n {content}",
             "inner": {},
             "filename": filename,
         }
@@ -172,14 +183,14 @@ class EmlFileProvider(BaseProvider, FileMixin):
         msg = EmailMessage()
         msg["To"] = self.generator.email()
         msg["From"] = self.generator.email()
-        msg["Subject"] = self.generator.sentence()
+        msg["Subject"] = subject
         msg.set_content(content)
         data.update(
             {
                 "to": msg["To"],
                 "from": msg["From"],
                 "subject": msg["Subject"],
-                "content": content,
+                "body": content,
             }
         )
 

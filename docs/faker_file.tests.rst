@@ -44,6 +44,14 @@ faker\_file.tests.test\_cli module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.tests.test\_data\_integrity module
+----------------------------------------------
+
+.. automodule:: faker_file.tests.test_data_integrity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.tests.test\_django\_integration module
 --------------------------------------------------
 

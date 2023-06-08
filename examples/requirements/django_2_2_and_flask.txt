@@ -118,6 +118,8 @@ frozenlist==1.3.3
     # via
     #   aiohttp
     #   aiosignal
+fuzzywuzzy[speedup]==0.18.0
+    # via -r examples/requirements/test.in
 google-api-core==2.11.0
     # via
     #   google-cloud-core
@@ -168,6 +170,8 @@ jmespath==1.0.1
     #   botocore
 jsonschema==4.17.3
     # via drf-spectacular
+levenshtein==0.21.0
+    # via python-levenshtein
 lxml==4.9.2
     # via
     #   python-docx
@@ -270,6 +274,8 @@ python-dateutil==2.8.2
     #   faker
 python-docx==0.8.11
     # via -r examples/requirements/common.in
+python-levenshtein==0.21.0
+    # via fuzzywuzzy
 python-pptx==0.6.21
     # via -r examples/requirements/common.in
 pytz==2022.7
@@ -278,6 +284,8 @@ pytz==2022.7
     #   django
 pyyaml==6.0
     # via drf-spectacular
+rapidfuzz==3.1.1
+    # via levenshtein
 reportlab==3.6.12
     # via -r examples/requirements/common.in
 requests==2.28.1

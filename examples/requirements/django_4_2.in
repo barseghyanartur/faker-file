@@ -4,6 +4,7 @@
 Django>=4.2,<4.3
 django-debug-toolbar>=3.5.0
 django-extensions
-djangorestframework>=3.13.0,<3.14
+#djangorestframework>=3.13.0,<3.14
+https://github.com/encode/django-rest-framework/archive/refs/heads/master.zip
 django-storages>=1.13,<1.14
 drf_spectacular

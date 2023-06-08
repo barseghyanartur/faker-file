@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.15.1"
+version = "0.15.2"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -18,6 +18,7 @@ install_requires = [
 
 tests_require = [
     "factory_boy",
+    "fuzzywuzzy[speedup]",
     "parametrize",
     "pytest",
     "pytest-cov",

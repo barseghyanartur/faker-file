@@ -1,6 +1,7 @@
 Faker
 coverage
 factory_boy
+fuzzywuzzy[speedup]
 py
 parametrize
 pytest-cov
