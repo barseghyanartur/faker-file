@@ -37,7 +37,7 @@ are used for versioning (schema follows below):
 
 - Added ``format_func`` argument to most of the providers. This allows to
   control which formatter function will be used as a default formatter.
-  Previous it has been ``faker.provider.Python.pystr_format``, which has
+  Previously it has been ``faker.provider.Python.pystr_format``, which has
   been changed to ``faker.provider.Python.parse``, since the latter is
   more convenient (as it does not transform characters
   like ``?``, ``!``, ``#`` into something else using ``bothify`` method).
