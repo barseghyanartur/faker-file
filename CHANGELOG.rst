@@ -15,6 +15,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.15.3
+------
+2023-06-14
+
+- Add ``SFTPStorage`` and correspondent tests.
+
 0.15.2
 ------
 2023-06-08
