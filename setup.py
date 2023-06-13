@@ -17,15 +17,16 @@ install_requires = [
 ]
 
 tests_require = [
-    "factory_boy",
-    "fuzzywuzzy[speedup]",
-    "parametrize",
-    "pytest",
-    "pytest-cov",
-    "pytest-django",
-    "pytest-pythonpath",
-    "pytest-ordering",
-    "coverage",
+    "factory_boy",  # factories
+    "fuzzywuzzy[speedup]",  # data integrity
+    "parametrize",  # testing
+    "pytest",  # pytest
+    "pytest-cov",  # pytest add-on, coverage
+    "pytest-django",  # pytest add-on, django
+    "pytest-pythonpath",  # pytest add-on
+    "pytest-ordering",  # pytest add-on
+    "coverage",  # coverage
+    "asyncssh",  # SFTP
 ]
 
 _common = [
@@ -34,6 +35,7 @@ _common = [
     "odfpy",  # ODP, ODS, ODT
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
+    "paramiko",  # SFTP storage
     "pdfkit",  # PDF
     "reportlab",  # PDF
     "python-docx",  # DOCX
@@ -67,6 +69,7 @@ extras_require = {
     "pdf": ["pdfkit", "reportlab"],
     "pptx": ["python-pptx"],
     "s3": ["pathy[s3]"],
+    "sftp": ["paramiko"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     "xlsx": ["tablib", "openpyxl"],
     "data-augmentation": _ml,
