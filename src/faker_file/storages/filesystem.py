@@ -86,7 +86,7 @@ class FileSystemStorage(BaseStorage):
             return file.write(data)
 
     def exists(self: "FileSystemStorage", filename: str) -> bool:
-        """Write bytes."""
+        """Check if file exists."""
         if os.path.isabs(filename):
             return os.path.exists(filename)
         return os.path.exists(os.path.join(self.root_path, filename))
