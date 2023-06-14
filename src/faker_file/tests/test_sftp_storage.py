@@ -37,6 +37,11 @@ class TestSFTPStorageTestCase(unittest.TestCase):
 
     server_manager: SFTPServerManager
     server_thread: threading.Thread
+    sftp_host = SFTP_HOST
+    sftp_port = SFTP_PORT
+    sftp_user = SFTP_USER
+    sftp_pass = SFTP_PASS
+    sftp_root_path = SFTP_ROOT_PATH
 
     @classmethod
     def setUpClass(cls):
@@ -78,11 +83,11 @@ class TestSFTPStorageTestCase(unittest.TestCase):
             (
                 SFTPStorage,
                 {
-                    "host": SFTP_HOST,
-                    "port": SFTP_PORT,
-                    "username": SFTP_USER,
-                    "password": SFTP_PASS,
-                    "root_path": SFTP_ROOT_PATH,
+                    "host": sftp_host,
+                    "port": sftp_port,
+                    "username": sftp_user,
+                    "password": sftp_pass,
+                    "root_path": sftp_root_path,
                 },
                 "zzz",
                 None,
@@ -91,11 +96,11 @@ class TestSFTPStorageTestCase(unittest.TestCase):
             (
                 SFTPStorage,
                 {
-                    "host": SFTP_HOST,
-                    "port": SFTP_PORT,
-                    "username": SFTP_USER,
-                    "password": SFTP_PASS,
-                    "root_path": SFTP_ROOT_PATH,
+                    "host": sftp_host,
+                    "port": sftp_port,
+                    "username": sftp_user,
+                    "password": sftp_pass,
+                    "root_path": sftp_root_path,
                 },
                 None,
                 "my_zzz_filename",
@@ -142,11 +147,11 @@ class TestSFTPStorageTestCase(unittest.TestCase):
             (
                 SFTPStorage,
                 {
-                    "host": SFTP_HOST,
-                    "port": SFTP_PORT,
-                    "username": SFTP_USER,
-                    "password": SFTP_PASS,
-                    "root_path": SFTP_ROOT_PATH,
+                    "host": sftp_host,
+                    "port": sftp_port,
+                    "username": sftp_user,
+                    "password": sftp_pass,
+                    "root_path": sftp_root_path,
                 },
                 "zzz",
                 "",
@@ -177,42 +182,46 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         """Test `FileSystemStorage` `abspath`."""
 
         storage = SFTPStorage(
-            host=SFTP_HOST,
-            port=SFTP_PORT,
-            username=SFTP_USER,
-            password=SFTP_PASS,
-            root_path=SFTP_ROOT_PATH,
+            host=self.sftp_host,
+            port=self.sftp_port,
+            username=self.sftp_user,
+            password=self.sftp_pass,
+            root_path=self.sftp_root_path,
         )
         filename = storage.generate_filename(prefix="", extension="tmp")
-        self.assertTrue(storage.abspath(filename).startswith(SFTP_ROOT_PATH))
+        self.assertTrue(
+            storage.abspath(filename).startswith(self.sftp_root_path)
+        )
 
     def test_integration(self: "TestSFTPStorageTestCase") -> None:
         storage = SFTPStorage(
-            host=SFTP_HOST,
-            port=SFTP_PORT,
-            username=SFTP_USER,
-            password=SFTP_PASS,
-            root_path=SFTP_ROOT_PATH,
+            host=self.sftp_host,
+            port=self.sftp_port,
+            username=self.sftp_user,
+            password=self.sftp_pass,
+            root_path=self.sftp_root_path,
         )
         file = FAKER.txt_file(storage=storage)
         self.assertTrue(storage.exists(file.data["filename"]))
         self.assertTrue(
-            storage.abspath(file.data["filename"]).startswith(SFTP_ROOT_PATH)
+            storage.abspath(file.data["filename"]).startswith(
+                self.sftp_root_path
+            )
         )
 
     def test_integration_sub_dir(self: "TestSFTPStorageTestCase") -> None:
         storage = SFTPStorage(
-            host=SFTP_HOST,
-            port=SFTP_PORT,
-            username=SFTP_USER,
-            password=SFTP_PASS,
-            root_path=SFTP_ROOT_PATH,
+            host=self.sftp_host,
+            port=self.sftp_port,
+            username=self.sftp_user,
+            password=self.sftp_pass,
+            root_path=self.sftp_root_path,
             rel_path="sub",
         )
         file = FAKER.txt_file(storage=storage)
         self.assertTrue(storage.exists(file.data["filename"]))
         self.assertTrue(
             storage.abspath(file.data["filename"]).startswith(
-                os.path.join(SFTP_ROOT_PATH, "sub")
+                os.path.join(self.sftp_root_path, "sub")
             )
         )
