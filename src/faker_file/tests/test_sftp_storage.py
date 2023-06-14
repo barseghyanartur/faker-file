@@ -4,6 +4,7 @@ import tempfile
 import threading
 import time
 import unittest
+from functools import partial
 from typing import Any, Dict, Type, Union
 
 from faker import Faker
@@ -36,7 +37,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     server_manager: SFTPServerManager
     server_thread: threading.Thread
     sftp_host = SFTP_HOST
-    sftp_port = SFTP_PORT
+    sftp_port = 2229
     sftp_user = SFTP_USER
     sftp_pass = SFTP_PASS
     sftp_root_path = SFTP_ROOT_PATH
@@ -67,8 +68,14 @@ class TestSFTPStorageTestCase(unittest.TestCase):
             os.path.join(tempfile.gettempdir(), "upload", "sub"),
             exist_ok=True,
         )
+
+        # Create a partial function with custom arguments
+        start_server_partial = partial(
+            start_server, host=cls.sftp_host, port=cls.sftp_port
+        )
+
         # Start the server in a separate thread
-        cls.server_thread = threading.Thread(target=start_server)
+        cls.server_thread = threading.Thread(target=start_server_partial)
         # Daemonize the thread, so it exits when the main thread exits
         cls.server_thread.daemon = True
         cls.server_thread.start()
