@@ -12,6 +12,8 @@ alembic==1.9.0
     # via -r examples/requirements/flask.in
 async-timeout==4.0.2
     # via aiohttp
+asyncssh==2.13.1
+    # via -r examples/requirements/test.in
 attrs==22.2.0
     # via
     #   aiohttp
@@ -24,6 +26,8 @@ azure-storage-blob==12.14.1
     # via pathy
 babel==2.11.0
     # via flask-babelex
+bcrypt==4.0.1
+    # via paramiko
 beautifulsoup4==4.11.1
     # via xml2epub
 boto3==1.26.36
@@ -41,7 +45,9 @@ certifi==2022.12.7
     #   msrest
     #   requests
 cffi==1.15.1
-    # via cryptography
+    # via
+    #   cryptography
+    #   pynacl
 chardet==5.1.0
     # via tox
 charset-normalizer==2.1.1
@@ -60,7 +66,10 @@ coverage[toml]==7.0.0
     #   -r examples/requirements/test.in
     #   pytest-cov
 cryptography==38.0.4
-    # via azure-storage-blob
+    # via
+    #   asyncssh
+    #   azure-storage-blob
+    #   paramiko
 defusedxml==0.7.1
     # via odfpy
 distlib==0.3.6
@@ -185,6 +194,8 @@ packaging==22.0
     #   tox
 parametrize==0.1.1
     # via -r examples/requirements/test.in
+paramiko==3.2.0
+    # via -r examples/requirements/common.in
 pathy[all]==0.10.1
     # via -r examples/requirements/common.in
 pdfkit==1.0.0
@@ -217,6 +228,8 @@ pyasn1-modules==0.2.8
     # via google-auth
 pycparser==2.21
     # via cffi
+pynacl==1.5.0
+    # via paramiko
 pyproject-api==1.2.1
     # via tox
 pytest==7.2.1
@@ -314,7 +327,9 @@ typer==0.7.0
 typer-cli==0.0.1
     # via pathy
 typing-extensions==4.4.0
-    # via azure-core
+    # via
+    #   asyncssh
+    #   azure-core
 urllib3==1.26.13
     # via
     #   botocore
