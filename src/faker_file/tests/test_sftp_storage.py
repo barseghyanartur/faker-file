@@ -11,9 +11,7 @@ from parametrize import parametrize
 
 from ..providers.txt_file import TxtFileProvider
 from ..storages.sftp_storage import SFTPStorage
-from .sftp_server import SFTPServerManager
-
-# from .sftp_server import start_server
+from .sftp_server import SFTPServerManager, start_server
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -43,26 +41,6 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     sftp_pass = SFTP_PASS
     sftp_root_path = SFTP_ROOT_PATH
 
-    @classmethod
-    def setUpClass(cls):
-        os.makedirs(
-            os.path.join(tempfile.gettempdir(), "upload", "sub"),
-            exist_ok=True,
-        )
-        # Start the server in a separate thread
-        cls.server_manager = SFTPServerManager()
-        cls.server_thread = threading.Thread(target=cls.server_manager.start)
-        # Daemonize the thread, so it exits when the main thread exits
-        cls.server_thread.daemon = True
-        cls.server_thread.start()
-        time.sleep(2)
-
-    @classmethod
-    def tearDownClass(cls):
-        # Stop the server when tests are done
-        cls.server_manager.stop()
-        cls.server_thread.join()  # Wait for the server thread to finish
-
     # @classmethod
     # def setUpClass(cls):
     #     os.makedirs(
@@ -70,11 +48,31 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     #         exist_ok=True,
     #     )
     #     # Start the server in a separate thread
-    #     cls.server_thread = threading.Thread(target=start_server)
+    #     cls.server_manager = SFTPServerManager()
+    #     cls.server_thread = threading.Thread(target=cls.server_manager.start)
     #     # Daemonize the thread, so it exits when the main thread exits
     #     cls.server_thread.daemon = True
     #     cls.server_thread.start()
     #     time.sleep(2)
+    #
+    # @classmethod
+    # def tearDownClass(cls):
+    #     # Stop the server when tests are done
+    #     cls.server_manager.stop()
+    #     cls.server_thread.join()  # Wait for the server thread to finish
+
+    @classmethod
+    def setUpClass(cls):
+        os.makedirs(
+            os.path.join(tempfile.gettempdir(), "upload", "sub"),
+            exist_ok=True,
+        )
+        # Start the server in a separate thread
+        cls.server_thread = threading.Thread(target=start_server)
+        # Daemonize the thread, so it exits when the main thread exits
+        cls.server_thread.daemon = True
+        cls.server_thread.start()
+        time.sleep(2)
 
     @parametrize(
         "storage_cls, kwargs, prefix, basename, extension",

@@ -1,8 +1,9 @@
 import asyncio
 import os
+import socket
 import threading
 import time
-from typing import Callable
+from typing import Any, Callable
 from unittest import IsolatedAsyncioTestCase
 
 import asyncssh
@@ -10,15 +11,13 @@ from faker import Faker
 
 from faker_file.providers.txt_file import TxtFileProvider
 
-from .sftp_server import start_server, start_server_async
-
-# from .sftp_server import SFTPServerManager
+from .sftp_server import SFTPServerManager, start_server, start_server_async
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
-    # "TestSFTPServerWithManager",
+    "TestSFTPServerWithManager",
     "TestSFTPServerWithStartServer",
     "TestSFTPServerWithStartServerAsync",
 )
@@ -34,6 +33,8 @@ FAKER.add_provider(TxtFileProvider)
 
 
 class __TestSFTPServerMixin:
+    """Test SFTP server mix-in."""
+
     assertIsInstance: Callable
     assertRaises: Callable
     assertEqual: Callable
@@ -43,6 +44,18 @@ class __TestSFTPServerMixin:
     sftp_port: int
     sftp_user: str
     sftp_pass: str
+
+    @staticmethod
+    def is_port_in_use(port: Any) -> bool:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            return s.connect_ex(("0.0.0.0", port)) == 0
+
+    @classmethod
+    def free_port(cls: "__TestSFTPServerMixin") -> None:
+        # Check if the port is in use and wait until it is free
+        while cls.is_port_in_use(cls.sftp_port):
+            print(f"Port {cls.sftp_port} in use, waiting...")
+            time.sleep(1)
 
     async def test_successful_connection(self: "__TestSFTPServerMixin") -> None:
         async with asyncssh.connect(
@@ -121,6 +134,9 @@ class TestSFTPServerWithStartServerAsync(
 
     @classmethod
     def setUpClass(cls):
+        # Free port
+        cls.free_port()
+
         # This function will be run in a new thread
         def run_loop_in_thread(_loop):
             asyncio.set_event_loop(_loop)
@@ -162,6 +178,9 @@ class TestSFTPServerWithStartServer(
 
     @classmethod
     def setUpClass(cls):
+        # Free port
+        cls.free_port()
+
         # Note: start_server is not async, and it creates its own thread
         start_server(host=cls.sftp_host, port=cls.sftp_port)
 
@@ -176,6 +195,60 @@ class TestSFTPServerWithStartServer(
         # No explicit tear down is required for the server in this test case.
         pass
 
+
+class TestSFTPServerWithManager(
+    IsolatedAsyncioTestCase,
+    __TestSFTPServerMixin,
+):
+    # manager: SFTPServerManager
+    # manager_thread: threading.Thread
+    sftp_host = SFTP_HOST
+    sftp_port = SFTP_PORT
+    sftp_user = SFTP_USER
+    sftp_pass = SFTP_PASS
+
+    @classmethod
+    def setUpClass(cls):
+        # Create and set an event loop
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+        # Free port
+        cls.free_port()
+
+        cls.manager = SFTPServerManager()
+        # Starting the manager in a separate thread since it uses
+        # `run_until_complete`.
+        cls.manager_thread = threading.Thread(target=cls.manager.start)
+        cls.manager_thread.daemon = True
+        cls.manager_thread.start()
+
+        # Allow some time for the server to start and check if it's ready
+        max_retries = 10
+        retries = 0
+        while retries < max_retries:
+            try:
+                # Try to establish a connection to the server
+                with socket.create_connection(
+                    (cls.sftp_host, cls.sftp_port), timeout=5
+                ):
+                    print(f"Server started on port {cls.sftp_port}")
+                    break
+            except (ConnectionRefusedError, socket.timeout):
+                print("Waiting for server to start...")
+                retries += 1
+                time.sleep(1)
+        else:
+            raise RuntimeError("Server did not start")
+
+    @classmethod
+    def tearDownClass(cls):
+        # Stop the server
+        cls.manager.stop()
+        cls.manager_thread.join()
+
+
+# **************************************
 
 # class TestSFTPServerWithManager(
 #     IsolatedAsyncioTestCase,
@@ -201,34 +274,3 @@ class TestSFTPServerWithStartServer(
 #         # Stop the server
 #         self.manager.stop()
 #         self.manager_thread.join()
-
-
-# class TestSFTPServerWithManager(
-#     IsolatedAsyncioTestCase,
-#     __TestSFTPServerMixin,
-#     ):
-#
-#     manager: SFTPServerManager
-#     manager_thread: threading.Thread
-#     sftp_host = SFTP_HOST
-#     sftp_port = SFTP_PORT
-#     sftp_user = SFTP_USER
-#     sftp_pass = SFTP_PASS
-#
-#     @classmethod
-#     def setUpClass(cls):
-#         cls.manager = SFTPServerManager()
-#         # Starting the manager in a separate thread since it uses
-#         # `run_until_complete`
-#         cls.manager_thread = threading.Thread(target=cls.manager.start)
-#         cls.manager_thread.daemon = True
-#         cls.manager_thread.start()
-#
-#         # Allow some time for the server to start
-#         time.sleep(2)
-#
-#     @classmethod
-#     def tearDownClass(cls):
-#         # Stop the server
-#         cls.manager.stop()
-#         cls.manager_thread.join()
