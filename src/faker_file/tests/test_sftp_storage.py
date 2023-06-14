@@ -1,5 +1,6 @@
 import logging
 import os
+import socket
 import tempfile
 import threading
 import time
@@ -62,8 +63,23 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     #     cls.server_manager.stop()
     #     cls.server_thread.join()  # Wait for the server thread to finish
 
+    @staticmethod
+    def is_port_in_use(port: Any) -> bool:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            return s.connect_ex(("0.0.0.0", port)) == 0
+
+    @classmethod
+    def free_port(cls: "TestSFTPStorageTestCase") -> None:
+        # Check if the port is in use and wait until it is free
+        while cls.is_port_in_use(cls.sftp_port):
+            LOGGER.info(f"Port {cls.sftp_port} in use, waiting...")
+            time.sleep(1)
+
     @classmethod
     def setUpClass(cls):
+        # Free port
+        cls.free_port()
+
         os.makedirs(
             os.path.join(tempfile.gettempdir(), "upload", "sub"),
             exist_ok=True,
