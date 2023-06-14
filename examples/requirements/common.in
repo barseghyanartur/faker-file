@@ -10,3 +10,4 @@ python-pptx
 reportlab
 tablib
 xml2epub
+paramiko

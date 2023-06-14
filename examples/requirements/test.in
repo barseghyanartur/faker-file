@@ -11,3 +11,4 @@ pytest-parallel
 pytest-rerunfailures
 pytest>=7.0.1
 tox
+asyncssh

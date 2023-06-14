@@ -4,12 +4,18 @@
 #
 #    pip-compile examples/requirements/test.in
 #
+asyncssh==2.13.1
+    # via -r examples/requirements/test.in
 attrs==22.1.0
     # via pytest
+cffi==1.15.1
+    # via cryptography
 coverage[toml]==6.5.0
     # via
     #   -r examples/requirements/test.in
     #   pytest-cov
+cryptography==41.0.1
+    # via asyncssh
 distlib==0.3.6
     # via virtualenv
 exceptiongroup==1.1.0
@@ -47,6 +53,8 @@ py==1.11.0
     # via
     #   -r examples/requirements/test.in
     #   tox
+pycparser==2.21
+    # via cffi
 pyparsing==3.0.9
     # via packaging
 pytest==7.2.1
@@ -86,5 +94,7 @@ tomli==2.0.1
     #   tox
 tox==3.27.1
     # via -r examples/requirements/test.in
+typing-extensions==4.6.3
+    # via asyncssh
 virtualenv==20.17.0
     # via tox

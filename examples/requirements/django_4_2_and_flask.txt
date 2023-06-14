@@ -14,6 +14,8 @@ asgiref==3.7.2
     # via django
 async-timeout==4.0.2
     # via aiohttp
+asyncssh==2.13.1
+    # via -r examples/requirements/test.in
 attrs==23.1.0
     # via
     #   aiohttp
@@ -24,6 +26,8 @@ azure-storage-blob==12.16.0
     # via pathy
 babel==2.12.1
     # via flask-babelex
+bcrypt==4.0.1
+    # via paramiko
 beautifulsoup4==4.12.2
     # via xml2epub
 blinker==1.6.2
@@ -41,7 +45,9 @@ cachetools==5.3.1
 certifi==2023.5.7
     # via requests
 cffi==1.15.1
-    # via cryptography
+    # via
+    #   cryptography
+    #   pynacl
 chardet==5.1.0
     # via tox
 charset-normalizer==3.1.0
@@ -62,7 +68,10 @@ coverage[toml]==7.2.6
     #   -r examples/requirements/test.in
     #   pytest-cov
 cryptography==40.0.2
-    # via azure-storage-blob
+    # via
+    #   asyncssh
+    #   azure-storage-blob
+    #   paramiko
 defusedxml==0.7.1
     # via odfpy
 distlib==0.3.6
@@ -205,6 +214,8 @@ packaging==23.1
     #   tox
 parametrize==0.1.1
     # via -r examples/requirements/test.in
+paramiko==3.2.0
+    # via -r examples/requirements/common.in
 pathy[all]==0.10.1
     # via -r examples/requirements/common.in
 pdfkit==1.0.0
@@ -237,6 +248,8 @@ pyasn1-modules==0.3.0
     # via google-auth
 pycparser==2.21
     # via cffi
+pynacl==1.5.0
+    # via paramiko
 pyproject-api==1.5.1
     # via tox
 pyrsistent==0.19.3
@@ -343,6 +356,7 @@ typing-extensions==4.6.2
     # via
     #   alembic
     #   asgiref
+    #   asyncssh
     #   azure-core
     #   azure-storage-blob
     #   sqlalchemy
