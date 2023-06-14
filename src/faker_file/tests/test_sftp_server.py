@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import os
 import socket
 import threading
@@ -28,6 +29,8 @@ SFTP_HOST = os.environ.get("SFTP_HOST", "0.0.0.0")
 SFTP_PORT = int(os.environ.get("SFTP_PORT", 2222))
 SFTP_ROOT_PATH = os.environ.get("SFTP_ROOT_PATH", "/upload")
 
+LOGGER = logging.getLogger(__name__)
+
 FAKER = Faker()
 FAKER.add_provider(TxtFileProvider)
 
@@ -54,7 +57,7 @@ class __TestSFTPServerMixin:
     def free_port(cls: "__TestSFTPServerMixin") -> None:
         # Check if the port is in use and wait until it is free
         while cls.is_port_in_use(cls.sftp_port):
-            print(f"Port {cls.sftp_port} in use, waiting...")
+            LOGGER.info(f"Port {cls.sftp_port} in use, waiting...")
             time.sleep(1)
 
     async def test_successful_connection(self: "__TestSFTPServerMixin") -> None:
@@ -232,10 +235,10 @@ class TestSFTPServerWithManager(
                 with socket.create_connection(
                     (cls.sftp_host, cls.sftp_port), timeout=5
                 ):
-                    print(f"Server started on port {cls.sftp_port}")
+                    LOGGER.info(f"Server started on port {cls.sftp_port}")
                     break
             except (ConnectionRefusedError, socket.timeout):
-                print("Waiting for server to start...")
+                LOGGER.info("Waiting for server to start...")
                 retries += 1
                 time.sleep(1)
         else:
