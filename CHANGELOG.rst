@@ -15,6 +15,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.15.4
+------
+2023-06-15
+
+- Improved ``SFTPStorage`` tests.
+- Stop testing against Python 3.7.
+- Stop testing against Django 4.0.
+
 0.15.3
 ------
 2023-06-14

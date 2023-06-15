@@ -20,6 +20,8 @@ azure-core==1.26.1
     #   msrest
 azure-storage-blob==12.14.1
     # via pathy
+bcrypt==4.0.1
+    # via paramiko
 beautifulsoup4==4.11.1
     # via xml2epub
 boto3==1.26.29
@@ -35,7 +37,9 @@ certifi==2022.12.7
     #   msrest
     #   requests
 cffi==1.15.1
-    # via cryptography
+    # via
+    #   cryptography
+    #   pynacl
 charset-normalizer==2.1.1
     # via
     #   aiohttp
@@ -49,7 +53,9 @@ colorama==0.4.6
 coverage[toml]==6.5.0
     # via pytest-cov
 cryptography==38.0.4
-    # via azure-storage-blob
+    # via
+    #   azure-storage-blob
+    #   paramiko
 defusedxml==0.7.1
     # via odfpy
 edge-tts==6.0.8
@@ -122,6 +128,8 @@ openpyxl==3.0.10
     # via -r examples/requirements/common.in
 packaging==22.0
     # via pytest
+paramiko==3.2.0
+    # via -r examples/requirements/common.in
 pathy[all]==0.10.1
     # via -r examples/requirements/common.in
 pdfkit==1.0.0
@@ -146,6 +154,8 @@ pyasn1-modules==0.2.8
     # via google-auth
 pycparser==2.21
     # via cffi
+pynacl==1.5.0
+    # via paramiko
 pytest==7.2.0
     # via
     #   pathy
