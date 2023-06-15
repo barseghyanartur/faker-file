@@ -33,7 +33,7 @@ jobs:
 #          cache: 'pip'
 #          cache-dependency-path: '**/setup.py'
       - name: Install detect-secrets
-        run: pip install detect-secrets doc8 isort==5.11.5
+        run: pip install --no-cache-dir detect-secrets doc8 isort==5.11.5
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.0
 
@@ -73,11 +73,11 @@ jobs:
           python -m pip install --upgrade pip
       - name: Install tox
         run: |
-          python -m pip install tox-gh-actions pip-tools Django djangorestframework django-extensions drf_spectacular
+          python -m pip install --no-cache-dir tox-gh-actions pip-tools Django djangorestframework django-extensions drf_spectacular
       - name: Compile requirements
         run: pip-compile examples/requirements/flask.in
       - name: Install requirements
-        run: pip install -r examples/requirements/flask.txt
+        run: pip install --no-cache-dir -r examples/requirements/flask.txt
       - name: Run test suite
 #        continue-on-error: true
         run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py #--workers 2
@@ -117,11 +117,11 @@ jobs:
           python -m pip install --upgrade pip
       - name: Install tox
         run: |
-          python -m pip install tox-gh-actions pip-tools Django djangorestframework django-extensions drf_spectacular
+          python -m pip install --no-cache-dir tox-gh-actions pip-tools Django djangorestframework django-extensions drf_spectacular
       - name: Compile requirements
         run: pip-compile examples/requirements/ml.in
       - name: Install requirements
-        run: pip install -r examples/requirements/ml.txt
+        run: pip install --no-cache-dir -r examples/requirements/ml.txt
       - name: Run test suite
 #        continue-on-error: true
         run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py #--workers 2
@@ -155,7 +155,7 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"
-          - "3.7"
+#          - "3.7"
     steps:
     - name: Install wkhtmltopdf
       run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
@@ -170,7 +170,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
     - name: Install tox
-      run: python -m pip install tox-gh-actions
+      run: python -m pip install --no-cache-dir tox-gh-actions
     - name: Run test suite
       run: tox -r --parallel auto
       env:

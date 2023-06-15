@@ -20,6 +20,8 @@ are used for versioning (schema follows below):
 2023-06-15
 
 - Improved ``SFTPStorage`` tests.
+- Stop testing against Python 3.7.
+- Stop testing against Django 4.0.
 
 0.15.3
 ------

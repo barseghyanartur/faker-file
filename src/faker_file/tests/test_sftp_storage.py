@@ -14,6 +14,7 @@ from parametrize import parametrize
 from ..providers.txt_file import TxtFileProvider
 from ..storages.sftp_storage import SFTPStorage
 from .sftp_server import SFTPServerManager, start_server
+from .utils import AutoFreePortInt
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -22,8 +23,8 @@ __all__ = ("TestSFTPStorageTestCase",)
 
 SFTP_USER = os.environ.get("SFTP_USER", "foo")
 SFTP_PASS = os.environ.get("SFTP_PASS", "pass")
-SFTP_HOST = os.environ.get("SFTP_HOST", "0.0.0.0")
-SFTP_PORT = int(os.environ.get("SFTP_PORT", 2222))
+SFTP_HOST = os.environ.get("SFTP_HOST", "127.0.0.1")
+SFTP_PORT = int(os.environ.get("SFTP_PORT", AutoFreePortInt(host=SFTP_HOST)))
 SFTP_ROOT_PATH = os.environ.get("SFTP_ROOT_PATH", "/upload")
 
 LOGGER = logging.getLogger(__name__)
@@ -37,11 +38,11 @@ class TestSFTPStorageTestCase(unittest.TestCase):
 
     server_manager: SFTPServerManager
     server_thread: threading.Thread
-    sftp_host = SFTP_HOST
-    sftp_port = 2229
-    sftp_user = SFTP_USER
-    sftp_pass = SFTP_PASS
-    sftp_root_path = SFTP_ROOT_PATH
+    sftp_host: str = SFTP_HOST
+    sftp_port: int = int(AutoFreePortInt(host=SFTP_HOST))
+    sftp_user: str = SFTP_USER
+    sftp_pass: str = SFTP_PASS
+    sftp_root_path: str = SFTP_ROOT_PATH
 
     # @classmethod
     # def setUpClass(cls):
@@ -64,15 +65,18 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     #     cls.server_thread.join()  # Wait for the server thread to finish
 
     @staticmethod
-    def is_port_in_use(port: Any) -> bool:
+    def is_port_in_use(host: str, port: int) -> bool:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            return s.connect_ex(("0.0.0.0", port)) == 0
+            return s.connect_ex((host, port)) == 0
 
     @classmethod
     def free_port(cls: "TestSFTPStorageTestCase") -> None:
         # Check if the port is in use and wait until it is free
-        while cls.is_port_in_use(cls.sftp_port):
-            LOGGER.info(f"Port {cls.sftp_port} in use, waiting...")
+        while cls.is_port_in_use(cls.sftp_host, cls.sftp_port):
+            LOGGER.info(
+                f"Port {cls.sftp_port} in use on host {cls.sftp_host}, "
+                f"waiting..."
+            )
             time.sleep(1)
 
     @classmethod

@@ -1,12 +1,23 @@
 import asyncio
 import logging
 import os
-import sys
 import tempfile
 import threading
 from asyncio import Semaphore
+from typing import Type
 
 import asyncssh
+
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2022-2023 Artur Barseghyan"
+__license__ = "MIT"
+__all__ = (
+    "SFTPServer",
+    "SFTPServerManager",
+    "SSHServer",
+    "start_server",
+    "start_server_async",
+)
 
 DIR_PATH = os.environ.get("DIR_PATH", tempfile.gettempdir())
 SFTP_USER = os.environ.get("SFTP_USER", "foo")
@@ -17,14 +28,6 @@ NUM_CONCURRENT_CONNECTIONS = int(
     os.environ.get("NUM_CONCURRENT_CONNECTIONS", 50)
 )
 LOGGER = logging.getLogger(__name__)
-
-__all__ = (
-    "SFTPServer",
-    "SFTPServerManager",
-    "SSHServer",
-    "start_server",
-    "start_server_async",
-)
 
 
 class SFTPServer(asyncssh.SFTPServer):
@@ -49,7 +52,7 @@ class SSHServer(asyncssh.SSHServer):
     def session_requested(self: "SSHServer") -> bool:
         return True
 
-    def sftp_requested(self: "SSHServer") -> type[SFTPServer]:
+    def sftp_requested(self: "SSHServer") -> Type[SFTPServer]:
         return SFTPServer
 
     async def begin_auth(self: "SSHServer", username: str) -> bool:
@@ -92,9 +95,9 @@ def start_server(host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
     print(f"start_server: Starting SFTP server at {host}:{port}")
 
     # This function will be run in a new thread
-    def run_loop_in_thread(loop):
-        asyncio.set_event_loop(loop)
-        loop.run_forever()
+    def run_loop_in_thread(_loop):
+        asyncio.set_event_loop(_loop)
+        _loop.run_forever()
 
     # Get the current event loop, create if it doesn't exist
     loop = asyncio.new_event_loop()
@@ -109,11 +112,13 @@ def start_server(host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
 
 
 class SFTPServerManager:
-    def __init__(self):
+    def __init__(self, host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
         self.loop = asyncio.get_event_loop()
         self.stop_event = asyncio.Event()
+        self.host = host
+        self.port = port
 
-    async def start_server(self, host: str = SFTP_HOST, port: int = SFTP_PORT):
+    async def start_server(self) -> None:
         # Generate an SSH keypair or use an existing one
         server_key = asyncssh.generate_private_key("ssh-rsa")
 
@@ -122,8 +127,8 @@ class SFTPServerManager:
         connection_semaphore = Semaphore(50)
 
         server = await asyncssh.listen(
-            host,
-            port,
+            self.host,
+            self.port,
             server_host_keys=[server_key],
             server_factory=lambda: SSHServer(connection_semaphore),
             sftp_factory=SFTPServer,
@@ -139,17 +144,8 @@ class SFTPServerManager:
                 server.close()
                 await server.wait_closed()
 
-    def start(self):
+    def start(self) -> None:
         self.loop.run_until_complete(self.start_server())
 
-    def stop(self):
+    def stop(self) -> None:
         self.loop.call_soon_threadsafe(self.stop_event.set)
-
-
-if __name__ == "__main__":
-    try:
-        print(f"Starting SFTP server on port {SFTP_PORT}")
-        asyncssh.logging.set_debug_level(3)  # Set verbosity to max
-        asyncio.run(start_server_async())
-    except (OSError, asyncssh.Error) as exc:
-        sys.exit("Error starting SFTP server: " + str(exc))
