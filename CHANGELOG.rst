@@ -20,6 +20,7 @@ are used for versioning (schema follows below):
 2023-06-15
 
 - Improved ``SFTPStorage`` tests.
+- Stop testing against Python 3.7 on GitHub Actions.
 
 0.15.3
 ------

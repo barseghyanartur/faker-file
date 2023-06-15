@@ -155,7 +155,7 @@ jobs:
           - "3.10"
           - "3.9"
           - "3.8"
-          - "3.7"
+#          - "3.7"
     steps:
     - name: Install wkhtmltopdf
       run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
