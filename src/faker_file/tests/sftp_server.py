@@ -5,6 +5,7 @@ import sys
 import tempfile
 import threading
 from asyncio import Semaphore
+from typing import Type
 
 import asyncssh
 
@@ -49,7 +50,7 @@ class SSHServer(asyncssh.SSHServer):
     def session_requested(self: "SSHServer") -> bool:
         return True
 
-    def sftp_requested(self: "SSHServer") -> type[SFTPServer]:
+    def sftp_requested(self: "SSHServer") -> Type[SFTPServer]:
         return SFTPServer
 
     async def begin_auth(self: "SSHServer", username: str) -> bool:
@@ -92,9 +93,9 @@ def start_server(host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
     print(f"start_server: Starting SFTP server at {host}:{port}")
 
     # This function will be run in a new thread
-    def run_loop_in_thread(loop):
-        asyncio.set_event_loop(loop)
-        loop.run_forever()
+    def run_loop_in_thread(_loop):
+        asyncio.set_event_loop(_loop)
+        _loop.run_forever()
 
     # Get the current event loop, create if it doesn't exist
     loop = asyncio.new_event_loop()
@@ -109,11 +110,11 @@ def start_server(host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
 
 
 class SFTPServerManager:
-    def __init__(self):
+    def __init__(self) -> None:
         self.loop = asyncio.get_event_loop()
         self.stop_event = asyncio.Event()
 
-    async def start_server(self, host: str = SFTP_HOST, port: int = SFTP_PORT):
+    async def start_server(self, host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
         # Generate an SSH keypair or use an existing one
         server_key = asyncssh.generate_private_key("ssh-rsa")
 
@@ -139,10 +140,10 @@ class SFTPServerManager:
                 server.close()
                 await server.wait_closed()
 
-    def start(self):
+    def start(self) -> None:
         self.loop.run_until_complete(self.start_server())
 
-    def stop(self):
+    def stop(self) -> None:
         self.loop.call_soon_threadsafe(self.stop_event.set)
 
 
