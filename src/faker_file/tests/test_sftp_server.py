@@ -253,31 +253,3 @@ class TestSFTPServerWithManager(
         # Stop the server
         cls.manager.stop()
         cls.manager_thread.join()
-
-
-# **************************************
-
-# class TestSFTPServerWithManager(
-#     IsolatedAsyncioTestCase,
-#     __TestSFTPServerMixin,
-# ):
-#     manager: SFTPServerManager
-#     manager_thread: threading.Thread
-#     sftp_host = SFTP_HOST
-#     sftp_port = SFTP_PORT
-#     sftp_user = SFTP_USER
-#     sftp_pass = SFTP_PASS
-#
-#     async def asyncSetUpClass(self):
-#         self.manager = SFTPServerManager()
-#         # Starting the manager in a separate thread since it uses
-#         # `run_until_complete`
-#         self.manager_thread = threading.Thread(target=self.manager.start)
-#         self.manager_thread.daemon = True
-#         self.manager_thread.start()
-#         time.sleep(2)  # Allow some time for the server to start
-#
-#     async def asyncTearDown(self):
-#         # Stop the server
-#         self.manager.stop()
-#         self.manager_thread.join()

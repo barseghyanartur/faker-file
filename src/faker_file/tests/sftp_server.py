@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import os
-import sys
 import tempfile
 import threading
 from asyncio import Semaphore
@@ -150,12 +149,3 @@ class SFTPServerManager:
 
     def stop(self) -> None:
         self.loop.call_soon_threadsafe(self.stop_event.set)
-
-
-if __name__ == "__main__":
-    try:
-        print(f"Starting SFTP server on port {SFTP_PORT}")
-        asyncssh.logging.set_debug_level(3)  # Set verbosity to max
-        asyncio.run(start_server_async())
-    except (OSError, asyncssh.Error) as exc:
-        sys.exit("Error starting SFTP server: " + str(exc))
