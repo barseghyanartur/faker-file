@@ -9,6 +9,17 @@ from typing import Type
 
 import asyncssh
 
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2022-2023 Artur Barseghyan"
+__license__ = "MIT"
+__all__ = (
+    "SFTPServer",
+    "SFTPServerManager",
+    "SSHServer",
+    "start_server",
+    "start_server_async",
+)
+
 DIR_PATH = os.environ.get("DIR_PATH", tempfile.gettempdir())
 SFTP_USER = os.environ.get("SFTP_USER", "foo")
 SFTP_PASS = os.environ.get("SFTP_PASS", "pass")
@@ -18,14 +29,6 @@ NUM_CONCURRENT_CONNECTIONS = int(
     os.environ.get("NUM_CONCURRENT_CONNECTIONS", 50)
 )
 LOGGER = logging.getLogger(__name__)
-
-__all__ = (
-    "SFTPServer",
-    "SFTPServerManager",
-    "SSHServer",
-    "start_server",
-    "start_server_async",
-)
 
 
 class SFTPServer(asyncssh.SFTPServer):
@@ -110,11 +113,13 @@ def start_server(host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
 
 
 class SFTPServerManager:
-    def __init__(self) -> None:
+    def __init__(self, host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
         self.loop = asyncio.get_event_loop()
         self.stop_event = asyncio.Event()
+        self.host = host
+        self.port = port
 
-    async def start_server(self, host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
+    async def start_server(self) -> None:
         # Generate an SSH keypair or use an existing one
         server_key = asyncssh.generate_private_key("ssh-rsa")
 
@@ -123,8 +128,8 @@ class SFTPServerManager:
         connection_semaphore = Semaphore(50)
 
         server = await asyncssh.listen(
-            host,
-            port,
+            self.host,
+            self.port,
             server_host_keys=[server_key],
             server_factory=lambda: SSHServer(connection_semaphore),
             sftp_factory=SFTPServer,
