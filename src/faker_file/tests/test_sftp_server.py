@@ -25,8 +25,8 @@ __all__ = (
 
 SFTP_USER = os.environ.get("SFTP_USER", "foo")
 SFTP_PASS = os.environ.get("SFTP_PASS", "pass")
-SFTP_HOST = os.environ.get("SFTP_HOST", "0.0.0.0")
-SFTP_PORT = int(os.environ.get("SFTP_PORT", 2222))
+SFTP_HOST = os.environ.get("SFTP_HOST", "127.0.0.1")
+SFTP_PORT = int(os.environ.get("SFTP_PORT", 2221))
 SFTP_ROOT_PATH = os.environ.get("SFTP_ROOT_PATH", "/upload")
 
 LOGGER = logging.getLogger(__name__)

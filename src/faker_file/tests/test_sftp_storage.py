@@ -22,8 +22,8 @@ __all__ = ("TestSFTPStorageTestCase",)
 
 SFTP_USER = os.environ.get("SFTP_USER", "foo")
 SFTP_PASS = os.environ.get("SFTP_PASS", "pass")
-SFTP_HOST = os.environ.get("SFTP_HOST", "0.0.0.0")
-SFTP_PORT = int(os.environ.get("SFTP_PORT", 2222))
+SFTP_HOST = os.environ.get("SFTP_HOST", "127.0.0.1")
+SFTP_PORT = int(os.environ.get("SFTP_PORT", 2229))
 SFTP_ROOT_PATH = os.environ.get("SFTP_ROOT_PATH", "/upload")
 
 LOGGER = logging.getLogger(__name__)
@@ -38,7 +38,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     server_manager: SFTPServerManager
     server_thread: threading.Thread
     sftp_host = SFTP_HOST
-    sftp_port = 2229
+    sftp_port = SFTP_PORT
     sftp_user = SFTP_USER
     sftp_pass = SFTP_PASS
     sftp_root_path = SFTP_ROOT_PATH
