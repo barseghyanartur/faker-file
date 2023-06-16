@@ -77,6 +77,7 @@ faker-file
 .. _pandas: https://pandas.pydata.org/
 .. _tika: https://pypi.org/project/tika/
 .. _Apache Tika: https://tika.apache.org/
+.. _paramiko: http://paramiko.org/
 
 Prerequisites
 =============
@@ -109,6 +110,7 @@ below between the brackets.
   and `azure-storage-blob`_ (`MIT`).
 - ``GoogleCloudStorage`` storage support requires `pathy`_ (`Apache 2`)
   and `google-cloud-storage`_ (`Apache 2`).
+- ``SFTPStorage`` storage support requires `paramiko`_ (`LGLPv2.1`).
 - ``AugmentFileFromDirProvider`` provider requires `nlpaug`_ (`MIT`),
   `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`), `numpy`_ (`BSD`),
   `pandas`_ (`BSD`), `tika`_ (`Apache 2`) and `Apache Tika`_ (`Apache 2`).
@@ -258,6 +260,7 @@ Supported file storages
 - AWS S3 storage
 - Azure Cloud Storage
 - Google Cloud Storage
+- SFTP storage
 
 Usage examples
 ==============
