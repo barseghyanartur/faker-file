@@ -49,6 +49,9 @@ class SFTPStorage(BaseStorage):
         txt_file = FAKER.txt_file(storage=STORAGE_SUB_DIR)
     """
 
+    sftp: Optional[paramiko.SFTPClient] = None
+    transport: Optional[paramiko.Transport] = None
+
     def __init__(
         self: "SFTPStorage",
         host: str,

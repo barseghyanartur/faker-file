@@ -1063,6 +1063,46 @@ an HTML file is generated from a template.
         extension="html",
     )
 
+Working with storages
+~~~~~~~~~~~~~~~~~~~~~
+AWS S3 storage
+^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.storages.aws_s3 import AWSS3Storage
+
+    FAKER = Faker()
+    AWS_S3_STORAGE = AWSS3Storage(
+        bucket_name="your-bucket-name",
+        root_path="",
+        rel_path="",
+    )
+    FAKER.add_provider(TxtFileProvider)
+
+    txt_file = FAKER.txt_file(storage=AWS_S3_STORAGE)
+
+SFTP storage
+^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.storages.sftp import SFTPStorage
+
+    FAKER = Faker()
+    SFTP_STORAGE = SFTPStorage(
+        host="your-sftp-host.domain",
+        port: 22,
+        username: "your-sftp-username",
+        password: "your-sftp-password,
+        root_path: "/dir-name",
+    )
+    FAKER.add_provider(TxtFileProvider)
+
+    txt_file = FAKER.txt_file(storage=SFTP_STORAGE)
+
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
 When used with Django (to generate fake data with ``factory_boy`` factories),
@@ -1296,7 +1336,7 @@ Other Django usage examples
     )
     FAKER.add_provider(PdfFileProvider)
 
-    file = PdfFileProvider(FAKER).pdf_file(storage=STORAGE)
+    file = FAKER.pdf_file(storage=STORAGE)
 
 **factory-boy example with AWS S3 storage**
 
