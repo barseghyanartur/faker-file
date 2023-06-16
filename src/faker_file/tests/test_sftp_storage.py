@@ -250,3 +250,61 @@ class TestSFTPStorageTestCase(unittest.TestCase):
                 os.path.join(self.sftp_root_path, "sub")
             )
         )
+
+    @parametrize(
+        "kwargs",
+        [
+            # Wrong username, key
+            ({"username": "wrong-username", "key": "wrong-key"},),
+            # Wrong username, password
+            ({"username": "wrong-username", "password": "wrong-password"},),
+        ],
+    )
+    def test_storage_initialization_exceptions(
+        self: "TestSFTPStorageTestCase",
+        kwargs: Dict[str, Any],
+    ) -> None:
+        with self.assertRaises(Exception):
+            # Initialize the storage
+            SFTPStorage(**kwargs)
+
+    def test_storage_write_text_exceptions(self) -> None:
+        storage = SFTPStorage(
+            host=self.sftp_host,
+            port=self.sftp_port,
+            username=self.sftp_user,
+            password=self.sftp_pass,
+            root_path=self.sftp_root_path,
+        )
+        val = storage.write_text(
+            filename=FAKER.file_name(),
+            data=1,
+        )  # type: ignore
+        self.assertEqual(val, -1)
+
+    def test_storage_write_bytes_exceptions(self) -> None:
+        storage = SFTPStorage(
+            host=self.sftp_host,
+            port=self.sftp_port,
+            username=self.sftp_user,
+            password=self.sftp_pass,
+            root_path=self.sftp_root_path,
+        )
+        val = storage.write_bytes(
+            filename=FAKER.file_name(),
+            data=1,
+        )  # type: ignore
+        self.assertEqual(val, -1)
+
+    def test_storage_exists_exceptions(self) -> None:
+        storage = SFTPStorage(
+            host=self.sftp_host,
+            port=self.sftp_port,
+            username=self.sftp_user,
+            password=self.sftp_pass,
+            root_path=self.sftp_root_path,
+        )
+        val = storage.exists(
+            filename=FAKER.file_name(),
+        )  # type: ignore
+        self.assertFalse(val)

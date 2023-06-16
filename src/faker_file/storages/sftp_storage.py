@@ -73,6 +73,7 @@ class SFTPStorage(BaseStorage):
         self.root_path = root_path
         self.rel_path = rel_path
 
+        self.sftp = None
         self.transport = paramiko.Transport((host, port))
 
         # Authentication
