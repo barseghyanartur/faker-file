@@ -255,9 +255,23 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         "kwargs",
         [
             # Wrong username, key
-            ({"username": "wrong-username", "key": "wrong-key"},),
+            (
+                {
+                    "host": sftp_host,
+                    "port": sftp_port,
+                    "username": "wrong",
+                    "key": "wrong",
+                },
+            ),
             # Wrong username, password
-            ({"username": "wrong-username", "password": "wrong-password"},),
+            (
+                {
+                    "host": sftp_host,
+                    "port": sftp_port,
+                    "username": "wrong",
+                    "password": "wrong",
+                },
+            ),
         ],
     )
     def test_storage_initialization_exceptions(
@@ -278,8 +292,8 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         )
         val = storage.write_text(
             filename=FAKER.file_name(),
-            data=1,
-        )  # type: ignore
+            data=1,  # type: ignore
+        )
         self.assertEqual(val, -1)
 
     def test_storage_write_bytes_exceptions(self) -> None:
@@ -292,8 +306,8 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         )
         val = storage.write_bytes(
             filename=FAKER.file_name(),
-            data=1,
-        )  # type: ignore
+            data=1,  # type: ignore
+        )
         self.assertEqual(val, -1)
 
     def test_storage_exists_exceptions(self) -> None:
@@ -306,5 +320,5 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         )
         val = storage.exists(
             filename=FAKER.file_name(),
-        )  # type: ignore
+        )
         self.assertFalse(val)
