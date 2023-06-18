@@ -44,26 +44,6 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     sftp_pass: str = SFTP_PASS
     sftp_root_path: str = SFTP_ROOT_PATH
 
-    # @classmethod
-    # def setUpClass(cls):
-    #     os.makedirs(
-    #         os.path.join(tempfile.gettempdir(), "upload", "sub"),
-    #         exist_ok=True,
-    #     )
-    #     # Start the server in a separate thread
-    #     cls.server_manager = SFTPServerManager()
-    #     cls.server_thread = threading.Thread(target=cls.server_manager.start)
-    #     # Daemonize the thread, so it exits when the main thread exits
-    #     cls.server_thread.daemon = True
-    #     cls.server_thread.start()
-    #     time.sleep(2)
-    #
-    # @classmethod
-    # def tearDownClass(cls):
-    #     # Stop the server when tests are done
-    #     cls.server_manager.stop()
-    #     cls.server_thread.join()  # Wait for the server thread to finish
-
     @staticmethod
     def is_port_in_use(host: str, port: int) -> bool:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
