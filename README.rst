@@ -83,7 +83,7 @@ Prerequisites
 =============
 All of core dependencies of this package are `MIT` licensed.
 Most of optional dependencies of this package are `MIT` licensed, while
-a few are `BSD`-, `Apache 2`- or `GPLv3` licensed. All licenses are mentioned
+a few are `BSD`-, `Apache 2`- or `GPL` licensed. All licenses are mentioned
 below between the brackets.
 
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
@@ -359,6 +359,7 @@ The following storages are implemented:
 - ``GoogleCloudStorage``: Requires `pathy`_ and `Google Cloud` related
   dependencies.
 - ``AWSS3Storage``: Requires `pathy`_ and `AWS S3` related dependencies.
+- ``SFTPStorage``: Requires `paramiko`_ related dependencies.
 
 Usage example with storages
 ---------------------------

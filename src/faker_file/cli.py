@@ -8,6 +8,7 @@ from typing import Any, Dict, Tuple, Type
 
 from faker import Faker
 
+from . import __version__
 from .base import FileMixin, StringValue
 from .providers.bin_file import BinFileProvider
 from .providers.csv_file import CsvFileProvider
@@ -37,9 +38,11 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = [
-    "main",
-    "get_method_kwargs",
+    "generate_completion_file",
     "generate_file",
+    "get_method_kwargs",
+    "is_optional_type",
+    "main",
 ]
 
 KWARGS_DROP = {
@@ -168,10 +171,11 @@ def generate_completion_file():
     completion_script = f"""#!/bin/bash
 
 _faker_file_completion() {{
-    local cur prev providers
+    local cur prev providers commands
     cur="${{COMP_WORDS[COMP_CWORD]}}"
     prev="${{COMP_WORDS[COMP_CWORD - 1]}}"
     providers="{(' '.join(PROVIDERS.keys()))}"
+    commands="generate-completion version"  # Add the commands here
 
     case $prev in"""
 
@@ -183,9 +187,16 @@ _faker_file_completion() {{
             ;;
         """  # noqa
 
+    # Add the case for commands
+    completion_script += """
+        generate-completion|version)
+            COMPREPLY=()
+            ;;
+    """
+
     completion_script += """
         *)
-            COMPREPLY=($(compgen -W "$providers" -- "$cur"))
+            COMPREPLY=($(compgen -W "$providers $commands" -- "$cur"))
             ;;
     esac
 
@@ -215,6 +226,12 @@ def main():
     __generate_completion_subparser = subparsers.add_parser(
         "generate-completion",
         help="Generate bash completion file.",
+    )
+
+    # Add version subparser
+    __version_subparser = subparsers.add_parser(
+        "version",
+        help="Print version.",
     )
 
     for method_name, provider in PROVIDERS.items():
@@ -250,6 +267,8 @@ def main():
 
     if args.command == "generate-completion":
         generate_completion_file()
+    elif args.command == "version":
+        print(__version__)
     elif args.command:
         kwargs = {k: v for k, v in vars(args).items() if k not in ("command",)}
         for counter in range(args.nb_files):
