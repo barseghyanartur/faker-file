@@ -359,7 +359,7 @@ The following storages are implemented:
 - ``GoogleCloudStorage``: Requires `pathy`_ and `Google Cloud` related
   dependencies.
 - ``AWSS3Storage``: Requires `pathy`_ and `AWS S3` related dependencies.
-- ``SFTPStorage``: Requires `paramiko`_ related dependencies.
+- ``SFTPStorage``: Requires `paramiko`_ and related dependencies.
 
 Usage example with storages
 ---------------------------
