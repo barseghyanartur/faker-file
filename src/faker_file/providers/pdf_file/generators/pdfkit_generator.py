@@ -33,7 +33,7 @@ class PdfkitPdfGenerator(BasePdfGenerator):
             pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator
         )
 
-    Using `DynamicContent`:
+    Using `DynamicTemplate`:
 
         import base64
         from faker import Faker
@@ -48,7 +48,10 @@ class PdfkitPdfGenerator(BasePdfGenerator):
             encoded_image = base64.b64encode(image_bytes).decode('utf-8')
             return f"data:image/{image_format};base64,{encoded_image}"
 
-        def pdf_add_table(provider, document, data, counter, **kwargs):
+        # Add table function
+        def pdf_add_table(
+            provider, generator, document, data, counter, **kwargs
+        ):
             rows = kwargs.get("rows", 3)
             cols = kwargs.get("cols", 4)
 
@@ -78,7 +81,10 @@ class PdfkitPdfGenerator(BasePdfGenerator):
 
             document += ("\r\n" + table_html)
 
-        def pdf_add_picture(provider, document, data, counter, **kwargs):
+        # Add picture function
+        def pdf_add_picture(
+            provider, generator, document, data, counter, **kwargs
+        ):
             jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
                 raw=True
             )
@@ -92,13 +98,43 @@ class PdfkitPdfGenerator(BasePdfGenerator):
             )
             data["content"] += ("\r\n" + jpeg_file.data["content"])
 
+        # Add page break
+        def pdf_add_page_break(
+            provider, generator, document, data, counter, **kwargs
+        ):
+            page_break_html = "<div style='page-break-before: always;'></div>"
+            document += "\r\n" + page_break_html
+
+        # Add a paragraph
+        def pdf_add_paragraph(
+            provider, generator, document, data, counter, **kwargs
+        ):
+            content = provider.generator.text(max_nb_chars=5_000)
+            paragraph_html = f"<div><p>{content}</p></div>"
+            document += "\r\n" + paragraph_html
+
+        # Create a file with table, page-break, picture, page-break, paragraph
         file = PdfFileProvider(Faker()).pdf_file(
             pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator,
             content=DynamicTemplate(
                 [
                     (pdf_add_table, {}),
+                    (pdf_add_page_break, {}),
                     (pdf_add_picture, {}),
+                    (pdf_add_page_break, {}),
+                    (pdf_add_paragraph, {}),
                 ]
+            )
+        )
+
+        # Create a file with text of 100 pages
+        file = PdfFileProvider(Faker()).pdf_file(
+            pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator,
+            content=DynamicTemplate(
+                [
+                    (pdf_add_paragraph, {}),
+                    (pdf_add_page_break, {}),
+                ] * 100
             )
         )
     """
@@ -129,6 +165,7 @@ class PdfkitPdfGenerator(BasePdfGenerator):
             ):
                 ct_modifier(
                     provider,
+                    self,
                     _content,
                     data,
                     counter,

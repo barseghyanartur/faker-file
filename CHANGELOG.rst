@@ -15,6 +15,37 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.16
+----
+.. note::
+
+    This release is dedicated to my beloved son - Tigran, who turned 11!
+
+.. note::
+
+    This release introduces minor backwards incompatible changes.
+
+- Minor improvements in PDF generation. If you have been using
+  ``DynamicTemplate`` to generate complex PDFs, you are likely affected
+  by the change. Make sure to at least add an additional argument
+  named ``generator`` to the functions passed to the ``DynamicTemplate``
+  class. See the example below:
+
+  Old:
+
+    ``def add_pb(provider, story, data, counter, **kwargs):``
+
+  New:
+
+    ``def add_pb(provider, generator, story, data, counter, **kwargs):``
+
+- Add code examples of how to generate a PDF with 100 pages with
+  both ``PdfkitPdfGenerator`` and ``ReportlabPdfGenerator`` PDF generator
+  classes.
+- Add ``version`` CLI command.
+- Add ``generate-completion`` and ``version`` commands to the CLI
+  auto-completion.
+
 0.15.5
 ------
 2023-06-18

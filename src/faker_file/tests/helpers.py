@@ -12,7 +12,12 @@ from odf.table import Table, TableCell, TableColumn, TableRow
 from odf.text import P
 from PIL import Image as PilImage
 from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Image as PdfImage
+from reportlab.platypus import PageBreak as PdfPageBreak
+from reportlab.platypus import Paragraph as PdfParagraph
 from reportlab.platypus import Table as PdfTable
 from reportlab.platypus import TableStyle as PdfTableStyle
 
@@ -26,8 +31,12 @@ __all__ = (
     "docx_add_table",
     "odt_add_picture",
     "odt_add_table",
+    "pdf_pdfkit_add_page_break",
+    "pdf_pdfkit_add_paragraph",
     "pdf_pdfkit_add_picture",
     "pdf_pdfkit_add_table",
+    "pdf_reportlab_add_page_break",
+    "pdf_reportlab_add_paragraph",
     "pdf_reportlab_add_picture",
     "pdf_reportlab_add_table",
 )
@@ -154,7 +163,9 @@ def create_data_url(image_bytes, image_format):
     return f"data:image/{image_format};base64,{encoded_image}"
 
 
-def pdf_pdfkit_add_table(provider, document, data, counter, **kwargs):
+def pdf_pdfkit_add_table(
+    provider, generator, document, data, counter, **kwargs
+):
     """Callable responsible for the table generation."""
     rows = kwargs.get("rows", 3)
     cols = kwargs.get("cols", 4)
@@ -185,7 +196,9 @@ def pdf_pdfkit_add_table(provider, document, data, counter, **kwargs):
     document += "\r\n" + table_html
 
 
-def pdf_pdfkit_add_picture(provider, document, data, counter, **kwargs):
+def pdf_pdfkit_add_picture(
+    provider, generator, document, data, counter, **kwargs
+):
     """Callable responsible for the picture generation."""
     jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
     data_url = create_data_url(jpeg_file, "jpg")
@@ -203,7 +216,27 @@ def pdf_pdfkit_add_picture(provider, document, data, counter, **kwargs):
     data["content"] += "\r\n" + jpeg_file.data["content"]
 
 
-def pdf_reportlab_add_table(provider, story, data, counter, **kwargs):
+def pdf_pdfkit_add_page_break(
+    provider, generator, document, data, counter, **kwargs
+):
+    """Callable responsible for the page break insertion."""
+    page_break_html = "<div style='page-break-before: always;'></div>"
+    document += "\r\n" + page_break_html
+
+
+def pdf_pdfkit_add_paragraph(
+    provider, generator, document, data, counter, **kwargs
+):
+    """Callable responsible for paragraph generation."""
+    # Insert a paragraph
+    content = provider.generator.text(max_nb_chars=5_000)
+    paragraph_html = f"<div><p>{content}</p></div>"
+    document += "\r\n" + paragraph_html
+
+
+def pdf_reportlab_add_table(
+    provider, generator, story, data, counter, **kwargs
+):
     """
     Callable responsible for the table generation when using reportlab
     PDF generator.
@@ -256,7 +289,9 @@ def pdf_reportlab_add_table(provider, story, data, counter, **kwargs):
     story.append(table)
 
 
-def pdf_reportlab_add_picture(provider, story, data, counter, **kwargs):
+def pdf_reportlab_add_picture(
+    provider, generator, story, data, counter, **kwargs
+):
     """
     Callable responsible for the picture generation when using reportlab
     PDF generator.
@@ -293,3 +328,28 @@ def pdf_reportlab_add_picture(provider, story, data, counter, **kwargs):
         jpeg_file.data["content"]
     )
     data["content"] += "\r\n" + jpeg_file.data["content"]
+
+
+def pdf_reportlab_add_page_break(
+    provider, generator, story, data, counter, **kwargs
+):
+    """
+    Callable responsible for the page break insertion when using reportlab
+    PDF generator.
+    """
+    # Insert a page break
+    story.append(PdfPageBreak())
+
+
+def pdf_reportlab_add_paragraph(
+    provider, generator, story, data, counter, **kwargs
+):
+    """Callable responsible for paragraph generation."""
+    # Insert a paragraph
+    styles = getSampleStyleSheet()
+    style_paragraph = styles["Normal"]
+    style_paragraph.fontName = generator.font_name
+    pdfmetrics.registerFont(TTFont(generator.font_name, generator.font_path))
+    content = provider.generator.text(max_nb_chars=5_000)
+    paragraph = PdfParagraph(content, style_paragraph)
+    story.append(paragraph)

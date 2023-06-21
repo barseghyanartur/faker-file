@@ -1,4 +1,5 @@
 import logging
+import re
 import subprocess
 import unittest
 
@@ -10,6 +11,9 @@ __license__ = "MIT"
 __all__ = ("TestCLI",)
 
 LOGGER = logging.getLogger(__name__)
+
+
+VERSION_PATTERN = re.compile(r"^\d+(\.\d+){0,2}$")
 
 
 def convert_value_to_cli_arg(value) -> str:
@@ -255,3 +259,9 @@ class TestCLI(unittest.TestCase):
         cmd = ["faker-file", "generate-completion"]
         res = subprocess.check_output(cmd).strip()
         self.assertTrue(res)
+
+    def test_cli_version(self: "TestCLI") -> None:
+        """Test CLI, version."""
+        cmd = ["faker-file", "version"]
+        res = subprocess.check_output(cmd).strip()
+        self.assertTrue(VERSION_PATTERN.match(res.decode()))

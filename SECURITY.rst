@@ -14,19 +14,19 @@ Supported Versions
 The two most recent ``faker-file`` release series receive security support.
 
 For example, during the development cycle leading to the release
-of ``faker-file`` 0.15.x, support will be provided for ``faker-file`` 0.14.x.
+of ``faker-file`` 0.16.x, support will be provided for ``faker-file`` 0.15.x.
 
-Upon the release of ``faker-file`` 0.16.x, security support for ``faker-file``
-0.14.x will end.
+Upon the release of ``faker-file`` 0.17.x, security support for ``faker-file``
+0.15.x will end.
 
 .. code-block:: text
 
     ┌─────────────────┬────────────────┐
     │ Version         │ Supported      │
     ├─────────────────┼────────────────┤
+    │ 0.16.x          │ Yes            │
+    ├─────────────────┼────────────────┤
     │ 0.15.x          │ Yes            │
     ├─────────────────┼────────────────┤
-    │ 0.14.x          │ Yes            │
-    ├─────────────────┼────────────────┤
-    │ < 0.14          │ No             │
+    │ < 0.15          │ No             │
     └─────────────────┴────────────────┘

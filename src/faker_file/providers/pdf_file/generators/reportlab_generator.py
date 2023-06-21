@@ -39,7 +39,7 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator
         )
 
-    Using `DynamicContent`:
+    Using `DynamicTemplate`:
 
         from io import BytesIO
 
@@ -52,12 +52,24 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         )
         from PIL import Image as PilImage
         from reportlab.lib.pagesizes import letter, landscape
+        from reportlab.lib.styles import getSampleStyleSheet
         from reportlab.lib import colors
-        from reportlab.platypus import Image, Table, TableStyle, PageBreak
+        from reportlab.pdfbase import pdfmetrics
+        from reportlab.pdfbase.ttfonts import TTFont
+        from reportlab.platypus import (
+            Image,
+            Table,
+            TableStyle,
+            PageBreak,
+            Paragraph,
+        )
 
         FAKER = Faker()
 
-        def pdf_add_table(provider, story, data, counter, **kwargs):
+        # Add table function
+        def pdf_add_table(
+            provider, generator, story, data, counter, **kwargs
+        ):
             rows = kwargs.get("rows", 3)
             cols = kwargs.get("cols", 4)
 
@@ -97,7 +109,10 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             # Add the table to the document and build it
             story.append(table)
 
-        def pdf_add_picture(provider, story, data, counter, **kwargs):
+        # Add picture function
+        def pdf_add_picture(
+            provider, generator, story, data, counter, **kwargs
+        ):
             jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
                 raw=True
             )
@@ -122,6 +137,29 @@ class ReportlabPdfGenerator(BasePdfGenerator):
                 img.height = new_height
                 story.append(img)
 
+        # Add page break function
+        def pdf_add_page_break(
+            provider, generator, story, data, counter, **kwargs
+        ):
+            # Insert a page break
+            story.append(PageBreak())
+
+        # Add paragraph function
+        def pdf_add_paragraph(
+            provider, generator, story, data, counter, **kwargs
+        ):
+            # Insert a paragraph
+            styles = getSampleStyleSheet()
+            style_paragraph = styles["Normal"]
+            style_paragraph.fontName = generator.font_name
+            pdfmetrics.registerFont(
+                TTFont(generator.font_name, generator.font_path)
+            )
+            content = provider.generator.text(max_nb_chars=5_000)
+            paragraph = Paragraph(content, style_paragraph)
+            story.append(paragraph)
+
+        # Create a file with table, page-break, picture, page-break, paragraph
         file = PdfFileProvider(Faker()).pdf_file(
             pdf_generator_cls=(
                 reportlab_generator.ReportlabPdfGenerator
@@ -129,8 +167,24 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             content=DynamicTemplate(
                 [
                     (pdf_add_table, {}),
+                    (pdf_add_page_break, {}),
                     (pdf_add_picture, {}),
+                    (pdf_add_page_break, {}),
+                    (pdf_add_paragraph, {}),
                 ]
+            )
+        )
+
+        # Create a file with text of 100 pages
+        file = PdfFileProvider(Faker()).pdf_file(
+            pdf_generator_cls=(
+                reportlab_generator.ReportlabPdfGenerator
+            ),
+            content=DynamicTemplate(
+                [
+                    (pdf_add_paragraph, {}),
+                    (pdf_add_page_break, {}),
+                ] * 100
             )
         )
     """
@@ -152,7 +206,12 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         provider: Union[Faker, Generator, Provider],
         **kwargs,
     ) -> bytes:
-        """Generate PDF."""
+        """Generate PDF.
+
+        :param content:
+        :param data:
+        :param provider: `PdfFileProvider` instance.
+        """
         styles = getSampleStyleSheet()
         style_paragraph = styles["Normal"]
         style_paragraph.fontName = self.font_name
@@ -174,6 +233,7 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             ):
                 ct_modifier(
                     provider,
+                    self,
                     story,
                     data,
                     counter,

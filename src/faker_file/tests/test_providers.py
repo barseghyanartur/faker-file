@@ -96,8 +96,12 @@ from .helpers import (
     docx_add_table,
     odt_add_picture,
     odt_add_table,
+    pdf_pdfkit_add_page_break,
+    pdf_pdfkit_add_paragraph,
     pdf_pdfkit_add_picture,
     pdf_pdfkit_add_table,
+    pdf_reportlab_add_page_break,
+    pdf_reportlab_add_paragraph,
     pdf_reportlab_add_picture,
     pdf_reportlab_add_table,
 )
@@ -641,7 +645,14 @@ class ProvidersTestCase(unittest.TestCase):
                 ),
                 "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
                 "content": DynamicTemplate(
-                    [(pdf_pdfkit_add_table, {}), (pdf_pdfkit_add_picture, {})]
+                    [
+                        (pdf_pdfkit_add_table, {}),
+                        (pdf_pdfkit_add_page_break, {}),
+                        (pdf_pdfkit_add_picture, {})(
+                            pdf_pdfkit_add_page_break, {}
+                        ),
+                        (pdf_pdfkit_add_paragraph, {}),
+                    ]
                 ),
             },
             None,
@@ -659,7 +670,10 @@ class ProvidersTestCase(unittest.TestCase):
                 "content": DynamicTemplate(
                     [
                         (pdf_reportlab_add_table, {}),
+                        (pdf_reportlab_add_page_break, {}),
                         (pdf_reportlab_add_picture, {}),
+                        (pdf_reportlab_add_page_break, {}),
+                        (pdf_reportlab_add_paragraph, {}),
                     ]
                 ),
             },
