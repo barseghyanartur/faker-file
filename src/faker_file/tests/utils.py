@@ -13,21 +13,27 @@ __all__ = (
 class AutoIncPortInt(int):
     """Automatically incremented integer value.
 
-    Contains state of issued values.
-    Starts from 2223. Every time initialized, value increases.
-    For instance:
+    Contains state of issued values. Starts from 2223. Every time
+    initialized, value increases.
 
-        int1 = AutoInt()  # 2223
-        int2 = AutoInt()  # 2224
-        int3 = AutoInt()  # 2225
+    Usage example:
+
+        port = AutoInt()  # 2223
+        port = AutoInt()  # 2224
+        port = AutoInt()  # 2225
 
     For the rest, it behaves like a normal integer.
+
+    For better integration, it's recommended to cast the value to `int`,
+    like this:
+
+        port = int(AutoInt())
     """
 
     # This is a class attribute that keeps the current state
-    _next_value = 2223
+    _next_value: int = 2223
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs) -> "AutoIncPortInt":
         """Create a new instance of AutoInt with the next value."""
         # Use __new__ because int is immutable, so we need to set the value
         # before creating the instance.
@@ -41,16 +47,20 @@ class AutoIncPortInt(int):
 class AutoFreePortInt(int):
     """Automatically and randomly picks a free port within a specified range.
 
-    Contains state of issued ports.
     For instance:
 
         # Random free port between default range 2223 and 5000
-        port1 = AutoInt()
+        port = AutoFreePortInt()
 
         # Random free port between 3000 and 4000
-        port2 = AutoInt(min_port=3000, max_port=4000)
+        port = AutoFreePortInt(min_port=3000, max_port=4000)
 
     For the rest, it behaves like a normal integer.
+
+    For better integration, it's recommended to cast the value to `int`,
+    like this:
+
+        port = int(AutoFreePortInt())
     """
 
     # Default port range
@@ -75,8 +85,8 @@ class AutoFreePortInt(int):
         host: str = "localhost",
         *args,
         **kwargs,
-    ):
-        """Create a new instance of AutoFreePortInt.
+    ) -> "AutoFreePortInt":
+        """Create a new instance of `AutoFreePortInt`.
 
         With a free random port within the specified range.
         """
