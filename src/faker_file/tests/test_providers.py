@@ -648,9 +648,8 @@ class ProvidersTestCase(unittest.TestCase):
                     [
                         (pdf_pdfkit_add_table, {}),
                         (pdf_pdfkit_add_page_break, {}),
-                        (pdf_pdfkit_add_picture, {})(
-                            pdf_pdfkit_add_page_break, {}
-                        ),
+                        (pdf_pdfkit_add_picture, {}),
+                        (pdf_pdfkit_add_page_break, {}),
                         (pdf_pdfkit_add_paragraph, {}),
                     ]
                 ),
