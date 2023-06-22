@@ -1,14 +1,26 @@
 CLI
 ===
+.. External references
+
+.. _pipx: https://pypa.github.io/pipx/
+
 It's possible to generate files from CLI.
 
 .. note::
 
-    For using CLI you should install all common dependencies:
+    For using CLI you should install all common dependencies.
+
+Install using `pipx`_ (recommended):
 
 .. code-block:: sh
 
-    pip install faker-file[common]
+    pipx install faker-file[common]
+
+Install using ``pip``.
+
+.. code-block:: sh
+
+    pip install faker-file[common] --user
 
 List available provider options
 -------------------------------

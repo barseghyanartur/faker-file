@@ -15,8 +15,16 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.16.1
+------
+2023-06-23
+
+- Better error handling in CLI.
+
 0.16
 ----
+2023-06-21
+
 .. note::
 
     This release is dedicated to my beloved son - Tigran, who turned 11!

@@ -2,8 +2,11 @@ import logging
 import re
 import subprocess
 import unittest
+from importlib import import_module, reload
 
 from parametrize import parametrize
+
+from ..cli.command import main
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -27,9 +30,6 @@ def convert_value_to_cli_arg(value) -> str:
 
 class TestCLI(unittest.TestCase):
     """CLI tests."""
-
-    def setUp(self):
-        """Set up."""
 
     @parametrize(
         "method_name, kwargs",
@@ -265,3 +265,11 @@ class TestCLI(unittest.TestCase):
         cmd = ["faker-file", "version"]
         res = subprocess.check_output(cmd).strip()
         self.assertTrue(VERSION_PATTERN.match(res.decode()))
+
+    def test_broken_imports(self: "TestCLI") -> None:
+        """Test broken imports."""
+        _module = import_module("faker_file.cli.helpers")
+        del _module.__dict__["PROVIDERS"]
+        with self.assertRaises(SystemExit):
+            main()
+        reload(_module)

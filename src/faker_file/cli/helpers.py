@@ -1,49 +1,46 @@
-import argparse
 import inspect
 import os
-import sys
 import typing
 from copy import deepcopy
 from typing import Any, Dict, Tuple, Type
 
 from faker import Faker
 
-from . import __version__
-from .base import FileMixin, StringValue
-from .providers.bin_file import BinFileProvider
-from .providers.csv_file import CsvFileProvider
-from .providers.docx_file import DocxFileProvider
-from .providers.eml_file import EmlFileProvider
-from .providers.epub_file import EpubFileProvider
-from .providers.generic_file import GenericFileProvider
-from .providers.ico_file import IcoFileProvider
-from .providers.jpeg_file import JpegFileProvider
-from .providers.mp3_file import Mp3FileProvider
-from .providers.odp_file import OdpFileProvider
-from .providers.ods_file import OdsFileProvider
-from .providers.odt_file import OdtFileProvider
-from .providers.pdf_file import PdfFileProvider
-from .providers.png_file import PngFileProvider
-from .providers.pptx_file import PptxFileProvider
-from .providers.rtf_file import RtfFileProvider
-from .providers.svg_file import SvgFileProvider
-from .providers.tar_file import TarFileProvider
-from .providers.txt_file import TxtFileProvider
-from .providers.webp_file import WebpFileProvider
-from .providers.xlsx_file import XlsxFileProvider
-from .providers.xml_file import XmlFileProvider
-from .providers.zip_file import ZipFileProvider
+from ..base import FileMixin, StringValue
+from ..providers.bin_file import BinFileProvider
+from ..providers.csv_file import CsvFileProvider
+from ..providers.docx_file import DocxFileProvider
+from ..providers.eml_file import EmlFileProvider
+from ..providers.epub_file import EpubFileProvider
+from ..providers.generic_file import GenericFileProvider
+from ..providers.ico_file import IcoFileProvider
+from ..providers.jpeg_file import JpegFileProvider
+from ..providers.mp3_file import Mp3FileProvider
+from ..providers.odp_file import OdpFileProvider
+from ..providers.ods_file import OdsFileProvider
+from ..providers.odt_file import OdtFileProvider
+from ..providers.pdf_file import PdfFileProvider
+from ..providers.png_file import PngFileProvider
+from ..providers.pptx_file import PptxFileProvider
+from ..providers.rtf_file import RtfFileProvider
+from ..providers.svg_file import SvgFileProvider
+from ..providers.tar_file import TarFileProvider
+from ..providers.txt_file import TxtFileProvider
+from ..providers.webp_file import WebpFileProvider
+from ..providers.xlsx_file import XlsxFileProvider
+from ..providers.xml_file import XmlFileProvider
+from ..providers.zip_file import ZipFileProvider
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = [
+__all__ = (
     "generate_completion_file",
     "generate_file",
     "get_method_kwargs",
     "is_optional_type",
-    "main",
-]
+    "PROVIDERS",
+)
 
 KWARGS_DROP = {
     "self",  # Drop as irrelevant
@@ -212,72 +209,3 @@ complete -F _faker_file_completion faker-file
         f.write(completion_script)
 
     print(f"Generated bash completion file: {file_path}")
-
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="CLI for the faker-file package."
-    )
-    subparsers = parser.add_subparsers(
-        dest="command", help="Available file providers."
-    )
-
-    # Add generate-completion subparser
-    __generate_completion_subparser = subparsers.add_parser(
-        "generate-completion",
-        help="Generate bash completion file.",
-    )
-
-    # Add version subparser
-    __version_subparser = subparsers.add_parser(
-        "version",
-        help="Print version.",
-    )
-
-    for method_name, provider in PROVIDERS.items():
-        subparser = subparsers.add_parser(
-            method_name,
-            help=f"Generate a {method_name.split('_file')[0]} file.",
-        )
-        method_kwargs, annotations = get_method_kwargs(provider, method_name)
-        for arg, default in method_kwargs.items():
-            arg_type = annotations[arg]
-            arg_kwargs = {
-                "default": default,
-                "help": f"{arg} (default: {default})",
-                "type": (
-                    arg_type.__args__[0]
-                    if isinstance(arg_type, typing._GenericAlias)
-                    and is_optional_type(arg_type)
-                    else arg_type
-                ),
-            }
-
-            subparser.add_argument(f"--{arg}", **arg_kwargs)
-
-        # Add the optional num_files argument
-        subparser.add_argument(
-            "--nb_files",
-            default=1,
-            type=int,
-            help="number of files to generate (default: 1)",
-        )
-
-    args = parser.parse_args()
-
-    if args.command == "generate-completion":
-        generate_completion_file()
-    elif args.command == "version":
-        print(__version__)
-    elif args.command:
-        kwargs = {k: v for k, v in vars(args).items() if k not in ("command",)}
-        for counter in range(args.nb_files):
-            output_file = generate_file(args.command, **kwargs)
-            print(
-                f"Generated {args.command} file "
-                f"({counter+1} of {args.nb_files}): "
-                f"{output_file.data['filename']}"
-            )
-    else:
-        parser.print_help()
-        sys.exit(1)
