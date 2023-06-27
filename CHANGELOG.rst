@@ -15,6 +15,16 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.16.2
+------
+2023-06-28
+
+- Moving some of the snippets from tests to a ``contrib`` module to improve
+  usability. The snippets are generic enough to be used in tests and if you
+  don't like the way they work, you could always make a new one. New snippets
+  to insert page breaks and paragraphs into PDF (using both ``pdfkit``
+  and ``reportlab`` generators) have been added.
+
 0.16.1
 ------
 2023-06-23
