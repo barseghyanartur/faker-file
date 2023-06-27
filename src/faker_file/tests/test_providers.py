@@ -17,26 +17,24 @@ from ..constants import (
     DEFAULT_FONT_PATH,
     DEFAULT_TEXT_CONTENT_TEMPLATE,
 )
+from ..contrib.docx_file import (
+    add_picture as docx_add_picture,
+    add_table as docx_add_table,
+)
+from ..contrib.odt_file import (
+    add_picture as odt_add_picture,
+    add_table as odt_add_table,
+)
 from ..contrib.pdf_file.pdfkit_snippets import (
     add_page_break as pdf_pdfkit_add_page_break,
-)
-from ..contrib.pdf_file.pdfkit_snippets import (
     add_paragraph as pdf_pdfkit_add_paragraph,
-)
-from ..contrib.pdf_file.pdfkit_snippets import (
     add_picture as pdf_pdfkit_add_picture,
+    add_table as pdf_pdfkit_add_table,
 )
-from ..contrib.pdf_file.pdfkit_snippets import add_table as pdf_pdfkit_add_table
 from ..contrib.pdf_file.reportlab_snippets import (
     add_page_break as pdf_reportlab_add_page_break,
-)
-from ..contrib.pdf_file.reportlab_snippets import (
     add_paragraph as pdf_reportlab_add_paragraph,
-)
-from ..contrib.pdf_file.reportlab_snippets import (
     add_picture as pdf_reportlab_add_picture,
-)
-from ..contrib.pdf_file.reportlab_snippets import (
     add_table as pdf_reportlab_add_table,
 )
 from ..helpers import load_class_from_path
@@ -112,12 +110,6 @@ from .data import (
     XML_DOWNLOAD_KWARGS,
     XML_ISBN_KWARGS,
     XML_METADATA_KWARGS,
-)
-from .helpers import (
-    docx_add_picture,
-    docx_add_table,
-    odt_add_picture,
-    odt_add_table,
 )
 from .texts import TEXT_PDF
 
