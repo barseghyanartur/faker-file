@@ -7,7 +7,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Image, PageBreak, Paragraph, Table, TableStyle
 
-from faker_file.providers.jpeg_file import JpegFileProvider
+from ...base import DEFAULT_FORMAT_FUNC
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -79,10 +79,10 @@ def add_picture(
     **kwargs,
 ):
     """Add picture function."""
-    jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
+    png_raw = provider.generator.image()
 
     # Create a BytesIO object and load the image data
-    with BytesIO(jpeg_file) as input_stream:
+    with BytesIO(png_raw) as input_stream:
         pil_image = PilImage.open(input_stream)
 
         # Resize the image
@@ -124,6 +124,21 @@ def add_paragraph(
     **kwargs,
 ):
     """Add paragraph function."""
+    content = kwargs.get("content", None)
+    max_nb_chars = kwargs.get("content", 5_000)
+    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
+
+    if content:
+        _content = provider._generate_text_content(
+            max_nb_chars=max_nb_chars,
+            wrap_chars_after=wrap_chars_after,
+            content=content,
+            format_func=format_func,
+        )
+    else:
+        _content = provider.generator.text(max_nb_chars=5_000)
+
     # Insert a paragraph
     styles = getSampleStyleSheet()
     style_paragraph = styles["Normal"]
@@ -132,3 +147,10 @@ def add_paragraph(
     content = provider.generator.text(max_nb_chars=5_000)
     paragraph = Paragraph(content, style_paragraph)
     story.append(paragraph)
+
+    # Meta-data
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_paragraph", {})
+    data["content_modifiers"]["add_paragraph"].setdefault(counter, [])
+    data["content_modifiers"]["add_paragraph"][counter].append(_content)
+    data["content"] += "\r\n" + _content

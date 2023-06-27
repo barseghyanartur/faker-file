@@ -17,6 +17,28 @@ from ..constants import (
     DEFAULT_FONT_PATH,
     DEFAULT_TEXT_CONTENT_TEMPLATE,
 )
+from ..contrib.pdf_file.pdfkit_snippets import (
+    add_page_break as pdf_pdfkit_add_page_break,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
+    add_paragraph as pdf_pdfkit_add_paragraph,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
+    add_picture as pdf_pdfkit_add_picture,
+)
+from ..contrib.pdf_file.pdfkit_snippets import add_table as pdf_pdfkit_add_table
+from ..contrib.pdf_file.reportlab_snippets import (
+    add_page_break as pdf_reportlab_add_page_break,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
+    add_paragraph as pdf_reportlab_add_paragraph,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
+    add_picture as pdf_reportlab_add_picture,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
+    add_table as pdf_reportlab_add_table,
+)
 from ..helpers import load_class_from_path
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
@@ -96,15 +118,8 @@ from .helpers import (
     docx_add_table,
     odt_add_picture,
     odt_add_table,
-    pdf_pdfkit_add_page_break,
-    pdf_pdfkit_add_paragraph,
-    pdf_pdfkit_add_picture,
-    pdf_pdfkit_add_table,
-    pdf_reportlab_add_page_break,
-    pdf_reportlab_add_paragraph,
-    pdf_reportlab_add_picture,
-    pdf_reportlab_add_table,
 )
+from .texts import TEXT_PDF
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -651,6 +666,8 @@ class ProvidersTestCase(unittest.TestCase):
                         (pdf_pdfkit_add_picture, {}),
                         (pdf_pdfkit_add_page_break, {}),
                         (pdf_pdfkit_add_paragraph, {}),
+                        (pdf_pdfkit_add_page_break, {}),
+                        (pdf_pdfkit_add_paragraph, {"content": TEXT_PDF}),
                     ]
                 ),
             },
@@ -673,6 +690,8 @@ class ProvidersTestCase(unittest.TestCase):
                         (pdf_reportlab_add_picture, {}),
                         (pdf_reportlab_add_page_break, {}),
                         (pdf_reportlab_add_paragraph, {}),
+                        (pdf_reportlab_add_page_break, {}),
+                        (pdf_reportlab_add_paragraph, {"content": TEXT_PDF}),
                     ]
                 ),
             },

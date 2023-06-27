@@ -1,6 +1,6 @@
 import base64
 
-from faker_file.providers.jpeg_file import JpegFileProvider
+from ...base import DEFAULT_FORMAT_FUNC
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -27,7 +27,7 @@ def add_table(
     counter,
     **kwargs,
 ):
-    """Add table function."""
+    """Callable responsible for the table generation using pdfkit."""
     rows = kwargs.get("rows", 3)
     cols = kwargs.get("cols", 4)
 
@@ -41,6 +41,7 @@ def add_table(
             text = provider.generator.paragraph()
             table_html += f"<td>{text}</td>"
 
+            # Meta-data
             data.setdefault("content_modifiers", {})
             data["content_modifiers"].setdefault("add_table", {})
             data["content_modifiers"]["add_table"].setdefault(counter, [])
@@ -62,17 +63,10 @@ def add_picture(
     counter,
     **kwargs,
 ):
-    """Add picture function."""
-    jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
-    data_url = create_data_url(jpeg_file, "jpg")
+    """Callable responsible for the picture generation using pdfkit."""
+    png_raw = provider.generator.image()
+    data_url = create_data_url(png_raw, "png")
     document += f"<img src='{data_url}' alt='Inline Image' />"
-    data.setdefault("content_modifiers", {})
-    data["content_modifiers"].setdefault("add_picture", {})
-    data["content_modifiers"]["add_picture"].setdefault(counter, [])
-    data["content_modifiers"]["add_picture"][counter].append(
-        jpeg_file.data["content"]
-    )
-    data["content"] += "\r\n" + jpeg_file.data["content"]
 
 
 def add_page_break(
@@ -83,7 +77,7 @@ def add_page_break(
     counter,
     **kwargs,
 ):
-    """Add page break."""
+    """Callable responsible for the page break insertion using pdfkit."""
     page_break_html = "<div style='page-break-before: always;'></div>"
     document += "\r\n" + page_break_html
 
@@ -96,7 +90,28 @@ def add_paragraph(
     counter,
     **kwargs,
 ):
-    """Add a paragraph."""
-    content = provider.generator.text(max_nb_chars=5_000)
-    paragraph_html = f"<div><p>{content}</p></div>"
+    """Callable responsible for paragraph generation using pdfkit."""
+    content = kwargs.get("content", None)
+    max_nb_chars = kwargs.get("content", 5_000)
+    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
+
+    if content:
+        _content = provider._generate_text_content(
+            max_nb_chars=max_nb_chars,
+            wrap_chars_after=wrap_chars_after,
+            content=content,
+            format_func=format_func,
+        )
+    else:
+        _content = provider.generator.text(max_nb_chars=5_000)
+
+    paragraph_html = f"<div><p>{_content}</p></div>"
     document += "\r\n" + paragraph_html
+
+    # Meta-data
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_paragraph", {})
+    data["content_modifiers"]["add_paragraph"].setdefault(counter, [])
+    data["content_modifiers"]["add_paragraph"][counter].append(_content)
+    data["content"] += "\r\n" + _content

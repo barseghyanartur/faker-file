@@ -20,12 +20,14 @@ __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "BytesValue",
+    "DEFAULT_FORMAT_FUNC",
     "DEFAULT_REL_PATH",
     "DynamicTemplate",
     "FileMixin",
     "StringList",
     "StringValue",
-    "DEFAULT_FORMAT_FUNC",
+    "parse_format_func",
+    "pystr_format_func",
     "returns_list",
 )
 
