@@ -123,7 +123,7 @@ Documentation
 - For bootstrapping check the `Quick start`_.
 - For various ready to use code examples see the `Recipes`_.
 - For tips on ``PDF`` creation see `Creating PDF`_.
-- For tips on ``DOCX`` creation see `Creating PDF`_.
+- For tips on ``DOCX`` creation see `Creating DOCX`_.
 - For CLI options see the `CLI`_.
 - For guidelines on contributing check the `Contributor guidelines`_.
 
