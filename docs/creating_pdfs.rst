@@ -60,7 +60,7 @@ See the example below for ``max_nb_chars`` tweak:
         pdf_generator_cls=PdfkitPdfGenerator, max_nb_chars=20_000
     )
 
-See the example below for ``wrap_chars_after``:
+See the example below for ``wrap_chars_after`` tweak:
 
 .. code-block:: python
 
@@ -72,9 +72,9 @@ See the example below for ``wrap_chars_after``:
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
 is supported by PDF format specification, although currently only images,
-paragraphs, tables and manual text breaks are supported. In order to customise
-the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
-See the example below for usage examples:
+paragraphs, tables and manual text breaks are supported out of the box. In
+order to customise the blocks PDF file is built from, the ``DynamicTemplate``
+class is used. See the example below for usage examples:
 
 .. code-block:: python
 
@@ -118,7 +118,7 @@ See the example below for usage examples:
                 (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
                 (add_page_break, {}),  # Add page break
-            ] * 100
+            ] * 100  # Will repeat your config 100 times
         )
     )
 
