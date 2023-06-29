@@ -18,6 +18,8 @@ from ..constants import (
     DEFAULT_TEXT_CONTENT_TEMPLATE,
 )
 from ..contrib.docx_file import (
+    add_page_break as docx_add_page_break,
+    add_paragraph as docx_add_paragraph,
     add_picture as docx_add_picture,
     add_table as docx_add_table,
 )
@@ -222,7 +224,12 @@ class ProvidersTestCase(unittest.TestCase):
             "docx_file",
             {
                 "content": DynamicTemplate(
-                    [(docx_add_table, {}), (docx_add_picture, {})]
+                    [
+                        (docx_add_table, {}),
+                        (docx_add_picture, {}),
+                        (docx_add_page_break, {}),
+                        (docx_add_paragraph, {}),
+                    ]
                 ),
             },
             None,

@@ -12,6 +12,7 @@ Contents:
    quick_start
    recipes
    creating_pdfs
+   creating_docx
    cli
    security
    code_of_conduct

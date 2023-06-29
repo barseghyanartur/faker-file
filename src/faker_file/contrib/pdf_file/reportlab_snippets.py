@@ -129,15 +129,12 @@ def add_paragraph(
     wrap_chars_after = kwargs.get("wrap_chars_after", None)
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
 
-    if content:
-        _content = provider._generate_text_content(
-            max_nb_chars=max_nb_chars,
-            wrap_chars_after=wrap_chars_after,
-            content=content,
-            format_func=format_func,
-        )
-    else:
-        _content = provider.generator.text(max_nb_chars=5_000)
+    _content = provider._generate_text_content(
+        max_nb_chars=max_nb_chars,
+        wrap_chars_after=wrap_chars_after,
+        content=content,
+        format_func=format_func,
+    )
 
     # Insert a paragraph
     styles = getSampleStyleSheet()

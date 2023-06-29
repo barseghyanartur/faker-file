@@ -17,9 +17,11 @@ are used for versioning (schema follows below):
 
 0.16.3
 ------
-2023-06-29
+2023-06-30
 
-- Documentation improvements.
+- Documentation improvements. Added a dedicated section for creating PDF files.
+  Added a dedicated section for creating DOCX files.
+- Adding ``add_paragraph`` and ``add_page_break`` to ``DOCX`` contrib module.
 
 0.16.2
 ------

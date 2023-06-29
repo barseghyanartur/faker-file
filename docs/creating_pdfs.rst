@@ -1,18 +1,18 @@
-Creating PDFs
-=============
+Creating PDF
+============
 .. External references
 
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 .. _pdfkit: https://pypi.org/project/pdfkit/
 .. _reportlab: https://pypi.org/project/reportlab/
 
-PDF is certainly one of the most complicated formats out there. And certainly
-one of the formats most of the developers will be having trouble with, as
-there are many versions and dialects. That makes it almost challenging to
-create one way of making PDFs. That's why, creation of PDF files have been
-delegated to flexible abstraction layer - PDF generators. If you don't like
-how PDFs are generated, you can create your own layer, using your favourite
-library.
+PDF is certainly one of the most complicated formats out there. And
+certainly one of the formats most of the developers will be having trouble
+with, as there are many versions and dialects. That makes it almost challenging
+to create one way of making PDF files. That's why, creation of PDF
+files have been delegated to flexible abstraction layer - PDF generators.
+If you don't like how PDF files are generated, you can create your own
+layer, using your favourite library.
 
 Currently, there are two PDF generators:
 
@@ -20,10 +20,10 @@ Currently, there are two PDF generators:
   and `wkhtmltopdf`_.
 - ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
 
-Building PDFs using `pdfkit`_
------------------------------
+Building PDF using `pdfkit`_
+----------------------------
 While `pdfkit`_ generator is a heavier and has `wkhtmltopdf`_ as a system
-dependency, it's produces better quality PDFs and has no issues with fonts
+dependency, it's produces better quality PDF and has no issues with fonts
 or unicode characters.
 
 See the following full functional snippet for generating PDF using `pdfkit`_.
@@ -64,7 +64,7 @@ See the example below for ``wrap_chars_after`` tweak:
 
 .. code-block:: python
 
-    # Generate PDF file of 20,000 characters
+    # Generate PDF file, wrapping each line after 80 characters
     pdf_file = FAKER.pdf_file(
         pdf_generator_cls=PdfkitPdfGenerator, wrap_chars_after=80
     )
@@ -125,8 +125,8 @@ class is used. See the example below for usage examples:
 Building PDFs using `reportlab`_
 --------------------------------
 While `reportlab`_ generator is much lighter than the `pdfkit`_ and does not
-have system dependencies, but might produce PDS with questionable encoding
-when generating unicode text.
+have system dependencies, but might produce PDF files with questionable
+encoding when generating unicode text.
 
 See the following full functional snippet for generating PDF using `reportlab`_.
 
@@ -143,8 +143,8 @@ See the following full functional snippet for generating PDF using `reportlab`_.
     pdf_file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
 
 All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
-when building PDFs from blocks (paragraphs, images, tables and page breaks),
-the imports shall be adjusted:
+when building PDF files from blocks (paragraphs, images, tables and page
+breaks), the imports shall be adjusted:
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
