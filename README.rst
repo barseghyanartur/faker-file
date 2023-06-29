@@ -33,6 +33,7 @@ faker-file
 .. _Read the Docs: http://faker-file.readthedocs.io/
 .. _Quick start: https://faker-file.readthedocs.io/en/latest/quick_start.html
 .. _Recipes: https://faker-file.readthedocs.io/en/latest/recipes.html
+.. _Creating PDFs: https://faker-file.readthedocs.io/en/latest/creating_pdfs.html
 .. _CLI: https://faker-file.readthedocs.io/en/latest/cli.html
 .. _Contributor guidelines: https://faker-file.readthedocs.io/en/latest/contributor_guidelines.html
 
@@ -120,6 +121,7 @@ Documentation
 - Documentation is available on `Read the Docs`_.
 - For bootstrapping check the `Quick start`_.
 - For various ready to use code examples see the `Recipes`_.
+- For tips on PDF creation see `Creating PDFs`_.
 - For CLI options see the `CLI`_.
 - For guidelines on contributing check the `Contributor guidelines`_.
 
@@ -208,6 +210,24 @@ Latest stable version from PyPI
 .. code-block:: sh
 
     pip install faker-file[data-augmentation]
+
+**With GoogleCloudStorage support**
+
+.. code-block:: sh
+
+    pip install faker-file[gcs]
+
+**With AzureCloudStorage support**
+
+.. code-block:: sh
+
+    pip install faker-file[azure]
+
+**With AWSS3Storage support**
+
+.. code-block:: sh
+
+    pip install faker-file[s3]
 
 Or development version from GitHub
 ----------------------------------

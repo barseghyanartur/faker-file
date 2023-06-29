@@ -1,0 +1,200 @@
+Creating PDFs
+=============
+.. External references
+
+.. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _pdfkit: https://pypi.org/project/pdfkit/
+.. _reportlab: https://pypi.org/project/reportlab/
+
+PDF is certainly one of the most complicated formats out there. And certainly
+one of the formats most of the developers will be having trouble with, as
+there are many versions and dialects. That makes it almost challenging to
+create one way of making PDFs. That's why, creation of PDF files have been
+delegated to flexible abstraction layer - PDF generators. If you don't like
+how PDFs are generated, you can create your own layer, using your favourite
+library.
+
+Currently, there are two PDF generators:
+
+- ``PdfkitPdfGenerator`` (default), built on top of the `pdfkit`_
+  and `wkhtmltopdf`_.
+- ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
+
+Building PDFs using `pdfkit`_
+-----------------------------
+While `pdfkit`_ generator is a heavier and has `wkhtmltopdf`_ as a system
+dependency, it's produces better quality PDFs and has no issues with fonts
+or unicode characters.
+
+See the following full functional snippet for generating PDF using `pdfkit`_.
+
+.. code-block:: python
+
+    # Imports
+    from faker import Faker
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.pdf_file.generators.pdfkit_generator import (
+        PdfkitPdfGenerator,
+    )
+
+    FAKER = Faker() # Initialize Faker
+    FAKER.add_provider(PdfFileProvider)  # Register PdfFileProvider
+
+    # Generate PDF file using `pdfkit`
+    pdf_file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
+
+The generated PDF will have 10,000 characters of text, which is about 2 pages.
+
+If you want PDF with more pages, you could either:
+
+- Increase the value of ``max_nb_chars`` accordingly.
+- Set value of ``wrap_chars_after`` to 80 characters to force longer pages.
+- Insert manual page breaks and other content.
+
+See the example below for ``max_nb_chars`` tweak:
+
+.. code-block:: python
+
+    # Generate PDF file of 20,000 characters
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=PdfkitPdfGenerator, max_nb_chars=20_000
+    )
+
+See the example below for ``wrap_chars_after``:
+
+.. code-block:: python
+
+    # Generate PDF file of 20,000 characters
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=PdfkitPdfGenerator, wrap_chars_after=80
+    )
+
+As mentioned above, it's possible to diversify the generated context with
+images, paragraphs, tables, manual text break and pretty much everything that
+is supported by PDF format specification, although currently only images,
+paragraphs, tables and manual text breaks are supported. In order to customise
+the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
+See the example below for usage examples:
+
+.. code-block:: python
+
+    # Additional imports
+    from faker_file.base import DynamicTemplate
+    from faker_file.contrib.pdf_file.pdfkit_snippets import (
+        add_page_break,
+        add_paragraph,
+        add_picture,
+        add_table,
+    )
+
+    # Create a PDF file with paragraph, picture, table and manual page breaks
+    # in between the mentioned elements. The ``DynamicTemplate`` simply
+    # accepts a list of callables (such as ``add_paragraph``,
+    # ``add_page_break``) and dictionary to be later on fed to the callables
+    # as keyword arguments for customising the default values.
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=PdfkitPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_paragraph, {}),  # Add paragraph
+                (add_page_break, {}),  # Add page break
+                (add_picture, {}),  # Add picture
+                (add_page_break, {}),  # Add page break
+                (add_table, {}),  # Add table
+                (add_page_break, {}),  # Add page break
+            ]
+        )
+    )
+
+    # You could make the list as long as you like or simply multiply for
+    # easier repetition as follows:
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=PdfkitPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_paragraph, {}),  # Add paragraph
+                (add_page_break, {}),  # Add page break
+                (add_picture, {}),  # Add picture
+                (add_page_break, {}),  # Add page break
+                (add_table, {}),  # Add table
+                (add_page_break, {}),  # Add page break
+            ] * 100
+        )
+    )
+
+Building PDFs using `reportlab`_
+--------------------------------
+While `reportlab`_ generator is much lighter than the `pdfkit`_ and does not
+have system dependencies, but might produce PDS with questionable encoding
+when generating unicode text.
+
+See the following full functional snippet for generating PDF using `reportlab`_.
+
+.. code-block:: python
+
+    # Imports
+    from faker import Faker
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.pdf_file.generators.reportlab_generator import (
+        ReportlabPdfGenerator,
+    )
+
+    # Generate PDF file using `reportlab`
+    pdf_file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
+
+All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
+when building PDFs from blocks (paragraphs, images, tables and page breaks),
+the imports shall be adjusted:
+
+As mentioned above, it's possible to diversify the generated context with
+images, paragraphs, tables, manual text break and pretty much everything that
+is supported by PDF format specification, although currently only images,
+paragraphs, tables and manual text breaks are supported. In order to customise
+the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
+See the example below for usage examples:
+
+.. code-block:: python
+
+    # Additional imports
+    from faker_file.base import DynamicTemplate
+    from faker_file.contrib.pdf_file.reportlab_snippets import (
+        add_page_break,
+        add_paragraph,
+        add_picture,
+        add_table,
+    )
+
+    # Create a PDF file with paragraph, picture, table and manual page breaks
+    # in between the mentioned elements. The ``DynamicTemplate`` simply
+    # accepts a list of callables (such as ``add_paragraph``,
+    # ``add_page_break``) and dictionary to be later on fed to the callables
+    # as keyword arguments for customising the default values.
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=ReportlabPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_paragraph, {}),  # Add paragraph
+                (add_page_break, {}),  # Add page break
+                (add_picture, {}),  # Add picture
+                (add_page_break, {}),  # Add page break
+                (add_table, {}),  # Add table
+                (add_page_break, {}),  # Add page break
+            ]
+        )
+    )
+
+    # You could make the list as long as you like or simply multiply for
+    # easier repetition as follows:
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=ReportlabPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_paragraph, {}),  # Add paragraph
+                (add_page_break, {}),  # Add page break
+                (add_picture, {}),  # Add picture
+                (add_page_break, {}),  # Add page break
+                (add_table, {}),  # Add table
+                (add_page_break, {}),  # Add page break
+            ] * 100
+        )
+    )

@@ -11,6 +11,7 @@ Contents:
    index
    quick_start
    recipes
+   creating_pdfs
    cli
    security
    code_of_conduct
