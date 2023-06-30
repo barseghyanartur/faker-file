@@ -13,6 +13,7 @@ Contents:
    recipes
    creating_pdfs
    creating_docx
+   creating_odt
    cli
    security
    code_of_conduct

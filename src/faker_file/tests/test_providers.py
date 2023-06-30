@@ -24,6 +24,8 @@ from ..contrib.docx_file import (
     add_table as docx_add_table,
 )
 from ..contrib.odt_file import (
+    add_page_break as odt_add_page_break,
+    add_paragraph as odt_add_paragraph,
     add_picture as odt_add_picture,
     add_table as odt_add_table,
 )
@@ -555,7 +557,12 @@ class ProvidersTestCase(unittest.TestCase):
             "odt_file",
             {
                 "content": DynamicTemplate(
-                    [(odt_add_table, {}), (odt_add_picture, {})]
+                    [
+                        (odt_add_table, {}),
+                        (odt_add_picture, {}),
+                        (odt_add_page_break, {}),
+                        (odt_add_paragraph, {}),
+                    ]
                 ),
             },
             None,

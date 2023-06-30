@@ -15,6 +15,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.16.4
+------
+2023-07-01
+
+- Documentation improvements. Added a dedicated section for creating ODT files.
+- Adding ``add_paragraph`` and ``add_page_break`` to ``ODT`` contrib module.
+
 0.16.3
 ------
 2023-06-30
