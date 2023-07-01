@@ -11,7 +11,7 @@ Contents:
    index
    quick_start
    recipes
-   creating_pdfs
+   creating_pdf
    creating_docx
    creating_odt
    cli
