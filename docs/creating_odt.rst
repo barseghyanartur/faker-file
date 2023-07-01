@@ -34,14 +34,14 @@ See the example below for ``wrap_chars_after`` tweak:
 
 .. code-block:: python
 
-    # Generate DOCX file, wrapping each line after 80 characters
-    docx_file = FAKER.odt_file(wrap_chars_after=80)
+    # Generate ODT file, wrapping each line after 80 characters
+    odt_file = FAKER.odt_file(wrap_chars_after=80)
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
 is supported by ODT format specification, although currently only images,
 paragraphs, tables and manual text breaks are supported out of the box. In
-order to customise the blocks DOCX file is built from, the ``DynamicTemplate``
+order to customise the blocks ODT file is built from, the ``DynamicTemplate``
 class is used. See the example below for usage examples:
 
 .. code-block:: python
