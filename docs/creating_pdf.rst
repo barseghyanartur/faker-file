@@ -10,7 +10,7 @@ PDF is certainly one of the most complicated formats out there. And
 certainly one of the formats most of the developers will be having trouble
 with, as there are many versions and dialects. That makes it almost impossible
 and highly challenging to have **just one right way** of creating PDF files.
-That's why, creation of PDF files have been delegated to an abstraction layer
+That's why, creation of PDF files has been delegated to an abstraction layer
 of PDF generators. If you don't like how PDF files are generated, you can
 create your own layer, using your favourite library.
 
