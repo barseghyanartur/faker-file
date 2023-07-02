@@ -37,6 +37,7 @@ faker-file
 .. _Creating DOCX: https://faker-file.readthedocs.io/en/latest/creating_docx.html
 .. _Creating ODT: https://faker-file.readthedocs.io/en/latest/creating_odt.html
 .. _CLI: https://faker-file.readthedocs.io/en/latest/cli.html
+.. _Methodology: https://faker-file.readthedocs.io/en/latest/methodology.html
 .. _Contributor guidelines: https://faker-file.readthedocs.io/en/latest/contributor_guidelines.html
 
 .. Related projects
@@ -127,6 +128,7 @@ Documentation
 - For tips on ``DOCX`` creation see `Creating DOCX`_.
 - For tips on ``ODT`` creation see `Creating ODT`_.
 - For CLI options see the `CLI`_.
+- Read the `Methodology`_.
 - For guidelines on contributing check the `Contributor guidelines`_.
 
 Online demos

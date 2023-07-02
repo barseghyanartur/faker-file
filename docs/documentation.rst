@@ -15,6 +15,8 @@ Contents:
    creating_docx
    creating_odt
    cli
+   methodology
+   talks/pygrunn_2023
    security
    code_of_conduct
    contributor_guidelines

@@ -781,7 +781,6 @@ Pick a random file from a directory given
         prefix="zzz",
     )
 
-
 File from path given
 ~~~~~~~~~~~~~~~~~~~~
 - Create an exact copy of a file under a different name.
