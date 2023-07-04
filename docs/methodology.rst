@@ -4,6 +4,11 @@ Methodology
 
 .. _faker-file: https://github.com/barseghyanartur/faker-file/
 
+.. External references
+
+.. _pip-tools: https://pip-tools.readthedocs.io
+
+
 But why
 -------
 Let's start with some hypothetical questions.
@@ -56,10 +61,37 @@ lower scale. Use `faker-file`_ for simple use cases and only use custom
 files when things get too complicated otherwise. The so-called hybrid
 approach.
 
+Installation
+~~~~~~~~~~~~
+When using `faker-file`_ for automated tests in a large project with a lot of
+dependencies, the recommended way to install it is to carefully pick the
+dependencies required and further use requirements management package,
+like `pip-tools`_, to compile them into hashed set of packages working well
+together.
+
+For instance, if we only need DOCX and PDF support, your ``requirements.in``
+file could look as follows:
+
+.. code-block:: text
+
+    faker
+    faker-file
+    python-docx
+    reportlab
+
+If you only plan to use `faker-file`_ as a CLI application, just install all
+common dependencies as follows:
+
+.. code-block:: sh
+
+    pipx install "faker-file[common]"
+
+Creating files
+~~~~~~~~~~~~~~
 A couple of use-cases when `faker-file`_ can help you out:
 
 Create a simple DOCX file
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 Let's imagine we need to generate a DOCX file with text 50 chars long (just
 for observability).
 
@@ -77,7 +109,7 @@ for observability).
     print(file.data["filename"])  # Sample value: '/tmp/tmp/tmpgdctmfbp.docx'
 
 Create a more structured DOCX file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Imagine, you need a letter sample. It contains
 
 .. code-block:: python
@@ -121,7 +153,7 @@ Imagine, you need a letter sample. It contains
     #  001-704-255-3093
 
 Create even more structured DOCX file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Imagine, you need to generate a highly custom document with types of data,
 such as images, tables, manual page breaks, paragraphs, etc.
 
@@ -161,7 +193,7 @@ such as images, tables, manual page breaks, paragraphs, etc.
     you would get a more structured paragraph (from one of previous examples).
 
 For when you think `faker-file`_ isn't enough
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 As previously mentioned, sometimes when test documents are too complex it
 might be hard to replicate them and you want to store just a few very specific
 documents in the project repository.
@@ -173,7 +205,7 @@ Both `FileFromPathProvider`_ and `RandomFileFromDirProvider`_ are created to
 support the hybrid approach.
 
 FileFromPathProvider
-^^^^^^^^^^^^^^^^^^^^
+++++++++++++++++++++
 Create a file by copying it from the given path.
 
 - Create an exact copy of a file under a different name.
@@ -197,7 +229,7 @@ Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
 
 RandomFileFromDirProvider
-^^^^^^^^^^^^^^^^^^^^^^^^^
++++++++++++++++++++++++++
 Create a file by copying it randomly from the given directory.
 
 - Create an exact copy of the randomly picked file under a different name.
