@@ -1,21 +1,27 @@
-import contextlib
-import io
-from typing import Callable, Optional, Union, overload
+from typing import Any, Callable, Dict, Optional, Type, Union, overload
 
-import imgkit
 from faker import Faker
 from faker.generator import Generator
 from faker.providers.python import Provider
 
 from ...base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_IMAGE_MAX_NB_CHARS
+from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
+from ..base.image_generator import BaseImageGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("ImageMixin",)
+__all__ = (
+    "ImageMixin",
+    "DEFAULT_IMAGE_GENERATOR",
+)
+
+DEFAULT_IMAGE_GENERATOR = (
+    "faker_file.providers.image.imgkit_generator" ".ImgkitImageGenerator"
+)
 
 
 class ImageMixin(FileMixin):
@@ -30,6 +36,10 @@ class ImageMixin(FileMixin):
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        image_generator_cls: Optional[Union[str, Type[BaseImageGenerator]]] = (
+            DEFAULT_IMAGE_GENERATOR
+        ),
+        image_generator_kwargs: Optional[Dict[str, Any]] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -47,6 +57,10 @@ class ImageMixin(FileMixin):
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        image_generator_cls: Optional[Union[str, Type[BaseImageGenerator]]] = (
+            DEFAULT_IMAGE_GENERATOR
+        ),
+        image_generator_kwargs: Optional[Dict[str, Any]] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -62,6 +76,10 @@ class ImageMixin(FileMixin):
         max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
+        image_generator_cls: Optional[Union[str, Type[BaseImageGenerator]]] = (
+            DEFAULT_IMAGE_GENERATOR
+        ),
+        image_generator_kwargs: Optional[Dict[str, Any]] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -105,19 +123,38 @@ class ImageMixin(FileMixin):
 
         data = {"content": content, "filename": filename}
 
-        with contextlib.redirect_stdout(io.StringIO()):
-            buffer = imgkit.from_string(
-                f"<pre>{content}</pre>",
-                False,
-                options={"format": self.extension},
-            )
+        if image_generator_cls is None:
+            image_generator_cls = DEFAULT_IMAGE_GENERATOR
+
+        if isinstance(image_generator_cls, str):
+            image_generator_cls = load_class_from_path(image_generator_cls)
+
+        if not image_generator_kwargs:
+            image_generator_kwargs = {}
+        image_generator = image_generator_cls(
+            generator=self.generator,
+            **image_generator_kwargs,
+        )
+
+        _raw_content = image_generator.generate(
+            content=content,
+            data=data,
+            provider=self,
+        )
+
+        # with contextlib.redirect_stdout(io.StringIO()):
+        #     buffer = imgkit.from_string(
+        #         f"<pre>{content}</pre>",
+        #         False,
+        #         options={"format": self.extension},
+        #     )
 
         if raw:
-            raw_content = BytesValue(buffer)
+            raw_content = BytesValue(_raw_content)
             raw_content.data = data
             return raw_content
 
-        storage.write_bytes(filename, buffer)
+        storage.write_bytes(filename, _raw_content)
 
         # Generic
         file_name = StringValue(storage.relpath(filename))

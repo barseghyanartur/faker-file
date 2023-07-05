@@ -21,7 +21,10 @@ from ..base.pdf_generator import BasePdfGenerator
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("PdfFileProvider",)
+__all__ = (
+    "DEFAULT_PDF_GENERATOR",
+    "PdfFileProvider",
+)
 
 DEFAULT_PDF_GENERATOR = (
     "faker_file.providers.pdf_file.generators.pdfkit_generator"
