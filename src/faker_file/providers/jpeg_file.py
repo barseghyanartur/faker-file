@@ -14,7 +14,10 @@ from .mixins.image_mixin import ImageMixin
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("JpegFileProvider",)
+__all__ = (
+    "GraphicJpegFileProvider",
+    "JpegFileProvider",
+)
 
 
 class JpegFileProvider(BaseProvider, ImageMixin):

@@ -128,3 +128,108 @@ class SvgFileProvider(BaseProvider, ImageMixin):
             raw=raw,
             **kwargs,
         )
+
+
+# class GraphicSvgFileProvider(BaseProvider, GraphicImageMixin):
+#     """Graphic SVG file provider.
+#
+#     Usage example:
+#
+#         from faker import Faker
+#         from faker_file.providers.svg_file import GraphicSvgFileProvider
+#
+#         FAKER = Faker()
+#         FAKER.add_provider(GraphicSvgFileProvider)
+#
+#         file = FAKER.graphic_svg_file()
+#
+#     Usage example with options:
+#
+#         file = FAKER.graphic_svg_file(
+#             prefix="zzz",
+#             size=(800, 800),
+#         )
+#
+#     Usage example with `FileSystemStorage` storage (for `Django`):
+#
+#         from django.conf import settings
+#         from faker_file.storages.filesystem import FileSystemStorage
+#
+#         file = FAKER.graphic_svg_file(
+#             storage=FileSystemStorage(
+#                 root_path=settings.MEDIA_ROOT,
+#                 rel_path="tmp",
+#             ),
+#             basename="yyy",
+#             size=(1024, 1024),
+#         )
+#     """
+#
+#     extension: str = "svg"
+#     image_format: str = "svg"
+#
+#     @overload
+#     def graphic_svg_file(
+#         self: "GraphicSvgFileProvider",
+#         storage: Optional[BaseStorage] = None,
+#         basename: Optional[str] = None,
+#         prefix: Optional[str] = None,
+#         size: Tuple[int, int] = (256, 256),
+#         hue: Union[int, Sequence[int], str, None] = None,
+#         luminosity: Optional[str] = None,
+#         raw: bool = True,
+#         **kwargs,
+#     ) -> BytesValue:
+#         ...
+#
+#     @overload
+#     def graphic_svg_file(
+#         self: "GraphicSvgFileProvider",
+#         storage: Optional[BaseStorage] = None,
+#         basename: Optional[str] = None,
+#         prefix: Optional[str] = None,
+#         size: Tuple[int, int] = (256, 256),
+#         hue: Union[int, Sequence[int], str, None] = None,
+#         luminosity: Optional[str] = None,
+#         **kwargs,
+#     ) -> StringValue:
+#         ...
+#
+#     def graphic_svg_file(
+#         self: "GraphicSvgFileProvider",
+#         storage: Optional[BaseStorage] = None,
+#         basename: Optional[str] = None,
+#         prefix: Optional[str] = None,
+#         size: Tuple[int, int] = (256, 256),
+#         hue: Union[int, Sequence[int], str, None] = None,
+#         luminosity: Optional[str] = None,
+#         raw: bool = False,
+#         **kwargs,
+#     ) -> Union[BytesValue, StringValue]:
+#         """Generate a graphic ICO file with random lines.
+#
+#         :param storage: Storage. Defaults to `FileSystemStorage`.
+#         :param basename: File basename (without extension).
+#         :param prefix: File name prefix.
+#         :param size: Image size in pixels.
+#         :param hue: Read more about
+#             ://faker.readthedocs.io/en/dev/providers/faker.providers.color.html
+#         :param luminosity: If given, the output string would be separated
+#              by line breaks after the given position.
+#         :param raw: If set to True, return `BytesValue` (binary content of
+#             the file). Otherwise, return `StringValue` (path to the saved
+#             file).
+#         :return: Relative path (from root directory) of the generated file
+#             or raw content of the file.
+#         """
+#         return self._image_file(
+#             image_format=self.image_format,
+#             storage=storage,
+#             basename=basename,
+#             prefix=prefix,
+#             size=size,
+#             hue=hue,
+#             luminosity=luminosity,
+#             raw=raw,
+#             **kwargs,
+#         )

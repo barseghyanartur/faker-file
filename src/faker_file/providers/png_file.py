@@ -15,8 +15,8 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
-    "PngFileProvider",
     "GraphicPngFileProvider",
+    "PngFileProvider",
 )
 
 
@@ -140,7 +140,7 @@ class GraphicPngFileProvider(BaseProvider, GraphicImageMixin):
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.graphic_png_file import GraphicPngFileProvider
+        from faker_file.providers.png_file import GraphicPngFileProvider
 
         FAKER = Faker()
         FAKER.add_provider(GraphicPngFileProvider)
