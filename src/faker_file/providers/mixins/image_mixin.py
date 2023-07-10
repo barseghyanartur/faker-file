@@ -142,13 +142,6 @@ class ImageMixin(FileMixin):
             provider=self,
         )
 
-        # with contextlib.redirect_stdout(io.StringIO()):
-        #     buffer = imgkit.from_string(
-        #         f"<pre>{content}</pre>",
-        #         False,
-        #         options={"format": self.extension},
-        #     )
-
         if raw:
             raw_content = BytesValue(_raw_content)
             raw_content.data = data

@@ -1,17 +1,8 @@
-# import contextlib
-# import io
-from typing import Optional, Sequence, Tuple, Union, overload  # Callable,
+from typing import Optional, Sequence, Tuple, Union, overload
 
-from ...base import BytesValue, FileMixin, StringValue  # DEFAULT_FORMAT_FUNC,
-
-# from ...constants import DEFAULT_IMAGE_MAX_NB_CHARS
+from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
-
-# from faker import Faker
-# from faker.generator import Generator
-# from faker.providers.python import Provider
-
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -74,14 +65,11 @@ class GraphicImageMixin(FileMixin):
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
+        :param size: Image size in pixels.
         :param hue: Read more about
             ://faker.readthedocs.io/en/dev/providers/faker.providers.color.html
         :param luminosity: If given, the output string would be separated
              by line breaks after the given position.
-        :param content: File content. Might contain dynamic elements, which
-            are then replaced by correspondent fixtures.
-        :param format_func: Callable responsible for formatting template
-            strings.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).

@@ -1,5 +1,11 @@
 Release history and notes
 =========================
+.. Internal references
+
+.. _imgkit: https://pypi.org/project/imgkit/
+.. _reportlab: https://pypi.org/project/reportlab/
+.. _pdfkit: https://pypi.org/project/pdfkit/
+
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
 are used for versioning (schema follows below):
@@ -14,6 +20,18 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.17
+----
+2023-07-10
+
+- Introducing graphic image providers. Prior to this release, images have
+  been created using text-to-image solutions. Sometimes it's just handy to
+  have a graphic image. Therefore, a number of graphic image file providers
+  have been created (including inner functions support).
+- The previously mentioned text-to-image rendering has been delegated to
+  image generators. Default generator is still based on the `imgkit`_, but
+  the change makes it possible to use custom generators.
 
 0.16.4
 ------
@@ -37,8 +55,8 @@ are used for versioning (schema follows below):
 - Moving some of the snippets from tests to a ``contrib`` module to improve
   usability. The snippets are generic enough to be used in tests and if you
   don't like the way they work, you could always make a new one. New snippets
-  to insert page breaks and paragraphs into PDF (using both ``pdfkit``
-  and ``reportlab`` generators) have been added.
+  to insert page breaks and paragraphs into PDF (using both `pdfkit`_
+  and `reportlab`_ generators) have been added.
 
 0.16.1
 ------
