@@ -23,7 +23,7 @@ are used for versioning (schema follows below):
 
 0.17
 ----
-2023-07-10
+2023-07-11
 
 - Introducing graphic image providers. Prior to this release, images have
   been created using text-to-image solutions. Sometimes it's just handy to
@@ -31,7 +31,7 @@ are used for versioning (schema follows below):
   have been created (including inner functions support). The following graphic
   file providers have been added: ``GraphicPdfFileProvider``,
   ``GraphicIcoFileProvider``, ``GraphicJpegFileProvider``,
-  ``GraphicPngFileProvider``.
+  ``GraphicPngFileProvider`` and ``GraphicWebpFileProvider``.
 - The previously mentioned text-to-image rendering has been delegated to
   image generators. Default generator is still based on the `imgkit`_, but
   the change makes it possible to use custom generators.

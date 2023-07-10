@@ -37,6 +37,11 @@ __all__ = (
     "create_inner_epub_file",
     "create_inner_file_from_path",
     "create_inner_generic_file",
+    "create_inner_graphic_ico_file",
+    "create_inner_graphic_jpeg_file",
+    "create_inner_graphic_pdf_file",
+    "create_inner_graphic_png_file",
+    "create_inner_graphic_webp_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
     "create_inner_mp3_file",
@@ -558,6 +563,8 @@ def create_inner_generic_file(
 # ********************* ICO **********************
 # ************************************************
 
+# Text-to-image ICO file
+
 
 @overload
 def create_inner_ico_file(
@@ -622,6 +629,67 @@ def create_inner_ico_file(
         wrap_chars_after=wrap_chars_after,
         content=content,
         format_func=format_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# Graphic ICO file
+
+
+@overload
+def create_inner_graphic_ico_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_graphic_ico_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_graphic_ico_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner graphic ICO file."""
+    try:
+        from ..ico_file import GraphicIcoFileProvider
+    except ImportError as err:
+        raise err
+
+    return GraphicIcoFileProvider(generator).graphic_ico_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        size=size,
+        hue=hue,
+        luminosity=luminosity,
         raw=raw,
         **kwargs,
     )
@@ -695,6 +763,67 @@ def create_inner_jpeg_file(
         wrap_chars_after=wrap_chars_after,
         content=content,
         format_func=format_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# Graphic JPEG file
+
+
+@overload
+def create_inner_graphic_jpeg_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_graphic_jpeg_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_graphic_jpeg_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner graphic JPEG file."""
+    try:
+        from ..jpeg_file import GraphicJpegFileProvider
+    except ImportError as err:
+        raise err
+
+    return GraphicJpegFileProvider(generator).graphic_jpeg_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        size=size,
+        hue=hue,
+        luminosity=luminosity,
         raw=raw,
         **kwargs,
     )
@@ -1077,6 +1206,67 @@ def create_inner_pdf_file(
     )
 
 
+# Graphic PDF file
+
+
+@overload
+def create_inner_graphic_pdf_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_graphic_pdf_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_graphic_pdf_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner graphic PDF file."""
+    try:
+        from ..pdf_file import GraphicPdfFileProvider
+    except ImportError as err:
+        raise err
+
+    return GraphicPdfFileProvider(generator).graphic_pdf_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        size=size,
+        hue=hue,
+        luminosity=luminosity,
+        raw=raw,
+        **kwargs,
+    )
+
+
 # ************************************************
 # ********************* PNG **********************
 # ************************************************
@@ -1145,6 +1335,67 @@ def create_inner_png_file(
         wrap_chars_after=wrap_chars_after,
         content=content,
         format_func=format_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# Graphic PNG file
+
+
+@overload
+def create_inner_graphic_png_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_graphic_png_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_graphic_png_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner graphic PNG file."""
+    try:
+        from ..png_file import GraphicPngFileProvider
+    except ImportError as err:
+        raise err
+
+    return GraphicPngFileProvider(generator).graphic_png_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        size=size,
+        hue=hue,
+        luminosity=luminosity,
         raw=raw,
         **kwargs,
     )
@@ -1625,6 +1876,67 @@ def create_inner_webp_file(
         wrap_chars_after=wrap_chars_after,
         content=content,
         format_func=format_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# Graphic WEBP file
+
+
+@overload
+def create_inner_graphic_webp_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_graphic_webp_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_graphic_webp_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    size: Tuple[int, int] = (256, 256),
+    hue: Union[int, Sequence[int], str, None] = None,
+    luminosity: Optional[str] = None,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner graphic WEBP file."""
+    try:
+        from ..webp_file import GraphicWebpFileProvider
+    except ImportError as err:
+        raise err
+
+    return GraphicWebpFileProvider(generator).graphic_webp_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        size=size,
+        hue=hue,
+        luminosity=luminosity,
         raw=raw,
         **kwargs,
     )
