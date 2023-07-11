@@ -1,5 +1,7 @@
 from typing import Optional, Sequence, Tuple, Union, overload
 
+from faker import Faker
+
 from ...base import BytesValue, FileMixin, StringValue
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
@@ -79,6 +81,9 @@ class GraphicImageMixin(FileMixin):
         # Generic
         if storage is None:
             storage = FileSystemStorage()
+
+        if self.generator is None:
+            self.generator = Faker()
 
         filename = storage.generate_filename(
             extension=self.extension,

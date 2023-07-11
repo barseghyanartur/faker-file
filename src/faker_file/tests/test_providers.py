@@ -1108,7 +1108,7 @@ class ProvidersTestCase(unittest.TestCase):
             Optional[Dict[str, Any]],
         ]
     ] = [
-        (None, None, None),
+        (None, {}, None),
         # BIN
         (create_inner_bin_file, {"content": b"Lorem ipsum"}, {}),
         # CSV
