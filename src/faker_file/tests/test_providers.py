@@ -42,6 +42,7 @@ from ..contrib.pdf_file.reportlab_snippets import (
     add_table as pdf_reportlab_add_table,
 )
 from ..helpers import load_class_from_path
+from ..providers.base.image_generator import BaseImageGenerator
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
 from ..providers.bin_file import BinFileProvider
@@ -770,7 +771,7 @@ class ProvidersTestCase(unittest.TestCase):
             FAKER,
             GraphicPngFileProvider,
             "graphic_png_file",
-            {"size": (100, 100)},
+            {"size": (100, 100), "image_generator_cls": None},
             None,
         ),
         # PPTX
@@ -1285,9 +1286,23 @@ class ProvidersTestCase(unittest.TestCase):
         # ICO
         (FAKER, IcoFileProvider, "ico_file", {}, None),
         (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
+        (
+            FAKER,
+            GraphicIcoFileProvider,
+            "graphic_ico_file",
+            {"size": (100, 100)},
+            None,
+        ),
         # JPEG
         (FAKER, JpegFileProvider, "jpeg_file", {}, None),
         (FAKER_HY, JpegFileProvider, "jpeg_file", {}, None),
+        (
+            FAKER,
+            GraphicJpegFileProvider,
+            "graphic_jpeg_file",
+            {"size": (100, 100)},
+            None,
+        ),
         # ODP
         (FAKER, OdpFileProvider, "odp_file", {}, None),
         (FAKER_HY, OdpFileProvider, "odp_file", {}, None),
@@ -1300,9 +1315,23 @@ class ProvidersTestCase(unittest.TestCase):
         # PDF
         (FAKER, PdfFileProvider, "pdf_file", {}, None),
         (FAKER_HY, PdfFileProvider, "pdf_file", {}, None),
+        (
+            FAKER,
+            GraphicPdfFileProvider,
+            "graphic_pdf_file",
+            {"size": (100, 100)},
+            None,
+        ),
         # PNG
         (FAKER, PngFileProvider, "png_file", {}, None),
         (FAKER_HY, PngFileProvider, "png_file", {}, None),
+        (
+            FAKER,
+            GraphicPngFileProvider,
+            "graphic_png_file",
+            {"size": (100, 100)},
+            None,
+        ),
         # PPTX
         (FAKER, PptxFileProvider, "pptx_file", {}, None),
         (FAKER_HY, PptxFileProvider, "pptx_file", {}, None),
@@ -1331,6 +1360,13 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER_HY, TxtFileProvider, "txt_file", {}, None),
         # WEBP
         # (FAKER, WebpFileProvider, "webp_file", {}, None),
+        (
+            FAKER,
+            GraphicWebpFileProvider,
+            "graphic_webp_file",
+            {"size": (100, 100)},
+            None,
+        ),
         # XLSX
         (FAKER, XlsxFileProvider, "xlsx_file", {}, None),
         (FAKER_HY, XlsxFileProvider, "xlsx_file", {}, None),
@@ -1634,11 +1670,23 @@ class ProvidersTestCase(unittest.TestCase):
                 create_inner_ico_file,
                 {},
             ),
+            (
+                "faker_file.providers.ico_file",
+                "GraphicIcoFileProvider",
+                create_inner_graphic_ico_file,
+                {},
+            ),
             # JPEG
             (
                 "faker_file.providers.jpeg_file",
                 "JpegFileProvider",
                 create_inner_jpeg_file,
+                {},
+            ),
+            (
+                "faker_file.providers.jpeg_file",
+                "GraphicJpegFileProvider",
+                create_inner_graphic_jpeg_file,
                 {},
             ),
             # MP3
@@ -1676,11 +1724,23 @@ class ProvidersTestCase(unittest.TestCase):
                 create_inner_pdf_file,
                 {},
             ),
+            (
+                "faker_file.providers.pdf_file",
+                "GraphicPdfFileProvider",
+                create_inner_graphic_pdf_file,
+                {},
+            ),
             # PNG
             (
                 "faker_file.providers.png_file",
                 "PngFileProvider",
                 create_inner_png_file,
+                {},
+            ),
+            (
+                "faker_file.providers.png_file",
+                "GraphicPngFileProvider",
+                create_inner_graphic_png_file,
                 {},
             ),
             # PPTX
@@ -1736,6 +1796,12 @@ class ProvidersTestCase(unittest.TestCase):
                 create_inner_webp_file,
                 {},
             ),
+            (
+                "faker_file.providers.webp_file",
+                "GraphicWebpFileProvider",
+                create_inner_graphic_webp_file,
+                {},
+            ),
             # XLSX
             (
                 "faker_file.providers.xlsx_file",
@@ -1776,6 +1842,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_mp3_file_generate_not_implemented_exception(
         self: "ProvidersTestCase",
     ):
+        """Generating mp3_file with BaseMp3Generator should fail."""
         with self.assertRaises(NotImplementedError):
             Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=BaseMp3Generator)
 
@@ -1788,6 +1855,7 @@ class ProvidersTestCase(unittest.TestCase):
     def test_pdf_file_generate_not_implemented_exception(
         self: "ProvidersTestCase",
     ):
+        """Generating pdf_file with BasePdfGenerator should fail."""
         with self.assertRaises(NotImplementedError):
             PdfFileProvider(FAKER).pdf_file(pdf_generator_cls=BasePdfGenerator)
 
@@ -1796,6 +1864,23 @@ class ProvidersTestCase(unittest.TestCase):
 
         with self.assertRaises(NotImplementedError):
             PdfFileProvider(FAKER).pdf_file(pdf_generator_cls=MyPdfGenerator)
+
+    def test_image_file_generate_not_implemented_exception(
+        self: "ProvidersTestCase",
+    ):
+        """Generating image_file with BaseImageGenerator should fail."""
+        with self.assertRaises(NotImplementedError):
+            PngFileProvider(FAKER).png_file(
+                image_generator_cls=BaseImageGenerator
+            )
+
+        class MyImageGenerator(BaseImageGenerator):
+            """Test image generator."""
+
+        with self.assertRaises(NotImplementedError):
+            PngFileProvider(FAKER).png_file(
+                image_generator_cls=MyImageGenerator
+            )
 
     @parametrize(
         "fake, provider, method_name, kwargs, storage",

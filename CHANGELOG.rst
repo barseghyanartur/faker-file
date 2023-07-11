@@ -5,6 +5,8 @@ Release history and notes
 .. _imgkit: https://pypi.org/project/imgkit/
 .. _reportlab: https://pypi.org/project/reportlab/
 .. _pdfkit: https://pypi.org/project/pdfkit/
+.. _Blockade of the Republic of Artsakh: https://en.wikipedia.org/wiki/Blockade_of_the_Republic_of_Artsakh_(2022%E2%80%93present)
+.. _Armenian genocide: https://en.wikipedia.org/wiki/Armenian_genocide
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -23,15 +25,23 @@ are used for versioning (schema follows below):
 
 0.17
 ----
-2023-07-11
+2023-07-12
+
+.. note::
+
+    Release is dedicated to the victims and de-facto hostages of
+    the `Blockade of the Republic of Artsakh`_. Have you ever heard
+    of `Armenian genocide`_? It's happening again and the world
+    silently watches.
 
 - Introducing graphic image providers. Prior to this release, images have
   been created using text-to-image solutions. Sometimes it's just handy to
   have a graphic image. Therefore, a number of graphic image file providers
   have been created (including inner functions support). The following graphic
-  file providers have been added: ``GraphicPdfFileProvider``,
-  ``GraphicIcoFileProvider``, ``GraphicJpegFileProvider``,
-  ``GraphicPngFileProvider`` and ``GraphicWebpFileProvider``.
+  file providers have been added: ``GraphicIcoFileProvider``,
+  ``GraphicJpegFileProvider``, ``GraphicPdfFileProvider``,
+  ``GraphicPngFileProvider`` and ``GraphicWebpFileProvider`` to support
+  creation of graphic ``ICO``, ``JPEG``, ``PDF``, ``PNG`` and ``WEBP`` files.
 - The previously mentioned text-to-image rendering has been delegated to
   image generators. Default generator is still based on the `imgkit`_, but
   the change makes it possible to use custom generators.

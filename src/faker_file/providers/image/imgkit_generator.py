@@ -39,8 +39,6 @@ class ImgkitImageGenerator(BaseImageGenerator):
 
     def handle_kwargs(self: "ImgkitImageGenerator", **kwargs) -> None:
         """Handle kwargs."""
-        if "encoding" in kwargs:
-            self.encoding = kwargs["encoding"]
 
     def generate(
         self: "ImgkitImageGenerator",

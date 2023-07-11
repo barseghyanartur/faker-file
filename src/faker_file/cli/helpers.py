@@ -13,20 +13,20 @@ from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider
 from ..providers.generic_file import GenericFileProvider
-from ..providers.ico_file import IcoFileProvider
-from ..providers.jpeg_file import JpegFileProvider
+from ..providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
+from ..providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
 from ..providers.mp3_file import Mp3FileProvider
 from ..providers.odp_file import OdpFileProvider
 from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
-from ..providers.pdf_file import PdfFileProvider
-from ..providers.png_file import PngFileProvider
+from ..providers.pdf_file import GraphicPdfFileProvider, PdfFileProvider
+from ..providers.png_file import GraphicPngFileProvider, PngFileProvider
 from ..providers.pptx_file import PptxFileProvider
 from ..providers.rtf_file import RtfFileProvider
 from ..providers.svg_file import SvgFileProvider
 from ..providers.tar_file import TarFileProvider
 from ..providers.txt_file import TxtFileProvider
-from ..providers.webp_file import WebpFileProvider
+from ..providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
 from ..providers.xlsx_file import XlsxFileProvider
 from ..providers.xml_file import XmlFileProvider
 from ..providers.zip_file import ZipFileProvider
@@ -106,6 +106,15 @@ PROVIDERS = {
     EmlFileProvider.eml_file.__name__: EmlFileProvider,
     EpubFileProvider.epub_file.__name__: EpubFileProvider,
     GenericFileProvider.generic_file.__name__: GenericFileProvider,
+    GraphicIcoFileProvider.graphic_ico_file.__name__: GraphicIcoFileProvider,
+    GraphicJpegFileProvider.graphic_jpeg_file.__name__: (
+        GraphicJpegFileProvider
+    ),
+    GraphicPdfFileProvider.graphic_pdf_file.__name__: GraphicPdfFileProvider,
+    GraphicPngFileProvider.graphic_png_file.__name__: GraphicPngFileProvider,
+    GraphicWebpFileProvider.graphic_webp_file.__name__: (
+        GraphicWebpFileProvider
+    ),
     IcoFileProvider.ico_file.__name__: IcoFileProvider,
     JpegFileProvider.jpeg_file.__name__: JpegFileProvider,
     Mp3FileProvider.mp3_file.__name__: Mp3FileProvider,
