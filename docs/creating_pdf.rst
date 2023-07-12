@@ -2,9 +2,10 @@ Creating PDF
 ============
 .. External references
 
-.. _wkhtmltopdf: https://wkhtmltopdf.org/
 .. _pdfkit: https://pypi.org/project/pdfkit/
+.. _Pillow: https://pillow.readthedocs.io/
 .. _reportlab: https://pypi.org/project/reportlab/
+.. _wkhtmltopdf: https://wkhtmltopdf.org/
 
 PDF is certainly one of the most complicated formats out there. And
 certainly one of the formats most of the developers will be having trouble
@@ -197,4 +198,32 @@ See the example below for usage examples:
                 (add_page_break, {}),  # Add page break
             ] * 100
         )
+    )
+
+Creating PDFs with graphics using `Pillow`_
+-------------------------------------------
+There's a so called `graphic` PDF file provider available. Produced PDF files
+would not contain text, so don't use it when you need text based content.
+However, sometimes you just need a valid file in PDF format, without
+caring much about the content. That's where a GraphicPdfFileProvider comes to
+rescue:
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.pdf_file import GraphicPdfFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(GraphicPdfFileProvider)
+
+    file = FAKER.graphic_pdf_file()
+
+The generated file will contain a random graphic (consisting of lines and
+shapes of different colours). One of the most useful arguments supported is
+``size``.
+
+.. code-block:: python
+
+    file = FAKER.graphic_pdf_file(
+        size=(800, 800),
     )

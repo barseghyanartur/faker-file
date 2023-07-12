@@ -8,6 +8,7 @@ Methodology
 .. External references
 
 .. _imgkit: https://pypi.org/project/imgkit/
+.. _Pillow: https://pillow.readthedocs.io/
 .. _pip-tools: https://pip-tools.readthedocs.io
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 

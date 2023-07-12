@@ -622,6 +622,89 @@ you could set it explicitly as follows:
 
     file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
 
+Create a graphic PDF file using `Pillow`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Graphic PDF file does not contain text. Don't use it when you need text based
+content. However, sometimes you just need a valid file in PDF format, without
+caring much about the content. That's where a GraphicPdfFileProvider comes to
+rescue:
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.pdf_file import GraphicPdfFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(GraphicPdfFileProvider)
+
+    file = FAKER.graphic_pdf_file()
+
+The generated file will contain a random graphic (consisting of lines and
+shapes of different colours). One of the most useful arguments supported is
+``size``.
+
+.. code-block:: python
+
+    file = FAKER.graphic_pdf_file(
+        size=(800, 800),
+    )
+
+Graphic providers
+~~~~~~~~~~~~~~~~~
+Graphic file providers does not contain text. Don't use it when you need text
+based content. However, sometimes you just need a valid image file with
+graphics of a certain size. That's where graphic file providers help.
+
+Supported files formats are: ICO, JPEG, PNG and WEBP.
+
+Create an ICO file
+^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.ico_file import GraphicIcoFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(GraphicIcoFileProvider)
+
+    file = FAKER.graphic_ico_file(size=(800, 800))
+
+Create a JPEG file
+^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.jpeg_file import GraphicJpegFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(GraphicJpegFileProvider)
+
+    file = FAKER.graphic_jpeg_file(size=(800, 800))
+
+Create a PNG file
+^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.png_file import GraphicPngFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(GraphicPngFileProvider)
+
+    file = FAKER.graphic_png_file(size=(800, 800))
+
+Create a WEBP file
+^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.webp_file import GraphicWebpFileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(GraphicWebpFileProvider)
+
+    file = FAKER.graphic_webp_file(size=(800, 800))
+
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
 .. code-block:: python
