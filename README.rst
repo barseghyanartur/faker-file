@@ -413,20 +413,18 @@ file; valid for most file providers, except ``FileFromPathProvider``,
 All file providers store an absolute path to the generated file in ``filename``
 key of the ``data`` attribute. See the table below.
 
-.. code-block:: text
-
-    ┌─────────────────┬──────────────────────────────────────────────────────┐
-    │ Key name        │ File provider                                        │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ filename        │ all                                                  │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ content         │ all except ``FileFromPathProvider``,                 │
-    │                 │ ``RandomFileFromDirProvider``, ``TarFileProvider``   │
-    │                 │ and ``ZipFileProvider``                              │
-    ├─────────────────┼──────────────────────────────────────────────────────┤
-    │ inner           │ only ``EmlFileProvider``, ``TarFileProvider``        │
-    │                 │ and ``ZipFileProvider``                              │
-    └─────────────────┴──────────────────────────────────────────────────────┘
++-----------+-----------------------------------------------------------------+
+| Key name  | File provider                                                   |
++===========+=================================================================+
+| filename  | all                                                             |
++-----------+-----------------------------------------------------------------+
+| content   | all except FileFromPathProvider, GraphicIcoFileProvider,        |
+|           | GraphicJpegFileProvider, GraphicPdfFileProvider,                |
+|           | GraphicPngFileProvider, GraphicWebpFileProvider,                |
+|           | RandomFileFromDirProvider, TarFileProvider and ZipFileProvider  |
++-----------+-----------------------------------------------------------------+
+| inner     | only EmlFileProvider, TarFileProvider and ZipFileProvider       |
++-----------+-----------------------------------------------------------------+
 
 File storages
 =============
