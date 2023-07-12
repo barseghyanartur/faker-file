@@ -54,34 +54,34 @@ faker-file
 
 .. External references
 
-.. _Faker: https://faker.readthedocs.io/
-.. _Django: https://www.djangoproject.com/
-.. _factory_boy: https://factoryboy.readthedocs.io/
-.. _python-docx: https://python-docx.readthedocs.io/
-.. _xml2epub: https://pypi.org/project/xml2epub/
-.. _Jinja2: https://jinja.palletsprojects.com/
-.. _imgkit: https://pypi.org/project/imgkit/
-.. _wkhtmltopdf: https://wkhtmltopdf.org/
-.. _gTTS: https://gtts.readthedocs.io/
-.. _edge-tts: https://pypi.org/project/edge-tts/
-.. _reportlab: https://pypi.org/project/reportlab/
-.. _pdfkit: https://pypi.org/project/pdfkit/
-.. _python-pptx: https://python-pptx.readthedocs.io/
-.. _odfpy: https://pypi.org/project/odfpy/
-.. _tablib: https://tablib.readthedocs.io/
-.. _openpyxl: https://openpyxl.readthedocs.io/
-.. _pathy: https://pypi.org/project/pathy/
-.. _boto3: https://pypi.org/project/boto3/
-.. _azure-storage-blob: https://pypi.org/project/azure-storage-blob/
-.. _google-cloud-storage: https://pypi.org/project/google-cloud-storage/
-.. _nlpaug: https://nlpaug.readthedocs.io/
-.. _PyTorch: https://pytorch.org/
-.. _transformers: https://pypi.org/project/transformers/
-.. _numpy: https://numpy.org/
-.. _pandas: https://pandas.pydata.org/
-.. _tika: https://pypi.org/project/tika/
 .. _Apache Tika: https://tika.apache.org/
+.. _Django: https://www.djangoproject.com/
+.. _Faker: https://faker.readthedocs.io/
+.. _Jinja2: https://jinja.palletsprojects.com/
+.. _PyTorch: https://pytorch.org/
+.. _azure-storage-blob: https://pypi.org/project/azure-storage-blob/
+.. _boto3: https://pypi.org/project/boto3/
+.. _edge-tts: https://pypi.org/project/edge-tts/
+.. _factory_boy: https://factoryboy.readthedocs.io/
+.. _gTTS: https://gtts.readthedocs.io/
+.. _google-cloud-storage: https://pypi.org/project/google-cloud-storage/
+.. _imgkit: https://pypi.org/project/imgkit/
+.. _nlpaug: https://nlpaug.readthedocs.io/
+.. _numpy: https://numpy.org/
+.. _odfpy: https://pypi.org/project/odfpy/
+.. _openpyxl: https://openpyxl.readthedocs.io/
+.. _pandas: https://pandas.pydata.org/
 .. _paramiko: http://paramiko.org/
+.. _pathy: https://pypi.org/project/pathy/
+.. _pdfkit: https://pypi.org/project/pdfkit/
+.. _python-docx: https://python-docx.readthedocs.io/
+.. _python-pptx: https://python-pptx.readthedocs.io/
+.. _reportlab: https://pypi.org/project/reportlab/
+.. _tablib: https://tablib.readthedocs.io/
+.. _tika: https://pypi.org/project/tika/
+.. _transformers: https://pypi.org/project/transformers/
+.. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _xml2epub: https://pypi.org/project/xml2epub/
 
 Prerequisites
 =============

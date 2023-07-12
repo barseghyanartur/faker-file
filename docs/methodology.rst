@@ -3,11 +3,13 @@ Methodology
 .. Internal references
 
 .. _faker-file: https://github.com/barseghyanartur/faker-file/
+.. _prerequisites: https://faker-file.readthedocs.io/en/latest/?badge=latest#prerequisites
 
 .. External references
 
+.. _imgkit: https://pypi.org/project/imgkit/
 .. _pip-tools: https://pip-tools.readthedocs.io
-
+.. _wkhtmltopdf: https://wkhtmltopdf.org/
 
 But why
 -------
@@ -60,6 +62,45 @@ specific and hard-to-recreate files in the project repository, but on much
 lower scale. Use `faker-file`_ for simple use cases and only use custom
 files when things get too complicated otherwise. The so-called hybrid
 approach.
+
+Identify what kind of files do you need
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`faker-file`_ supports a large variety of file types, but content of files
+can be generally broken down by 2 categories:
+
+- Text based: Useful when testing OCR or text processing pipelines. ATM, most
+  of the `faker-file`_ providers generate text-based content.
+- Non-text based: Typically images and non-human readable formats such as BIN.
+  Useful when you need to test validity of the uploaded file, but don't care
+  much about what's inside.
+
+Image providers:
+
++--------------+-------------------------+------------------+
+| File format  | Graphic                 | Text             |
++==============+=========================+==================+
+| ICO          | GraphicIcoFileProvider  | IcoFileProvider  |
++--------------+-------------------------+------------------+
+| JPEG         | GraphicJpegFileProvider | JpegFileProvider |
++--------------+-------------------------+------------------+
+| PDF          | GraphicPdfFileProvider  | PdfFileProvider  |
++--------------+-------------------------+------------------+
+| PNG          | GraphicPngFileProvider  | PngFileProvider  |
++--------------+-------------------------+------------------+
+| SVG          | (not supported)         | SvgFileProvider  |
++--------------+-------------------------+------------------+
+| WEBP         | GraphicWebpFileProvider | WebpFileProvider |
++--------------+-------------------------+------------------+
+
+At the moment, most of the text-to-image providers rely on the `imgkit`_
+Python package and `wkhtmltopdf`_ system dependency (available for most
+popular operating systems, including Windows, macOS and Linux).
+
+Graphic image providers on the other hand rely on Pillow and underlying
+system dependencies such as ``libjpeg``, ``zlib``, ``libtiff``,
+``libfreetype6`` and `libwebp`.
+
+Take a good look at the `prerequisites`_ to identify required dependencies.
 
 Installation
 ~~~~~~~~~~~~
