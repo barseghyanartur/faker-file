@@ -52,8 +52,7 @@ Output:
        xml_file,zip_file}
 
                                 Available file providers.
-        generate-completion     Generate CLI completion file.
-                                Generate bash completion file.
+        generate-completion     Generate bash completion file.
         version                 Print version.
         bin_file                Generate a bin file.
         csv_file                Generate a csv file.
