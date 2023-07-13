@@ -99,7 +99,7 @@ popular operating systems, including Windows, macOS and Linux).
 
 Graphic image providers on the other hand rely on Pillow and underlying
 system dependencies such as ``libjpeg``, ``zlib``, ``libtiff``,
-``libfreetype6`` and `libwebp`.
+``libfreetype6`` and ``libwebp``.
 
 Take a good look at the `prerequisites`_ to identify required dependencies.
 

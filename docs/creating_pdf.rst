@@ -23,8 +23,8 @@ Currently, there are two PDF generators implemented:
 
 Building PDF using `pdfkit`_
 ----------------------------
-While `pdfkit`_ generator is a heavier and has `wkhtmltopdf`_ as a system
-dependency, it's produces better quality PDF and has no issues with fonts
+While `pdfkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
+dependency, it produces better quality PDFs and has no issues with fonts
 or unicode characters.
 
 See the following full functional snippet for generating PDF using `pdfkit`_.
