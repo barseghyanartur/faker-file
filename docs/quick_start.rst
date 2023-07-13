@@ -22,21 +22,21 @@ With ``Faker``
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.eml_file import EmlFileProvider
     from faker_file.providers.epub_file import EpubFileProvider
-    from faker_file.providers.ico_file import IcoFileProvider
-    from faker_file.providers.jpeg_file import JpegFileProvider
+    from faker_file.providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
+    from faker_file.providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
     from faker_file.providers.odp_file import OdpFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.odt_file import OdtFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.pdf_file import GraphicPdfFileProvider, PdfFileProvider
+    from faker_file.providers.png_file import GraphicPngFileProvider, PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
     from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
     from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
     from faker_file.providers.tar_file import TarFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.webp_file import WebpFileProvider
+    from faker_file.providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
     from faker_file.providers.xlsx_file import XlsxFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
@@ -47,6 +47,11 @@ With ``Faker``
     FAKER.add_provider(DocxFileProvider)
     FAKER.add_provider(EmlFileProvider)
     FAKER.add_provider(EpubFileProvider)
+    FAKER.add_provider(GraphicIcoFileProvider)
+    FAKER.add_provider(GraphicJpegFileProvider)
+    FAKER.add_provider(GraphicPdfFileProvider)
+    FAKER.add_provider(GraphicPngFileProvider)
+    FAKER.add_provider(GraphicWebpFileProvider)
     FAKER.add_provider(IcoFileProvider)
     FAKER.add_provider(JpegFileProvider)
     FAKER.add_provider(Mp3FileProvider)
@@ -75,6 +80,11 @@ With ``Faker``
     docx_file = FAKER.docx_file()
     eml_file = FAKER.eml_file()
     epub_file = FAKER.epub_file()
+    graphic_ico_file = FAKER.graphic_ico_file()
+    graphic_jpeg_file = FAKER.graphic_jpeg_file()
+    graphic_pdf_file = FAKER.graphic_pdf_file()
+    graphic_png_file = FAKER.graphic_png_file()
+    graphic_webp_file = FAKER.graphic_webp_file()
     ico_file = FAKER.ico_file()
     jpeg_file = FAKER.jpeg_file()
     mp3_file = FAKER.mp3_file()
@@ -143,21 +153,21 @@ With ``factory_boy``
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.eml_file import EmlFileProvider
     from faker_file.providers.epub_file import EpubFileProvider
-    from faker_file.providers.ico_file import IcoFileProvider
-    from faker_file.providers.jpeg_file import JpegFileProvider
+    from faker_file.providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
+    from faker_file.providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
     from faker_file.providers.odp_file import OdpFileProvider
     from faker_file.providers.ods_file import OdsFileProvider
     from faker_file.providers.odt_file import OdtFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.pdf_file import GraphicPdfFileProvider, PdfFileProvider
+    from faker_file.providers.png_file import GraphicPngFileProvider, PngFileProvider
     from faker_file.providers.pptx_file import PptxFileProvider
     from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
     from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
     from faker_file.providers.tar_file import TarFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.webp_file import WebpFileProvider
+    from faker_file.providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
     from faker_file.providers.xlsx_file import XlsxFileProvider
     from faker_file.providers.zip_file import ZipFileProvider
 
@@ -167,6 +177,11 @@ With ``factory_boy``
     Faker.add_provider(DocxFileProvider)
     Faker.add_provider(EmlFileProvider)
     Faker.add_provider(EpubFileProvider)
+    Faker.add_provider(GraphicIcoFileProvider)
+    Faker.add_provider(GraphicJpegFileProvider)
+    Faker.add_provider(GraphicPdfFileProvider)
+    Faker.add_provider(GraphicPngFileProvider)
+    Faker.add_provider(GraphicWebpFileProvider)
     Faker.add_provider(IcoFileProvider)
     Faker.add_provider(JpegFileProvider)
     Faker.add_provider(Mp3FileProvider)
