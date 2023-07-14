@@ -31,7 +31,7 @@ class ImgkitImageGenerator(BaseImageGenerator):
         FAKER = Faker()
 
         file = PngFileProvider(FAKER).png_file(
-            img_generator_cls=imgkit_generator.ImgkitPdfGenerator
+            img_generator_cls=imgkit_generator.ImgkitImageGenerator
         )
     """
 
