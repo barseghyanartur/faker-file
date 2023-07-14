@@ -20,7 +20,7 @@ __all__ = (
 )
 
 DEFAULT_IMAGE_GENERATOR = (
-    "faker_file.providers.image.imgkit_generator" ".ImgkitImageGenerator"
+    "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
 )
 
 
