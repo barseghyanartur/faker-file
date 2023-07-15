@@ -26,27 +26,27 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
-    "GifFileProvider",
-    "GraphicGifFileProvider",
+    "GraphicTiffFileProvider",
+    "TiffFileProvider",
 )
 
 
-class GifFileProvider(BaseProvider, ImageMixin):
-    """GIF file provider.
+class TiffFileProvider(BaseProvider, ImageMixin):
+    """TIFF file provider.
 
         Usage example:
 
         from faker import Faker
-        from faker_file.providers.gif_file import GifFileProvider
+        from faker_file.providers.tiff_file import TiffFileProvider
 
         FAKER = Faker()
-        FAKER.add_provider(GifFileProvider)
+        FAKER.add_provider(TiffFileProvider)
 
-        file = FAKER.gif_file()
+        file = FAKER.tiff_file()
 
     Usage example with options:
 
-        file = FAKER.gif_file(
+        file = FAKER.tiff_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -57,7 +57,7 @@ class GifFileProvider(BaseProvider, ImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = FAKER.gif_file(
+        file = FAKER.tiff_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -68,11 +68,11 @@ class GifFileProvider(BaseProvider, ImageMixin):
         )
     """
 
-    extension: str = "gif"
+    extension: str = "tiff"
 
     @overload
-    def gif_file(
-        self: "GifFileProvider",
+    def tiff_file(
+        self: "TiffFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -92,8 +92,8 @@ class GifFileProvider(BaseProvider, ImageMixin):
         ...
 
     @overload
-    def gif_file(
-        self: "GifFileProvider",
+    def tiff_file(
+        self: "TiffFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -111,8 +111,8 @@ class GifFileProvider(BaseProvider, ImageMixin):
     ) -> StringValue:
         ...
 
-    def gif_file(
-        self: "GifFileProvider",
+    def tiff_file(
+        self: "TiffFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -129,7 +129,7 @@ class GifFileProvider(BaseProvider, ImageMixin):
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate a GIF file with random text.
+        """Generate a TIFF file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
@@ -164,22 +164,22 @@ class GifFileProvider(BaseProvider, ImageMixin):
         )
 
 
-class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
-    """Graphic GIF file provider.
+class GraphicTiffFileProvider(BaseProvider, GraphicImageMixin):
+    """Graphic TIFF file provider.
 
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.gif_file import GraphicGifFileProvider
+        from faker_file.providers.tiff_file import GraphicTiffFileProvider
 
         FAKER = Faker()
-        FAKER.add_provider(GraphicGifFileProvider)
+        FAKER.add_provider(GraphicTiffFileProvider)
 
-        file = FAKER.graphic_gif_file()
+        file = FAKER.graphic_tiff_file()
 
     Usage example with options:
 
-        file = FAKER.graphic_gif_file(
+        file = FAKER.graphic_tiff_file(
             prefix="zzz",
             size=(800, 800),
         )
@@ -189,7 +189,7 @@ class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = FAKER.graphic_gif_file(
+        file = FAKER.graphic_tiff_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -199,12 +199,12 @@ class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
         )
     """
 
-    extension: str = "gif"
-    image_format: str = "gif"
+    extension: str = "tif"
+    image_format: str = "tiff"
 
     @overload
-    def graphic_gif_file(
-        self: "GraphicGifFileProvider",
+    def graphic_tiff_file(
+        self: "GraphicTiffFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -217,8 +217,8 @@ class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
         ...
 
     @overload
-    def graphic_gif_file(
-        self: "GraphicGifFileProvider",
+    def graphic_tiff_file(
+        self: "GraphicTiffFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -229,8 +229,8 @@ class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
     ) -> StringValue:
         ...
 
-    def graphic_gif_file(
-        self: "GraphicGifFileProvider",
+    def graphic_tiff_file(
+        self: "GraphicTiffFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -240,7 +240,7 @@ class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate a graphic GIF file with random lines.
+        """Generate a graphic TIFF file with random lines.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
