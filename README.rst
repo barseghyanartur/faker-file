@@ -58,7 +58,9 @@ faker-file
 .. _Django: https://www.djangoproject.com/
 .. _Faker: https://faker.readthedocs.io/
 .. _Jinja2: https://jinja.palletsprojects.com/
+.. _Pillow: https://pypi.org/project/Pillow/
 .. _PyTorch: https://pytorch.org/
+.. _WeasyPrint: https://pypi.org/project/weasyprint/
 .. _azure-storage-blob: https://pypi.org/project/azure-storage-blob/
 .. _boto3: https://pypi.org/project/boto3/
 .. _edge-tts: https://pypi.org/project/edge-tts/
@@ -71,6 +73,7 @@ faker-file
 .. _odfpy: https://pypi.org/project/odfpy/
 .. _openpyxl: https://openpyxl.readthedocs.io/
 .. _pandas: https://pandas.pydata.org/
+.. _pdf2image: https://pypi.org/project/pdf2image/
 .. _paramiko: http://paramiko.org/
 .. _pathy: https://pypi.org/project/pathy/
 .. _pdfkit: https://pypi.org/project/pdfkit/
@@ -87,16 +90,21 @@ Prerequisites
 =============
 All of core dependencies of this package are `MIT` licensed.
 Most of optional dependencies of this package are `MIT` licensed, while
-a few are `BSD`-, `Apache 2`- or `GPL` licensed. All licenses are mentioned
-below between the brackets.
+a few are `BSD`-, `Apache 2`-, `GPL` or `HPND` licensed.
+
+All licenses are mentioned below between the brackets.
 
 - Core package requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
 - `Faker`_ (`MIT`) is the only required dependency.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
   been tested with ``Django`` starting from version 2.2 to 4.2 (although only
   maintained versions of Django are currently being tested against).
+- ``BMP`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
+  and `Pillow`_ (`HPND`).
 - ``DOCX`` file support requires `python-docx`_ (`MIT`).
 - ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
+- ``GIF`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
+  and `Pillow`_ (`HPND`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
@@ -106,6 +114,8 @@ below between the brackets.
 - ``ODP`` file support requires `odfpy`_ (`Apache 2`).
 - ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
 - ``ODT`` file support requires `odfpy`_ (`Apache 2`).
+- ``TIFF`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
+  and `Pillow`_ (`HPND`).
 - ``XLSX`` file support requires `tablib`_ (`MIT`) and `openpyxl`_ (`MIT`).
 - ``PathyFileSystemStorage`` storage support requires `pathy`_ (`Apache 2`).
 - ``AWSS3Storage`` storage support requires `pathy`_ (`Apache 2`)

@@ -33,6 +33,8 @@ botocore==1.29.29
     # via
     #   boto3
     #   s3transfer
+brotli==1.0.9
+    # via fonttools
 cachetools==5.2.0
     # via google-auth
 certifi==2022.12.7
@@ -43,6 +45,7 @@ cffi==1.15.1
     # via
     #   cryptography
     #   pynacl
+    #   weasyprint
 charset-normalizer==2.1.1
     # via
     #   aiohttp
@@ -62,6 +65,8 @@ cryptography==38.0.4
     #   asyncssh
     #   azure-storage-blob
     #   paramiko
+cssselect2==0.7.0
+    # via weasyprint
 defusedxml==0.7.1
     # via odfpy
 distlib==0.3.6
@@ -99,6 +104,8 @@ filelock==3.8.0
     # via
     #   tox
     #   virtualenv
+fonttools[woff]==4.41.0
+    # via weasyprint
 frozenlist==1.3.3
     # via
     #   aiohttp
@@ -126,6 +133,8 @@ googleapis-common-protos==1.57.0
     # via google-api-core
 gtts==2.3.1
     # via -r examples/requirements/common.in
+html5lib==1.1
+    # via weasyprint
 idna==3.4
     # via
     #   requests
@@ -180,12 +189,16 @@ paramiko==3.2.0
     # via -r examples/requirements/common.in
 pathy[all]==0.10.1
     # via -r examples/requirements/common.in
+pdf2image==1.16.3
+    # via -r examples/requirements/common.in
 pdfkit==1.0.0
     # via -r examples/requirements/common.in
 pillow==9.3.0
     # via
+    #   pdf2image
     #   python-pptx
     #   reportlab
+    #   weasyprint
     #   xml2epub
 platformdirs==2.5.4
     # via virtualenv
@@ -210,10 +223,14 @@ pyasn1-modules==0.2.8
     # via google-auth
 pycparser==2.21
     # via cffi
+pydyf==0.7.0
+    # via weasyprint
 pynacl==1.5.0
     # via paramiko
 pyparsing==3.0.9
     # via packaging
+pyphen==0.14.0
+    # via weasyprint
 pyrsistent==0.19.3
     # via jsonschema
 pytest==7.2.1
@@ -281,6 +298,7 @@ six==1.16.0
     #   azure-core
     #   google-auth
     #   google-cloud-storage
+    #   html5lib
     #   imgkit
     #   isodate
     #   python-dateutil
@@ -297,6 +315,10 @@ tablib==3.2.1
     # via -r examples/requirements/common.in
 tblib==1.7.0
     # via pytest-parallel
+tinycss2==1.2.1
+    # via
+    #   cssselect2
+    #   weasyprint
 tomli==2.0.1
     # via
     #   coverage
@@ -322,9 +344,18 @@ urllib3==1.26.13
     #   requests
 virtualenv==20.17.0
     # via tox
+weasyprint==59.0
+    # via -r examples/requirements/common.in
+webencodings==0.5.1
+    # via
+    #   cssselect2
+    #   html5lib
+    #   tinycss2
 xlsxwriter==3.0.3
     # via python-pptx
 xml2epub==2.6.2
     # via -r examples/requirements/common.in
 yarl==1.8.2
     # via aiohttp
+zopfli==0.2.2
+    # via fonttools
