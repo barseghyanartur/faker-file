@@ -86,6 +86,11 @@ faker-file
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 .. _xml2epub: https://pypi.org/project/xml2epub/
 
+.. Licenses
+
+.. _GPL 2.0: https://opensource.org/license/gpl-2-0/
+.. _BSD 3 clause: https://opensource.org/license/bsd-3-clause/
+
 Prerequisites
 =============
 All of core dependencies of this package are `MIT` licensed.
