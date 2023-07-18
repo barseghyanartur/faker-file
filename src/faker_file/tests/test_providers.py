@@ -524,6 +524,13 @@ class ProvidersTestCase(unittest.TestCase):
             FAKER,
             JpegFileProvider,
             "jpeg_file",
+            {"image_generator_cls": None},
+            None,
+        ),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
             {
                 "wrap_chars_after": 40,
                 "content": DEFAULT_TEXT_CONTENT_TEMPLATE,

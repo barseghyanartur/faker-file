@@ -77,6 +77,7 @@ faker-file
 .. _paramiko: http://paramiko.org/
 .. _pathy: https://pypi.org/project/pathy/
 .. _pdfkit: https://pypi.org/project/pdfkit/
+.. _poppler: https://poppler.freedesktop.org/
 .. _python-docx: https://python-docx.readthedocs.io/
 .. _python-pptx: https://python-pptx.readthedocs.io/
 .. _reportlab: https://pypi.org/project/reportlab/
@@ -105,11 +106,11 @@ All licenses are mentioned below between the brackets.
   been tested with ``Django`` starting from version 2.2 to 4.2 (although only
   maintained versions of Django are currently being tested against).
 - ``BMP`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
-  and `Pillow`_ (`HPND`).
+  `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``DOCX`` file support requires `python-docx`_ (`MIT`).
 - ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
 - ``GIF`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
-  and `Pillow`_ (`HPND`).
+  `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
@@ -120,7 +121,7 @@ All licenses are mentioned below between the brackets.
 - ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
 - ``ODT`` file support requires `odfpy`_ (`Apache 2`).
 - ``TIFF`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
-  and `Pillow`_ (`HPND`).
+  `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``XLSX`` file support requires `tablib`_ (`MIT`) and `openpyxl`_ (`MIT`).
 - ``PathyFileSystemStorage`` storage support requires `pathy`_ (`Apache 2`).
 - ``AWSS3Storage`` storage support requires `pathy`_ (`Apache 2`)

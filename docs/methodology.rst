@@ -12,6 +12,7 @@ Methodology
 .. _imgkit: https://pypi.org/project/imgkit/
 .. _pdf2image: https://pypi.org/project/pdf2image/
 .. _pip-tools: https://pip-tools.readthedocs.io
+.. _poppler: https://poppler.freedesktop.org/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 
 But why
@@ -107,8 +108,9 @@ Python package and `wkhtmltopdf`_ system dependency (available for most
 popular operating systems, including Windows, macOS and Linux).
 
 However, a few formats, such as BMP, GIF and TIFF, which are not supported
-by `imgkit`_ and underlying `wkhtmltopdf`_, rely on `WeasyPrint`_
-and `pdf2image`_ through an alternative ``WeasyPrintImageGenerator``.
+by `imgkit`_ and underlying `wkhtmltopdf`_, rely on `WeasyPrint`_,
+`pdf2image`_ and `poppler`_ through an alternative
+``WeasyPrintImageGenerator``.
 
 Graphic image providers on the other hand rely on Pillow and underlying
 system dependencies such as ``libjpeg``, ``zlib``, ``libtiff``,
