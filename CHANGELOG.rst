@@ -2,11 +2,13 @@ Release history and notes
 =========================
 .. Internal references
 
-.. _imgkit: https://pypi.org/project/imgkit/
-.. _reportlab: https://pypi.org/project/reportlab/
-.. _pdfkit: https://pypi.org/project/pdfkit/
-.. _Blockade of the Republic of Artsakh: https://en.wikipedia.org/wiki/Blockade_of_the_Republic_of_Artsakh_(2022%E2%80%93present)
 .. _Armenian genocide: https://en.wikipedia.org/wiki/Armenian_genocide
+.. _Blockade of the Republic of Artsakh: https://en.wikipedia.org/wiki/Blockade_of_the_Republic_of_Artsakh_(2022%E2%80%93present)
+.. _WeasyPrint: https://pypi.org/project/weasyprint/
+.. _imgkit: https://pypi.org/project/imgkit/
+.. _pdf2image: https://pypi.org/project/pdf2image/
+.. _pdfkit: https://pypi.org/project/pdfkit/
+.. _reportlab: https://pypi.org/project/reportlab/
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -22,6 +24,18 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.17.1
+------
+2023-07-??
+
+- Added ``WeasyPrintImageGenerator`` image generator class based
+  on `WeasyPrint`_ and `pdf2image`_ packages.
+- Added ``BMP``, ``TIFF`` and ``GIF`` file providers (both text-to-image
+  and graphic ones). Note, that above mentioned text-to-image providers
+  are using ``WeasyPrintImageGenerator`` as a default image generator class,
+  since ``ImagekitImageGenerator`` class isn't capable of supporting the
+  above mentioned file formats.
 
 0.17
 ----

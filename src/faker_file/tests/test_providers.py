@@ -46,12 +46,14 @@ from ..providers.base.image_generator import BaseImageGenerator
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
 from ..providers.bin_file import BinFileProvider
+from ..providers.bmp_file import BmpFileProvider, GraphicBmpFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider
 from ..providers.file_from_path import FileFromPathProvider
 from ..providers.generic_file import GenericFileProvider
+from ..providers.gif_file import GifFileProvider, GraphicGifFileProvider
 from ..providers.helpers.inner import (
     create_inner_bin_file,
     create_inner_csv_file,
@@ -107,6 +109,7 @@ from ..providers.random_file_from_dir import RandomFileFromDirProvider
 from ..providers.rtf_file import RtfFileProvider
 from ..providers.svg_file import SvgFileProvider
 from ..providers.tar_file import TarFileProvider
+from ..providers.tiff_file import GraphicTiffFileProvider, TiffFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
 from ..providers.xlsx_file import XlsxFileProvider
@@ -131,17 +134,22 @@ __all__ = ("ProvidersTestCase",)
 
 FileProvider = Union[
     BinFileProvider,
+    BmpFileProvider,
     CsvFileProvider,
     DocxFileProvider,
     EmlFileProvider,
     EpubFileProvider,
     FileFromPathProvider,
     GenericFileProvider,
+    GraphicBmpFileProvider,
     GraphicIcoFileProvider,
+    GraphicGifFileProvider,
     GraphicJpegFileProvider,
     GraphicPdfFileProvider,
     GraphicPngFileProvider,
+    GraphicTiffFileProvider,
     GraphicWebpFileProvider,
+    GifFileProvider,
     IcoFileProvider,
     JpegFileProvider,
     Mp3FileProvider,
@@ -155,6 +163,7 @@ FileProvider = Union[
     RtfFileProvider,
     SvgFileProvider,
     TarFileProvider,
+    TiffFileProvider,
     TxtFileProvider,
     WebpFileProvider,
     XlsxFileProvider,
@@ -187,6 +196,11 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER, BinFileProvider, "bin_file", {}, None),
         (FAKER, BinFileProvider, "bin_file", {}, False),
         (FAKER, BinFileProvider, "bin_file", {}, PATHY_FS_STORAGE),
+        # BMP
+        (FAKER, BmpFileProvider, "bmp_file", {}, None),
+        (FAKER, BmpFileProvider, "bmp_file", {}, False),
+        (FAKER, BmpFileProvider, "bmp_file", {}, PATHY_FS_STORAGE),
+        (FAKER, GraphicBmpFileProvider, "graphic_bmp_file", {}, None),
         # CSV
         (FAKER, CsvFileProvider, "csv_file", {}, None),
         (FAKER_HY, CsvFileProvider, "csv_file", {}, None),
@@ -456,6 +470,12 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # GIF
+        (FAKER, GifFileProvider, "gif_file", {}, None),
+        (FAKER_HY, GifFileProvider, "gif_file", {}, None),
+        (FAKER, GifFileProvider, "gif_file", {}, False),
+        (FAKER, GifFileProvider, "gif_file", {}, PATHY_FS_STORAGE),
+        (FAKER, GraphicGifFileProvider, "graphic_gif_file", {}, None),
         # ICO
         (FAKER, IcoFileProvider, "ico_file", {}, None),
         (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
@@ -500,6 +520,13 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER_HY, JpegFileProvider, "jpeg_file", {}, None),
         (FAKER, JpegFileProvider, "jpeg_file", {}, False),
         (FAKER, JpegFileProvider, "jpeg_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
+            {"image_generator_cls": None},
+            None,
+        ),
         (
             FAKER,
             JpegFileProvider,
@@ -897,6 +924,12 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # TIFF
+        (FAKER, TiffFileProvider, "tiff_file", {}, None),
+        (FAKER_HY, TiffFileProvider, "tiff_file", {}, None),
+        (FAKER, TiffFileProvider, "tiff_file", {}, False),
+        (FAKER, TiffFileProvider, "tiff_file", {}, PATHY_FS_STORAGE),
+        (FAKER, GraphicTiffFileProvider, "graphic_tiff_file", {}, None),
         # TAR
         (FAKER, TarFileProvider, "tar_file", {}, None),
         (FAKER, TarFileProvider, "tar_file", {}, False),
