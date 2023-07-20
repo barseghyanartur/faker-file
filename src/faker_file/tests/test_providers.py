@@ -18,12 +18,25 @@ from ..constants import (
     DEFAULT_TEXT_CONTENT_TEMPLATE,
 )
 from ..contrib.docx_file import (
+    add_h1_heading as docx_add_h1_heading,
+    add_h2_heading as docx_add_h2_heading,
+    add_h3_heading as docx_add_h3_heading,
+    add_h4_heading as docx_add_h4_heading,
+    add_h5_heading as docx_add_h5_heading,
+    add_h6_heading as docx_add_h6_heading,
     add_page_break as docx_add_page_break,
     add_paragraph as docx_add_paragraph,
     add_picture as docx_add_picture,
     add_table as docx_add_table,
+    add_title_heading as docx_add_title_heading,
 )
 from ..contrib.odt_file import (
+    add_h1_heading as odt_add_h1_heading,
+    add_h2_heading as odt_add_h2_heading,
+    add_h3_heading as odt_add_h3_heading,
+    add_h4_heading as odt_add_h4_heading,
+    add_h5_heading as odt_add_h5_heading,
+    add_h6_heading as odt_add_h6_heading,
     add_page_break as odt_add_page_break,
     add_paragraph as odt_add_paragraph,
     add_picture as odt_add_picture,
@@ -252,10 +265,18 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "content": DynamicTemplate(
                     [
-                        (docx_add_table, {}),
+                        (docx_add_title_heading, {}),
+                        (docx_add_h1_heading, {}),
+                        (docx_add_h2_heading, {}),
+                        (docx_add_h3_heading, {}),
+                        (docx_add_h4_heading, {}),
+                        (docx_add_h5_heading, {}),
+                        (docx_add_h6_heading, {}),
                         (docx_add_picture, {}),
-                        (docx_add_page_break, {}),
                         (docx_add_paragraph, {}),
+                        (docx_add_page_break, {}),
+                        (docx_add_h6_heading, {}),
+                        (docx_add_table, {}),
                     ]
                 ),
             },
@@ -610,10 +631,17 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "content": DynamicTemplate(
                     [
-                        (odt_add_table, {}),
+                        (odt_add_h1_heading, {}),
+                        (odt_add_h2_heading, {}),
+                        (odt_add_h3_heading, {}),
+                        (odt_add_h4_heading, {}),
+                        (odt_add_h5_heading, {}),
+                        (odt_add_h6_heading, {}),
                         (odt_add_picture, {}),
-                        (odt_add_page_break, {}),
                         (odt_add_paragraph, {}),
+                        (odt_add_page_break, {}),
+                        (odt_add_h6_heading, {}),
+                        (odt_add_table, {}),
                     ]
                 ),
             },

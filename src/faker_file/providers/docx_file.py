@@ -32,11 +32,14 @@ class DocxFileProvider(BaseProvider, FileMixin):
         from faker import Faker
         from faker_file.providers.docx_file import DocxFileProvider
 
-        file = DocxFileProvider(Faker()).docx_file()
+        FAKER = Faker()
+        FAKER.add_provider(DocxFileProvider)
+
+        file = FAKER.docx_file()
 
     Usage example with options:
 
-        file = DocxFileProvider(Faker()).docx_file(
+        file = FAKER.docx_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -47,7 +50,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = DocxFileProvider(Faker()).docx_file(
+        file = FAKER.docx_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -59,47 +62,40 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     Usage example with content modifiers:
 
-        from io import BytesIO
         from faker_file.base import DynamicTemplate
-        from faker_file.providers.jpeg_file import JpegFileProvider
+        from faker_file.contrib.docx_file import (
+            add_h1_heading,
+            add_h2_heading,
+            add_h3_heading,
+            add_h4_heading,
+            add_h5_heading,
+            add_h6_heading,
+            add_page_break,
+            add_paragraph,
+            add_picture,
+            add_table,
+            add_title_heading,
+        )
 
-        def add_table(provider, document, data, counter, **kwargs):
-            table = document.add_table(
-                kwargs.get("rows", 3),
-                kwargs.get("cols", 4),
+        file = FAKER.docx_file(
+            content=DynamicTemplate(
+                [
+                    (add_title_heading, {}),
+                    (add_paragraph, {}),
+                    (add_h1_heading, {}),
+                    (add_h2_heading, {}),
+                    (add_h3_heading, {}),
+                    (add_h4_heading, {}),
+                    (add_h5_heading, {}),
+                    (add_h6_heading, {}),
+                    (add_paragraph, {}),
+                    (add_picture, {}),
+                    (add_page_break, {}),
+                    (add_h6_heading, {}),
+                    (add_table, {}),
+                    (add_paragraph, {}),
+                ]
             )
-            data.setdefault("content_modifiers", {})
-            data["content_modifiers"].setdefault("add_table", {})
-            data["content_modifiers"]["add_table"].setdefault(counter, [])
-
-            for row in table.rows:
-                for cell in row.cells:
-                    text = provider.generator.paragraph()
-                    cell.text = text
-                    data["content_modifiers"]["add_table"][counter].append(
-                        text
-                    )
-                    data["content"] += ("\r\n" + text)
-
-
-        def add_picture(provider, document, data, counter, **kwargs):
-            jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
-                raw=True
-            )
-            picture = document.add_picture(BytesIO(jpeg_file))
-
-            data.setdefault("content_modifiers", {})
-            data["content_modifiers"].setdefault("add_picture", {})
-            data["content_modifiers"]["add_picture"].setdefault(counter, [])
-
-            data["content_modifiers"]["add_picture"][counter].append(
-                jpeg_file.data["content"]
-            )
-            data["content"] += ("\r\n" + jpeg_file.data["content"])
-
-
-        file = DocxFileProvider(Faker()).docx_file(
-            content=DynamicTemplate([(add_table, {}), (add_picture, {})])
         )
     """
 

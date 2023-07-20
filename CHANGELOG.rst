@@ -36,6 +36,8 @@ are used for versioning (schema follows below):
   are using ``WeasyPrintImageGenerator`` as a default image generator class,
   since ``ImagekitImageGenerator`` class isn't capable of supporting the
   above mentioned file formats.
+- Added more hepper functions for ``DynamicTemplate`` use for PDF and DOCX
+  file providers.
 
 0.17
 ----
