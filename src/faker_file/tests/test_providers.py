@@ -1,7 +1,9 @@
+import logging
 import os.path
 import tempfile
 import unittest
 from copy import deepcopy
+from functools import partial
 from importlib import import_module, reload
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
@@ -18,24 +20,51 @@ from ..constants import (
     DEFAULT_TEXT_CONTENT_TEMPLATE,
 )
 from ..contrib.docx_file import (
+    add_h1_heading as docx_add_h1_heading,
+    add_h2_heading as docx_add_h2_heading,
+    add_h3_heading as docx_add_h3_heading,
+    add_h4_heading as docx_add_h4_heading,
+    add_h5_heading as docx_add_h5_heading,
+    add_h6_heading as docx_add_h6_heading,
     add_page_break as docx_add_page_break,
     add_paragraph as docx_add_paragraph,
     add_picture as docx_add_picture,
     add_table as docx_add_table,
+    add_title_heading as docx_add_title_heading,
 )
 from ..contrib.odt_file import (
+    add_h1_heading as odt_add_h1_heading,
+    add_h2_heading as odt_add_h2_heading,
+    add_h3_heading as odt_add_h3_heading,
+    add_h4_heading as odt_add_h4_heading,
+    add_h5_heading as odt_add_h5_heading,
+    add_h6_heading as odt_add_h6_heading,
     add_page_break as odt_add_page_break,
     add_paragraph as odt_add_paragraph,
     add_picture as odt_add_picture,
     add_table as odt_add_table,
 )
 from ..contrib.pdf_file.pdfkit_snippets import (
+    add_h1_heading as pdf_pdfkit_add_h1_heading,
+    add_h2_heading as pdf_pdfkit_add_h2_heading,
+    add_h3_heading as pdf_pdfkit_add_h3_heading,
+    add_h4_heading as pdf_pdfkit_add_h4_heading,
+    add_h5_heading as pdf_pdfkit_add_h5_heading,
+    add_h6_heading as pdf_pdfkit_add_h6_heading,
+    add_heading as pdf_pdfkit_add_heading,
     add_page_break as pdf_pdfkit_add_page_break,
     add_paragraph as pdf_pdfkit_add_paragraph,
     add_picture as pdf_pdfkit_add_picture,
     add_table as pdf_pdfkit_add_table,
 )
 from ..contrib.pdf_file.reportlab_snippets import (
+    add_h1_heading as pdf_reportlab_add_h1_heading,
+    add_h2_heading as pdf_reportlab_add_h2_heading,
+    add_h3_heading as pdf_reportlab_add_h3_heading,
+    add_h4_heading as pdf_reportlab_add_h4_heading,
+    add_h5_heading as pdf_reportlab_add_h5_heading,
+    add_h6_heading as pdf_reportlab_add_h6_heading,
+    add_heading as pdf_reportlab_add_heading,
     add_page_break as pdf_reportlab_add_page_break,
     add_paragraph as pdf_reportlab_add_paragraph,
     add_picture as pdf_reportlab_add_picture,
@@ -46,12 +75,14 @@ from ..providers.base.image_generator import BaseImageGenerator
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
 from ..providers.bin_file import BinFileProvider
+from ..providers.bmp_file import BmpFileProvider, GraphicBmpFileProvider
 from ..providers.csv_file import CsvFileProvider
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
 from ..providers.epub_file import EpubFileProvider
 from ..providers.file_from_path import FileFromPathProvider
 from ..providers.generic_file import GenericFileProvider
+from ..providers.gif_file import GifFileProvider, GraphicGifFileProvider
 from ..providers.helpers.inner import (
     create_inner_bin_file,
     create_inner_csv_file,
@@ -107,6 +138,7 @@ from ..providers.random_file_from_dir import RandomFileFromDirProvider
 from ..providers.rtf_file import RtfFileProvider
 from ..providers.svg_file import SvgFileProvider
 from ..providers.tar_file import TarFileProvider
+from ..providers.tiff_file import GraphicTiffFileProvider, TiffFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
 from ..providers.xlsx_file import XlsxFileProvider
@@ -131,17 +163,22 @@ __all__ = ("ProvidersTestCase",)
 
 FileProvider = Union[
     BinFileProvider,
+    BmpFileProvider,
     CsvFileProvider,
     DocxFileProvider,
     EmlFileProvider,
     EpubFileProvider,
     FileFromPathProvider,
     GenericFileProvider,
+    GraphicBmpFileProvider,
     GraphicIcoFileProvider,
+    GraphicGifFileProvider,
     GraphicJpegFileProvider,
     GraphicPdfFileProvider,
     GraphicPngFileProvider,
+    GraphicTiffFileProvider,
     GraphicWebpFileProvider,
+    GifFileProvider,
     IcoFileProvider,
     JpegFileProvider,
     Mp3FileProvider,
@@ -155,6 +192,7 @@ FileProvider = Union[
     RtfFileProvider,
     SvgFileProvider,
     TarFileProvider,
+    TiffFileProvider,
     TxtFileProvider,
     WebpFileProvider,
     XlsxFileProvider,
@@ -168,6 +206,13 @@ FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 
 SOURCE_FILE_FROM_PATH = TxtFileProvider(FAKER).txt_file(max_nb_chars=100)
+
+pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
+pdf_reportlab_add_non_existing_heading = partial(
+    pdf_reportlab_add_heading, level=0
+)
+
+logging.getLogger("fontTools").setLevel(logging.WARNING)
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -187,6 +232,11 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER, BinFileProvider, "bin_file", {}, None),
         (FAKER, BinFileProvider, "bin_file", {}, False),
         (FAKER, BinFileProvider, "bin_file", {}, PATHY_FS_STORAGE),
+        # BMP
+        (FAKER, BmpFileProvider, "bmp_file", {}, None),
+        (FAKER, BmpFileProvider, "bmp_file", {}, False),
+        (FAKER, BmpFileProvider, "bmp_file", {}, PATHY_FS_STORAGE),
+        (FAKER, GraphicBmpFileProvider, "graphic_bmp_file", {}, None),
         # CSV
         (FAKER, CsvFileProvider, "csv_file", {}, None),
         (FAKER_HY, CsvFileProvider, "csv_file", {}, None),
@@ -238,10 +288,18 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "content": DynamicTemplate(
                     [
-                        (docx_add_table, {}),
+                        (docx_add_title_heading, {}),
+                        (docx_add_h1_heading, {}),
+                        (docx_add_h2_heading, {}),
+                        (docx_add_h3_heading, {}),
+                        (docx_add_h4_heading, {}),
+                        (docx_add_h5_heading, {}),
+                        (docx_add_h6_heading, {}),
                         (docx_add_picture, {}),
-                        (docx_add_page_break, {}),
                         (docx_add_paragraph, {}),
+                        (docx_add_page_break, {}),
+                        (docx_add_h6_heading, {}),
+                        (docx_add_table, {}),
                     ]
                 ),
             },
@@ -456,6 +514,12 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # GIF
+        (FAKER, GifFileProvider, "gif_file", {}, None),
+        (FAKER_HY, GifFileProvider, "gif_file", {}, None),
+        (FAKER, GifFileProvider, "gif_file", {}, False),
+        (FAKER, GifFileProvider, "gif_file", {}, PATHY_FS_STORAGE),
+        (FAKER, GraphicGifFileProvider, "graphic_gif_file", {}, None),
         # ICO
         (FAKER, IcoFileProvider, "ico_file", {}, None),
         (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
@@ -500,6 +564,13 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER_HY, JpegFileProvider, "jpeg_file", {}, None),
         (FAKER, JpegFileProvider, "jpeg_file", {}, False),
         (FAKER, JpegFileProvider, "jpeg_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
+            {"image_generator_cls": None},
+            None,
+        ),
         (
             FAKER,
             JpegFileProvider,
@@ -583,10 +654,17 @@ class ProvidersTestCase(unittest.TestCase):
             {
                 "content": DynamicTemplate(
                     [
-                        (odt_add_table, {}),
+                        (odt_add_h1_heading, {}),
+                        (odt_add_h2_heading, {}),
+                        (odt_add_h3_heading, {}),
+                        (odt_add_h4_heading, {}),
+                        (odt_add_h5_heading, {}),
+                        (odt_add_h6_heading, {}),
                         (odt_add_picture, {}),
-                        (odt_add_page_break, {}),
                         (odt_add_paragraph, {}),
+                        (odt_add_page_break, {}),
+                        (odt_add_h6_heading, {}),
+                        (odt_add_table, {}),
                     ]
                 ),
             },
@@ -692,13 +770,18 @@ class ProvidersTestCase(unittest.TestCase):
                 "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
                 "content": DynamicTemplate(
                     [
-                        (pdf_pdfkit_add_table, {}),
-                        (pdf_pdfkit_add_page_break, {}),
+                        (pdf_pdfkit_add_h1_heading, {}),
+                        (pdf_pdfkit_add_h2_heading, {}),
+                        (pdf_pdfkit_add_h3_heading, {}),
+                        (pdf_pdfkit_add_h4_heading, {}),
+                        (pdf_pdfkit_add_h5_heading, {}),
+                        (pdf_pdfkit_add_h6_heading, {}),
                         (pdf_pdfkit_add_picture, {}),
-                        (pdf_pdfkit_add_page_break, {}),
-                        (pdf_pdfkit_add_paragraph, {}),
-                        (pdf_pdfkit_add_page_break, {}),
                         (pdf_pdfkit_add_paragraph, {"content": TEXT_PDF}),
+                        (pdf_pdfkit_add_page_break, {}),
+                        (pdf_pdfkit_add_h6_heading, {}),
+                        (pdf_pdfkit_add_table, {}),
+                        (pdf_pdfkit_add_non_existing_heading, {}),
                     ]
                 ),
             },
@@ -716,13 +799,18 @@ class ProvidersTestCase(unittest.TestCase):
                 "pdf_generator_kwargs": {},
                 "content": DynamicTemplate(
                     [
-                        (pdf_reportlab_add_table, {}),
-                        (pdf_reportlab_add_page_break, {}),
+                        (pdf_reportlab_add_h1_heading, {}),
+                        (pdf_reportlab_add_h2_heading, {}),
+                        (pdf_reportlab_add_h3_heading, {}),
+                        (pdf_reportlab_add_h4_heading, {}),
+                        (pdf_reportlab_add_h5_heading, {}),
+                        (pdf_reportlab_add_h6_heading, {}),
                         (pdf_reportlab_add_picture, {}),
-                        (pdf_reportlab_add_page_break, {}),
-                        (pdf_reportlab_add_paragraph, {}),
-                        (pdf_reportlab_add_page_break, {}),
                         (pdf_reportlab_add_paragraph, {"content": TEXT_PDF}),
+                        (pdf_reportlab_add_page_break, {}),
+                        (pdf_reportlab_add_h6_heading, {}),
+                        (pdf_reportlab_add_table, {}),
+                        (pdf_reportlab_add_non_existing_heading, {}),
                     ]
                 ),
             },
@@ -897,6 +985,12 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # TIFF
+        (FAKER, TiffFileProvider, "tiff_file", {}, None),
+        (FAKER_HY, TiffFileProvider, "tiff_file", {}, None),
+        (FAKER, TiffFileProvider, "tiff_file", {}, False),
+        (FAKER, TiffFileProvider, "tiff_file", {}, PATHY_FS_STORAGE),
+        (FAKER, GraphicTiffFileProvider, "graphic_tiff_file", {}, None),
         # TAR
         (FAKER, TarFileProvider, "tar_file", {}, None),
         (FAKER, TarFileProvider, "tar_file", {}, False),

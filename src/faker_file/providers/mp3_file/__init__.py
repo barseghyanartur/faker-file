@@ -15,7 +15,10 @@ from ..base.mp3_generator import BaseMp3Generator
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("Mp3FileProvider",)
+__all__ = (
+    "DEFAULT_MP3_GENERATOR",
+    "Mp3FileProvider",
+)
 
 DEFAULT_MP3_GENERATOR = (
     "faker_file.providers.mp3_file.generators.gtts_generator"

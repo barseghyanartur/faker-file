@@ -8,7 +8,8 @@ It's possible to generate files from CLI.
 
 .. note::
 
-    For using CLI you should install all common dependencies.
+    For using CLI you should install all common dependencies (including
+    underlying system dependencies).
 
 Install using `pipx`_ (recommended):
 

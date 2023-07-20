@@ -15,56 +15,38 @@ from faker.generator import Generator
 from faker.providers import BaseProvider
 from faker.providers.python import Provider
 
-from ...base import (
-    DEFAULT_FORMAT_FUNC,
-    BytesValue,
-    DynamicTemplate,
-    FileMixin,
-    StringValue,
-)
-from ...constants import DEFAULT_TEXT_MAX_NB_CHARS
-from ...helpers import load_class_from_path
-from ...storages.base import BaseStorage
-from ...storages.filesystem import FileSystemStorage
-from ..base.pdf_generator import BasePdfGenerator
-from ..mixins.graphic_image_mixin import GraphicImageMixin
+from ..base import DEFAULT_FORMAT_FUNC, BytesValue, StringValue
+from ..constants import DEFAULT_IMAGE_MAX_NB_CHARS
+from ..storages.base import BaseStorage
+from .base.image_generator import BaseImageGenerator
+from .mixins.graphic_image_mixin import GraphicImageMixin
+from .mixins.image_mixin import WEASYPRINT_IMAGE_GENERATOR, ImageMixin
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
-    "DEFAULT_PDF_GENERATOR",
-    "GraphicPdfFileProvider",
-    "PDFKIT_PDF_GENERATOR",
-    "PdfFileProvider",
-    "REPORTLAB_PDF_GENERATOR",
-)
-
-PDFKIT_PDF_GENERATOR = (
-    "faker_file.providers.pdf_file.generators.pdfkit_generator"
-    ".PdfkitPdfGenerator"
-)
-DEFAULT_PDF_GENERATOR = PDFKIT_PDF_GENERATOR
-REPORTLAB_PDF_GENERATOR = (
-    "faker_file.providers.pdf_file.generators.reportlab_generator"
-    ".ReportlabPdfGenerator"
+    "GifFileProvider",
+    "GraphicGifFileProvider",
 )
 
 
-class PdfFileProvider(BaseProvider, FileMixin):
-    """PDF file provider.
+class GifFileProvider(BaseProvider, ImageMixin):
+    """GIF file provider.
 
         Usage example:
 
-        from faker_file.providers.pdf_file import PdfFileProvider
+        from faker import Faker
+        from faker_file.providers.gif_file import GifFileProvider
 
-        file = PdfFileProvider(None).pdf_file()
+        FAKER = Faker()
+        FAKER.add_provider(GifFileProvider)
+
+        file = FAKER.gif_file()
 
     Usage example with options:
 
-        from faker_file.providers.pdf_file import PdfFileProvider
-
-        file = PdfFileProvider(None).pdf_file(
+        file = FAKER.gif_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -75,7 +57,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = PdfFileProvider(Faker()).pdf_file(
+        file = FAKER.gif_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -84,40 +66,23 @@ class PdfFileProvider(BaseProvider, FileMixin):
             max_nb_chars=100_000,
             wrap_chars_after=80,
         )
-
-    Default PDF generator class is `PdfkitPdfGenerator` which uses `pdfkit`
-    Python package and `wkhtmltopdf` system package for generating PDFs from
-    randomly generated text. The quality of the produced PDFs is very good,
-    but it's less performant than `ReportlabPdfGenerator` (factor 40x), which
-    does not require additional system dependencies to run. To use it, pass
-    `ReportlabPdfGenerator` class in `pdf_generator_cls` argument.
-
-        from faker_file.providers.pdf_file.generators import (
-            reportlab_generator,
-        )
-
-        file = PdfFileProvider(None).pdf_file(
-            max_nb_chars=1_000,
-            wrap_chars_after=80,
-            pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator,
-        )
     """
 
-    extension: str = "pdf"
+    extension: str = "gif"
 
     @overload
-    def pdf_file(
-        self: "PdfFileProvider",
+    def gif_file(
+        self: "GifFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[Union[str, DynamicTemplate]] = None,
-        pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
-            DEFAULT_PDF_GENERATOR
+        content: Optional[str] = None,
+        image_generator_cls: Optional[Union[str, Type[BaseImageGenerator]]] = (
+            WEASYPRINT_IMAGE_GENERATOR
         ),
-        pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
+        image_generator_kwargs: Optional[Dict[str, Any]] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -127,18 +92,18 @@ class PdfFileProvider(BaseProvider, FileMixin):
         ...
 
     @overload
-    def pdf_file(
-        self: "PdfFileProvider",
+    def gif_file(
+        self: "GifFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[Union[str, DynamicTemplate]] = None,
-        pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
-            DEFAULT_PDF_GENERATOR
+        content: Optional[str] = None,
+        image_generator_cls: Optional[Union[str, Type[BaseImageGenerator]]] = (
+            WEASYPRINT_IMAGE_GENERATOR
         ),
-        pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
+        image_generator_kwargs: Optional[Dict[str, Any]] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -146,25 +111,25 @@ class PdfFileProvider(BaseProvider, FileMixin):
     ) -> StringValue:
         ...
 
-    def pdf_file(
-        self: "PdfFileProvider",
+    def gif_file(
+        self: "GifFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
+        max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS,
         wrap_chars_after: Optional[int] = None,
-        content: Optional[Union[str, DynamicTemplate]] = None,
-        pdf_generator_cls: Optional[Union[str, Type[BasePdfGenerator]]] = (
-            DEFAULT_PDF_GENERATOR
+        content: Optional[str] = None,
+        image_generator_cls: Optional[Union[str, Type[BaseImageGenerator]]] = (
+            WEASYPRINT_IMAGE_GENERATOR
         ),
-        pdf_generator_kwargs: Optional[Dict[str, Any]] = None,
+        image_generator_kwargs: Optional[Dict[str, Any]] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate a PDF file with random text.
+        """Generate a GIF file with random text.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
@@ -174,8 +139,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
              by line breaks after the given position.
         :param content: File content. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
-        :param pdf_generator_cls: PDF generator class.
-        :param pdf_generator_kwargs: PDF generator kwargs.
+        :param image_generator_cls: Image generator class.
+        :param image_generator_kwargs: Image generator kwargs.
         :param format_func: Callable responsible for formatting template
             strings.
         :param raw: If set to True, return `BytesValue` (binary content of
@@ -184,75 +149,37 @@ class PdfFileProvider(BaseProvider, FileMixin):
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
         """
-        # Generic
-        if storage is None:
-            storage = FileSystemStorage()
-
-        filename = storage.generate_filename(
-            extension=self.extension,
-            prefix=prefix,
+        return self._image_file(
+            storage=storage,
             basename=basename,
+            prefix=prefix,
+            max_nb_chars=max_nb_chars,
+            wrap_chars_after=wrap_chars_after,
+            content=content,
+            image_generator_cls=image_generator_cls,
+            image_generator_kwargs=image_generator_kwargs,
+            format_func=format_func,
+            raw=raw,
+            **kwargs,
         )
 
-        if pdf_generator_cls is None:
-            pdf_generator_cls = DEFAULT_PDF_GENERATOR
 
-        if isinstance(pdf_generator_cls, str):
-            pdf_generator_cls = load_class_from_path(pdf_generator_cls)
-
-        if not pdf_generator_kwargs:
-            pdf_generator_kwargs = {}
-        pdf_generator = pdf_generator_cls(
-            generator=self.generator,
-            **pdf_generator_kwargs,
-        )
-        data = {"content": "", "filename": filename}
-        if isinstance(content, DynamicTemplate):
-            _content = content
-        else:
-            _content = self._generate_text_content(
-                max_nb_chars=max_nb_chars,
-                wrap_chars_after=wrap_chars_after,
-                content=content,
-                format_func=format_func,
-            )
-            data["content"] = _content
-
-        _raw_content = pdf_generator.generate(
-            content=_content,
-            data=data,
-            provider=self,
-        )
-
-        if raw:
-            raw_content = BytesValue(_raw_content)
-            raw_content.data = data
-            return raw_content
-
-        storage.write_bytes(filename, _raw_content)
-
-        # Generic
-        file_name = StringValue(storage.relpath(filename))
-        file_name.data = data
-        return file_name
-
-
-class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
-    """Graphic PDF file provider.
+class GraphicGifFileProvider(BaseProvider, GraphicImageMixin):
+    """Graphic GIF file provider.
 
     Usage example:
 
         from faker import Faker
-        from faker_file.providers.pdf_file import GraphicPdfFileProvider
+        from faker_file.providers.gif_file import GraphicGifFileProvider
 
         FAKER = Faker()
-        FAKER.add_provider(GraphicPdfFileProvider)
+        FAKER.add_provider(GraphicGifFileProvider)
 
-        file = FAKER.graphic_pdf_file()
+        file = FAKER.graphic_gif_file()
 
     Usage example with options:
 
-        file = FAKER.graphic_pdf_file(
+        file = FAKER.graphic_gif_file(
             prefix="zzz",
             size=(800, 800),
         )
@@ -262,7 +189,7 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = FAKER.graphic_pdf_file(
+        file = FAKER.graphic_gif_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -272,12 +199,12 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
         )
     """
 
-    extension: str = "pdf"
-    image_format: str = "pdf"
+    extension: str = "gif"
+    image_format: str = "gif"
 
     @overload
-    def graphic_pdf_file(
-        self: "GraphicPdfFileProvider",
+    def graphic_gif_file(
+        self: "GraphicGifFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -290,8 +217,8 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
         ...
 
     @overload
-    def graphic_pdf_file(
-        self: "GraphicPdfFileProvider",
+    def graphic_gif_file(
+        self: "GraphicGifFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -302,8 +229,8 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
     ) -> StringValue:
         ...
 
-    def graphic_pdf_file(
-        self: "GraphicPdfFileProvider",
+    def graphic_gif_file(
+        self: "GraphicGifFileProvider",
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
@@ -313,7 +240,7 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
-        """Generate a graphic PDF file with random lines.
+        """Generate a graphic GIF file with random lines.
 
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).

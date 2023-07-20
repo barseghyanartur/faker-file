@@ -17,10 +17,18 @@ __license__ = "MIT"
 __all__ = (
     "ImageMixin",
     "DEFAULT_IMAGE_GENERATOR",
+    "WEASYPRINT_IMAGE_GENERATOR",
+    "IMAGEKIT_IMAGE_GENERATOR",
 )
 
 DEFAULT_IMAGE_GENERATOR = (
-    "faker_file.providers.image.imgkit_generator" ".ImgkitImageGenerator"
+    "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
+)
+WEASYPRINT_IMAGE_GENERATOR = (
+    "faker_file.providers.image.weasyprint_generator.WeasyPrintImageGenerator"
+)
+IMAGEKIT_IMAGE_GENERATOR = (
+    "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
 )
 
 

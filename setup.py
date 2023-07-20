@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.17"
+version = "0.17.1"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -31,11 +31,13 @@ tests_require = [
 
 _common = [
     "Faker",  # core
+    "WeasyPrint",  # BMP, GIF, TIFF
     "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
     "odfpy",  # ODP, ODS, ODT
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
     "paramiko",  # SFTP storage
+    "pdf2image",  # BMP, GIF, TIFF
     "pdfkit",  # PDF
     "reportlab",  # PDF
     "python-docx",  # DOCX
@@ -57,10 +59,12 @@ extras_require = {
     "all": _common + _ml,
     "common": _common,
     "azure": ["pathy[azure]"],
+    "bmp": ["WeasyPrint", "pdf2image"],
     "django": ["Django>=2.2"],
     "docx": ["python-docx"],
     "epub": ["xml2epub"],
     "gcs": ["pathy[gcs]"],
+    "gif": ["WeasyPrint", "pdf2image"],
     "images": ["imgkit"],
     "mp3": ["gtts", "edge-tts"],
     "odp": ["odfpy"],
@@ -71,6 +75,7 @@ extras_require = {
     "s3": ["pathy[s3]"],
     "sftp": ["paramiko"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
+    "tiff": ["WeasyPrint", "pdf2image"],
     "xlsx": ["tablib", "openpyxl"],
     "data-augmentation": _ml,
 }

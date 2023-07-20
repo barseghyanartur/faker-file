@@ -28,113 +28,48 @@ class PdfkitPdfGenerator(BasePdfGenerator):
         from faker_file.providers.pdf_file.generators import pdfkit_generator
 
         FAKER = Faker()
+        FAKER.add_provider(PdfFileProvider)
 
-        file = PdfFileProvider(FAKER).pdf_file(
+        file = FAKER.pdf_file(
             pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator
         )
 
     Using `DynamicTemplate`:
 
-        import base64
-        from faker import Faker
         from faker_file.base import DynamicTemplate
-        from faker_file.providers.jpeg_file import JpegFileProvider
-        from faker_file.providers.pdf_file import PdfFileProvider
-        from faker_file.providers.pdf_file.generators import pdfkit_generator
-
-        FAKER = Faker()
-
-        def create_data_url(image_bytes, image_format):
-            encoded_image = base64.b64encode(image_bytes).decode('utf-8')
-            return f"data:image/{image_format};base64,{encoded_image}"
-
-        # Add table function
-        def pdf_add_table(
-            provider, generator, document, data, counter, **kwargs
-        ):
-            rows = kwargs.get("rows", 3)
-            cols = kwargs.get("cols", 4)
-
-            # Begin the HTML table
-            table_html = "<table>"
-
-            for row_num in range(rows):
-                table_html += "<tr>"
-
-                for col_num in range(cols):
-                    text = provider.generator.paragraph()
-                    table_html += f"<td>{text}</td>"
-
-                    data.setdefault("content_modifiers", {})
-                    data["content_modifiers"].setdefault("add_table", {})
-                    data["content_modifiers"]["add_table"].setdefault(
-                        counter, []
-                    )
-                    data["content_modifiers"]["add_table"][counter].append(
-                        text
-                    )
-
-                table_html += "</tr>"
-
-            # End the HTML table
-            table_html += "</table>"
-
-            document += ("\r\n" + table_html)
-
-        # Add picture function
-        def pdf_add_picture(
-            provider, generator, document, data, counter, **kwargs
-        ):
-            jpeg_file = JpegFileProvider(provider.generator).jpeg_file(
-                raw=True
-            )
-            data_url = create_data_url(jpeg_file, "jpg")
-            document += f"<img src='{data_url}' alt='Inline Image' />"
-            data.setdefault("content_modifiers", {})
-            data["content_modifiers"].setdefault("add_picture", {})
-            data["content_modifiers"]["add_picture"].setdefault(counter, [])
-            data["content_modifiers"]["add_picture"][counter].append(
-                jpeg_file.data["content"]
-            )
-            data["content"] += ("\r\n" + jpeg_file.data["content"])
-
-        # Add page break
-        def pdf_add_page_break(
-            provider, generator, document, data, counter, **kwargs
-        ):
-            page_break_html = "<div style='page-break-before: always;'></div>"
-            document += "\r\n" + page_break_html
-
-        # Add a paragraph
-        def pdf_add_paragraph(
-            provider, generator, document, data, counter, **kwargs
-        ):
-            content = provider.generator.text(max_nb_chars=5_000)
-            paragraph_html = f"<div><p>{content}</p></div>"
-            document += "\r\n" + paragraph_html
-
-        # Create a file with table, page-break, picture, page-break, paragraph
-        file = PdfFileProvider(Faker()).pdf_file(
-            pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator,
-            content=DynamicTemplate(
-                [
-                    (pdf_add_table, {}),
-                    (pdf_add_page_break, {}),
-                    (pdf_add_picture, {}),
-                    (pdf_add_page_break, {}),
-                    (pdf_add_paragraph, {}),
-                ]
-            )
+        from faker_file.contrib.pdf_file.pdfkit_snippets import (
+            add_h1_heading,
+            add_h2_heading,
+            add_h3_heading,
+            add_h4_heading,
+            add_h5_heading,
+            add_h6_heading,
+            add_heading,
+            add_page_break,
+            add_paragraph,
+            add_picture,
+            add_table,
         )
 
-        # Create a file with text of 100 pages
-        file = PdfFileProvider(Faker()).pdf_file(
+        # Create a file with lots of elements
+        file = FAKER.pdf_file(
             pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator,
             content=DynamicTemplate(
                 [
-                    (pdf_add_paragraph, {}),
-                    (pdf_add_page_break, {}),
-                ] * 100
+                    (add_h1_heading, {}),
+                    (add_paragraph, {}),
+                    (add_h2_heading, {}),
+                    (add_h3_heading, {}),
+                    (add_h4_heading, {}),
+                    (add_h5_heading, {}),
+                    (add_h6_heading, {}),
+                    (add_paragraph, {}),
+                    (add_picture, {}),
+                    (add_page_break, {}),
+                    (add_h6_heading, {}),
+                    (add_table, {}),
+                    (add_paragraph, {}),
+                ]
             )
         )
     """

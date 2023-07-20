@@ -11,3 +11,5 @@ reportlab
 tablib
 xml2epub
 paramiko
+pdf2image
+weasyprint
