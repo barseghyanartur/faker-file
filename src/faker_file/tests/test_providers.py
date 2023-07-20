@@ -57,6 +57,13 @@ from ..contrib.pdf_file.pdfkit_snippets import (
     add_table as pdf_pdfkit_add_table,
 )
 from ..contrib.pdf_file.reportlab_snippets import (
+    add_h1_heading as pdf_reportlab_add_h1_heading,
+    add_h2_heading as pdf_reportlab_add_h2_heading,
+    add_h3_heading as pdf_reportlab_add_h3_heading,
+    add_h4_heading as pdf_reportlab_add_h4_heading,
+    add_h5_heading as pdf_reportlab_add_h5_heading,
+    add_h6_heading as pdf_reportlab_add_h6_heading,
+    add_heading as pdf_reportlab_add_heading,
     add_page_break as pdf_reportlab_add_page_break,
     add_paragraph as pdf_reportlab_add_paragraph,
     add_picture as pdf_reportlab_add_picture,
@@ -200,6 +207,9 @@ PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 SOURCE_FILE_FROM_PATH = TxtFileProvider(FAKER).txt_file(max_nb_chars=100)
 
 pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
+pdf_reportlab_add_non_existing_heading = partial(
+    pdf_reportlab_add_heading, level=0
+)
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -786,13 +796,18 @@ class ProvidersTestCase(unittest.TestCase):
                 "pdf_generator_kwargs": {},
                 "content": DynamicTemplate(
                     [
-                        (pdf_reportlab_add_table, {}),
-                        (pdf_reportlab_add_page_break, {}),
+                        (pdf_reportlab_add_h1_heading, {}),
+                        (pdf_reportlab_add_h2_heading, {}),
+                        (pdf_reportlab_add_h3_heading, {}),
+                        (pdf_reportlab_add_h4_heading, {}),
+                        (pdf_reportlab_add_h5_heading, {}),
+                        (pdf_reportlab_add_h6_heading, {}),
                         (pdf_reportlab_add_picture, {}),
-                        (pdf_reportlab_add_page_break, {}),
-                        (pdf_reportlab_add_paragraph, {}),
-                        (pdf_reportlab_add_page_break, {}),
                         (pdf_reportlab_add_paragraph, {"content": TEXT_PDF}),
+                        (pdf_reportlab_add_page_break, {}),
+                        (pdf_reportlab_add_h6_heading, {}),
+                        (pdf_reportlab_add_table, {}),
+                        (pdf_reportlab_add_non_existing_heading, {}),
                     ]
                 ),
             },
