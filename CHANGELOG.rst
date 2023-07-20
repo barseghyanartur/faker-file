@@ -27,7 +27,7 @@ are used for versioning (schema follows below):
 
 0.17.1
 ------
-2023-07-??
+2023-07-21
 
 - Added ``WeasyPrintImageGenerator`` image generator class based
   on `WeasyPrint`_ and `pdf2image`_ packages.
@@ -36,8 +36,8 @@ are used for versioning (schema follows below):
   are using ``WeasyPrintImageGenerator`` as a default image generator class,
   since ``ImagekitImageGenerator`` class isn't capable of supporting the
   above mentioned file formats.
-- Added more hepper functions for ``DynamicTemplate`` use for ODT, PDF and
-  DOCX file providers.
+- Added more helper functions for ``DynamicTemplate`` use for ODT, PDF and
+  DOCX file providers to support h1, h2, h3, h4, h5 and h6 headings.
 
 0.17
 ----

@@ -31,11 +31,13 @@ tests_require = [
 
 _common = [
     "Faker",  # core
+    "WeasyPrint",  # BMP, GIF, TIFF
     "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
     "odfpy",  # ODP, ODS, ODT
     "openpyxl",  # XLSX
     "pathy[all]",  # remote storages: Azure, GCS, S3
     "paramiko",  # SFTP storage
+    "pdf2image",  # BMP, GIF, TIFF
     "pdfkit",  # PDF
     "reportlab",  # PDF
     "python-docx",  # DOCX
