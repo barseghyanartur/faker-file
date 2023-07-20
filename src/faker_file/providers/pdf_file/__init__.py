@@ -35,12 +35,19 @@ __license__ = "MIT"
 __all__ = (
     "DEFAULT_PDF_GENERATOR",
     "GraphicPdfFileProvider",
+    "PDFKIT_PDF_GENERATOR",
     "PdfFileProvider",
+    "REPORTLAB_PDF_GENERATOR",
 )
 
-DEFAULT_PDF_GENERATOR = (
+PDFKIT_PDF_GENERATOR = (
     "faker_file.providers.pdf_file.generators.pdfkit_generator"
     ".PdfkitPdfGenerator"
+)
+DEFAULT_PDF_GENERATOR = PDFKIT_PDF_GENERATOR
+REPORTLAB_PDF_GENERATOR = (
+    "faker_file.providers.pdf_file.generators.reportlab_generator"
+    ".ReportlabPdfGenerator"
 )
 
 

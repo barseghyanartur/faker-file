@@ -2,6 +2,7 @@ import os.path
 import tempfile
 import unittest
 from copy import deepcopy
+from functools import partial
 from importlib import import_module, reload
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
@@ -43,6 +44,13 @@ from ..contrib.odt_file import (
     add_table as odt_add_table,
 )
 from ..contrib.pdf_file.pdfkit_snippets import (
+    add_h1_heading as pdf_pdfkit_add_h1_heading,
+    add_h2_heading as pdf_pdfkit_add_h2_heading,
+    add_h3_heading as pdf_pdfkit_add_h3_heading,
+    add_h4_heading as pdf_pdfkit_add_h4_heading,
+    add_h5_heading as pdf_pdfkit_add_h5_heading,
+    add_h6_heading as pdf_pdfkit_add_h6_heading,
+    add_heading as pdf_pdfkit_add_heading,
     add_page_break as pdf_pdfkit_add_page_break,
     add_paragraph as pdf_pdfkit_add_paragraph,
     add_picture as pdf_pdfkit_add_picture,
@@ -190,6 +198,8 @@ FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 
 SOURCE_FILE_FROM_PATH = TxtFileProvider(FAKER).txt_file(max_nb_chars=100)
+
+pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -747,13 +757,18 @@ class ProvidersTestCase(unittest.TestCase):
                 "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
                 "content": DynamicTemplate(
                     [
-                        (pdf_pdfkit_add_table, {}),
-                        (pdf_pdfkit_add_page_break, {}),
+                        (pdf_pdfkit_add_h1_heading, {}),
+                        (pdf_pdfkit_add_h2_heading, {}),
+                        (pdf_pdfkit_add_h3_heading, {}),
+                        (pdf_pdfkit_add_h4_heading, {}),
+                        (pdf_pdfkit_add_h5_heading, {}),
+                        (pdf_pdfkit_add_h6_heading, {}),
                         (pdf_pdfkit_add_picture, {}),
-                        (pdf_pdfkit_add_page_break, {}),
-                        (pdf_pdfkit_add_paragraph, {}),
-                        (pdf_pdfkit_add_page_break, {}),
                         (pdf_pdfkit_add_paragraph, {"content": TEXT_PDF}),
+                        (pdf_pdfkit_add_page_break, {}),
+                        (pdf_pdfkit_add_h6_heading, {}),
+                        (pdf_pdfkit_add_table, {}),
+                        (pdf_pdfkit_add_non_existing_heading, {}),
                     ]
                 ),
             },
