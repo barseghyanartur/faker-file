@@ -1,3 +1,4 @@
+import logging
 import os.path
 import tempfile
 import unittest
@@ -210,6 +211,8 @@ pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
 pdf_reportlab_add_non_existing_heading = partial(
     pdf_reportlab_add_heading, level=0
 )
+
+logging.getLogger("fontTools").setLevel(logging.WARNING)
 
 
 class ProvidersTestCase(unittest.TestCase):
