@@ -45,6 +45,7 @@ faker-file
 .. _faker-file-api: https://github.com/barseghyanartur/faker-file-api
 .. _faker-file-ui: https://github.com/barseghyanartur/faker-file-ui
 .. _faker-file-wasm: https://github.com/barseghyanartur/faker-file-wasm
+.. _faker-file-qt: https://github.com/barseghyanartur/faker-file-qt
 
 .. Demos
 
@@ -59,6 +60,7 @@ faker-file
 .. _Faker: https://faker.readthedocs.io/
 .. _Jinja2: https://jinja.palletsprojects.com/
 .. _Pillow: https://pypi.org/project/Pillow/
+.. _PyQT5: https://pypi.org/project/PyQt5/
 .. _PyTorch: https://pytorch.org/
 .. _WeasyPrint: https://pypi.org/project/weasyprint/
 .. _azure-storage-blob: https://pypi.org/project/azure-storage-blob/
@@ -147,13 +149,14 @@ Documentation
 - Read the `Methodology`_.
 - For guidelines on contributing check the `Contributor guidelines`_.
 
-Online demos
-============
-Check the demo(s):
+Online demos and related projects
+=================================
+Check the demo(s) and related projects below:
 
 - `REST API demo`_ (based on `faker-file-api`_ REST API)
 - `UI frontend demo`_ (based on `faker-file-ui`_ UI frontend)
 - `WASM frontend demo`_ (based on `faker-file-wasm`_ WASM frontend)
+- `faker-file-qt`_ GUI application (based on `PyQT5`_).
 
 Installation
 ============
