@@ -107,23 +107,18 @@ All licenses are mentioned below between the brackets.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
   been tested with ``Django`` starting from version 2.2 to 4.2 (although only
   maintained versions of Django are currently being tested against).
-- ``BMP`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
-  `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
+- ``BMP``, ``GIF`` and ``TIFF`` file support requires `WeasyPrint`_ (`BSD`),
+  `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``DOCX`` file support requires `python-docx`_ (`MIT`).
 - ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
-- ``GIF`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
-  `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
   requires `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
 - ``PDF`` file support requires either combination of `pdfkit`_ (`MIT`)
   and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
 - ``PPTX`` file support requires `python-pptx`_ (`MIT`).
-- ``ODP`` file support requires `odfpy`_ (`Apache 2`).
+- ``ODP`` and ``ODT`` file support requires `odfpy`_ (`Apache 2`).
 - ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
-- ``ODT`` file support requires `odfpy`_ (`Apache 2`).
-- ``TIFF`` file support requires `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`)
-  `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``XLSX`` file support requires `tablib`_ (`MIT`) and `openpyxl`_ (`MIT`).
 - ``PathyFileSystemStorage`` storage support requires `pathy`_ (`Apache 2`).
 - ``AWSS3Storage`` storage support requires `pathy`_ (`Apache 2`)
@@ -267,11 +262,13 @@ Features
 Supported file types
 --------------------
 - ``BIN``
+- ``BMP``
 - ``CSV``
 - ``DOCX``
 - ``EML``
 - ``EPUB``
 - ``ICO``
+- ``GIF``
 - ``JPEG``
 - ``JSON``
 - ``MP3``
@@ -284,6 +281,7 @@ Supported file types
 - ``PPTX``
 - ``SVG``
 - ``TAR``
+- ``TIFF``
 - ``TXT``
 - ``WEBP``
 - ``XLSX``
