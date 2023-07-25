@@ -98,6 +98,7 @@ from ..providers.helpers.inner import (
     create_inner_graphic_webp_file,
     create_inner_ico_file,
     create_inner_jpeg_file,
+    create_inner_json_file,
     create_inner_mp3_file,
     create_inner_odp_file,
     create_inner_ods_file,
@@ -119,6 +120,7 @@ from ..providers.helpers.inner import (
 )
 from ..providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
 from ..providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
+from ..providers.json_file import JsonFileProvider
 from ..providers.mp3_file import Mp3FileProvider
 from ..providers.mp3_file.generators.edge_tts_generator import (
     EdgeTtsMp3Generator,
@@ -181,6 +183,7 @@ FileProvider = Union[
     GifFileProvider,
     IcoFileProvider,
     JpegFileProvider,
+    JsonFileProvider,
     Mp3FileProvider,
     OdpFileProvider,
     OdsFileProvider,
@@ -596,6 +599,32 @@ class ProvidersTestCase(unittest.TestCase):
             GraphicJpegFileProvider,
             "graphic_jpeg_file",
             {"size": (100, 100)},
+            None,
+        ),
+        # JSON
+        (FAKER, JsonFileProvider, "json_file", {}, None),
+        (FAKER_HY, JsonFileProvider, "json_file", {}, None),
+        (FAKER, JsonFileProvider, "json_file", {}, False),
+        (FAKER, JsonFileProvider, "json_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            JsonFileProvider,
+            "json_file",
+            {"content": "{name: {{name}}, date: {{date}}}"},
+            None,
+        ),
+        (
+            FAKER,
+            JsonFileProvider,
+            "json_file",
+            {"data_columns": {"name": "{{name}}", "date": "{{date}}"}},
+            None,
+        ),
+        (
+            FAKER,
+            JsonFileProvider,
+            "json_file",
+            {"format_func": pystr_format_func},
             None,
         ),
         # ODP
@@ -1237,6 +1266,8 @@ class ProvidersTestCase(unittest.TestCase):
         # JPEG
         (create_inner_jpeg_file, {"content": "Lorem ipsum"}, {}),
         (create_inner_graphic_jpeg_file, {"size": (100, 100)}, {}),
+        # JSON
+        (create_inner_json_file, {"content": None}, {}),
         # MP3
         (create_inner_mp3_file, {"content": "Lorem ipsum"}, {}),
         # ODP
@@ -1397,6 +1428,9 @@ class ProvidersTestCase(unittest.TestCase):
             {"size": (100, 100)},
             None,
         ),
+        # JSON
+        (FAKER, JsonFileProvider, "json_file", {}, None),
+        (FAKER_HY, JsonFileProvider, "json_file", {}, None),
         # ODP
         (FAKER, OdpFileProvider, "odp_file", {}, None),
         (FAKER_HY, OdpFileProvider, "odp_file", {}, None),
@@ -1781,6 +1815,13 @@ class ProvidersTestCase(unittest.TestCase):
                 "faker_file.providers.jpeg_file",
                 "GraphicJpegFileProvider",
                 create_inner_graphic_jpeg_file,
+                {},
+            ),
+            # JSON
+            (
+                "faker_file.providers.json_file",
+                "JsonFileProvider",
+                create_inner_json_file,
                 {},
             ),
             # MP3

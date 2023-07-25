@@ -273,6 +273,7 @@ Supported file types
 - ``EPUB``
 - ``ICO``
 - ``JPEG``
+- ``JSON``
 - ``MP3``
 - ``ODS``
 - ``ODT``
