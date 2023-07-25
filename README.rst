@@ -270,6 +270,7 @@ Supported file types
 - ``ICO``
 - ``GIF``
 - ``JPEG``
+- ``JSON``
 - ``MP3``
 - ``ODS``
 - ``ODT``

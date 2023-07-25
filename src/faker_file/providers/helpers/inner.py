@@ -44,6 +44,7 @@ __all__ = (
     "create_inner_graphic_webp_file",
     "create_inner_ico_file",
     "create_inner_jpeg_file",
+    "create_inner_json_file",
     "create_inner_mp3_file",
     "create_inner_odp_file",
     "create_inner_ods_file",
@@ -824,6 +825,83 @@ def create_inner_graphic_jpeg_file(
         size=size,
         hue=hue,
         luminosity=luminosity,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# ************************************************
+# ******************** JSON **********************
+# ************************************************
+
+
+@overload
+def create_inner_json_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Optional[List] = None,
+    num_rows: int = 10,
+    indent: Optional[int] = None,
+    content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_json_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Optional[List] = None,
+    num_rows: int = 10,
+    indent: Optional[int] = None,
+    content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_json_file(
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    data_columns: Optional[List] = None,
+    num_rows: int = 10,
+    indent: Optional[int] = None,
+    content: Optional[str] = None,
+    format_func: Callable[
+        [Union[Faker, Generator, Provider], str], str
+    ] = DEFAULT_FORMAT_FUNC,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner JSON file."""
+    try:
+        from ..json_file import JsonFileProvider
+    except ImportError as err:
+        raise err
+
+    return JsonFileProvider(generator).json_file(
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        data_columns=data_columns,
+        num_rows=num_rows,
+        indent=indent,
+        content=content,
+        format_func=format_func,
         raw=raw,
         **kwargs,
     )

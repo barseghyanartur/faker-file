@@ -25,6 +25,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.2
+------
+2023-07-25
+
+- Added ``JSON`` file provider.
+
 0.17.1
 ------
 2023-07-21
