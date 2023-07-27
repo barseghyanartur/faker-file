@@ -52,6 +52,14 @@ faker\_file.storages.google\_cloud\_storage module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.storages.sftp\_storage module
+-----------------------------------------
+
+.. automodule:: faker_file.storages.sftp_storage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

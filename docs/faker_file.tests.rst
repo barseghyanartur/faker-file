@@ -12,10 +12,10 @@ faker\_file.tests.data module
    :undoc-members:
    :show-inheritance:
 
-faker\_file.tests.helpers module
---------------------------------
+faker\_file.tests.sftp\_server module
+-------------------------------------
 
-.. automodule:: faker_file.tests.helpers
+.. automodule:: faker_file.tests.sftp_server
    :members:
    :undoc-members:
    :show-inheritance:
@@ -68,6 +68,22 @@ faker\_file.tests.test\_providers module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.tests.test\_sftp\_server module
+-------------------------------------------
+
+.. automodule:: faker_file.tests.test_sftp_server
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.tests.test\_sftp\_storage module
+--------------------------------------------
+
+.. automodule:: faker_file.tests.test_sftp_storage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.tests.test\_sqlalchemy\_integration module
 ------------------------------------------------------
 
@@ -88,6 +104,14 @@ faker\_file.tests.texts module
 ------------------------------
 
 .. automodule:: faker_file.tests.texts
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.tests.utils module
+------------------------------
+
+.. automodule:: faker_file.tests.utils
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1178,7 +1178,7 @@ correct:
     AWS_S3_STORAGE = AWSS3Storage(
         bucket_name="your-bucket-name",
         root_path="",
-        rel_path="/user/uploads",
+        rel_path="user/uploads",
     )
 
 Google Cloud Storage
@@ -1208,7 +1208,7 @@ would be correct:
     GC_STORAGE = GoogleCloudStorage(
         bucket_name="your-bucket-name",
         root_path="",
-        rel_path="/user/uploads",
+        rel_path="user/uploads",
     )
 
 SFTP storage

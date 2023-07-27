@@ -10,6 +10,7 @@ Subpackages
    faker_file.providers.augment_file_from_dir
    faker_file.providers.base
    faker_file.providers.helpers
+   faker_file.providers.image
    faker_file.providers.mixins
    faker_file.providers.mp3_file
    faker_file.providers.pdf_file
@@ -21,6 +22,14 @@ faker\_file.providers.bin\_file module
 --------------------------------------
 
 .. automodule:: faker_file.providers.bin_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.bmp\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.bmp_file
    :members:
    :undoc-members:
    :show-inheritance:
@@ -73,6 +82,14 @@ faker\_file.providers.generic\_file module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.providers.gif\_file module
+--------------------------------------
+
+.. automodule:: faker_file.providers.gif_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.ico\_file module
 --------------------------------------
 
@@ -85,6 +102,14 @@ faker\_file.providers.jpeg\_file module
 ---------------------------------------
 
 .. automodule:: faker_file.providers.jpeg_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.json\_file module
+---------------------------------------
+
+.. automodule:: faker_file.providers.json_file
    :members:
    :undoc-members:
    :show-inheritance:
@@ -157,6 +182,14 @@ faker\_file.providers.tar\_file module
 --------------------------------------
 
 .. automodule:: faker_file.providers.tar_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.tiff\_file module
+---------------------------------------
+
+.. automodule:: faker_file.providers.tiff_file
    :members:
    :undoc-members:
    :show-inheritance:
