@@ -4,6 +4,14 @@ faker\_file.providers.mixins package
 Submodules
 ----------
 
+faker\_file.providers.mixins.graphic\_image\_mixin module
+---------------------------------------------------------
+
+.. automodule:: faker_file.providers.mixins.graphic_image_mixin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.mixins.image\_mixin module
 ------------------------------------------------
 

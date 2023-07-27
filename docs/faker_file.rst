@@ -7,6 +7,8 @@ Subpackages
 .. toctree::
    :maxdepth: 20
 
+   faker_file.cli
+   faker_file.contrib
    faker_file.providers
    faker_file.storages
    faker_file.tests
@@ -18,14 +20,6 @@ faker\_file.base module
 -----------------------
 
 .. automodule:: faker_file.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-faker\_file.cli module
-----------------------
-
-.. automodule:: faker_file.cli
    :members:
    :undoc-members:
    :show-inheritance:
