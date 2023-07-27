@@ -34,8 +34,9 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         from faker_file.providers.pdf_file.generators import reportlab_generator
 
         FAKER = Faker()
+        FAKER.add_provider(PdfFileProvider)
 
-        file = PdfFileProvider(FAKER).pdf_file(
+        file = FAKER.pdf_file(
             pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator
         )
 
@@ -160,7 +161,7 @@ class ReportlabPdfGenerator(BasePdfGenerator):
             story.append(paragraph)
 
         # Create a file with table, page-break, picture, page-break, paragraph
-        file = PdfFileProvider(Faker()).pdf_file(
+        file = FAKER.pdf_file(
             pdf_generator_cls=(
                 reportlab_generator.ReportlabPdfGenerator
             ),
@@ -176,7 +177,7 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         )
 
         # Create a file with text of 100 pages
-        file = PdfFileProvider(Faker()).pdf_file(
+        file = FAKER.pdf_file(
             pdf_generator_cls=(
                 reportlab_generator.ReportlabPdfGenerator
             ),

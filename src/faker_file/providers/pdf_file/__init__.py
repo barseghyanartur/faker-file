@@ -56,15 +56,17 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
         Usage example:
 
+        from faker import Faker
         from faker_file.providers.pdf_file import PdfFileProvider
 
-        file = PdfFileProvider(None).pdf_file()
+        FAKER = Faker()
+        FAKER.add_provider(PdfFileProvider)
+
+        file = FAKER.pdf_file()
 
     Usage example with options:
 
-        from faker_file.providers.pdf_file import PdfFileProvider
-
-        file = PdfFileProvider(None).pdf_file(
+        file = FAKER.pdf_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -75,7 +77,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = PdfFileProvider(Faker()).pdf_file(
+        file = FAKER.pdf_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -96,7 +98,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             reportlab_generator,
         )
 
-        file = PdfFileProvider(None).pdf_file(
+        file = FAKER.pdf_file(
             max_nb_chars=1_000,
             wrap_chars_after=80,
             pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator,
