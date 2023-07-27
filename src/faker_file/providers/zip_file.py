@@ -26,15 +26,15 @@ class ZipFileProvider(BaseProvider, FileMixin):
         from faker_file.providers.zip_file import ZipFileProvider
 
         FAKER = Faker()
+        FAKER.add_provider(ZipFileProvider)
 
-        file = ZipFileProvider(FAKER).zip_file()
+        file = FAKER.zip_file()
 
     Usage example with options:
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
-        from faker_file.providers.zip_file import ZipFileProvider
 
-        file = ZipFileProvider(FAKER).zip_file(
+        file = FAKER.zip_file(
             prefix="zzz_archive_",
             options={
                 "count": 5,
@@ -51,7 +51,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
 
         from faker_file.providers.helpers.inner import create_inner_zip_file
 
-        file = ZipFileProvider(FAKER).zip_file(
+        file = FAKER.zip_file(
             options={
                 "create_inner_file_func": create_inner_zip_file,
                 "create_inner_file_args": {
@@ -130,7 +130,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
             """
             A complex case. Could be initialized as follows:
 
-                zip_file = ZipFileProvider(None).zip_file(
+                zip_file = FAKER.zip_file(
                     prefix="zzz_archive_",
                     options={
                         "count": 5,

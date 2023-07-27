@@ -39,11 +39,14 @@ class PngFileProvider(BaseProvider, ImageMixin):
         from faker import Faker
         from faker_file.providers.png_file import PngFileProvider
 
-        file = PngFileProvider(Faker()).png_file()
+        FAKER = Faker()
+        FAKER.add_provider(PngFileProvider)
+
+        file = FAKER.png_file()
 
     Usage example with options:
 
-        file = PngFileProvider(Faker()).png_file(
+        file = FAKER.png_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -54,7 +57,7 @@ class PngFileProvider(BaseProvider, ImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = PngFileProvider(Faker()).png_file(
+        file = FAKER.png_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

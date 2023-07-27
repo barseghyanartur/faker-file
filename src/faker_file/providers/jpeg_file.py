@@ -39,11 +39,14 @@ class JpegFileProvider(BaseProvider, ImageMixin):
         from faker import Faker
         from faker_file.providers.jpeg_file import JpegFileProvider
 
-        file = JpegFileProvider(None).jpeg_file()
+        FAKER = Faker()
+        FAKER.add_provider(JpegFileProvider)
+
+        file = FAKER.jpeg_file()
 
     Usage example with options:
 
-        file = JpegFileProvider(None).jpeg_file(
+        file = FAKER.jpeg_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -54,7 +57,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = JpegFileProvider(Faker()).jpeg_file(
+        file = FAKER.jpeg_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

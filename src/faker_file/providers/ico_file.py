@@ -39,11 +39,14 @@ class IcoFileProvider(BaseProvider, ImageMixin):
         from faker import Faker
         from faker_file.providers.ico_file import IcoFileProvider
 
-        file = IcoFileProvider(Faker()).ico_file()
+        FAKER = Faker()
+        FAKER.add_provider(IcoFileProvider)
+
+        file = FAKER.ico_file()
 
     Usage example with options:
 
-        file = IcoFileProvider(Faker()).ico_file(
+        file = FAKER.ico_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -54,7 +57,7 @@ class IcoFileProvider(BaseProvider, ImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = IcoFileProvider(Faker()).ico_file(
+        file = FAKER.ico_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

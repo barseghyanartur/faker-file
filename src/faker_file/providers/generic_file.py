@@ -23,14 +23,17 @@ class GenericFileProvider(BaseProvider, FileMixin):
         from faker import Faker
         from faker_file.providers.generic_file import GenericFileProvider
 
-        file = GenericFileProvider(Faker()).generic_file(
+        FAKER = Faker()
+        FAKER.add_provider(GenericFileProvider)
+
+        file = FAKER.generic_file(
             content="<html><body><p>{{text}}</p></body></html>",
             extension="html",
         )
 
     Usage example with options:
 
-        file = GenericFileProvider(Faker()).generic_file(
+        file = FAKER.generic_file(
             content="<html><body><p>{{text}}</p></body></html>",
             extension="html",
             prefix="zzz",
@@ -41,7 +44,7 @@ class GenericFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = GenericFileProvider(Faker()).generic_file(
+        file = FAKER.generic_file(
             content="<html><body><p>{{text}}</p></body></html>",
             extension="html",
             basename="index",
@@ -55,7 +58,7 @@ class GenericFileProvider(BaseProvider, FileMixin):
 
         from faker_file.storages.aws_s3 import AWSS3Storage
 
-        file = GenericFileProvider(Faker()).generic_file(
+        file = FAKER.generic_file(
             storage=AWSS3Storage(bucket_name="My-test-bucket"),
             content="<html><body><p>{{text}}</p></body></html>",
             extension="html",

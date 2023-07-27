@@ -23,14 +23,14 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         from faker import Faker
         from faker_file.providers.xlsx_file import XlsxFileProvider
 
-        file = XlsxFileProvider(Faker()).xlsx_file()
+        FAKER = Faker()
+        FAKER.add_provider(XlsxFileProvider)
+
+        file = FAKER.xlsx_file()
 
     Usage example with options:
 
-        from faker import Faker
-        from faker_file.providers.xlsx_file import XlsxFileProvider
-
-        file = XlsxFileProvider(Faker()).xlsx_file(
+        file = FAKER.xlsx_file(
             prefix="zzz",
             num_rows=100,
             data_columns={
@@ -45,7 +45,7 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = XlsxFileProvider(Faker()).xlsx_file(
+        file = FAKER.xlsx_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

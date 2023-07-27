@@ -22,17 +22,19 @@ __all__ = ("PptxFileProvider",)
 class PptxFileProvider(BaseProvider, FileMixin):
     """PPTX file provider.
 
-        Usage example:
+    Usage example:
 
+        from faker import Faker
         from faker_file.providers.pptx_file import PptxFileProvider
 
-        file = PptxFileProvider(None).pptx_file()
+        FAKER = Faker()
+        FAKER.add_provider(PptxFileProvider)
+
+        file = FAKER.pptx_file()
 
     Usage example with options:
 
-        from faker_file.providers.pptx_file import PptxFileProvider
-
-        file = PptxFileProvider(None).pptx_file(
+        file = FAKER.pptx_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -43,7 +45,7 @@ class PptxFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = PptxFileProvider(Faker()).pptx_file(
+        file = FAKER.pptx_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

@@ -29,12 +29,13 @@ class OdpFileProvider(BaseProvider, FileMixin):
         from faker_file.providers.odp_file import OdpFileProvider
 
         FAKER = Faker()
+        FAKER.add_provider(OdpFileProvider)
 
-        file = OdpFileProvider(FAKER).odp_file()
+        file = FAKER.odp_file()
 
     Usage example with options:
 
-        file = OdpFileProvider(FAKER).odp_file(
+        file = FAKER.odp_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -45,7 +46,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = OdpFileProvider(FAKER).odp_file(
+        file = FAKER.odp_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

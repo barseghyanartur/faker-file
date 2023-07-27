@@ -27,13 +27,14 @@ class XmlFileProvider(BaseProvider, FileMixin):
         from faker import Faker
         from faker_file.providers.xml_file import XmlFileProvider
 
-        file = XmlFileProvider(Faker()).xml_file()
+        FAKER = Faker()
+        FAKER.add_provider(XmlFileProvider)
+
+        file = FAKER.xml_file()
 
     Usage example with options:
 
-        from faker_file.providers.xml_file import XmlFileProvider
-
-        file = XmlFileProvider(Faker()).xml_file(
+        file = FAKER.xml_file(
             prefix="zzz",
             num_rows=100,
             data_columns={
@@ -48,7 +49,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = XmlFileProvider(Faker()).xml_file(
+        file = FAKER.xml_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -79,7 +80,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         </books>
         '''
 
-        file = XmlFileProvider(Faker()).xml_file(content=XML_TEMPLATE)
+        file = FAKER.xml_file(content=XML_TEMPLATE)
     """
 
     extension: str = "xml"

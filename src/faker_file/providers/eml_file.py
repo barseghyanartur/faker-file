@@ -36,15 +36,15 @@ class EmlFileProvider(BaseProvider, FileMixin):
         from faker_file.providers.eml_file import EmlFileProvider
 
         FAKER = Faker()
+        FAKER.add_provider(EmlFileProvider)
 
-        file = EmlFileProvider(FAKER).eml_file()
+        file = FAKER.eml_file()
 
     Usage example with attachments:
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
-        from faker_file.providers.eml_file import EmlFileProvider
 
-        file = EmlFileProvider(FAKER).eml_file(
+        file = FAKER.eml_file(
             prefix="zzz_email_",
             options={
                 "count": 5,
@@ -60,7 +60,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
 
         from faker_file.providers.helpers.inner import create_inner_eml_file
 
-        file = EmlFileProvider(FAKER).eml_file(
+        file = FAKER.eml_file(
             options={
                 "create_inner_file_func": create_inner_eml_file,
                 "create_inner_file_args": {
@@ -199,7 +199,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
             """
             A complex case. Could be initialized as follows:
 
-                eml_file = EmlFileProvider(FAKER).eml_file(
+                eml_file = FAKER.eml_file(
                     prefix="zzz_email_",
                     options={
                         "count": 5,

@@ -28,15 +28,16 @@ class TarFileProvider(BaseProvider, FileMixin):
         from faker_file.providers.tar_file import TarFileProvider
 
         FAKER = Faker()
+        FAKER.add_provider(TarFileProvider)
 
-        file = TarFileProvider(FAKER).tar_file()
+        file = FAKER.tar_file()
 
     Usage example with options:
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
         from faker_file.providers.tar_file import TarFileProvider
 
-        file = TarFileProvider(FAKER).tar_file(
+        file = FAKER.tar_file(
             prefix="ttt_archive_",
             options={
                 "count": 5,
@@ -53,7 +54,7 @@ class TarFileProvider(BaseProvider, FileMixin):
 
         from faker_file.providers.helpers.inner import create_inner_tar_file
 
-        file = TarFileProvider(FAKER).tar_file(
+        file = FAKER.tar_file(
             options={
                 "create_inner_file_func": create_inner_tar_file,
                 "create_inner_file_args": {
