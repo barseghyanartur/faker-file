@@ -1165,6 +1165,52 @@ AWS S3 storage
 
     txt_file = FAKER.txt_file(storage=AWS_S3_STORAGE)
 
+Depending on the ORM or framework you're using, you might want to tweak the
+``root_path`` and ``rel_path`` values. Especially if you store files in
+directories (like ``your-bucket-name/path/to/the/file.ext``).
+
+For instance, if you use ``Django`` and ``django-storages``, and want to
+store the files inside ``/user/uploads`` directory the following would be
+correct:
+
+.. code-block:: python
+
+    AWS_S3_STORAGE = AWSS3Storage(
+        bucket_name="your-bucket-name",
+        root_path="",
+        rel_path="/user/uploads",
+    )
+
+Google Cloud Storage
+^^^^^^^^^^^^^^^^^^^^
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.storages.google_cloud_storage import GoogleCloudStorage
+
+    FAKER = Faker()
+    GC_STORAGE = GoogleCloudStorage(
+        bucket_name="your-bucket-name",
+        root_path="",
+        rel_path="",
+    )
+    FAKER.add_provider(TxtFileProvider)
+
+    txt_file = FAKER.txt_file(storage=GC_STORAGE)
+
+Similarly to ``AWSS3Storage``, if you use ``Django`` and ``django-storages``,
+and want to store the files inside ``/user/uploads`` directory the following
+would be correct:
+
+.. code-block:: python
+
+    GC_STORAGE = GoogleCloudStorage(
+        bucket_name="your-bucket-name",
+        root_path="",
+        rel_path="/user/uploads",
+    )
+
 SFTP storage
 ^^^^^^^^^^^^
 .. code-block:: python

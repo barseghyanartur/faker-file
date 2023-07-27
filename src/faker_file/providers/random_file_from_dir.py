@@ -20,21 +20,21 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+        from faker import Faker
         from faker_file.providers.random_file_from_dir import (
             RandomFileFromDirProvider,
         )
 
-        file = RandomFileFromDirProvider(None).random_file_from_dir(
+        FAKER = Faker()
+        FAKER.add_provider(RandomFileFromDirProvider)
+
+        file = FAKER.random_file_from_dir(
             source_dir_path="/tmp/tmp/",
         )
 
     Usage example with options:
 
-        from faker_file.providers.random_file_from_dir import (
-            RandomFileFromDirProvider,
-        )
-
-        file = RandomFileFromDirProvider(None).random_file_from_dir(
+        file = FAKER.random_file_from_dir(
             source_dir_path="/tmp/tmp/",
             prefix="zzz",
         )

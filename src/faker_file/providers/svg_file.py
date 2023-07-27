@@ -25,11 +25,14 @@ class SvgFileProvider(BaseProvider, ImageMixin):
         from faker import Faker
         from faker_file.providers.svg_file import SvgFileProvider
 
-        file = SvgFileProvider(Faker()).svg_file()
+        FAKER = Faker()
+        FAKER.add_provider(SvgFileProvider)
+
+        file = FAKER.svg_file()
 
     Usage example with options:
 
-        file = SvgFileProvider(Faker()).svg_file(
+        file = FAKER.svg_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -40,7 +43,7 @@ class SvgFileProvider(BaseProvider, ImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = SvgFileProvider(Faker()).svg_file(
+        file = FAKER.svg_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

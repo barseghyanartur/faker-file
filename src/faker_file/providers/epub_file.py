@@ -28,11 +28,14 @@ class EpubFileProvider(BaseProvider, FileMixin):
         from faker import Faker
         from faker_file.providers.epub_file import EpubFileProvider
 
-        file = EpubFileProvider(Faker()).epub_file()
+        FAKER = Faker()
+        FAKER.add_provider(EpubFileProvider)
+
+        file = FAKER.epub_file()
 
     Usage example with options:
 
-        file = EpubFileProvider(Faker()).epub_file(
+        file = FAKER.epub_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -43,7 +46,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = EpubFileProvider(Faker()).epub_file(
+        file = FAKER.epub_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

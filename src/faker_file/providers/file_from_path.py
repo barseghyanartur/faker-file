@@ -18,21 +18,21 @@ class FileFromPathProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+        from faker import Faker
         from faker_file.providers.file_from_path import (
             FileFromPathProvider,
         )
 
-        file = FileFromPathProvider(None).file_from_path(
+        FAKER = Faker()
+        FAKER.add_provider(FileFromPathProvider)
+
+        file = FAKER.file_from_path(
             path="/path/to/file.pdf",
         )
 
     Usage example with options:
 
-        from faker_file.providers.file_from_path import (
-            FileFromPathProvider,
-        )
-
-        file = FileFromPathProvider(None).file_from_path(
+        file = FAKER.file_from_path(
             path="/path/to/file.pdf",
             prefix="zzz",
         )

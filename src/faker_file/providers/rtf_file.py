@@ -21,15 +21,17 @@ class RtfFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+        from faker import Faker
         from faker_file.providers.rtf_file import RtfFileProvider
 
-        file = RtfFileProvider(None).rtf_file()
+        FAKER = Faker()
+        FAKER.add_provider(RtfFileProvider)
+
+        file = FAKER.rtf_file()
 
     Usage example with options:
 
-        from faker_file.providers.rtf_file import RtfFileProvider
-
-        file = RtfFileProvider(None).rtf_file(
+        file = FAKER.rtf_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -40,7 +42,7 @@ class RtfFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = RtfFileProvider(Faker()).rtf_file(
+        file = FAKER.rtf_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

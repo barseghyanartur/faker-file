@@ -23,14 +23,17 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         from faker import Faker
         from faker_file.providers.ods_file import OdsFileProvider
 
-        file = OdsFileProvider(Faker()).ods_file()
+        FAKER = Faker()
+        FAKER.add_provider(OdsFileProvider)
+
+        file = FAKER.ods_file()
 
     Usage example with options:
 
         from faker import Faker
         from faker_file.providers.ods_file import OdsFileProvider
 
-        file = OdsFileProvider(Faker()).ods_file(
+        file = FAKER.ods_file(
             prefix="zzz",
             num_rows=100,
             data_columns={
@@ -45,7 +48,7 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = OdsFileProvider(Faker()).ods_file(
+        file = FAKER.ods_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

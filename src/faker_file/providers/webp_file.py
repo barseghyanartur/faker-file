@@ -39,11 +39,14 @@ class WebpFileProvider(BaseProvider, ImageMixin):
         from faker import Faker
         from faker_file.providers.webp_file import WebpFileProvider
 
-        file = WebpFileProvider(Faker()).webp_file()
+        FAKER = Faker()
+        FAKER.add_provider(WebpFileProvider)
+
+        file = FAKER.webp_file()
 
     Usage example with options:
 
-        file = WebpFileProvider(Faker()).webp_file(
+        file = FAKER.webp_file(
             prefix="zzz",
             max_nb_chars=100_000,
             wrap_chars_after=80,
@@ -54,7 +57,7 @@ class WebpFileProvider(BaseProvider, ImageMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = WebpFileProvider(Faker()).webp_file(
+        file = FAKER.webp_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",

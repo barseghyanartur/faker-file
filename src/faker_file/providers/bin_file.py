@@ -21,11 +21,14 @@ class BinFileProvider(BaseProvider, FileMixin):
         from faker import Faker
         from faker_file.providers.bin_file import BinFileProvider
 
-        file = BinFileProvider(Faker()).bin_file()
+        FAKER = Faker()
+        FAKER.add_provider(BinFileProvider)
+
+        file = FAKER.bin_file()
 
     Usage example with options:
 
-        file = BinFileProvider(Faker()).bin_file(
+        file = FAKER.bin_file(
             prefix="zzz",
             length=1024**2,
         )
@@ -35,7 +38,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = BinFileProvider(Faker()).bin_file(
+        file = FAKER.bin_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -48,7 +51,7 @@ class BinFileProvider(BaseProvider, FileMixin):
 
         from faker_file.storages.aws_s3 import AWSS3Storage
 
-        file = BinFileProvider(Faker()).bin_file(
+        file = FAKER.bin_file(
             storage=AWSS3Storage(bucket_name="My-test-bucket"),
             prefix="zzz",
             length=1024**2,
