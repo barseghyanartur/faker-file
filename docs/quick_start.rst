@@ -18,10 +18,12 @@ With ``Faker``
     from faker import Faker
     from faker_file.providers.augment_file_from_dir import AugmentFileFromDirProvider
     from faker_file.providers.bin_file import BinFileProvider
+    from faker_file.providers.bmp_file import BmpFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.eml_file import EmlFileProvider
     from faker_file.providers.epub_file import EpubFileProvider
+    from faker_file.providers.gif_file import GifFileProvider
     from faker_file.providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
     from faker_file.providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
     from faker_file.providers.mp3_file import Mp3FileProvider
@@ -35,6 +37,7 @@ With ``Faker``
     from faker_file.providers.rtf_file import RtfFileProvider
     from faker_file.providers.svg_file import SvgFileProvider
     from faker_file.providers.tar_file import TarFileProvider
+    from faker_file.providers.tiff_file import TiffFileProvider
     from faker_file.providers.txt_file import TxtFileProvider
     from faker_file.providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
     from faker_file.providers.xlsx_file import XlsxFileProvider
@@ -43,10 +46,12 @@ With ``Faker``
     FAKER = Faker()
     FAKER.add_provider(AugmentFileFromDirProvider)
     FAKER.add_provider(BinFileProvider)
+    FAKER.add_provider(BmpFileProvider)
     FAKER.add_provider(CsvFileProvider)
     FAKER.add_provider(DocxFileProvider)
     FAKER.add_provider(EmlFileProvider)
     FAKER.add_provider(EpubFileProvider)
+    FAKER.add_provider(GifFileProvider)
     FAKER.add_provider(GraphicIcoFileProvider)
     FAKER.add_provider(GraphicJpegFileProvider)
     FAKER.add_provider(GraphicPdfFileProvider)
@@ -65,6 +70,7 @@ With ``Faker``
     FAKER.add_provider(RtfFileProvider)
     FAKER.add_provider(SvgFileProvider)
     FAKER.add_provider(TarFileProvider)
+    FAKER.add_provider(TiffFileProvider)
     FAKER.add_provider(TxtFileProvider)
     FAKER.add_provider(WebpFileProvider)
     FAKER.add_provider(XlsxFileProvider)
@@ -76,10 +82,12 @@ With ``Faker``
 
     augmented_file = FAKER.augment_file_from_dir(source_dir_path="/path/to/source/",)
     bin_file = FAKER.bin_file()
+    bmp_file = FAKER.bmp_file()
     csv_file = FAKER.csv_file()
     docx_file = FAKER.docx_file()
     eml_file = FAKER.eml_file()
     epub_file = FAKER.epub_file()
+    gif_file = FAKER.gif_file()
     graphic_ico_file = FAKER.graphic_ico_file()
     graphic_jpeg_file = FAKER.graphic_jpeg_file()
     graphic_pdf_file = FAKER.graphic_pdf_file()
@@ -98,6 +106,7 @@ With ``Faker``
     rtf_file = FAKER.rtf_file()
     svg_file = FAKER.svg_file()
     tar_file = FAKER.tar_file()
+    tiff_file = FAKER.tiff_file()
     txt_file = FAKER.txt_file()
     webp_file = FAKER.webp_file()
     xlsx_file = FAKER.xlsx_file()
@@ -114,10 +123,12 @@ functions):
         raw=True,
     )
     bin_raw = FAKER.bin_file(raw=True)
+    bmp_raw = FAKER.bmp_file(raw=True)
     csv_raw = FAKER.csv_file(raw=True)
     docx_raw = FAKER.docx_file(raw=True)
     eml_raw = FAKER.eml_file(raw=True)
     epub_raw = FAKER.epub_file(raw=True)
+    gif_raw = FAKER.gif_file(raw=True)
     ico_raw = FAKER.ico_file(raw=True)
     jpeg_raw = FAKER.jpeg_file(raw=True)
     mp3_raw = FAKER.mp3_file(raw=True)
@@ -134,6 +145,7 @@ functions):
     rtf_raw = FAKER.rtf_file(raw=True)
     svg_raw = FAKER.svg_file(raw=True)
     tar_raw = FAKER.tar_file(raw=True)
+    tiff_raw = FAKER.tiff_file(raw=True)
     txt_raw = FAKER.txt_file(raw=True)
     webp_raw = FAKER.webp_file(raw=True)
     xlsx_raw = FAKER.xlsx_file(raw=True)
@@ -149,6 +161,7 @@ With ``factory_boy``
 
     from faker_file.providers.augment_file_from_dir import AugmentFileFromDirProvider
     from faker_file.providers.bin_file import BinFileProvider
+    from faker_file.providers.bmp_file import BmpFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.eml_file import EmlFileProvider
@@ -173,6 +186,7 @@ With ``factory_boy``
 
     Faker.add_provider(AugmentFileFromDirProvider)
     Faker.add_provider(BinFileProvider)
+    Faker.add_provider(BmpFileProvider)
     Faker.add_provider(CsvFileProvider)
     Faker.add_provider(DocxFileProvider)
     Faker.add_provider(EmlFileProvider)
@@ -238,6 +252,7 @@ upload/factories.py
         AugmentFileFromDirProvider,
     )
     from faker_file.providers.bin_file import BinFileProvider
+    from faker_file.providers.bmp_file import BmpFileProvider
     from faker_file.providers.csv_file import CsvFileProvider
     from faker_file.providers.docx_file import DocxFileProvider
     from faker_file.providers.eml_file import EmlFileProvider
@@ -271,6 +286,7 @@ upload/factories.py
     # Add all needed providers
     Faker.add_provider(AugmentFileFromDirProvider)
     Faker.add_provider(BinFileProvider)
+    Faker.add_provider(BmpFileProvider)
     Faker.add_provider(CsvFileProvider)
     Faker.add_provider(DocxFileProvider)
     Faker.add_provider(EmlFileProvider)
@@ -311,6 +327,7 @@ upload/factories.py
 
         class Params:
             bin_file = Trait(file=Faker("bin_file", storage=STORAGE))
+            bmp_file = Trait(file=Faker("bmp_file", storage=STORAGE))
             csv_file = Trait(file=Faker("csv_file", storage=STORAGE))
             docx_file = Trait(file=Faker("docx_file", storage=STORAGE))
             eml_file = Trait(file=Faker("eml_file", storage=STORAGE))

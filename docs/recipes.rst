@@ -6,24 +6,7 @@ When using with ``Faker``, there are two ways of using the providers.
 
 Imports and initializations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**One way**
-
-.. code-block:: python
-
-    from faker import Faker
-    from faker_file.providers.bin_file import BinFileProvider
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    FAKER = Faker()
-
-    # Usage example
-    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
-
-**Or another**
+**Recommended way**
 
 .. code-block:: python
 
@@ -43,6 +26,23 @@ Imports and initializations
 
     # Usage example
     file = FAKER.txt_file(content="Lorem ipsum")
+
+**But this works too**
+
+.. code-block:: python
+
+    from faker import Faker
+    from faker_file.providers.bin_file import BinFileProvider
+    from faker_file.providers.docx_file import DocxFileProvider
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.pptx_file import PptxFileProvider
+    from faker_file.providers.txt_file import TxtFileProvider
+    from faker_file.providers.zip_file import ZipFileProvider
+
+    FAKER = Faker()
+
+    # Usage example
+    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
 
 Throughout documentation we will be mixing these approaches.
 
@@ -486,7 +486,6 @@ The following example shows how to generate a DOCX file with table and image.
     file = DocxFileProvider(Faker()).docx_file(
         content=DynamicTemplate([(docx_add_table, {}), (docx_add_picture, {})])
     )
-
 
 Create a ODT file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1521,6 +1520,7 @@ Other Django usage examples
                 "key_id": settings.AWS_ACCESS_KEY_ID,
                 "key_secret": settings.AWS_SECRET_ACCESS_KEY,
             },
+            root_path="",
             rel_path="tmp",
         )
     else:
