@@ -69,6 +69,8 @@ class OdtFileProvider(BaseProvider, FileMixin):
 
     Usage example with content modifiers:
 
+    .. code-block:: python
+
         from faker_file.base import DynamicTemplate
         from faker_file.providers.jpeg_file import JpegFileProvider
         from faker_file.contrib.odt_file import (

@@ -68,6 +68,8 @@ class DocxFileProvider(BaseProvider, FileMixin):
 
     Usage example with content modifiers:
 
+    .. code-block:: python
+
         from faker_file.base import DynamicTemplate
         from faker_file.contrib.docx_file import (
             add_h1_heading,
