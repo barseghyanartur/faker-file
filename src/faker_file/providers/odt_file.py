@@ -30,6 +30,8 @@ class OdtFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.odt_file import OdtFileProvider
 
@@ -40,6 +42,8 @@ class OdtFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.odt_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -47,6 +51,8 @@ class OdtFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

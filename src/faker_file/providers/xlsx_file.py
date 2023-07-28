@@ -20,6 +20,8 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.xlsx_file import XlsxFileProvider
 
@@ -29,6 +31,8 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         file = FAKER.xlsx_file()
 
     Usage example with options:
+
+    .. code-block:: python
 
         file = FAKER.xlsx_file(
             prefix="zzz",
@@ -41,6 +45,8 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

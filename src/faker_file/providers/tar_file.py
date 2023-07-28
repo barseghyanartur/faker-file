@@ -24,6 +24,8 @@ class TarFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.tar_file import TarFileProvider
 
@@ -33,6 +35,8 @@ class TarFileProvider(BaseProvider, FileMixin):
         file = FAKER.tar_file()
 
     Usage example with options:
+
+    .. code-block:: python
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
         from faker_file.providers.tar_file import TarFileProvider
@@ -51,6 +55,8 @@ class TarFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example of nested TARs:
+
+    .. code-block:: python
 
         from faker_file.providers.helpers.inner import create_inner_tar_file
 
@@ -142,6 +148,8 @@ class TarFileProvider(BaseProvider, FileMixin):
         if options:
             """
             A complex case. Could be initialized as follows:
+
+            .. code-block:: python
 
                 zip_file = TarFileProvider(None).tar_file(
                     prefix="ttt_archive_",

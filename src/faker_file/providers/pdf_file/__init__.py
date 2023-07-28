@@ -54,7 +54,9 @@ REPORTLAB_PDF_GENERATOR = (
 class PdfFileProvider(BaseProvider, FileMixin):
     """PDF file provider.
 
-        Usage example:
+    Usage example:
+
+    .. code-block:: python
 
         from faker import Faker
         from faker_file.providers.pdf_file import PdfFileProvider
@@ -66,6 +68,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.pdf_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -73,6 +77,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
@@ -93,6 +99,8 @@ class PdfFileProvider(BaseProvider, FileMixin):
     but it's less performant than `ReportlabPdfGenerator` (factor 40x), which
     does not require additional system dependencies to run. To use it, pass
     `ReportlabPdfGenerator` class in `pdf_generator_cls` argument.
+
+    .. code-block:: python
 
         from faker_file.providers.pdf_file.generators import (
             reportlab_generator,
@@ -244,6 +252,8 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.pdf_file import GraphicPdfFileProvider
 
@@ -254,12 +264,16 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.graphic_pdf_file(
             prefix="zzz",
             size=(800, 800),
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

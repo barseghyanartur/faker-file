@@ -29,6 +29,8 @@ class ReportlabPdfGenerator(BasePdfGenerator):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.pdf_file import PdfFileProvider
         from faker_file.providers.pdf_file.generators import reportlab_generator
@@ -41,6 +43,8 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         )
 
     Using `DynamicTemplate`:
+
+    .. code-block:: python
 
         from io import BytesIO
 
@@ -66,6 +70,7 @@ class ReportlabPdfGenerator(BasePdfGenerator):
         )
 
         FAKER = Faker()
+        FAKER.add_provider(PdfFileProvider)
 
         # Add table function
         def pdf_add_table(

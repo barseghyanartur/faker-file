@@ -20,6 +20,8 @@ class SFTPStorage(BaseStorage):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider
         from faker_file.storages.sftp_storage import SFTPStorage

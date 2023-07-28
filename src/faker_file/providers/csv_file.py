@@ -23,6 +23,8 @@ class CsvFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.csv_file import CsvFileProvider
 
@@ -33,6 +35,8 @@ class CsvFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.csv_file(
             prefix="zzz",
             num_rows=100,
@@ -41,6 +45,8 @@ class CsvFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

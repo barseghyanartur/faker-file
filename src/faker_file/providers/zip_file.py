@@ -22,6 +22,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.zip_file import ZipFileProvider
 
@@ -31,6 +33,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
         file = FAKER.zip_file()
 
     Usage example with options:
+
+    .. code-block:: python
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
 
@@ -48,6 +52,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example of nested ZIPs:
+
+    .. code-block:: python
 
         from faker_file.providers.helpers.inner import create_inner_zip_file
 
@@ -129,6 +135,8 @@ class ZipFileProvider(BaseProvider, FileMixin):
         if options:
             """
             A complex case. Could be initialized as follows:
+
+            .. code-block:: python
 
                 zip_file = FAKER.zip_file(
                     prefix="zzz_archive_",

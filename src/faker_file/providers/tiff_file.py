@@ -34,7 +34,9 @@ __all__ = (
 class TiffFileProvider(BaseProvider, ImageMixin):
     """TIFF file provider.
 
-        Usage example:
+    Usage example:
+
+    .. code-block:: python
 
         from faker import Faker
         from faker_file.providers.tiff_file import TiffFileProvider
@@ -46,6 +48,8 @@ class TiffFileProvider(BaseProvider, ImageMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.tiff_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -53,6 +57,8 @@ class TiffFileProvider(BaseProvider, ImageMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
@@ -169,6 +175,8 @@ class GraphicTiffFileProvider(BaseProvider, GraphicImageMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.tiff_file import GraphicTiffFileProvider
 
@@ -179,12 +187,16 @@ class GraphicTiffFileProvider(BaseProvider, GraphicImageMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.graphic_tiff_file(
             prefix="zzz",
             size=(800, 800),
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

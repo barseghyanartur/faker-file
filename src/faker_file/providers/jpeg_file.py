@@ -34,7 +34,9 @@ __all__ = (
 class JpegFileProvider(BaseProvider, ImageMixin):
     """JPEG file provider.
 
-        Usage example:
+    Usage example:
+
+    .. code-block:: python
 
         from faker import Faker
         from faker_file.providers.jpeg_file import JpegFileProvider
@@ -46,6 +48,8 @@ class JpegFileProvider(BaseProvider, ImageMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.jpeg_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -53,6 +57,8 @@ class JpegFileProvider(BaseProvider, ImageMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
@@ -169,6 +175,8 @@ class GraphicJpegFileProvider(BaseProvider, GraphicImageMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.jpeg_file import GraphicJpegFileProvider
 
@@ -179,12 +187,16 @@ class GraphicJpegFileProvider(BaseProvider, GraphicImageMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.graphic_jpeg_file(
             prefix="zzz",
             size=(800, 800),
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

@@ -18,6 +18,8 @@ class FileFromPathProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.file_from_path import (
             FileFromPathProvider,
@@ -31,6 +33,8 @@ class FileFromPathProvider(BaseProvider, FileMixin):
         )
 
     Usage example with options:
+
+    .. code-block:: python
 
         file = FAKER.file_from_path(
             path="/path/to/file.pdf",

@@ -21,6 +21,8 @@ class RtfFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.rtf_file import RtfFileProvider
 
@@ -31,6 +33,8 @@ class RtfFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.rtf_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -38,6 +42,8 @@ class RtfFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

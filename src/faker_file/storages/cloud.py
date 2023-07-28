@@ -123,6 +123,8 @@ class PathyFileSystemStorage(CloudStorage):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker_file.storages.cloud import PathyFileSystemStorage
 
         fs_storage = PathyFileSystemStorage(bucket_name="artur-testing-1")

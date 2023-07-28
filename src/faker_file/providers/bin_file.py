@@ -18,6 +18,8 @@ class BinFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.bin_file import BinFileProvider
 
@@ -28,12 +30,16 @@ class BinFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.bin_file(
             prefix="zzz",
             length=1024**2,
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
@@ -48,6 +54,8 @@ class BinFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with AWS S3 storage:
+
+    .. code-block:: python
 
         from faker_file.storages.aws_s3 import AWSS3Storage
 

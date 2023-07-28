@@ -25,6 +25,8 @@ class OdpFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.odp_file import OdpFileProvider
 
@@ -35,6 +37,8 @@ class OdpFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.odp_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -42,6 +46,8 @@ class OdpFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

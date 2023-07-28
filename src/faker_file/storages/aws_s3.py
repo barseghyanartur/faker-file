@@ -13,6 +13,8 @@ class AWSS3Storage(CloudStorage):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker_file.storages.aws_s3 import AWSS3Storage
 
         s3_storage = AWSS3Storage(

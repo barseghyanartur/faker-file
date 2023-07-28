@@ -23,6 +23,8 @@ class PdfkitPdfGenerator(BasePdfGenerator):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.pdf_file import PdfFileProvider
         from faker_file.providers.pdf_file.generators import pdfkit_generator
@@ -35,6 +37,8 @@ class PdfkitPdfGenerator(BasePdfGenerator):
         )
 
     Using `DynamicTemplate`:
+
+    .. code-block:: python
 
         from faker_file.base import DynamicTemplate
         from faker_file.contrib.pdf_file.pdfkit_snippets import (

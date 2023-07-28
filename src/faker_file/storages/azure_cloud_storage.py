@@ -13,6 +13,8 @@ class AzureCloudStorage(CloudStorage):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker_file.storages.azure_cloud_storage import AzureCloudStorage
 
         azure_storage = AzureCloudStorage(

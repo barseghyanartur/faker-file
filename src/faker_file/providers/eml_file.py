@@ -32,6 +32,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.eml_file import EmlFileProvider
 
@@ -41,6 +43,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         file = FAKER.eml_file()
 
     Usage example with attachments:
+
+    .. code-block:: python
 
         from faker_file.providers.helpers.inner import create_inner_docx_file
 
@@ -57,6 +61,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example of nested EMLs attachments:
+
+    .. code-block:: python
 
         from faker_file.providers.helpers.inner import create_inner_eml_file
 
@@ -198,6 +204,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         if options:
             """
             A complex case. Could be initialized as follows:
+
+            .. code-block:: python
 
                 eml_file = FAKER.eml_file(
                     prefix="zzz_email_",

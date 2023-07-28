@@ -24,6 +24,8 @@ class XmlFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.xml_file import XmlFileProvider
 
@@ -33,6 +35,8 @@ class XmlFileProvider(BaseProvider, FileMixin):
         file = FAKER.xml_file()
 
     Usage example with options:
+
+    .. code-block:: python
 
         file = FAKER.xml_file(
             prefix="zzz",
@@ -45,6 +49,8 @@ class XmlFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
@@ -59,6 +65,8 @@ class XmlFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with template:
+
+    .. code-block:: python
 
         XML_TEMPLATE = '''
         <books>

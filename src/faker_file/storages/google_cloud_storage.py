@@ -14,6 +14,8 @@ class GoogleCloudStorage(CloudStorage):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker_file.storages.google_cloud_storage import GoogleCloudStorage
 
         gs_storage = GoogleCloudStorage(

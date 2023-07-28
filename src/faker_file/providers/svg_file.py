@@ -20,7 +20,9 @@ __all__ = ("SvgFileProvider",)
 class SvgFileProvider(BaseProvider, ImageMixin):
     """SVG file provider.
 
-        Usage example:
+    Usage example:
+
+    .. code-block:: python
 
         from faker import Faker
         from faker_file.providers.svg_file import SvgFileProvider
@@ -32,6 +34,8 @@ class SvgFileProvider(BaseProvider, ImageMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.svg_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -39,6 +43,8 @@ class SvgFileProvider(BaseProvider, ImageMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

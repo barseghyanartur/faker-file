@@ -20,6 +20,8 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.ods_file import OdsFileProvider
 
@@ -29,6 +31,8 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         file = FAKER.ods_file()
 
     Usage example with options:
+
+    .. code-block:: python
 
         from faker import Faker
         from faker_file.providers.ods_file import OdsFileProvider
@@ -44,6 +48,8 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage

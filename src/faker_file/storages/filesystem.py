@@ -16,6 +16,8 @@ class FileSystemStorage(BaseStorage):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker_file.storages.filesystem import FileSystemStorage
 
         storage = FileSystemStorage()
@@ -24,6 +26,8 @@ class FileSystemStorage(BaseStorage):
         storage.write_bytes(file, b"Lorem ipsum")
 
     Initialization with params:
+
+    .. code-block:: python
 
         storage = FileSystemStorage()
     """

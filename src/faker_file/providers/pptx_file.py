@@ -24,6 +24,8 @@ class PptxFileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.pptx_file import PptxFileProvider
 
@@ -34,6 +36,8 @@ class PptxFileProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
+    .. code-block:: python
+
         file = FAKER.pptx_file(
             prefix="zzz",
             max_nb_chars=100_000,
@@ -41,6 +45,8 @@ class PptxFileProvider(BaseProvider, FileMixin):
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
+
+    .. code-block:: python
 
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
