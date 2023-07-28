@@ -79,21 +79,25 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
+        from faker import Faker
         from faker_file.providers.augment_file_from_dir import (
             AugmentFileFromDirProvider,
         )
 
-        file = AugmentFileFromDirProvider(None).augment_file_from_dir(
+        FAKER = Faker()
+        FAKER.add_provider(AugmentFileFromDirProvider)
+
+        file = FAKER.augment_file_from_dir(
             source_dir_path="/tmp/tmp/",
         )
 
     Usage example with options:
 
-        from faker_file.providers.augment_file_from_dir import (
-            AugmentFileFromDirProvider,
-        )
+        .. code-block:: python
 
-        file = AugmentFileFromDirProvider(None).augment_file_from_dir(
+        file = FAKER.augment_file_from_dir(
             source_dir_path="/tmp/tmp/",
             prefix="zzz",
             extensions={"docx", "pdf"}

@@ -25,6 +25,8 @@ class WeasyPrintImageGenerator(BaseImageGenerator):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.png_file import PngFileProvider
         from faker_file.providers.image.weasyprint_generator import (
@@ -32,8 +34,9 @@ class WeasyPrintImageGenerator(BaseImageGenerator):
         )
 
         FAKER = Faker()
+        FAKER.add_provider(PngFileProvider)
 
-        file = PngFileProvider(FAKER).png_file(
+        file = FAKER.png_file(
             img_generator_cls=WeasyPrintImageGenerator
         )
     """

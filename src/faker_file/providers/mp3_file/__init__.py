@@ -31,25 +31,33 @@ class Mp3FileProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.mp3_file import Mp3FileProvider
 
         FAKER = Faker()
-        file = Mp3FileProvider(FAKER).mp3_file()
+        FAKER.add_provider(Mp3FileProvider)
+
+        file = FAKER.mp3_file()
 
     Usage example with options:
 
-        file = Mp3FileProvider(FAKER).mp3_file(
+    .. code-block:: python
+
+        file = FAKER.mp3_file(
             prefix="zzz",
             max_nb_chars=500,
         )
 
     Usage example with `FileSystemStorage` storage (for `Django`):
 
+    .. code-block:: python
+
         from django.conf import settings
         from faker_file.storages.filesystem import FileSystemStorage
 
-        file = Mp3FileProvider(FAKER).mp3_file(
+        file = FAKER.mp3_file(
             storage=FileSystemStorage(
                 root_path=settings.MEDIA_ROOT,
                 rel_path="tmp",
@@ -67,6 +75,8 @@ class Mp3FileProvider(BaseProvider, FileMixin):
     default `GttsMp3Generator`.
 
     Usage with custom MP3 generator class.
+
+    .. code-block:: python
 
         # Imaginary `marytts` Python library
         from marytts import MaryTTS
@@ -104,7 +114,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
                 return mary_tts.synth_mp3(self.content)
 
         # Generate MP3 file from random text
-        file = Mp3FileProvider(FAKER).mp3_file(
+        file = FAKER.mp3_file(
             mp3_generator_cls=MaryTtsMp3Generator,
         )
     """

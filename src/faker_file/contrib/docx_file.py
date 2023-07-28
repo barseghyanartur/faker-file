@@ -48,8 +48,8 @@ def add_table(provider, document, data, counter, **kwargs):
 
 def add_picture(provider, document, data, counter, **kwargs):
     """Callable responsible for the picture generation."""
-    png_raw = provider.generator.image()
-    document.add_picture(BytesIO(png_raw))
+    image = kwargs.get("image", provider.generator.image())
+    document.add_picture(BytesIO(image))
 
     # # Modifications of `data` is not required for generation
     # # of the file, but is useful for when you want to get

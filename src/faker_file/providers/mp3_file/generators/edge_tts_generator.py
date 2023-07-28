@@ -20,13 +20,16 @@ class EdgeTtsMp3Generator(BaseMp3Generator):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.mp3_file import Mp3FileProvider
         from faker_file.providers.mp3_file.generators import edge_tts_generator
 
         FAKER = Faker()
+        FAKER.add_provider(Mp3FileProvider)
 
-        file = Mp3FileProvider(FAKER).mp3_file(
+        file = FAKER.mp3_file(
             mp3_generator_cls=edge_tts_generator.EdgeTtsMp3Generator
         )
     """

@@ -2248,6 +2248,8 @@ def fuzzy_choice_create_inner_file(
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.helpers.inner import (
             create_inner_docx_file,
@@ -2272,6 +2274,8 @@ def fuzzy_choice_create_inner_file(
     You could use it in archives to make a variety of different file types
     within the archive.
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.helpers.inner import (
             create_inner_docx_file,
@@ -2283,10 +2287,12 @@ def fuzzy_choice_create_inner_file(
         from faker_file.storages.filesystem import FileSystemStorage
 
         FAKER = Faker()
+        FAKER.add_provider(ZipFileProvider)
+
         STORAGE = FileSystemStorage()
 
         kwargs = {"storage": STORAGE, "generator": FAKER}
-        file = ZipFileProvider(FAKER).zip_file(
+        file = FAKER.zip_file(
             prefix="zzz_archive_",
             options={
                 "count": 50,
@@ -2319,6 +2325,8 @@ def list_create_inner_file(
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.helpers.inner import (
             create_inner_docx_file,
@@ -2329,10 +2337,11 @@ def list_create_inner_file(
         from faker_file.storages.filesystem import FileSystemStorage
 
         FAKER = Faker()
+        FAKER.add_provider(ZipFileProvider)
         STORAGE = FileSystemStorage()
 
         kwargs = {"storage": STORAGE, "generator": FAKER}
-        file = ZipFileProvider(FAKER).zip_file(
+        file = FAKER.zip_file(
             basename="alice-looking-through-the-glass",
             options={
                 "create_inner_file_func": list_create_inner_file,

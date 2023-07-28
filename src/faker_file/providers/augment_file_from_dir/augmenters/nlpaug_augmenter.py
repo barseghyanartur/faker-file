@@ -20,6 +20,8 @@ class ContextualWordEmbeddingsAugmenter(BaseTextAugmenter):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.augment_file_from_dir import (
             AugmentFileFromDirProvider,
@@ -29,8 +31,9 @@ class ContextualWordEmbeddingsAugmenter(BaseTextAugmenter):
         )
 
         FAKER = Faker()
+        FAKER.add_provider(AugmentFileFromDirProvider)
 
-        file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
+        file = FAKER.augment_file_from_dir(
             text_augmenter_cls=(
                 nlpaug_augmenter.ContextualWordEmbeddingsAugmenter
             ),

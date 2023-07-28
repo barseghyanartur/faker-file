@@ -71,8 +71,8 @@ def add_picture(
     **kwargs,
 ):
     """Callable responsible for the picture generation using pdfkit."""
-    png_raw = provider.generator.image()
-    data_url = create_data_url(png_raw, "png")
+    image = kwargs.get("image", provider.generator.image())
+    data_url = create_data_url(image, "png")
     document += f"<img src='{data_url}' alt='Inline Image' />"
 
 

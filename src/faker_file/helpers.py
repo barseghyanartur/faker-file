@@ -33,6 +33,8 @@ def load_class_from_path(full_path: str) -> Type:
 
     Usage example:
 
+    .. code-block:: python
+
         my_class = load_class_from_path("module.submodule.MyClass")
         instance = my_class()
     """

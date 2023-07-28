@@ -17,6 +17,8 @@ class TikaTextExtractor(BaseTextExtractor):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.augment_file_from_dir import (
             AugmentFileFromDirProvider,
@@ -26,8 +28,9 @@ class TikaTextExtractor(BaseTextExtractor):
         )
 
         FAKER = Faker()
+        FAKER.add_provider(AugmentFileFromDirProvider)
 
-        file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
+        file = FAKER.augment_file_from_dir(
             text_extractor_cls=tika_extractor.TikaTextExtractor
         )
     """

@@ -19,6 +19,8 @@ class GttsMp3Generator(BaseMp3Generator):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.mp3_file import Mp3FileProvider
         from faker_file.providers.mp3_file.generators.gtts_generator import (
@@ -26,8 +28,9 @@ class GttsMp3Generator(BaseMp3Generator):
         )
 
         FAKER = Faker()
+        FAKER.add_provider(Mp3FileProvider)
 
-        file = Mp3FileProvider(FAKER).mp3_file(
+        file = FAKER.mp3_file(
             mp3_generator_cls=GttsMp3Generator
         )
     """

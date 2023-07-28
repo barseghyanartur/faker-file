@@ -20,6 +20,8 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
 
     Usage example:
 
+    .. code-block:: python
+
         from faker import Faker
         from faker_file.providers.random_file_from_dir import (
             RandomFileFromDirProvider,
@@ -33,6 +35,8 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         )
 
     Usage example with options:
+
+    .. code-block:: python
 
         file = FAKER.random_file_from_dir(
             source_dir_path="/tmp/tmp/",

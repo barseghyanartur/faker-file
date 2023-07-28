@@ -81,7 +81,7 @@ def add_picture(provider, document, data, counter, **kwargs):
     height = kwargs.get("height", "5cm")
     paragraph = P()
     document.text.addElement(paragraph)
-    png_raw = provider.generator.image()
+    image = kwargs.get("image", provider.generator.image())
     image_frame = Frame(
         width=width,
         height=height,
@@ -89,7 +89,7 @@ def add_picture(provider, document, data, counter, **kwargs):
         y="56pt",
         anchortype="paragraph",
     )
-    href = document.addPicture(filename="image.png", content=png_raw)
+    href = document.addPicture(filename="image.png", content=image)
     image_frame.addElement(Image(href=href))
     paragraph.addElement(image_frame)
 

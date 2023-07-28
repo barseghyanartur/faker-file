@@ -86,10 +86,10 @@ def add_picture(
     **kwargs,
 ):
     """Add picture function."""
-    png_raw = provider.generator.image()
+    image = kwargs.get("image", provider.generator.image())
 
     # Create a BytesIO object and load the image data
-    with BytesIO(png_raw) as input_stream:
+    with BytesIO(image) as input_stream:
         pil_image = PilImage.open(input_stream)
 
         # Resize the image

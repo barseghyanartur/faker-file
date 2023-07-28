@@ -112,6 +112,8 @@ class StringList:
 
     Usage example:
 
+    .. code-block:: python
+
         my_string = StringList(separator="\r\n")
         my_string += "grape"
         my_string += "peaches"
