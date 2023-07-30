@@ -4,6 +4,7 @@ Creating DOCX
 See the following full functional snippet for generating DOCX.
 
 .. code-block:: python
+    :name: test_creating_docx
 
     # Imports
     from faker import Faker

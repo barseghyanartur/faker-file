@@ -9,6 +9,7 @@ Imports and initializations
 **Recommended way**
 
 .. code-block:: python
+    :name: test_when_using_with_faker_imports_and_init_recommended_way
 
     from faker import Faker
     from faker_file.providers.docx_file import DocxFileProvider
@@ -30,6 +31,7 @@ Imports and initializations
 **But this works too**
 
 .. code-block:: python
+    :name: test_when_using_with_faker_imports_and_init_but_this_works_too
 
     from faker import Faker
     from faker_file.providers.bin_file import BinFileProvider

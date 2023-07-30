@@ -30,6 +30,7 @@ or unicode characters.
 See the following full functional snippet for generating PDF using `pdfkit`_.
 
 .. code-block:: python
+    :name: test_building_pdf_using_pdfkit
 
     # Imports
     from faker import Faker
@@ -132,6 +133,7 @@ encoding when generating unicode text.
 See the following full functional snippet for generating PDF using `reportlab`_.
 
 .. code-block:: python
+    :name: test_building_pdf_using_reportlab
 
     # Imports
     from faker import Faker
@@ -139,6 +141,9 @@ See the following full functional snippet for generating PDF using `reportlab`_.
     from faker_file.providers.pdf_file.generators.reportlab_generator import (
         ReportlabPdfGenerator,
     )
+
+    FAKER = Faker() # Initialize Faker
+    FAKER.add_provider(PdfFileProvider)  # Register provider
 
     # Generate PDF file using `reportlab`
     pdf_file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
@@ -209,12 +214,13 @@ caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
 .. code-block:: python
+    :name: test_building_pdfs_with_graphics_using_pillow
 
     from faker import Faker
     from faker_file.providers.pdf_file import GraphicPdfFileProvider
 
-    FAKER = Faker()
-    FAKER.add_provider(GraphicPdfFileProvider)
+    FAKER = Faker() # Initialize Faker
+    FAKER.add_provider(GraphicPdfFileProvider)  # Register provider
 
     file = FAKER.graphic_pdf_file()
 

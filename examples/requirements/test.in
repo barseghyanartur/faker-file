@@ -1,14 +1,15 @@
 Faker
+asyncssh
 coverage
 factory_boy
 fuzzywuzzy[speedup]
-py
 parametrize
+py
 pytest-cov
 pytest-django
 pytest-ordering
 pytest-parallel
 pytest-rerunfailures
+pytest-rst
 pytest>=7.0.1
 tox
-asyncssh

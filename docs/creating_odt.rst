@@ -4,6 +4,7 @@ Creating ODT
 See the following full functional snippet for generating ODT.
 
 .. code-block:: python
+    :name: test_creating_odt
 
     # Imports
     from faker import Faker

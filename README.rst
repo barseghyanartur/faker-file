@@ -310,9 +310,10 @@ Usage examples
 ==============
 With ``Faker``
 --------------
-**One way**
+**Recommended way**
 
 .. code-block:: python
+    :name: test_usage_examples_with_faker_recommended_way
 
     from faker import Faker
     # Import the file provider we want to use
@@ -354,9 +355,10 @@ functions):
     in ``filename`` and ``content`` keys of the ``data`` attribute
     respectively. See `Meta-data`_ for more information.
 
-**Or another**
+**But this works too**
 
 .. code-block:: python
+    :name: test_rst_readme_usage_examples_with_faker_but_this_works_too
 
     from faker import Faker
     from faker_file.providers.txt_file import TxtFileProvider
@@ -472,6 +474,7 @@ Native file system storage. Does not have dependencies.
   Django, this would be the rest of the path to the file.
 
 .. code-block:: python
+    :name: test_usage_examples_example_with_storages_filesystemstorage
 
     import tempfile
     from faker import Faker
@@ -494,6 +497,7 @@ Native file system storage. Does not have dependencies.
 Native file system storage. Requires ``pathy``.
 
 .. code-block:: python
+    :name: test_usage_examples_example_with_storages_pathyfilesystemstorage
 
     import tempfile
     from pathy import use_fs
@@ -504,7 +508,7 @@ Native file system storage. Requires ``pathy``.
     use_fs(tempfile.gettempdir())
     PATHY_FS_STORAGE = PathyFileSystemStorage(
         bucket_name="bucket_name",
-        root_path="tmp"
+        root_path="tmp",
         rel_path="sub-tmp",
     )
 

@@ -303,6 +303,8 @@ pytest-parallel==0.1.1
     # via -r examples/requirements/test.in
 pytest-rerunfailures==11.0
     # via -r examples/requirements/test.in
+pytest-rst==0.1.5
+    # via -r examples/requirements/test.in
 python-dateutil==2.8.2
     # via
     #   botocore
