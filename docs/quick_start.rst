@@ -14,6 +14,7 @@ With ``Faker``
 **Imports and initialization**
 
 .. code-block:: python
+    :name: test_usage_with_faker_imports_and_init
 
     from faker import Faker
     from faker_file.providers.augment_file_from_dir import AugmentFileFromDirProvider
@@ -156,6 +157,7 @@ With ``factory_boy``
 **Imports and initialization**
 
 .. code-block:: python
+    :name: test_usage_with_factory_boy_imports_and_init
 
     from factory import Faker
 

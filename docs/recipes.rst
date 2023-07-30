@@ -175,6 +175,7 @@ Create a ZIP file with variety of different file types within
 - Inside the ZIP, put all files in directory ``zzz``.
 
 .. code-block:: python
+    :name: test_create_a_zip_file_with_different_variety_of_file_types_within
 
     from faker import Faker
     from faker_file.providers.helpers.inner import (
@@ -214,6 +215,7 @@ Another way to create a ZIP file with variety of different file types within
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
 .. code-block:: python
+    :name: test_create_a_zip_file_with_different_variety_of_file_types_within_2
 
     from faker import Faker
     from faker_file.providers.helpers.inner import (
@@ -245,12 +247,13 @@ Another way to create a ZIP file with variety of different file types within
 Note, that ``count`` argument (not shown in the example, but commonly
 accepted by inner functions) will be simply ignored here.
 
-Create a EML file consisting of TXT files with static content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create an EML file consisting of TXT files with static content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
 .. code-block:: python
+    :name: test_create_an_eml_file_consisting_of_txt_files_with_static_content
 
     from faker import Faker
     from faker_file.providers.eml_file import EmlFileProvider
@@ -270,6 +273,7 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the email itself with ``zzz``.
 
 .. code-block:: python
+    :name: test_create_an_eml_file_consisting_of_txt_files_with_dynamic_content
 
     from faker import Faker
     from faker_file.providers.eml_file import EmlFileProvider
@@ -303,6 +307,7 @@ contain 5 DOCX files.
   DOCX files.
 
 .. code-block:: python
+    :name: test_create_a_nested_eml_file
 
     from faker import Faker
     from faker_file.providers.eml_file import EmlFileProvider
@@ -339,6 +344,7 @@ Create an EML file with variety of different file types within
 - Prefix the filename of the EML itself with ``zzz``.
 
 .. code-block:: python
+    :name: test_create_an_eml_file_with_different_variety_of_file_types_within
 
     from faker import Faker
     from faker_file.providers.helpers.inner import (
