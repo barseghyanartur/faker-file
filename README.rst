@@ -438,10 +438,12 @@ key of the ``data`` attribute. See the table below.
 +===========+=================================================================+
 | filename  | all                                                             |
 +-----------+-----------------------------------------------------------------+
-| content   | all except FileFromPathProvider, GraphicIcoFileProvider,        |
-|           | GraphicJpegFileProvider, GraphicPdfFileProvider,                |
-|           | GraphicPngFileProvider, GraphicWebpFileProvider,                |
-|           | RandomFileFromDirProvider, TarFileProvider and ZipFileProvider  |
+| content   | all except FileFromPathProvider, RandomFileFromDirProvider,     |
+|           | TarFileProvider, ZipFileProvider and all graphic file providers |
+|           | such as GraphicBmpFileProvider, GraphicGifFileProvider,         |
+|           | GraphicIcoFileProvider, GraphicJpegFileProvider,                |
+|           | GraphicPdfFileProvider, GraphicPngFileProvider,                 |
+|           | GraphicTiffFileProvider and GraphicWebpFileProvider             |
 +-----------+-----------------------------------------------------------------+
 | inner     | only EmlFileProvider, TarFileProvider and ZipFileProvider       |
 +-----------+-----------------------------------------------------------------+
