@@ -153,6 +153,7 @@ Let's imagine we need to generate a DOCX file with text 50 chars long (just
 for observability).
 
 .. code-block:: python
+    :name: test_crate_a_simple_docx_file
 
     from faker import Faker
     from faker_file.providers.docx_file import DocxFileProvider
@@ -294,12 +295,17 @@ Create a file by copying it randomly from the given directory.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
 .. code-block:: python
+    :name: test_random_file_from_dir_provider
 
+    from faker import Faker
     from faker_file.providers.random_file_from_dir import (
         RandomFileFromDirProvider,
     )
 
-    file = RandomFileFromDirProvider(FAKER).random_file_from_dir(
+    FAKER = Faker()
+    FAKER.add_provider(RandomFileFromDirProvider)
+
+    file = FAKER.random_file_from_dir(
         source_dir_path="/tmp/tmp/",
         prefix="zzz",
     )
