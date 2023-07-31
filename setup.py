@@ -17,16 +17,17 @@ install_requires = [
 ]
 
 tests_require = [
+    "asyncssh",  # SFTP
+    "coverage",  # coverage
     "factory_boy",  # factories
     "fuzzywuzzy[speedup]",  # data integrity
     "parametrize",  # testing
     "pytest",  # pytest
     "pytest-cov",  # pytest add-on, coverage
     "pytest-django",  # pytest add-on, django
-    "pytest-pythonpath",  # pytest add-on
     "pytest-ordering",  # pytest add-on
-    "coverage",  # coverage
-    "asyncssh",  # SFTP
+    "pytest-pythonpath",  # pytest add-on
+    "pytest-rst",  # pytest add-on
 ]
 
 _common = [

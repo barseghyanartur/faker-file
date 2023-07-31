@@ -113,6 +113,7 @@ class StringList:
     Usage example:
 
     .. code-block:: python
+        :name: test_rst_string_list
 
         my_string = StringList(separator="\r\n")
         my_string += "grape"

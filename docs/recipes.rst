@@ -9,6 +9,7 @@ Imports and initializations
 **Recommended way**
 
 .. code-block:: python
+    :name: test_when_using_with_faker_imports_and_init_recommended_way
 
     from faker import Faker
     from faker_file.providers.docx_file import DocxFileProvider
@@ -30,6 +31,7 @@ Imports and initializations
 **But this works too**
 
 .. code-block:: python
+    :name: test_when_using_with_faker_imports_and_init_but_this_works_too
 
     from faker import Faker
     from faker_file.providers.bin_file import BinFileProvider
@@ -173,6 +175,7 @@ Create a ZIP file with variety of different file types within
 - Inside the ZIP, put all files in directory ``zzz``.
 
 .. code-block:: python
+    :name: test_create_a_zip_file_with_different_variety_of_file_types_within
 
     from faker import Faker
     from faker_file.providers.helpers.inner import (
@@ -212,6 +215,7 @@ Another way to create a ZIP file with variety of different file types within
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
 .. code-block:: python
+    :name: test_create_a_zip_file_with_different_variety_of_file_types_within_2
 
     from faker import Faker
     from faker_file.providers.helpers.inner import (
@@ -243,12 +247,13 @@ Another way to create a ZIP file with variety of different file types within
 Note, that ``count`` argument (not shown in the example, but commonly
 accepted by inner functions) will be simply ignored here.
 
-Create a EML file consisting of TXT files with static content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create an EML file consisting of TXT files with static content
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
 .. code-block:: python
+    :name: test_create_an_eml_file_consisting_of_txt_files_with_static_content
 
     from faker import Faker
     from faker_file.providers.eml_file import EmlFileProvider
@@ -268,6 +273,7 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the email itself with ``zzz``.
 
 .. code-block:: python
+    :name: test_create_an_eml_file_consisting_of_txt_files_with_dynamic_content
 
     from faker import Faker
     from faker_file.providers.eml_file import EmlFileProvider
@@ -301,6 +307,7 @@ contain 5 DOCX files.
   DOCX files.
 
 .. code-block:: python
+    :name: test_create_a_nested_eml_file
 
     from faker import Faker
     from faker_file.providers.eml_file import EmlFileProvider
@@ -337,6 +344,7 @@ Create an EML file with variety of different file types within
 - Prefix the filename of the EML itself with ``zzz``.
 
 .. code-block:: python
+    :name: test_create_an_eml_file_with_different_variety_of_file_types_within
 
     from faker import Faker
     from faker_file.providers.helpers.inner import (
@@ -436,6 +444,7 @@ the following arguments:
 The following example shows how to generate a DOCX file with table and image.
 
 .. code-block:: python
+    :name: test_create_a_docx_file_with_table_and_image_using_dynamictemplate
 
     from io import BytesIO
 
@@ -493,6 +502,7 @@ Similarly to previous section, the following example shows how to generate an
 ODT file with table and image.
 
 .. code-block:: python
+    :name: test_create_a_odt_file_with_table_and_image_using_dynamictemplate
 
     from faker import Faker
     from faker_file.providers.odt_file import OdtFileProvider
@@ -629,6 +639,7 @@ caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
 .. code-block:: python
+    :name: test_create_a_graphic_pdf_file_using_pillow
 
     from faker import Faker
     from faker_file.providers.pdf_file import GraphicPdfFileProvider
@@ -659,6 +670,7 @@ Supported files formats are: ICO, JPEG, PNG and WEBP.
 Create an ICO file
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_graphic_providers_create_an_ico_file
 
     from faker import Faker
     from faker_file.providers.ico_file import GraphicIcoFileProvider
@@ -671,6 +683,7 @@ Create an ICO file
 Create a JPEG file
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_graphic_providers_create_a_jpeg_file
 
     from faker import Faker
     from faker_file.providers.jpeg_file import GraphicJpegFileProvider
@@ -683,6 +696,7 @@ Create a JPEG file
 Create a PNG file
 ^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_graphic_providers_create_a_png_file
 
     from faker import Faker
     from faker_file.providers.png_file import GraphicPngFileProvider
@@ -695,6 +709,7 @@ Create a PNG file
 Create a WEBP file
 ^^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_graphic_providers_create_a_webp_file
 
     from faker import Faker
     from faker_file.providers.webp_file import GraphicWebpFileProvider
@@ -707,6 +722,13 @@ Create a WEBP file
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
 .. code-block:: python
+    :name: test_create_a_mp3_file
+
+    from faker import Faker
+    from faker_file.providers.mp3_file import Mp3FileProvider
+
+    FAKER = Faker()
+    FAKER.add_provider(Mp3FileProvider)
 
     file = FAKER.mp3_file()
 
@@ -715,6 +737,7 @@ Create a MP3 file by explicitly specifying MP3 generator class
 Google Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_create_a_mp3_file_explicit_mp3_generator_class
 
     from faker import Faker
     from faker_file.providers.mp3_file import Mp3FileProvider
@@ -729,6 +752,7 @@ Google Text-to-Speech
 You can tune arguments too:
 
 .. code-block:: python
+    :name: test_create_a_mp3_file_explicit_mp3_generator_class_fine_tune_args
 
     from faker import Faker
     from faker_file.providers.mp3_file import Mp3FileProvider
@@ -755,6 +779,7 @@ for list of accepted values for ``tld`` argument.
 Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_create_a_mp3_file_explicit_mp3_generator_class_ms_edge
 
     from faker import Faker
     from faker_file.providers.mp3_file import Mp3FileProvider
@@ -769,6 +794,7 @@ Microsoft Edge Text-to-Speech
 You can tune arguments too:
 
 .. code-block:: python
+    :name: test_create_a_mp3_file_explicit_mp3_generator_class_ms_edge_finetune
 
     from faker import Faker
     from faker_file.providers.mp3_file import Mp3FileProvider
@@ -853,12 +879,17 @@ Pick a random file from a directory given
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
 .. code-block:: python
+    :name: test_pick_a_random_file_from_directory_given
 
+    from faker import Faker
     from faker_file.providers.random_file_from_dir import (
         RandomFileFromDirProvider,
     )
 
-    file = RandomFileFromDirProvider(FAKER).random_file_from_dir(
+    FAKER = Faker()
+    FAKER.add_provider(RandomFileFromDirProvider)
+
+    file = FAKER.random_file_from_dir(
         source_dir_path="/tmp/tmp/",
         prefix="zzz",
     )
@@ -871,9 +902,12 @@ File from path given
 
 .. code-block:: python
 
+    from faker import Faker
     from faker_file.providers.file_from_path import (
         FileFromPathProvider,
     )
+
+    FAKER = Faker()
 
     file = FileFromPathProvider(FAKER).file_from_path(
         path="/path/to/file.docx",
@@ -889,6 +923,12 @@ approximate.
 BIN
 ^^^
 .. code-block:: python
+    :name: test_generate_a_file_of_a_certain_size_bin
+
+    from faker import Faker
+    from faker_file.providers.bin_file import BinFileProvider
+
+    FAKER = Faker()
 
     file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
     file = BinFileProvider(FAKER).bin_file(length=3*1024**2)  # 3 Mb
@@ -901,6 +941,12 @@ BIN
 TXT
 ^^^
 .. code-block:: python
+    :name: test_generate_a_file_of_a_certain_size_txt
+
+    from faker import Faker
+    from faker_file.providers.txt_file import TxtFileProvider
+
+    FAKER = Faker()
 
     file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024**2)  # 1 Mb
     file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024**2)  # 3 Mb
@@ -912,12 +958,13 @@ TXT
 
 Generate a lot of files using multiprocessing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Generate 100 DOCX files
-^^^^^^^^^^^^^^^^^^^^^^^
+Generate 50 DOCX files
+^^^^^^^^^^^^^^^^^^^^^^
 - Use template.
-- Generate 100 DOCX files.
+- Generate 50 DOCX files.
 
 .. code-block:: python
+    :name: test_generate_a_lot_of_files_using_multiprocessing_50_docx_files
 
     from multiprocessing import Pool
     from faker import Faker
@@ -930,8 +977,8 @@ Generate 100 DOCX files
     # Document template
     TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
 
-    with Pool(processes=8) as pool:
-        for _ in range(100):  # Number of times we want to run our function
+    with Pool(processes=2) as pool:
+        for _ in range(50):  # Number of times we want to run our function
             pool.apply_async(
                 create_inner_docx_file,
                 # Apply async doesn't support kwargs. We have to pass all
@@ -944,6 +991,7 @@ Generate 100 DOCX files
 Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 .. code-block:: python
+    :name: test_generate_a_lot_of_files_using_multiprocessing_randomize_format
 
     from multiprocessing import Pool
 
@@ -1135,11 +1183,14 @@ you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
 .. code-block:: python
+    :name: test_generate_a_html_file_from_predefined_template
 
     from faker import Faker
     from faker_file.providers.generic_file import GenericFileProvider
 
-    file = GenericFileProvider(Faker()).generic_file(
+    FAKER = Faker()
+
+    file = GenericFileProvider(FAKER).generic_file(
         content="<html><body><p>{{text}}</p></body></html>",
         extension="html",
     )
