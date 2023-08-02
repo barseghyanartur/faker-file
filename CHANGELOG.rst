@@ -27,11 +27,15 @@ are used for versioning (schema follows below):
 
 0.17.3
 ------
-2023-07-??
+2023-08-02
+
+.. note::
+
+    In memory of Sinead O'Connor.
 
 - Allow to pass ``image`` argument (``bytes``) to the contrib ``add_picture``
   functions.
-- Documentation fixes.
+- Documentation improvements.
 
 0.17.2
 ------
