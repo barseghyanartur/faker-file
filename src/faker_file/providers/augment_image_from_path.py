@@ -42,7 +42,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         FAKER.add_provider(AugmentImageFromPathProvider)
 
         file = FAKER.augment_image_from_path(
-            source_dir_path="/tmp/tmp/",
+            path="/path/to/image.png",
         )
 
     Usage example with options:
@@ -50,9 +50,8 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         .. code-block:: python
 
         file = FAKER.augment_image_from_path(
-            source_dir_path="/tmp/tmp/",
+            path="/path/to/image.png",
             prefix="zzz",
-            extensions={"jpeg", "png"}
         )
     """
 
