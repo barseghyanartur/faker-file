@@ -25,6 +25,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.4
+------
+2023-08-09
+
+- Added ``AugmentRandomImageFromDirProvider``
+  and ``AugmentImageFromPathProvider`` providers for basic image augmentation.
+
 0.17.3
 ------
 2023-08-02

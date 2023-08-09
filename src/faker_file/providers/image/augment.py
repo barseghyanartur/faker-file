@@ -1,7 +1,7 @@
 import io
 import random
 from copy import deepcopy
-from typing import Callable, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
@@ -262,25 +262,26 @@ def color_jitter(
     return img
 
 
-DEFAULT_METHODS = [
-    add_brightness,
-    add_contrast,
-    add_darkness,
-    add_saturation,
-    decrease_contrast,
-    flip_horizontal,
-    flip_vertical,
-    grayscale,
-    resize_height,
-    resize_width,
-    rotate,
-    solarize,
+DEFAULT_AUGMENTATIONS: List[Tuple[Callable, Dict[str, Any]]] = [
+    (add_brightness, {}),
+    (add_contrast, {}),
+    (add_darkness, {}),
+    (add_saturation, {}),
+    (decrease_contrast, {}),
+    (flip_horizontal, {}),
+    (flip_vertical, {}),
+    (grayscale, {}),
+    (resize_height, {}),
+    (resize_width, {}),
+    (rotate, {}),
+    (solarize, {}),
+    (gaussian_blur, {}),
 ]
 
 
 def augment_image(
     image_bytes: bytes,
-    augmentations: Optional[List[Callable]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
     num_steps: Optional[int] = None,
 ) -> bytes:
     """Augment the input image with a series of random augmentation methods.
@@ -307,7 +308,7 @@ def augment_image(
     counter = 0
 
     if not augmentations:
-        _augmentations = deepcopy(DEFAULT_METHODS)
+        _augmentations = deepcopy(DEFAULT_AUGMENTATIONS)
     else:
         _augmentations = deepcopy(augmentations)
 
@@ -315,9 +316,11 @@ def augment_image(
         num_steps = len(_augmentations)
 
     while counter < num_steps:
-        func = random_pop(_augmentations)
-        image = func(image)
-        counter += 1
+        func_and_kwargs = random_pop(_augmentations)
+        if func_and_kwargs:
+            func, kwargs = func_and_kwargs
+            image = func(image, **kwargs)
+            counter += 1
 
     # Convert the image back to bytes
     byte_array = io.BytesIO()
@@ -327,7 +330,7 @@ def augment_image(
 
 def augment_image_file(
     image_path: str,
-    augmentations: Optional[List[Callable]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
     num_steps: Optional[int] = None,
 ) -> bytes:
     """Augment image from path.

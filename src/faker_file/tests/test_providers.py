@@ -71,6 +71,10 @@ from ..contrib.pdf_file.reportlab_snippets import (
     add_table as pdf_reportlab_add_table,
 )
 from ..helpers import load_class_from_path
+from ..providers.augment_image_from_path import AugmentImageFromPathProvider
+from ..providers.augment_random_image_from_dir import (
+    AugmentRandomImageFromDirProvider,
+)
 from ..providers.base.image_generator import BaseImageGenerator
 from ..providers.base.mp3_generator import BaseMp3Generator
 from ..providers.base.pdf_generator import BasePdfGenerator
@@ -119,6 +123,7 @@ from ..providers.helpers.inner import (
     list_create_inner_file,
 )
 from ..providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
+from ..providers.image.augment import color_jitter, equalize, random_crop
 from ..providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
 from ..providers.json_file import JsonFileProvider
 from ..providers.mp3_file import Mp3FileProvider
@@ -164,6 +169,8 @@ __all__ = ("ProvidersTestCase",)
 
 
 FileProvider = Union[
+    AugmentImageFromPathProvider,
+    AugmentRandomImageFromDirProvider,
     BinFileProvider,
     BmpFileProvider,
     CsvFileProvider,
@@ -209,6 +216,7 @@ FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 
 SOURCE_FILE_FROM_PATH = TxtFileProvider(FAKER).txt_file(max_nb_chars=100)
+SOURCE_IMG_FILE_FROM_PATH = GraphicJpegFileProvider(FAKER).graphic_jpeg_file()
 
 pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
 pdf_reportlab_add_non_existing_heading = partial(
@@ -231,6 +239,96 @@ class ProvidersTestCase(unittest.TestCase):
             Optional[Union[bool, PathyFileSystemStorage]],
         ]
     ] = [
+        # AugmentImageFromPathProvider
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
+            },
+            False,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
+            },
+            PATHY_FS_STORAGE,
+        ),
+        # AugmentRandomImageFromDirProvider
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+            },
+            False,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+            },
+            PATHY_FS_STORAGE,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+                "augmentations": [],
+            },
+            None,
+        ),
         # BIN
         (FAKER, BinFileProvider, "bin_file", {}, None),
         (FAKER, BinFileProvider, "bin_file", {}, False),

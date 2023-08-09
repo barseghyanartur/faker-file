@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Callable, List, Optional, Union, overload
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union, overload
 
 from faker.providers import BaseProvider
 
@@ -64,7 +64,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        augmentations: Optional[List[Callable]] = None,
+        augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
         raw: bool = True,
         **kwargs,
@@ -78,7 +78,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        augmentations: Optional[List[Callable]] = None,
+        augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
         **kwargs,
     ) -> StringValue:
@@ -90,7 +90,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        augmentations: Optional[List[Callable]] = None,
+        augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
         raw: bool = False,
         **kwargs,
@@ -101,7 +101,8 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
-        :param augmentations: List of callable augmentation functions. If not
+        :param augmentations: List of tuples of callable augmentation
+            functions and their respective keyword arguments. If not
             provided, the default augmentation functions will be used.
         :param num_steps: Number of augmentation steps (functions) to be
             applied. If not specified, the length of the `augmentations` list
