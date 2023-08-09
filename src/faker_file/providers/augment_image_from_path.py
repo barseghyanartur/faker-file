@@ -35,14 +35,14 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
 
         from faker import Faker
         from faker_file.providers.augment_image_from_path import (
-            AugmentImageFromPathProvider,
+            AugmentImageFromPathProvider
         )
 
         FAKER = Faker()
         FAKER.add_provider(AugmentImageFromPathProvider)
 
         file = FAKER.augment_image_from_path(
-            path="/path/to/image.png",
+            path="/path/to/image.png"
         )
 
     Usage example with options:
@@ -64,7 +64,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        methods: Optional[List[Callable]] = None,
+        augmentations: Optional[List[Callable]] = None,
         num_steps: Optional[int] = None,
         raw: bool = True,
         **kwargs,
@@ -78,7 +78,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        methods: Optional[List[Callable]] = None,
+        augmentations: Optional[List[Callable]] = None,
         num_steps: Optional[int] = None,
         **kwargs,
     ) -> StringValue:
@@ -90,7 +90,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         storage: Optional[BaseStorage] = None,
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
-        methods: Optional[List[Callable]] = None,
+        augmentations: Optional[List[Callable]] = None,
         num_steps: Optional[int] = None,
         raw: bool = False,
         **kwargs,
@@ -101,8 +101,11 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         :param storage: Storage. Defaults to `FileSystemStorage`.
         :param basename: File basename (without extension).
         :param prefix: File name prefix.
-        :param methods: Optional[List[Callable]] = None,
-        :param num_steps: Optional[int] = None,
+        :param augmentations: List of callable augmentation functions. If not
+            provided, the default augmentation functions will be used.
+        :param num_steps: Number of augmentation steps (functions) to be
+            applied. If not specified, the length of the `augmentations` list
+            will be used.
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -126,7 +129,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
 
         image_bytes = augment_image_file(
             image_path=path,
-            methods=methods,
+            augmentations=augmentations,
             num_steps=num_steps,
         )
 

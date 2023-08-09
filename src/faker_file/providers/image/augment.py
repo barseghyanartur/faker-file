@@ -36,6 +36,15 @@ __all__ = (
 def resize_width(
     img: Image.Image, lower: float = 0.5, upper: float = 1.5
 ) -> Image.Image:
+    """Resize the image in width by a random percentage.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random resize.
+        Default is 0.5.
+    :param upper: Upper bound for the random resize.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     width_percent = random.uniform(lower, upper)
     return img.resize((int(img.width * width_percent), img.height))
 
@@ -43,17 +52,36 @@ def resize_width(
 def resize_height(
     img: Image.Image, lower: float = 0.5, upper: float = 1.5
 ) -> Image.Image:
+    """Resize the image in height by a random percentage.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random resize.
+        Default is 0.5.
+    :param upper: Upper bound for the random resize.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     height_percent = random.uniform(lower, upper)
     return img.resize((img.width, int(img.height * height_percent)))
 
 
 def grayscale(img: Image.Image) -> Image.Image:
+    """Convert the image to grayscale."""
     return img.convert("L")
 
 
 def add_contrast(
     img: Image.Image, lower: float = 1, upper: float = 2
 ) -> Image.Image:
+    """Enhance the image's contrast by a random factor.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random enhancement.
+        Default is 0.5.
+    :param upper: Upper bound for the random enhancement.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     enhancer = ImageEnhance.Contrast(img)
     return enhancer.enhance(random.uniform(lower, upper))
 
@@ -61,6 +89,15 @@ def add_contrast(
 def decrease_contrast(
     img: Image.Image, lower: float = 0.5, upper: float = 1
 ) -> Image.Image:
+    """Reduce the image's contrast by a random factor.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random enhancement.
+        Default is 0.5.
+    :param upper: Upper bound for the random enhancement.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     enhancer = ImageEnhance.Contrast(img)
     return enhancer.enhance(random.uniform(lower, upper))
 
@@ -68,6 +105,15 @@ def decrease_contrast(
 def add_saturation(
     img: Image.Image, lower: float = 1, upper: float = 2
 ) -> Image.Image:
+    """Enhance the image's color saturation by a random factor.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random enhancement.
+        Default is 0.5.
+    :param upper: Upper bound for the random enhancement.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     enhancer = ImageEnhance.Color(img)
     return enhancer.enhance(random.uniform(lower, upper))
 
@@ -75,6 +121,15 @@ def add_saturation(
 def add_brightness(
     img: Image.Image, lower: float = 1, upper: float = 2
 ) -> Image.Image:
+    """Increase the image's brightness by a random factor.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random enhancement.
+        Default is 0.5.
+    :param upper: Upper bound for the random enhancement.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     enhancer = ImageEnhance.Brightness(img)
     return enhancer.enhance(random.uniform(lower, upper))
 
@@ -82,19 +137,43 @@ def add_brightness(
 def add_darkness(
     img: Image.Image, lower: float = 0.5, upper: float = 1
 ) -> Image.Image:
+    """Decrease the image's brightness by a random factor.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random enhancement.
+        Default is 0.5.
+    :param upper: Upper bound for the random enhancement.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     enhancer = ImageEnhance.Brightness(img)
     return enhancer.enhance(random.uniform(lower, upper))
 
 
 def flip_vertical(img: Image.Image) -> Image.Image:
+    """Flip the image vertically."""
     return img.transpose(method=Image.FLIP_TOP_BOTTOM)
 
 
 def flip_horizontal(img: Image.Image) -> Image.Image:
+    """Flip the image horizontally."""
     return img.transpose(method=Image.FLIP_LEFT_RIGHT)
 
 
-def rotate(img: Image.Image, lower: int = -45, upper: int = 45) -> Image.Image:
+def rotate(
+    img: Image.Image,
+    lower: int = -45,
+    upper: int = 45,
+) -> Image.Image:
+    """Rotate the image by a random angle.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random rotation.
+        Default is 0.5.
+    :param upper: Upper bound for the random rotation.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     angle = random.randint(lower, upper)
     return img.rotate(angle)
 
@@ -102,6 +181,15 @@ def rotate(img: Image.Image, lower: int = -45, upper: int = 45) -> Image.Image:
 def gaussian_blur(
     img: Image.Image, lower: float = 0.5, upper: float = 3
 ) -> Image.Image:
+    """Apply Gaussian blur to the image using a random radius.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random radius.
+        Default is 0.5.
+    :param upper: Upper bound for the random radius.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     return img.filter(
         ImageFilter.GaussianBlur(radius=random.uniform(lower, upper))
     )
@@ -110,6 +198,15 @@ def gaussian_blur(
 def random_crop(
     img: Image.Image, lower: float = 0.6, upper: float = 0.9
 ) -> Image.Image:
+    """Randomly crop a portion of the image.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random crop.
+        Default is 0.5.
+    :param upper: Upper bound for the random crop.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     width, height = img.size
     crop_size = random.uniform(lower, upper)
     new_width, new_height = int(width * crop_size), int(height * crop_size)
@@ -123,16 +220,42 @@ def random_crop(
 
 
 def solarize(img: Image.Image, threshold: int = 128) -> Image.Image:
-    return ImageOps.solarize(img, threshold=threshold)
+    """Invert pixel values above a specified threshold."""
+    if img.mode == "RGBA":
+        # Split the image into RGB and alpha
+        rgb, alpha = img.split()[0:3], img.split()[3]
+
+        # Convert the RGB tuple back to an image
+        rgb_img = Image.merge("RGB", rgb)
+
+        # Solarize the RGB image
+        solarized_rgb = ImageOps.solarize(rgb_img, threshold=threshold)
+
+        # Merge back with the alpha channel
+        solarized_img = Image.merge("RGBA", (*solarized_rgb.split(), alpha))
+
+        return solarized_img
+    else:
+        return ImageOps.solarize(img, threshold=threshold)
 
 
 def equalize(img: Image.Image) -> Image.Image:
+    """Equalize the image's histogram."""
     return ImageOps.equalize(img)
 
 
 def color_jitter(
     img: Image.Image, lower: float = 0.5, upper: float = 1.5
 ) -> Image.Image:
+    """Randomly adjust the image's brightness, contrast, saturation, and hue.
+
+    :param img: Input image to be adjusted.
+    :param lower: Lower bound for the random enhancement multiplier.
+        Default is 0.5.
+    :param upper: Upper bound for the random enhancement multiplier.
+        Default is 1.5.
+    :return: Adjusted image.
+    """
     img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
     img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
     img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
@@ -157,40 +280,63 @@ DEFAULT_METHODS = [
 
 def augment_image(
     image_bytes: bytes,
-    methods: Optional[List[Callable]] = None,
+    augmentations: Optional[List[Callable]] = None,
     num_steps: Optional[int] = None,
 ) -> bytes:
+    """Augment the input image with a series of random augmentation methods.
+
+    Read an image provided in bytes format, applies a specified number
+    of random augmentation methods from a given list, and then returns the
+    augmented image in bytes format. If no list of methods is provided, a
+    default list is used. If no number of steps (methods) is specified, all
+    methods will be applied.
+
+    :param image_bytes: Input image in bytes format.
+    :param augmentations: List of callable augmentation functions. If not
+        provided, the default augmentation functions will be used.
+    :param num_steps: Number of augmentation steps (functions) to be applied.
+        If not specified, the length of the `augmentations` list will be used.
+    :return: Augmented image in bytes format.
+    """
     # Load the image using PIL
     image = Image.open(io.BytesIO(image_bytes))
+    # Original file format somehow gets lots during conversion.
+    # We save it for later.
+    image_format = image.format
+
     counter = 0
 
-    if not methods:
-        _methods = deepcopy(DEFAULT_METHODS)
+    if not augmentations:
+        _augmentations = deepcopy(DEFAULT_METHODS)
     else:
-        _methods = deepcopy(methods)
+        _augmentations = deepcopy(augmentations)
 
     if not num_steps:
-        num_steps = len(_methods)
+        num_steps = len(_augmentations)
 
     while counter < num_steps:
-        method = random_pop(_methods)
-        image = method(image)
+        func = random_pop(_augmentations)
+        image = func(image)
         counter += 1
 
     # Convert the image back to bytes
     byte_array = io.BytesIO()
-    image.save(byte_array, format=image.format)
+    image.save(byte_array, format=image_format)
     return byte_array.getvalue()
 
 
 def augment_image_file(
     image_path: str,
-    methods: Optional[List[Callable]] = None,
+    augmentations: Optional[List[Callable]] = None,
     num_steps: Optional[int] = None,
 ) -> bytes:
+    """Augment image from path.
+
+    Augment the input image with a series of random augmentation functions.
+    """
     with open(image_path, "rb") as image_bytes:
         return augment_image(
             image_bytes=image_bytes.read(),
-            methods=methods,
+            augmentations=augmentations,
             num_steps=num_steps,
         )
