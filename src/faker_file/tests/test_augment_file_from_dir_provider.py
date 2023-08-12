@@ -235,6 +235,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
 
     def test_augment_file_from_dir_extract_not_implemented_exception(
         self: "AugmentFileFromDirProviderTestCase",

@@ -184,6 +184,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
             "content": f"{subject}\n {content}",
             "inner": {},
             "filename": filename,
+            "storage": storage,
         }
 
         msg = EmailMessage()

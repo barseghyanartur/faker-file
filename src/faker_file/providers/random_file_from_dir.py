@@ -109,7 +109,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
             prefix=prefix,
             basename=basename,
         )
-        data = {"filename": filename}
+        data = {"filename": filename, "storage": storage}
 
         # Specific
         with open(source_file_path, "rb") as _file:

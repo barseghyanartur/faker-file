@@ -213,6 +213,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
                 self.sftp_root_path
             )
         )
+        file.data["storage"].unlink(file)
 
     def test_integration_sub_dir(self: "TestSFTPStorageTestCase") -> None:
         storage = SFTPStorage(
@@ -230,6 +231,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
                 os.path.join(self.sftp_root_path, "sub")
             )
         )
+        file.data["storage"].unlink(file)
 
     @parametrize(
         "kwargs",

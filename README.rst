@@ -431,12 +431,15 @@ file; valid for most file providers, except ``FileFromPathProvider``,
 ``RandomFileFromDirProvider``, ``TarFileProvider`` and ``ZipFileProvider``).
 
 All file providers store an absolute path to the generated file in ``filename``
-key of the ``data`` attribute. See the table below.
+key of the ``data`` attribute and instance of the storage used in ``storage``
+key. See the table below.
 
 +-----------+-----------------------------------------------------------------+
 | Key name  | File provider                                                   |
 +===========+=================================================================+
 | filename  | all                                                             |
++-----------+-----------------------------------------------------------------+
+| storage   | all                                                             |
 +-----------+-----------------------------------------------------------------+
 | content   | all except FileFromPathProvider, RandomFileFromDirProvider,     |
 |           | TarFileProvider, ZipFileProvider and all graphic file providers |

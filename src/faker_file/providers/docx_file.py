@@ -197,7 +197,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
                 content=content,
                 format_func=format_func,
             )
-        data = {"content": _content, "filename": filename}
+        data = {"content": _content, "filename": filename, "storage": storage}
 
         with BytesIO() as _fake_file:
             document = Document()

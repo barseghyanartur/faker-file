@@ -164,7 +164,7 @@ class JsonFileProvider(BaseProvider, FileMixin):
         else:
             content = format_func(self.generator, content)
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if raw:
             raw_content = BytesValue(content.encode("utf8"))

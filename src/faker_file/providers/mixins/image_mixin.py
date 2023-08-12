@@ -129,7 +129,7 @@ class ImageMixin(FileMixin):
             format_func=format_func,
         )
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if image_generator_cls is None:
             image_generator_cls = DEFAULT_IMAGE_GENERATOR

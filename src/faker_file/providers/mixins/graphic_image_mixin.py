@@ -91,7 +91,7 @@ class GraphicImageMixin(FileMixin):
             basename=basename,
         )
 
-        data = {"filename": filename}
+        data = {"filename": filename, "storage": storage}
 
         buffer = self.generator.image(
             size=size,

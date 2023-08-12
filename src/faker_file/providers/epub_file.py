@@ -181,6 +181,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
             "title": title,
             "chapter_title": chapter_title,
             "filename": filename,
+            "storage": storage,
         }
 
         _raw_content = bytes()

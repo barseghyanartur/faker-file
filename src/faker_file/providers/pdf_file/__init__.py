@@ -216,7 +216,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             generator=self.generator,
             **pdf_generator_kwargs,
         )
-        data = {"content": "", "filename": filename}
+        data = {"content": "", "filename": filename, "storage": storage}
         if isinstance(content, DynamicTemplate):
             _content = content
         else:

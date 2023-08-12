@@ -146,7 +146,7 @@ class PptxFileProvider(BaseProvider, FileMixin):
             format_func=format_func,
         )
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         stream = BytesIO()
         prs = Presentation()

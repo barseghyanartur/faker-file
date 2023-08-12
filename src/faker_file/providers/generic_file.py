@@ -149,7 +149,7 @@ class GenericFileProvider(BaseProvider, FileMixin):
         if self.generator is None:
             self.generator = Faker()
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if raw:
             if isinstance(content, bytes):

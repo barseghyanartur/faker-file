@@ -104,3 +104,8 @@ class FileSystemStorage(BaseStorage):
         if os.path.isabs(filename):
             return os.path.abspath(filename)
         return os.path.abspath(os.path.join(self.root_path, filename))
+
+    def unlink(self: "FileSystemStorage", filename: str) -> None:
+        """Delete the file."""
+        abs_path = self.abspath(filename)
+        os.remove(abs_path)

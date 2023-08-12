@@ -141,7 +141,12 @@ class TarFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
             basename=basename,
         )
-        data: Dict[str, Any] = {"inner": {}, "files": [], "filename": filename}
+        data: Dict[str, Any] = {
+            "inner": {},
+            "files": [],
+            "filename": filename,
+            "storage": storage,
+        }
         fs_storage = FileSystemStorage()
 
         # Specific

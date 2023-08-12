@@ -27,10 +27,12 @@ are used for versioning (schema follows below):
 
 0.17.4
 ------
-2023-08-09
+2023-08-??
 
 - Added ``AugmentRandomImageFromDirProvider``
   and ``AugmentImageFromPathProvider`` providers for basic image augmentation.
+- Added ``storage`` to metadata for all providers for easy clean-up of files.
+- Added ``unlink`` method to all storages for easy clean-up of files.
 
 0.17.3
 ------

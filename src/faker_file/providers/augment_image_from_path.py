@@ -126,7 +126,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
             prefix=prefix,
             basename=basename,
         )
-        data = {"filename": filename}
+        data = {"filename": filename, "storage": storage}
 
         image_bytes = augment_image_file(
             image_path=path,

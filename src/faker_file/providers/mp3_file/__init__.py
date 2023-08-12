@@ -210,7 +210,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             content=content,
             format_func=format_func,
         )
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if mp3_generator_cls is None:
             mp3_generator_cls = DEFAULT_MP3_GENERATOR

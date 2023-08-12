@@ -176,3 +176,4 @@ class DataIntegrityTestCase(unittest.TestCase):
             f"Original content: {_file.data['content']}\n"
             f"Extracted content: {extracted_content}",
         )
+        _file.data["storage"].unlink(_file)

@@ -117,7 +117,7 @@ class TabularDataMixin(FileMixin):
                 num_rows=num_rows,
             )
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         dataset = Dataset()
         dataset.load(content, format="json")

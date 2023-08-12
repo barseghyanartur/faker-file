@@ -239,96 +239,6 @@ class ProvidersTestCase(unittest.TestCase):
             Optional[Union[bool, PathyFileSystemStorage]],
         ]
     ] = [
-        # AugmentImageFromPathProvider
-        (
-            FAKER,
-            AugmentImageFromPathProvider,
-            "augment_image_from_path",
-            {
-                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
-            },
-            None,
-        ),
-        (
-            FAKER,
-            AugmentImageFromPathProvider,
-            "augment_image_from_path",
-            {
-                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
-            },
-            False,
-        ),
-        (
-            FAKER,
-            AugmentImageFromPathProvider,
-            "augment_image_from_path",
-            {
-                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
-            },
-            PATHY_FS_STORAGE,
-        ),
-        # AugmentRandomImageFromDirProvider
-        (
-            FAKER,
-            AugmentRandomImageFromDirProvider,
-            "augment_random_image_from_dir",
-            {
-                "source_dir_path": os.path.dirname(
-                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
-                ),
-            },
-            None,
-        ),
-        (
-            FAKER,
-            AugmentRandomImageFromDirProvider,
-            "augment_random_image_from_dir",
-            {
-                "source_dir_path": os.path.dirname(
-                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
-                ),
-            },
-            False,
-        ),
-        (
-            FAKER,
-            AugmentRandomImageFromDirProvider,
-            "augment_random_image_from_dir",
-            {
-                "source_dir_path": os.path.dirname(
-                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
-                ),
-            },
-            PATHY_FS_STORAGE,
-        ),
-        (
-            FAKER,
-            AugmentRandomImageFromDirProvider,
-            "augment_random_image_from_dir",
-            {
-                "source_dir_path": os.path.dirname(
-                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
-                ),
-                "augmentations": [
-                    (color_jitter, {}),
-                    (equalize, {}),
-                    (random_crop, {}),
-                ],
-            },
-            None,
-        ),
-        (
-            FAKER,
-            AugmentRandomImageFromDirProvider,
-            "augment_random_image_from_dir",
-            {
-                "source_dir_path": os.path.dirname(
-                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
-                ),
-                "augmentations": [],
-            },
-            None,
-        ),
         # BIN
         (FAKER, BinFileProvider, "bin_file", {}, None),
         (FAKER, BinFileProvider, "bin_file", {}, False),
@@ -512,34 +422,6 @@ class ProvidersTestCase(unittest.TestCase):
             "epub_file",
             {"format_func": pystr_format_func},
             None,
-        ),
-        # FileFromPathProvider
-        (
-            FAKER,
-            FileFromPathProvider,
-            "file_from_path",
-            {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
-            },
-            None,
-        ),
-        (
-            FAKER,
-            FileFromPathProvider,
-            "file_from_path",
-            {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
-            },
-            False,
-        ),
-        (
-            FAKER,
-            FileFromPathProvider,
-            "file_from_path",
-            {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
-            },
-            PATHY_FS_STORAGE,
         ),
         # Generic
         (
@@ -1021,40 +903,6 @@ class ProvidersTestCase(unittest.TestCase):
             {"format_func": pystr_format_func},
             None,
         ),
-        # RandomFileFromDirProvider
-        (
-            FAKER,
-            RandomFileFromDirProvider,
-            "random_file_from_dir",
-            {
-                "source_dir_path": os.path.join(
-                    tempfile.gettempdir(), DEFAULT_REL_PATH
-                )
-            },
-            None,
-        ),
-        (
-            FAKER,
-            RandomFileFromDirProvider,
-            "random_file_from_dir",
-            {
-                "source_dir_path": os.path.join(
-                    tempfile.gettempdir(), DEFAULT_REL_PATH
-                )
-            },
-            False,
-        ),
-        (
-            FAKER,
-            RandomFileFromDirProvider,
-            "random_file_from_dir",
-            {
-                "source_dir_path": os.path.join(
-                    tempfile.gettempdir(), DEFAULT_REL_PATH
-                )
-            },
-            PATHY_FS_STORAGE,
-        ),
         # RTF
         (FAKER, RtfFileProvider, "rtf_file", {}, None),
         (FAKER_HY, RtfFileProvider, "rtf_file", {}, None),
@@ -1341,14 +1189,6 @@ class ProvidersTestCase(unittest.TestCase):
         (create_inner_eml_file, {"content": None}, {}),
         # EPUB
         (create_inner_epub_file, {"content": "Lorem ipsum"}, {}),
-        # FileFromPath
-        (
-            create_inner_file_from_path,
-            {"content": None},
-            {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
-            },
-        ),
         # Generic
         (
             create_inner_generic_file,
@@ -1382,16 +1222,6 @@ class ProvidersTestCase(unittest.TestCase):
         (create_inner_graphic_png_file, {"size": (100, 100)}, {}),
         # PPTX
         (create_inner_pptx_file, {"content": "Lorem ipsum"}, {}),
-        # RandomFileFromDir
-        (
-            create_inner_random_file_from_dir,
-            {"content": None},
-            {
-                "source_dir_path": os.path.join(
-                    tempfile.gettempdir(), DEFAULT_REL_PATH
-                )
-            },
-        ),
         # RTF
         (create_inner_rtf_file, {"content": "Lorem ipsum"}, {}),
         # SVG
@@ -1455,16 +1285,6 @@ class ProvidersTestCase(unittest.TestCase):
         # EPUB
         (FAKER, EpubFileProvider, "epub_file", {}, None),
         (FAKER_HY, EpubFileProvider, "epub_file", {}, None),
-        # FileFromPathProvider
-        (
-            FAKER,
-            FileFromPathProvider,
-            "file_from_path",
-            {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
-            },
-            None,
-        ),
         # Generic
         (
             FAKER,
@@ -1561,18 +1381,6 @@ class ProvidersTestCase(unittest.TestCase):
         # PPTX
         (FAKER, PptxFileProvider, "pptx_file", {}, None),
         (FAKER_HY, PptxFileProvider, "pptx_file", {}, None),
-        # RandomFileFromDirProvider
-        (
-            FAKER,
-            RandomFileFromDirProvider,
-            "random_file_from_dir",
-            {
-                "source_dir_path": os.path.join(
-                    tempfile.gettempdir(), DEFAULT_REL_PATH
-                )
-            },
-            None,
-        ),
         # RTF
         (FAKER, RtfFileProvider, "rtf_file", {}, None),
         (FAKER_HY, RtfFileProvider, "rtf_file", {}, None),
@@ -1655,6 +1463,7 @@ class ProvidersTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "fake, provider, method_name, kwargs, storage",
@@ -1678,6 +1487,7 @@ class ProvidersTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "fake, provider, method_name, kwargs, storage",
@@ -1700,6 +1510,7 @@ class ProvidersTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "fake, provider, method_name, kwargs, storage",
@@ -1723,6 +1534,7 @@ class ProvidersTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "fake, provider, method_name, kwargs, storage",
@@ -1746,6 +1558,7 @@ class ProvidersTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue(storage.exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "create_inner_file_func, options, create_inner_file_args",
@@ -1767,6 +1580,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = ZipFileProvider(None).zip_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "create_inner_file_func, options, create_inner_file_args",
@@ -1788,6 +1602,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = TarFileProvider(None).tar_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "create_inner_file_func, content",
@@ -1808,6 +1623,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = ZipFileProvider(None).zip_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "create_inner_file_func, content",
@@ -1828,6 +1644,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = TarFileProvider(None).tar_file(options=_options)
 
         self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
 
     @parametrize(
         "module_path, "
@@ -2209,3 +2026,535 @@ class ProvidersTestCase(unittest.TestCase):
         """Test load_class_from_path invalid path."""
         with self.assertRaises(ImportError):
             load_class_from_path("faker_file.providers.does_not_exist.MyClass")
+
+
+class RandomFileFromDirProviderTestCase(unittest.TestCase):
+    """RandomFileFromDirProvider test case."""
+
+    # fake, provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
+        # RandomFileFromDirProvider
+        (
+            FAKER,
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            None,
+        ),
+        (
+            FAKER,
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            False,
+        ),
+        (
+            FAKER,
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            PATHY_FS_STORAGE,
+        ),
+    ]
+
+    # create_inner_file_func, options, create_inner_file_args
+    __PARAMETRIZED_DATA_ARCHIVES: List[
+        Tuple[
+            Optional[Callable],
+            Optional[Dict[str, Any]],
+            Optional[Dict[str, Any]],
+        ]
+    ] = [
+        # RandomFileFromDir
+        (
+            create_inner_random_file_from_dir,
+            {"content": None},
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+        ),
+    ]
+
+    __RAW_PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
+        # RandomFileFromDirProvider
+        (
+            FAKER,
+            RandomFileFromDirProvider,
+            "random_file_from_dir",
+            {
+                "source_dir_path": os.path.join(
+                    tempfile.gettempdir(), DEFAULT_REL_PATH
+                )
+            },
+            None,
+        ),
+    ]
+
+    def setUp(self: "RandomFileFromDirProviderTestCase"):
+        super().setUp()
+        use_fs(tempfile.gettempdir())
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA,
+    )
+    def test_faker(
+        self: "RandomFileFromDirProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_zip_file(
+        self: "RandomFileFromDirProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone ZIP file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_tar_file(
+        self: "RandomFileFromDirProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone TAR file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = TarFileProvider(None).tar_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
+
+
+class FileFromPathProviderTestCase(unittest.TestCase):
+    """FileFromPathProvider test case."""
+
+    # fake, provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
+        # FileFromPathProvider
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            None,
+        ),
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            False,
+        ),
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            PATHY_FS_STORAGE,
+        ),
+    ]
+
+    # create_inner_file_func, options, create_inner_file_args
+    __PARAMETRIZED_DATA_ARCHIVES: List[
+        Tuple[
+            Optional[Callable],
+            Optional[Dict[str, Any]],
+            Optional[Dict[str, Any]],
+        ]
+    ] = [
+        # FileFromPath
+        (
+            create_inner_file_from_path,
+            {"content": None},
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+        ),
+    ]
+
+    __RAW_PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
+        # FileFromPathProvider
+        (
+            FAKER,
+            FileFromPathProvider,
+            "file_from_path",
+            {
+                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+            },
+            None,
+        ),
+    ]
+
+    def setUp(self: "FileFromPathProviderTestCase"):
+        super().setUp()
+        use_fs(tempfile.gettempdir())
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA,
+    )
+    def test_faker(
+        self: "FileFromPathProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_zip_file(
+        self: "FileFromPathProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone ZIP file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_tar_file(
+        self: "FileFromPathProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone TAR file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = TarFileProvider(None).tar_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+        _file.data["storage"].unlink(_file)
+
+
+class AugmentImageFromPathProviderTestCase(unittest.TestCase):
+    """AugmentImageFromPathProvider test case."""
+
+    # fake, provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
+        # AugmentImageFromPathProvider
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
+            },
+            False,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_IMG_FILE_FROM_PATH.data["filename"],
+            },
+            PATHY_FS_STORAGE,
+        ),
+    ]
+
+    # create_inner_file_func, options, create_inner_file_args
+    __PARAMETRIZED_DATA_ARCHIVES: List[
+        Tuple[
+            Optional[Callable],
+            Optional[Dict[str, Any]],
+            Optional[Dict[str, Any]],
+        ]
+    ] = []
+
+    __RAW_PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = []
+
+    def setUp(self: "AugmentImageFromPathProviderTestCase"):
+        super().setUp()
+        use_fs(tempfile.gettempdir())
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA,
+    )
+    def test_faker(
+        self: "AugmentImageFromPathProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
+
+
+class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
+    """AugmentRandomImageFromDirProvider test case."""
+
+    # fake, provider, method_name, kwargs, storage
+    __PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = [
+        # AugmentRandomImageFromDirProvider
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+            },
+            False,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+            },
+            PATHY_FS_STORAGE,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_IMG_FILE_FROM_PATH.data["filename"]
+                ),
+                "augmentations": [],
+            },
+            None,
+        ),
+    ]
+
+    # create_inner_file_func, options, create_inner_file_args
+    __PARAMETRIZED_DATA_ARCHIVES: List[
+        Tuple[
+            Optional[Callable],
+            Optional[Dict[str, Any]],
+            Optional[Dict[str, Any]],
+        ]
+    ] = []
+
+    __RAW_PARAMETRIZED_DATA: List[
+        Tuple[
+            Faker,
+            Type[FileProvider],
+            str,
+            Dict[str, Any],
+            Optional[Union[bool, PathyFileSystemStorage]],
+        ]
+    ] = []
+
+    def setUp(self: "AugmentRandomImageFromDirProviderTestCase"):
+        super().setUp()
+        use_fs(tempfile.gettempdir())
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA,
+    )
+    def test_faker(
+        self: "AugmentRandomImageFromDirProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _file = _method(**_kwargs)
+        self.assertTrue((storage or FS_STORAGE).exists(_file))
+        _file.data["storage"].unlink(_file)
