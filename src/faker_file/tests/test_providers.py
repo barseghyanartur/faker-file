@@ -5,6 +5,7 @@ import unittest
 from copy import deepcopy
 from functools import partial
 from importlib import import_module, reload
+from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
 import pytest
@@ -216,9 +217,13 @@ FAKER_HY = Faker(locale="hy_AM")
 FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 
-SOURCE_FILE_FROM_PATH = TxtFileProvider(FAKER).txt_file(max_nb_chars=100)
-SOURCE_JPEG_FILE_FROM_PATH = GraphicJpegFileProvider(FAKER).graphic_jpeg_file()
-SOURCE_PNG_FILE_FROM_PATH = GraphicPngFileProvider(FAKER).graphic_png_file()
+SOURCE_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(extension="txt")
+SOURCE_JPEG_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension="jpg"
+)
+SOURCE_PNG_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension="png"
+)
 
 pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
 pdf_reportlab_add_non_existing_heading = partial(
@@ -226,6 +231,27 @@ pdf_reportlab_add_non_existing_heading = partial(
 )
 
 logging.getLogger("fontTools").setLevel(logging.WARNING)
+
+
+def create_test_files():
+    """Create test files for `random_file_from_dir` and `file_from_path`.
+
+    The following is important since some of the file providers
+    such as RandomFileFromDirProvider or FileFromPathProvider,
+    rely on physical presence of files.
+    """
+    source_file_from_path = Path(SOURCE_FILE_FROM_PATH_FILENAME)
+    source_jpeg_file_from_path = Path(SOURCE_JPEG_FILE_FROM_PATH_FILENAME)
+    source_png_file_from_path = Path(SOURCE_PNG_FILE_FROM_PATH_FILENAME)
+    TxtFileProvider(FAKER).txt_file(
+        basename=source_file_from_path.stem, max_nb_chars=100
+    )
+    GraphicJpegFileProvider(FAKER).graphic_jpeg_file(
+        basename=source_jpeg_file_from_path.stem
+    )
+    GraphicPngFileProvider(FAKER).graphic_png_file(
+        basename=source_png_file_from_path.stem
+    )
 
 
 class ProvidersTestCase(unittest.TestCase):
@@ -1444,6 +1470,11 @@ class ProvidersTestCase(unittest.TestCase):
         super().setUp()
         use_fs(tempfile.gettempdir())
 
+        # The following is important since some of the file providers
+        # such as RandomFileFromDirProvider or FileFromPathProvider,
+        # rely on physical presence of files.
+        create_test_files()
+
     def tearDown(self) -> None:
         super().tearDown()
         FILE_REGISTRY.clean_up()
@@ -1690,7 +1721,7 @@ class ProvidersTestCase(unittest.TestCase):
                 "FileFromPathProvider",
                 create_inner_file_from_path,
                 {
-                    "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                    "path": SOURCE_FILE_FROM_PATH_FILENAME,
                 },
             ),
             # Generic
@@ -2121,6 +2152,11 @@ class RandomFileFromDirProviderTestCase(unittest.TestCase):
         super().setUp()
         use_fs(tempfile.gettempdir())
 
+        # The following is important since some of the file providers
+        # such as RandomFileFromDirProvider or FileFromPathProvider,
+        # rely on physical presence of files.
+        create_test_files()
+
     def tearDown(self) -> None:
         super().tearDown()
         FILE_REGISTRY.clean_up()
@@ -2209,7 +2245,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
             FileFromPathProvider,
             "file_from_path",
             {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_FILE_FROM_PATH_FILENAME,
             },
             None,
         ),
@@ -2218,7 +2254,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
             FileFromPathProvider,
             "file_from_path",
             {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_FILE_FROM_PATH_FILENAME,
             },
             False,
         ),
@@ -2227,7 +2263,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
             FileFromPathProvider,
             "file_from_path",
             {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_FILE_FROM_PATH_FILENAME,
             },
             PATHY_FS_STORAGE,
         ),
@@ -2246,7 +2282,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
             create_inner_file_from_path,
             {"content": None},
             {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_FILE_FROM_PATH_FILENAME,
             },
         ),
     ]
@@ -2266,7 +2302,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
             FileFromPathProvider,
             "file_from_path",
             {
-                "path": SOURCE_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_FILE_FROM_PATH_FILENAME,
             },
             None,
         ),
@@ -2275,6 +2311,11 @@ class FileFromPathProviderTestCase(unittest.TestCase):
     def setUp(self: "FileFromPathProviderTestCase"):
         super().setUp()
         use_fs(tempfile.gettempdir())
+
+        # The following is important since some of the file providers
+        # such as RandomFileFromDirProvider or FileFromPathProvider,
+        # rely on physical presence of files.
+        create_test_files()
 
     def tearDown(self) -> None:
         super().tearDown()
@@ -2364,7 +2405,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             AugmentImageFromPathProvider,
             "augment_image_from_path",
             {
-                "path": SOURCE_JPEG_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
             },
             None,
         ),
@@ -2373,7 +2414,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             AugmentImageFromPathProvider,
             "augment_image_from_path",
             {
-                "path": SOURCE_JPEG_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
             },
             False,
         ),
@@ -2382,7 +2423,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             AugmentImageFromPathProvider,
             "augment_image_from_path",
             {
-                "path": SOURCE_JPEG_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
             },
             PATHY_FS_STORAGE,
         ),
@@ -2391,7 +2432,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             AugmentImageFromPathProvider,
             "augment_image_from_path",
             {
-                "path": SOURCE_PNG_FILE_FROM_PATH.data["filename"],
+                "path": SOURCE_PNG_FILE_FROM_PATH_FILENAME,
             },
             None,
         ),
@@ -2420,6 +2461,11 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         super().setUp()
         use_fs(tempfile.gettempdir())
 
+        # The following is important since some of the file providers
+        # such as RandomFileFromDirProvider or FileFromPathProvider,
+        # rely on physical presence of files.
+        create_test_files()
+
     def tearDown(self) -> None:
         super().tearDown()
         FILE_REGISTRY.clean_up()
@@ -2444,7 +2490,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         _method = getattr(fake, method_name)
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
-        self.assertTrue((storage or FS_STORAGE).exists(_file))
+        self.assertTrue(_file.data["storage"].exists(_file))
 
 
 class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
@@ -2467,7 +2513,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             "augment_random_image_from_dir",
             {
                 "source_dir_path": os.path.dirname(
-                    SOURCE_JPEG_FILE_FROM_PATH.data["filename"]
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
                 ),
             },
             None,
@@ -2478,7 +2524,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             "augment_random_image_from_dir",
             {
                 "source_dir_path": os.path.dirname(
-                    SOURCE_JPEG_FILE_FROM_PATH.data["filename"]
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
                 ),
             },
             False,
@@ -2489,7 +2535,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             "augment_random_image_from_dir",
             {
                 "source_dir_path": os.path.dirname(
-                    SOURCE_JPEG_FILE_FROM_PATH.data["filename"]
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
                 ),
             },
             PATHY_FS_STORAGE,
@@ -2500,7 +2546,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             "augment_random_image_from_dir",
             {
                 "source_dir_path": os.path.dirname(
-                    SOURCE_PNG_FILE_FROM_PATH.data["filename"]
+                    SOURCE_PNG_FILE_FROM_PATH_FILENAME,
                 ),
             },
             None,
@@ -2511,7 +2557,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             "augment_random_image_from_dir",
             {
                 "source_dir_path": os.path.dirname(
-                    SOURCE_JPEG_FILE_FROM_PATH.data["filename"]
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
                 ),
                 "augmentations": [
                     (color_jitter, {}),
@@ -2527,7 +2573,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             "augment_random_image_from_dir",
             {
                 "source_dir_path": os.path.dirname(
-                    SOURCE_JPEG_FILE_FROM_PATH.data["filename"]
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
                 ),
                 "augmentations": [],
             },
@@ -2557,6 +2603,11 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
     def setUp(self: "AugmentRandomImageFromDirProviderTestCase") -> None:
         super().setUp()
         use_fs(tempfile.gettempdir())
+
+        # The following is important since some of the file providers
+        # such as RandomFileFromDirProvider or FileFromPathProvider,
+        # rely on physical presence of files.
+        create_test_files()
 
     def tearDown(self) -> None:
         super().tearDown()

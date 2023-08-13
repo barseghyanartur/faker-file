@@ -33,6 +33,8 @@ are used for versioning (schema follows below):
   and ``AugmentImageFromPathProvider`` providers for basic image augmentation.
 - Added ``storage`` to metadata for all providers for easy clean-up of files.
 - Added ``unlink`` method to all storages for easy clean-up of files.
+- Added ``FileRegistry`` to keep track of all files created and introduce
+  functionality for cleaning up the files.
 
 0.17.3
 ------

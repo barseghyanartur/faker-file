@@ -4,6 +4,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Union, overload
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 from .image.augment import augment_image_file
@@ -144,5 +145,5 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
-
+        FILE_REGISTRY.add(file_name)
         return file_name
