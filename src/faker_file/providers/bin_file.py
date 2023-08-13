@@ -4,6 +4,7 @@ from faker import Faker
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -143,6 +144,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         storage.write_bytes(filename, content)
 
         # Generic
-        filename = StringValue(storage.relpath(filename))
-        filename.data = data
-        return filename
+        file_name = StringValue(storage.relpath(filename))
+        file_name.data = data
+        FILE_REGISTRY.add(file_name)
+        return file_name

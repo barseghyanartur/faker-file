@@ -12,6 +12,7 @@ from faker import Faker
 from parametrize import parametrize
 
 from ..providers.txt_file import TxtFileProvider
+from ..registry import FILE_REGISTRY
 from ..storages.sftp_storage import SFTPStorage
 from .sftp_server import SFTPServerManager, start_server
 from .utils import AutoFreePortInt
@@ -58,6 +59,10 @@ class TestSFTPStorageTestCase(unittest.TestCase):
                 f"waiting..."
             )
             time.sleep(1)
+
+    def tearDown(self) -> None:
+        super().tearDown()
+        FILE_REGISTRY.clean_up()
 
     @classmethod
     def setUpClass(cls):
@@ -213,7 +218,6 @@ class TestSFTPStorageTestCase(unittest.TestCase):
                 self.sftp_root_path
             )
         )
-        file.data["storage"].unlink(file)
 
     def test_integration_sub_dir(self: "TestSFTPStorageTestCase") -> None:
         storage = SFTPStorage(
@@ -231,7 +235,6 @@ class TestSFTPStorageTestCase(unittest.TestCase):
                 os.path.join(self.sftp_root_path, "sub")
             )
         )
-        file.data["storage"].unlink(file)
 
     @parametrize(
         "kwargs",

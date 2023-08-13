@@ -8,6 +8,7 @@ from typing import Union
 from parametrize import parametrize
 
 from ..cli.command import main
+from ..registry import FILE_REGISTRY
 from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -41,6 +42,10 @@ def extract_filename(val) -> Union[str, None]:
 
 class TestCLI(unittest.TestCase):
     """CLI tests."""
+
+    def tearDown(self) -> None:
+        super().tearDown()
+        FILE_REGISTRY.clean_up()
 
     @parametrize(
         "method_name, kwargs",
@@ -262,7 +267,6 @@ class TestCLI(unittest.TestCase):
         filename = extract_filename(res.decode())
         self.assertTrue(filename)
         self.assertTrue(FS_STORAGE.exists(filename))
-        FS_STORAGE.unlink(filename)
 
     def test_cli_error_no_provider(self: "TestCLI") -> None:
         """Test CLI, no provider given."""

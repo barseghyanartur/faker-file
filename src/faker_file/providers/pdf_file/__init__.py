@@ -24,6 +24,7 @@ from ...base import (
 )
 from ...constants import DEFAULT_TEXT_MAX_NB_CHARS
 from ...helpers import load_class_from_path
+from ...registry import FILE_REGISTRY
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.pdf_generator import BasePdfGenerator
@@ -244,6 +245,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name
 
 

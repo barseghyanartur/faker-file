@@ -3,6 +3,7 @@ from typing import Optional, Sequence, Tuple, Union, overload
 from faker import Faker
 
 from ...base import BytesValue, FileMixin, StringValue
+from ...registry import FILE_REGISTRY
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 
@@ -110,4 +111,5 @@ class GraphicImageMixin(FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

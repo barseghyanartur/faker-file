@@ -6,6 +6,7 @@ from faker.providers import BaseProvider
 from faker.providers.python import Provider
 
 from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -176,4 +177,5 @@ class JsonFileProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

@@ -170,24 +170,26 @@ class TestStoragesTestCase(unittest.TestCase):
 
         storage = storage_cls(**kwargs)
         # Text file
-        file_text = storage.generate_filename(
+        filename_text = storage.generate_filename(
             basename=basename, prefix=prefix, extension=extension
         )
         # Write to the text file
-        text_result = storage.write_text(file_text, "Lorem ipsum")
+        text_result = storage.write_text(filename_text, "Lorem ipsum")
         # Check if file exists
-        self.assertTrue(storage.exists(file_text))
+        self.assertTrue(storage.exists(filename_text))
         # Assert correct return value
         self.assertIsInstance(text_result, int)
+        # Clean up
+        storage.unlink(filename_text)
 
         # Bytes
-        file_bytes = storage.generate_filename(
+        filename_bytes = storage.generate_filename(
             basename=basename, prefix=prefix, extension=extension
         )
         # Write to bytes file
-        bytes_result = storage.write_bytes(file_bytes, b"Lorem ipsum")
+        bytes_result = storage.write_bytes(filename_bytes, b"Lorem ipsum")
         # Check if file exists
-        self.assertTrue(storage.exists(file_bytes))
+        self.assertTrue(storage.exists(filename_bytes))
         # Assert correct return value
         self.assertIsInstance(bytes_result, int)
 

@@ -8,6 +8,7 @@ from faker import Faker
 from parametrize import parametrize
 from storages.backends.s3boto3 import S3Boto3Storage
 
+from ..registry import FILE_REGISTRY
 from ..storages.aws_s3 import AWSS3Storage
 from ..storages.filesystem import FileSystemStorage
 
@@ -40,6 +41,10 @@ class DjangoIntegrationTestCase(TestCase):
     """Django integration test case."""
 
     FAKER: Faker
+
+    def tearDown(self, *args, **kwargs) -> None:
+        super().tearDown(*args, **kwargs)
+        FILE_REGISTRY.clean_up()
 
     @parametrize(
         "factory, kwargs",
