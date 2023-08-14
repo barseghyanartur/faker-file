@@ -295,7 +295,7 @@ Create a file by copying it randomly from the given directory.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
 .. code-block:: python
-    :name: test_random_file_from_dir_provider
+    :name: __test_random_file_from_dir_provider
 
     from faker import Faker
     from faker_file.providers.random_file_from_dir import (

@@ -17,14 +17,14 @@ __all__ = (
     "add_saturation",
     "augment_image",
     "augment_image_file",
-    "color_jitter",
+    # "color_jitter",
     "decrease_contrast",
-    "equalize",
+    # "equalize",
     "flip_horizontal",
     "flip_vertical",
     "gaussian_blur",
     "grayscale",
-    "random_crop",
+    # "random_crop",
     "resize_height",
     "resize_width",
     "rotate",
@@ -195,28 +195,28 @@ def gaussian_blur(
     )
 
 
-def random_crop(
-    img: Image.Image, lower: float = 0.6, upper: float = 0.9
-) -> Image.Image:
-    """Randomly crop a portion of the image.
-
-    :param img: Input image to be adjusted.
-    :param lower: Lower bound for the random crop.
-        Default is 0.5.
-    :param upper: Upper bound for the random crop.
-        Default is 1.5.
-    :return: Adjusted image.
-    """
-    width, height = img.size
-    crop_size = random.uniform(lower, upper)
-    new_width, new_height = int(width * crop_size), int(height * crop_size)
-
-    left = random.randint(0, width - new_width)
-    top = random.randint(0, height - new_height)
-    right = left + new_width
-    bottom = top + new_height
-
-    return img.crop((left, top, right, bottom))
+# def random_crop(
+#     img: Image.Image, lower: float = 0.6, upper: float = 0.9
+# ) -> Image.Image:
+#     """Randomly crop a portion of the image.
+#
+#     :param img: Input image to be adjusted.
+#     :param lower: Lower bound for the random crop.
+#         Default is 0.5.
+#     :param upper: Upper bound for the random crop.
+#         Default is 1.5.
+#     :return: Adjusted image.
+#     """
+#     width, height = img.size
+#     crop_size = random.uniform(lower, upper)
+#     new_width, new_height = int(width * crop_size), int(height * crop_size)
+#
+#     left = random.randint(0, width - new_width)
+#     top = random.randint(0, height - new_height)
+#     right = left + new_width
+#     bottom = top + new_height
+#
+#     return img.crop((left, top, right, bottom))
 
 
 def solarize(img: Image.Image, threshold: int = 128) -> Image.Image:
@@ -239,27 +239,27 @@ def solarize(img: Image.Image, threshold: int = 128) -> Image.Image:
         return ImageOps.solarize(img, threshold=threshold)
 
 
-def equalize(img: Image.Image) -> Image.Image:
-    """Equalize the image's histogram."""
-    return ImageOps.equalize(img)
+# def equalize(img: Image.Image) -> Image.Image:
+#     """Equalize the image's histogram."""
+#     return ImageOps.equalize(img)
 
 
-def color_jitter(
-    img: Image.Image, lower: float = 0.5, upper: float = 1.5
-) -> Image.Image:
-    """Randomly adjust the image's brightness, contrast, saturation, and hue.
-
-    :param img: Input image to be adjusted.
-    :param lower: Lower bound for the random enhancement multiplier.
-        Default is 0.5.
-    :param upper: Upper bound for the random enhancement multiplier.
-        Default is 1.5.
-    :return: Adjusted image.
-    """
-    img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
-    img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
-    img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
-    return img
+# def color_jitter(
+#     img: Image.Image, lower: float = 0.5, upper: float = 1.5
+# ) -> Image.Image:
+#     """Randomly adjust the image's brightness, contrast, saturation, and hue.
+#
+#     :param img: Input image to be adjusted.
+#     :param lower: Lower bound for the random enhancement multiplier.
+#         Default is 0.5.
+#     :param upper: Upper bound for the random enhancement multiplier.
+#         Default is 1.5.
+#     :return: Adjusted image.
+#     """
+#     img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
+#     img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
+#     img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
+#     return img
 
 
 DEFAULT_AUGMENTATIONS: List[Tuple[Callable, Dict[str, Any]]] = [

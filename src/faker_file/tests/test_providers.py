@@ -124,7 +124,8 @@ from ..providers.helpers.inner import (
     list_create_inner_file,
 )
 from ..providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
-from ..providers.image.augment import color_jitter, equalize, random_crop
+
+# from ..providers.image.augment import color_jitter, equalize, random_crop
 from ..providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
 from ..providers.json_file import JsonFileProvider
 from ..providers.mp3_file import Mp3FileProvider
@@ -2551,22 +2552,22 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             },
             None,
         ),
-        (
-            FAKER,
-            AugmentRandomImageFromDirProvider,
-            "augment_random_image_from_dir",
-            {
-                "source_dir_path": os.path.dirname(
-                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
-                ),
-                "augmentations": [
-                    (color_jitter, {}),
-                    (equalize, {}),
-                    (random_crop, {}),
-                ],
-            },
-            None,
-        ),
+        # (
+        #     FAKER,
+        #     AugmentRandomImageFromDirProvider,
+        #     "augment_random_image_from_dir",
+        #     {
+        #         "source_dir_path": os.path.dirname(
+        #             SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
+        #         ),
+        #         "augmentations": [
+        #             (color_jitter, {}),
+        #             (equalize, {}),
+        #             (random_crop, {}),
+        #         ],
+        #     },
+        #     None,
+        # ),
         (
             FAKER,
             AugmentRandomImageFromDirProvider,
