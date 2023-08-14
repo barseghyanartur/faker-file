@@ -2596,6 +2596,21 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             },
             None,
         ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_PNG_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (equalize, {}),
+                    (color_jitter, {}),
+                    (random_crop, {}),
+                ],
+                "pop_func": list.pop,
+            },
+            None,
+        ),
         # # SVG
         # (
         #     FAKER,

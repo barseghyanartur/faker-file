@@ -1,4 +1,5 @@
 import io
+import logging
 import random
 from copy import deepcopy
 from typing import Any, Callable, Dict, List, Optional, Tuple
@@ -30,6 +31,8 @@ __all__ = (
     "rotate",
     "solarize",
 )
+
+LOGGER = logging.getLogger(__name__)
 
 
 # Default methods
@@ -256,9 +259,9 @@ def color_jitter(
         Default is 1.5.
     :return: Adjusted image.
     """
-    # img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
-    # img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
-    # img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
+    img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
+    img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
+    img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
     return img
 
 
@@ -335,7 +338,14 @@ def augment_image(
         func_and_kwargs = pop_func(_augmentations)
         if func_and_kwargs:
             func, kwargs = func_and_kwargs
-            image = func(image, **kwargs)
+            LOGGER.info(f"Applying {func} to {id(image_bytes)}")
+            try:
+                image = func(image, **kwargs)
+            except Exception as err:
+                # Some combination of filters may not work correctly together.
+                # Therefore, we silence the errors here.
+                LOGGER.warning(f"Failed to apply {func} to {id(image_bytes)}")
+                LOGGER.exception(err)
             counter += 1
 
     # Convert the image back to bytes
