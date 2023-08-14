@@ -124,8 +124,7 @@ from ..providers.helpers.inner import (
     list_create_inner_file,
 )
 from ..providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
-
-# from ..providers.image.augment import color_jitter, equalize, random_crop
+from ..providers.image.augment import color_jitter, equalize, random_crop
 from ..providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
 from ..providers.json_file import JsonFileProvider
 from ..providers.mp3_file import Mp3FileProvider
@@ -219,11 +218,29 @@ FS_STORAGE = FileSystemStorage()
 PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 
 SOURCE_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(extension="txt")
+SOURCE_BMP_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension=GraphicBmpFileProvider.extension
+)
+SOURCE_GIF_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension=GraphicGifFileProvider.extension
+)
+SOURCE_ICO_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension=GraphicIcoFileProvider.extension
+)
 SOURCE_JPEG_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
-    extension="jpg"
+    extension=GraphicJpegFileProvider.extension
 )
 SOURCE_PNG_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
-    extension="png"
+    extension=GraphicPngFileProvider.extension
+)
+# SOURCE_SVG_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+#     extension=GraphicSvgFileProvider.extension
+# )
+SOURCE_TIFF_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension=GraphicTiffFileProvider.extension
+)
+SOURCE_WEBP_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
+    extension=GraphicWebpFileProvider.extension
 )
 
 pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
@@ -242,16 +259,56 @@ def create_test_files():
     rely on physical presence of files.
     """
     source_file_from_path = Path(SOURCE_FILE_FROM_PATH_FILENAME)
-    source_jpeg_file_from_path = Path(SOURCE_JPEG_FILE_FROM_PATH_FILENAME)
-    source_png_file_from_path = Path(SOURCE_PNG_FILE_FROM_PATH_FILENAME)
     TxtFileProvider(FAKER).txt_file(
         basename=source_file_from_path.stem, max_nb_chars=100
     )
+
+    # BMP
+    source_bmp_file_from_path = Path(SOURCE_BMP_FILE_FROM_PATH_FILENAME)
+    GraphicBmpFileProvider(FAKER).graphic_bmp_file(
+        basename=source_bmp_file_from_path.stem
+    )
+
+    # GIF
+    source_gif_file_from_path = Path(SOURCE_GIF_FILE_FROM_PATH_FILENAME)
+    GraphicGifFileProvider(FAKER).graphic_gif_file(
+        basename=source_gif_file_from_path.stem
+    )
+
+    # ICO
+    source_ico_file_from_path = Path(SOURCE_ICO_FILE_FROM_PATH_FILENAME)
+    GraphicIcoFileProvider(FAKER).graphic_ico_file(
+        basename=source_ico_file_from_path.stem
+    )
+
+    # JPG
+    source_jpeg_file_from_path = Path(SOURCE_JPEG_FILE_FROM_PATH_FILENAME)
     GraphicJpegFileProvider(FAKER).graphic_jpeg_file(
         basename=source_jpeg_file_from_path.stem
     )
+
+    # PNG
+    source_png_file_from_path = Path(SOURCE_PNG_FILE_FROM_PATH_FILENAME)
     GraphicPngFileProvider(FAKER).graphic_png_file(
         basename=source_png_file_from_path.stem
+    )
+
+    # # SVG
+    # source_svg_file_from_path = Path(SOURCE_SVG_FILE_FROM_PATH_FILENAME)
+    # GraphicSvgFileProvider(FAKER).graphic_svg_file(
+    #     basename=source_svg_file_from_path.stem
+    # )
+
+    # TIF
+    source_tiff_file_from_path = Path(SOURCE_TIFF_FILE_FROM_PATH_FILENAME)
+    GraphicTiffFileProvider(FAKER).graphic_tiff_file(
+        basename=source_tiff_file_from_path.stem
+    )
+
+    # WEBP
+    source_webp_file_from_path = Path(SOURCE_WEBP_FILE_FROM_PATH_FILENAME)
+    GraphicWebpFileProvider(FAKER).graphic_webp_file(
+        basename=source_webp_file_from_path.stem
     )
 
 
@@ -2401,6 +2458,79 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         ]
     ] = [
         # AugmentImageFromPathProvider
+        # BMP
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_BMP_FILE_FROM_PATH_FILENAME,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_BMP_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        # GIF
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_GIF_FILE_FROM_PATH_FILENAME,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_GIF_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        # ICO
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_ICO_FILE_FROM_PATH_FILENAME,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_ICO_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        # JPEG
         (
             FAKER,
             AugmentImageFromPathProvider,
@@ -2433,7 +2563,94 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             AugmentImageFromPathProvider,
             "augment_image_from_path",
             {
+                "path": SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        # PNG
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
                 "path": SOURCE_PNG_FILE_FROM_PATH_FILENAME,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_PNG_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        # # SVG
+        # (
+        #     FAKER,
+        #     AugmentImageFromPathProvider,
+        #     "augment_image_from_path",
+        #     {
+        #         "path": SOURCE_SVG_FILE_FROM_PATH_FILENAME,
+        #     },
+        #     None,
+        # ),
+        # TIFF
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_TIFF_FILE_FROM_PATH_FILENAME,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_TIFF_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
+        # WEBP
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_WEBP_FILE_FROM_PATH_FILENAME,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            AugmentImageFromPathProvider,
+            "augment_image_from_path",
+            {
+                "path": SOURCE_WEBP_FILE_FROM_PATH_FILENAME,
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
             },
             None,
         ),
@@ -2552,22 +2769,22 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             },
             None,
         ),
-        # (
-        #     FAKER,
-        #     AugmentRandomImageFromDirProvider,
-        #     "augment_random_image_from_dir",
-        #     {
-        #         "source_dir_path": os.path.dirname(
-        #             SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
-        #         ),
-        #         "augmentations": [
-        #             (color_jitter, {}),
-        #             (equalize, {}),
-        #             (random_crop, {}),
-        #         ],
-        #     },
-        #     None,
-        # ),
+        (
+            FAKER,
+            AugmentRandomImageFromDirProvider,
+            "augment_random_image_from_dir",
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
+                ),
+                "augmentations": [
+                    (color_jitter, {}),
+                    (equalize, {}),
+                    (random_crop, {}),
+                ],
+            },
+            None,
+        ),
         (
             FAKER,
             AugmentRandomImageFromDirProvider,
