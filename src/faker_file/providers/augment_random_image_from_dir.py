@@ -33,7 +33,7 @@ EXTENSIONS = {
     "jpeg",
     "jpg",
     "png",
-    "svg",
+    # "svg",  # Not supported yet
     "tiff",
     "webp",
 }
