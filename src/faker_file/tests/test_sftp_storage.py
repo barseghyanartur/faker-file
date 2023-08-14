@@ -12,7 +12,8 @@ from faker import Faker
 from parametrize import parametrize
 
 from ..providers.txt_file import TxtFileProvider
-from ..registry import FILE_REGISTRY
+
+# from ..registry import FILE_REGISTRY
 from ..storages.sftp_storage import SFTPStorage
 from .sftp_server import SFTPServerManager, start_server
 from .utils import AutoFreePortInt
@@ -62,7 +63,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
 
     def tearDown(self) -> None:
         super().tearDown()
-        FILE_REGISTRY.clean_up()
+        # FILE_REGISTRY.clean_up()
 
     @classmethod
     def setUpClass(cls):

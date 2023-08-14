@@ -256,9 +256,9 @@ def color_jitter(
         Default is 1.5.
     :return: Adjusted image.
     """
-    img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
-    img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
-    img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
+    # img = ImageEnhance.Brightness(img).enhance(random.uniform(lower, upper))
+    # img = ImageEnhance.Contrast(img).enhance(random.uniform(lower, upper))
+    # img = ImageEnhance.Color(img).enhance(random.uniform(lower, upper))
     return img
 
 
@@ -287,6 +287,7 @@ def augment_image(
     image_bytes: bytes,
     augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
     num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
 ) -> bytes:
     """Augment the input image with a series of random augmentation methods.
 
@@ -297,10 +298,16 @@ def augment_image(
     methods will be applied.
 
     :param image_bytes: Input image in bytes format.
-    :param augmentations: List of callable augmentation functions. If not
+    :param augmentations: List of tuples of callable augmentation
+        functions and their respective keyword arguments. If not
         provided, the default augmentation functions will be used.
-    :param num_steps: Number of augmentation steps (functions) to be applied.
-        If not specified, the length of the `augmentations` list will be used.
+    :param num_steps: Number of augmentation steps (functions) to be
+        applied. If not specified, the length of the `augmentations` list
+        will be used.
+    :param pop_func: Callable to pop items from `augmentations` list. By
+        default, the `random_pop` is used, which pops items in random
+        order. If you want the order of augmentations to be constant and
+        as given, replace it with `list.pop` (`pop_func=list.pop`).
     :return: Augmented image in bytes format.
     """
     # Load the image using PIL
@@ -325,7 +332,7 @@ def augment_image(
         num_steps = len(_augmentations)
 
     while counter < num_steps:
-        func_and_kwargs = random_pop(_augmentations)
+        func_and_kwargs = pop_func(_augmentations)
         if func_and_kwargs:
             func, kwargs = func_and_kwargs
             image = func(image, **kwargs)
@@ -341,6 +348,7 @@ def augment_image_file(
     image_path: str,
     augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
     num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
 ) -> bytes:
     """Augment image from path.
 
@@ -351,4 +359,5 @@ def augment_image_file(
             image_bytes=image_bytes.read(),
             augmentations=augmentations,
             num_steps=num_steps,
+            pop_func=pop_func,
         )

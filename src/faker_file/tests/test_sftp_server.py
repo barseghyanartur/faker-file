@@ -11,7 +11,8 @@ import asyncssh
 from faker import Faker
 
 from ..providers.txt_file import TxtFileProvider
-from ..registry import FILE_REGISTRY
+
+# from ..registry import FILE_REGISTRY
 from .sftp_server import SFTPServerManager, start_server, start_server_async
 from .utils import AutoFreePortInt
 
@@ -171,7 +172,8 @@ class TestSFTPServerWithStartServerAsync(
     def tearDownClass(cls):
         # Since the server thread is a daemon, it will be stopped when the
         # main thread exits.
-        FILE_REGISTRY.clean_up()
+        pass
+        # FILE_REGISTRY.clean_up()
 
 
 class TestSFTPServerWithStartServer(
@@ -200,7 +202,8 @@ class TestSFTPServerWithStartServer(
         # Since the server is running in a daemonized thread,
         # it will be terminated when the main process finishes.
         # No explicit tear down is required for the server in this test case.
-        FILE_REGISTRY.clean_up()
+        pass
+        # FILE_REGISTRY.clean_up()
 
 
 class TestSFTPServerWithManager(
@@ -253,4 +256,4 @@ class TestSFTPServerWithManager(
         # Stop the server
         cls.manager.stop()
         cls.manager_thread.join()
-        FILE_REGISTRY.clean_up()
+        # FILE_REGISTRY.clean_up()

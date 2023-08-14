@@ -1,3 +1,4 @@
+import logging
 import os
 from pathlib import Path
 from random import choice
@@ -16,6 +17,7 @@ from typing import (
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue
+from ..helpers import random_pop
 from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -26,10 +28,12 @@ __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("AugmentRandomImageFromDirProvider",)
 
+LOGGER = logging.getLogger(__name__)
+
 EXTENSIONS = {
     "bmp",
     "gif",
-    "ico",
+    # "ico",  # Not supported yet
     "jpeg",
     "jpg",
     "png",
@@ -81,6 +85,7 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
+        pop_func: Callable = random_pop,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -96,6 +101,7 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
+        pop_func: Callable = random_pop,
         **kwargs,
     ) -> StringValue:
         ...
@@ -109,6 +115,7 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
+        pop_func: Callable = random_pop,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -125,6 +132,10 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
         :param num_steps: Number of augmentation steps (functions) to be
             applied. If not specified, the length of the `augmentations` list
             will be used.
+        :param pop_func: Callable to pop items from `augmentations` list. By
+            default, the `random_pop` is used, which pops items in random
+            order. If you want the order of augmentations to be constant and
+            as given, replace it with `list.pop` (`pop_func=list.pop`).
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -158,11 +169,18 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
         )
         data = {"filename": filename, "storage": storage}
 
-        image_bytes = augment_image_file(
-            image_path=source_file_path,
-            augmentations=augmentations,
-            num_steps=num_steps,
-        )
+        try:
+            image_bytes = augment_image_file(
+                image_path=source_file_path,
+                augmentations=augmentations,
+                num_steps=num_steps,
+                pop_func=pop_func,
+            )
+        except Exception as err:
+            LOGGER.error("source_file_choices")
+            LOGGER.error(source_file_choices)
+            LOGGER.error(f"source_file_path: {source_file_path}")
+            raise err
 
         if raw:
             raw_content = BytesValue(image_bytes)

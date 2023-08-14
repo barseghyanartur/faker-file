@@ -4,6 +4,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Union, overload
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue
+from ..helpers import random_pop
 from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -13,18 +14,6 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("AugmentImageFromPathProvider",)
-
-EXTENSIONS = {
-    "bmp",
-    "gif",
-    "ico",
-    "jpeg",
-    "jpg",
-    "png",
-    "svg",
-    "tiff",
-    "webp",
-}
 
 
 class AugmentImageFromPathProvider(BaseProvider, FileMixin):
@@ -67,6 +56,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
+        pop_func: Callable = random_pop,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue:
@@ -81,6 +71,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
+        pop_func: Callable = random_pop,
         **kwargs,
     ) -> StringValue:
         ...
@@ -93,6 +84,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
         num_steps: Optional[int] = None,
+        pop_func: Callable = random_pop,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:
@@ -108,6 +100,10 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         :param num_steps: Number of augmentation steps (functions) to be
             applied. If not specified, the length of the `augmentations` list
             will be used.
+        :param pop_func: Callable to pop items from `augmentations` list. By
+            default, the `random_pop` is used, which pops items in random
+            order. If you want the order of augmentations to be constant and
+            as given, replace it with `list.pop` (`pop_func=list.pop`).
         :param raw: If set to True, return `BytesValue` (binary content of
             the file). Otherwise, return `StringValue` (path to the saved
             file).
@@ -133,6 +129,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
             image_path=path,
             augmentations=augmentations,
             num_steps=num_steps,
+            pop_func=pop_func,
         )
 
         if raw:
