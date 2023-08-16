@@ -271,6 +271,7 @@ class TestStoragesTestCase(unittest.TestCase):
             ("exists", {"filename": "test.txt"}),
             ("relpath", {"filename": "test.txt"}),
             ("abspath", {"filename": "test.txt"}),
+            ("unlink", {"filename": "test.txt"}),
         ],
     )
     def test_base_storage_exceptions(
@@ -329,6 +330,29 @@ class TestStoragesTestCase(unittest.TestCase):
                 "file://faker-file-tmp/root_tmp/rel_tmp/"
             )
         )
+
+    def test_pathy_file_system_storage_unlink(
+        self: "TestStoragesTestCase",
+    ) -> None:
+        """Test `PathyFileSystemStorage` `unlink`."""
+        storage = PathyFileSystemStorage(
+            bucket_name="faker-file-tmp",
+            root_path="root_tmp",
+            rel_path="rel_tmp",
+        )
+        with self.subTest("Test unlink by Pathy"):
+            filename_1 = storage.generate_filename(prefix="", extension="tmp")
+            storage.write_text(filename=filename_1, data=FAKER.text())
+            self.assertTrue(storage.exists(filename_1))
+            storage.unlink(filename_1)
+            self.assertFalse(storage.exists(filename_1))
+
+        with self.subTest("Test unlink by str"):
+            filename_2 = storage.generate_filename(prefix="", extension="tmp")
+            storage.write_text(filename=filename_2, data=FAKER.text())
+            self.assertTrue(storage.exists(filename_2))
+            storage.unlink(str(filename_2))
+            self.assertFalse(storage.exists(filename_2))
 
     # @patch(
     #     "faker_file.storages.google_cloud_storage.service_account."
