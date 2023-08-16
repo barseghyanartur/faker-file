@@ -1,6 +1,6 @@
 import logging
 from threading import Lock
-from typing import Set
+from typing import Optional, Set, Union
 
 from .base import StringValue
 
@@ -17,7 +17,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 class FileRegistry:
-    """Stores list of tuples.
+    """Stores list `StringValue` instances.
 
     .. code-block:: python
 
@@ -45,24 +45,48 @@ class FileRegistry:
         self._registry: Set[StringValue] = set()
         self._lock = Lock()
 
-    def add(self, string_value: StringValue):
+    def add(self, string_value: StringValue) -> None:
         with self._lock:
             self._registry.add(string_value)
 
-    def remove(self, string_value: StringValue):
+    def remove(self, string_value: Union[StringValue, str]) -> bool:
+        if not isinstance(string_value, StringValue):
+            string_value = self.search(string_value)
+
+        if not string_value:
+            return False
+
         with self._lock:
             # No error if the element doesn't exist
             self._registry.discard(string_value)
+            try:
+                string_value.data["storage"].unlink(
+                    string_value.data["filename"]
+                )
+                return True
+            except Exception as e:
+                LOGGER.error(
+                    f"Failed to unlink file "
+                    f"{string_value.data['filename']}: {e}"
+                )
+            return False
 
-    def clean_up(self):
+    def search(self, value: str) -> Optional[StringValue]:
+        with self._lock:
+            for string_value in self._registry:
+                if string_value == value:
+                    return string_value
+        return None
+
+    def clean_up(self) -> None:
         with self._lock:
             while self._registry:
                 file = self._registry.pop()
                 try:
                     file.data["storage"].unlink(file.data["filename"])
-                except Exception as e:
+                except Exception as err:
                     LOGGER.error(
-                        f"Failed to unlink file {file.data['filename']}: {e}"
+                        f"Failed to unlink file {file.data['filename']}: {err}"
                     )
 
 

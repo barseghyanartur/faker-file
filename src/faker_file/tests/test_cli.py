@@ -265,8 +265,10 @@ class TestCLI(unittest.TestCase):
 
         # Extract the filename to verify existence and clean-up
         filename = extract_filename(res.decode())
+        LOGGER.error(f"filename: {filename}")
         self.assertTrue(filename)
         self.assertTrue(FS_STORAGE.exists(filename))
+        FS_STORAGE.unlink(filename)
 
     def test_cli_error_no_provider(self: "TestCLI") -> None:
         """Test CLI, no provider given."""
