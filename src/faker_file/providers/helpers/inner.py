@@ -3,6 +3,7 @@ from typing import (
     Any,
     Callable,
     Dict,
+    Iterable,
     List,
     Optional,
     Sequence,
@@ -22,6 +23,7 @@ from ...constants import (
     DEFAULT_IMAGE_MAX_NB_CHARS,
     DEFAULT_TEXT_MAX_NB_CHARS,
 )
+from ...helpers import random_pop
 from ...storages.base import BaseStorage
 from ..base.mp3_generator import BaseMp3Generator
 from ..base.pdf_generator import BasePdfGenerator
@@ -30,6 +32,8 @@ __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
+    "create_inner_augment_image_from_path",
+    "create_inner_augment_random_image_from_dir",
     "create_inner_bin_file",
     "create_inner_csv_file",
     "create_inner_docx_file",
@@ -64,6 +68,148 @@ __all__ = (
     "fuzzy_choice_create_inner_file",
     "list_create_inner_file",
 )
+
+
+# ************************************************
+# ************ augment_image_from_path ***********
+# ************************************************
+
+
+@overload
+def create_inner_augment_image_from_path(
+    path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
+    num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_augment_image_from_path(
+    path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
+    num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_augment_image_from_path(
+    path: str,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
+    num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner augment_image_from_path file."""
+    try:
+        from ..augment_image_from_path import AugmentImageFromPathProvider
+    except ImportError as err:
+        raise err
+
+    return AugmentImageFromPathProvider(generator).augment_image_from_path(
+        path=path,
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        augmentations=augmentations,
+        num_steps=num_steps,
+        pop_func=pop_func,
+        raw=raw,
+        **kwargs,
+    )
+
+
+# ************************************************
+# ******** augment_random_image_from_dir *********
+# ************************************************
+
+
+@overload
+def create_inner_augment_random_image_from_dir(
+    source_dir_path: str,
+    extensions: Optional[Iterable[str]] = None,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
+    num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
+    raw: bool = True,
+    **kwargs,
+) -> BytesValue:
+    ...
+
+
+@overload
+def create_inner_augment_random_image_from_dir(
+    source_dir_path: str,
+    extensions: Optional[Iterable[str]] = None,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
+    num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
+    **kwargs,
+) -> StringValue:
+    ...
+
+
+def create_inner_augment_random_image_from_dir(
+    source_dir_path: str,
+    extensions: Optional[Iterable[str]] = None,
+    storage: Optional[BaseStorage] = None,
+    basename: Optional[str] = None,
+    prefix: Optional[str] = None,
+    generator: Optional[Union[Faker, Generator, Provider]] = None,
+    augmentations: Optional[List[Tuple[Callable, Dict[str, Any]]]] = None,
+    num_steps: Optional[int] = None,
+    pop_func: Callable = random_pop,
+    raw: bool = False,
+    **kwargs,
+) -> Union[BytesValue, StringValue]:
+    """Create inner augment_random_image_from_dir file."""
+    try:
+        from ..augment_random_image_from_dir import (
+            AugmentRandomImageFromDirProvider,
+        )
+    except ImportError as err:
+        raise err
+
+    return AugmentRandomImageFromDirProvider(
+        generator
+    ).augment_random_image_from_dir(
+        source_dir_path=source_dir_path,
+        extensions=extensions,
+        storage=storage,
+        basename=basename,
+        prefix=prefix,
+        augmentations=augmentations,
+        num_steps=num_steps,
+        pop_func=pop_func,
+        raw=raw,
+        **kwargs,
+    )
 
 
 # ************************************************

@@ -27,7 +27,7 @@ are used for versioning (schema follows below):
 
 0.17.4
 ------
-2023-08-??
+2023-08-17
 
 - Added ``AugmentRandomImageFromDirProvider``
   and ``AugmentImageFromPathProvider`` providers for basic image augmentation.
