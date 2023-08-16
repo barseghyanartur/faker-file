@@ -2242,6 +2242,30 @@ class RandomFileFromDirProviderTestCase(unittest.TestCase):
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
     @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA,
+    )
+    def test_faker_raw(
+        self: "RandomFileFromDirProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration raw."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
+
+    @parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -2400,6 +2424,30 @@ class FileFromPathProviderTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA,
+    )
+    def test_faker_raw(
+        self: "FileFromPathProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration raw."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
 
     @parametrize(
         "create_inner_file_func, options, create_inner_file_args",
@@ -2688,7 +2736,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             Dict[str, Any],
             Optional[Union[bool, PathyFileSystemStorage]],
         ]
-    ] = []
+    ] = deepcopy(__PARAMETRIZED_DATA)
 
     def setUp(self: "AugmentImageFromPathProviderTestCase"):
         super().setUp()
@@ -2724,6 +2772,30 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue(_file.data["storage"].exists(_file))
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __RAW_PARAMETRIZED_DATA,
+    )
+    def test_faker_raw(
+        self: "AugmentImageFromPathProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration raw."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
 
 
 class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
@@ -2831,7 +2903,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             Dict[str, Any],
             Optional[Union[bool, PathyFileSystemStorage]],
         ]
-    ] = []
+    ] = deepcopy(__PARAMETRIZED_DATA)
 
     def setUp(self: "AugmentRandomImageFromDirProviderTestCase") -> None:
         super().setUp()
@@ -2867,3 +2939,43 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
         _kwargs["storage"] = storage
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
+
+    @parametrize(
+        "fake, provider, method_name, kwargs, storage",
+        __PARAMETRIZED_DATA,
+    )
+    def test_faker_raw(
+        self: "AugmentRandomImageFromDirProviderTestCase",
+        fake: Faker,
+        provider: Type[FileProvider],
+        method_name: str,
+        kwargs: Dict[str, Any],
+        storage: Optional[BaseStorage] = None,
+    ) -> None:
+        """Test faker provider integration raw."""
+        _kwargs = deepcopy(kwargs)
+        if storage is False:
+            storage = FS_STORAGE
+        fake.add_provider(provider)
+        _method = getattr(fake, method_name)
+        _kwargs["storage"] = storage
+        _kwargs["raw"] = True
+        _bytes = _method(**_kwargs)
+        self.assertIsInstance(_bytes, bytes)
+        self.assertGreater(len(_bytes), 0)
+
+    def test_augment_random_image_from_dir_bad_augment_func_exception(
+        self: "AugmentRandomImageFromDirProviderTestCase",
+    ):
+        """Call `augment_random_image_from_dir` with wrong augment function."""
+        file = AugmentRandomImageFromDirProvider(
+            FAKER
+        ).augment_random_image_from_dir(
+            **{
+                "source_dir_path": os.path.dirname(
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
+                ),
+                "augmentations": [(lambda: True, {})] * 2,
+            }
+        )
+        self.assertTrue(file.data["storage"].exists(file))

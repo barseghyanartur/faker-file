@@ -8,6 +8,7 @@ from faker import Faker
 from parametrize import parametrize
 from pathy import use_fs, use_fs_cache
 
+from ..registry import FILE_REGISTRY
 from ..storages.aws_s3 import AWSS3Storage
 from ..storages.azure_cloud_storage import AzureCloudStorage
 from ..storages.base import BaseStorage
@@ -33,6 +34,10 @@ FAKER = Faker()
 
 class TestStoragesTestCase(unittest.TestCase):
     """Test storages."""
+
+    def tearDown(self) -> None:
+        super().tearDown()
+        FILE_REGISTRY.clean_up()  # Clean up files
 
     @parametrize(
         "storage_cls, kwargs, prefix, basename, extension",
@@ -192,6 +197,9 @@ class TestStoragesTestCase(unittest.TestCase):
         self.assertTrue(storage.exists(filename_bytes))
         # Assert correct return value
         self.assertIsInstance(bytes_result, int)
+
+        # Clean up
+        storage.unlink(filename_bytes)
 
     @parametrize(
         "storage_cls, kwargs, prefix, extension",

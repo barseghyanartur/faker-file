@@ -91,6 +91,10 @@ class TestCLI(unittest.TestCase):
                 "epub_file",
                 {},
             ),
+            (
+                "epub_file",
+                {"wrap_chars_after": 40},
+            ),
             # Generic
             (
                 "generic_file",
@@ -98,10 +102,6 @@ class TestCLI(unittest.TestCase):
                     "content": "<html><body><p>{{text}}</p></body></html>",
                     "extension": "html",
                 },
-            ),
-            (
-                "epub_file",
-                {"wrap_chars_after": 40},
             ),
             # ICO
             (
@@ -259,7 +259,7 @@ class TestCLI(unittest.TestCase):
 
         # Merge the base command with the generated arguments
         cmd = ["faker-file", method_name] + args
-
+        LOGGER.error(f"cmd: {cmd}")
         # Execute the command with the provided arguments
         res = subprocess.check_output(cmd).strip()
 

@@ -8,6 +8,7 @@ from rest_framework.status import HTTP_201_CREATED
 from upload.models import Upload
 
 from faker_file.providers.docx_file import DocxFileProvider
+from faker_file.registry import FILE_REGISTRY
 
 FAKER = Faker()
 FAKER.add_provider(DocxFileProvider)
@@ -17,6 +18,10 @@ __all__ = ("UploadTestCase",)
 
 class UploadTestCase(TestCase):
     """Upload test case."""
+
+    def tearDown(self, *args, **kwargs) -> None:
+        super().tearDown(*args, **kwargs)
+        FILE_REGISTRY.clean_up()
 
     def test_create_docx_upload(self) -> None:
         """Test create an Upload."""

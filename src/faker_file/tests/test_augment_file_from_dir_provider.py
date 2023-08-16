@@ -24,6 +24,7 @@ from ..providers.epub_file import EpubFileProvider
 from ..providers.pdf_file import PdfFileProvider
 from ..providers.rtf_file import RtfFileProvider
 from ..providers.txt_file import TxtFileProvider
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.cloud import PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
@@ -52,45 +53,6 @@ SOURCE_DIR_PATH = os.path.join(tempfile.gettempdir(), DEFAULT_REL_PATH)
 
 class AugmentFileFromDirProviderTestCase(unittest.TestCase):
     """AugmentFileFromDirProvider test case."""
-
-    def setUp(self: "AugmentFileFromDirProviderTestCase"):
-        super().setUp()
-        tika.initVM()
-        use_fs(tempfile.gettempdir())
-
-    @classmethod
-    def setUpClass(cls: Type["AugmentFileFromDirProviderTestCase"]):
-        super().setUpClass()
-        DocxFileProvider(_FAKER).docx_file(
-            prefix="source_",
-            content=TEXT_DOCX,
-            storage=FS_STORAGE,
-        )
-        EmlFileProvider(_FAKER).eml_file(
-            prefix="source_",
-            content=TEXT_EML,
-            storage=FS_STORAGE,
-        )
-        EpubFileProvider(_FAKER).epub_file(
-            prefix="source_",
-            content=TEXT_EPUB,
-            storage=FS_STORAGE,
-        )
-        PdfFileProvider(_FAKER).pdf_file(
-            prefix="source_",
-            content=TEXT_PDF,
-            storage=FS_STORAGE,
-        )
-        RtfFileProvider(_FAKER).rtf_file(
-            prefix="source_",
-            content=TEXT_RTF,
-            storage=FS_STORAGE,
-        )
-        TxtFileProvider(_FAKER).txt_file(
-            prefix="source_",
-            content=TEXT_TXT,
-            storage=FS_STORAGE,
-        )
 
     FAKER: Faker
     # provider, method_name, kwargs, storage
@@ -214,6 +176,50 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
             None,
         ),
     ]
+
+    def setUp(self: "AugmentFileFromDirProviderTestCase"):
+        super().setUp()
+        tika.initVM()
+        use_fs(tempfile.gettempdir())
+
+    @classmethod
+    def setUpClass(cls: Type["AugmentFileFromDirProviderTestCase"]) -> None:
+        super().setUpClass()
+        DocxFileProvider(_FAKER).docx_file(
+            prefix="source_",
+            content=TEXT_DOCX,
+            storage=FS_STORAGE,
+        )
+        EmlFileProvider(_FAKER).eml_file(
+            prefix="source_",
+            content=TEXT_EML,
+            storage=FS_STORAGE,
+        )
+        EpubFileProvider(_FAKER).epub_file(
+            prefix="source_",
+            content=TEXT_EPUB,
+            storage=FS_STORAGE,
+        )
+        PdfFileProvider(_FAKER).pdf_file(
+            prefix="source_",
+            content=TEXT_PDF,
+            storage=FS_STORAGE,
+        )
+        RtfFileProvider(_FAKER).rtf_file(
+            prefix="source_",
+            content=TEXT_RTF,
+            storage=FS_STORAGE,
+        )
+        TxtFileProvider(_FAKER).txt_file(
+            prefix="source_",
+            content=TEXT_TXT,
+            storage=FS_STORAGE,
+        )
+
+    @classmethod
+    def tearDownClass(cls: Type["AugmentFileFromDirProviderTestCase"]) -> None:
+        super().tearDownClass()
+        FILE_REGISTRY.clean_up()
 
     @parametrize(
         "provider, method_name, kwargs, storage",
