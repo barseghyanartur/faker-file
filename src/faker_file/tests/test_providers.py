@@ -2734,7 +2734,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             create_inner_augment_image_from_path,
             {},
             {
-                "path": SOURCE_FILE_FROM_PATH_FILENAME,
+                "path": SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
             },
         ),
     ]
@@ -2807,6 +2807,48 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         _bytes = _method(**_kwargs)
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_zip_file(
+        self: "AugmentImageFromPathProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone ZIP file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_tar_file(
+        self: "AugmentImageFromPathProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone TAR file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = TarFileProvider(None).tar_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
 
 
 class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
@@ -2985,6 +3027,48 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
         _bytes = _method(**_kwargs)
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_zip_file(
+        self: "AugmentRandomImageFromDirProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone ZIP file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = ZipFileProvider(None).zip_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+    @parametrize(
+        "create_inner_file_func, options, create_inner_file_args",
+        __PARAMETRIZED_DATA_ARCHIVES,
+    )
+    def test_standalone_tar_file(
+        self: "AugmentRandomImageFromDirProviderTestCase",
+        create_inner_file_func: Optional[Callable] = None,
+        options: Optional[Dict[str, Any]] = None,
+        create_inner_file_args: Optional[Dict[str, Any]] = None,
+    ) -> None:
+        """Test standalone TAR file provider."""
+        _options = {}
+        _options.update(options)
+        if create_inner_file_func is not None:
+            _options["create_inner_file_func"] = create_inner_file_func
+        if create_inner_file_args is not None:
+            _options["create_inner_file_args"] = create_inner_file_args
+        _file = TarFileProvider(None).tar_file(options=_options)
+
+        self.assertTrue(FS_STORAGE.exists(_file))
 
     def test_augment_random_image_from_dir_bad_augment_func_exception(
         self: "AugmentRandomImageFromDirProviderTestCase",
