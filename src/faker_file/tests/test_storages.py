@@ -1,13 +1,14 @@
+import json
 import tempfile
 import unittest
 from pathlib import Path
 from typing import Any, Dict, Type, Union
 
-# import pytest
 from faker import Faker
 from parametrize import parametrize
 from pathy import use_fs, use_fs_cache
 
+from ..providers.json_file import JsonFileProvider
 from ..registry import FILE_REGISTRY
 from ..storages.aws_s3 import AWSS3Storage
 from ..storages.azure_cloud_storage import AzureCloudStorage
@@ -15,9 +16,7 @@ from ..storages.base import BaseStorage
 from ..storages.cloud import CloudStorage, PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
 from ..storages.google_cloud_storage import GoogleCloudStorage
-
-# from unittest.mock import patch
-
+from .data import GCS_CREDENTIALS_JSON
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -25,15 +24,24 @@ __license__ = "MIT"
 __all__ = ("TestStoragesTestCase",)
 
 FAKER = Faker()
-
-
-# class _GoogleCloudCredentials:
-#     token = "1234"
-#     project_id = "1234"
+FAKER.add_provider(JsonFileProvider)
+FS_STORAGE = FileSystemStorage()
+GCS_CREDENTIALS_JSON_FILENAME = FS_STORAGE.generate_filename(
+    basename="gc_credentials", extension="json"
+)
 
 
 class TestStoragesTestCase(unittest.TestCase):
     """Test storages."""
+
+    def setUp(self) -> None:
+        super().setUp()
+
+        gcs_credentials_json_filename = Path(GCS_CREDENTIALS_JSON_FILENAME)
+        FAKER.json_file(
+            basename=gcs_credentials_json_filename.stem,
+            content=json.dumps(GCS_CREDENTIALS_JSON),
+        )
 
     def tearDown(self) -> None:
         super().tearDown()
@@ -113,9 +121,9 @@ class TestStoragesTestCase(unittest.TestCase):
                 {
                     "bucket_name": "testing",
                     "rel_path": "tmp",
-                    # "credentials": {
-                    #     "json_file_path": GCS_CREDENTIALS,
-                    # },
+                    "credentials": {
+                        "json_file_path": GCS_CREDENTIALS_JSON_FILENAME,
+                    },
                 },
                 "zzz",
                 None,
@@ -126,9 +134,9 @@ class TestStoragesTestCase(unittest.TestCase):
                 {
                     "bucket_name": "testing",
                     "rel_path": "tmp",
-                    # "credentials": {
-                    #     "json_file_path": GCS_CREDENTIALS,
-                    # },
+                    "credentials": {
+                        "json_file_path": GCS_CREDENTIALS_JSON_FILENAME,
+                    },
                 },
                 None,
                 "my_zzz_filename",
@@ -353,19 +361,3 @@ class TestStoragesTestCase(unittest.TestCase):
             self.assertTrue(storage.exists(filename_2))
             storage.unlink(str(filename_2))
             self.assertFalse(storage.exists(filename_2))
-
-    # @patch(
-    #     "faker_file.storages.google_cloud_storage.service_account."
-    #     "Credentials.from_service_account_file",
-    #     new_callable=lambda: lambda __x: _GoogleCloudCredentials(),
-    # )
-    # @pytest.mark.xfail
-    # def test_google_cloud_storage_authentication(self, func):
-    #     """Test `GoogleCloudStorage` authentication."""
-    #     GoogleCloudStorage(
-    #         bucket_name="testing",
-    #         rel_path="tmp",
-    #         credentials={
-    #             "json_file_path": "/i/dont/exist.json",
-    #         },
-    #     )
