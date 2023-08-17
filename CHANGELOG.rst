@@ -35,6 +35,7 @@ are used for versioning (schema follows below):
 - Added ``unlink`` method to all storages for easy clean-up of files.
 - Added ``FileRegistry`` to keep track of all files created and introduce
   functionality for cleaning up the files.
+- Stop testing against Python 3.7.
 
 0.17.3
 ------
