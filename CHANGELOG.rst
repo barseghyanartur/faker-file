@@ -27,7 +27,42 @@ are used for versioning (schema follows below):
 
 0.17.4
 ------
-2023-08-17
+2023-08-18
+
+.. note::
+
+    Release is dedicated to the victims and de-facto hostages of
+    the `Blockade of the Republic of Artsakh`_. Have you ever heard
+    of `Armenian genocide`_? It's happening again. For more than 8 months,
+    Azerbaijan has launched an illegal blockade of the Republic of Artsakh,
+    including critical civilian infrastructure such as gas, electricity and
+    roads connecting Armenia and Artaskh. Shortages of essential goods –
+    including electricity, fuel, and water reserves – are widespread and
+    emergency reserves are being rationed. The blockade has resulted in
+    significant medical and food shortages in Artsakh, leading to increased
+    health complications, as reported by Artsakh Healthcare ministry.
+
+     - Deaths due to cardiovascular diseases doubled in the first seven
+       months of the year, with a particular surge in July-August.
+     - Deaths from malignant tumors rose by 15.9% over the same period due
+       to lack of medications and medical aid.
+     - New cases of stroke and heart attacks increased by 26% and 9.7%
+       respectively.
+     - Newly diagnosed cases of malignant tumors rose by 24.3%.
+     - Around 90% of monitored pregnant women developed anemia from poor
+       nutrition and medication shortages.
+     - While overall abortion numbers remained stable, medically indicated
+       abortions quadrupled in July due to factors like stress and
+       inadequate nutrition.
+     - Reports of fainting surged by 91% in July-August.
+     - Emergency calls for high blood pressure saw a 5.6-fold increase in
+       July-August.
+
+    The dire health outcomes are attributed to the blockade's impact,
+    including medication shortages, stress, disrupted medical procedures,
+    and restricted healthcare access. The Artsakh Health Ministry warns of
+    further deterioration if the blockade continues, emphasizing the systemic
+    challenges in healthcare delivery due to the blockade.
 
 - Added ``AugmentRandomImageFromDirProvider``
   and ``AugmentImageFromPathProvider`` providers for basic image augmentation.
