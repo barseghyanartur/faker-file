@@ -89,6 +89,8 @@ from ..providers.file_from_path import FileFromPathProvider
 from ..providers.generic_file import GenericFileProvider
 from ..providers.gif_file import GifFileProvider, GraphicGifFileProvider
 from ..providers.helpers.inner import (
+    create_inner_augment_image_from_path,
+    create_inner_augment_random_image_from_dir,
     create_inner_bin_file,
     create_inner_csv_file,
     create_inner_docx_file,
@@ -2726,7 +2728,16 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
             Optional[Dict[str, Any]],
             Optional[Dict[str, Any]],
         ]
-    ] = []
+    ] = [
+        # AugmentImageFromPath
+        (
+            create_inner_augment_image_from_path,
+            {},
+            {
+                "path": SOURCE_FILE_FROM_PATH_FILENAME,
+            },
+        ),
+    ]
 
     __RAW_PARAMETRIZED_DATA: List[
         Tuple[
@@ -2893,7 +2904,18 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             Optional[Dict[str, Any]],
             Optional[Dict[str, Any]],
         ]
-    ] = []
+    ] = [
+        # AugmentRandomImageFromDir
+        (
+            create_inner_augment_random_image_from_dir,
+            {},
+            {
+                "source_dir_path": os.path.dirname(
+                    SOURCE_JPEG_FILE_FROM_PATH_FILENAME,
+                ),
+            },
+        ),
+    ]
 
     __RAW_PARAMETRIZED_DATA: List[
         Tuple[

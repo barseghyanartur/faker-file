@@ -169,18 +169,12 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
         )
         data = {"filename": filename, "storage": storage}
 
-        try:
-            image_bytes = augment_image_file(
-                image_path=source_file_path,
-                augmentations=augmentations,
-                num_steps=num_steps,
-                pop_func=pop_func,
-            )
-        except Exception as err:
-            LOGGER.error("source_file_choices")
-            LOGGER.error(source_file_choices)
-            LOGGER.error(f"source_file_path: {source_file_path}")
-            raise err
+        image_bytes = augment_image_file(
+            image_path=source_file_path,
+            augmentations=augmentations,
+            num_steps=num_steps,
+            pop_func=pop_func,
+        )
 
         if raw:
             raw_content = BytesValue(image_bytes)
