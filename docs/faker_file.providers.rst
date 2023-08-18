@@ -18,6 +18,22 @@ Subpackages
 Submodules
 ----------
 
+faker\_file.providers.augment\_image\_from\_path module
+-------------------------------------------------------
+
+.. automodule:: faker_file.providers.augment_image_from_path
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.providers.augment\_random\_image\_from\_dir module
+--------------------------------------------------------------
+
+.. automodule:: faker_file.providers.augment_random_image_from_dir
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.bin\_file module
 --------------------------------------
 

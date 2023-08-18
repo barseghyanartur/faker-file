@@ -20,6 +20,14 @@ faker\_file.tests.sftp\_server module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.tests.test\_augment module
+--------------------------------------
+
+.. automodule:: faker_file.tests.test_augment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.tests.test\_augment\_file\_from\_dir\_provider module
 -----------------------------------------------------------------
 
@@ -60,10 +68,26 @@ faker\_file.tests.test\_django\_integration module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.tests.test\_helpers module
+--------------------------------------
+
+.. automodule:: faker_file.tests.test_helpers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.tests.test\_providers module
 ----------------------------------------
 
 .. automodule:: faker_file.tests.test_providers
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+faker\_file.tests.test\_registry module
+---------------------------------------
+
+.. automodule:: faker_file.tests.test_registry
    :members:
    :undoc-members:
    :show-inheritance:

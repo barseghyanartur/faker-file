@@ -40,6 +40,14 @@ faker\_file.helpers module
    :undoc-members:
    :show-inheritance:
 
+faker\_file.registry module
+---------------------------
+
+.. automodule:: faker_file.registry
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

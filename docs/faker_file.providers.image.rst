@@ -4,6 +4,14 @@ faker\_file.providers.image package
 Submodules
 ----------
 
+faker\_file.providers.image.augment module
+------------------------------------------
+
+.. automodule:: faker_file.providers.image.augment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 faker\_file.providers.image.imgkit\_generator module
 ----------------------------------------------------
 
