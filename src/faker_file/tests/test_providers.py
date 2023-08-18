@@ -1740,6 +1740,26 @@ class ProvidersTestCase(unittest.TestCase):
         "create_inner_file_func, "
         "create_inner_file_args",
         [
+            # AugmentImageFromPath
+            (
+                "faker_file.providers.augment_image_from_path",
+                "AugmentImageFromPathProvider",
+                create_inner_augment_image_from_path,
+                {
+                    "path": SOURCE_FILE_FROM_PATH_FILENAME,
+                },
+            ),
+            # AugmentRandomImageFromDir
+            (
+                "faker_file.providers.augment_random_image_from_dir",
+                "AugmentRandomImageFromDirProvider",
+                create_inner_augment_random_image_from_dir,
+                {
+                    "source_dir_path": os.path.join(
+                        SOURCE_FILE_FROM_PATH_FILENAME
+                    )
+                },
+            ),
             # BIN
             (
                 "faker_file.providers.bin_file",
