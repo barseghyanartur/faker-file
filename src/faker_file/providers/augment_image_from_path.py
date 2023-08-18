@@ -37,7 +37,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
-        .. code-block:: python
+    .. code-block:: python
 
         file = FAKER.augment_image_from_path(
             path="/path/to/image.png",

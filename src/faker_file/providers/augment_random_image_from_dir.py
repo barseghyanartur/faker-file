@@ -64,7 +64,7 @@ class AugmentRandomImageFromDirProvider(BaseProvider, FileMixin):
 
     Usage example with options:
 
-        .. code-block:: python
+    .. code-block:: python
 
         file = FAKER.augment_random_image_from_dir(
             source_dir_path="/tmp/tmp/",
