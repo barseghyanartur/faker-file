@@ -159,6 +159,13 @@ class SFTPStorage(BaseStorage):
         """Return absolute path."""
         return self._build_path(filename)
 
+    def unlink(self: "SFTPStorage", filename: str) -> None:
+        """Remove a file."""
+        try:
+            self.sftp.remove(self._build_path(filename))
+        except Exception as err:
+            LOGGER.exception(f"Failed to remove {filename}: {err}")
+
     def close(self: "SFTPStorage"):
         """Explicitly close the connection."""
         if self.sftp:

@@ -4,6 +4,7 @@ from typing import Optional, Union, overload
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -22,14 +23,14 @@ class FileFromPathProvider(BaseProvider, FileMixin):
 
         from faker import Faker
         from faker_file.providers.file_from_path import (
-            FileFromPathProvider,
+            FileFromPathProvide
         )
 
         FAKER = Faker()
         FAKER.add_provider(FileFromPathProvider)
 
         file = FAKER.file_from_path(
-            path="/path/to/file.pdf",
+            path="/path/to/file.pdf"
         )
 
     Usage example with options:
@@ -101,7 +102,7 @@ class FileFromPathProvider(BaseProvider, FileMixin):
             prefix=prefix,
             basename=basename,
         )
-        data = {"filename": filename}
+        data = {"filename": filename, "storage": storage}
 
         # Specific
         with open(path, "rb") as _file:
@@ -115,5 +116,5 @@ class FileFromPathProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
-
+        FILE_REGISTRY.add(file_name)
         return file_name

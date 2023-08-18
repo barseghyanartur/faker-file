@@ -7,6 +7,7 @@ from faker.providers.python import Provider
 from ...base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_IMAGE_MAX_NB_CHARS
 from ...helpers import load_class_from_path
+from ...registry import FILE_REGISTRY
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.image_generator import BaseImageGenerator
@@ -129,7 +130,7 @@ class ImageMixin(FileMixin):
             format_func=format_func,
         )
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if image_generator_cls is None:
             image_generator_cls = DEFAULT_IMAGE_GENERATOR
@@ -160,4 +161,5 @@ class ImageMixin(FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

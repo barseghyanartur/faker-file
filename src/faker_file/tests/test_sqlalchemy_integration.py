@@ -10,6 +10,7 @@ from parametrize import parametrize
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from ..registry import FILE_REGISTRY
 from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -34,6 +35,7 @@ class SQLAlchemyIntegrationTestCase(TestCase):
 
     def tearDown(self: "SQLAlchemyIntegrationTestCase"):
         Upload.metadata.drop_all(self.engine)
+        FILE_REGISTRY.clean_up()
 
     FAKER: Faker
 

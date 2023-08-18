@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional, Union, overload
 from faker.providers import BaseProvider
 
 from ..base import BytesValue, FileMixin, StringValue, returns_list
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 from .helpers.inner import create_inner_txt_file
@@ -141,7 +142,12 @@ class TarFileProvider(BaseProvider, FileMixin):
             prefix=prefix,
             basename=basename,
         )
-        data: Dict[str, Any] = {"inner": {}, "files": [], "filename": filename}
+        data: Dict[str, Any] = {
+            "inner": {},
+            "files": [],
+            "filename": filename,
+            "storage": storage,
+        }
         fs_storage = FileSystemStorage()
 
         # Specific
@@ -231,4 +237,5 @@ class TarFileProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

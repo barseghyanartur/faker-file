@@ -25,6 +25,7 @@ from ..providers.rtf_file import RtfFileProvider
 from ..providers.txt_file import TxtFileProvider
 from ..providers.xlsx_file import XlsxFileProvider
 from ..providers.xml_file import XmlFileProvider
+from ..registry import FILE_REGISTRY
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -128,6 +129,10 @@ class DataIntegrityTestCase(unittest.TestCase):
         # XML
         (FAKER, XmlFileProvider, "xml_file", {}, 95),
     ]
+
+    def tearDown(self) -> None:
+        super().tearDown()
+        FILE_REGISTRY.clean_up()
 
     @parametrize(
         "fake, provider, method_name, kwargs, similarity_margin",

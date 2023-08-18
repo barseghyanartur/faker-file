@@ -879,7 +879,7 @@ Pick a random file from a directory given
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
 .. code-block:: python
-    :name: test_pick_a_random_file_from_directory_given
+    :name: __test_pick_a_random_file_from_directory_given
 
     from faker import Faker
     from faker_file.providers.random_file_from_dir import (

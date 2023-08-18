@@ -6,6 +6,7 @@ from faker.providers.python import Provider
 from tablib import Dataset
 
 from ...base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
+from ...registry import FILE_REGISTRY
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 
@@ -117,7 +118,7 @@ class TabularDataMixin(FileMixin):
                 num_rows=num_rows,
             )
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         dataset = Dataset()
         dataset.load(content, format="json")
@@ -134,4 +135,5 @@ class TabularDataMixin(FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

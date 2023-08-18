@@ -8,6 +8,7 @@ from faker.providers.python import Provider
 
 from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_XML_DATA_COLUMNS
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -219,7 +220,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         else:
             content = format_func(self.generator, content)
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if raw:
             raw_content = BytesValue(content.encode("utf8"))
@@ -230,4 +231,5 @@ class XmlFileProvider(BaseProvider, FileMixin):
 
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

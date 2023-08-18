@@ -117,6 +117,12 @@ class CloudStorage(BaseStorage):
         """Return relative path."""
         return filename.as_uri()
 
+    def unlink(self: "CloudStorage", filename: Union[Pathy, str]) -> None:
+        """Delete the file."""
+        if isinstance(filename, str):
+            filename = self.bucket / self.root_path / filename
+        filename.unlink()
+
 
 class PathyFileSystemStorage(CloudStorage):
     """Pathy FileSystem Storage.

@@ -295,7 +295,7 @@ Create a file by copying it randomly from the given directory.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
 .. code-block:: python
-    :name: test_random_file_from_dir_provider
+    :name: __test_random_file_from_dir_provider
 
     from faker import Faker
     from faker_file.providers.random_file_from_dir import (
@@ -312,3 +312,35 @@ Create a file by copying it randomly from the given directory.
 
 Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
+
+Cleaning up files
+~~~~~~~~~~~~~~~~~
+``FileSystemStorage`` is the default storage and by default files are stored
+inside a ``tmp`` directory within the system's temporary directory, which is
+commonly cleaned up after system restart. However, there's a mechanism of
+cleaning up files after the tests run. At any time, to clean up all files
+created by that moment, call ``clean_up`` method of the ``FileRegistry``
+class instance, as shown below:
+
+.. code-block:: python
+
+    from faker_file.registry import FILE_REGISTRY  # Import instance at once
+    FILE_REGISTRY.clean_up()
+
+Typically you would call the ``clean_up`` method in the ``tearDown``.
+
+To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
+
+.. code-block:: python
+
+    from faker_file.registry import FILE_REGISTRY  # Import instance at once
+    FILE_REGISTRY.remove(file)  # Where file is an instance of ``StringValue``
+
+If you only have a string representation of the ``StringValue``, try to search
+for its' correspondent ``StringValue`` instance first using ``search`` method.
+
+.. code-block:: python
+
+    file = FILE_REGISTRY.search(filename)
+    if file:
+        FILE_REGISTRY.remove(file)

@@ -11,6 +11,7 @@ from faker.providers.python import Provider
 
 from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -181,6 +182,7 @@ class EpubFileProvider(BaseProvider, FileMixin):
             "title": title,
             "chapter_title": chapter_title,
             "filename": filename,
+            "storage": storage,
         }
 
         _raw_content = bytes()
@@ -199,4 +201,5 @@ class EpubFileProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

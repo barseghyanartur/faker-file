@@ -10,8 +10,7 @@ from unittest import IsolatedAsyncioTestCase
 import asyncssh
 from faker import Faker
 
-from faker_file.providers.txt_file import TxtFileProvider
-
+from ..providers.txt_file import TxtFileProvider
 from .sftp_server import SFTPServerManager, start_server, start_server_async
 from .utils import AutoFreePortInt
 

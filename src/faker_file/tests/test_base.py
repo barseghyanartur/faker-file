@@ -7,13 +7,13 @@ from ..base import BytesValue, StringList, StringValue, returns_list
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("TestStringListTestCase",)
+__all__ = ("StringListTestCase",)
 
 
-class TestStringListTestCase(unittest.TestCase):
-    """Test StringList test case."""
+class StringListTestCase(unittest.TestCase):
+    """StringList test case."""
 
-    def test_string_list(self: "TestStringListTestCase") -> None:
+    def test_string_list(self: "StringListTestCase") -> None:
         my_string = StringList(["apple", "banana", "cherry"], separator=" | ")
 
         self.assertEqual(str(my_string), "apple | banana | cherry")
@@ -29,8 +29,8 @@ class TestStringListTestCase(unittest.TestCase):
         self.assertEqual(repr(my_string), "apple | cherry | orange | grape")
 
 
-class TestReturnsList(unittest.TestCase):
-    def test_returns_list(self: "TestReturnsList") -> None:
+class ReturnsListTestCase(unittest.TestCase):
+    def test_returns_list(self: "ReturnsListTestCase") -> None:
         def func_1() -> Union[BytesValue, StringValue]:
             """Returns Union[BytesValue, StringValue]"""
             return StringValue("func_1")
@@ -52,19 +52,19 @@ class TestReturnsList(unittest.TestCase):
         self.assertTrue(returns_list(func_3))
         self.assertTrue(returns_list(func_4))
 
-    def test_no_return_hint(self: "TestReturnsList"):
+    def test_no_return_hint(self: "ReturnsListTestCase"):
         def func_no_hint(a, b):
             pass
 
         self.assertFalse(returns_list(func_no_hint))
 
-    def test_incorrect_hint(self: "TestReturnsList"):
+    def test_incorrect_hint(self: "ReturnsListTestCase"):
         def func_incorrect_hint(a) -> str:
             return "func_incorrect_hint"
 
         self.assertFalse(returns_list(func_incorrect_hint))
 
-    def test_undefined_type_hint(self: "TestReturnsList"):
+    def test_undefined_type_hint(self: "ReturnsListTestCase"):
         def func_undefined_hint(
             a: "UndefinedType",  # noqa
         ) -> List[Union[BytesValue, StringValue]]:
@@ -72,13 +72,13 @@ class TestReturnsList(unittest.TestCase):
 
         self.assertFalse(returns_list(func_undefined_hint))
 
-    def test_correct_hint(self: "TestReturnsList"):
+    def test_correct_hint(self: "ReturnsListTestCase"):
         def func_correct_hint(a) -> List[Union[BytesValue, StringValue]]:
             return [BytesValue(b"fn_corr_hint"), StringValue("fn_corr_hint")]
 
         self.assertTrue(returns_list(func_correct_hint))
 
-    def test_correct_hint_reversed(self: "TestReturnsList"):
+    def test_correct_hint_reversed(self: "ReturnsListTestCase"):
         def func_correct_hint_reversed(
             a,
         ) -> List[Union[StringValue, BytesValue]]:
@@ -87,7 +87,7 @@ class TestReturnsList(unittest.TestCase):
         self.assertTrue(returns_list(func_correct_hint_reversed))
 
     @unittest.skipIf(sys.version_info < (3, 9), "Skip on Python < 3.9")
-    def test_correct_hint_builtin_list(self: "TestReturnsList"):
+    def test_correct_hint_builtin_list(self: "ReturnsListTestCase"):
         def func_correct_hint_builtin_list(
             a,
         ) -> list[Union[BytesValue, StringValue]]:
@@ -96,7 +96,7 @@ class TestReturnsList(unittest.TestCase):
         self.assertTrue(returns_list(func_correct_hint_builtin_list))
 
     @unittest.skipIf(sys.version_info < (3, 9), "Skip on Python < 3.9")
-    def test_correct_hint_builtin_list_reversed(self: "TestReturnsList"):
+    def test_correct_hint_builtin_list_reversed(self: "ReturnsListTestCase"):
         def func_correct_hint_builtin_list_reversed(
             a,
         ) -> list[Union[StringValue, BytesValue]]:

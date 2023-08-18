@@ -6,6 +6,7 @@ from faker.providers import BaseProvider
 from faker.providers.python import Provider
 
 from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -149,7 +150,7 @@ class GenericFileProvider(BaseProvider, FileMixin):
         if self.generator is None:
             self.generator = Faker()
 
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if raw:
             if isinstance(content, bytes):
@@ -170,6 +171,7 @@ class GenericFileProvider(BaseProvider, FileMixin):
             )
 
         # Generic
-        filename = StringValue(storage.relpath(filename))
-        filename.data = data
-        return filename
+        file_name = StringValue(storage.relpath(filename))
+        file_name.data = data
+        FILE_REGISTRY.add(file_name)
+        return file_name

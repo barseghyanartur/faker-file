@@ -48,3 +48,7 @@ class BaseStorage:
     def abspath(self: "BaseStorage", filename: Any) -> str:
         """Return absolute path."""
         raise NotImplementedError("Method abspath is not implemented!")
+
+    def unlink(self: "BaseStorage", filename: Any) -> None:
+        """Delete the file."""
+        raise NotImplementedError("Method unlink is not implemented!")

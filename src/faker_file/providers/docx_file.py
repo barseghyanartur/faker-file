@@ -15,6 +15,7 @@ from ..base import (
     StringValue,
 )
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
 
@@ -197,7 +198,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
                 content=content,
                 format_func=format_func,
             )
-        data = {"content": _content, "filename": filename}
+        data = {"content": _content, "filename": filename, "storage": storage}
 
         with BytesIO() as _fake_file:
             document = Document()
@@ -227,4 +228,5 @@ class DocxFileProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

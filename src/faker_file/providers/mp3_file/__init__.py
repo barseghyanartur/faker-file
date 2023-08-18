@@ -8,6 +8,7 @@ from faker.providers.python import Provider
 from ...base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
 from ...constants import DEFAULT_AUDIO_MAX_NB_CHARS
 from ...helpers import load_class_from_path
+from ...registry import FILE_REGISTRY
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.mp3_generator import BaseMp3Generator
@@ -210,7 +211,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             content=content,
             format_func=format_func,
         )
-        data = {"content": content, "filename": filename}
+        data = {"content": content, "filename": filename, "storage": storage}
 
         if mp3_generator_cls is None:
             mp3_generator_cls = DEFAULT_MP3_GENERATOR
@@ -237,4 +238,5 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         # Generic
         file_name = StringValue(storage.relpath(filename))
         file_name.data = data
+        FILE_REGISTRY.add(file_name)
         return file_name

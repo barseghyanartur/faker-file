@@ -3,10 +3,13 @@ import re
 import subprocess
 import unittest
 from importlib import import_module, reload
+from typing import Union
 
 from parametrize import parametrize
 
 from ..cli.command import main
+from ..registry import FILE_REGISTRY
+from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -17,6 +20,8 @@ LOGGER = logging.getLogger(__name__)
 
 
 VERSION_PATTERN = re.compile(r"^\d+(\.\d+){0,2}$")
+FS_STORAGE = FileSystemStorage()
+FILE_PATH_PATTERN = re.compile(r"/.+")
 
 
 def convert_value_to_cli_arg(value) -> str:
@@ -28,8 +33,19 @@ def convert_value_to_cli_arg(value) -> str:
         raise ValueError(f"Unsupported value type: {type(value)}")
 
 
+def extract_filename(val) -> Union[str, None]:
+    match = FILE_PATH_PATTERN.search(val)
+    if match:
+        extracted_path = match.group(0)
+        return extracted_path
+
+
 class TestCLI(unittest.TestCase):
     """CLI tests."""
+
+    def tearDown(self) -> None:
+        super().tearDown()
+        FILE_REGISTRY.clean_up()
 
     @parametrize(
         "method_name, kwargs",
@@ -75,6 +91,10 @@ class TestCLI(unittest.TestCase):
                 "epub_file",
                 {},
             ),
+            (
+                "epub_file",
+                {"wrap_chars_after": 40},
+            ),
             # Generic
             (
                 "generic_file",
@@ -82,10 +102,6 @@ class TestCLI(unittest.TestCase):
                     "content": "<html><body><p>{{text}}</p></body></html>",
                     "extension": "html",
                 },
-            ),
-            (
-                "epub_file",
-                {"wrap_chars_after": 40},
             ),
             # ICO
             (
@@ -243,10 +259,16 @@ class TestCLI(unittest.TestCase):
 
         # Merge the base command with the generated arguments
         cmd = ["faker-file", method_name] + args
-
+        LOGGER.error(f"cmd: {cmd}")
         # Execute the command with the provided arguments
         res = subprocess.check_output(cmd).strip()
-        self.assertTrue(res)
+
+        # Extract the filename to verify existence and clean-up
+        filename = extract_filename(res.decode())
+        LOGGER.error(f"filename: {filename}")
+        self.assertTrue(filename)
+        self.assertTrue(FS_STORAGE.exists(filename))
+        FS_STORAGE.unlink(filename)
 
     def test_cli_error_no_provider(self: "TestCLI") -> None:
         """Test CLI, no provider given."""
