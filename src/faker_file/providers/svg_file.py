@@ -61,6 +61,7 @@ class SvgFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "svg"
+    image_format: str = "svg"
 
     @overload
     def svg_file(

@@ -75,6 +75,7 @@ class BmpFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "bmp"
+    image_format: str = "bmp"
 
     @overload
     def bmp_file(
