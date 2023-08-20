@@ -74,8 +74,8 @@ class TiffFileProvider(BaseProvider, ImageMixin):
         )
     """
 
-    extension: str = "tif"
-    image_format: str = "tiff"
+    extension: str = "tiff"
+    image_format: str = "tiff"  # For Pillow
 
     @overload
     def tiff_file(

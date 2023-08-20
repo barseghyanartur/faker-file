@@ -75,6 +75,7 @@ class IcoFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "ico"
+    image_format: str = "ico"  # For Pillow
 
     @overload
     def ico_file(

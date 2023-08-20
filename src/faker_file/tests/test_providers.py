@@ -129,6 +129,11 @@ from ..providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
 from ..providers.image.augment import color_jitter, equalize, random_crop
 from ..providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
 from ..providers.json_file import JsonFileProvider
+from ..providers.mixins.image_mixin import (
+    IMAGEKIT_IMAGE_GENERATOR,
+    PIL_IMAGE_GENERATOR,
+    WEASYPRINT_IMAGE_GENERATOR,
+)
 from ..providers.mp3_file import Mp3FileProvider
 from ..providers.mp3_file.generators.edge_tts_generator import (
     EdgeTtsMp3Generator,
@@ -640,6 +645,27 @@ class ProvidersTestCase(unittest.TestCase):
             JpegFileProvider,
             "jpeg_file",
             {"image_generator_cls": None},
+            None,
+        ),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
             None,
         ),
         (

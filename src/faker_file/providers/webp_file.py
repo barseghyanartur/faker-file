@@ -75,7 +75,7 @@ class WebpFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "webp"
-    image_format: str = "webp"
+    image_format: str = "webp"  # For Pillow
 
     @overload
     def webp_file(
