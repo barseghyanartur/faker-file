@@ -80,28 +80,28 @@ can be generally broken down by 2 categories:
 
 Image providers:
 
-+------+-------------------------+------------------+-------------------------+
-| File | Graphic                 | Text             | Generator               |
-| type |                         |                  |                         |
-+======+=========================+==================+=========================+
-| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | WeasyPrint              |
-+------+-------------------------+------------------+-------------------------+
-| GIF  | GraphicGifFileProvider  | GifFileProvider  | WeasyPrint              |
-+------+-------------------------+------------------+-------------------------+
-| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| JPEG | GraphicJpegFileProvider | JpegFileProvider | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| PNG  | GraphicPngFileProvider  | PngFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| SVG  | (not supported)         | SvgFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| TIFF | GraphicTiffFileProvider | TiffFileProvider | WeasyPrint              |
-+------+-------------------------+------------------+-------------------------+
-| WEBP | GraphicWebpFileProvider | WebpFileProvider | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
++------+-------------------------+------------------+------------------------------+
+| File | Graphic                 | Text             | Generator                    |
+| type |                         |                  |                              |
++======+=========================+==================+==============================+
+| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | Pillow, WeasyPrint           |
++------+-------------------------+------------------+------------------------------+
+| GIF  | GraphicGifFileProvider  | GifFileProvider  | Pillow, WeasyPrint           |
++------+-------------------------+------------------+------------------------------+
+| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Pillow, Imagekit, WeasyPrint |
++------+-------------------------+------------------+------------------------------+
+| JPEG | GraphicJpegFileProvider | JpegFileProvider | Pillow, Imagekit, WeasyPrint    |
++------+-------------------------+------------------+------------------------------+
+| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Pillow, Imagekit, WeasyPrint    |
++------+-------------------------+------------------+------------------------------+
+| PNG  | GraphicPngFileProvider  | PngFileProvider  | Pillow, Imagekit, WeasyPrint    |
++------+-------------------------+------------------+------------------------------+
+| SVG  | (not supported)         | SvgFileProvider  | Imagekit                     |
++------+-------------------------+------------------+------------------------------+
+| TIFF | GraphicTiffFileProvider | TiffFileProvider | Pillow, Imagekit, WeasyPrint    |
++------+-------------------------+------------------+------------------------------+
+| WEBP | GraphicWebpFileProvider | WebpFileProvider | Pillow, Imagekit, WeasyPrint    |
++------+-------------------------+------------------+------------------------------+
 
 At the moment, most of the text-to-image providers rely on the `imgkit`_
 Python package and `wkhtmltopdf`_ system dependency (available for most
@@ -111,6 +111,10 @@ However, a few formats, such as BMP, GIF and TIFF, which are not supported
 by `imgkit`_ and underlying `wkhtmltopdf`_, rely on `WeasyPrint`_,
 `pdf2image`_ and `poppler`_ through an alternative
 ``WeasyPrintImageGenerator``.
+
+The lightest alternative to `imgkit`_ and `WeasyPrint`_ providers is the
+`Pillow`_ provider (``PilImageGenerator``), which is basic, but does not
+require additional system dependencies to be installed.
 
 Graphic image providers on the other hand rely on Pillow and underlying
 system dependencies such as ``libjpeg``, ``zlib``, ``libtiff``,

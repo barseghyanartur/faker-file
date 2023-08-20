@@ -338,6 +338,27 @@ class ProvidersTestCase(unittest.TestCase):
         (FAKER, BinFileProvider, "bin_file", {}, PATHY_FS_STORAGE),
         # BMP
         (FAKER, BmpFileProvider, "bmp_file", {}, None),
+        (
+            FAKER,
+            BmpFileProvider,
+            "bmp_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            BmpFileProvider,
+            "bmp_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            BmpFileProvider,
+            "bmp_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
         (FAKER, BmpFileProvider, "bmp_file", {}, False),
         (FAKER, BmpFileProvider, "bmp_file", {}, PATHY_FS_STORAGE),
         (FAKER, GraphicBmpFileProvider, "graphic_bmp_file", {}, None),
@@ -593,12 +614,56 @@ class ProvidersTestCase(unittest.TestCase):
         # GIF
         (FAKER, GifFileProvider, "gif_file", {}, None),
         (FAKER_HY, GifFileProvider, "gif_file", {}, None),
+        (
+            FAKER,
+            GifFileProvider,
+            "gif_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            GifFileProvider,
+            "gif_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        # Since GIF format is not supported by imgkit and wkhtmltopdf,
+        # the `ImgkitImageGenerator` does not support it either.
+        # (
+        #     FAKER,
+        #     GifFileProvider,
+        #     "gif_file",
+        #     {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+        #     None,
+        # ),
         (FAKER, GifFileProvider, "gif_file", {}, False),
         (FAKER, GifFileProvider, "gif_file", {}, PATHY_FS_STORAGE),
         (FAKER, GraphicGifFileProvider, "graphic_gif_file", {}, None),
         # ICO
         (FAKER, IcoFileProvider, "ico_file", {}, None),
         (FAKER_HY, IcoFileProvider, "ico_file", {}, None),
+        (
+            FAKER,
+            IcoFileProvider,
+            "ico_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            IcoFileProvider,
+            "ico_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            IcoFileProvider,
+            "ico_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
         (FAKER, IcoFileProvider, "ico_file", {}, False),
         (FAKER, IcoFileProvider, "ico_file", {}, PATHY_FS_STORAGE),
         (
@@ -956,6 +1021,27 @@ class ProvidersTestCase(unittest.TestCase):
         # PNG
         (FAKER, PngFileProvider, "png_file", {}, None),
         (FAKER_HY, PngFileProvider, "png_file", {}, None),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
         (FAKER, PngFileProvider, "png_file", {}, False),
         (FAKER, PngFileProvider, "png_file", {}, PATHY_FS_STORAGE),
         (
@@ -1051,6 +1137,29 @@ class ProvidersTestCase(unittest.TestCase):
         ),
         # SVG
         (FAKER, SvgFileProvider, "svg_file", {}, None),
+        # Since SVG is not yet supported by Pillow, it's skipped.
+        # (
+        #     FAKER,
+        #     SvgFileProvider,
+        #     "svg_file",
+        #     {"image_generator_cls": PIL_IMAGE_GENERATOR},
+        #     None,
+        # ),
+        # Since SVG is not yet supported by WeasyPrint, it's skipped.
+        # (
+        #     FAKER,
+        #     SvgFileProvider,
+        #     "svg_file",
+        #     {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+        #     None,
+        # ),
+        (
+            FAKER,
+            SvgFileProvider,
+            "svg_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
         (FAKER_HY, SvgFileProvider, "svg_file", {}, None),
         (FAKER, SvgFileProvider, "svg_file", {}, False),
         (FAKER, SvgFileProvider, "svg_file", {}, PATHY_FS_STORAGE),
@@ -1077,6 +1186,27 @@ class ProvidersTestCase(unittest.TestCase):
         # TIFF
         (FAKER, TiffFileProvider, "tiff_file", {}, None),
         (FAKER_HY, TiffFileProvider, "tiff_file", {}, None),
+        (
+            FAKER,
+            TiffFileProvider,
+            "tiff_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            TiffFileProvider,
+            "tiff_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            TiffFileProvider,
+            "tiff_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
         (FAKER, TiffFileProvider, "tiff_file", {}, False),
         (FAKER, TiffFileProvider, "tiff_file", {}, PATHY_FS_STORAGE),
         (FAKER, GraphicTiffFileProvider, "graphic_tiff_file", {}, None),
@@ -1282,6 +1412,27 @@ class ProvidersTestCase(unittest.TestCase):
     ] = [
         (FAKER, WebpFileProvider, "webp_file", {}, None),
         (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
+        (
+            FAKER,
+            WebpFileProvider,
+            "webp_file",
+            {"image_generator_cls": PIL_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            WebpFileProvider,
+            "webp_file",
+            {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
+            None,
+        ),
+        (
+            FAKER,
+            WebpFileProvider,
+            "webp_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
     ]
 
     # create_inner_file_func, options, create_inner_file_args
