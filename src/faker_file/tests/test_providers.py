@@ -142,7 +142,13 @@ from ..providers.mp3_file.generators.gtts_generator import GttsMp3Generator
 from ..providers.odp_file import OdpFileProvider
 from ..providers.ods_file import OdsFileProvider
 from ..providers.odt_file import OdtFileProvider
-from ..providers.pdf_file import GraphicPdfFileProvider, PdfFileProvider
+from ..providers.pdf_file import (
+    PDFKIT_PDF_GENERATOR,
+    PIL_PDF_GENERATOR,
+    REPORTLAB_PDF_GENERATOR,
+    GraphicPdfFileProvider,
+    PdfFileProvider,
+)
 from ..providers.pdf_file.generators.pdfkit_generator import PdfkitPdfGenerator
 from ..providers.pdf_file.generators.reportlab_generator import (
     ReportlabPdfGenerator,
@@ -723,6 +729,23 @@ class ProvidersTestCase(unittest.TestCase):
             FAKER,
             JpegFileProvider,
             "jpeg_file",
+            {
+                "image_generator_cls": PIL_IMAGE_GENERATOR,
+                "image_generator_kwargs": {
+                    "encoding": "utf8",
+                    "font_size": 14,
+                    "page_width": 800,
+                    "page_height": 1200,
+                    "line_height": 16,
+                    "spacing": 5,
+                },
+            },
+            None,
+        ),
+        (
+            FAKER,
+            JpegFileProvider,
+            "jpeg_file",
             {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
             None,
         ),
@@ -938,10 +961,7 @@ class ProvidersTestCase(unittest.TestCase):
             PdfFileProvider,
             "pdf_file",
             {
-                "pdf_generator_cls": (
-                    "faker_file.providers.pdf_file.generators"
-                    ".pdfkit_generator.PdfkitPdfGenerator"
-                ),
+                "pdf_generator_cls": PDFKIT_PDF_GENERATOR,
                 "pdf_generator_kwargs": {"encoding": DEFAULT_FILE_ENCODING},
             },
             None,
@@ -980,10 +1000,33 @@ class ProvidersTestCase(unittest.TestCase):
             PdfFileProvider,
             "pdf_file",
             {
-                "pdf_generator_cls": (
-                    "faker_file.providers.pdf_file.generators"
-                    ".reportlab_generator.ReportlabPdfGenerator"
-                ),
+                "pdf_generator_cls": PIL_PDF_GENERATOR,
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": PIL_PDF_GENERATOR,
+                "pdf_generator_kwargs": {
+                    "encoding": "utf8",
+                    "font_size": 14,
+                    "page_width": 800,
+                    "page_height": 1200,
+                    "line_height": 16,
+                    "spacing": 5,
+                },
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": REPORTLAB_PDF_GENERATOR,
                 "pdf_generator_kwargs": {},
                 "content": DynamicTemplate(
                     [

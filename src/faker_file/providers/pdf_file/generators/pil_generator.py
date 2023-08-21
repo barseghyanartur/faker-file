@@ -45,7 +45,7 @@ class PilPdfGenerator(BasePdfGenerator):
     page_width: int = 794  # A4 size at 96 DPI
     page_height: int = 1123  # A4 size at 96 DPI
     line_height: int = 14
-    spacing: int = 6
+    spacing: int = 6  # Letter spacing
 
     def handle_kwargs(self: "PilPdfGenerator", **kwargs) -> None:
         """Handle kwargs."""

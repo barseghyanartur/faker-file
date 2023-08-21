@@ -27,6 +27,8 @@ are used for versioning (schema follows below):
 
 0.17.5
 ------
+2023-08-??
+
 .. note::
 
     Although this release introduces some minor backwards incompatible

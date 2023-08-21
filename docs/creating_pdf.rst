@@ -15,10 +15,14 @@ That's why, creation of PDF files has been delegated to an abstraction layer
 of PDF generators. If you don't like how PDF files are generated, you can
 create your own layer, using your favourite library.
 
-Currently, there are two PDF generators implemented:
+Currently, there are three PDF generators implemented:
 
 - ``PdfkitPdfGenerator`` (default), built on top of the `pdfkit`_
   and `wkhtmltopdf`_.
+- ``PilPdfGenerator``, build on top of the `Pillow`_. Currently, the most
+  basic generator in terms of features, but on the same time, the
+  generator that will likely won't ask for any system dependencies that
+  you don't yet have installed.
 - ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
 
 Building PDF using `pdfkit`_
@@ -232,4 +236,34 @@ shapes of different colours). One of the most useful arguments supported is
 
     file = FAKER.graphic_pdf_file(
         size=(800, 800),
+    )
+
+Building PDFs using `Pillow`_
+-----------------------------
+Usage example:
+
+.. code-block:: python
+    :name: test_building_pdfs_using_pillow
+
+    from faker import Faker
+    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.image.pil_generator import PilImageGenerator
+
+    FAKER = Faker()
+    FAKER.add_provider(PngFileProvider)
+
+    file = FAKER.png_file(
+        image_generator_cls=PilImageGenerator,
+    )
+
+With options:
+
+.. code-block:: python
+
+    file = FAKER.png_file(
+        image_generator_cls=PilImageGenerator,
+        image_generator_kwargs={
+            "spacing": 6,
+        },
+        wrap_chars_after=119,
     )
