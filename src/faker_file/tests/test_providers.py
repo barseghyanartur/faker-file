@@ -1200,13 +1200,6 @@ class ProvidersTestCase(unittest.TestCase):
             {"image_generator_cls": WEASYPRINT_IMAGE_GENERATOR},
             None,
         ),
-        (
-            FAKER,
-            TiffFileProvider,
-            "tiff_file",
-            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
-            None,
-        ),
         (FAKER, TiffFileProvider, "tiff_file", {}, False),
         (FAKER, TiffFileProvider, "tiff_file", {}, PATHY_FS_STORAGE),
         (FAKER, GraphicTiffFileProvider, "graphic_tiff_file", {}, None),
@@ -1268,6 +1261,7 @@ class ProvidersTestCase(unittest.TestCase):
             {"format_func": pystr_format_func},
             None,
         ),
+        # Defined in allow_failures
         # WEBP
         # (FAKER, WebpFileProvider, "webp_file", {}, None),
         # (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
@@ -1410,6 +1404,15 @@ class ProvidersTestCase(unittest.TestCase):
             Optional[Union[bool, PathyFileSystemStorage]],
         ]
     ] = [
+        # TIFF
+        (
+            FAKER,
+            TiffFileProvider,
+            "tiff_file",
+            {"image_generator_cls": IMAGEKIT_IMAGE_GENERATOR},
+            None,
+        ),
+        # WEBP
         (FAKER, WebpFileProvider, "webp_file", {}, None),
         (FAKER, WebpFileProvider, "webp_file", {}, PATHY_FS_STORAGE),
         (

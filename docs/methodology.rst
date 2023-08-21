@@ -14,6 +14,7 @@ Methodology
 .. _pip-tools: https://pip-tools.readthedocs.io
 .. _poppler: https://poppler.freedesktop.org/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _xvfb: https://en.wikipedia.org/wiki/Xvfb
 
 But why
 -------
@@ -80,28 +81,32 @@ can be generally broken down by 2 categories:
 
 Image providers:
 
-+------+-------------------------+------------------+------------------------------+
-| File | Graphic                 | Text             | Generator                    |
-| type |                         |                  |                              |
-+======+=========================+==================+==============================+
-| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | Pillow, WeasyPrint           |
-+------+-------------------------+------------------+------------------------------+
-| GIF  | GraphicGifFileProvider  | GifFileProvider  | Pillow, WeasyPrint           |
-+------+-------------------------+------------------+------------------------------+
-| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Pillow, Imagekit, WeasyPrint |
-+------+-------------------------+------------------+------------------------------+
-| JPEG | GraphicJpegFileProvider | JpegFileProvider | Pillow, Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+------------------------------+
-| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Pillow, Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+------------------------------+
-| PNG  | GraphicPngFileProvider  | PngFileProvider  | Pillow, Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+------------------------------+
-| SVG  | (not supported)         | SvgFileProvider  | Imagekit                     |
-+------+-------------------------+------------------+------------------------------+
-| TIFF | GraphicTiffFileProvider | TiffFileProvider | Pillow, Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+------------------------------+
-| WEBP | GraphicWebpFileProvider | WebpFileProvider | Pillow, Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+------------------------------+
++------+-------------------------+------------------+-------------------------------+
+| File | Graphic                 | Text             | Generator                     |
+| type |                         |                  |                               |
++======+=========================+==================+===============================+
+| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | Pillow, WeasyPrint            |
++------+-------------------------+------------------+-------------------------------+
+| GIF  | GraphicGifFileProvider  | GifFileProvider  | Pillow, WeasyPrint            |
++------+-------------------------+------------------+-------------------------------+
+| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| JPEG | GraphicJpegFileProvider | JpegFileProvider | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| PNG  | GraphicPngFileProvider  | PngFileProvider  | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| SVG  | (not supported)         | SvgFileProvider  | Imagekit                      |
++------+-------------------------+------------------+-------------------------------+
+| TIFF | GraphicTiffFileProvider | TiffFileProvider | Pillow, Imagekit*, WeasyPrint |
++------+-------------------------+------------------+-------------------------------+
+| WEBP | GraphicWebpFileProvider | WebpFileProvider | Pillow, Imagekit*, WeasyPrint |
++------+-------------------------+------------------+-------------------------------+
+
+.. note::
+
+    Items marked with `*` may require `xvfb`_ to function properly.
 
 At the moment, most of the text-to-image providers rely on the `imgkit`_
 Python package and `wkhtmltopdf`_ system dependency (available for most
