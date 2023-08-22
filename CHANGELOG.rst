@@ -31,9 +31,12 @@ are used for versioning (schema follows below):
 
 .. note::
 
-    Although this release introduces some minor backwards incompatible
-    changes (only if you have written own- or customized existing-
-    providers).
+    This release might introduces minor backwards incompatible changes only
+    if you have written own- or customized existing- image providers and used
+    them in combination with `WeasyPrint`_-based image generator. A new
+    property named ``image_format`` has been added to all image-based
+    providers and the ``WeasyPrintImageGenerator`` is using that instead
+    of formerly used ``extension`` property.
 
 - Added ``PilImageGenerator`` (for text-to-image).
 - Added ``PilPdfGenerator`` (for text-to-image).
