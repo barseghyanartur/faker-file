@@ -25,8 +25,8 @@ Currently, there are three PDF generators implemented:
   you don't yet have installed.
 - ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
 
-Building PDF using `pdfkit`_
-----------------------------
+Building PDF with text using `pdfkit`_
+--------------------------------------
 While `pdfkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
 dependency, it produces better quality PDFs and has no issues with fonts
 or unicode characters.
@@ -128,8 +128,8 @@ class is used. See the example below for usage examples:
         )
     )
 
-Building PDFs using `reportlab`_
---------------------------------
+Building PDFs with text using `reportlab`_
+------------------------------------------
 While `reportlab`_ generator is much lighter than the `pdfkit`_ and does not
 have system dependencies, but might produce PDF files with questionable
 encoding when generating unicode text.
@@ -209,6 +209,41 @@ See the example below for usage examples:
         )
     )
 
+Building PDFs with text using `Pillow`_
+---------------------------------------
+Usage example:
+
+.. code-block:: python
+    :name: test_building_pdfs_using_pillow
+
+    from faker import Faker
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.pdf_file.generators.pil_generator import (
+        PilPdfGenerator
+    )
+
+    FAKER = Faker()
+    FAKER.add_provider(PdfFileProvider)
+
+    file = FAKER.pdf_file(pdf_generator_cls=PilPdfGenerator)
+
+With options:
+
+.. code-block:: python
+
+    file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        pdf_generator_kwargs={
+            "encoding": "utf8",
+            "font_size": 14,
+            "page_width": 800,
+            "page_height": 1200,
+            "line_height": 16,
+            "spacing": 5,
+        },
+        wrap_chars_after=100,
+    )
+
 Creating PDFs with graphics using `Pillow`_
 -------------------------------------------
 There's a so called `graphic` PDF file provider available. Produced PDF files
@@ -236,34 +271,4 @@ shapes of different colours). One of the most useful arguments supported is
 
     file = FAKER.graphic_pdf_file(
         size=(800, 800),
-    )
-
-Building PDFs using `Pillow`_
------------------------------
-Usage example:
-
-.. code-block:: python
-    :name: test_building_pdfs_using_pillow
-
-    from faker import Faker
-    from faker_file.providers.png_file import PngFileProvider
-    from faker_file.providers.image.pil_generator import PilImageGenerator
-
-    FAKER = Faker()
-    FAKER.add_provider(PngFileProvider)
-
-    file = FAKER.png_file(
-        image_generator_cls=PilImageGenerator,
-    )
-
-With options:
-
-.. code-block:: python
-
-    file = FAKER.png_file(
-        image_generator_cls=PilImageGenerator,
-        image_generator_kwargs={
-            "spacing": 6,
-        },
-        wrap_chars_after=119,
     )
