@@ -81,7 +81,7 @@ class WeasyPrintImageGenerator(BaseImageGenerator):
 
         # Save the result to a BytesIO object
         output = io.BytesIO()
-        result.save(output, format=provider.extension)
+        result.save(output, format=provider.image_format)
         image_bytes = output.getvalue()  # Image, stored in memory
 
         return image_bytes

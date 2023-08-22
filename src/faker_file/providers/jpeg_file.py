@@ -75,6 +75,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "jpg"
+    image_format: str = "jpeg"  # For Pillow
 
     @overload
     def jpeg_file(

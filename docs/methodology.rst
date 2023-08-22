@@ -14,6 +14,7 @@ Methodology
 .. _pip-tools: https://pip-tools.readthedocs.io
 .. _poppler: https://poppler.freedesktop.org/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _xvfb: https://en.wikipedia.org/wiki/Xvfb
 
 But why
 -------
@@ -80,43 +81,64 @@ can be generally broken down by 2 categories:
 
 Image providers:
 
-+------+-------------------------+------------------+-------------------------+
-| File | Graphic                 | Text             | Generator               |
-| type |                         |                  |                         |
-+======+=========================+==================+=========================+
-| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | WeasyPrint              |
-+------+-------------------------+------------------+-------------------------+
-| GIF  | GraphicGifFileProvider  | GifFileProvider  | WeasyPrint              |
-+------+-------------------------+------------------+-------------------------+
-| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| JPEG | GraphicJpegFileProvider | JpegFileProvider | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| PNG  | GraphicPngFileProvider  | PngFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| SVG  | (not supported)         | SvgFileProvider  | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
-| TIFF | GraphicTiffFileProvider | TiffFileProvider | WeasyPrint              |
-+------+-------------------------+------------------+-------------------------+
-| WEBP | GraphicWebpFileProvider | WebpFileProvider | Imagekit, WeasyPrint    |
-+------+-------------------------+------------------+-------------------------+
++------+-------------------------+------------------+-------------------------------+
+| File | Graphic                 | Text             | Generator                     |
+| type |                         |                  |                               |
++======+=========================+==================+===============================+
+| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | Pillow, WeasyPrint            |
++------+-------------------------+------------------+-------------------------------+
+| GIF  | GraphicGifFileProvider  | GifFileProvider  | Pillow, WeasyPrint            |
++------+-------------------------+------------------+-------------------------------+
+| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| JPEG | GraphicJpegFileProvider | JpegFileProvider | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| PNG  | GraphicPngFileProvider  | PngFileProvider  | Pillow, Imagekit, WeasyPrint  |
++------+-------------------------+------------------+-------------------------------+
+| SVG  | (not supported)         | SvgFileProvider  | Imagekit                      |
++------+-------------------------+------------------+-------------------------------+
+| TIFF | GraphicTiffFileProvider | TiffFileProvider | Pillow, Imagekit*, WeasyPrint |
++------+-------------------------+------------------+-------------------------------+
+| WEBP | GraphicWebpFileProvider | WebpFileProvider | Pillow, Imagekit*, WeasyPrint |
++------+-------------------------+------------------+-------------------------------+
 
-At the moment, most of the text-to-image providers rely on the `imgkit`_
-Python package and `wkhtmltopdf`_ system dependency (available for most
-popular operating systems, including Windows, macOS and Linux).
+.. note::
 
-However, a few formats, such as BMP, GIF and TIFF, which are not supported
+    Items marked with `*` may require `xvfb`_ to function properly.
+
+At the moment, 2 of the 3 text-to-image providers require additional system
+dependencies (such as `wkhtmltopdf`_ for `imgkit`_ and `poppler`_ for
+`WeasyPrint`_, both of which are available for most popular operating systems,
+including Windows, macOS and Linux).
+
+A few formats, such as BMP, GIF and TIFF, which are not supported
 by `imgkit`_ and underlying `wkhtmltopdf`_, rely on `WeasyPrint`_,
-`pdf2image`_ and `poppler`_ through an alternative
-``WeasyPrintImageGenerator``.
+`pdf2image`_ and `poppler`_ through the ``WeasyPrintImageGenerator``.
 
-Graphic image providers on the other hand rely on Pillow and underlying
-system dependencies such as ``libjpeg``, ``zlib``, ``libtiff``,
-``libfreetype6`` and ``libwebp``.
+The lightest alternative to `imgkit`_ and `WeasyPrint`_ generators is the
+`Pillow`_ generator (``PilImageGenerator``), which is basic, but does not
+require additional system dependencies to be installed (most of the
+system dependencies for `Pillow`_ are likely already installed on
+your system: ``libjpeg``, ``zlib``, ``libtiff``, ``libfreetype6`` and
+``libwebp``).
+
+Graphic image providers on the other hand rely on `Pillow`_ and underlying
+system dependencies mentioned above.
 
 Take a good look at the `prerequisites`_ to identify required dependencies.
+
+TL;DR
+
+For text-to-image file generation you could use `Pillow`_ based generators,
+which are basic, but do not require additional system dependencies. For
+advanced text-to-image file generation you could use either `imgkit`_ or
+`WeasyPrint`_ based generators, which require `wkhtmltopdf`_ and `poppler`_
+respectively.
+
+For graphic file generation, the only option is to use graphic file providers,
+which depend on `Pillow` (and underlying system dependencies) only.
 
 Installation
 ~~~~~~~~~~~~

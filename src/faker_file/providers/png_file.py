@@ -75,6 +75,7 @@ class PngFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "png"
+    image_format: str = "png"  # For Pillow
 
     @overload
     def png_file(

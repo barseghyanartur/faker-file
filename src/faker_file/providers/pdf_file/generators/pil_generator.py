@@ -8,45 +8,51 @@ from faker.generator import Generator
 from faker.providers.python import Provider
 from PIL import Image, ImageDraw, ImageFont
 
-from ...constants import DEFAULT_FILE_ENCODING
-from ..base.image_generator import BaseImageGenerator
+from ....base import DynamicTemplate
+from ....constants import DEFAULT_FILE_ENCODING
+from ...base.pdf_generator import BasePdfGenerator
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("PilImageGenerator",)
+__all__ = ("PilPdfGenerator",)
 
 LOGGER = logging.getLogger(__name__)
 
 
-class PilImageGenerator(BaseImageGenerator):
-    """PIL image generator.
+class PilPdfGenerator(BasePdfGenerator):
+    """Pillow PDF generator.
 
     Usage example:
 
     .. code-block:: python
 
         from faker import Faker
-        from faker_file.providers.png_file import PngFileProvider
-        from faker_file.providers.image.pil_generator import PilImageGenerator
+        from faker_file.providers.pdf_file import PdfFileProvider
+        from faker_file.providers.pdf_file.generators import pil_generator
 
         FAKER = Faker()
-        FAKER.add_provider(PngFileProvider)
+        FAKER.add_provider(PdfFileProvider)
 
-        file = FAKER.png_file(
-            image_generator_cls=PilImageGenerator,
+        file = FAKER.pdf_file(
+            pdf_generator_cls=pil_generator.PilPdfGenerator
         )
 
     With options:
 
-    .. code-block:: python
+    .. code-bloock:: python
 
-        file = FAKER.png_file(
-            image_generator_cls=PilImageGenerator,
-            image_generator_kwargs={
-                "spacing": 6,
+        file = FAKER.pdf_file(
+            pdf_generator_cls=PilPdfGenerator,
+            pdf_generator_kwargs={
+                "encoding": "utf8",
+                "font_size": 14,
+                "page_width": 800,
+                "page_height": 1200,
+                "line_height": 16,
+                "spacing": 5,
             },
-            wrap_chars_after=119,
+            wrap_chars_after=100,
         )
     """
 
@@ -56,9 +62,9 @@ class PilImageGenerator(BaseImageGenerator):
     page_width: int = 794  # A4 size at 96 DPI
     page_height: int = 1123  # A4 size at 96 DPI
     line_height: int = 14
-    spacing: int = 6
+    spacing: int = 6  # Letter spacing
 
-    def handle_kwargs(self: "PilImageGenerator", **kwargs) -> None:
+    def handle_kwargs(self: "PilPdfGenerator", **kwargs) -> None:
         """Handle kwargs."""
         if "encoding" in kwargs:
             self.encoding = kwargs["encoding"]
@@ -74,13 +80,13 @@ class PilImageGenerator(BaseImageGenerator):
             self.spacing = kwargs["spacing"]
 
     def generate(
-        self: "PilImageGenerator",
-        content: str,
+        self: "PilPdfGenerator",
+        content: Union[str, DynamicTemplate],
         data: Dict[str, Any],
         provider: Union[Faker, Generator, Provider],
         **kwargs,
     ) -> bytes:
-        """Generate image."""
+        """Generate PDF."""
         lines = content.split("\n")
         height = len(lines) * self.font_size
         img = Image.new(
@@ -96,6 +102,6 @@ class PilImageGenerator(BaseImageGenerator):
             y_text += self.line_height
 
         buffer = BytesIO()
-        img.save(buffer, format=provider.image_format)
+        img.save(buffer, format="PDF")
 
         return buffer.getvalue()

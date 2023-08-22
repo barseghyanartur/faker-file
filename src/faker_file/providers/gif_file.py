@@ -75,6 +75,7 @@ class GifFileProvider(BaseProvider, ImageMixin):
     """
 
     extension: str = "gif"
+    image_format: str = "gif"  # For Pillow
 
     @overload
     def gif_file(

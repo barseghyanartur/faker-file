@@ -15,14 +15,18 @@ That's why, creation of PDF files has been delegated to an abstraction layer
 of PDF generators. If you don't like how PDF files are generated, you can
 create your own layer, using your favourite library.
 
-Currently, there are two PDF generators implemented:
+Currently, there are three PDF generators implemented:
 
 - ``PdfkitPdfGenerator`` (default), built on top of the `pdfkit`_
   and `wkhtmltopdf`_.
+- ``PilPdfGenerator``, build on top of the `Pillow`_. Currently, the most
+  basic generator in terms of features, but on the same time, the
+  generator that will likely won't ask for any system dependencies that
+  you don't yet have installed.
 - ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
 
-Building PDF using `pdfkit`_
-----------------------------
+Building PDF with text using `pdfkit`_
+--------------------------------------
 While `pdfkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
 dependency, it produces better quality PDFs and has no issues with fonts
 or unicode characters.
@@ -124,8 +128,8 @@ class is used. See the example below for usage examples:
         )
     )
 
-Building PDFs using `reportlab`_
---------------------------------
+Building PDFs with text using `reportlab`_
+------------------------------------------
 While `reportlab`_ generator is much lighter than the `pdfkit`_ and does not
 have system dependencies, but might produce PDF files with questionable
 encoding when generating unicode text.
@@ -203,6 +207,41 @@ See the example below for usage examples:
                 (add_page_break, {}),  # Add page break
             ] * 100
         )
+    )
+
+Building PDFs with text using `Pillow`_
+---------------------------------------
+Usage example:
+
+.. code-block:: python
+    :name: test_building_pdfs_using_pillow
+
+    from faker import Faker
+    from faker_file.providers.pdf_file import PdfFileProvider
+    from faker_file.providers.pdf_file.generators.pil_generator import (
+        PilPdfGenerator
+    )
+
+    FAKER = Faker()
+    FAKER.add_provider(PdfFileProvider)
+
+    file = FAKER.pdf_file(pdf_generator_cls=PilPdfGenerator)
+
+With options:
+
+.. code-block:: python
+
+    file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        pdf_generator_kwargs={
+            "encoding": "utf8",
+            "font_size": 14,
+            "page_width": 800,
+            "page_height": 1200,
+            "line_height": 16,
+            "spacing": 5,
+        },
+        wrap_chars_after=100,
     )
 
 Creating PDFs with graphics using `Pillow`_

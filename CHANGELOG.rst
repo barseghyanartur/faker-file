@@ -25,6 +25,19 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.5
+------
+2023-08-22
+
+.. note::
+
+    Although this release introduces some minor backwards incompatible
+    changes (only if you have written own- or customized existing-
+    providers).
+
+- Added ``PilImageGenerator`` (for text-to-image).
+- Added ``PilPdfGenerator`` (for text-to-image).
+
 0.17.4
 ------
 2023-08-18
