@@ -107,12 +107,16 @@ All licenses are mentioned below between the brackets.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
   been tested with ``Django`` starting from version 2.2 to 4.2 (although only
   maintained versions of Django are currently being tested against).
-- ``BMP``, ``GIF`` and ``TIFF`` file support requires `WeasyPrint`_ (`BSD`),
-  `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
+- ``BMP``, ``GIF`` and ``TIFF`` file support requires either just
+  `Pillow`_ (`HPND`) for very basic functionality, or a combination of
+  `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and
+  `poppler`_ (`GPLv2`) for advanced functionality.
 - ``DOCX`` file support requires `python-docx`_ (`MIT`).
 - ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
-  requires `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
+  requires either just `Pillow`_ (`HPND`) for very basic functionality, or a
+  combination of `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`) for advanced
+  functionality.
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
 - ``PDF`` file support requires either combination of `pdfkit`_ (`MIT`)
   and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
@@ -287,6 +291,10 @@ Supported file types
 - ``XLSX``
 - ``XML``
 - ``ZIP``
+
+For all image formats (``BMP``, ``ICO``, ``GIF``, ``JPEG``, ``PNG``, ``SVG``,
+``TIFF`` and ``WEBP``) and ``PDF``, there are both graphic and text-to-image
+file providers.
 
 Additional providers
 --------------------
