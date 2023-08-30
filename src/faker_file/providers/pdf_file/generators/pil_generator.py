@@ -87,19 +87,45 @@ class PilPdfGenerator(BasePdfGenerator):
         **kwargs,
     ) -> bytes:
         """Generate PDF."""
-        lines = content.split("\n")
-        height = len(lines) * self.font_size
-        img = Image.new(
-            "RGB",
-            (self.page_width, height or self.page_height),
-            (255, 255, 255),
-        )
-        draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype(self.font, self.font_size)
-        y_text = 0
-        for line in lines:
-            draw.text((0, y_text), line, fill=(0, 0, 0), spacing=6, font=font)
-            y_text += self.line_height
+        if isinstance(content, DynamicTemplate):
+            img = Image.new(
+                "RGB",
+                (self.page_width, self.page_height),
+                (255, 255, 255),
+            )
+            draw = ImageDraw.Draw(img)
+            # draw.image = img
+            position = (0, 0)
+            for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
+                content.content_modifiers
+            ):
+                if "position" not in ct_modifier_kwargs:
+                    ct_modifier_kwargs["position"] = position
+
+                position = ct_modifier(
+                    provider,
+                    self,
+                    draw,
+                    data,
+                    counter,
+                    **ct_modifier_kwargs,
+                )
+        else:
+            lines = content.split("\n")
+            height = len(lines) * self.font_size
+            img = Image.new(
+                "RGB",
+                (self.page_width, height or self.page_height),
+                (255, 255, 255),
+            )
+            draw = ImageDraw.Draw(img)
+            font = ImageFont.truetype(self.font, self.font_size)
+            y_text = 0
+            for line in lines:
+                draw.text(
+                    (0, y_text), line, fill=(0, 0, 0), spacing=6, font=font
+                )
+                y_text += self.line_height
 
         buffer = BytesIO()
         img.save(buffer, format="PDF")
