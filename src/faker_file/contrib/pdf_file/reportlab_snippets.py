@@ -170,7 +170,7 @@ def add_heading(
 ):
     """Add heading function."""
     content = kwargs.get("content", None)
-    max_nb_chars = kwargs.get("content", 30)
+    max_nb_chars = kwargs.get("max_nb_chars", 30)
     wrap_chars_after = kwargs.get("wrap_chars_after", None)
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     level = kwargs.get("level", 1)
