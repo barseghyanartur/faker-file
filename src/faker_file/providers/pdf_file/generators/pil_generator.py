@@ -87,18 +87,19 @@ class PilPdfGenerator(BasePdfGenerator):
         **kwargs,
     ) -> bytes:
         """Generate PDF."""
+        pages = []
         if isinstance(content, DynamicTemplate):
-            img = Image.new(
-                "RGB",
-                (self.page_width, self.page_height),
-                (255, 255, 255),
-            )
-            draw = ImageDraw.Draw(img)
-            # draw.image = img
-            position = (0, 0)
             for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
                 content.content_modifiers
             ):
+                img = Image.new(
+                    "RGB",
+                    (self.page_width, self.page_height),
+                    (255, 255, 255),
+                )
+                draw = ImageDraw.Draw(img)
+                # draw.image = img
+                position = (0, 0)
                 if "position" not in ct_modifier_kwargs:
                     ct_modifier_kwargs["position"] = position
 
@@ -110,6 +111,8 @@ class PilPdfGenerator(BasePdfGenerator):
                     counter,
                     **ct_modifier_kwargs,
                 )
+
+                pages.append(img)  # Add as a new page
         else:
             lines = content.split("\n")
             height = len(lines) * self.font_size
@@ -127,7 +130,12 @@ class PilPdfGenerator(BasePdfGenerator):
                 )
                 y_text += self.line_height
 
+            pages.append(img)  # Add as a new page
+
         buffer = BytesIO()
-        img.save(buffer, format="PDF")
+        # Save as multi-page PDF
+        pages[0].save(
+            buffer, save_all=True, append_images=pages[1:], format="PDF"
+        )
 
         return buffer.getvalue()
