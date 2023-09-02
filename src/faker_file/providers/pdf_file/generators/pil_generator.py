@@ -1,4 +1,5 @@
 import logging
+import textwrap
 from io import BytesIO
 from pathlib import Path
 from typing import Any, Dict, Union
@@ -18,6 +19,33 @@ __license__ = "MIT"
 __all__ = ("PilPdfGenerator",)
 
 LOGGER = logging.getLogger(__name__)
+
+
+def find_max_fit_for_multi_line_text(draw, lines, font, max_width):
+    # Find the longest line
+    longest_line = str(max(lines, key=len))
+    return find_max_fit_for_single_line_text(
+        draw, longest_line, font, max_width
+    )
+
+
+def find_max_fit_for_single_line_text(
+    draw: ImageDraw,
+    text: str,
+    font: ImageFont,
+    max_width: int,
+) -> int:
+    low, high = 0, len(text)
+    while low < high:
+        mid = (high + low) // 2
+        text_width, _ = draw.textsize(text[:mid], font=font)
+
+        if text_width > max_width:
+            high = mid
+        else:
+            low = mid + 1
+
+    return low - 1
 
 
 class PilPdfGenerator(BasePdfGenerator):
@@ -112,25 +140,54 @@ class PilPdfGenerator(BasePdfGenerator):
                     **ct_modifier_kwargs,
                 )
 
-                pages.append(img)  # Add as a new page
+                pages.append(img.copy())  # Add as a new page
         else:
-            lines = content.split("\n")
-            height = len(lines) * self.font_size
             img = Image.new(
                 "RGB",
-                (self.page_width, height or self.page_height),
+                (self.page_width, self.page_height),
                 (255, 255, 255),
             )
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype(self.font, self.font_size)
+
+            content_specs = kwargs.get("content_specs", {})
+            line_max_num_chars = find_max_fit_for_multi_line_text(
+                draw,
+                content.split("\n"),
+                font,
+                self.page_width,
+            )
+            wrap_chars_after = content_specs.get("wrap_chars_after")
+            if (
+                not wrap_chars_after
+                or wrap_chars_after
+                and (wrap_chars_after > line_max_num_chars)
+            ):
+                lines = textwrap.wrap(content, line_max_num_chars)
+
             y_text = 0
-            for line in lines:
+            for counter, line in enumerate(lines):
+                text_width, text_height = draw.textsize(
+                    line, font=font, spacing=6
+                )
+                # if counter % max_lines_per_page == 0:
+                if y_text + text_height > self.page_height:
+                    pages.append(img.copy())
+                    img = Image.new(
+                        "RGB",
+                        (self.page_width, self.page_height),
+                        (255, 255, 255),
+                    )
+                    draw = ImageDraw.Draw(img)
+                    y_text = 0
+
                 draw.text(
                     (0, y_text), line, fill=(0, 0, 0), spacing=6, font=font
                 )
-                y_text += self.line_height
+                y_text += text_height + self.line_height
+                LOGGER.error(f"line: {line}")
 
-            pages.append(img)  # Add as a new page
+            pages.append(img.copy())  # Add as a new page
 
         buffer = BytesIO()
         # Save as multi-page PDF
