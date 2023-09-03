@@ -107,6 +107,13 @@ class PilPdfGenerator(BasePdfGenerator):
         if "spacing" in kwargs:
             self.spacing = kwargs["spacing"]
 
+    def create_image_instance(self) -> Image:
+        return Image.new(
+            "RGB",
+            (self.page_width, self.page_height),
+            (255, 255, 255),
+        )
+
     def generate(
         self: "PilPdfGenerator",
         content: Union[str, DynamicTemplate],
@@ -120,11 +127,7 @@ class PilPdfGenerator(BasePdfGenerator):
             for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
                 content.content_modifiers
             ):
-                img = Image.new(
-                    "RGB",
-                    (self.page_width, self.page_height),
-                    (255, 255, 255),
-                )
+                img = self.create_image_instance()
                 draw = ImageDraw.Draw(img)
                 # draw.image = img
                 position = (0, 0)
@@ -142,11 +145,7 @@ class PilPdfGenerator(BasePdfGenerator):
 
                 pages.append(img.copy())  # Add as a new page
         else:
-            img = Image.new(
-                "RGB",
-                (self.page_width, self.page_height),
-                (255, 255, 255),
-            )
+            img = self.create_image_instance()
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype(self.font, self.font_size)
 
@@ -173,11 +172,7 @@ class PilPdfGenerator(BasePdfGenerator):
                 # if counter % max_lines_per_page == 0:
                 if y_text + text_height > self.page_height:
                     pages.append(img.copy())
-                    img = Image.new(
-                        "RGB",
-                        (self.page_width, self.page_height),
-                        (255, 255, 255),
-                    )
+                    img = self.create_image_instance()
                     draw = ImageDraw.Draw(img)
                     y_text = 0
 
