@@ -2,7 +2,7 @@ import logging
 import textwrap
 from io import BytesIO
 from pathlib import Path
-from typing import Any, Dict, Union
+from typing import Any, Dict, List, Type, Union
 
 from faker import Faker
 from faker.generator import Generator
@@ -19,33 +19,6 @@ __license__ = "MIT"
 __all__ = ("PilPdfGenerator",)
 
 LOGGER = logging.getLogger(__name__)
-
-
-def find_max_fit_for_multi_line_text(draw, lines, font, max_width):
-    # Find the longest line
-    longest_line = str(max(lines, key=len))
-    return find_max_fit_for_single_line_text(
-        draw, longest_line, font, max_width
-    )
-
-
-def find_max_fit_for_single_line_text(
-    draw: ImageDraw,
-    text: str,
-    font: ImageFont,
-    max_width: int,
-) -> int:
-    low, high = 0, len(text)
-    while low < high:
-        mid = (high + low) // 2
-        text_width, _ = draw.textsize(text[:mid], font=font)
-
-        if text_width > max_width:
-            high = mid
-        else:
-            low = mid + 1
-
-    return low - 1
 
 
 class PilPdfGenerator(BasePdfGenerator):
@@ -92,6 +65,44 @@ class PilPdfGenerator(BasePdfGenerator):
     line_height: int = 14
     spacing: int = 6  # Letter spacing
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.pages = []
+
+    @classmethod
+    def find_max_fit_for_multi_line_text(
+        cls: Type["PilPdfGenerator"],
+        draw: ImageDraw,
+        lines: List[str],
+        font: ImageFont,
+        max_width: int,
+    ):
+        # Find the longest line
+        longest_line = str(max(lines, key=len))
+        return cls.find_max_fit_for_single_line_text(
+            draw, longest_line, font, max_width
+        )
+
+    @classmethod
+    def find_max_fit_for_single_line_text(
+        cls: Type["PilPdfGenerator"],
+        draw: "ImageDraw",
+        text: str,
+        font: ImageFont,
+        max_width: int,
+    ) -> int:
+        low, high = 0, len(text)
+        while low < high:
+            mid = (high + low) // 2
+            text_width, _ = draw.textsize(text[:mid], font=font)
+
+            if text_width > max_width:
+                high = mid
+            else:
+                low = mid + 1
+
+        return low - 1
+
     def handle_kwargs(self: "PilPdfGenerator", **kwargs) -> None:
         """Handle kwargs."""
         if "encoding" in kwargs:
@@ -122,7 +133,6 @@ class PilPdfGenerator(BasePdfGenerator):
         **kwargs,
     ) -> bytes:
         """Generate PDF."""
-        pages = []
         if isinstance(content, DynamicTemplate):
             for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
                 content.content_modifiers
@@ -143,14 +153,17 @@ class PilPdfGenerator(BasePdfGenerator):
                     **ct_modifier_kwargs,
                 )
 
-                pages.append(img.copy())  # Add as a new page
+                self.pages.append(img.copy())  # Add as a new page
         else:
             img = self.create_image_instance()
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype(self.font, self.font_size)
 
+            # The `content_specs` is a dictionary that holds two keys:
+            # `max_nb_chars` and `wrap_chars_after`. Those are the same values
+            # passed to the `PdfFileProvider`.
             content_specs = kwargs.get("content_specs", {})
-            line_max_num_chars = find_max_fit_for_multi_line_text(
+            line_max_num_chars = self.find_max_fit_for_multi_line_text(
                 draw,
                 content.split("\n"),
                 font,
@@ -171,23 +184,26 @@ class PilPdfGenerator(BasePdfGenerator):
                 )
                 # if counter % max_lines_per_page == 0:
                 if y_text + text_height > self.page_height:
-                    pages.append(img.copy())
+                    self.pages.append(img.copy())
                     img = self.create_image_instance()
                     draw = ImageDraw.Draw(img)
                     y_text = 0
 
                 draw.text(
-                    (0, y_text), line, fill=(0, 0, 0), spacing=6, font=font
+                    (0, y_text),
+                    line,
+                    fill=(0, 0, 0),
+                    spacing=self.spacing,
+                    font=font,
                 )
                 y_text += text_height + self.line_height
-                LOGGER.error(f"line: {line}")
 
-            pages.append(img.copy())  # Add as a new page
+            self.pages.append(img.copy())  # Add as a new page
 
         buffer = BytesIO()
         # Save as multi-page PDF
-        pages[0].save(
-            buffer, save_all=True, append_images=pages[1:], format="PDF"
+        self.pages[0].save(
+            buffer, save_all=True, append_images=self.pages[1:], format="PDF"
         )
 
         return buffer.getvalue()

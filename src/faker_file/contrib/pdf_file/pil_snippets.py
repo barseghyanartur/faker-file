@@ -18,14 +18,35 @@
             [
                 (add_h1_heading, {}),
                 (add_picture, {}),
-                (add_paragraph, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {"max_nb_chars": 500}),
+            ]
+        )
+    )
 
+    file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_h1_heading, {}),
+                (add_picture, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_picture, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_picture, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_picture, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
             ]
         )
     )
 """
 import logging
+import textwrap
 from io import BytesIO
+from typing import Tuple
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -40,7 +61,7 @@ __all__ = (
     "add_h5_heading",
     "add_h6_heading",
     "add_heading",
-    # "add_page_break",
+    "add_page_break",
     "add_paragraph",
     "add_picture",
     # "add_table",
@@ -52,11 +73,11 @@ LOGGER = logging.getLogger(__name__)
 def add_picture(
     provider,
     generator,
-    document: "ImageDraw",  # ImageDraw.Draw object for drawing
+    document: ImageDraw,
     data,
     counter,
     **kwargs,
-):
+) -> Tuple[int, int]:
     """Callable responsible for picture generation using PIL."""
     image_bytes = kwargs.get(
         "image_bytes", provider.generator.image()
@@ -78,8 +99,22 @@ def add_picture(
     # X, Y coordinates where the text will be placed
     position = kwargs.get("position", (0, 0))
 
+    # Calculate the remaining space on the current page
+    remaining_space = generator.page_height - position[1]
+
     # Create a PIL Image object from bytes
     image_to_paste = Image.open(output_stream)
+
+    # Check if the image will fit on the current page
+    if remaining_space < image_to_paste.height:
+        # Image won't fit; add the current page to the list and create a new one
+        img = document._image
+        generator.pages.append(img.copy())
+        img = generator.create_image_instance()
+        document = ImageDraw.Draw(img)
+
+        # Reset position to start of new page
+        position = (0, 0)
 
     # Paste the image into the document
     image_position = (
@@ -118,17 +153,18 @@ def add_picture(
 def add_paragraph(
     provider,
     generator,
-    document: "ImageDraw",  # ImageDraw.Draw object for drawing
+    document: ImageDraw,  # ImageDraw.Draw object for drawing
     data,
     counter,
     **kwargs,
-):
+) -> Tuple[int, int]:
     """Callable responsible for paragraph generation using PIL."""
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
     wrap_chars_after = kwargs.get("wrap_chars_after", None)
     # X, Y coordinates where the text will be placed
     position = kwargs.get("position", (0, 0))
+    content_specs = kwargs.get("content_specs", {})
     format_func = kwargs.get(
         "format_func", None
     )  # Assuming DEFAULT_FORMAT_FUNC is somewhere defined
@@ -139,31 +175,50 @@ def add_paragraph(
         content=content,
         format_func=format_func,
     )
-    LOGGER.error(f"_content: {_content}")
-
-    lines = _content.split("\n")
-    LOGGER.error(f"lines: {lines}")
+    font = ImageFont.truetype(generator.font, generator.font_size)
+    line_max_num_chars = generator.find_max_fit_for_multi_line_text(
+        document,
+        _content.split("\n"),
+        font,
+        generator.page_width,
+    )
+    wrap_chars_after = content_specs.get("wrap_chars_after")
+    if (
+        not wrap_chars_after
+        or wrap_chars_after
+        and (wrap_chars_after > line_max_num_chars)
+    ):
+        lines = textwrap.wrap(_content, line_max_num_chars)
 
     # Load a truetype or opentype font file, and create a font object.
     font = ImageFont.truetype(generator.font, generator.font_size)
 
-    y = position[1]
+    y_text = position[1]
     LOGGER.error(f"position: {position}")
-    for line in lines:
+    for counter, line in enumerate(lines):
+        text_width, text_height = document.textsize(
+            line, font=font, spacing=generator.spacing
+        )
+        if y_text + text_height > generator.page_height:
+            img = document._image
+            generator.pages.append(img.copy())
+            img = generator.create_image_instance()
+            document = ImageDraw.Draw(img)
+            y_text = 0
+
         document.text(
-            (position[0], y),
+            (position[0], y_text),
             line,
             fill=(0, 0, 0),
             spacing=generator.spacing,
             font=font,
         )
-        text_width, text_height = document.textsize(line, font=font)
-        y += text_height  # Move down for next line
-        # y += 14  # Move down for next line
+        # Move down for next line
+        y_text += text_height + generator.line_height
 
     # If you want to keep track of the last position to place another
     # element, you can.
-    last_position = (position[0], y)
+    last_position = (position[0], y_text)
 
     # Add meta-data, assuming data is a dictionary for tracking
     data.setdefault("content_modifiers", {})
@@ -176,7 +231,29 @@ def add_paragraph(
     return last_position
 
 
-def get_heading_font_size(base_size, heading_level):
+def add_page_break(
+    provider,
+    generator,
+    document: ImageDraw,  # ImageDraw.Draw object for drawing
+    data,
+    counter,
+    **kwargs,
+) -> Tuple[int, int]:
+    """Callable responsible for paragraph generation using PIL."""
+    position = kwargs.get("position", (0, 0))
+    img = document._image
+    generator.pages.append(img.copy())
+    img = generator.create_image_instance()
+    document = ImageDraw.Draw(img)
+
+    # If you want to keep track of the last position to place another
+    # element, you can.
+    last_position = (position[0], 0)
+
+    return last_position
+
+
+def get_heading_font_size(base_size: int, heading_level: int) -> int:
     return base_size * (8 - heading_level) // 2
 
 
@@ -187,7 +264,7 @@ def add_heading(
     data,
     counter,
     **kwargs,
-):
+) -> Tuple[int, int]:
     """Callable responsible for H1 heading generation using PIL."""
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 30)
@@ -237,42 +314,54 @@ def add_heading(
     return last_position
 
 
-def add_h1_heading(provider, generator, document, data, counter, **kwargs):
+def add_h1_heading(
+    provider, generator, document: ImageDraw, data, counter, **kwargs
+) -> Tuple[int, int]:
     """Callable responsible for the h1 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=1, **kwargs
     )
 
 
-def add_h2_heading(provider, generator, document, data, counter, **kwargs):
+def add_h2_heading(
+    provider, generator, document: ImageDraw, data, counter, **kwargs
+) -> Tuple[int, int]:
     """Callable responsible for the h2 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=2, **kwargs
     )
 
 
-def add_h3_heading(provider, generator, document, data, counter, **kwargs):
+def add_h3_heading(
+    provider, generator, document: ImageDraw, data, counter, **kwargs
+) -> Tuple[int, int]:
     """Callable responsible for the h3 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=3, **kwargs
     )
 
 
-def add_h4_heading(provider, generator, document, data, counter, **kwargs):
+def add_h4_heading(
+    provider, generator, document: ImageDraw, data, counter, **kwargs
+) -> Tuple[int, int]:
     """Callable responsible for the h4 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=4, **kwargs
     )
 
 
-def add_h5_heading(provider, generator, document, data, counter, **kwargs):
+def add_h5_heading(
+    provider, generator, document: ImageDraw, data, counter, **kwargs
+) -> Tuple[int, int]:
     """Callable responsible for the h5 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=5, **kwargs
     )
 
 
-def add_h6_heading(provider, generator, document, data, counter, **kwargs):
+def add_h6_heading(
+    provider, generator, document: ImageDraw, data, counter, **kwargs
+) -> Tuple[int, int]:
     """Callable responsible for the h6 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=6, **kwargs
