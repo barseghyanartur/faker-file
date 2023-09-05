@@ -133,18 +133,20 @@ class PilPdfGenerator(BasePdfGenerator):
         **kwargs,
     ) -> bytes:
         """Generate PDF."""
+        # position = (0, 0)
         if isinstance(content, DynamicTemplate):
             for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
                 content.content_modifiers
             ):
                 img = self.create_image_instance()
                 draw = ImageDraw.Draw(img)
-                # draw.image = img
                 position = (0, 0)
+                # draw.image = img
+
                 if "position" not in ct_modifier_kwargs:
                     ct_modifier_kwargs["position"] = position
-
-                position = ct_modifier(
+                LOGGER.error(f"ct_modifier_kwargs: {ct_modifier_kwargs}")
+                add_page, position = ct_modifier(
                     provider,
                     self,
                     draw,
@@ -153,6 +155,7 @@ class PilPdfGenerator(BasePdfGenerator):
                     **ct_modifier_kwargs,
                 )
 
+                # if add_page:
                 self.pages.append(img.copy())  # Add as a new page
         else:
             img = self.create_image_instance()

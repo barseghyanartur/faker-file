@@ -17,11 +17,26 @@
         content=DynamicTemplate(
             [
                 (add_h1_heading, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {"max_nb_chars": 500}),
+            ]
+        )
+    )
+
+    file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_h1_heading, {}),
+                (add_paragraph, {),
                 (add_picture, {}),
-                (add_paragraph, {"max_nb_chars": 500}),
-                (add_paragraph, {"max_nb_chars": 500}),
-                (add_paragraph, {"max_nb_chars": 500}),
-                (add_paragraph, {"max_nb_chars": 500}),
+                (add_paragraph, {}),
+                (add_picture, {}),
+                (add_paragraph, {}),
+                (add_picture, {}),
+                (add_paragraph, {}),
             ]
         )
     )
@@ -77,7 +92,7 @@ def add_picture(
     data,
     counter,
     **kwargs,
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for picture generation using PIL."""
     image_bytes = kwargs.get(
         "image_bytes", provider.generator.image()
@@ -139,7 +154,8 @@ def add_picture(
     LOGGER.error(f"position: {image_position}")
     # If you want to keep track of the last position to place
     # another element, you can.
-    last_position = (position[0] + image.width, position[1] + image.height)
+    # last_position = (position[0] + image.width, position[1] + image.height)
+    last_position = (0, position[1] + image.height)
 
     # Meta-data (optional)
     data.setdefault("content_modifiers", {})
@@ -147,7 +163,7 @@ def add_picture(
     data["content_modifiers"]["add_picture"].setdefault(counter, [])
     data["content_modifiers"]["add_picture"][counter].append("Image added")
 
-    return last_position
+    return False, last_position
 
 
 def add_paragraph(
@@ -157,7 +173,7 @@ def add_paragraph(
     data,
     counter,
     **kwargs,
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for paragraph generation using PIL."""
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
@@ -218,7 +234,8 @@ def add_paragraph(
 
     # If you want to keep track of the last position to place another
     # element, you can.
-    last_position = (position[0], y_text)
+    # last_position = (position[0], y_text)
+    last_position = (0, y_text)
 
     # Add meta-data, assuming data is a dictionary for tracking
     data.setdefault("content_modifiers", {})
@@ -228,7 +245,7 @@ def add_paragraph(
     data.setdefault("content", "")
     data["content"] += "\r\n" + _content
 
-    return last_position
+    return False, last_position
 
 
 def add_page_break(
@@ -238,9 +255,9 @@ def add_page_break(
     data,
     counter,
     **kwargs,
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for paragraph generation using PIL."""
-    position = kwargs.get("position", (0, 0))
+    # position = kwargs.get("position", (0, 0))
     img = document._image
     generator.pages.append(img.copy())
     img = generator.create_image_instance()
@@ -248,9 +265,10 @@ def add_page_break(
 
     # If you want to keep track of the last position to place another
     # element, you can.
-    last_position = (position[0], 0)
+    # last_position = (position[0], 0)
+    last_position = (0, 0)
 
-    return last_position
+    return False, last_position
 
 
 def get_heading_font_size(base_size: int, heading_level: int) -> int:
@@ -264,7 +282,7 @@ def add_heading(
     data,
     counter,
     **kwargs,
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for H1 heading generation using PIL."""
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 30)
@@ -301,7 +319,8 @@ def add_heading(
 
     # If you want to keep track of the last position to place another
     # element, you can.
-    last_position = (position[0], y)
+    # last_position = (position[0], y)
+    last_position = (0, y)
 
     # Add meta-data, assuming data is a dictionary for tracking
     data.setdefault("content_modifiers", {})
@@ -311,12 +330,12 @@ def add_heading(
     data.setdefault("content", "")
     data["content"] += "\r\n" + _content
 
-    return last_position
+    return False, last_position
 
 
 def add_h1_heading(
     provider, generator, document: ImageDraw, data, counter, **kwargs
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h1 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=1, **kwargs
@@ -325,7 +344,7 @@ def add_h1_heading(
 
 def add_h2_heading(
     provider, generator, document: ImageDraw, data, counter, **kwargs
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h2 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=2, **kwargs
@@ -334,7 +353,7 @@ def add_h2_heading(
 
 def add_h3_heading(
     provider, generator, document: ImageDraw, data, counter, **kwargs
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h3 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=3, **kwargs
@@ -343,7 +362,7 @@ def add_h3_heading(
 
 def add_h4_heading(
     provider, generator, document: ImageDraw, data, counter, **kwargs
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h4 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=4, **kwargs
@@ -352,7 +371,7 @@ def add_h4_heading(
 
 def add_h5_heading(
     provider, generator, document: ImageDraw, data, counter, **kwargs
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h5 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=5, **kwargs
@@ -361,7 +380,7 @@ def add_h5_heading(
 
 def add_h6_heading(
     provider, generator, document: ImageDraw, data, counter, **kwargs
-) -> Tuple[int, int]:
+) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h6 heading generation."""
     return add_heading(
         provider, generator, document, data, counter, level=6, **kwargs
