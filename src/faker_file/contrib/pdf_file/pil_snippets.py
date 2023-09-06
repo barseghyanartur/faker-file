@@ -57,9 +57,22 @@
             ]
         )
     )
+
+    file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_h1_heading, {}),
+                (add_picture, {}),
+                (add_paragraph, {"max_nb_chars": 500}),
+                (add_table, {"rows": 5, "cols": 4}),
+            ]
+        )
+    )
 """
 import logging
 import textwrap
+from collections import namedtuple
 from io import BytesIO
 from typing import Tuple
 
@@ -79,7 +92,7 @@ __all__ = (
     "add_page_break",
     "add_paragraph",
     "add_picture",
-    # "add_table",
+    "add_table",
 )
 
 LOGGER = logging.getLogger(__name__)
@@ -371,3 +384,85 @@ def add_h6_heading(
     return add_heading(
         provider, generator, document, data, counter, level=6, **kwargs
     )
+
+
+# This is a simple placeholder for your table object
+Table = namedtuple("Table", ["data"])
+
+
+def draw_table_cell(document, cell_content, position, cell_size, font):
+    """Draw a table cell."""
+    x, y = position
+    width, height = cell_size
+    border_color = (0, 0, 0)
+    fill_color = (255, 255, 255)
+
+    # Draw the rectangle
+    document.rectangle(
+        [position, (x + width, y + height)],
+        fill=fill_color,
+        outline=border_color,
+    )
+
+    # Draw text in the rectangle
+    text_width, text_height = document.textsize(cell_content, font=font)
+    text_position = (
+        x + (width - text_width) // 2,
+        y + (height - text_height) // 2,
+    )
+    document.text(text_position, cell_content, fill=(0, 0, 0), font=font)
+
+
+def add_table(
+    provider,
+    generator,
+    document: ImageDraw,  # ImageDraw.Draw object for drawing
+    data,
+    counter,
+    **kwargs,
+) -> Tuple[bool, Tuple[int, int]]:
+    """Callable responsible for table generation using PIL."""
+    # X, Y coordinates where the table will be placed
+    position = kwargs.get("position", (0, 0))
+
+    # Default cell dimensions
+    cell_width = kwargs.get("cell_width", 100)
+    cell_height = kwargs.get("cell_height", 30)
+
+    # Font for the table cells
+    font = ImageFont.truetype(generator.font, generator.font_size)
+
+    # Extract or generate table data
+    rows = kwargs.get("rows", 3)
+    cols = kwargs.get("cols", 4)
+    headers = [f"Header {i + 1}" for i in range(cols)]
+    table_data = [
+        [provider.generator.word() for _ in range(cols)] for _ in range(rows)
+    ]
+    table_data.insert(0, headers)
+    table = Table(table_data)
+
+    y = position[1]
+    for row in table.data:
+        x = position[0]
+        for cell_content in row:
+            cell_position = (x, y)
+            draw_table_cell(
+                document,
+                cell_content,
+                cell_position,
+                (cell_width, cell_height),
+                font,
+            )
+            x += cell_width
+        y += cell_height
+
+    last_position = (0, y)
+
+    # Add meta-data, assuming data is a dictionary for tracking
+    data.setdefault("content_modifiers", {})
+    data["content_modifiers"].setdefault("add_table", {})
+    data["content_modifiers"]["add_table"].setdefault(counter, [])
+    data["content_modifiers"]["add_table"][counter].append("Table added")
+
+    return False, last_position
