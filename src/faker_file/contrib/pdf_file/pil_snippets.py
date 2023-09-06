@@ -123,10 +123,6 @@ def add_picture(
     # Check if the image will fit on the current page
     if remaining_space < image_to_paste.height:
         # Image won't fit; add the current page to the list and create a new one
-        # img = document._image
-        # generator.pages.append(img.copy())
-        # img = generator.create_image_instance()
-        # document = ImageDraw.Draw(img)
         generator.save_and_start_new_page()
 
         # Reset position to start of new page
@@ -218,10 +214,6 @@ def add_paragraph(
             line, font=font, spacing=generator.spacing
         )
         if y_text + text_height > generator.page_height:
-            # img = document._image
-            # generator.pages.append(img.copy())
-            # img = generator.create_image_instance()
-            # document = ImageDraw.Draw(img)
             generator.save_and_start_new_page()
             y_text = 0
 
@@ -260,11 +252,6 @@ def add_page_break(
     **kwargs,
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for paragraph generation using PIL."""
-    # position = kwargs.get("position", (0, 0))
-    # img = document._image
-    # generator.pages.append(img.copy())
-    # img = generator.create_image_instance()
-    # document = ImageDraw.Draw(img)
     generator.save_and_start_new_page()
 
     # If you want to keep track of the last position to place another

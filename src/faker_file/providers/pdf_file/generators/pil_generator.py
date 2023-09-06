@@ -149,12 +149,6 @@ class PilPdfGenerator(BasePdfGenerator):
             for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
                 content.content_modifiers
             ):
-                # self.img = self.create_image_instance()
-                # self.draw = ImageDraw.Draw(self.img)
-                # position = (0, 0)
-                # draw.image = img
-
-                # if "position" not in ct_modifier_kwargs:
                 ct_modifier_kwargs["position"] = position
                 LOGGER.error(f"ct_modifier_kwargs: {ct_modifier_kwargs}")
                 add_page, position = ct_modifier(
@@ -166,8 +160,6 @@ class PilPdfGenerator(BasePdfGenerator):
                     **ct_modifier_kwargs,
                 )
 
-                # if add_page:
-                #     self.pages.append(self.img.copy())  # Add as a new page
             self.pages.append(self.img.copy())  # Add as a new page
         else:
             self.img = self.create_image_instance()
