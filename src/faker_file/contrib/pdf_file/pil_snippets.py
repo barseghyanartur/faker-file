@@ -121,6 +121,8 @@ def add_picture(
     image_to_paste = Image.open(output_stream)
 
     # Check if the image will fit on the current page
+    LOGGER.error(f"image_to_paste.height: {image_to_paste.height}")
+    LOGGER.error(f"remaining_space: {remaining_space}")
     if remaining_space < image_to_paste.height:
         # Image won't fit; add the current page to the list and create a new one
         generator.save_and_start_new_page()
@@ -128,15 +130,6 @@ def add_picture(
         # Reset position to start of new page
         position = (0, 0)
 
-    # Paste the image into the document
-    image_position = (
-        position[0],
-        position[1],
-        position[0] + image_to_paste.width,
-        position[1] + image_to_paste.height,
-    )
-
-    # image = document._image
     # Ensure that the document and the image to paste have the same mode
     if generator.img.mode != image_to_paste.mode:
         image_to_paste = image_to_paste.convert(generator.img.mode)
@@ -146,13 +139,15 @@ def add_picture(
     if "A" in image_to_paste.getbands():
         mask = image_to_paste.split()[3]
 
+    # Paste the image into the document
     generator.img.paste(image_to_paste, position, mask)
 
-    LOGGER.error(f"position: {image_position}")
     # If you want to keep track of the last position to place
     # another element, you can.
-    # last_position = (position[0] + image.width, position[1] + image.height)
-    last_position = (0, position[1] + generator.img.height)
+    # last_position = (
+    #     position[0] + image.width, position[1] + image_to_paste.height
+    # )
+    last_position = (0, position[1] + image_to_paste.height)
 
     # Meta-data (optional)
     data.setdefault("content_modifiers", {})
