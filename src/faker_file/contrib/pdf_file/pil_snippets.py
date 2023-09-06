@@ -30,7 +30,7 @@
         content=DynamicTemplate(
             [
                 (add_h1_heading, {}),
-                (add_paragraph, {),
+                (add_paragraph, {}),
                 (add_picture, {}),
                 (add_paragraph, {}),
                 (add_picture, {}),
@@ -123,10 +123,11 @@ def add_picture(
     # Check if the image will fit on the current page
     if remaining_space < image_to_paste.height:
         # Image won't fit; add the current page to the list and create a new one
-        img = document._image
-        generator.pages.append(img.copy())
-        img = generator.create_image_instance()
-        document = ImageDraw.Draw(img)
+        # img = document._image
+        # generator.pages.append(img.copy())
+        # img = generator.create_image_instance()
+        # document = ImageDraw.Draw(img)
+        generator.save_and_start_new_page()
 
         # Reset position to start of new page
         position = (0, 0)
@@ -139,23 +140,23 @@ def add_picture(
         position[1] + image_to_paste.height,
     )
 
-    image = document._image
+    # image = document._image
     # Ensure that the document and the image to paste have the same mode
-    if image.mode != image_to_paste.mode:
-        image_to_paste = image_to_paste.convert(image.mode)
+    if generator.img.mode != image_to_paste.mode:
+        image_to_paste = image_to_paste.convert(generator.img.mode)
 
     # Create a mask if the image has an alpha channel
     mask = None
     if "A" in image_to_paste.getbands():
         mask = image_to_paste.split()[3]
 
-    image.paste(image_to_paste, position, mask)
+    generator.img.paste(image_to_paste, position, mask)
 
     LOGGER.error(f"position: {image_position}")
     # If you want to keep track of the last position to place
     # another element, you can.
     # last_position = (position[0] + image.width, position[1] + image.height)
-    last_position = (0, position[1] + image.height)
+    last_position = (0, position[1] + generator.img.height)
 
     # Meta-data (optional)
     data.setdefault("content_modifiers", {})
@@ -192,9 +193,10 @@ def add_paragraph(
         format_func=format_func,
     )
     font = ImageFont.truetype(generator.font, generator.font_size)
+    lines = _content.split("\n")
     line_max_num_chars = generator.find_max_fit_for_multi_line_text(
         document,
-        _content.split("\n"),
+        lines,
         font,
         generator.page_width,
     )
@@ -216,13 +218,14 @@ def add_paragraph(
             line, font=font, spacing=generator.spacing
         )
         if y_text + text_height > generator.page_height:
-            img = document._image
-            generator.pages.append(img.copy())
-            img = generator.create_image_instance()
-            document = ImageDraw.Draw(img)
+            # img = document._image
+            # generator.pages.append(img.copy())
+            # img = generator.create_image_instance()
+            # document = ImageDraw.Draw(img)
+            generator.save_and_start_new_page()
             y_text = 0
 
-        document.text(
+        generator.draw.text(
             (position[0], y_text),
             line,
             fill=(0, 0, 0),
@@ -258,10 +261,11 @@ def add_page_break(
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for paragraph generation using PIL."""
     # position = kwargs.get("position", (0, 0))
-    img = document._image
-    generator.pages.append(img.copy())
-    img = generator.create_image_instance()
-    document = ImageDraw.Draw(img)
+    # img = document._image
+    # generator.pages.append(img.copy())
+    # img = generator.create_image_instance()
+    # document = ImageDraw.Draw(img)
+    generator.save_and_start_new_page()
 
     # If you want to keep track of the last position to place another
     # element, you can.
@@ -307,14 +311,14 @@ def add_heading(
     font = ImageFont.truetype(generator.font, font_size)
 
     y = position[1]
-    document.text(
+    generator.draw.text(
         (position[0], y),
         _content,
         fill=(0, 0, 0),
         font=font,
     )
 
-    text_width, text_height = document.textsize(_content, font=font)
+    text_width, text_height = generator.draw.textsize(_content, font=font)
     y += text_height
 
     # If you want to keep track of the last position to place another

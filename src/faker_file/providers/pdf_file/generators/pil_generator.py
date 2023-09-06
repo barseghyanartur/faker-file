@@ -68,6 +68,8 @@ class PilPdfGenerator(BasePdfGenerator):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.pages = []
+        self.img = None
+        self.draw = None
 
     @classmethod
     def find_max_fit_for_multi_line_text(
@@ -125,6 +127,14 @@ class PilPdfGenerator(BasePdfGenerator):
             (255, 255, 255),
         )
 
+    def start_new_page(self):
+        self.img = self.create_image_instance()
+        self.draw = ImageDraw.Draw(self.img)
+
+    def save_and_start_new_page(self):
+        self.pages.append(self.img.copy())
+        self.start_new_page()
+
     def generate(
         self: "PilPdfGenerator",
         content: Union[str, DynamicTemplate],
@@ -133,42 +143,45 @@ class PilPdfGenerator(BasePdfGenerator):
         **kwargs,
     ) -> bytes:
         """Generate PDF."""
-        # position = (0, 0)
+        position = (0, 0)
         if isinstance(content, DynamicTemplate):
+            self.start_new_page()
             for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
                 content.content_modifiers
             ):
-                img = self.create_image_instance()
-                draw = ImageDraw.Draw(img)
-                position = (0, 0)
+                # self.img = self.create_image_instance()
+                # self.draw = ImageDraw.Draw(self.img)
+                # position = (0, 0)
                 # draw.image = img
 
-                if "position" not in ct_modifier_kwargs:
-                    ct_modifier_kwargs["position"] = position
+                # if "position" not in ct_modifier_kwargs:
+                ct_modifier_kwargs["position"] = position
                 LOGGER.error(f"ct_modifier_kwargs: {ct_modifier_kwargs}")
                 add_page, position = ct_modifier(
                     provider,
                     self,
-                    draw,
+                    self.draw,
                     data,
                     counter,
                     **ct_modifier_kwargs,
                 )
 
                 # if add_page:
-                self.pages.append(img.copy())  # Add as a new page
+                #     self.pages.append(self.img.copy())  # Add as a new page
+            self.pages.append(self.img.copy())  # Add as a new page
         else:
-            img = self.create_image_instance()
-            draw = ImageDraw.Draw(img)
+            self.img = self.create_image_instance()
+            self.draw = ImageDraw.Draw(self.img)
             font = ImageFont.truetype(self.font, self.font_size)
 
             # The `content_specs` is a dictionary that holds two keys:
             # `max_nb_chars` and `wrap_chars_after`. Those are the same values
             # passed to the `PdfFileProvider`.
             content_specs = kwargs.get("content_specs", {})
+            lines = content.split("\n")
             line_max_num_chars = self.find_max_fit_for_multi_line_text(
-                draw,
-                content.split("\n"),
+                self.draw,
+                lines,
                 font,
                 self.page_width,
             )
@@ -182,17 +195,15 @@ class PilPdfGenerator(BasePdfGenerator):
 
             y_text = 0
             for counter, line in enumerate(lines):
-                text_width, text_height = draw.textsize(
+                text_width, text_height = self.draw.textsize(
                     line, font=font, spacing=6
                 )
                 # if counter % max_lines_per_page == 0:
                 if y_text + text_height > self.page_height:
-                    self.pages.append(img.copy())
-                    img = self.create_image_instance()
-                    draw = ImageDraw.Draw(img)
+                    self.save_and_start_new_page()
                     y_text = 0
 
-                draw.text(
+                self.draw.text(
                     (0, y_text),
                     line,
                     fill=(0, 0, 0),
@@ -201,7 +212,7 @@ class PilPdfGenerator(BasePdfGenerator):
                 )
                 y_text += text_height + self.line_height
 
-            self.pages.append(img.copy())  # Add as a new page
+            self.pages.append(self.img.copy())  # Add as a new page
 
         buffer = BytesIO()
         # Save as multi-page PDF
