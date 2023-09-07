@@ -25,6 +25,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.6
+------
+2023-09-07
+
+- Added ``add_paragraph``, ``add_picture``, ``add_heading_h1`` and other
+  heading helpers to ``pil_snippets`` contrib module.
+
 0.17.5
 ------
 2023-08-22
