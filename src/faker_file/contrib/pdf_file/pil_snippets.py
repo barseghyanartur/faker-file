@@ -69,14 +69,31 @@
             ]
         )
     )
+
+    file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_h1_heading, {"margin": (2, 2)}),
+                (add_picture, {"margin": (2, 2)}),
+                (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                (add_picture, {"margin": (2, 2)}),
+                (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                (add_picture, {"margin": (2, 2)}),
+                (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                (add_picture, {"margin": (2, 2)}),
+                (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+            ]
+        )
+    )
 """
 import logging
 import textwrap
 from collections import namedtuple
 from io import BytesIO
-from typing import Tuple
+from typing import Tuple, Union
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageFont
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -98,15 +115,29 @@ __all__ = (
 LOGGER = logging.getLogger(__name__)
 
 
+def expand_margin(
+    margin: Union[Tuple[int, int], Tuple[int, int, int, int]]
+) -> Tuple[int, int, int, int]:
+    """Utility function to expand the margin tuple."""
+    if len(margin) == 2:
+        top, right = margin
+        return top, right, top, right
+    elif len(margin) == 4:
+        return margin
+
+
 def add_picture(
     provider,
     generator,
-    document: ImageDraw,
     data,
     counter,
     **kwargs,
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for picture generation using PIL."""
+    # Extract margin values
+    margin = kwargs.get("margin", (0, 0))
+    top_margin, right_margin, bottom_margin, left_margin = expand_margin(margin)
+
     image_bytes = kwargs.get(
         "image_bytes", provider.generator.image()
     )  # Assuming image() returns bytes
@@ -115,8 +146,12 @@ def add_picture(
         pil_image = Image.open(input_stream)
 
         # Resize the image
-        new_width = 200
-        new_height = 200
+        new_width = kwargs.get("image_width", 200)
+        new_height = kwargs.get("image_height", 200)
+        if new_width > generator.page_width:
+            new_width = generator.page_width
+        if new_height > generator.page_height:
+            new_height = generator.page_height
         pil_image = pil_image.resize((new_width, new_height))
 
         # Create a BytesIO object outside the 'with' statement
@@ -125,7 +160,12 @@ def add_picture(
         output_stream.seek(0)  # Move to the start of the stream
 
     # X, Y coordinates where the text will be placed
-    position = kwargs.get("position", (0, 0))
+    # position = kwargs.get("position", (0, 0))
+    # Adjust the position with margin for the left and top
+    position = (
+        kwargs.get("position", (0, 0))[0] + left_margin,
+        kwargs.get("position", (0, 0))[1] + top_margin,
+    )
 
     # Calculate the remaining space on the current page
     remaining_space = generator.page_height - position[1]
@@ -160,7 +200,7 @@ def add_picture(
     # last_position = (
     #     position[0] + image.width, position[1] + image_to_paste.height
     # )
-    last_position = (0, position[1] + image_to_paste.height)
+    last_position = (0, position[1] + image_to_paste.height + bottom_margin)
 
     # Meta-data (optional)
     data.setdefault("content_modifiers", {})
@@ -174,17 +214,25 @@ def add_picture(
 def add_paragraph(
     provider,
     generator,
-    document: ImageDraw,  # ImageDraw.Draw object for drawing
     data,
     counter,
     **kwargs,
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for paragraph generation using PIL."""
+    # Extract margin values
+    margin = kwargs.get("margin", (0, 0))
+    top_margin, right_margin, bottom_margin, left_margin = expand_margin(margin)
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
     wrap_chars_after = kwargs.get("wrap_chars_after", None)
     # X, Y coordinates where the text will be placed
-    position = kwargs.get("position", (0, 0))
+    # position = kwargs.get("position", (0, 0))
+    # position = kwargs.get("position", (0, 0))
+    # Adjust the position with margin for the left and top
+    position = (
+        kwargs.get("position", (0, 0))[0] + left_margin,
+        kwargs.get("position", (0, 0))[1] + top_margin,
+    )
     content_specs = kwargs.get("content_specs", {})
     format_func = kwargs.get(
         "format_func", None
@@ -199,7 +247,7 @@ def add_paragraph(
     font = ImageFont.truetype(generator.font, generator.font_size)
     lines = _content.split("\n")
     line_max_num_chars = generator.find_max_fit_for_multi_line_text(
-        document,
+        generator.draw,
         lines,
         font,
         generator.page_width,
@@ -218,7 +266,7 @@ def add_paragraph(
     y_text = position[1]
     LOGGER.error(f"position: {position}")
     for counter, line in enumerate(lines):
-        text_width, text_height = document.textsize(
+        text_width, text_height = generator.draw.textsize(
             line, font=font, spacing=generator.spacing
         )
         if y_text + text_height > generator.page_height:
@@ -238,7 +286,8 @@ def add_paragraph(
     # If you want to keep track of the last position to place another
     # element, you can.
     # last_position = (position[0], y_text)
-    last_position = (0, y_text)
+    # last_position = (0, y_text)
+    last_position = (0, y_text + bottom_margin)
 
     # Add meta-data, assuming data is a dictionary for tracking
     data.setdefault("content_modifiers", {})
@@ -254,7 +303,6 @@ def add_paragraph(
 def add_page_break(
     provider,
     generator,
-    document: ImageDraw,  # ImageDraw.Draw object for drawing
     data,
     counter,
     **kwargs,
@@ -277,18 +325,25 @@ def get_heading_font_size(base_size: int, heading_level: int) -> int:
 def add_heading(
     provider,
     generator,
-    document: "ImageDraw",  # ImageDraw.Draw object for drawing
     data,
     counter,
     **kwargs,
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for H1 heading generation using PIL."""
+    # Extract margin values
+    margin = kwargs.get("margin", (0, 0))
+    top_margin, right_margin, bottom_margin, left_margin = expand_margin(margin)
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 30)
     wrap_chars_after = kwargs.get("wrap_chars_after", None)
     format_func = kwargs.get("format_func", None)
     # X, Y coordinates where the text will be placed
-    position = kwargs.get("position", (0, 0))
+    # position = kwargs.get("position", (0, 0))
+    # Adjust the position with margin for the left and top
+    position = (
+        kwargs.get("position", (0, 0))[0] + left_margin,
+        kwargs.get("position", (0, 0))[1] + top_margin,
+    )
     level = kwargs.get("level", 1)
     if level < 1 or level > 6:
         level = 1
@@ -319,7 +374,8 @@ def add_heading(
     # If you want to keep track of the last position to place another
     # element, you can.
     # last_position = (position[0], y)
-    last_position = (0, y)
+    # last_position = (0, y)
+    last_position = (0, y + bottom_margin)
 
     # Add meta-data, assuming data is a dictionary for tracking
     data.setdefault("content_modifiers", {})
@@ -333,57 +389,45 @@ def add_heading(
 
 
 def add_h1_heading(
-    provider, generator, document: ImageDraw, data, counter, **kwargs
+    provider, generator, data, counter, **kwargs
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h1 heading generation."""
-    return add_heading(
-        provider, generator, document, data, counter, level=1, **kwargs
-    )
+    return add_heading(provider, generator, data, counter, level=1, **kwargs)
 
 
 def add_h2_heading(
-    provider, generator, document: ImageDraw, data, counter, **kwargs
+    provider, generator, data, counter, **kwargs
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h2 heading generation."""
-    return add_heading(
-        provider, generator, document, data, counter, level=2, **kwargs
-    )
+    return add_heading(provider, generator, data, counter, level=2, **kwargs)
 
 
 def add_h3_heading(
-    provider, generator, document: ImageDraw, data, counter, **kwargs
+    provider, generator, data, counter, **kwargs
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h3 heading generation."""
-    return add_heading(
-        provider, generator, document, data, counter, level=3, **kwargs
-    )
+    return add_heading(provider, generator, data, counter, level=3, **kwargs)
 
 
 def add_h4_heading(
-    provider, generator, document: ImageDraw, data, counter, **kwargs
+    provider, generator, data, counter, **kwargs
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h4 heading generation."""
-    return add_heading(
-        provider, generator, document, data, counter, level=4, **kwargs
-    )
+    return add_heading(provider, generator, data, counter, level=4, **kwargs)
 
 
 def add_h5_heading(
-    provider, generator, document: ImageDraw, data, counter, **kwargs
+    provider, generator, data, counter, **kwargs
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h5 heading generation."""
-    return add_heading(
-        provider, generator, document, data, counter, level=5, **kwargs
-    )
+    return add_heading(provider, generator, data, counter, level=5, **kwargs)
 
 
 def add_h6_heading(
-    provider, generator, document: ImageDraw, data, counter, **kwargs
+    provider, generator, data, counter, **kwargs
 ) -> Tuple[bool, Tuple[int, int]]:
     """Callable responsible for the h6 heading generation."""
-    return add_heading(
-        provider, generator, document, data, counter, level=6, **kwargs
-    )
+    return add_heading(provider, generator, data, counter, level=6, **kwargs)
 
 
 # This is a simple placeholder for your table object
@@ -416,7 +460,6 @@ def draw_table_cell(document, cell_content, position, cell_size, font):
 def add_table(
     provider,
     generator,
-    document: ImageDraw,  # ImageDraw.Draw object for drawing
     data,
     counter,
     **kwargs,
@@ -448,7 +491,7 @@ def add_table(
         for cell_content in row:
             cell_position = (x, y)
             draw_table_cell(
-                document,
+                generator.draw,
                 cell_content,
                 cell_position,
                 (cell_width, cell_height),

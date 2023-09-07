@@ -154,7 +154,6 @@ class PilPdfGenerator(BasePdfGenerator):
                 add_page, position = ct_modifier(
                     provider,
                     self,
-                    self.draw,
                     data,
                     counter,
                     **ct_modifier_kwargs,
