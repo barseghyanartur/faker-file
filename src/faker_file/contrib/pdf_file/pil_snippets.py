@@ -95,6 +95,8 @@ from typing import Tuple, Union
 
 from PIL import Image, ImageFont
 
+from ...base import DEFAULT_FORMAT_FUNC
+
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
@@ -234,9 +236,7 @@ def add_paragraph(
         kwargs.get("position", (0, 0))[1] + top_margin,
     )
     content_specs = kwargs.get("content_specs", {})
-    format_func = kwargs.get(
-        "format_func", None
-    )  # Assuming DEFAULT_FORMAT_FUNC is somewhere defined
+    format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
 
     _content = provider._generate_text_content(
         max_nb_chars=max_nb_chars,
@@ -336,7 +336,7 @@ def add_heading(
     content = kwargs.get("content", None)
     max_nb_chars = kwargs.get("max_nb_chars", 30)
     wrap_chars_after = kwargs.get("wrap_chars_after", None)
-    format_func = kwargs.get("format_func", None)
+    format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     # X, Y coordinates where the text will be placed
     # position = kwargs.get("position", (0, 0))
     # Adjust the position with margin for the left and top

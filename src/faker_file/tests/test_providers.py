@@ -58,6 +58,19 @@ from ..contrib.pdf_file.pdfkit_snippets import (
     add_picture as pdf_pdfkit_add_picture,
     add_table as pdf_pdfkit_add_table,
 )
+from ..contrib.pdf_file.pil_snippets import (
+    add_h1_heading as pdf_pil_add_h1_heading,
+    add_h2_heading as pdf_pil_add_h2_heading,
+    add_h3_heading as pdf_pil_add_h3_heading,
+    add_h4_heading as pdf_pil_add_h4_heading,
+    add_h5_heading as pdf_pil_add_h5_heading,
+    add_h6_heading as pdf_pil_add_h6_heading,
+    add_heading as pdf_pil_add_heading,
+    add_page_break as pdf_pil_add_page_break,
+    add_paragraph as pdf_pil_add_paragraph,
+    add_picture as pdf_pil_add_picture,
+    add_table as pdf_pil_add_table,
+)
 from ..contrib.pdf_file.reportlab_snippets import (
     add_h1_heading as pdf_reportlab_add_h1_heading,
     add_h2_heading as pdf_reportlab_add_h2_heading,
@@ -257,6 +270,7 @@ SOURCE_WEBP_FILE_FROM_PATH_FILENAME = FS_STORAGE.generate_filename(
 )
 
 pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
+pdf_pil_add_non_existing_heading = partial(pdf_pil_add_heading, level=0)
 pdf_reportlab_add_non_existing_heading = partial(
     pdf_reportlab_add_heading, level=0
 )
@@ -1018,6 +1032,39 @@ class ProvidersTestCase(unittest.TestCase):
                     "line_height": 16,
                     "spacing": 5,
                 },
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PdfFileProvider,
+            "pdf_file",
+            {
+                "pdf_generator_cls": PIL_PDF_GENERATOR,
+                "pdf_generator_kwargs": {
+                    "encoding": "utf8",
+                    "font_size": 14,
+                    "page_width": 800,
+                    "page_height": 1200,
+                    "line_height": 16,
+                    "spacing": 5,
+                },
+                "content": DynamicTemplate(
+                    [
+                        (pdf_pil_add_h1_heading, {}),
+                        (pdf_pil_add_h2_heading, {}),
+                        (pdf_pil_add_h3_heading, {}),
+                        (pdf_pil_add_h4_heading, {}),
+                        (pdf_pil_add_h5_heading, {}),
+                        (pdf_pil_add_h6_heading, {}),
+                        (pdf_pil_add_picture, {}),
+                        (pdf_pil_add_paragraph, {"content": TEXT_PDF}),
+                        (pdf_pil_add_page_break, {}),
+                        (pdf_pil_add_h6_heading, {}),
+                        (pdf_pil_add_table, {}),
+                        (pdf_pil_add_non_existing_heading, {}),
+                    ]
+                ),
             },
             None,
         ),
