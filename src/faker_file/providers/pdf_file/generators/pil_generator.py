@@ -70,6 +70,7 @@ class PilPdfGenerator(BasePdfGenerator):
         self.pages = []
         self.img = None
         self.draw = None
+        self.image_mode = "RGB"
 
     @classmethod
     def find_max_fit_for_multi_line_text(
@@ -119,10 +120,12 @@ class PilPdfGenerator(BasePdfGenerator):
             self.line_height = kwargs["line_height"]
         if "spacing" in kwargs:
             self.spacing = kwargs["spacing"]
+        if "image_mode" in kwargs:
+            self.image_mode = kwargs["image_mode"]
 
     def create_image_instance(self) -> Image:
         return Image.new(
-            "RGB",
+            self.image_mode,
             (self.page_width, self.page_height),
             (255, 255, 255),
         )

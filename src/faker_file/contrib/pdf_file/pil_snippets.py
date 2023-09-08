@@ -158,7 +158,7 @@ def add_picture(
 
         # Create a BytesIO object outside the 'with' statement
         output_stream = BytesIO()
-        pil_image.save(output_stream, format="JPEG")
+        pil_image.save(output_stream, format="PNG")
         output_stream.seek(0)  # Move to the start of the stream
 
     # X, Y coordinates where the text will be placed
