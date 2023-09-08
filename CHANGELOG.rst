@@ -27,7 +27,7 @@ are used for versioning (schema follows below):
 
 0.17.6
 ------
-2023-09-08
+2023-09-09
 
 - Added ``add_paragraph``, ``add_picture``, ``add_heading_h1`` and other
   heading helpers to ``pil_snippets`` contrib module.
