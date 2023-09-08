@@ -217,6 +217,12 @@ class PdfFileProvider(BaseProvider, FileMixin):
 
         if not pdf_generator_kwargs:
             pdf_generator_kwargs = {}
+
+        pdf_generator_kwargs["content_specs"] = {
+            "max_nb_chars": max_nb_chars,
+            "wrap_chars_after": wrap_chars_after,
+        }
+
         pdf_generator = pdf_generator_cls(
             generator=self.generator,
             **pdf_generator_kwargs,
