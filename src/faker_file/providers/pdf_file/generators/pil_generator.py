@@ -153,7 +153,7 @@ class PilPdfGenerator(BasePdfGenerator):
                 content.content_modifiers
             ):
                 ct_modifier_kwargs["position"] = position
-                LOGGER.error(f"ct_modifier_kwargs: {ct_modifier_kwargs}")
+                # LOGGER.debug(f"ct_modifier_kwargs: {ct_modifier_kwargs}")
                 add_page, position = ct_modifier(
                     provider,
                     self,

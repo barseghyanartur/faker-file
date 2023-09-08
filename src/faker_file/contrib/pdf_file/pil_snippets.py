@@ -176,8 +176,8 @@ def add_picture(
     image_to_paste = Image.open(output_stream)
 
     # Check if the image will fit on the current page
-    LOGGER.error(f"image_to_paste.height: {image_to_paste.height}")
-    LOGGER.error(f"remaining_space: {remaining_space}")
+    # LOGGER.debug(f"image_to_paste.height: {image_to_paste.height}")
+    # LOGGER.debug(f"remaining_space: {remaining_space}")
     if remaining_space < image_to_paste.height:
         # Image won't fit; add the current page to the list and create a new one
         generator.save_and_start_new_page()
