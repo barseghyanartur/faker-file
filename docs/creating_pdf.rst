@@ -244,6 +244,63 @@ With options:
         wrap_chars_after=100,
     )
 
+All examples shown for `pdfkit`_ and `reportlab`_ apply to `Pillow`_ generator,
+however when building PDF files from blocks (paragraphs, images, tables and page
+breaks), the imports shall be adjusted:
+
+As mentioned above, it's possible to diversify the generated context with
+images, paragraphs, tables, manual text break and pretty much everything that
+is supported by PDF format specification, although currently only images,
+paragraphs, tables and manual text breaks are supported. In order to customise
+the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
+See the example below for usage examples:
+
+.. code-block:: python
+
+    # Additional imports
+    from faker_file.base import DynamicTemplate
+    from faker_file.contrib.pdf_file.pil_snippets import (
+        add_page_break,
+        add_paragraph,
+        add_picture,
+        add_table,
+    )
+
+    # Create a PDF file with paragraph, picture, table and manual page breaks
+    # in between the mentioned elements. The ``DynamicTemplate`` simply
+    # accepts a list of callables (such as ``add_paragraph``,
+    # ``add_page_break``) and dictionary to be later on fed to the callables
+    # as keyword arguments for customising the default values.
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_paragraph, {}),  # Add paragraph
+                (add_page_break, {}),  # Add page break
+                (add_picture, {}),  # Add picture
+                (add_page_break, {}),  # Add page break
+                (add_table, {}),  # Add table
+                (add_page_break, {}),  # Add page break
+            ]
+        )
+    )
+
+    # You could make the list as long as you like or simply multiply for
+    # easier repetition as follows:
+    pdf_file = FAKER.pdf_file(
+        pdf_generator_cls=PilPdfGenerator,
+        content=DynamicTemplate(
+            [
+                (add_paragraph, {}),  # Add paragraph
+                (add_page_break, {}),  # Add page break
+                (add_picture, {}),  # Add picture
+                (add_page_break, {}),  # Add page break
+                (add_table, {}),  # Add table
+                (add_page_break, {}),  # Add page break
+            ] * 100
+        )
+    )
+
 Creating PDFs with graphics using `Pillow`_
 -------------------------------------------
 There's a so called `graphic` PDF file provider available. Produced PDF files
