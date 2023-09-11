@@ -25,6 +25,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.7
+------
+2023-09-12
+
+- Added ``GTTS_MP3_GENERATOR`` and ``EDGE_TTS_MP3_GENERATOR`` to
+  the ``mp3_file`` provider import options.
+
 0.17.6
 ------
 2023-09-09

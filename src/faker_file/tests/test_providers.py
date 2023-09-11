@@ -149,7 +149,11 @@ from ..providers.mixins.image_mixin import (
     PIL_IMAGE_GENERATOR,
     WEASYPRINT_IMAGE_GENERATOR,
 )
-from ..providers.mp3_file import Mp3FileProvider
+from ..providers.mp3_file import (
+    EDGE_TTS_MP3_GENERATOR,
+    GTTS_MP3_GENERATOR,
+    Mp3FileProvider,
+)
 from ..providers.mp3_file.generators.edge_tts_generator import (
     EdgeTtsMp3Generator,
 )
@@ -1535,10 +1539,7 @@ class ProvidersTestCase(unittest.TestCase):
             Mp3FileProvider,
             "mp3_file",
             {
-                "mp3_generator_cls": (
-                    "faker_file.providers.mp3_file.generators"
-                    ".edge_tts_generator.EdgeTtsMp3Generator"
-                ),
+                "mp3_generator_cls": EDGE_TTS_MP3_GENERATOR,
                 "mp3_generator_kwargs": {
                     "voice": "en-GB-LibbyNeural",
                 },
@@ -1550,10 +1551,7 @@ class ProvidersTestCase(unittest.TestCase):
             Mp3FileProvider,
             "mp3_file",
             {
-                "mp3_generator_cls": (
-                    "faker_file.providers.mp3_file.generators"
-                    ".gtts_generator.GttsMp3Generator"
-                ),
+                "mp3_generator_cls": GTTS_MP3_GENERATOR,
                 "mp3_generator_kwargs": {
                     "lang": "en",
                     "tld": "co.uk",
