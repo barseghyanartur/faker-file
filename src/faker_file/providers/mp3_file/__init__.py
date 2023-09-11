@@ -18,13 +18,19 @@ __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "DEFAULT_MP3_GENERATOR",
+    "EDGE_TTS_MP3_GENERATOR",
+    "GTTS_MP3_GENERATOR",
     "Mp3FileProvider",
 )
 
-DEFAULT_MP3_GENERATOR = (
-    "faker_file.providers.mp3_file.generators.gtts_generator"
-    ".GttsMp3Generator"
+GTTS_MP3_GENERATOR = (
+    "faker_file.providers.mp3_file.generators.gtts_generator.GttsMp3Generator"
 )
+EDGE_TTS_MP3_GENERATOR = (
+    "faker_file.providers.mp3_file.generators.edge_tts_generator"
+    ".EdgeTtsMp3Generator"
+)
+DEFAULT_MP3_GENERATOR = GTTS_MP3_GENERATOR
 
 
 class Mp3FileProvider(BaseProvider, FileMixin):
