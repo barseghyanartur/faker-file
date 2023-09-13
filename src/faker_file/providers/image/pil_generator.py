@@ -334,7 +334,6 @@ class PilImageGenerator(BaseImageGenerator):
         # )
         combined_image.save(
             buffer,
-            save_all=True,
             resolution=100.0,
             quality=95,
             format=provider.image_format,
