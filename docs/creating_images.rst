@@ -1,10 +1,10 @@
-Creating PDF
-============
+Creating images
+===============
 .. External references
 
-.. _pdfkit: https://pypi.org/project/pdfkit/
+.. _imgkit: https://pypi.org/project/imgkit/
 .. _Pillow: https://pillow.readthedocs.io/
-.. _reportlab: https://pypi.org/project/reportlab/
+.. _WeasyPrint: https://pypi.org/project/weasyprint/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 
 PDF is certainly one of the most complicated formats out there. And
@@ -17,17 +17,15 @@ create your own layer, using your favourite library.
 
 Currently, there are three PDF generators implemented:
 
-- ``PdfkitPdfGenerator`` (default), built on top of the `pdfkit`_
+- ``ImgkitImageGenerator`` (default), built on top of the `imgkit`_
   and `wkhtmltopdf`_.
-- ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
-- ``PilPdfGenerator``, build on top of the `Pillow`_. Produced PDFs would
-  contain images only (even texts are stored as images), unlike `pdfkit`_ or
-  `reportlab`_ based solutions, where PDFs would simply contain selectable
-  text. However, it's the generator that will likely won't ask for any
-  system dependencies that you don't yet have installed.
+- ``WeasyPrintImageGenerator``, build on top of the famous `WeasyPrint`_.
+- ``PilPdfGenerator``, build on top of the `Pillow`_. It's the generator
+  that will likely won't ask for any system dependencies that you don't
+  yet have installed.
 
-Building PDF with text using `pdfkit`_
---------------------------------------
+Building images with text using `imgkit`_
+-----------------------------------------
 While `pdfkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
 dependency, it produces better quality PDFs and has no issues with fonts
 or unicode characters.

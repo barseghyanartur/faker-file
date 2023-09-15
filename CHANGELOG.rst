@@ -8,6 +8,7 @@ Release history and notes
 .. _imgkit: https://pypi.org/project/imgkit/
 .. _pdf2image: https://pypi.org/project/pdf2image/
 .. _pdfkit: https://pypi.org/project/pdfkit/
+.. _Pillow: https://pypi.org/project/pillow/
 .. _reportlab: https://pypi.org/project/reportlab/
 
 `Sequence based identifiers
@@ -24,6 +25,16 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.17.8
+------
+2023-09-16
+
+- Added support for ``DynamicTemplate`` to all non-graphic image providers.
+  That means, that you can produce images with text, tables, various
+  headings and other images. Correspondent snippets are implemented for all
+  supported image generators; namely `reportlab`_, `WeasyPrint`_ and
+  `Pillow`_.
 
 0.17.7
 ------

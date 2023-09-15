@@ -36,6 +36,7 @@ faker-file
 .. _Creating PDF: https://faker-file.readthedocs.io/en/latest/creating_pdf.html
 .. _Creating DOCX: https://faker-file.readthedocs.io/en/latest/creating_docx.html
 .. _Creating ODT: https://faker-file.readthedocs.io/en/latest/creating_odt.html
+.. _Creating images: https://faker-file.readthedocs.io/en/latest/creating_images.html
 .. _CLI: https://faker-file.readthedocs.io/en/latest/cli.html
 .. _Methodology: https://faker-file.readthedocs.io/en/latest/methodology.html
 .. _Contributor guidelines: https://faker-file.readthedocs.io/en/latest/contributor_guidelines.html
@@ -108,15 +109,13 @@ All licenses are mentioned below between the brackets.
   been tested with ``Django`` starting from version 2.2 to 4.2 (although only
   maintained versions of Django are currently being tested against).
 - ``BMP``, ``GIF`` and ``TIFF`` file support requires either just
-  `Pillow`_ (`HPND`) for very basic functionality, or a combination of
-  `WeasyPrint`_ (`BSD`), `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and
-  `poppler`_ (`GPLv2`) for advanced functionality.
+  `Pillow`_ (`HPND`), or a combination of `WeasyPrint`_ (`BSD`),
+  `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
 - ``DOCX`` file support requires `python-docx`_ (`MIT`).
 - ``EPUB`` file support requires `xml2epub`_ (`MIT`) and `Jinja2`_ (`BSD`).
 - ``ICO``, ``JPEG``, ``PNG``, ``SVG`` and ``WEBP`` files support
-  requires either just `Pillow`_ (`HPND`) for very basic functionality, or a
-  combination of `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`) for advanced
-  functionality.
+  requires either just `Pillow`_ (`HPND`), or a combination of
+  `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
 - ``PDF`` file support requires either combination of `pdfkit`_ (`MIT`)
   and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
@@ -144,6 +143,7 @@ Documentation
 - For tips on ``PDF`` creation see `Creating PDF`_.
 - For tips on ``DOCX`` creation see `Creating DOCX`_.
 - For tips on ``ODT`` creation see `Creating ODT`_.
+- For tips on images creation see `Creating images`_.
 - For CLI options see the `CLI`_.
 - Read the `Methodology`_.
 - For guidelines on contributing check the `Contributor guidelines`_.
@@ -293,8 +293,8 @@ Supported file types
 - ``ZIP``
 
 For all image formats (``BMP``, ``ICO``, ``GIF``, ``JPEG``, ``PNG``, ``SVG``,
-``TIFF`` and ``WEBP``) and ``PDF``, there are both graphic and text-to-image
-file providers.
+``TIFF`` and ``WEBP``) and ``PDF``, there are both graphic-only and
+mixed-content file providers (that also have text-to-image capabilities).
 
 Additional providers
 --------------------

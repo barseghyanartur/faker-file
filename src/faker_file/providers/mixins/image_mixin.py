@@ -29,9 +29,6 @@ __all__ = (
     "WEASYPRINT_IMAGE_GENERATOR",
 )
 
-DEFAULT_IMAGE_GENERATOR = (
-    "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
-)
 IMAGEKIT_IMAGE_GENERATOR = (
     "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
 )
@@ -41,6 +38,8 @@ PIL_IMAGE_GENERATOR = (
 WEASYPRINT_IMAGE_GENERATOR = (
     "faker_file.providers.image.weasyprint_generator.WeasyPrintImageGenerator"
 )
+
+DEFAULT_IMAGE_GENERATOR = IMAGEKIT_IMAGE_GENERATOR
 
 
 class ImageMixin(FileMixin):
