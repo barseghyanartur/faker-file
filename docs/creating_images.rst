@@ -26,31 +26,31 @@ Currently, there are three PDF generators implemented:
 
 Building images with text using `imgkit`_
 -----------------------------------------
-While `pdfkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
-dependency, it produces better quality PDFs and has no issues with fonts
+While `imgkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
+dependency, it produces better quality images and has no issues with fonts
 or unicode characters.
 
-See the following full functional snippet for generating PDF using `pdfkit`_.
+See the following full functional snippet for generating PDF using `imgkit`_.
 
 .. code-block:: python
-    :name: test_building_pdf_using_pdfkit
+    :name: test_building_pdf_using_imgkit
 
     # Imports
     from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pdf_file.generators.pdfkit_generator import (
-        PdfkitPdfGenerator,
+    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.image.imgkit_generator import (
+        ImgkitPdfGenerator,
     )
 
     FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(PdfFileProvider)  # Register PdfFileProvider
+    FAKER.add_provider(PngFileProvider)  # Register PngFileProvider
 
-    # Generate PDF file using `pdfkit`
-    pdf_file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
+    # Generate PNG file using `imgkit`
+    pdf_file = FAKER.png_file(image_generator_cls=ImgkitPdfGenerator)
 
-The generated PDF will have 10,000 characters of text, which is about 2 pages.
+The generated PNG image will have 10,000 characters of text.
 
-If you want PDF with more pages, you could either:
+If you want PNG with more pages, you could either:
 
 - Increase the value of ``max_nb_chars`` accordingly.
 - Set value of ``wrap_chars_after`` to 80 characters to force longer pages.
