@@ -151,7 +151,7 @@ class ImageMixin(FileMixin):
             generator=self.generator,
             **image_generator_kwargs,
         )
-        data = {"filename": filename, "storage": storage}
+        data = {"content": "", "filename": filename, "storage": storage}
         if isinstance(content, DynamicTemplate):
             _content = content
         else:

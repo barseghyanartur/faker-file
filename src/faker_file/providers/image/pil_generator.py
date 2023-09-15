@@ -57,9 +57,9 @@ class PilImageGenerator(BaseImageGenerator):
 
         from faker import Faker
         from faker_file.base import DynamicTemplate
+        from faker_file.contrib.image.pil_snippets import *
         from faker_file.providers.image.pil_generator import PilImageGenerator
         from faker_file.providers.png_file import PngFileProvider
-        from faker_file.contrib.pdf_file.pil_snippets import *
 
         FAKER = Faker()
         FAKER.add_provider(PngFileProvider)
@@ -148,7 +148,7 @@ class PilImageGenerator(BaseImageGenerator):
     line_height: int = 14
     spacing: int = 6
 
-    def __init__(self, **kwargs):
+    def __init__(self: "PilImageGenerator", **kwargs) -> None:
         super().__init__(**kwargs)
         self.pages = []
         self.img = None
@@ -291,7 +291,6 @@ class PilImageGenerator(BaseImageGenerator):
                 text_width, text_height = self.draw.textsize(
                     line, font=font, spacing=self.spacing
                 )
-                # if counter % max_lines_per_page == 0:
                 if y_text + text_height > self.page_height:
                     self.save_and_start_new_page()
                     y_text = 0
@@ -306,32 +305,10 @@ class PilImageGenerator(BaseImageGenerator):
                 y_text += text_height + self.line_height
 
             self.pages.append(self.img.copy())  # Add as a new page
-            ###
-            # lines = content.split("\n")
-            # height = len(lines) * self.font_size
-            # img = self.create_image_instance()
-            # draw = ImageDraw.Draw(img)
-            # font = ImageFont.truetype(self.font, self.font_size)
-            # y_text = 0
-            # for line in lines:
-            #     draw.text(
-            #         (0, y_text),
-            #         line,
-            #         fill=(0, 0, 0),
-            #         spacing=6,
-            #         font=font
-            #     )
-            #     y_text += self.line_height
 
         buffer = BytesIO()
-        # Combine images together
-        # Now combine them vertically
+        # Combine images together vertically
         combined_image = self.combine_images_vertically()
-        # img.save(buffer, format=provider.image_format)
-        # self.pages[0].save(
-        #     buffer, save_all=True, append_images=self.pages[1:],
-        #     format=provider.image_format,
-        # )
         combined_image.save(
             buffer,
             resolution=100.0,

@@ -264,7 +264,7 @@ def add_paragraph(
     font = ImageFont.truetype(generator.font, generator.font_size)
 
     y_text = position[1]
-    LOGGER.error(f"position: {position}")
+    # LOGGER.debug(f"position: {position}")
     for counter, line in enumerate(lines):
         text_width, text_height = generator.draw.textsize(
             line, font=font, spacing=generator.spacing
