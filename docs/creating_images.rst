@@ -33,20 +33,20 @@ or unicode characters.
 See the following full functional snippet for generating PDF using `imgkit`_.
 
 .. code-block:: python
-    :name: test_building_pdf_using_imgkit
+    :name: test_building_images_using_imgkit
 
     # Imports
     from faker import Faker
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.image.imgkit_generator import (
-        ImgkitPdfGenerator,
+        ImgkitImageGenerator,
     )
 
     FAKER = Faker() # Initialize Faker
     FAKER.add_provider(PngFileProvider)  # Register PngFileProvider
 
     # Generate PNG file using `imgkit`
-    pdf_file = FAKER.png_file(image_generator_cls=ImgkitPdfGenerator)
+    pdf_file = FAKER.png_file(image_generator_cls=ImgkitImageGenerator)
 
 The generated PNG image will have 10,000 characters of text.
 

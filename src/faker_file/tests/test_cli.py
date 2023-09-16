@@ -259,13 +259,13 @@ class TestCLI(unittest.TestCase):
 
         # Merge the base command with the generated arguments
         cmd = ["faker-file", method_name] + args
-        LOGGER.error(f"cmd: {cmd}")
+        # LOGGER.debug(f"cmd: {cmd}")
         # Execute the command with the provided arguments
         res = subprocess.check_output(cmd).strip()
 
         # Extract the filename to verify existence and clean-up
         filename = extract_filename(res.decode())
-        LOGGER.error(f"filename: {filename}")
+        # LOGGER.debug(f"filename: {filename}")
         self.assertTrue(filename)
         self.assertTrue(FS_STORAGE.exists(filename))
         FS_STORAGE.unlink(filename)

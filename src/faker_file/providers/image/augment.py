@@ -338,7 +338,7 @@ def augment_image(
         func_and_kwargs = pop_func(_augmentations)
         if func_and_kwargs:
             func, kwargs = func_and_kwargs
-            LOGGER.info(f"Applying {func} to {id(image_bytes)}")
+            # LOGGER.debug(f"Applying {func} to {id(image_bytes)}")
             try:
                 image = func(image, **kwargs)
             except Exception as err:
