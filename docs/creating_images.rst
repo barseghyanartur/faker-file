@@ -15,7 +15,19 @@ That's why, creation of PDF files has been delegated to an abstraction layer
 of PDF generators. If you don't like how PDF files are generated, you can
 create your own layer, using your favourite library.
 
-Currently, there are three PDF generators implemented:
+Currently, there are two types of image generators implemented:
+
+- Graphic-only image generators
+- Mixed-content image generators
+
+The graphic-only image generators are only capable of producing random
+graphics.
+
+The mixed-content image generators can generate an image consisting of
+both text and graphics. Moreover, text comes in variety of different
+headings (such as h1, h2, h3, etc), paragraphs and tables.
+
+And the image generators available to support
 
 - ``ImgkitImageGenerator`` (default), built on top of the `imgkit`_
   and `wkhtmltopdf`_.
