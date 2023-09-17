@@ -7,13 +7,15 @@ Creating images
 .. _WeasyPrint: https://pypi.org/project/weasyprint/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 
-PDF is certainly one of the most complicated formats out there. And
-certainly one of the formats most of the developers will be having trouble
-with, as there are many versions and dialects. That makes it almost impossible
-and highly challenging to have **just one right way** of creating PDF files.
-That's why, creation of PDF files has been delegated to an abstraction layer
-of PDF generators. If you don't like how PDF files are generated, you can
-create your own layer, using your favourite library.
+Creating images could be a challenging task. One of the reasons for that might
+be need in additional (system) dependencies. There are many image formats to
+support. That makes it almost impossible and highly challenging to have
+**just one right way** of creating image files.
+
+That's why, creation of image files has been delegated to an abstraction layer
+of image generators. If you don't like how image files are generated or format
+you need isn't supported, you can create your own layer, using your favourite
+library.
 
 Currently, there are two types of image generators implemented:
 
@@ -29,12 +31,12 @@ headings (such as h1, h2, h3, etc), paragraphs and tables.
 
 And the image generators available to support
 
-- ``ImgkitImageGenerator`` (default), built on top of the `imgkit`_
-  and `wkhtmltopdf`_.
-- ``WeasyPrintImageGenerator``, build on top of the famous `WeasyPrint`_.
 - ``PilPdfGenerator``, build on top of the `Pillow`_. It's the generator
   that will likely won't ask for any system dependencies that you don't
   yet have installed.
+- ``ImgkitImageGenerator`` (default), built on top of the `imgkit`_
+  and `wkhtmltopdf`_.
+- ``WeasyPrintImageGenerator``, build on top of the famous `WeasyPrint`_.
 
 Building images with text using `imgkit`_
 -----------------------------------------
@@ -60,57 +62,53 @@ See the following full functional snippet for generating PDF using `imgkit`_.
     # Generate PNG file using `imgkit`
     pdf_file = FAKER.png_file(image_generator_cls=ImgkitImageGenerator)
 
-The generated PNG image will have 10,000 characters of text.
+The generated PNG image will have 10,000 characters of text. The generated image
+will be as wide as needed to fit those 10,000 characters, but newlines are
+respected.
 
-If you want PNG with more pages, you could either:
-
-- Increase the value of ``max_nb_chars`` accordingly.
-- Set value of ``wrap_chars_after`` to 80 characters to force longer pages.
-- Insert manual page breaks and other content.
-
-See the example below for ``max_nb_chars`` tweak:
-
-.. code-block:: python
-
-    # Generate PDF file of 20,000 characters
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator, max_nb_chars=20_000
-    )
-
-See the example below for ``wrap_chars_after`` tweak:
+If you want image to be less wide, set value of ``wrap_chars_after`` to 80
+characters (or any other number that fits your needs). See the example below:
 
 .. code-block:: python
 
     # Generate PDF file, wrapping each line after 80 characters
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator, wrap_chars_after=80
+    png_file = FAKER.png_file(
+        image_generator_cls=ImgkitPdfGenerator, wrap_chars_after=80
+    )
+
+To have a longer text, increase the value of ``max_nb_chars`` accordingly.
+See the example below:
+
+.. code-block:: python
+
+    # Generate PDF file of 20,000 characters
+    png_file = FAKER.png_file(
+        image_generator_cls=ImgkitPdfGenerator, max_nb_chars=20_000
     )
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
-is supported by PDF format specification, although currently only images,
-paragraphs, tables and manual text breaks are supported out of the box. In
-order to customise the blocks PDF file is built from, the ``DynamicTemplate``
+is supported by image format specification, although currently only images,
+paragraphs and tables are supported out of the box. In order to customise the
+blocks image file is built from, the ``DynamicTemplate``
 class is used. See the example below for usage examples:
 
 .. code-block:: python
 
     # Additional imports
     from faker_file.base import DynamicTemplate
-    from faker_file.contrib.pdf_file.pdfkit_snippets import (
-        add_page_break,
+    from faker_file.contrib.image.imgkit_snippets import (
         add_paragraph,
         add_picture,
         add_table,
     )
 
-    # Create a PDF file with paragraph, picture, table and manual page breaks
-    # in between the mentioned elements. The ``DynamicTemplate`` simply
+    # Create an image file with a paragraph, a picture and a table. The ``DynamicTemplate`` simply
     # accepts a list of callables (such as ``add_paragraph``,
     # ``add_page_break``) and dictionary to be later on fed to the callables
     # as keyword arguments for customising the default values.
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator,
+    png_file = FAKER.png_file(
+        image_generator_cls=ImgkitPdfGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
@@ -125,8 +123,8 @@ class is used. See the example below for usage examples:
 
     # You could make the list as long as you like or simply multiply for
     # easier repetition as follows:
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator,
+    png_file = FAKER.png_file(
+        image_generator_cls=ImgkitPdfGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
@@ -139,29 +137,29 @@ class is used. See the example below for usage examples:
         )
     )
 
-Building PDFs with text using `reportlab`_
-------------------------------------------
-While `reportlab`_ generator is much lighter than the `pdfkit`_ and does not
-have system dependencies, but might produce PDF files with questionable
-encoding when generating unicode text.
+Building images with text using `WeasyPrint`_
+---------------------------------------------
+While `WeasyPrint`_ generator isn't better or faster than the `imgkit`_, it
+supports formats that `imgkit`_ doesn't (and vice-versa) and therefore is a
+good alternative to.
 
-See the following full functional snippet for generating PDF using `reportlab`_.
+See the following full functional snippet for generating PDF using `WeasyPrint`_.
 
 .. code-block:: python
-    :name: test_building_pdf_using_reportlab
+    :name: test_building_images_using_weasyprint
 
     # Imports
     from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pdf_file.generators.reportlab_generator import (
-        ReportlabPdfGenerator,
+    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.image.generators.weasyprint_generator import (
+        WeasyPrintImageGenerator,
     )
 
     FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(PdfFileProvider)  # Register provider
+    FAKER.add_provider(PngFileProvider)  # Register provider
 
-    # Generate PDF file using `reportlab`
-    pdf_file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
+    # Generate image file using `WeasyPrint`
+    png_file = FAKER.png_file(image_generator_cls=WeasyPrintImageGenerator)
 
 All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
 when building PDF files from blocks (paragraphs, images, tables and page
