@@ -151,7 +151,7 @@ See the following full functional snippet for generating PDF using `WeasyPrint`_
     # Imports
     from faker import Faker
     from faker_file.providers.png_file import PngFileProvider
-    from faker_file.providers.image.generators.weasyprint_generator import (
+    from faker_file.providers.image.weasyprint_generator import (
         WeasyPrintImageGenerator,
     )
 
@@ -161,59 +161,51 @@ See the following full functional snippet for generating PDF using `WeasyPrint`_
     # Generate image file using `WeasyPrint`
     png_file = FAKER.png_file(image_generator_cls=WeasyPrintImageGenerator)
 
-All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
-when building PDF files from blocks (paragraphs, images, tables and page
-breaks), the imports shall be adjusted:
+All examples shown for `imgkit`_ apply for `WeasyPrint`_ generator, however
+when building images files from blocks (paragraphs, images and tables), the
+imports shall be adjusted:
 
 As mentioned above, it's possible to diversify the generated context with
-images, paragraphs, tables, manual text break and pretty much everything that
-is supported by PDF format specification, although currently only images,
-paragraphs, tables and manual text breaks are supported. In order to customise
-the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
-See the example below for usage examples:
+images, paragraphs, tables and pretty much everything else that you could
+think of, although currently only images, paragraphs and tables are supported.
+In order to customise the blocks image file is built from, the
+``DynamicTemplate`` class is used. See the example below for usage examples:
 
 .. code-block:: python
 
     # Additional imports
     from faker_file.base import DynamicTemplate
-    from faker_file.contrib.pdf_file.reportlab_snippets import (
-        add_page_break,
+    from faker_file.contrib.image.weasyprint_snippets import (
         add_paragraph,
         add_picture,
         add_table,
     )
 
-    # Create a PDF file with paragraph, picture, table and manual page breaks
-    # in between the mentioned elements. The ``DynamicTemplate`` simply
-    # accepts a list of callables (such as ``add_paragraph``,
-    # ``add_page_break``) and dictionary to be later on fed to the callables
-    # as keyword arguments for customising the default values.
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=ReportlabPdfGenerator,
+    # Create an image file with paragraph, picture and table.
+    # The ``DynamicTemplate`` simply accepts a list of callables (such
+    # as ``add_paragraph``, ``add_picture``) and dictionary to be later on
+    # fed to the callables as keyword arguments for customising the default
+    # values.
+    png_file = FAKER.png_file(
+        image_generator_cls=WeasyPrintImageGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
                 (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
             ]
         )
     )
 
     # You could make the list as long as you like or simply multiply for
     # easier repetition as follows:
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=ReportlabPdfGenerator,
+    png_file = FAKER.png_file(
+        image_generator_cls=WeasyPrintImageGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
                 (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
             ] * 100
         )
     )
@@ -223,26 +215,24 @@ Building PDFs with text using `Pillow`_
 Usage example:
 
 .. code-block:: python
-    :name: test_building_pdfs_using_pillow
+    :name: test_building_images_using_pillow
 
     from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pdf_file.generators.pil_generator import (
-        PilPdfGenerator
-    )
+    from faker_file.providers.png_file import PngFileProvider
+    from faker_file.providers.image.pil_generator import PilImageGenerator
 
     FAKER = Faker()
-    FAKER.add_provider(PdfFileProvider)
+    FAKER.add_provider(PngFileProvider)
 
-    file = FAKER.pdf_file(pdf_generator_cls=PilPdfGenerator)
+    png_file = FAKER.png_file(image_generator_cls=PilImageGenerator)
 
 With options:
 
 .. code-block:: python
 
-    file = FAKER.pdf_file(
-        pdf_generator_cls=PilPdfGenerator,
-        pdf_generator_kwargs={
+    png_file = FAKER.png_file(
+        image_generator_cls=PilImageGenerator,
+        image_generator_kwargs={
             "encoding": "utf8",
             "font_size": 14,
             "page_width": 800,
@@ -253,81 +243,72 @@ With options:
         wrap_chars_after=100,
     )
 
-All examples shown for `pdfkit`_ and `reportlab`_ apply to `Pillow`_ generator,
-however when building PDF files from blocks (paragraphs, images, tables and page
+All examples shown for `imgkit`_ and `WeasyPrint`_ apply to `Pillow`_ generator,
+however when building image files from blocks (paragraphs, images and tables
 breaks), the imports shall be adjusted:
 
 As mentioned above, it's possible to diversify the generated context with
-images, paragraphs, tables, manual text break and pretty much everything that
-is supported by PDF format specification, although currently only images,
-paragraphs, tables and manual text breaks are supported. In order to customise
-the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
-See the example below for usage examples:
+images, paragraphs, tables and pretty much everything that you could think of,
+although currently only images, paragraphs and tables are supported. In order
+to customise the blocks image file is built from, the ``DynamicTemplate``
+class is used. See the example below for usage examples:
 
 .. code-block:: python
 
     # Additional imports
     from faker_file.base import DynamicTemplate
-    from faker_file.contrib.pdf_file.pil_snippets import (
-        add_page_break,
+    from faker_file.contrib.png_file.pil_snippets import (
         add_paragraph,
         add_picture,
         add_table,
     )
 
-    # Create a PDF file with paragraph, picture, table and manual page breaks
-    # in between the mentioned elements. The ``DynamicTemplate`` simply
-    # accepts a list of callables (such as ``add_paragraph``,
-    # ``add_page_break``) and dictionary to be later on fed to the callables
-    # as keyword arguments for customising the default values.
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PilPdfGenerator,
+    # Create an image file with paragraph, picture and table.
+    # The ``DynamicTemplate`` simply accepts a list of callables (such as
+    # ``add_paragraph``, ``add_picture``) and dictionary to be later on fed
+    # to the callables as keyword arguments for customising the default
+    # values.
+    png_file = FAKER.png_file(
+        image_generator_cls=PilImageGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
                 (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
             ]
         )
     )
 
     # You could make the list as long as you like or simply multiply for
     # easier repetition as follows:
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PilPdfGenerator,
+    png_file = FAKER.png_file(
+        image_generator_cls=PilImageGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
                 (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
             ] * 100
         )
     )
 
-Creating PDFs with graphics using `Pillow`_
--------------------------------------------
-There's a so called `graphic` PDF file provider available. Produced PDF files
-would not contain text, so don't use it when you need text based content.
-However, sometimes you just need a valid file in PDF format, without
-caring much about the content. That's where a GraphicPdfFileProvider comes to
-rescue:
+Creating images with graphics-only using `Pillow`_
+--------------------------------------------------
+There are so called ``graphic`` image file providers available. Produced image
+files would not contain text, so don't use it when you need text based content.
+However, sometimes you just need a valid image file, without caring much about
+the content. That's where graphic image providers comes to rescue:
 
 .. code-block:: python
-    :name: test_building_pdfs_with_graphics_using_pillow
+    :name: test_building_images_with_graphics_using_pillow
 
     from faker import Faker
-    from faker_file.providers.pdf_file import GraphicPdfFileProvider
+    from faker_file.providers.png_file import GraphicPngFileProvider
 
     FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(GraphicPdfFileProvider)  # Register provider
+    FAKER.add_provider(GraphicPngFileProvider)  # Register provider
 
-    file = FAKER.graphic_pdf_file()
+    png_file = FAKER.graphic_png_file()
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours). One of the most useful arguments supported is
@@ -335,6 +316,6 @@ shapes of different colours). One of the most useful arguments supported is
 
 .. code-block:: python
 
-    file = FAKER.graphic_pdf_file(
+    png_file = FAKER.graphic_png_file(
         size=(800, 800),
     )
