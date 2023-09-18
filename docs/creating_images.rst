@@ -7,25 +7,23 @@ Creating images
 .. _WeasyPrint: https://pypi.org/project/weasyprint/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 
-Creating images could be a challenging task. One of the reasons for that might
-be need in additional (system) dependencies. There are many image formats to
-support. That makes it almost impossible and highly challenging to have
-**just one right way** of creating image files.
+Creating images could be a challenging task. System dependencies on one
+side, large variety of many image formats on another.
 
 That's why, creation of image files has been delegated to an abstraction layer
 of image generators. If you don't like how image files are generated or format
 you need isn't supported, you can create your own layer, using your favourite
 library.
 
-Currently, there are two types of image generators implemented:
+Currently, there are two types of image providers implemented:
 
-- Graphic-only image generators
-- Mixed-content image generators
+- Graphic-only image providers.
+- Mixed-content image providers.
 
-The graphic-only image generators are only capable of producing random
+The graphic-only image providers are only capable of producing random
 graphics.
 
-The mixed-content image generators can generate an image consisting of
+The mixed-content image providers can produce an image consisting of
 both text and graphics. Moreover, text comes in variety of different
 headings (such as h1, h2, h3, etc), paragraphs and tables.
 
@@ -37,6 +35,9 @@ And the image generators available to support
 - ``ImgkitImageGenerator`` (default), built on top of the `imgkit`_
   and `wkhtmltopdf`_.
 - ``WeasyPrintImageGenerator``, build on top of the famous `WeasyPrint`_.
+
+Next to the stated above, there are additional image providers to augment
+existing images in various (declaratively random) ways.
 
 Building images with text using `imgkit`_
 -----------------------------------------
@@ -318,4 +319,78 @@ shapes of different colours). One of the most useful arguments supported is
 
     png_file = FAKER.graphic_png_file(
         size=(800, 800),
+    )
+
+Augmenting existing images
+--------------------------
+
+.. code-block:: python
+    :name: test_augment_images_using_pillow
+
+    from faker import Faker
+    from faker_file.base import DynamicTemplate
+    from faker_file.contrib.pdf_file.pil_snippets import *
+    from faker_file.providers.image.augment import (
+        flip_horizontal,
+        flip_vertical,
+        decrease_contrast,
+        add_brightness,
+        resize_width,
+        resize_height,
+    )
+    from faker_file.providers.image.pil_generator import PilImageGenerator
+    from faker_file.providers.png_file import (
+        GraphicPngFileProvider,
+        PngFileProvider,
+    )
+    from faker_file.providers.augment_image_from_path import (
+        AugmentImageFromPathProvider
+    )
+    from faker_file.providers.augment_random_image_from_dir import (
+        AugmentRandomImageFromDirProvider
+    )
+
+    FAKER = Faker()
+    FAKER.add_provider(PngFileProvider)
+    FAKER.add_provider(GraphicPngFileProvider)
+    FAKER.add_provider(AugmentImageFromPathProvider)
+    FAKER.add_provider(AugmentRandomImageFromDirProvider)
+
+    # Create a couple of graphic images to augment later on.
+    FAKER.graphic_png_file(basename="01")  # One named 01.png
+    # And 5 more with random names.
+    for __ in range(5):
+        FAKER.graphic_png_file()
+
+    # We could have also assumed that images directory exists and contains
+    # image files, amount which 01.png. Augmentations will be applied
+    # sequentially, one by one until all fulfilled. If you wish to apply only
+    # a random number of augmentations, but not all, pass the `num_steps`
+    # argument, with value less than the number of `augmentations` provided.
+    augmented_image_file = FAKER.augment_image_from_path(
+        path="/tmp/tmp/01.png",
+        augmentations=[
+            (flip_horizontal, {}),
+            (flip_vertical, {}),
+            (decrease_contrast, {}),
+            (add_brightness, {}),
+            (resize_width, {"lower": 0.9, "upper": 1.1}),
+            (resize_height, {"lower": 0.9, "upper": 1.1}),
+        ],
+        prefix="augmented_image_01_",
+        # num_steps=3,
+    )
+
+    augmented_random_image_file = FAKER.augment_random_image_from_dir(
+        source_dir_path="/tmp/tmp/",
+        augmentations=[
+            (flip_horizontal, {}),
+            (flip_vertical, {}),
+            (decrease_contrast, {}),
+            (add_brightness, {}),
+            (resize_width, {"lower": 0.9, "upper": 1.1}),
+            (resize_height, {"lower": 0.9, "upper": 1.1}),
+        ],
+        prefix="augmented_random_image_",
+        # num_steps=3,
     )
