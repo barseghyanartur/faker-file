@@ -1,5 +1,9 @@
 Creating images
 ===============
+.. Internal references
+
+.. _faker-file: https://pypi.org/project/faker-file/
+
 .. External references
 
 .. _imgkit: https://pypi.org/project/imgkit/
@@ -10,15 +14,22 @@ Creating images
 Creating images could be a challenging task. System dependencies on one
 side, large variety of many image formats on another.
 
-That's why, creation of image files has been delegated to an abstraction layer
+Underlying creation of image files has been delegated to an abstraction layer
 of image generators. If you don't like how image files are generated or format
 you need isn't supported, you can create your own layer, using your favourite
 library.
 
-Currently, there are two types of image providers implemented:
+Generally speaking, in `faker-file`_ each file provider represents a certain
+file type (with only a few exceptions). For generating a file in PNG format
+you should use `PngFileProvider`. For JPEG you would use `JpegFileProvider`.
+
+Image providers
+---------------
+Currently, there are 3 types of image providers implemented:
 
 - Graphic-only image providers.
 - Mixed-content image providers.
+- Image augmentation providers.
 
 The graphic-only image providers are only capable of producing random
 graphics.
@@ -27,30 +38,33 @@ The mixed-content image providers can produce an image consisting of
 both text and graphics. Moreover, text comes in variety of different
 headings (such as h1, h2, h3, etc), paragraphs and tables.
 
-And the image generators available to support
+Image augmentation providers simply augment existing images in a various,
+declaratively random, ways, such as: flip, resize, lighten, darken,
+grayscale and others.
 
-- ``PilPdfGenerator``, build on top of the `Pillow`_. It's the generator
+Image generators
+----------------
+The following image generators are available.
+
+- ``PilImageGenerator``, built on top of the `Pillow`_. It's the generator
   that will likely won't ask for any system dependencies that you don't
   yet have installed.
 - ``ImgkitImageGenerator`` (default), built on top of the `imgkit`_
-  and `wkhtmltopdf`_.
-- ``WeasyPrintImageGenerator``, build on top of the famous `WeasyPrint`_.
+  and `wkhtmltopdf`_. Extremely easy to work with. Supports many formats.
+- ``WeasyPrintImageGenerator``, built on top of the `WeasyPrint`_.
+  Easy to work with. Supports formats that `imgkit`_ does not.
 
-Next to the stated above, there are additional image providers to augment
-existing images in various (declaratively random) ways.
-
-Building images with text using `imgkit`_
------------------------------------------
+Building mixed-content images using `imgkit`_
+---------------------------------------------
 While `imgkit`_ generator is heavier and has `wkhtmltopdf`_ as a system
 dependency, it produces better quality images and has no issues with fonts
 or unicode characters.
 
-See the following full functional snippet for generating PDF using `imgkit`_.
+See the following full functional snippet for generating images using `imgkit`_.
 
 .. code-block:: python
     :name: test_building_images_using_imgkit
 
-    # Imports
     from faker import Faker
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.image.imgkit_generator import (
@@ -72,9 +86,9 @@ characters (or any other number that fits your needs). See the example below:
 
 .. code-block:: python
 
-    # Generate PDF file, wrapping each line after 80 characters
+    # Generate an image file, wrapping each line after 80 characters
     png_file = FAKER.png_file(
-        image_generator_cls=ImgkitPdfGenerator, wrap_chars_after=80
+        image_generator_cls=ImgkitImageGenerator, wrap_chars_after=80
     )
 
 To have a longer text, increase the value of ``max_nb_chars`` accordingly.
@@ -82,17 +96,17 @@ See the example below:
 
 .. code-block:: python
 
-    # Generate PDF file of 20,000 characters
+    # Generate an image file of 20,000 characters
     png_file = FAKER.png_file(
-        image_generator_cls=ImgkitPdfGenerator, max_nb_chars=20_000
+        image_generator_cls=ImgkitImageGenerator, max_nb_chars=20_000
     )
 
 As mentioned above, it's possible to diversify the generated context with
-images, paragraphs, tables, manual text break and pretty much everything that
-is supported by image format specification, although currently only images,
-paragraphs and tables are supported out of the box. In order to customise the
-blocks image file is built from, the ``DynamicTemplate``
-class is used. See the example below for usage examples:
+images, paragraphs, tables and pretty much everything that you could think of,
+although currently only images, paragraphs and tables are supported out of
+the box. In order to customise the blocks image file is built from,
+the ``DynamicTemplate`` class is used. See the example below for usage
+examples:
 
 .. code-block:: python
 
@@ -104,12 +118,13 @@ class is used. See the example below for usage examples:
         add_table,
     )
 
-    # Create an image file with a paragraph, a picture and a table. The ``DynamicTemplate`` simply
-    # accepts a list of callables (such as ``add_paragraph``,
-    # ``add_page_break``) and dictionary to be later on fed to the callables
-    # as keyword arguments for customising the default values.
+    # Create an image file with a paragraph, a picture and a table.
+    # The ``DynamicTemplate`` simply accepts a list of callables (such
+    # as ``add_paragraph``, ``add_picture``) and dictionary to be later on
+    # fed to the callables as keyword arguments for customising the default
+    # values.
     png_file = FAKER.png_file(
-        image_generator_cls=ImgkitPdfGenerator,
+        image_generator_cls=ImgkitImageGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
@@ -125,31 +140,27 @@ class is used. See the example below for usage examples:
     # You could make the list as long as you like or simply multiply for
     # easier repetition as follows:
     png_file = FAKER.png_file(
-        image_generator_cls=ImgkitPdfGenerator,
+        image_generator_cls=ImgkitImageGenerator,
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
                 (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
             ] * 100  # Will repeat your config 100 times
         )
     )
 
-Building images with text using `WeasyPrint`_
----------------------------------------------
+Building mixed-content images using `WeasyPrint`_
+-------------------------------------------------
 While `WeasyPrint`_ generator isn't better or faster than the `imgkit`_, it
 supports formats that `imgkit`_ doesn't (and vice-versa) and therefore is a
 good alternative to.
 
-See the following full functional snippet for generating PDF using `WeasyPrint`_.
+See the following snippet for generating images using `WeasyPrint`_.
 
 .. code-block:: python
     :name: test_building_images_using_weasyprint
 
-    # Imports
     from faker import Faker
     from faker_file.providers.png_file import PngFileProvider
     from faker_file.providers.image.weasyprint_generator import (
@@ -211,8 +222,8 @@ In order to customise the blocks image file is built from, the
         )
     )
 
-Building PDFs with text using `Pillow`_
----------------------------------------
+Building mixed-content images using `Pillow`_
+---------------------------------------------
 Usage example:
 
 .. code-block:: python
@@ -245,14 +256,8 @@ With options:
     )
 
 All examples shown for `imgkit`_ and `WeasyPrint`_ apply to `Pillow`_ generator,
-however when building image files from blocks (paragraphs, images and tables
-breaks), the imports shall be adjusted:
-
-As mentioned above, it's possible to diversify the generated context with
-images, paragraphs, tables and pretty much everything that you could think of,
-although currently only images, paragraphs and tables are supported. In order
-to customise the blocks image file is built from, the ``DynamicTemplate``
-class is used. See the example below for usage examples:
+however when building image files from blocks (paragraphs, images and tables),
+the imports shall be adjusted. See the example below:
 
 .. code-block:: python
 
@@ -293,8 +298,8 @@ class is used. See the example below for usage examples:
         )
     )
 
-Creating images with graphics-only using `Pillow`_
---------------------------------------------------
+Creating graphics-only images using `Pillow`_
+---------------------------------------------
 There are so called ``graphic`` image file providers available. Produced image
 files would not contain text, so don't use it when you need text based content.
 However, sometimes you just need a valid image file, without caring much about
@@ -321,8 +326,9 @@ shapes of different colours). One of the most useful arguments supported is
         size=(800, 800),
     )
 
-Augmenting existing images
---------------------------
+Augment existing images
+-----------------------
+Augment the input image with a series of random augmentation methods.
 
 .. code-block:: python
     :name: test_augment_images_using_pillow
