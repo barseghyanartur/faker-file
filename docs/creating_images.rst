@@ -128,11 +128,8 @@ examples:
         content=DynamicTemplate(
             [
                 (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
                 (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
                 (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
             ]
         )
     )

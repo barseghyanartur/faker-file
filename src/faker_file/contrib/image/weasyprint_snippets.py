@@ -8,19 +8,6 @@ from ...base import DEFAULT_FORMAT_FUNC
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = (
-    "add_h1_heading",
-    "add_h2_heading",
-    "add_h3_heading",
-    "add_h4_heading",
-    "add_h5_heading",
-    "add_h6_heading",
-    "add_heading",
-    "add_page_break",
-    "add_paragraph",
-    "add_picture",
-    "add_table",
-)
 
 
 def create_data_url(image_bytes: bytes, image_format: str) -> str:

@@ -35,6 +35,42 @@ from ..contrib.docx_file import (
     add_table as docx_add_table,
     add_title_heading as docx_add_title_heading,
 )
+from ..contrib.image.imgkit_snippets import (
+    add_h1_heading as image_imgkit_add_h1_heading,
+    add_h2_heading as image_imgkit_add_h2_heading,
+    add_h3_heading as image_imgkit_add_h3_heading,
+    add_h4_heading as image_imgkit_add_h4_heading,
+    add_h5_heading as image_imgkit_add_h5_heading,
+    add_h6_heading as image_imgkit_add_h6_heading,
+    add_page_break as image_imgkit_add_page_break,
+    add_paragraph as image_imgkit_add_paragraph,
+    add_picture as image_imgkit_add_picture,
+    add_table as image_imgkit_add_table,
+)
+from ..contrib.image.pil_snippets import (
+    add_h1_heading as image_pil_add_h1_heading,
+    add_h2_heading as image_pil_add_h2_heading,
+    add_h3_heading as image_pil_add_h3_heading,
+    add_h4_heading as image_pil_add_h4_heading,
+    add_h5_heading as image_pil_add_h5_heading,
+    add_h6_heading as image_pil_add_h6_heading,
+    add_page_break as image_pil_add_page_break,
+    add_paragraph as image_pil_add_paragraph,
+    add_picture as image_pil_add_picture,
+    add_table as image_pil_add_table,
+)
+from ..contrib.image.weasyprint_snippets import (
+    add_h1_heading as image_weasyprint_add_h1_heading,
+    add_h2_heading as image_weasyprint_add_h2_heading,
+    add_h3_heading as image_weasyprint_add_h3_heading,
+    add_h4_heading as image_weasyprint_add_h4_heading,
+    add_h5_heading as image_weasyprint_add_h5_heading,
+    add_h6_heading as image_weasyprint_add_h6_heading,
+    add_page_break as image_weasyprint_add_page_break,
+    add_paragraph as image_weasyprint_add_paragraph,
+    add_picture as image_weasyprint_add_picture,
+    add_table as image_weasyprint_add_table,
+)
 from ..contrib.odt_file import (
     add_h1_heading as odt_add_h1_heading,
     add_h2_heading as odt_add_h2_heading,
@@ -1242,6 +1278,75 @@ class ProvidersTestCase(unittest.TestCase):
             GraphicPngFileProvider,
             "graphic_png_file",
             {"size": (100, 100), "image_generator_cls": None},
+            None,
+        ),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {
+                "image_generator_cls": IMAGEKIT_IMAGE_GENERATOR,
+                "content": DynamicTemplate(
+                    [
+                        (image_imgkit_add_h1_heading, {}),  # Add h1
+                        (image_imgkit_add_h2_heading, {}),  # Add h2
+                        (image_imgkit_add_h3_heading, {}),  # Add h3
+                        (image_imgkit_add_h4_heading, {}),  # Add h4
+                        (image_imgkit_add_h5_heading, {}),  # Add h5
+                        (image_imgkit_add_h6_heading, {}),  # Add h6
+                        (image_imgkit_add_paragraph, {}),  # Add paragraph
+                        (image_imgkit_add_picture, {}),  # Add picture
+                        (image_imgkit_add_table, {}),  # Add table
+                        (image_imgkit_add_page_break, {}),  # Add page break
+                    ]
+                ),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {
+                "image_generator_cls": PIL_IMAGE_GENERATOR,
+                "content": DynamicTemplate(
+                    [
+                        (image_pil_add_h1_heading, {}),  # Add h1
+                        (image_pil_add_h2_heading, {}),  # Add h2
+                        (image_pil_add_h3_heading, {}),  # Add h3
+                        (image_pil_add_h4_heading, {}),  # Add h4
+                        (image_pil_add_h5_heading, {}),  # Add h5
+                        (image_pil_add_h6_heading, {}),  # Add h6
+                        (image_pil_add_paragraph, {}),  # Add paragraph
+                        (image_pil_add_picture, {}),  # Add picture
+                        (image_pil_add_table, {}),  # Add table
+                        (image_pil_add_page_break, {}),  # Add page break
+                    ]
+                ),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {
+                "image_generator_cls": WEASYPRINT_IMAGE_GENERATOR,
+                "content": DynamicTemplate(
+                    [
+                        (image_weasyprint_add_h1_heading, {}),  # Add h1
+                        (image_weasyprint_add_h2_heading, {}),  # Add h2
+                        (image_weasyprint_add_h3_heading, {}),  # Add h3
+                        (image_weasyprint_add_h4_heading, {}),  # Add h4
+                        (image_weasyprint_add_h5_heading, {}),  # Add h5
+                        (image_weasyprint_add_h6_heading, {}),  # Add h6
+                        (image_weasyprint_add_paragraph, {}),  # Add paragraph
+                        (image_weasyprint_add_picture, {}),  # Add picture
+                        (image_weasyprint_add_table, {}),  # Add table
+                        (image_weasyprint_add_page_break, {}),  # Add page break
+                    ]
+                ),
+            },
             None,
         ),
         # PPTX
