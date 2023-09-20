@@ -28,7 +28,7 @@ are used for versioning (schema follows below):
 
 0.17.8
 ------
-2023-09-16
+2023-09-21
 
 - Added support for ``DynamicTemplate`` to all non-graphic image providers.
   That means, that you can produce images with text, tables, various
