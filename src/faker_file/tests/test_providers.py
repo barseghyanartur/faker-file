@@ -66,6 +66,7 @@ from ..contrib.image.weasyprint_snippets import (
     add_h4_heading as image_weasyprint_add_h4_heading,
     add_h5_heading as image_weasyprint_add_h5_heading,
     add_h6_heading as image_weasyprint_add_h6_heading,
+    add_heading as image_weasyprint_add_heading,
     add_page_break as image_weasyprint_add_page_break,
     add_paragraph as image_weasyprint_add_paragraph,
     add_picture as image_weasyprint_add_picture,
@@ -315,6 +316,9 @@ pdf_pdfkit_add_non_existing_heading = partial(pdf_pdfkit_add_heading, level=0)
 pdf_pil_add_non_existing_heading = partial(pdf_pil_add_heading, level=0)
 pdf_reportlab_add_non_existing_heading = partial(
     pdf_reportlab_add_heading, level=0
+)
+image_weasyprint_add_non_existing_heading = partial(
+    image_weasyprint_add_heading, level=0
 )
 
 logging.getLogger("fontTools").setLevel(logging.WARNING)
@@ -1309,6 +1313,9 @@ class ProvidersTestCase(unittest.TestCase):
             "png_file",
             {
                 "image_generator_cls": PIL_IMAGE_GENERATOR,
+                "image_generator_kwargs": {
+                    "image_mode": "RGB",
+                },
                 "content": DynamicTemplate(
                     [
                         (image_pil_add_h1_heading, {}),  # Add h1
@@ -1326,6 +1333,7 @@ class ProvidersTestCase(unittest.TestCase):
             },
             None,
         ),
+        # Testing one page
         (
             FAKER,
             PngFileProvider,
@@ -1335,12 +1343,37 @@ class ProvidersTestCase(unittest.TestCase):
                 "content": DynamicTemplate(
                     [
                         (image_weasyprint_add_h1_heading, {}),  # Add h1
+                    ]
+                ),
+            },
+            None,
+        ),
+        (
+            FAKER,
+            PngFileProvider,
+            "png_file",
+            {
+                "image_generator_cls": WEASYPRINT_IMAGE_GENERATOR,
+                "image_generator_kwargs": {
+                    "page_width": 800,
+                    "page_height": 1200,
+                    "image_mode": "RGB",
+                    "wrapper_tag": "div",
+                },
+                "content": DynamicTemplate(
+                    [
+                        (image_weasyprint_add_h1_heading, {}),  # Add h1
                         (image_weasyprint_add_h2_heading, {}),  # Add h2
                         (image_weasyprint_add_h3_heading, {}),  # Add h3
                         (image_weasyprint_add_h4_heading, {}),  # Add h4
                         (image_weasyprint_add_h5_heading, {}),  # Add h5
                         (image_weasyprint_add_h6_heading, {}),  # Add h6
+                        (image_weasyprint_add_non_existing_heading, {}),
                         (image_weasyprint_add_paragraph, {}),  # Add paragraph
+                        (
+                            image_weasyprint_add_paragraph,
+                            {"max_nb_chars": 1_000},
+                        ),  # Add paragraph
                         (image_weasyprint_add_picture, {}),  # Add picture
                         (image_weasyprint_add_table, {}),  # Add table
                         (image_weasyprint_add_page_break, {}),  # Add page break
