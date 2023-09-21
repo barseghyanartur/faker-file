@@ -8,6 +8,7 @@ from faker import Faker
 from faker.generator import Generator
 from faker.providers.python import Provider
 
+from ...base import DynamicTemplate, StringList
 from ...constants import DEFAULT_FILE_ENCODING
 from ..base.image_generator import BaseImageGenerator
 
@@ -28,13 +29,57 @@ class ImgkitImageGenerator(BaseImageGenerator):
 
         from faker import Faker
         from faker_file.providers.png_file import PngFileProvider
-        from faker_file.providers.images.generators import imgkit_generator
+        from faker_file.providers.image.imgkit_generator import (
+            ImgkitImageGenerator
+        )
 
         FAKER = Faker()
         FAKER.add_provider(PngFileProvider)
 
         file = FAKER.png_file(
-            img_generator_cls=imgkit_generator.ImgkitImageGenerator
+            img_generator_cls=ImgkitImageGenerator
+        )
+
+
+    Using `DynamicTemplate`:
+
+    .. code-block:: python
+
+        from faker_file.base import DynamicTemplate
+        from faker_file.contrib.image.imgkit_snippets import (
+            add_h1_heading,
+            add_h2_heading,
+            add_h3_heading,
+            add_h4_heading,
+            add_h5_heading,
+            add_h6_heading,
+            add_heading,
+            add_page_break,
+            add_paragraph,
+            add_picture,
+            add_table,
+        )
+
+        # Create a file with lots of elements
+        file = FAKER.png_file(
+            image_generator_cls=ImgkitImageGenerator,
+            content=DynamicTemplate(
+                [
+                    (add_h1_heading, {}),
+                    (add_paragraph, {}),
+                    (add_h2_heading, {}),
+                    (add_h3_heading, {}),
+                    (add_h4_heading, {}),
+                    (add_h5_heading, {}),
+                    (add_h6_heading, {}),
+                    (add_paragraph, {}),
+                    (add_picture, {}),
+                    (add_page_break, {}),
+                    (add_h6_heading, {}),
+                    (add_table, {}),
+                    (add_paragraph, {}),
+                ]
+            )
         )
     """
 
@@ -52,8 +97,26 @@ class ImgkitImageGenerator(BaseImageGenerator):
     ) -> bytes:
         """Generate image."""
         with contextlib.redirect_stdout(io.StringIO()):
+            if isinstance(content, DynamicTemplate):
+                _content = StringList()
+                for counter, (ct_modifier, ct_modifier_kwargs) in enumerate(
+                    content.content_modifiers
+                ):
+                    ct_modifier(
+                        provider,
+                        self,
+                        _content,
+                        data,
+                        counter,
+                        **ct_modifier_kwargs,
+                    )
+            else:
+                _content = (
+                    f"<pre style='white-space: pre-wrap;'>{content}</pre>"
+                )
+
             return imgkit.from_string(
-                f"<pre>{content}</pre>",
+                str(_content),
                 False,
                 options={"format": provider.extension},
             )

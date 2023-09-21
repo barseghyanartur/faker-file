@@ -27,14 +27,14 @@ class PdfkitPdfGenerator(BasePdfGenerator):
 
         from faker import Faker
         from faker_file.providers.pdf_file import PdfFileProvider
-        from faker_file.providers.pdf_file.generators import pdfkit_generator
+        from faker_file.providers.pdf_file.generators.pdfkit_generator import (
+            PdfkitPdfGenerator
+        )
 
         FAKER = Faker()
         FAKER.add_provider(PdfFileProvider)
 
-        file = FAKER.pdf_file(
-            pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator
-        )
+        file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
 
     Using `DynamicTemplate`:
 
@@ -57,7 +57,7 @@ class PdfkitPdfGenerator(BasePdfGenerator):
 
         # Create a file with lots of elements
         file = FAKER.pdf_file(
-            pdf_generator_cls=pdfkit_generator.PdfkitPdfGenerator,
+            pdf_generator_cls=PdfkitPdfGenerator,
             content=DynamicTemplate(
                 [
                     (add_h1_heading, {}),

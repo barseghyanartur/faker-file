@@ -190,7 +190,7 @@ class PilPdfGenerator(BasePdfGenerator):
             y_text = 0
             for counter, line in enumerate(lines):
                 text_width, text_height = self.draw.textsize(
-                    line, font=font, spacing=6
+                    line, font=font, spacing=self.spacing
                 )
                 # if counter % max_lines_per_page == 0:
                 if y_text + text_height > self.page_height:

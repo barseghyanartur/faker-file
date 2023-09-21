@@ -19,11 +19,12 @@ Currently, there are three PDF generators implemented:
 
 - ``PdfkitPdfGenerator`` (default), built on top of the `pdfkit`_
   and `wkhtmltopdf`_.
-- ``PilPdfGenerator``, build on top of the `Pillow`_. Currently, the most
-  basic generator in terms of features, but on the same time, the
-  generator that will likely won't ask for any system dependencies that
-  you don't yet have installed.
 - ``ReportlabPdfGenerator``, build on top of the famous `reportlab`_.
+- ``PilPdfGenerator``, build on top of the `Pillow`_. Produced PDFs would
+  contain images only (even texts are stored as images), unlike `pdfkit`_ or
+  `reportlab`_ based solutions, where PDFs would simply contain selectable
+  text. However, it's the generator that will likely won't ask for any
+  system dependencies that you don't yet have installed.
 
 Building PDF with text using `pdfkit`_
 --------------------------------------
