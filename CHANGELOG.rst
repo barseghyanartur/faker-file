@@ -30,6 +30,15 @@ are used for versioning (schema follows below):
 ------
 2023-09-21
 
+.. note::
+
+    This release is dedicated to the victims of the war in Artsakh
+    (Nagorno-Karabakh), a land now lost to its native inhabitants (Armenians).
+    Following a grueling nine-month blockade, Azerbaijan initiated another
+    military onslaught on September 19, 2023. The already weakened and
+    outnumbered forces of Artsakh could no longer mount an effective
+    resistance.
+
 - Added support for ``DynamicTemplate`` to all non-graphic image providers.
   That means, that you can produce images with text, tables, various
   headings and other images. Correspondent snippets are implemented for all
