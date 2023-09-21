@@ -4,7 +4,13 @@ from faker import Faker
 from faker.generator import Generator
 from faker.providers.python import Provider
 
-from ...base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
+from ...base import (
+    DEFAULT_FORMAT_FUNC,
+    BytesValue,
+    DynamicTemplate,
+    FileMixin,
+    StringValue,
+)
 from ...constants import DEFAULT_IMAGE_MAX_NB_CHARS
 from ...helpers import load_class_from_path
 from ...registry import FILE_REGISTRY
@@ -23,9 +29,6 @@ __all__ = (
     "WEASYPRINT_IMAGE_GENERATOR",
 )
 
-DEFAULT_IMAGE_GENERATOR = (
-    "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
-)
 IMAGEKIT_IMAGE_GENERATOR = (
     "faker_file.providers.image.imgkit_generator.ImgkitImageGenerator"
 )
@@ -35,6 +38,8 @@ PIL_IMAGE_GENERATOR = (
 WEASYPRINT_IMAGE_GENERATOR = (
     "faker_file.providers.image.weasyprint_generator.WeasyPrintImageGenerator"
 )
+
+DEFAULT_IMAGE_GENERATOR = IMAGEKIT_IMAGE_GENERATOR
 
 
 class ImageMixin(FileMixin):
@@ -127,15 +132,6 @@ class ImageMixin(FileMixin):
             basename=basename,
         )
 
-        content = self._generate_text_content(
-            max_nb_chars=max_nb_chars,
-            wrap_chars_after=wrap_chars_after,
-            content=content,
-            format_func=format_func,
-        )
-
-        data = {"content": content, "filename": filename, "storage": storage}
-
         if image_generator_cls is None:
             image_generator_cls = DEFAULT_IMAGE_GENERATOR
 
@@ -144,13 +140,30 @@ class ImageMixin(FileMixin):
 
         if not image_generator_kwargs:
             image_generator_kwargs = {}
+
+        image_generator_kwargs["content_specs"] = {
+            "max_nb_chars": max_nb_chars,
+            "wrap_chars_after": wrap_chars_after,
+        }
+
         image_generator = image_generator_cls(
             generator=self.generator,
             **image_generator_kwargs,
         )
+        data = {"content": "", "filename": filename, "storage": storage}
+        if isinstance(content, DynamicTemplate):
+            _content = content
+        else:
+            _content = self._generate_text_content(
+                max_nb_chars=max_nb_chars,
+                wrap_chars_after=wrap_chars_after,
+                content=content,
+                format_func=format_func,
+            )
+            data["content"] = _content
 
         _raw_content = image_generator.generate(
-            content=content,
+            content=_content,
             data=data,
             provider=self,
         )

@@ -1,5 +1,5 @@
-__title__ = "faker_file"
-__version__ = "0.17.8"
+from ..pdf_file.pil_snippets import *  # noqa
+
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"

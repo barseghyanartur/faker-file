@@ -11,6 +11,7 @@ import asyncssh
 from faker import Faker
 
 from ..providers.txt_file import TxtFileProvider
+from ..registry import FILE_REGISTRY
 from .sftp_server import SFTPServerManager, start_server, start_server_async
 from .utils import AutoFreePortInt
 
@@ -106,6 +107,7 @@ class __TestSFTPServerMixin:
                     uploaded_contents = await uploaded_file.read()
 
                 self.assertEqual(test_file.data["content"], uploaded_contents)
+                FILE_REGISTRY.clean_up()
 
     async def test_file_delete(self: "__TestSFTPServerMixin") -> None:
         async with asyncssh.connect(
@@ -127,6 +129,7 @@ class __TestSFTPServerMixin:
                 # Delete the file and ensure it's gone
                 await sftp.remove("/testfile_delete.txt")
                 self.assertFalse(await sftp.exists("/testfile_delete.txt"))
+                FILE_REGISTRY.clean_up()
 
 
 class TestSFTPServerWithStartServerAsync(

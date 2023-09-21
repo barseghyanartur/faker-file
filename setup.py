@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.17.7"
+version = "0.17.8"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()

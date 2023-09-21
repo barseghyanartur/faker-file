@@ -49,11 +49,11 @@ PDFKIT_PDF_GENERATOR = (
 PIL_PDF_GENERATOR = (
     "faker_file.providers.pdf_file.generators.pil_generator.PilPdfGenerator"
 )
-DEFAULT_PDF_GENERATOR = PDFKIT_PDF_GENERATOR
 REPORTLAB_PDF_GENERATOR = (
     "faker_file.providers.pdf_file.generators.reportlab_generator"
     ".ReportlabPdfGenerator"
 )
+DEFAULT_PDF_GENERATOR = PDFKIT_PDF_GENERATOR
 
 
 class PdfFileProvider(BaseProvider, FileMixin):
