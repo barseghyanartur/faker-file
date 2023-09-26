@@ -95,10 +95,11 @@ djangorestframework==3.12.4
     # via
     #   -r examples/requirements/django_3_2.in
     #   drf-spectacular
-docutils==0.19
+docutils==0.18.1
     # via
     #   rst2pdf
     #   sphinx
+    #   sphinx-rtd-theme
 drf-spectacular==0.25.1
     # via -r examples/requirements/django_3_2.in
 edge-tts==6.0.8
@@ -350,6 +351,11 @@ snowballstemmer==2.2.0
 soupsieve==2.3.2.post1
     # via beautifulsoup4
 sphinx==5.3.0
+    # via
+    #   -r examples/requirements/docs.in
+    #   sphinx-rtd-theme
+    #   sphinxcontrib-jquery
+sphinx-rtd-theme==1.3.0
     # via -r examples/requirements/docs.in
 sphinxcontrib-applehelp==1.0.2
     # via sphinx
@@ -357,6 +363,8 @@ sphinxcontrib-devhelp==1.0.2
     # via sphinx
 sphinxcontrib-htmlhelp==2.0.0
     # via sphinx
+sphinxcontrib-jquery==4.1
+    # via sphinx-rtd-theme
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
 sphinxcontrib-qthelp==1.0.3
