@@ -48,6 +48,8 @@ If you want PDF with more pages, you could either:
 - Set value of ``wrap_chars_after`` to 80 characters to force longer pages.
 - Insert manual page breaks and other content.
 
+----
+
 See the example below for ``max_nb_chars`` tweak:
 
 .. literalinclude:: _static/examples/creating_pdf/pdfkit_2.py
@@ -57,6 +59,8 @@ See the example below for ``max_nb_chars`` tweak:
 *See the full example*
 :download:`here <_static/examples/creating_pdf/pdfkit_2.py>`.
 
+----
+
 See the example below for ``wrap_chars_after`` tweak:
 
 .. literalinclude:: _static/examples/creating_pdf/pdfkit_3.py
@@ -65,6 +69,8 @@ See the example below for ``wrap_chars_after`` tweak:
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/pdfkit_3.py>`.
+
+----
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
@@ -94,6 +100,8 @@ See the following full functional snippet for generating PDF using `reportlab`_.
 *See the full example*
 :download:`here <_static/examples/creating_pdf/reportlab_1.py>`.
 
+----
+
 All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
 when building PDF files from blocks (paragraphs, images, tables and page
 breaks), the imports shall be adjusted:
@@ -116,36 +124,24 @@ Building PDFs with text using `Pillow`_
 ---------------------------------------
 Usage example:
 
-.. code-block:: python
-    :name: test_building_pdfs_using_pillow
+.. literalinclude:: _static/examples/creating_pdf/pillow_1.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pdf_file.generators.pil_generator import (
-        PilPdfGenerator
-    )
+*See the full example*
+:download:`here <_static/examples/creating_pdf/pillow_1.py>`.
 
-    FAKER = Faker()
-    FAKER.add_provider(PdfFileProvider)
-
-    file = FAKER.pdf_file(pdf_generator_cls=PilPdfGenerator)
+----
 
 With options:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_pdf/pillow_2.py
+    :language: python
+    :lines: 10-
 
-    file = FAKER.pdf_file(
-        pdf_generator_cls=PilPdfGenerator,
-        pdf_generator_kwargs={
-            "encoding": "utf8",
-            "font_size": 14,
-            "page_width": 800,
-            "page_height": 1200,
-            "line_height": 16,
-            "spacing": 5,
-        },
-        wrap_chars_after=100,
-    )
+*See the full example*
+:download:`here <_static/examples/creating_pdf/pillow_2.py>`.
+
+----
 
 All examples shown for `pdfkit`_ and `reportlab`_ apply to `Pillow`_ generator,
 however when building PDF files from blocks (paragraphs, images, tables and page

@@ -72,6 +72,8 @@ The generated PNG image will have 10,000 characters of text. The generated image
 will be as wide as needed to fit those 10,000 characters, but newlines are
 respected.
 
+----
+
 If you want image to be less wide, set value of ``wrap_chars_after`` to 80
 characters (or any other number that fits your needs). See the example below:
 
@@ -82,6 +84,8 @@ characters (or any other number that fits your needs). See the example below:
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_2.py>`.
 
+----
+
 To have a longer text, increase the value of ``max_nb_chars`` accordingly.
 See the example below:
 
@@ -91,6 +95,8 @@ See the example below:
 
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_3.py>`.
+
+----
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables and pretty much everything that you could think of,
@@ -120,6 +126,8 @@ See the following snippet for generating images using `WeasyPrint`_.
 *See the full example*
 :download:`here <_static/examples/creating_images/weasyprint_1.py>`.
 
+----
+
 All examples shown for `imgkit`_ apply for `WeasyPrint`_ generator, however
 when building images files from blocks (paragraphs, images and tables), the
 imports shall be adjusted:
@@ -147,6 +155,8 @@ Usage example:
 *See the full example*
 :download:`here <_static/examples/creating_images/pillow_1.py>`.
 
+----
+
 With options:
 
 .. literalinclude:: _static/examples/creating_images/pillow_2.py
@@ -155,6 +165,8 @@ With options:
 
 *See the full example*
 :download:`here <_static/examples/creating_images/pillow_2.py>`.
+
+----
 
 All examples shown for `imgkit`_ and `WeasyPrint`_ apply to `Pillow`_ generator,
 however when building image files from blocks (paragraphs, images and tables),
@@ -181,8 +193,11 @@ the content. That's where graphic image providers comes to rescue:
 :download:`here <_static/examples/creating_images/pillow_4.py>`.
 
 The generated file will contain a random graphic (consisting of lines and
-shapes of different colours). One of the most useful arguments supported is
-``size``.
+shapes of different colours).
+
+----
+
+One of the most useful arguments supported is ``size``.
 
 .. literalinclude:: _static/examples/creating_images/pillow_5.py
     :language: python
