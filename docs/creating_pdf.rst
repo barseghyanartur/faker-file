@@ -104,7 +104,7 @@ See the following full functional snippet for generating PDF using `reportlab`_.
 
 All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
 when building PDF files from blocks (paragraphs, images, tables and page
-breaks), the imports shall be adjusted:
+breaks), the imports shall be adjusted.
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
@@ -145,7 +145,7 @@ With options:
 
 All examples shown for `pdfkit`_ and `reportlab`_ apply to `Pillow`_ generator,
 however when building PDF files from blocks (paragraphs, images, tables and page
-breaks), the imports shall be adjusted:
+breaks), the imports shall be adjusted.
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
@@ -176,8 +176,11 @@ rescue:
 :download:`here <_static/examples/creating_pdf/pillow_4.py>`.
 
 The generated file will contain a random graphic (consisting of lines and
-shapes of different colours). One of the most useful arguments supported is
-``size``.
+shapes of different colours).
+
+----
+
+One of the most useful arguments supported is ``size``.
 
 .. literalinclude:: _static/examples/creating_pdf/pillow_5.py
     :language: python
