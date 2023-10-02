@@ -88,21 +88,11 @@ encoding when generating unicode text.
 
 See the following full functional snippet for generating PDF using `reportlab`_.
 
-.. code-block:: python
-    :name: test_building_pdf_using_reportlab
+.. literalinclude:: _static/examples/creating_pdf/reportlab_1.py
+    :language: python
 
-    # Imports
-    from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pdf_file.generators.reportlab_generator import (
-        ReportlabPdfGenerator,
-    )
-
-    FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(PdfFileProvider)  # Register provider
-
-    # Generate PDF file using `reportlab`
-    pdf_file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
+*See the full example*
+:download:`here <_static/examples/creating_pdf/reportlab_1.py>`.
 
 All examples shown for `pdfkit`_ apply for `reportlab`_ generator, however
 when building PDF files from blocks (paragraphs, images, tables and page
@@ -115,51 +105,12 @@ paragraphs, tables and manual text breaks are supported. In order to customise
 the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
 See the example below for usage examples:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_pdf/reportlab_2.py
+    :language: python
+    :lines: 11-
 
-    # Additional imports
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.pdf_file.reportlab_snippets import (
-        add_page_break,
-        add_paragraph,
-        add_picture,
-        add_table,
-    )
-
-    # Create a PDF file with paragraph, picture, table and manual page breaks
-    # in between the mentioned elements. The ``DynamicTemplate`` simply
-    # accepts a list of callables (such as ``add_paragraph``,
-    # ``add_page_break``) and dictionary to be later on fed to the callables
-    # as keyword arguments for customising the default values.
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=ReportlabPdfGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
-                (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
-                (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
-            ]
-        )
-    )
-
-    # You could make the list as long as you like or simply multiply for
-    # easier repetition as follows:
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=ReportlabPdfGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
-                (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
-                (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
-            ] * 100
-        )
-    )
+*See the full example*
+:download:`here <_static/examples/creating_pdf/reportlab_2.py>`.
 
 Building PDFs with text using `Pillow`_
 ---------------------------------------
