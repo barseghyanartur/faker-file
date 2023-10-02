@@ -34,21 +34,11 @@ or unicode characters.
 
 See the following full functional snippet for generating PDF using `pdfkit`_.
 
-.. code-block:: python
-    :name: test_building_pdf_using_pdfkit
+.. literalinclude:: _static/examples/creating_pdf/pdfkit_1.py
+    :language: python
 
-    # Imports
-    from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pdf_file.generators.pdfkit_generator import (
-        PdfkitPdfGenerator,
-    )
-
-    FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(PdfFileProvider)  # Register PdfFileProvider
-
-    # Generate PDF file using `pdfkit`
-    pdf_file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
+*See the full example*
+:download:`here <_static/examples/creating_pdf/pdfkit_1.py>`.
 
 The generated PDF will have 10,000 characters of text, which is about 2 pages.
 
@@ -60,21 +50,21 @@ If you want PDF with more pages, you could either:
 
 See the example below for ``max_nb_chars`` tweak:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_pdf/pdfkit_2.py
+    :language: python
+    :lines: 11-
 
-    # Generate PDF file of 20,000 characters
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator, max_nb_chars=20_000
-    )
+*See the full example*
+:download:`here <_static/examples/creating_pdf/pdfkit_2.py>`.
 
 See the example below for ``wrap_chars_after`` tweak:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_pdf/pdfkit_3.py
+    :language: python
+    :lines: 11-
 
-    # Generate PDF file, wrapping each line after 80 characters
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator, wrap_chars_after=80
-    )
+*See the full example*
+:download:`here <_static/examples/creating_pdf/pdfkit_3.py>`.
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables, manual text break and pretty much everything that
@@ -83,51 +73,12 @@ paragraphs, tables and manual text breaks are supported out of the box. In
 order to customise the blocks PDF file is built from, the ``DynamicTemplate``
 class is used. See the example below for usage examples:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_pdf/pdfkit_4.py
+    :language: python
+    :lines: 11-
 
-    # Additional imports
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.pdf_file.pdfkit_snippets import (
-        add_page_break,
-        add_paragraph,
-        add_picture,
-        add_table,
-    )
-
-    # Create a PDF file with paragraph, picture, table and manual page breaks
-    # in between the mentioned elements. The ``DynamicTemplate`` simply
-    # accepts a list of callables (such as ``add_paragraph``,
-    # ``add_page_break``) and dictionary to be later on fed to the callables
-    # as keyword arguments for customising the default values.
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
-                (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
-                (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
-            ]
-        )
-    )
-
-    # You could make the list as long as you like or simply multiply for
-    # easier repetition as follows:
-    pdf_file = FAKER.pdf_file(
-        pdf_generator_cls=PdfkitPdfGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
-                (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
-                (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
-            ] * 100  # Will repeat your config 100 times
-        )
-    )
+*See the full example*
+:download:`here <_static/examples/creating_pdf/pdfkit_4.py>`.
 
 Building PDFs with text using `reportlab`_
 ------------------------------------------
