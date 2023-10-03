@@ -226,172 +226,27 @@ the following arguments:
 - counter: Integer. Index number of the content modifier.
 - **kwargs: Dictionary. Useful to pass implementation-specific arguments.
 
-The following example shows how to generate a DOCX file with table and image.
+The following example shows how to generate a DOCX file with paragraph, table
+and image.
 
-.. code-block:: python
-    :name: test_create_a_docx_file_with_table_and_image_using_dynamictemplate
+.. literalinclude:: _static/examples/recipes/create_docx_file_mixed_1.py
+    :language: python
+    :lines: 7-
 
-    from io import BytesIO
-
-    from faker import Faker
-    from faker_file.base import DynamicTemplate
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.jpeg_file import JpegFileProvider
-
-    def docx_add_table(provider, document, data, counter, **kwargs):
-        """Callable responsible for the table generation."""
-        table = document.add_table(
-            kwargs.get("rows", 3),
-            kwargs.get("cols", 4),
-        )
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_table", {})
-        data["content_modifiers"]["add_table"].setdefault(counter, [])
-
-        for row in table.rows:
-            for cell in row.cells:
-                text = provider.generator.paragraph()
-                cell.text = text
-                # Useful when you want to get the text content of the file.
-                data["content_modifiers"]["add_table"][counter].append(text)
-                data["content"] += ("\r\n" + text)
-
-
-    def docx_add_picture(provider, document, data, counter, **kwargs):
-        """Callable responsible for the picture generation."""
-        jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
-        document.add_picture(BytesIO(jpeg_file))
-
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_picture", {})
-        data["content_modifiers"]["add_picture"].setdefault(counter, [])
-        data["content_modifiers"]["add_picture"][counter].append(
-            jpeg_file.data["content"]
-        )
-        data["content"] += ("\r\n" + jpeg_file.data["content"])
-
-
-    file = DocxFileProvider(Faker()).docx_file(
-        content=DynamicTemplate([(docx_add_table, {}), (docx_add_picture, {})])
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_docx_file_mixed_1.py>`
 
 Create a ODT file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Similarly to previous section, the following example shows how to generate an
 ODT file with table and image.
 
-.. code-block:: python
-    :name: test_create_a_odt_file_with_table_and_image_using_dynamictemplate
+.. literalinclude:: _static/examples/recipes/create_odt_file_mixed_1.py
+    :language: python
+    :lines: 8-
 
-    from faker import Faker
-    from faker_file.providers.odt_file import OdtFileProvider
-    from faker_file.base import DynamicTemplate
-    from faker_file.providers.jpeg_file import JpegFileProvider
-    from odf.draw import Frame, Image
-    from odf.style import (
-        Style, TextProperties,
-        TableColumnProperties,
-        TableRowProperties,
-        TableCellProperties,
-        GraphicProperties,
-    )
-    from odf.table import Table, TableRow, TableCell, TableColumn
-    from odf.text import P
-
-    FAKER = Faker()
-
-
-    def odt_add_table(provider, document, data, counter, **kwargs):
-        """Callable responsible for the table generation."""
-        table = Table()
-        rows = kwargs.get("rows", 3)
-        cols = kwargs.get("cols", 4)
-        table_col_style = Style(name="TableColumn", family="table-column")
-        table_col_style.addElement(
-            TableColumnProperties(columnwidth="2cm")
-        )
-        document.automaticstyles.addElement(table_col_style)
-
-        table_row_style = Style(name="TableRow", family="table-row")
-        table_row_style.addElement(TableRowProperties(rowheight="1cm"))
-        document.automaticstyles.addElement(table_row_style)
-
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_table", {})
-        data["content_modifiers"]["add_table"].setdefault(counter, [])
-
-        table_cell_style = Style(name="TableCell", family="table-cell")
-        table_cell_style.addElement(
-            TableCellProperties(
-                padding="0.1cm", border="0.05cm solid #000000"
-            )
-        )
-        document.automaticstyles.addElement(table_cell_style)
-
-        # Create table
-        table = Table()
-        for i in range(rows):
-            table.addElement(TableColumn(stylename=table_col_style))
-
-        for row in range(cols):
-            tr = TableRow(stylename=table_row_style)
-            table.addElement(tr)
-            for col in range(4):
-                tc = TableCell(stylename=table_cell_style)
-                tr.addElement(tc)
-                text = provider.generator.paragraph()
-                p = P(text=text)
-                tc.addElement(p)
-                # Useful when you want to get the text content of the file.
-                data["content_modifiers"]["add_table"][counter].append(text)
-                data["content"] += "\r\n" + text
-
-        document.text.addElement(table)
-
-
-    def odt_add_picture(provider, document, data, counter, **kwargs):
-        """Callable responsible for the picture generation."""
-        width = kwargs.get("width", "10cm")
-        height = kwargs.get("height", "5cm")
-        paragraph = P()
-        document.text.addElement(paragraph)
-        jpeg_file = JpegFileProvider(provider.generator).jpeg_file()
-        image_data = jpeg_file.data["content"]
-        image_frame = Frame(
-            width=width,
-            height=height,
-            x="56pt",
-            y="56pt",
-            anchortype="paragraph",
-        )
-        href = document.addPicture(jpeg_file.data["filename"])
-        image_frame.addElement(Image(href=href))
-        paragraph.addElement(image_frame)
-
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data["content"] += "\r\n" + jpeg_file.data["content"]
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_picture", {})
-        data["content_modifiers"]["add_picture"].setdefault(counter, [])
-        data["content_modifiers"]["add_picture"][counter].append(
-            jpeg_file.data["content"]
-        )
-
-
-    file = OdtFileProvider(FAKER).odt_file(
-        content=DynamicTemplate([(odt_add_table, {}), (odt_add_picture, {})])
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_odt_file_mixed_1.py>`
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
