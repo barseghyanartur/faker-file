@@ -66,7 +66,7 @@ See the following full functional snippet for generating images using `imgkit`_.
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_images/imgkit_1.py>`.
+:download:`here <_static/examples/creating_images/imgkit_1.py>`
 
 The generated PNG image will have 10,000 characters of text. The generated image
 will be as wide as needed to fit those 10,000 characters, but newlines are
@@ -82,7 +82,7 @@ characters (or any other number that fits your needs). See the example below:
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/imgkit_2.py>`.
+:download:`here <_static/examples/creating_images/imgkit_2.py>`
 
 ----
 
@@ -94,7 +94,7 @@ See the example below:
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/imgkit_3.py>`.
+:download:`here <_static/examples/creating_images/imgkit_3.py>`
 
 ----
 
@@ -110,7 +110,7 @@ examples:
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/imgkit_4.py>`.
+:download:`here <_static/examples/creating_images/imgkit_4.py>`
 
 Building mixed-content images using `WeasyPrint`_
 -------------------------------------------------
@@ -124,7 +124,7 @@ See the following snippet for generating images using `WeasyPrint`_.
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_images/weasyprint_1.py>`.
+:download:`here <_static/examples/creating_images/weasyprint_1.py>`
 
 ----
 
@@ -143,7 +143,7 @@ In order to customise the blocks image file is built from, the
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/weasyprint_2.py>`.
+:download:`here <_static/examples/creating_images/weasyprint_2.py>`
 
 Building mixed-content images using `Pillow`_
 ---------------------------------------------
@@ -153,7 +153,7 @@ Usage example:
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_images/pillow_1.py>`.
+:download:`here <_static/examples/creating_images/pillow_1.py>`
 
 ----
 
@@ -164,7 +164,7 @@ With options:
     :lines: 8-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/pillow_2.py>`.
+:download:`here <_static/examples/creating_images/pillow_2.py>`
 
 ----
 
@@ -177,7 +177,7 @@ the imports shall be adjusted. See the example below:
     :lines: 8-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/pillow_3.py>`.
+:download:`here <_static/examples/creating_images/pillow_3.py>`
 
 Creating graphics-only images using `Pillow`_
 ---------------------------------------------
@@ -190,7 +190,7 @@ the content. That's where graphic image providers comes to rescue:
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_images/pillow_4.py>`.
+:download:`here <_static/examples/creating_images/pillow_4.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours).
@@ -204,7 +204,7 @@ One of the most useful arguments supported is ``size``.
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/pillow_5.py>`.
+:download:`here <_static/examples/creating_images/pillow_5.py>`
 
 Augment existing images
 -----------------------
@@ -215,4 +215,4 @@ Augment the input image with a series of random augmentation methods.
     :lines: 1-20, 30-
 
 *See the full example*
-:download:`here <_static/examples/creating_images/augment_1.py>`.
+:download:`here <_static/examples/creating_images/augment_1.py>`

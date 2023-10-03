@@ -178,7 +178,7 @@ for observability).
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/methodology/create_docx_file_1.py>`.
+:download:`here <_static/examples/methodology/create_docx_file_1.py>`
 
 Create a more structured DOCX file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -189,7 +189,7 @@ Imagine, you need a letter sample. It contains
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/methodology/create_docx_file_2.py>`.
+:download:`here <_static/examples/methodology/create_docx_file_2.py>`
 
 Create even more structured DOCX file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -201,7 +201,7 @@ such as images, tables, manual page breaks, paragraphs, etc.
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/methodology/create_docx_file_3.py>`.
+:download:`here <_static/examples/methodology/create_docx_file_3.py>`
 
 .. note::
 
@@ -234,7 +234,7 @@ Create a file by copying it from the given path.
     :lines: 1-5, 11-
 
 *See the full example*
-:download:`here <_static/examples/methodology/file_from_path_provider.py>`.
+:download:`here <_static/examples/methodology/file_from_path_provider.py>`
 
 Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
@@ -252,7 +252,7 @@ Create a file by copying it randomly from the given directory.
     :lines: 1-7, 14-
 
 *See the full example*
-:download:`here <_static/examples/methodology/rand_file_from_dir_provider.py>`.
+:download:`here <_static/examples/methodology/rand_file_from_dir_provider.py>`
 
 Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
@@ -270,7 +270,7 @@ class instance, as shown below:
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/methodology/clean_up_files_1.py>`.
+:download:`here <_static/examples/methodology/clean_up_files_1.py>`
 
 Typically you would call the ``clean_up`` method in the ``tearDown``.
 
@@ -283,7 +283,7 @@ To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
     :lines: 1-2, 10-
 
 *See the full example*
-:download:`here <_static/examples/methodology/clean_up_files_2.py>`.
+:download:`here <_static/examples/methodology/clean_up_files_2.py>`
 
 ----
 
@@ -295,4 +295,4 @@ for its' correspondent ``StringValue`` instance first using ``search`` method.
     :lines: 1-2, 10-
 
 *See the full example*
-:download:`here <_static/examples/methodology/clean_up_files_3.py>`.
+:download:`here <_static/examples/methodology/clean_up_files_3.py>`

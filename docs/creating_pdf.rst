@@ -38,7 +38,7 @@ See the following full functional snippet for generating PDF using `pdfkit`_.
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_1.py>`.
+:download:`here <_static/examples/creating_pdf/pdfkit_1.py>`
 
 The generated PDF will have 10,000 characters of text, which is about 2 pages.
 
@@ -57,7 +57,7 @@ See the example below for ``max_nb_chars`` tweak:
     :lines: 11-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_2.py>`.
+:download:`here <_static/examples/creating_pdf/pdfkit_2.py>`
 
 ----
 
@@ -68,7 +68,7 @@ See the example below for ``wrap_chars_after`` tweak:
     :lines: 11-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_3.py>`.
+:download:`here <_static/examples/creating_pdf/pdfkit_3.py>`
 
 ----
 
@@ -84,7 +84,7 @@ class is used. See the example below for usage examples:
     :lines: 11-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_4.py>`.
+:download:`here <_static/examples/creating_pdf/pdfkit_4.py>`
 
 Building PDFs with text using `reportlab`_
 ------------------------------------------
@@ -98,7 +98,7 @@ See the following full functional snippet for generating PDF using `reportlab`_.
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/reportlab_1.py>`.
+:download:`here <_static/examples/creating_pdf/reportlab_1.py>`
 
 ----
 
@@ -118,7 +118,7 @@ See the example below for usage examples:
     :lines: 11-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/reportlab_2.py>`.
+:download:`here <_static/examples/creating_pdf/reportlab_2.py>`
 
 Building PDFs with text using `Pillow`_
 ---------------------------------------
@@ -128,7 +128,7 @@ Usage example:
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_1.py>`.
+:download:`here <_static/examples/creating_pdf/pillow_1.py>`
 
 ----
 
@@ -139,7 +139,7 @@ With options:
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_2.py>`.
+:download:`here <_static/examples/creating_pdf/pillow_2.py>`
 
 ----
 
@@ -159,7 +159,7 @@ See the example below for usage examples:
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_3.py>`.
+:download:`here <_static/examples/creating_pdf/pillow_3.py>`
 
 Creating PDFs with graphics using `Pillow`_
 -------------------------------------------
@@ -173,7 +173,7 @@ rescue:
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_4.py>`.
+:download:`here <_static/examples/creating_pdf/pillow_4.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours).
@@ -187,4 +187,4 @@ One of the most useful arguments supported is ``size``.
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_5.py>`.
+:download:`here <_static/examples/creating_pdf/pillow_5.py>`

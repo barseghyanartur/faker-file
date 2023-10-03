@@ -7,7 +7,7 @@ See the following full functional snippet for generating ODT.
     :language: python
 
 *See the full example*
-:download:`here <_static/examples/creating_odt/odt_1.py>`.
+:download:`here <_static/examples/creating_odt/odt_1.py>`
 
 The generated ODT will have 10,000 characters of text, which is about 5 pages.
 
@@ -26,7 +26,7 @@ See the example below for ``max_nb_chars`` tweak:
     :lines: 8-
 
 *See the full example*
-:download:`here <_static/examples/creating_odt/odt_2.py>`.
+:download:`here <_static/examples/creating_odt/odt_2.py>`
 
 ----
 
@@ -37,7 +37,7 @@ See the example below for ``wrap_chars_after`` tweak:
     :lines: 8-
 
 *See the full example*
-:download:`here <_static/examples/creating_odt/odt_3.py>`.
+:download:`here <_static/examples/creating_odt/odt_3.py>`
 
 ----
 
@@ -53,4 +53,4 @@ class is used. See the example below for usage examples:
     :lines: 8-
 
 *See the full example*
-:download:`here <_static/examples/creating_odt/odt_4.py>`.
+:download:`here <_static/examples/creating_odt/odt_4.py>`
