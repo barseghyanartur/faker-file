@@ -5,7 +5,7 @@ from faker_file.registry import FILE_REGISTRY
 
 # Walk through the directory and all subdirectories for .py files
 example_dir = Path("docs/_static/examples")  # Replace with your actual directory path
-py_files = [str(p) for p in example_dir.rglob("*.py")]
+py_files = sorted([str(p) for p in example_dir.rglob("*.py")])
 
 
 # Dynamic test function

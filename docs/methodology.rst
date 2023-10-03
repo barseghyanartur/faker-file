@@ -290,8 +290,9 @@ To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
 If you only have a string representation of the ``StringValue``, try to search
 for its' correspondent ``StringValue`` instance first using ``search`` method.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/clean_up_files_3.py
+    :language: python
+    :lines: 1-2, 10-
 
-    file = FILE_REGISTRY.search(filename)
-    if file:
-        FILE_REGISTRY.remove(file)
+*See the full example*
+:download:`here <_static/examples/methodology/clean_up_files_3.py>`.
