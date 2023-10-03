@@ -280,7 +280,7 @@ To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
 
 .. literalinclude:: _static/examples/methodology/clean_up_files_2.py
     :language: python
-    :lines: 1-2, 10-
+    :lines: 11-
 
 *See the full example*
 :download:`here <_static/examples/methodology/clean_up_files_2.py>`
@@ -292,7 +292,7 @@ for its' correspondent ``StringValue`` instance first using ``search`` method.
 
 .. literalinclude:: _static/examples/methodology/clean_up_files_3.py
     :language: python
-    :lines: 1-2, 10-
+    :lines: 11-
 
 *See the full example*
 :download:`here <_static/examples/methodology/clean_up_files_3.py>`
