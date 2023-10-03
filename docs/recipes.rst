@@ -116,9 +116,12 @@ Create a ZIP file with variety of different file types within
 - Prefix the filename of the archive itself with ``zzz_archive_``.
 - Inside the ZIP, put all files in directory ``zzz``.
 
-.. code-block:: python
-    :name: test_create_a_zip_file_with_different_variety_of_file_types_within
+.. literalinclude:: _static/examples/recipes/create_zip_file_5.py
+    :language: python
+    :lines: 6-
 
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_5.py>`
 
 Another way to create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,35 +130,12 @@ Another way to create a ZIP file with variety of different file types within
 - Filename of the archive itself is ``alice-looking-through-the-glass.zip``.
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
-.. code-block:: python
-    :name: test_create_a_zip_file_with_different_variety_of_file_types_within_2
+.. literalinclude:: _static/examples/recipes/create_zip_file_6.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_xml_file,
-        list_create_inner_file,
-    )
-    from faker_file.providers.zip_file import ZipFileProvider
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    kwargs = {"storage": STORAGE, "generator": FAKER}
-    file = ZipFileProvider(FAKER).zip_file(
-        basename="alice-looking-through-the-glass",
-        options={
-            "create_inner_file_func": list_create_inner_file,
-            "create_inner_file_args": {
-                "func_list": [
-                    (create_inner_docx_file, {"basename": "doc"}),
-                    (create_inner_xml_file, {"basename": "doc_metadata"}),
-                    (create_inner_xml_file, {"basename": "doc_isbn"}),
-                ],
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_6.py>`
 
 Note, that ``count`` argument (not shown in the example, but commonly
 accepted by inner functions) will be simply ignored here.
@@ -165,17 +145,12 @@ Create an EML file consisting of TXT files with static content
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. code-block:: python
-    :name: test_create_an_eml_file_consisting_of_txt_files_with_static_content
+.. literalinclude:: _static/examples/recipes/create_eml_file_1.py
+    :language: python
+    :lines: 4-
 
-    from faker import Faker
-    from faker_file.providers.eml_file import EmlFileProvider
-
-    FAKER = Faker()
-
-    file = EmlFileProvider(FAKER).eml_file(
-        options={"create_inner_file_args": {"content": "Lorem ipsum"}}
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_1.py>`
 
 Create a EML file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -185,26 +160,12 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filenames in email with ``xxx_``.
 - Prefix the filename of the email itself with ``zzz``.
 
-.. code-block:: python
-    :name: test_create_an_eml_file_consisting_of_txt_files_with_dynamic_content
+.. literalinclude:: _static/examples/recipes/create_eml_file_2.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-
-    FAKER = Faker()
-
-    file = EmlFileProvider(FAKER).eml_file(
-        prefix="zzz",
-        options={
-            "count": 3,
-            "create_inner_file_func": create_inner_docx_file,
-            "create_inner_file_args": {
-                "prefix": "xxx_",
-                "max_nb_chars": 1_024,
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_2.py>`
 
 Create a nested EML file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -219,36 +180,12 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. code-block:: python
-    :name: test_create_a_nested_eml_file
+.. literalinclude:: _static/examples/recipes/create_eml_file_3.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_eml_file,
-    )
-
-    FAKER = Faker()
-
-    file = EmlFileProvider(FAKER).eml_file(
-        prefix="nested_level_0_",
-        options={
-            "create_inner_file_func": create_inner_eml_file,
-            "create_inner_file_args": {
-                "prefix": "nested_level_1_",
-                "options": {
-                    "create_inner_file_func": create_inner_eml_file,
-                    "create_inner_file_args": {
-                        "prefix": "nested_level_2_",
-                        "options": {
-                            "create_inner_file_func": create_inner_docx_file,
-                        }
-                    },
-                }
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_3.py>`
 
 Create an EML file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -256,89 +193,24 @@ Create an EML file with variety of different file types within
 - Content is generated dynamically.
 - Prefix the filename of the EML itself with ``zzz``.
 
-.. code-block:: python
-    :name: test_create_an_eml_file_with_different_variety_of_file_types_within
+.. literalinclude:: _static/examples/recipes/create_eml_file_4.py
+    :language: python
+    :lines: 9-
 
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_epub_file,
-        create_inner_txt_file,
-        fuzzy_choice_create_inner_file,
-    )
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    kwargs = {"storage": STORAGE, "generator": FAKER}
-
-    file = EmlFileProvider(FAKER).eml_file(
-        prefix="zzz",
-        options={
-            "count": 10,
-            "create_inner_file_func": fuzzy_choice_create_inner_file,
-            "create_inner_file_args": {
-                "func_choices": [
-                    (create_inner_docx_file, kwargs),
-                    (create_inner_epub_file, kwargs),
-                    (create_inner_txt_file, kwargs),
-                ],
-            },
-        }
-    )
-
-Create a TXT file with static content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-    file = FAKER.txt_file(content="Lorem ipsum dolor sit amet")
-
-Create a DOCX file with dynamically generated content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Content is generated dynamically.
-- Content is limited to 1024 chars.
-- Wrap lines after 80 chars.
-- Prefix the filename with ``zzz``.
-
-.. code-block:: python
-
-    file = FAKER.docx_file(
-        prefix="zzz",
-        max_nb_chars=1_024,
-        wrap_chars_after=80,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_4.py>`
 
 Create a PDF file with predefined template containing dynamic fixtures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_1.py
+    :language: python
+    :lines: 7-
 
-    TEMPLATE = """
-    {{date}} {{city}}, {{country}}
-
-    Hello {{name}},
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    Address: {{address}}
-
-    Best regards,
-
-    {{name}}
-    {{address}}
-    {{phone_number}}
-    """
-
-    file = FAKER.pdf_file(content=TEMPLATE, wrap_chars_after=80)
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_1.py>`
 
 Create a DOCX file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
