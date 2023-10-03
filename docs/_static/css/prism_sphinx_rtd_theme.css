@@ -112,7 +112,10 @@ pre[class*="language-"] {
 	color: #9d0006; /* red2 */
 }
 
-.token.string,
+.token.string {
+	color: #4070a0; /* green2 */
+}
+
 .token.char {
 	color: #797403; /* green2 */
 }

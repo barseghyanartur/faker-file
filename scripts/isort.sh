@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-isort . --overwrite-in-place
+isort conftest.py --overwrite-in-place
+isort setup.py --overwrite-in-place
+isort examples/ --overwrite-in-place
+isort src/ --overwrite-in-place

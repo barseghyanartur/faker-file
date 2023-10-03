@@ -8,43 +8,19 @@ Imports and initializations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Recommended way**
 
-.. code-block:: python
-    :name: test_when_using_with_faker_imports_and_init_recommended_way
+.. literalinclude:: _static/examples/recipes/imports_and_init_1.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(DocxFileProvider)
-    FAKER.add_provider(PdfFileProvider)
-    FAKER.add_provider(PptxFileProvider)
-    FAKER.add_provider(TxtFileProvider)
-    FAKER.add_provider(ZipFileProvider)
-
-    # Usage example
-    file = FAKER.txt_file(content="Lorem ipsum")
+*See the full example*
+:download:`here <_static/examples/recipes/imports_and_init_1.py>`
 
 **But this works too**
 
-.. code-block:: python
-    :name: test_when_using_with_faker_imports_and_init_but_this_works_too
+.. literalinclude:: _static/examples/recipes/imports_and_init_2.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.bin_file import BinFileProvider
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    FAKER = Faker()
-
-    # Usage example
-    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
+*See the full example*
+:download:`here <_static/examples/recipes/imports_and_init_2.py>`
 
 Throughout documentation we will be mixing these approaches.
 
@@ -52,9 +28,12 @@ Create a TXT file with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content of the file is ``Lorem ipsum``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_txt_file_1.py
+    :language: python
+    :lines: 7-
 
-    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
+*See the full example*
+:download:`here <_static/examples/recipes/create_txt_file_1.py>`
 
 Create a DOCX file with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,24 +42,24 @@ Create a DOCX file with dynamically generated content
 - Wrap lines after 80 chars.
 - Prefix the filename with ``zzz``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_docx_file_1.py
+    :language: python
+    :lines: 7-
 
-    file = DocxFileProvider(FAKER).docx_file(
-        prefix="zzz",
-        max_nb_chars=1_024,
-        wrap_chars_after=80,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_docx_file_1.py>`
 
 Create a ZIP file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the ZIP archive (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_1.py
+    :language: python
+    :lines: 7-
 
-    file = ZipFileProvider(FAKER).zip_file(
-        options={"create_inner_file_args": {"content": "Lorem ipsum"}}
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_1.py>`
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,42 +70,24 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the archive itself with ``zzz``.
 - Inside the ZIP, put all files in directory ``yyy``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_2.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-    file = ZipFileProvider(FAKER).zip_file(
-        prefix="zzz",
-        options={
-            "count": 3,
-            "create_inner_file_func": create_inner_docx_file,
-            "create_inner_file_args": {
-                "prefix": "xxx_",
-                "max_nb_chars": 1_024,
-            },
-            "directory": "yyy",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_2.py>`
 
 Create a ZIP file of 9 DOCX files with content generated from template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 9 DOCX files in the ZIP archive.
 - Content is generated dynamically from given template.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_3.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-
-    TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
-
-    file = ZipFileProvider(FAKER).zip_file(
-        options={
-            "count": 9,
-            "create_inner_file_func": create_inner_docx_file,
-            "create_inner_file_args": {
-                "content": TEMPLATE,
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_3.py>`
 
 Create a nested ZIP file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,31 +102,12 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_4.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_zip_file,
-    )
-
-    file = ZipFileProvider(FAKER).zip_file(
-        prefix="nested_level_0_",
-        options={
-            "create_inner_file_func": create_inner_zip_file,
-            "create_inner_file_args": {
-                "prefix": "nested_level_1_",
-                "options": {
-                    "create_inner_file_func": create_inner_zip_file,
-                    "create_inner_file_args": {
-                        "prefix": "nested_level_2_",
-                        "options": {
-                            "create_inner_file_func": create_inner_docx_file,
-                        }
-                    },
-                }
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_4.py>`
 
 Create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -177,35 +119,6 @@ Create a ZIP file with variety of different file types within
 .. code-block:: python
     :name: test_create_a_zip_file_with_different_variety_of_file_types_within
 
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_epub_file,
-        create_inner_txt_file,
-        fuzzy_choice_create_inner_file,
-    )
-    from faker_file.providers.zip_file import ZipFileProvider
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    kwargs = {"storage": STORAGE, "generator": FAKER}
-    file = ZipFileProvider(FAKER).zip_file(
-        prefix="zzz_archive_",
-        options={
-            "count": 50,
-            "create_inner_file_func": fuzzy_choice_create_inner_file,
-            "create_inner_file_args": {
-                "func_choices": [
-                    (create_inner_docx_file, kwargs),
-                    (create_inner_epub_file, kwargs),
-                    (create_inner_txt_file, kwargs),
-                ],
-            },
-            "directory": "zzz",
-        }
-    )
 
 Another way to create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
