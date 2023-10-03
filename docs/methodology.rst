@@ -257,8 +257,8 @@ Create a file by copying it randomly from the given directory.
 Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
 
-Cleaning up files
-~~~~~~~~~~~~~~~~~
+Clean up files
+~~~~~~~~~~~~~~
 ``FileSystemStorage`` is the default storage and by default files are stored
 inside a ``tmp`` directory within the system's temporary directory, which is
 commonly cleaned up after system restart. However, there's a mechanism of
@@ -266,19 +266,26 @@ cleaning up files after the tests run. At any time, to clean up all files
 created by that moment, call ``clean_up`` method of the ``FileRegistry``
 class instance, as shown below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/clean_up_files_1.py
+    :language: python
 
-    from faker_file.registry import FILE_REGISTRY  # Import instance at once
-    FILE_REGISTRY.clean_up()
+*See the full example*
+:download:`here <_static/examples/methodology/clean_up_files_1.py>`.
 
 Typically you would call the ``clean_up`` method in the ``tearDown``.
 
+----
+
 To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/clean_up_files_2.py
+    :language: python
+    :lines: 1-2, 10-
 
-    from faker_file.registry import FILE_REGISTRY  # Import instance at once
-    FILE_REGISTRY.remove(file)  # Where file is an instance of ``StringValue``
+*See the full example*
+:download:`here <_static/examples/methodology/clean_up_files_2.py>`.
+
+----
 
 If you only have a string representation of the ``StringValue``, try to search
 for its' correspondent ``StringValue`` instance first using ``search`` method.
