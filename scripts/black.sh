@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-black .
+black conftest.py
+black setup.py
+black examples/
+black src/

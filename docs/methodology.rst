@@ -174,97 +174,34 @@ Create a simple DOCX file
 Let's imagine we need to generate a DOCX file with text 50 chars long (just
 for observability).
 
-.. code-block:: python
-    :name: test_crate_a_simple_docx_file
+.. literalinclude:: _static/examples/methodology/create_docx_file_1.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.docx_file import DocxFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(DocxFileProvider)
-
-    file = FAKER.docx_file(max_nb_chars=50)
-    print(file)  # Sample value: 'tmp/tmpgdctmfbp.docx'
-    print(file.data["content"])  # Sample value: 'Learn where receive social.'
-    print(file.data["filename"])  # Sample value: '/tmp/tmp/tmpgdctmfbp.docx'
+*See the full example*
+:download:`here <_static/examples/methodology/create_docx_file_1.py>`
 
 Create a more structured DOCX file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Imagine, you need a letter sample. It contains
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/create_docx_file_2.py
+    :language: python
+    :lines: 7-
 
-    TEMPLATE = """
-    {{date}} {{city}}, {{country}}
-
-    Hello {{name}},
-
-    {{text}}
-
-    Address: {{address}}
-
-    Best regards,
-
-    {{name}}
-    {{address}}
-    {{phone_number}}
-    """
-
-    file = FAKER.docx_file(content=TEMPLATE)
-
-    print(file)  # Sample value: 'tmp/tmpgdctmfbp.docx'
-    print(file.data["content"])
-    # Sample value below:
-    #  2009-05-14 Pettyberg, Puerto Rico
-    #  Hello Lauren Williams,
-    #
-    #  Everyone bill I information. Put particularly note language support
-    #  green. Game free family probably case day vote.
-    #  Commercial especially game heart.
-    #
-    #  Address: 19017 Jennifer Drives
-    #  Jamesbury, MI 39121
-    #
-    #  Best regards,
-    #
-    #  Robin Jones
-    #  4650 Paul Extensions
-    #  Port Johnside, VI 78151
-    #  001-704-255-3093
+*See the full example*
+:download:`here <_static/examples/methodology/create_docx_file_2.py>`
 
 Create even more structured DOCX file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Imagine, you need to generate a highly custom document with types of data,
 such as images, tables, manual page breaks, paragraphs, etc.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/create_docx_file_3.py
+    :language: python
+    :lines: 7-
 
-    # Additional imports
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.docx_file import (
-        add_page_break,
-        add_paragraph,
-        add_picture,
-        add_table,
-    )
-
-    # Create a DOCX file with paragraph, picture, table and manual page breaks
-    # in between the mentioned elements. The ``DynamicTemplate`` simply
-    # accepts a list of callables (such as ``add_paragraph``,
-    # ``add_page_break``) and dictionary to be later on fed to the callables
-    # as keyword arguments for customising the default values.
-    file = FAKER.docx_file(
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_page_break, {}),  # Add page break
-                (add_picture, {}),  # Add picture
-                (add_page_break, {}),  # Add page break
-                (add_table, {}),  # Add table
-                (add_page_break, {}),  # Add page break
-            ]
-        )
-    )
+*See the full example*
+:download:`here <_static/examples/methodology/create_docx_file_3.py>`
 
 .. note::
 
@@ -292,18 +229,12 @@ Create a file by copying it from the given path.
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/file_from_path_provider.py
+    :language: python
+    :lines: 1-5, 11-
 
-    from faker import Faker
-    from faker_file.providers.file_from_path import FileFromPathProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(FileFromPathProvider)
-
-    file = FAKER.file_from_path(
-        path="/path/to/file.docx",
-        prefix="zzz",
-    )
+*See the full example*
+:download:`here <_static/examples/methodology/file_from_path_provider.py>`
 
 Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
@@ -316,27 +247,18 @@ Create a file by copying it randomly from the given directory.
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. code-block:: python
-    :name: __test_random_file_from_dir_provider
+.. literalinclude:: _static/examples/methodology/rand_file_from_dir_provider.py
+    :language: python
+    :lines: 1-7, 14-
 
-    from faker import Faker
-    from faker_file.providers.random_file_from_dir import (
-        RandomFileFromDirProvider,
-    )
-
-    FAKER = Faker()
-    FAKER.add_provider(RandomFileFromDirProvider)
-
-    file = FAKER.random_file_from_dir(
-        source_dir_path="/tmp/tmp/",
-        prefix="zzz",
-    )
+*See the full example*
+:download:`here <_static/examples/methodology/rand_file_from_dir_provider.py>`
 
 Now you don't have to copy-paste your file from one place to another.
 It will be done for you in a convenient way.
 
-Cleaning up files
-~~~~~~~~~~~~~~~~~
+Clean up files
+~~~~~~~~~~~~~~
 ``FileSystemStorage`` is the default storage and by default files are stored
 inside a ``tmp`` directory within the system's temporary directory, which is
 commonly cleaned up after system restart. However, there's a mechanism of
@@ -344,25 +266,33 @@ cleaning up files after the tests run. At any time, to clean up all files
 created by that moment, call ``clean_up`` method of the ``FileRegistry``
 class instance, as shown below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/clean_up_files_1.py
+    :language: python
 
-    from faker_file.registry import FILE_REGISTRY  # Import instance at once
-    FILE_REGISTRY.clean_up()
+*See the full example*
+:download:`here <_static/examples/methodology/clean_up_files_1.py>`
 
 Typically you would call the ``clean_up`` method in the ``tearDown``.
 
+----
+
 To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/clean_up_files_2.py
+    :language: python
+    :lines: 11-
 
-    from faker_file.registry import FILE_REGISTRY  # Import instance at once
-    FILE_REGISTRY.remove(file)  # Where file is an instance of ``StringValue``
+*See the full example*
+:download:`here <_static/examples/methodology/clean_up_files_2.py>`
+
+----
 
 If you only have a string representation of the ``StringValue``, try to search
 for its' correspondent ``StringValue`` instance first using ``search`` method.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/methodology/clean_up_files_3.py
+    :language: python
+    :lines: 11-
 
-    file = FILE_REGISTRY.search(filename)
-    if file:
-        FILE_REGISTRY.remove(file)
+*See the full example*
+:download:`here <_static/examples/methodology/clean_up_files_3.py>`

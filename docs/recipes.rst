@@ -8,43 +8,19 @@ Imports and initializations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Recommended way**
 
-.. code-block:: python
-    :name: test_when_using_with_faker_imports_and_init_recommended_way
+.. literalinclude:: _static/examples/recipes/imports_and_init_1.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(DocxFileProvider)
-    FAKER.add_provider(PdfFileProvider)
-    FAKER.add_provider(PptxFileProvider)
-    FAKER.add_provider(TxtFileProvider)
-    FAKER.add_provider(ZipFileProvider)
-
-    # Usage example
-    file = FAKER.txt_file(content="Lorem ipsum")
+*See the full example*
+:download:`here <_static/examples/recipes/imports_and_init_1.py>`
 
 **But this works too**
 
-.. code-block:: python
-    :name: test_when_using_with_faker_imports_and_init_but_this_works_too
+.. literalinclude:: _static/examples/recipes/imports_and_init_2.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.bin_file import BinFileProvider
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    FAKER = Faker()
-
-    # Usage example
-    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
+*See the full example*
+:download:`here <_static/examples/recipes/imports_and_init_2.py>`
 
 Throughout documentation we will be mixing these approaches.
 
@@ -52,9 +28,12 @@ Create a TXT file with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content of the file is ``Lorem ipsum``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_txt_file_1.py
+    :language: python
+    :lines: 7-
 
-    file = TxtFileProvider(FAKER).txt_file(content="Lorem ipsum")
+*See the full example*
+:download:`here <_static/examples/recipes/create_txt_file_1.py>`
 
 Create a DOCX file with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,24 +42,24 @@ Create a DOCX file with dynamically generated content
 - Wrap lines after 80 chars.
 - Prefix the filename with ``zzz``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_docx_file_1.py
+    :language: python
+    :lines: 7-
 
-    file = DocxFileProvider(FAKER).docx_file(
-        prefix="zzz",
-        max_nb_chars=1_024,
-        wrap_chars_after=80,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_docx_file_1.py>`
 
 Create a ZIP file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the ZIP archive (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_1.py
+    :language: python
+    :lines: 7-
 
-    file = ZipFileProvider(FAKER).zip_file(
-        options={"create_inner_file_args": {"content": "Lorem ipsum"}}
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_1.py>`
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -91,42 +70,24 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the archive itself with ``zzz``.
 - Inside the ZIP, put all files in directory ``yyy``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_2.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-    file = ZipFileProvider(FAKER).zip_file(
-        prefix="zzz",
-        options={
-            "count": 3,
-            "create_inner_file_func": create_inner_docx_file,
-            "create_inner_file_args": {
-                "prefix": "xxx_",
-                "max_nb_chars": 1_024,
-            },
-            "directory": "yyy",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_2.py>`
 
 Create a ZIP file of 9 DOCX files with content generated from template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 9 DOCX files in the ZIP archive.
 - Content is generated dynamically from given template.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_3.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-
-    TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
-
-    file = ZipFileProvider(FAKER).zip_file(
-        options={
-            "count": 9,
-            "create_inner_file_func": create_inner_docx_file,
-            "create_inner_file_args": {
-                "content": TEMPLATE,
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_3.py>`
 
 Create a nested ZIP file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,31 +102,12 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_zip_file_4.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_zip_file,
-    )
-
-    file = ZipFileProvider(FAKER).zip_file(
-        prefix="nested_level_0_",
-        options={
-            "create_inner_file_func": create_inner_zip_file,
-            "create_inner_file_args": {
-                "prefix": "nested_level_1_",
-                "options": {
-                    "create_inner_file_func": create_inner_zip_file,
-                    "create_inner_file_args": {
-                        "prefix": "nested_level_2_",
-                        "options": {
-                            "create_inner_file_func": create_inner_docx_file,
-                        }
-                    },
-                }
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_4.py>`
 
 Create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -174,38 +116,12 @@ Create a ZIP file with variety of different file types within
 - Prefix the filename of the archive itself with ``zzz_archive_``.
 - Inside the ZIP, put all files in directory ``zzz``.
 
-.. code-block:: python
-    :name: test_create_a_zip_file_with_different_variety_of_file_types_within
+.. literalinclude:: _static/examples/recipes/create_zip_file_5.py
+    :language: python
+    :lines: 6-
 
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_epub_file,
-        create_inner_txt_file,
-        fuzzy_choice_create_inner_file,
-    )
-    from faker_file.providers.zip_file import ZipFileProvider
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    kwargs = {"storage": STORAGE, "generator": FAKER}
-    file = ZipFileProvider(FAKER).zip_file(
-        prefix="zzz_archive_",
-        options={
-            "count": 50,
-            "create_inner_file_func": fuzzy_choice_create_inner_file,
-            "create_inner_file_args": {
-                "func_choices": [
-                    (create_inner_docx_file, kwargs),
-                    (create_inner_epub_file, kwargs),
-                    (create_inner_txt_file, kwargs),
-                ],
-            },
-            "directory": "zzz",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_5.py>`
 
 Another way to create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -214,35 +130,12 @@ Another way to create a ZIP file with variety of different file types within
 - Filename of the archive itself is ``alice-looking-through-the-glass.zip``.
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
-.. code-block:: python
-    :name: test_create_a_zip_file_with_different_variety_of_file_types_within_2
+.. literalinclude:: _static/examples/recipes/create_zip_file_6.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_xml_file,
-        list_create_inner_file,
-    )
-    from faker_file.providers.zip_file import ZipFileProvider
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    kwargs = {"storage": STORAGE, "generator": FAKER}
-    file = ZipFileProvider(FAKER).zip_file(
-        basename="alice-looking-through-the-glass",
-        options={
-            "create_inner_file_func": list_create_inner_file,
-            "create_inner_file_args": {
-                "func_list": [
-                    (create_inner_docx_file, {"basename": "doc"}),
-                    (create_inner_xml_file, {"basename": "doc_metadata"}),
-                    (create_inner_xml_file, {"basename": "doc_isbn"}),
-                ],
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_zip_file_6.py>`
 
 Note, that ``count`` argument (not shown in the example, but commonly
 accepted by inner functions) will be simply ignored here.
@@ -252,17 +145,12 @@ Create an EML file consisting of TXT files with static content
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. code-block:: python
-    :name: test_create_an_eml_file_consisting_of_txt_files_with_static_content
+.. literalinclude:: _static/examples/recipes/create_eml_file_1.py
+    :language: python
+    :lines: 4-
 
-    from faker import Faker
-    from faker_file.providers.eml_file import EmlFileProvider
-
-    FAKER = Faker()
-
-    file = EmlFileProvider(FAKER).eml_file(
-        options={"create_inner_file_args": {"content": "Lorem ipsum"}}
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_1.py>`
 
 Create a EML file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -272,26 +160,12 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filenames in email with ``xxx_``.
 - Prefix the filename of the email itself with ``zzz``.
 
-.. code-block:: python
-    :name: test_create_an_eml_file_consisting_of_txt_files_with_dynamic_content
+.. literalinclude:: _static/examples/recipes/create_eml_file_2.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-
-    FAKER = Faker()
-
-    file = EmlFileProvider(FAKER).eml_file(
-        prefix="zzz",
-        options={
-            "count": 3,
-            "create_inner_file_func": create_inner_docx_file,
-            "create_inner_file_args": {
-                "prefix": "xxx_",
-                "max_nb_chars": 1_024,
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_2.py>`
 
 Create a nested EML file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -306,36 +180,12 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. code-block:: python
-    :name: test_create_a_nested_eml_file
+.. literalinclude:: _static/examples/recipes/create_eml_file_3.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_eml_file,
-    )
-
-    FAKER = Faker()
-
-    file = EmlFileProvider(FAKER).eml_file(
-        prefix="nested_level_0_",
-        options={
-            "create_inner_file_func": create_inner_eml_file,
-            "create_inner_file_args": {
-                "prefix": "nested_level_1_",
-                "options": {
-                    "create_inner_file_func": create_inner_eml_file,
-                    "create_inner_file_args": {
-                        "prefix": "nested_level_2_",
-                        "options": {
-                            "create_inner_file_func": create_inner_docx_file,
-                        }
-                    },
-                }
-            },
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_3.py>`
 
 Create an EML file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -343,89 +193,24 @@ Create an EML file with variety of different file types within
 - Content is generated dynamically.
 - Prefix the filename of the EML itself with ``zzz``.
 
-.. code-block:: python
-    :name: test_create_an_eml_file_with_different_variety_of_file_types_within
+.. literalinclude:: _static/examples/recipes/create_eml_file_4.py
+    :language: python
+    :lines: 9-
 
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_epub_file,
-        create_inner_txt_file,
-        fuzzy_choice_create_inner_file,
-    )
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    kwargs = {"storage": STORAGE, "generator": FAKER}
-
-    file = EmlFileProvider(FAKER).eml_file(
-        prefix="zzz",
-        options={
-            "count": 10,
-            "create_inner_file_func": fuzzy_choice_create_inner_file,
-            "create_inner_file_args": {
-                "func_choices": [
-                    (create_inner_docx_file, kwargs),
-                    (create_inner_epub_file, kwargs),
-                    (create_inner_txt_file, kwargs),
-                ],
-            },
-        }
-    )
-
-Create a TXT file with static content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-    file = FAKER.txt_file(content="Lorem ipsum dolor sit amet")
-
-Create a DOCX file with dynamically generated content
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Content is generated dynamically.
-- Content is limited to 1024 chars.
-- Wrap lines after 80 chars.
-- Prefix the filename with ``zzz``.
-
-.. code-block:: python
-
-    file = FAKER.docx_file(
-        prefix="zzz",
-        max_nb_chars=1_024,
-        wrap_chars_after=80,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_eml_file_4.py>`
 
 Create a PDF file with predefined template containing dynamic fixtures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_1.py
+    :language: python
+    :lines: 7-
 
-    TEMPLATE = """
-    {{date}} {{city}}, {{country}}
-
-    Hello {{name}},
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    Address: {{address}}
-
-    Best regards,
-
-    {{name}}
-    {{address}}
-    {{phone_number}}
-    """
-
-    file = FAKER.pdf_file(content=TEMPLATE, wrap_chars_after=80)
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_1.py>`
 
 Create a DOCX file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -441,172 +226,27 @@ the following arguments:
 - counter: Integer. Index number of the content modifier.
 - **kwargs: Dictionary. Useful to pass implementation-specific arguments.
 
-The following example shows how to generate a DOCX file with table and image.
+The following example shows how to generate a DOCX file with paragraph, table
+and image.
 
-.. code-block:: python
-    :name: test_create_a_docx_file_with_table_and_image_using_dynamictemplate
+.. literalinclude:: _static/examples/recipes/create_docx_file_mixed_1.py
+    :language: python
+    :lines: 7-
 
-    from io import BytesIO
-
-    from faker import Faker
-    from faker_file.base import DynamicTemplate
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.jpeg_file import JpegFileProvider
-
-    def docx_add_table(provider, document, data, counter, **kwargs):
-        """Callable responsible for the table generation."""
-        table = document.add_table(
-            kwargs.get("rows", 3),
-            kwargs.get("cols", 4),
-        )
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_table", {})
-        data["content_modifiers"]["add_table"].setdefault(counter, [])
-
-        for row in table.rows:
-            for cell in row.cells:
-                text = provider.generator.paragraph()
-                cell.text = text
-                # Useful when you want to get the text content of the file.
-                data["content_modifiers"]["add_table"][counter].append(text)
-                data["content"] += ("\r\n" + text)
-
-
-    def docx_add_picture(provider, document, data, counter, **kwargs):
-        """Callable responsible for the picture generation."""
-        jpeg_file = JpegFileProvider(provider.generator).jpeg_file(raw=True)
-        document.add_picture(BytesIO(jpeg_file))
-
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_picture", {})
-        data["content_modifiers"]["add_picture"].setdefault(counter, [])
-        data["content_modifiers"]["add_picture"][counter].append(
-            jpeg_file.data["content"]
-        )
-        data["content"] += ("\r\n" + jpeg_file.data["content"])
-
-
-    file = DocxFileProvider(Faker()).docx_file(
-        content=DynamicTemplate([(docx_add_table, {}), (docx_add_picture, {})])
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_docx_file_mixed_1.py>`
 
 Create a ODT file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Similarly to previous section, the following example shows how to generate an
 ODT file with table and image.
 
-.. code-block:: python
-    :name: test_create_a_odt_file_with_table_and_image_using_dynamictemplate
+.. literalinclude:: _static/examples/recipes/create_odt_file_mixed_1.py
+    :language: python
+    :lines: 8-
 
-    from faker import Faker
-    from faker_file.providers.odt_file import OdtFileProvider
-    from faker_file.base import DynamicTemplate
-    from faker_file.providers.jpeg_file import JpegFileProvider
-    from odf.draw import Frame, Image
-    from odf.style import (
-        Style, TextProperties,
-        TableColumnProperties,
-        TableRowProperties,
-        TableCellProperties,
-        GraphicProperties,
-    )
-    from odf.table import Table, TableRow, TableCell, TableColumn
-    from odf.text import P
-
-    FAKER = Faker()
-
-
-    def odt_add_table(provider, document, data, counter, **kwargs):
-        """Callable responsible for the table generation."""
-        table = Table()
-        rows = kwargs.get("rows", 3)
-        cols = kwargs.get("cols", 4)
-        table_col_style = Style(name="TableColumn", family="table-column")
-        table_col_style.addElement(
-            TableColumnProperties(columnwidth="2cm")
-        )
-        document.automaticstyles.addElement(table_col_style)
-
-        table_row_style = Style(name="TableRow", family="table-row")
-        table_row_style.addElement(TableRowProperties(rowheight="1cm"))
-        document.automaticstyles.addElement(table_row_style)
-
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_table", {})
-        data["content_modifiers"]["add_table"].setdefault(counter, [])
-
-        table_cell_style = Style(name="TableCell", family="table-cell")
-        table_cell_style.addElement(
-            TableCellProperties(
-                padding="0.1cm", border="0.05cm solid #000000"
-            )
-        )
-        document.automaticstyles.addElement(table_cell_style)
-
-        # Create table
-        table = Table()
-        for i in range(rows):
-            table.addElement(TableColumn(stylename=table_col_style))
-
-        for row in range(cols):
-            tr = TableRow(stylename=table_row_style)
-            table.addElement(tr)
-            for col in range(4):
-                tc = TableCell(stylename=table_cell_style)
-                tr.addElement(tc)
-                text = provider.generator.paragraph()
-                p = P(text=text)
-                tc.addElement(p)
-                # Useful when you want to get the text content of the file.
-                data["content_modifiers"]["add_table"][counter].append(text)
-                data["content"] += "\r\n" + text
-
-        document.text.addElement(table)
-
-
-    def odt_add_picture(provider, document, data, counter, **kwargs):
-        """Callable responsible for the picture generation."""
-        width = kwargs.get("width", "10cm")
-        height = kwargs.get("height", "5cm")
-        paragraph = P()
-        document.text.addElement(paragraph)
-        jpeg_file = JpegFileProvider(provider.generator).jpeg_file()
-        image_data = jpeg_file.data["content"]
-        image_frame = Frame(
-            width=width,
-            height=height,
-            x="56pt",
-            y="56pt",
-            anchortype="paragraph",
-        )
-        href = document.addPicture(jpeg_file.data["filename"])
-        image_frame.addElement(Image(href=href))
-        paragraph.addElement(image_frame)
-
-        # Modifications of `data` is not required for generation
-        # of the file, but is useful for when you want to get
-        # the text content of the file.
-        data["content"] += "\r\n" + jpeg_file.data["content"]
-        data.setdefault("content_modifiers", {})
-        data["content_modifiers"].setdefault("add_picture", {})
-        data["content_modifiers"]["add_picture"].setdefault(counter, [])
-        data["content_modifiers"]["add_picture"][counter].append(
-            jpeg_file.data["content"]
-        )
-
-
-    file = OdtFileProvider(FAKER).odt_file(
-        content=DynamicTemplate([(odt_add_table, {}), (odt_add_picture, {})])
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_odt_file_mixed_1.py>`
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

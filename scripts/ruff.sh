@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-ruff .
+ruff conftest.py
+ruff setup.py
+ruff examples/
+ruff src/
