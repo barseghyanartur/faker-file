@@ -479,106 +479,32 @@ Generate 50 DOCX files
 - Use template.
 - Generate 50 DOCX files.
 
-.. code-block:: python
-    :name: test_generate_a_lot_of_files_using_multiprocessing_50_docx_files
+.. literalinclude:: _static/examples/recipes/create_files_multiprocessing_1.py
+    :language: python
+    :lines: 7-
 
-    from multiprocessing import Pool
-    from faker import Faker
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    # Document template
-    TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
-
-    with Pool(processes=2) as pool:
-        for _ in range(50):  # Number of times we want to run our function
-            pool.apply_async(
-                create_inner_docx_file,
-                # Apply async doesn't support kwargs. We have to pass all
-                # arguments.
-                [STORAGE, "mp", FAKER, None, None, TEMPLATE],
-            )
-        pool.close()
-        pool.join()
+*See the full example*
+:download:`here <_static/examples/recipes/create_files_multiprocessing_1.py>`
 
 Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_generate_a_lot_of_files_using_multiprocessing_randomize_format
+.. literalinclude:: _static/examples/recipes/create_files_multiprocessing_2.py
+    :language: python
+    :lines: 30-
 
-    from multiprocessing import Pool
-
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_epub_file,
-        create_inner_pdf_file,
-        create_inner_txt_file,
-        fuzzy_choice_create_inner_file,
-    )
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    # Document template
-    TEMPLATE = """
-    {{date}} {{city}}, {{country}}
-
-    Hello {{name}},
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    Address: {{address}}
-
-    Best regards,
-
-    {{name}}
-    {{address}}
-    {{phone_number}}
-    """
-
-    kwargs = {"storage": STORAGE, "generator": FAKER, "content": TEMPLATE}
-
-    with Pool(processes=8) as pool:
-        for _ in range(100):  # Number of times we want to run our function
-            pool.apply_async(
-                fuzzy_choice_create_inner_file,
-                [
-                    [
-                        (create_inner_docx_file, kwargs),
-                        (create_inner_epub_file, kwargs),
-                        (create_inner_pdf_file, kwargs),
-                        (create_inner_txt_file, kwargs),
-                    ]
-                ],
-            )
-        pool.close()
-        pool.join()
+*See the full example*
+:download:`here <_static/examples/recipes/create_files_multiprocessing_2.py>`
 
 Generating files from existing documents using NLP augmentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the following example:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
+    :language: python
+    :lines: 19-
 
-    from faker import Faker
-    from faker_file.providers.augment_file_from_dir import (
-        AugmentFileFromDirProvider,
-    )
-
-    FAKER = Faker()
-
-    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
-        source_dir_path="/path/to/source/",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
 
 Generated file will resemble text of the original document, but
 will not be the same. This is useful when you don't want to
@@ -596,15 +522,19 @@ The following file types are supported:
 - ``RTF``
 - ``TXT``
 
+----
+
 By default, all supported files are eligible for random selection. You could
 however narrow that list by providing ``extensions`` argument:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
+    :language: python
+    :lines: 25-
 
-    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
-        source_dir_path="/path/to/source/",
-        extensions={"docx", "pdf"},  # Pick only DOCX or PDF
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
+
+----
 
 By default ``bert-base-multilingual-cased`` model is used, which is
 pretrained on the top 104 languages with the largest Wikipedia using a
@@ -619,21 +549,12 @@ Some well working options for ``model_path`` are:
 - ``bert-base-german-cased``
 - ``GroNLP/bert-base-dutch-cased``
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
+    :language: python
+    :lines: 23-
 
-    from faker_file.providers.augment_file_from_dir.augmenters import (
-        nlpaug_augmenter
-    )
-
-    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
-        text_augmenter_cls=(
-            nlpaug_augmenter.ContextualWordEmbeddingsAugmenter
-        ),
-        text_augmenter_kwargs={
-            "model_path": "bert-base-cased",
-            "action": "substitute",  # or "insert"
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
 
 Refer to ``nlpaug``
 `docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
@@ -647,50 +568,12 @@ totally correct, ``bytes``-like object ``BytesValue``, which is basically
 bytes enriched with meta-data). You could then use the ``bytes`` content
 of the file to build a test payload as shown in the example test below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_raw_1.py
+    :language: python
+    :lines: 16-
 
-    import os
-    from io import BytesIO
-
-    from django.test import TestCase
-    from django.urls import reverse
-    from faker import Faker
-    from faker_file.providers.docx_file import DocxFileProvider
-    from rest_framework.status import HTTP_201_CREATED
-    from upload.models import Upload
-
-    FAKER = Faker()
-    FAKER.add_provider(DocxFileProvider)
-
-    class UploadTestCase(TestCase):
-        """Upload test case."""
-
-        def test_create_docx_upload(self) -> None:
-            """Test create an Upload."""
-            url = reverse("api:upload-list")
-
-            raw = FAKER.docx_file(raw=True)
-            test_file = BytesIO(raw)
-            test_file.name = os.path.basename(raw.data["filename"])
-
-            payload = {
-                "name": FAKER.word(),
-                "description": FAKER.paragraph(),
-                "file": test_file,
-            }
-
-            response = self.client.post(url, payload, format="json")
-
-            # Test if request is handled properly (HTTP 201)
-            self.assertEqual(response.status_code, HTTP_201_CREATED)
-
-            test_upload = Upload.objects.get(id=response.data["id"])
-
-            # Test if the name is properly recorded
-            self.assertEqual(str(test_upload.name), payload["name"])
-
-            # Test if file name recorded properly
-            self.assertEqual(str(test_upload.file.name), test_file.name)
+*See the full example*
+:download:`here <_static/examples/recipes/create_raw_1.py>`
 
 Create a HTML file predefined template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -698,38 +581,25 @@ If you want to generate a file in a format that is not (yet) supported,
 you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
-.. code-block:: python
-    :name: test_generate_a_html_file_from_predefined_template
+.. literalinclude:: _static/examples/recipes/create_generic_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.generic_file import GenericFileProvider
-
-    FAKER = Faker()
-
-    file = GenericFileProvider(FAKER).generic_file(
-        content="<html><body><p>{{text}}</p></body></html>",
-        extension="html",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_generic_file_1.py>`
 
 Working with storages
 ~~~~~~~~~~~~~~~~~~~~~
 AWS S3 storage
 ^^^^^^^^^^^^^^
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.storages.aws_s3 import AWSS3Storage
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
 
-    FAKER = Faker()
-    AWS_S3_STORAGE = AWSS3Storage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="",
-    )
-    FAKER.add_provider(TxtFileProvider)
-
-    txt_file = FAKER.txt_file(storage=AWS_S3_STORAGE)
+----
 
 Depending on the ORM or framework you're using, you might want to tweak the
 ``root_path`` and ``rel_path`` values. Especially if you store files in
@@ -739,63 +609,43 @@ For instance, if you use ``Django`` and ``django-storages``, and want to
 store the files inside ``/user/uploads`` directory the following would be
 correct:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
+    :language: python
+    :lines: 8-12
 
-    AWS_S3_STORAGE = AWSS3Storage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="user/uploads",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_2.py>`
 
 Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.storages.google_cloud_storage import GoogleCloudStorage
+*See the full example*
+:download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
 
-    FAKER = Faker()
-    GC_STORAGE = GoogleCloudStorage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="",
-    )
-    FAKER.add_provider(TxtFileProvider)
-
-    txt_file = FAKER.txt_file(storage=GC_STORAGE)
+----
 
 Similarly to ``AWSS3Storage``, if you use ``Django`` and ``django-storages``,
 and want to store the files inside ``/user/uploads`` directory the following
 would be correct:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
+    :language: python
+    :lines: 9-13
 
-    GC_STORAGE = GoogleCloudStorage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="user/uploads",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
 
 SFTP storage
 ^^^^^^^^^^^^
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/sftp_storage_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.storages.sftp import SFTPStorage
-
-    FAKER = Faker()
-    SFTP_STORAGE = SFTPStorage(
-        host="your-sftp-host.domain",
-        port: 22,
-        username: "your-sftp-username",
-        password: "your-sftp-password,
-        root_path: "/dir-name",
-    )
-    FAKER.add_provider(TxtFileProvider)
-
-    txt_file = FAKER.txt_file(storage=SFTP_STORAGE)
+*See the full example*
+:download:`here <_static/examples/recipes/sftp_storage_1.py>`
 
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
