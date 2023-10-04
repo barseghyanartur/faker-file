@@ -12,7 +12,7 @@ from faker_file.providers.helpers.inner import create_inner_docx_file
 TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
 
 with Pool(processes=2) as pool:
-    for _ in range(50):  # Number of times we want to run our function
+    for _ in range(10):  # Number of times we want to run our function
         pool.apply_async(
             create_inner_docx_file,
             # Apply async doesn't support kwargs. We have to pass all

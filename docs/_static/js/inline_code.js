@@ -53,22 +53,27 @@ $(document).ready(function() {
             } else {
                 // Check if content has been fetched
                 if (!additionalContentDiv.hasClass('fetched')) {
-                    // Fetch the content of the file and display it
-                    $.ajax({
-                        url: $(this).attr('href'),
-                        dataType: 'text',
-                        success: function(data) {
-                            additionalContent.text(data);
-                            Prism.highlightElement(additionalContent[0]);
-                            additionalContentDiv.show();
-                            // Add fetched class
-                            additionalContentDiv.addClass('fetched');
-                        },
-                        error: function() {
-                            additionalContent.text('Error fetching content.');
-                            additionalContentDiv.show();
-                        }
-                    });
+                    let retries = 3;
+                    let url = $(this).attr('href');
+                    function fetchContent() {
+                        // Fetch the content of the file and display it
+                        $.ajax({
+                            url: url,
+                            dataType: 'text',
+                            success: function (data) {
+                                additionalContent.text(data);
+                                Prism.highlightElement(additionalContent[0]);
+                                additionalContentDiv.show();
+                                // Add fetched class
+                                additionalContentDiv.addClass('fetched');
+                            },
+                            error: function () {
+                                additionalContent.text('Error fetching content.');
+                                additionalContentDiv.show();
+                            }
+                        });
+                    }
+                    fetchContent();
                 } else {
                     // Content has been fetched, just show it
                     additionalContentDiv.show();

@@ -12,4 +12,4 @@ AWS_S3_STORAGE = AWSS3Storage(
     rel_path="",
 )
 
-# txt_file = FAKER.txt_file(storage=AWS_S3_STORAGE)
+txt_file = FAKER.txt_file(storage=AWS_S3_STORAGE)

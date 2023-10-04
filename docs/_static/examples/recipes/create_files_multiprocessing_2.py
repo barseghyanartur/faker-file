@@ -37,8 +37,8 @@ from faker_file.providers.helpers.inner import (
 
 kwargs = {"storage": STORAGE, "generator": FAKER, "content": TEMPLATE}
 
-with Pool(processes=8) as pool:
-    for _ in range(100):  # Number of times we want to run our function
+with Pool(processes=2) as pool:
+    for _ in range(10):  # Number of times we want to run our function
         pool.apply_async(
             fuzzy_choice_create_inner_file,
             [

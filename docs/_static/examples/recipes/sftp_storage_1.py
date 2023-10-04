@@ -4,7 +4,7 @@ from faker_file.providers.txt_file import TxtFileProvider
 FAKER = Faker()
 FAKER.add_provider(TxtFileProvider)
 
-from faker_file.storages.sftp import SFTPStorage
+from faker_file.storages.sftp_storage import SFTPStorage
 
 SFTP_STORAGE = SFTPStorage(
     host="your-sftp-host.domain",

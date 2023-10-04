@@ -472,12 +472,12 @@ TXT
 *See the full example*
 :download:`here <_static/examples/recipes/create_file_of_size_txt_1.py>`
 
-Generate a lot of files using multiprocessing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Generate 50 DOCX files
+Generate a files using multiprocessing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Generate 10 DOCX files
 ^^^^^^^^^^^^^^^^^^^^^^
 - Use template.
-- Generate 50 DOCX files.
+- Generate 10 DOCX files.
 
 .. literalinclude:: _static/examples/recipes/create_files_multiprocessing_1.py
     :language: python
