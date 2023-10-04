@@ -300,110 +300,75 @@ Graphic file providers does not contain text. Don't use it when you need text
 based content. However, sometimes you just need a valid image file with
 graphics of a certain size. That's where graphic file providers help.
 
-Supported files formats are: ICO, JPEG, PNG and WEBP.
+Supported files formats are: `BMP`, `GIF`, `ICO`, `JPEG`, `PDF`, `PNG`, `SVG`
+`TIFF` and `WEBP`.
 
 Create an ICO file
 ^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_an_ico_file
+.. literalinclude:: _static/examples/recipes/create_graphic_ico_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.ico_file import GraphicIcoFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicIcoFileProvider)
-
-    file = FAKER.graphic_ico_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_ico_file_1.py>`
 
 Create a JPEG file
 ^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_a_jpeg_file
+.. literalinclude:: _static/examples/recipes/create_graphic_jpeg_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.jpeg_file import GraphicJpegFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicJpegFileProvider)
-
-    file = FAKER.graphic_jpeg_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_jpeg_file_1.py>`
 
 Create a PNG file
 ^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_a_png_file
+.. literalinclude:: _static/examples/recipes/create_graphic_png_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.png_file import GraphicPngFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicPngFileProvider)
-
-    file = FAKER.graphic_png_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_png_file_1.py>`
 
 Create a WEBP file
 ^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_a_webp_file
+.. literalinclude:: _static/examples/recipes/create_graphic_webp_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.webp_file import GraphicWebpFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicWebpFileProvider)
-
-    file = FAKER.graphic_webp_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_webp_file_1.py>`
 
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
-.. code-block:: python
-    :name: test_create_a_mp3_file
+.. literalinclude:: _static/examples/recipes/create_mp3_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(Mp3FileProvider)
-
-    file = FAKER.mp3_file()
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_1.py>`
 
 Create a MP3 file by explicitly specifying MP3 generator class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Google Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class
+.. literalinclude:: _static/examples/recipes/create_mp3_file_gtts_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.gtts_generator import (
-        GttsMp3Generator,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_gtts_1.py>`
 
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=GttsMp3Generator)
+----
 
 You can tune arguments too:
 
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class_fine_tune_args
+.. literalinclude:: _static/examples/recipes/create_mp3_file_gtts_2.py
+    :language: python
+    :lines: 10-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.gtts_generator import (
-        GttsMp3Generator,
-    )
-
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(
-        mp3_generator_cls=GttsMp3Generator,
-        mp3_generator_kwargs={
-            "lang": "en",
-            "tld": "co.uk",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_gtts_2.py>`
 
 Refer to https://gtts.readthedocs.io/en/latest/module.html#languages-gtts-lang
 for list of accepted values for ``lang`` argument.
