@@ -91,6 +91,7 @@ pre[class*="language-"] {
 .token.punctuation,
 .token.attr-name {
 	color: #7c6f64; /* fg4 / gray1 */
+	background-color: #eeffcc;
 }
 
 .token.tag,

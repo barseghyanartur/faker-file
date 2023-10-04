@@ -250,26 +250,24 @@ ODT file with table and image.
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_reportlab_1.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.pdf_file.generators.reportlab_generator import (
-        ReportlabPdfGenerator,
-    )
-
-    file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_reportlab_1.py>`
 
 Create a PDF using `pdfkit` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Note, that at the moment, ``pdfkit`` is the default generator. However,
 you could set it explicitly as follows:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_pdfkit_1.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.pdf_file.generators.pdfkit_generator import (
-        PdfkitPdfGenerator,
-    )
-
-    file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_pdfkit_1.py>`
 
 Create a graphic PDF file using `Pillow`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -278,26 +276,23 @@ content. However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. code-block:: python
-    :name: test_create_a_graphic_pdf_file_using_pillow
+.. literalinclude:: _static/examples/recipes/create_pdf_file_pillow_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.pdf_file import GraphicPdfFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicPdfFileProvider)
-
-    file = FAKER.graphic_pdf_file()
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_pillow_1.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours). One of the most useful arguments supported is
 ``size``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_pillow_2.py
+    :language: python
+    :lines: 9-
 
-    file = FAKER.graphic_pdf_file(
-        size=(800, 800),
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_pillow_2.py>`
 
 Graphic providers
 ~~~~~~~~~~~~~~~~~
