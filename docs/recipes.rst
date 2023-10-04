@@ -378,38 +378,23 @@ for list of accepted values for ``tld`` argument.
 
 Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class_ms_edge
+.. literalinclude:: _static/examples/recipes/create_mp3_file_edge_tts_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.edge_tts_generator import (
-        EdgeTtsMp3Generator,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_edge_tts_1.py>`
 
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=EdgeTtsMp3Generator)
+----
 
 You can tune arguments too:
 
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class_ms_edge_finetune
+.. literalinclude:: _static/examples/recipes/create_mp3_file_edge_tts_2.py
+    :language: python
+    :lines: 10-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.edge_tts_generator import (
-        EdgeTtsMp3Generator,
-    )
-
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(
-        mp3_generator_cls=EdgeTtsMp3Generator,
-        mp3_generator_kwargs={
-            "voice": "en-GB-LibbyNeural",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_edge_tts_2.py>`
 
 Run ``edge-tts -l`` from terminal for list of available voices.
 
@@ -426,47 +411,12 @@ services `here <https://cloud.google.com/text-to-speech/quotas>`_.
 
 Usage with custom MP3 generator class.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_mp3_file_custom_1.py
+    :language: python
+    :lines: 11-
 
-    # Imaginary `marytts` Python library
-    from marytts import MaryTTS
-
-    # Import BaseMp3Generator
-    from faker_file.providers.base.mp3_generator import (
-        BaseMp3Generator,
-    )
-
-    # Define custom MP3 generator
-    class MaryTtsMp3Generator(BaseMp3Generator):
-
-        locale: str = "cmu-rms-hsmm"
-        voice: str = "en_US"
-
-        def handle_kwargs(self, **kwargs) -> None:
-            # Since it's impossible to unify all TTS systems it's allowed
-            # to pass arbitrary arguments to the `BaseMp3Generator`
-            # constructor. Each implementation class contains its own
-            # additional tuning arguments. Check the source code of the
-            # implemented MP3 generators as an example.
-            if "locale" in kwargs:
-                self.locale = kwargs["locale"]
-            if "voice" in kwargs:
-                self.voice = kwargs["voice"]
-
-        def generate(self) -> bytes:
-            # Your implementation here. Note, that `self.content`
-            # in this context is the text to make MP3 from.
-            # `self.generator` would be the `Faker` or `Generator`
-            # instance from which you could extract information on
-            # active locale.
-            # What comes below is pseudo implementation.
-            mary_tts = MaryTTS(locale=self.locale, voice=self.voice)
-            return mary_tts.synth_mp3(self.content)
-
-    # Generate MP3 file from random text
-    file = FAKER.mp3_file(
-        mp3_generator_cls=MaryTtsMp3Generator,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_custom_1.py>`
 
 See exact implementation of
 `marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/customizations/marytts_mp3_generator>`_
@@ -478,21 +428,12 @@ Pick a random file from a directory given
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. code-block:: python
-    :name: __test_pick_a_random_file_from_directory_given
+.. literalinclude:: _static/examples/recipes/create_random_file_from_dir_1.py
+    :language: python
+    :lines: 11-
 
-    from faker import Faker
-    from faker_file.providers.random_file_from_dir import (
-        RandomFileFromDirProvider,
-    )
-
-    FAKER = Faker()
-    FAKER.add_provider(RandomFileFromDirProvider)
-
-    file = FAKER.random_file_from_dir(
-        source_dir_path="/tmp/tmp/",
-        prefix="zzz",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_random_file_from_dir_1.py>`
 
 File from path given
 ~~~~~~~~~~~~~~~~~~~~
@@ -500,19 +441,12 @@ File from path given
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_file_from_path_1.py
+    :language: python
+    :lines: 10-
 
-    from faker import Faker
-    from faker_file.providers.file_from_path import (
-        FileFromPathProvider,
-    )
-
-    FAKER = Faker()
-
-    file = FileFromPathProvider(FAKER).file_from_path(
-        path="/path/to/file.docx",
-        prefix="zzz",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_file_from_path_1.py>`
 
 Generate a file of a certain size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -522,39 +456,21 @@ approximate.
 
 BIN
 ^^^
-.. code-block:: python
-    :name: test_generate_a_file_of_a_certain_size_bin
+.. literalinclude:: _static/examples/recipes/create_file_of_size_bin_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.bin_file import BinFileProvider
-
-    FAKER = Faker()
-
-    file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
-    file = BinFileProvider(FAKER).bin_file(length=3*1024**2)  # 3 Mb
-    file = BinFileProvider(FAKER).bin_file(length=10*1024**2)  # 10 Mb
-
-    file = BinFileProvider(FAKER).bin_file(length=1024)  # 1 Kb
-    file = BinFileProvider(FAKER).bin_file(length=3*1024)  # 3 Kb
-    file = BinFileProvider(FAKER).bin_file(length=10*1024)  # 10 Kb
+*See the full example*
+:download:`here <_static/examples/recipes/create_file_of_size_bin_1.py>`
 
 TXT
 ^^^
-.. code-block:: python
-    :name: test_generate_a_file_of_a_certain_size_txt
+.. literalinclude:: _static/examples/recipes/create_file_of_size_txt_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-
-    FAKER = Faker()
-
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024**2)  # 1 Mb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024**2)  # 3 Mb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024**2)  # 10 Mb
-
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024)  # 1 Kb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024)  # 3 Kb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024)  # 10 Kb
+*See the full example*
+:download:`here <_static/examples/recipes/create_file_of_size_txt_1.py>`
 
 Generate a lot of files using multiprocessing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+
 import pytest
 from faker_file.registry import FILE_REGISTRY
 
