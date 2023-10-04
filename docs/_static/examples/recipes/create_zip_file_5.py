@@ -14,6 +14,7 @@ from faker_file.storages.filesystem import FileSystemStorage
 STORAGE = FileSystemStorage()
 
 kwargs = {"storage": STORAGE, "generator": FAKER}
+
 zip_file = FAKER.zip_file(
     prefix="zzz_archive_",
     options={

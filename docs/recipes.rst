@@ -250,26 +250,24 @@ ODT file with table and image.
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_reportlab_1.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.pdf_file.generators.reportlab_generator import (
-        ReportlabPdfGenerator,
-    )
-
-    file = FAKER.pdf_file(pdf_generator_cls=ReportlabPdfGenerator)
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_reportlab_1.py>`
 
 Create a PDF using `pdfkit` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Note, that at the moment, ``pdfkit`` is the default generator. However,
 you could set it explicitly as follows:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_pdfkit_1.py
+    :language: python
+    :lines: 7-
 
-    from faker_file.providers.pdf_file.generators.pdfkit_generator import (
-        PdfkitPdfGenerator,
-    )
-
-    file = FAKER.pdf_file(pdf_generator_cls=PdfkitPdfGenerator)
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_pdfkit_1.py>`
 
 Create a graphic PDF file using `Pillow`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -278,26 +276,23 @@ content. However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. code-block:: python
-    :name: test_create_a_graphic_pdf_file_using_pillow
+.. literalinclude:: _static/examples/recipes/create_pdf_file_pillow_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.pdf_file import GraphicPdfFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicPdfFileProvider)
-
-    file = FAKER.graphic_pdf_file()
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_pillow_1.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours). One of the most useful arguments supported is
 ``size``.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_pdf_file_pillow_2.py
+    :language: python
+    :lines: 9-
 
-    file = FAKER.graphic_pdf_file(
-        size=(800, 800),
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_pdf_file_pillow_2.py>`
 
 Graphic providers
 ~~~~~~~~~~~~~~~~~
@@ -305,110 +300,75 @@ Graphic file providers does not contain text. Don't use it when you need text
 based content. However, sometimes you just need a valid image file with
 graphics of a certain size. That's where graphic file providers help.
 
-Supported files formats are: ICO, JPEG, PNG and WEBP.
+Supported files formats are: `BMP`, `GIF`, `ICO`, `JPEG`, `PDF`, `PNG`, `SVG`
+`TIFF` and `WEBP`.
 
 Create an ICO file
 ^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_an_ico_file
+.. literalinclude:: _static/examples/recipes/create_graphic_ico_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.ico_file import GraphicIcoFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicIcoFileProvider)
-
-    file = FAKER.graphic_ico_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_ico_file_1.py>`
 
 Create a JPEG file
 ^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_a_jpeg_file
+.. literalinclude:: _static/examples/recipes/create_graphic_jpeg_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.jpeg_file import GraphicJpegFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicJpegFileProvider)
-
-    file = FAKER.graphic_jpeg_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_jpeg_file_1.py>`
 
 Create a PNG file
 ^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_a_png_file
+.. literalinclude:: _static/examples/recipes/create_graphic_png_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.png_file import GraphicPngFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicPngFileProvider)
-
-    file = FAKER.graphic_png_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_png_file_1.py>`
 
 Create a WEBP file
 ^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_graphic_providers_create_a_webp_file
+.. literalinclude:: _static/examples/recipes/create_graphic_webp_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.webp_file import GraphicWebpFileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(GraphicWebpFileProvider)
-
-    file = FAKER.graphic_webp_file(size=(800, 800))
+*See the full example*
+:download:`here <_static/examples/recipes/create_graphic_webp_file_1.py>`
 
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
-.. code-block:: python
-    :name: test_create_a_mp3_file
+.. literalinclude:: _static/examples/recipes/create_mp3_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-
-    FAKER = Faker()
-    FAKER.add_provider(Mp3FileProvider)
-
-    file = FAKER.mp3_file()
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_1.py>`
 
 Create a MP3 file by explicitly specifying MP3 generator class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Google Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class
+.. literalinclude:: _static/examples/recipes/create_mp3_file_gtts_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.gtts_generator import (
-        GttsMp3Generator,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_gtts_1.py>`
 
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=GttsMp3Generator)
+----
 
 You can tune arguments too:
 
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class_fine_tune_args
+.. literalinclude:: _static/examples/recipes/create_mp3_file_gtts_2.py
+    :language: python
+    :lines: 10-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.gtts_generator import (
-        GttsMp3Generator,
-    )
-
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(
-        mp3_generator_cls=GttsMp3Generator,
-        mp3_generator_kwargs={
-            "lang": "en",
-            "tld": "co.uk",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_gtts_2.py>`
 
 Refer to https://gtts.readthedocs.io/en/latest/module.html#languages-gtts-lang
 for list of accepted values for ``lang`` argument.
@@ -418,38 +378,23 @@ for list of accepted values for ``tld`` argument.
 
 Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class_ms_edge
+.. literalinclude:: _static/examples/recipes/create_mp3_file_edge_tts_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.edge_tts_generator import (
-        EdgeTtsMp3Generator,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_edge_tts_1.py>`
 
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(mp3_generator_cls=EdgeTtsMp3Generator)
+----
 
 You can tune arguments too:
 
-.. code-block:: python
-    :name: test_create_a_mp3_file_explicit_mp3_generator_class_ms_edge_finetune
+.. literalinclude:: _static/examples/recipes/create_mp3_file_edge_tts_2.py
+    :language: python
+    :lines: 10-
 
-    from faker import Faker
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.mp3_file.generators.edge_tts_generator import (
-        EdgeTtsMp3Generator,
-    )
-
-    FAKER = Faker()
-
-    file = Mp3FileProvider(FAKER).mp3_file(
-        mp3_generator_cls=EdgeTtsMp3Generator,
-        mp3_generator_kwargs={
-            "voice": "en-GB-LibbyNeural",
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_edge_tts_2.py>`
 
 Run ``edge-tts -l`` from terminal for list of available voices.
 
@@ -466,47 +411,12 @@ services `here <https://cloud.google.com/text-to-speech/quotas>`_.
 
 Usage with custom MP3 generator class.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_mp3_file_custom_1.py
+    :language: python
+    :lines: 11-
 
-    # Imaginary `marytts` Python library
-    from marytts import MaryTTS
-
-    # Import BaseMp3Generator
-    from faker_file.providers.base.mp3_generator import (
-        BaseMp3Generator,
-    )
-
-    # Define custom MP3 generator
-    class MaryTtsMp3Generator(BaseMp3Generator):
-
-        locale: str = "cmu-rms-hsmm"
-        voice: str = "en_US"
-
-        def handle_kwargs(self, **kwargs) -> None:
-            # Since it's impossible to unify all TTS systems it's allowed
-            # to pass arbitrary arguments to the `BaseMp3Generator`
-            # constructor. Each implementation class contains its own
-            # additional tuning arguments. Check the source code of the
-            # implemented MP3 generators as an example.
-            if "locale" in kwargs:
-                self.locale = kwargs["locale"]
-            if "voice" in kwargs:
-                self.voice = kwargs["voice"]
-
-        def generate(self) -> bytes:
-            # Your implementation here. Note, that `self.content`
-            # in this context is the text to make MP3 from.
-            # `self.generator` would be the `Faker` or `Generator`
-            # instance from which you could extract information on
-            # active locale.
-            # What comes below is pseudo implementation.
-            mary_tts = MaryTTS(locale=self.locale, voice=self.voice)
-            return mary_tts.synth_mp3(self.content)
-
-    # Generate MP3 file from random text
-    file = FAKER.mp3_file(
-        mp3_generator_cls=MaryTtsMp3Generator,
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_mp3_file_custom_1.py>`
 
 See exact implementation of
 `marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/customizations/marytts_mp3_generator>`_
@@ -518,21 +428,12 @@ Pick a random file from a directory given
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. code-block:: python
-    :name: __test_pick_a_random_file_from_directory_given
+.. literalinclude:: _static/examples/recipes/create_random_file_from_dir_1.py
+    :language: python
+    :lines: 11-
 
-    from faker import Faker
-    from faker_file.providers.random_file_from_dir import (
-        RandomFileFromDirProvider,
-    )
-
-    FAKER = Faker()
-    FAKER.add_provider(RandomFileFromDirProvider)
-
-    file = FAKER.random_file_from_dir(
-        source_dir_path="/tmp/tmp/",
-        prefix="zzz",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_random_file_from_dir_1.py>`
 
 File from path given
 ~~~~~~~~~~~~~~~~~~~~
@@ -540,19 +441,12 @@ File from path given
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_file_from_path_1.py
+    :language: python
+    :lines: 10-
 
-    from faker import Faker
-    from faker_file.providers.file_from_path import (
-        FileFromPathProvider,
-    )
-
-    FAKER = Faker()
-
-    file = FileFromPathProvider(FAKER).file_from_path(
-        path="/path/to/file.docx",
-        prefix="zzz",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_file_from_path_1.py>`
 
 Generate a file of a certain size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -562,147 +456,55 @@ approximate.
 
 BIN
 ^^^
-.. code-block:: python
-    :name: test_generate_a_file_of_a_certain_size_bin
+.. literalinclude:: _static/examples/recipes/create_file_of_size_bin_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.bin_file import BinFileProvider
-
-    FAKER = Faker()
-
-    file = BinFileProvider(FAKER).bin_file(length=1024**2)  # 1 Mb
-    file = BinFileProvider(FAKER).bin_file(length=3*1024**2)  # 3 Mb
-    file = BinFileProvider(FAKER).bin_file(length=10*1024**2)  # 10 Mb
-
-    file = BinFileProvider(FAKER).bin_file(length=1024)  # 1 Kb
-    file = BinFileProvider(FAKER).bin_file(length=3*1024)  # 3 Kb
-    file = BinFileProvider(FAKER).bin_file(length=10*1024)  # 10 Kb
+*See the full example*
+:download:`here <_static/examples/recipes/create_file_of_size_bin_1.py>`
 
 TXT
 ^^^
-.. code-block:: python
-    :name: test_generate_a_file_of_a_certain_size_txt
+.. literalinclude:: _static/examples/recipes/create_file_of_size_txt_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
+*See the full example*
+:download:`here <_static/examples/recipes/create_file_of_size_txt_1.py>`
 
-    FAKER = Faker()
-
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024**2)  # 1 Mb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024**2)  # 3 Mb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024**2)  # 10 Mb
-
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=1024)  # 1 Kb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=3*1024)  # 3 Kb
-    file = TxtFileProvider(FAKER).txt_file(max_nb_chars=10*1024)  # 10 Kb
-
-Generate a lot of files using multiprocessing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Generate 50 DOCX files
+Generate a files using multiprocessing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Generate 10 DOCX files
 ^^^^^^^^^^^^^^^^^^^^^^
 - Use template.
-- Generate 50 DOCX files.
+- Generate 10 DOCX files.
 
-.. code-block:: python
-    :name: test_generate_a_lot_of_files_using_multiprocessing_50_docx_files
+.. literalinclude:: _static/examples/recipes/create_files_multiprocessing_1.py
+    :language: python
+    :lines: 7-
 
-    from multiprocessing import Pool
-    from faker import Faker
-    from faker_file.providers.helpers.inner import create_inner_docx_file
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    # Document template
-    TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"
-
-    with Pool(processes=2) as pool:
-        for _ in range(50):  # Number of times we want to run our function
-            pool.apply_async(
-                create_inner_docx_file,
-                # Apply async doesn't support kwargs. We have to pass all
-                # arguments.
-                [STORAGE, "mp", FAKER, None, None, TEMPLATE],
-            )
-        pool.close()
-        pool.join()
+*See the full example*
+:download:`here <_static/examples/recipes/create_files_multiprocessing_1.py>`
 
 Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
-    :name: test_generate_a_lot_of_files_using_multiprocessing_randomize_format
+.. literalinclude:: _static/examples/recipes/create_files_multiprocessing_2.py
+    :language: python
+    :lines: 30-
 
-    from multiprocessing import Pool
-
-    from faker import Faker
-    from faker_file.providers.helpers.inner import (
-        create_inner_docx_file,
-        create_inner_epub_file,
-        create_inner_pdf_file,
-        create_inner_txt_file,
-        fuzzy_choice_create_inner_file,
-    )
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    FAKER = Faker()
-    STORAGE = FileSystemStorage()
-
-    # Document template
-    TEMPLATE = """
-    {{date}} {{city}}, {{country}}
-
-    Hello {{name}},
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    {{text}} {{text}} {{text}}
-
-    Address: {{address}}
-
-    Best regards,
-
-    {{name}}
-    {{address}}
-    {{phone_number}}
-    """
-
-    kwargs = {"storage": STORAGE, "generator": FAKER, "content": TEMPLATE}
-
-    with Pool(processes=8) as pool:
-        for _ in range(100):  # Number of times we want to run our function
-            pool.apply_async(
-                fuzzy_choice_create_inner_file,
-                [
-                    [
-                        (create_inner_docx_file, kwargs),
-                        (create_inner_epub_file, kwargs),
-                        (create_inner_pdf_file, kwargs),
-                        (create_inner_txt_file, kwargs),
-                    ]
-                ],
-            )
-        pool.close()
-        pool.join()
+*See the full example*
+:download:`here <_static/examples/recipes/create_files_multiprocessing_2.py>`
 
 Generating files from existing documents using NLP augmentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the following example:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
+    :language: python
+    :lines: 19-
 
-    from faker import Faker
-    from faker_file.providers.augment_file_from_dir import (
-        AugmentFileFromDirProvider,
-    )
-
-    FAKER = Faker()
-
-    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
-        source_dir_path="/path/to/source/",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
 
 Generated file will resemble text of the original document, but
 will not be the same. This is useful when you don't want to
@@ -720,15 +522,19 @@ The following file types are supported:
 - ``RTF``
 - ``TXT``
 
+----
+
 By default, all supported files are eligible for random selection. You could
 however narrow that list by providing ``extensions`` argument:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
+    :language: python
+    :lines: 25-
 
-    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
-        source_dir_path="/path/to/source/",
-        extensions={"docx", "pdf"},  # Pick only DOCX or PDF
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
+
+----
 
 By default ``bert-base-multilingual-cased`` model is used, which is
 pretrained on the top 104 languages with the largest Wikipedia using a
@@ -743,21 +549,12 @@ Some well working options for ``model_path`` are:
 - ``bert-base-german-cased``
 - ``GroNLP/bert-base-dutch-cased``
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
+    :language: python
+    :lines: 23-
 
-    from faker_file.providers.augment_file_from_dir.augmenters import (
-        nlpaug_augmenter
-    )
-
-    file = AugmentFileFromDirProvider(FAKER).augment_file_from_dir(
-        text_augmenter_cls=(
-            nlpaug_augmenter.ContextualWordEmbeddingsAugmenter
-        ),
-        text_augmenter_kwargs={
-            "model_path": "bert-base-cased",
-            "action": "substitute",  # or "insert"
-        }
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
 
 Refer to ``nlpaug``
 `docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
@@ -771,50 +568,12 @@ totally correct, ``bytes``-like object ``BytesValue``, which is basically
 bytes enriched with meta-data). You could then use the ``bytes`` content
 of the file to build a test payload as shown in the example test below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/create_raw_1.py
+    :language: python
+    :lines: 16-
 
-    import os
-    from io import BytesIO
-
-    from django.test import TestCase
-    from django.urls import reverse
-    from faker import Faker
-    from faker_file.providers.docx_file import DocxFileProvider
-    from rest_framework.status import HTTP_201_CREATED
-    from upload.models import Upload
-
-    FAKER = Faker()
-    FAKER.add_provider(DocxFileProvider)
-
-    class UploadTestCase(TestCase):
-        """Upload test case."""
-
-        def test_create_docx_upload(self) -> None:
-            """Test create an Upload."""
-            url = reverse("api:upload-list")
-
-            raw = FAKER.docx_file(raw=True)
-            test_file = BytesIO(raw)
-            test_file.name = os.path.basename(raw.data["filename"])
-
-            payload = {
-                "name": FAKER.word(),
-                "description": FAKER.paragraph(),
-                "file": test_file,
-            }
-
-            response = self.client.post(url, payload, format="json")
-
-            # Test if request is handled properly (HTTP 201)
-            self.assertEqual(response.status_code, HTTP_201_CREATED)
-
-            test_upload = Upload.objects.get(id=response.data["id"])
-
-            # Test if the name is properly recorded
-            self.assertEqual(str(test_upload.name), payload["name"])
-
-            # Test if file name recorded properly
-            self.assertEqual(str(test_upload.file.name), test_file.name)
+*See the full example*
+:download:`here <_static/examples/recipes/create_raw_1.py>`
 
 Create a HTML file predefined template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -822,38 +581,25 @@ If you want to generate a file in a format that is not (yet) supported,
 you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
-.. code-block:: python
-    :name: test_generate_a_html_file_from_predefined_template
+.. literalinclude:: _static/examples/recipes/create_generic_file_1.py
+    :language: python
+    :lines: 5-
 
-    from faker import Faker
-    from faker_file.providers.generic_file import GenericFileProvider
-
-    FAKER = Faker()
-
-    file = GenericFileProvider(FAKER).generic_file(
-        content="<html><body><p>{{text}}</p></body></html>",
-        extension="html",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/create_generic_file_1.py>`
 
 Working with storages
 ~~~~~~~~~~~~~~~~~~~~~
 AWS S3 storage
 ^^^^^^^^^^^^^^
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.storages.aws_s3 import AWSS3Storage
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
 
-    FAKER = Faker()
-    AWS_S3_STORAGE = AWSS3Storage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="",
-    )
-    FAKER.add_provider(TxtFileProvider)
-
-    txt_file = FAKER.txt_file(storage=AWS_S3_STORAGE)
+----
 
 Depending on the ORM or framework you're using, you might want to tweak the
 ``root_path`` and ``rel_path`` values. Especially if you store files in
@@ -863,63 +609,43 @@ For instance, if you use ``Django`` and ``django-storages``, and want to
 store the files inside ``/user/uploads`` directory the following would be
 correct:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
+    :language: python
+    :lines: 8-12
 
-    AWS_S3_STORAGE = AWSS3Storage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="user/uploads",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_2.py>`
 
 Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.storages.google_cloud_storage import GoogleCloudStorage
+*See the full example*
+:download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
 
-    FAKER = Faker()
-    GC_STORAGE = GoogleCloudStorage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="",
-    )
-    FAKER.add_provider(TxtFileProvider)
-
-    txt_file = FAKER.txt_file(storage=GC_STORAGE)
+----
 
 Similarly to ``AWSS3Storage``, if you use ``Django`` and ``django-storages``,
 and want to store the files inside ``/user/uploads`` directory the following
 would be correct:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
+    :language: python
+    :lines: 9-13
 
-    GC_STORAGE = GoogleCloudStorage(
-        bucket_name="your-bucket-name",
-        root_path="",
-        rel_path="user/uploads",
-    )
+*See the full example*
+:download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
 
 SFTP storage
 ^^^^^^^^^^^^
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/sftp_storage_1.py
+    :language: python
+    :lines: 7-
 
-    from faker import Faker
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.storages.sftp import SFTPStorage
-
-    FAKER = Faker()
-    SFTP_STORAGE = SFTPStorage(
-        host="your-sftp-host.domain",
-        port: 22,
-        username: "your-sftp-username",
-        password: "your-sftp-password,
-        root_path: "/dir-name",
-    )
-    FAKER.add_provider(TxtFileProvider)
-
-    txt_file = FAKER.txt_file(storage=SFTP_STORAGE)
+*See the full example*
+:download:`here <_static/examples/recipes/sftp_storage_1.py>`
 
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
