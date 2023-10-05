@@ -50,7 +50,7 @@ class is used. See the example below for usage examples:
 
 .. literalinclude:: _static/examples/creating_odt/odt_4.py
     :language: python
-    :lines: 8-
+    :lines: 3-9, 14-
 
 *See the full example*
 :download:`here <_static/examples/creating_odt/odt_4.py>`

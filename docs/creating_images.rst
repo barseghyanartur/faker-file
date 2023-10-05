@@ -64,7 +64,6 @@ See the following full functional snippet for generating images using `imgkit`_.
 
 .. literalinclude:: _static/examples/creating_images/imgkit_1.py
     :language: python
-    :lines: 2-4, 6-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_1.py>`
