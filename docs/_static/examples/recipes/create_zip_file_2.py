@@ -1,11 +1,9 @@
 from faker import Faker
+from faker_file.providers.helpers.inner import create_inner_docx_file
 from faker_file.providers.zip_file import ZipFileProvider
 
 FAKER = Faker()
 FAKER.add_provider(ZipFileProvider)
-
-# Additional imports
-from faker_file.providers.helpers.inner import create_inner_docx_file
 
 zip_file = FAKER.zip_file(
     prefix="zzz",
@@ -17,5 +15,5 @@ zip_file = FAKER.zip_file(
             "max_nb_chars": 1_024,
         },
         "directory": "yyy",
-    }
+    },
 )

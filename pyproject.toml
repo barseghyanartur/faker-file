@@ -16,7 +16,6 @@ extend-exclude = '''
   | tests/data
   | profiling
   | migrations
-  | docs
 )/
 '''
 
@@ -35,8 +34,17 @@ force_grid_wrap = 0
 use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 80
-known_first_party = "faker_file"
-known_third_party = ["django", "factory"]
+#known_first_party = "faker_file"
+known_first_party = [
+    "upload",
+    "factories",
+    "project",
+    "faker_file_admin",
+    "instance",
+    "sqlalchemy_factories",
+    "marytts_mp3_generator",
+]
+known_third_party = ["django", "factory", "faker_file"]
 skip = ["wsgi.py",]
 
 [tool.ruff]

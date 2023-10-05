@@ -72,7 +72,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_2.py
     :language: python
-    :lines: 7-
+    :lines: 2, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_2.py>`
@@ -84,7 +84,7 @@ Create a ZIP file of 9 DOCX files with content generated from template
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_3.py
     :language: python
-    :lines: 7-
+    :lines: 2, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_3.py>`
@@ -104,7 +104,7 @@ contain 5 DOCX files.
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_4.py
     :language: python
-    :lines: 7-
+    :lines: 2-5, 10-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_4.py>`
@@ -118,7 +118,7 @@ Create a ZIP file with variety of different file types within
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_5.py
     :language: python
-    :lines: 6-
+    :lines: 2-7, 9-10, 14-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_5.py>`
@@ -132,7 +132,7 @@ Another way to create a ZIP file with variety of different file types within
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_6.py
     :language: python
-    :lines: 7-
+    :lines: 2-6, 11-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_6.py>`
@@ -147,7 +147,7 @@ Create an EML file consisting of TXT files with static content
 
 .. literalinclude:: _static/examples/recipes/create_eml_file_1.py
     :language: python
-    :lines: 4-
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_eml_file_1.py>`
@@ -162,7 +162,7 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 
 .. literalinclude:: _static/examples/recipes/create_eml_file_2.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_eml_file_2.py>`
@@ -182,7 +182,7 @@ contain 5 DOCX files.
 
 .. literalinclude:: _static/examples/recipes/create_eml_file_3.py
     :language: python
-    :lines: 7-
+    :lines: 3-6, 10-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_eml_file_3.py>`
@@ -195,7 +195,7 @@ Create an EML file with variety of different file types within
 
 .. literalinclude:: _static/examples/recipes/create_eml_file_4.py
     :language: python
-    :lines: 9-
+    :lines: 3-8, 17-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_eml_file_4.py>`
@@ -207,7 +207,7 @@ Create a PDF file with predefined template containing dynamic fixtures
 
 .. literalinclude:: _static/examples/recipes/create_pdf_file_1.py
     :language: python
-    :lines: 7-
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_pdf_file_1.py>`
@@ -231,7 +231,7 @@ and image.
 
 .. literalinclude:: _static/examples/recipes/create_docx_file_mixed_1.py
     :language: python
-    :lines: 7-
+    :lines: 2-8, 13-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_docx_file_mixed_1.py>`
@@ -243,7 +243,7 @@ ODT file with table and image.
 
 .. literalinclude:: _static/examples/recipes/create_odt_file_mixed_1.py
     :language: python
-    :lines: 8-
+    :lines: 3-10, 12-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_odt_file_mixed_1.py>`
@@ -252,7 +252,7 @@ Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. literalinclude:: _static/examples/recipes/create_pdf_file_reportlab_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_pdf_file_reportlab_1.py>`
@@ -264,7 +264,7 @@ you could set it explicitly as follows:
 
 .. literalinclude:: _static/examples/recipes/create_pdf_file_pdfkit_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_pdf_file_pdfkit_1.py>`

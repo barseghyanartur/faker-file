@@ -21,14 +21,12 @@ FAKER.odt_file()
 FAKER.txt_file()
 
 from faker_file.providers.augment_file_from_dir.augmenters import (
-    nlpaug_augmenter
+    nlpaug_augmenter,
 )
 
 augmented_file = FAKER.augment_file_from_dir(
     source_dir_path="/tmp/tmp/",
-    text_augmenter_cls=(
-        nlpaug_augmenter.ContextualWordEmbeddingsAugmenter
-    ),
+    text_augmenter_cls=(nlpaug_augmenter.ContextualWordEmbeddingsAugmenter),
     text_augmenter_kwargs={
         "model_path": "bert-base-cased",
         "action": "substitute",  # or "insert"

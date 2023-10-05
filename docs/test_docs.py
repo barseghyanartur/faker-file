@@ -29,9 +29,8 @@ def mock_paramiko():
     mock_sftp_client = create_autospec(paramiko.SFTPClient)
     mock_sftp_client.from_transport.return_value = mock_sftp_client
 
-    with (
-        mock.patch("paramiko.Transport", mock_transport),
-        mock.patch("paramiko.SFTPClient", mock_sftp_client)
+    with mock.patch("paramiko.Transport", mock_transport), mock.patch(
+        "paramiko.SFTPClient", mock_sftp_client
     ):
         yield
 

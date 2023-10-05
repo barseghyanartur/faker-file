@@ -8,9 +8,7 @@ FAKER.add_provider(TxtFileProvider)
 for __i in range(5):
     FAKER.txt_file()
 
-from faker_file.providers.random_file_from_dir import (
-    RandomFileFromDirProvider,
-)
+from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
 
 FAKER.add_provider(RandomFileFromDirProvider)
 

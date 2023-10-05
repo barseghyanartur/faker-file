@@ -1,10 +1,4 @@
 from faker import Faker
-from faker_file.providers.docx_file import DocxFileProvider
-
-FAKER = Faker()
-FAKER.add_provider(DocxFileProvider)
-
-# Additional imports
 from faker_file.base import DynamicTemplate
 from faker_file.contrib.docx_file import (
     add_page_break,
@@ -12,6 +6,10 @@ from faker_file.contrib.docx_file import (
     add_picture,
     add_table,
 )
+from faker_file.providers.docx_file import DocxFileProvider
+
+FAKER = Faker()
+FAKER.add_provider(DocxFileProvider)
 
 # Create a DOCX file with paragraph, picture, table and manual page breaks
 # in between the mentioned elements. The ``DynamicTemplate`` simply

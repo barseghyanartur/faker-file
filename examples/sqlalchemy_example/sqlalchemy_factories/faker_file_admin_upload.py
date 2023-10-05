@@ -2,9 +2,6 @@ from random import choice
 
 from factory import Faker, LazyAttribute, Sequence, Trait
 from factory.alchemy import SQLAlchemyModelFactory
-from faker_file_admin import db
-from faker_file_admin.models import Upload
-
 from faker_file.providers.bin_file import BinFileProvider
 from faker_file.providers.csv_file import CsvFileProvider
 from faker_file.providers.docx_file import DocxFileProvider
@@ -27,6 +24,9 @@ from faker_file.providers.webp_file import WebpFileProvider
 from faker_file.providers.xlsx_file import XlsxFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
 from faker_file.storages.filesystem import FileSystemStorage
+
+from faker_file_admin import db
+from faker_file_admin.models import Upload
 
 __all__ = ("UploadFactory",)
 
