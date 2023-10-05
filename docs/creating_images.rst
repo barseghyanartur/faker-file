@@ -123,6 +123,7 @@ See the following snippet for generating images using `WeasyPrint`_.
 
 .. literalinclude:: _static/examples/creating_images/weasyprint_1.py
     :language: python
+    :lines: 2-4, 9-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/weasyprint_1.py>`
@@ -141,7 +142,7 @@ In order to customise the blocks image file is built from, the
 
 .. literalinclude:: _static/examples/creating_images/weasyprint_2.py
     :language: python
-    :lines: 10-
+    :lines: 3-7, 15-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/weasyprint_2.py>`
@@ -152,6 +153,7 @@ Usage example:
 
 .. literalinclude:: _static/examples/creating_images/pillow_1.py
     :language: python
+    :lines: 2, 7-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/pillow_1.py>`
@@ -175,7 +177,7 @@ the imports shall be adjusted. See the example below:
 
 .. literalinclude:: _static/examples/creating_images/pillow_3.py
     :language: python
-    :lines: 8-
+    :lines: 3-7, 13-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/pillow_3.py>`
@@ -189,6 +191,7 @@ the content. That's where graphic image providers comes to rescue:
 
 .. literalinclude:: _static/examples/creating_images/pillow_4.py
     :language: python
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/pillow_4.py>`
@@ -213,7 +216,7 @@ Augment the input image with a series of random augmentation methods.
 
 .. literalinclude:: _static/examples/creating_images/augment_1.py
     :language: python
-    :lines: 1-20, 30-
+    :lines: 2-15, 17, 19-20, 28-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/augment_1.py>`

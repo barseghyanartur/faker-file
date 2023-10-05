@@ -13,16 +13,14 @@ from faker_file.providers.image.augment import (
     resize_height,
     resize_width,
 )
+from faker_file.providers.png_file import GraphicPngFileProvider
 
 FAKER = Faker()
 FAKER.add_provider(AugmentImageFromPathProvider)
 FAKER.add_provider(AugmentRandomImageFromDirProvider)
-
-# Create a couple of graphic images to augment later on.
-from faker_file.providers.png_file import GraphicPngFileProvider
-
 FAKER.add_provider(GraphicPngFileProvider)
 
+# Create a couple of graphic images to augment later on.
 FAKER.graphic_png_file(basename="01")  # One named 01.png
 # And 5 more with random names.
 for __ in range(5):
