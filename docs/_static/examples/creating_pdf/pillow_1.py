@@ -1,7 +1,7 @@
 from faker import Faker
 from faker_file.providers.pdf_file import PdfFileProvider
 from faker_file.providers.pdf_file.generators.pil_generator import (
-    PilPdfGenerator
+    PilPdfGenerator,
 )
 
 FAKER = Faker()

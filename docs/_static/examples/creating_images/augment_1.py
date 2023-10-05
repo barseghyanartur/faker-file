@@ -1,17 +1,17 @@
 from faker import Faker
-from faker_file.providers.image.augment import (
-    flip_horizontal,
-    flip_vertical,
-    decrease_contrast,
-    add_brightness,
-    resize_width,
-    resize_height,
-)
 from faker_file.providers.augment_image_from_path import (
-    AugmentImageFromPathProvider
+    AugmentImageFromPathProvider,
 )
 from faker_file.providers.augment_random_image_from_dir import (
-    AugmentRandomImageFromDirProvider
+    AugmentRandomImageFromDirProvider,
+)
+from faker_file.providers.image.augment import (
+    add_brightness,
+    decrease_contrast,
+    flip_horizontal,
+    flip_vertical,
+    resize_height,
+    resize_width,
 )
 
 FAKER = Faker()
@@ -20,6 +20,7 @@ FAKER.add_provider(AugmentRandomImageFromDirProvider)
 
 # Create a couple of graphic images to augment later on.
 from faker_file.providers.png_file import GraphicPngFileProvider
+
 FAKER.add_provider(GraphicPngFileProvider)
 
 FAKER.graphic_png_file(basename="01")  # One named 01.png

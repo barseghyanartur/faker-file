@@ -5,7 +5,6 @@ running documentation tests. Therefore, this hook, which simply
 calls the `clean_up` method of the `FILE_REGISTRY` instance.
 """
 import pytest
-
 from faker_file.registry import FILE_REGISTRY
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"

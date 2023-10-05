@@ -4,13 +4,11 @@ from faker_file.providers.mp3_file import Mp3FileProvider
 FAKER = Faker()
 FAKER.add_provider(Mp3FileProvider)
 
+# Import BaseMp3Generator
+from faker_file.providers.base.mp3_generator import BaseMp3Generator
+
 # Imaginary `marytts` Python library
 from marytts import MaryTTS
-
-# Import BaseMp3Generator
-from faker_file.providers.base.mp3_generator import (
-    BaseMp3Generator,
-)
 
 
 # Define custom MP3 generator

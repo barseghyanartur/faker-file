@@ -17,5 +17,5 @@ zip_file = FAKER.zip_file(
             "max_nb_chars": 1_024,
         },
         "directory": "yyy",
-    }
+    },
 )

@@ -1,7 +1,7 @@
 from faker import Faker
 from faker_file.providers.pdf_file import PdfFileProvider
 from faker_file.providers.pdf_file.generators.pil_generator import (
-    PilPdfGenerator
+    PilPdfGenerator,
 )
 
 FAKER = Faker()
@@ -32,7 +32,7 @@ pdf_file = FAKER.pdf_file(
             (add_table, {}),  # Add table
             (add_page_break, {}),  # Add page break
         ]
-    )
+    ),
 )
 
 # You could make the list as long as you like or simply multiply for
@@ -47,6 +47,7 @@ pdf_file = FAKER.pdf_file(
             (add_page_break, {}),  # Add page break
             (add_table, {}),  # Add table
             (add_page_break, {}),  # Add page break
-        ] * 5  # Will repeat your config 5 times
-    )
+        ]
+        * 5  # Will repeat your config 5 times
+    ),
 )

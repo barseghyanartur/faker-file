@@ -22,5 +22,5 @@ zip_file = FAKER.zip_file(
                 (create_inner_xml_file, {"basename": "doc_isbn"}),
             ],
         },
-    }
+    },
 )

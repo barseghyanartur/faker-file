@@ -1,6 +1,6 @@
 from faker import Faker
-from faker_file.providers.png_file import PngFileProvider
 from faker_file.providers.image.pil_generator import PilImageGenerator
+from faker_file.providers.png_file import PngFileProvider
 
 FAKER = Faker()
 FAKER.add_provider(PngFileProvider)
@@ -26,7 +26,7 @@ png_file = FAKER.png_file(
             (add_picture, {}),  # Add picture
             (add_table, {}),  # Add table
         ]
-    )
+    ),
 )
 
 # You could make the list as long as you like or simply multiply for
@@ -38,6 +38,7 @@ png_file = FAKER.png_file(
             (add_paragraph, {}),  # Add paragraph
             (add_picture, {}),  # Add picture
             (add_table, {}),  # Add table
-        ] * 5  # Will repeat your config 5 times
-    )
+        ]
+        * 5  # Will repeat your config 5 times
+    ),
 )

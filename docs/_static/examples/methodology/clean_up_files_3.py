@@ -1,9 +1,9 @@
 # Import instance at once
-from faker_file.registry import FILE_REGISTRY
-
 # Create a file to remove
 from faker import Faker
 from faker_file.providers.txt_file import TxtFileProvider
+from faker_file.registry import FILE_REGISTRY
+
 FAKER = Faker()
 FAKER.add_provider(TxtFileProvider)
 filename = str(FAKER.txt_file())

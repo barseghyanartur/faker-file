@@ -28,5 +28,5 @@ eml_file = FAKER.eml_file(
                 (create_inner_txt_file, kwargs),
             ],
         },
-    }
+    },
 )

@@ -6,6 +6,7 @@ FAKER.add_provider(FileFromPathProvider)
 
 # Create a file to use
 from faker_file.providers.docx_file import DocxFileProvider
+
 FAKER.add_provider(DocxFileProvider)
 file = FAKER.docx_file(basename="file")
 

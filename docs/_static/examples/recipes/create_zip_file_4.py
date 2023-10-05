@@ -22,9 +22,9 @@ zip_file = FAKER.zip_file(
                     "prefix": "nested_level_2_",
                     "options": {
                         "create_inner_file_func": create_inner_docx_file,
-                    }
+                    },
                 },
-            }
+            },
         },
-    }
+    },
 )

@@ -4,11 +4,11 @@ from uuid import uuid4
 from django.test import TestCase
 from django.urls import reverse
 from faker import Faker
-from rest_framework.status import HTTP_201_CREATED
-from upload.models import Upload
-
 from faker_file.providers.docx_file import DocxFileProvider
 from faker_file.registry import FILE_REGISTRY
+from rest_framework.status import HTTP_201_CREATED
+
+from upload.models import Upload
 
 FAKER = Faker()
 FAKER.add_provider(DocxFileProvider)

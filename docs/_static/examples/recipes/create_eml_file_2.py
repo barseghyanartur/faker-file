@@ -16,5 +16,5 @@ eml_file = FAKER.eml_file(
             "prefix": "xxx_",
             "max_nb_chars": 1_024,
         },
-    }
+    },
 )

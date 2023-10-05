@@ -4,9 +4,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from factory import Faker, LazyAttribute, Trait
 from factory.django import DjangoModelFactory
-from storages.backends.s3boto3 import S3Boto3Storage
-from upload.models import Upload
-
 from faker_file.providers.bin_file import BinFileProvider
 from faker_file.providers.csv_file import CsvFileProvider
 from faker_file.providers.docx_file import DocxFileProvider
@@ -30,6 +27,9 @@ from faker_file.providers.xlsx_file import XlsxFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
 from faker_file.storages.aws_s3 import AWSS3Storage
 from faker_file.storages.filesystem import FileSystemStorage
+from storages.backends.s3boto3 import S3Boto3Storage
+
+from upload.models import Upload
 
 __all__ = ("UploadFactory",)
 
