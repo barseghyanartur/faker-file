@@ -1,9 +1,7 @@
 from faker import Faker
-
-FAKER = Faker()
-
 from faker_file.providers.eml_file import EmlFileProvider
 
+FAKER = Faker()
 FAKER.add_provider(EmlFileProvider)
 
 eml_file = FAKER.eml_file(

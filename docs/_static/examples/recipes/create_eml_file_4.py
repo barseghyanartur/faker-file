@@ -1,18 +1,17 @@
 from faker import Faker
 from faker_file.providers.eml_file import EmlFileProvider
-from faker_file.storages.filesystem import FileSystemStorage
-
-FAKER = Faker()
-FAKER.add_provider(EmlFileProvider)
-STORAGE = FileSystemStorage()
-
-# Additional imports
 from faker_file.providers.helpers.inner import (
     create_inner_docx_file,
     create_inner_epub_file,
     create_inner_txt_file,
     fuzzy_choice_create_inner_file,
 )
+from faker_file.storages.filesystem import FileSystemStorage
+
+FAKER = Faker()
+FAKER.add_provider(EmlFileProvider)
+
+STORAGE = FileSystemStorage()
 
 kwargs = {"storage": STORAGE, "generator": FAKER}
 
