@@ -198,7 +198,7 @@ such as images, tables, manual page breaks, paragraphs, etc.
 
 .. literalinclude:: _static/examples/methodology/create_docx_file_3.py
     :language: python
-    :lines: 7-
+    :lines: 2-8, 13-
 
 *See the full example*
 :download:`here <_static/examples/methodology/create_docx_file_3.py>`
@@ -231,7 +231,7 @@ Create a file by copying it from the given path.
 
 .. literalinclude:: _static/examples/methodology/file_from_path_provider.py
     :language: python
-    :lines: 1-5, 11-
+    :lines: 3-4, 6, 11-
 
 *See the full example*
 :download:`here <_static/examples/methodology/file_from_path_provider.py>`
@@ -249,7 +249,7 @@ Create a file by copying it randomly from the given directory.
 
 .. literalinclude:: _static/examples/methodology/rand_file_from_dir_provider.py
     :language: python
-    :lines: 1-7, 14-
+    :lines: 3-4, 6, 12-
 
 *See the full example*
 :download:`here <_static/examples/methodology/rand_file_from_dir_provider.py>`
