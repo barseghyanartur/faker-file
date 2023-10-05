@@ -207,7 +207,7 @@ Create a PDF file with predefined template containing dynamic fixtures
 
 .. literalinclude:: _static/examples/recipes/create_pdf_file_1.py
     :language: python
-    :lines: 7-
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_pdf_file_1.py>`
@@ -231,7 +231,7 @@ and image.
 
 .. literalinclude:: _static/examples/recipes/create_docx_file_mixed_1.py
     :language: python
-    :lines: 7-
+    :lines: 2-8, 13-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_docx_file_mixed_1.py>`
@@ -243,7 +243,7 @@ ODT file with table and image.
 
 .. literalinclude:: _static/examples/recipes/create_odt_file_mixed_1.py
     :language: python
-    :lines: 8-
+    :lines: 3-10, 12-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_odt_file_mixed_1.py>`
@@ -252,7 +252,7 @@ Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. literalinclude:: _static/examples/recipes/create_pdf_file_reportlab_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_pdf_file_reportlab_1.py>`
@@ -264,7 +264,7 @@ you could set it explicitly as follows:
 
 .. literalinclude:: _static/examples/recipes/create_pdf_file_pdfkit_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_pdf_file_pdfkit_1.py>`
