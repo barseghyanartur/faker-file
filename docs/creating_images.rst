@@ -64,6 +64,7 @@ See the following full functional snippet for generating images using `imgkit`_.
 
 .. literalinclude:: _static/examples/creating_images/imgkit_1.py
     :language: python
+    :lines: 2-4, 6-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_1.py>`
@@ -79,7 +80,7 @@ characters (or any other number that fits your needs). See the example below:
 
 .. literalinclude:: _static/examples/creating_images/imgkit_2.py
     :language: python
-    :lines: 10-
+    :lines: 8-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_2.py>`
@@ -91,7 +92,7 @@ See the example below:
 
 .. literalinclude:: _static/examples/creating_images/imgkit_3.py
     :language: python
-    :lines: 10-
+    :lines: 8-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_3.py>`
@@ -107,7 +108,7 @@ examples:
 
 .. literalinclude:: _static/examples/creating_images/imgkit_4.py
     :language: python
-    :lines: 10-
+    :lines: 2-7, 13-
 
 *See the full example*
 :download:`here <_static/examples/creating_images/imgkit_4.py>`
