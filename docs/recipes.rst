@@ -118,7 +118,7 @@ Create a ZIP file with variety of different file types within
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_5.py
     :language: python
-    :lines: 6-
+    :lines: 2-7, 9-10, 14-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_5.py>`
@@ -132,7 +132,7 @@ Another way to create a ZIP file with variety of different file types within
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_6.py
     :language: python
-    :lines: 7-
+    :lines: 2-6, 11-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_6.py>`
