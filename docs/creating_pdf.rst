@@ -81,7 +81,7 @@ class is used. See the example below for usage examples:
 
 .. literalinclude:: _static/examples/creating_pdf/pdfkit_4.py
     :language: python
-    :lines: 11-
+    :lines: 3-9, 17-
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/pdfkit_4.py>`
@@ -96,6 +96,7 @@ See the following full functional snippet for generating PDF using `reportlab`_.
 
 .. literalinclude:: _static/examples/creating_pdf/reportlab_1.py
     :language: python
+    :lines: 4-7, 11-
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/reportlab_1.py>`
@@ -115,7 +116,7 @@ See the example below for usage examples:
 
 .. literalinclude:: _static/examples/creating_pdf/reportlab_2.py
     :language: python
-    :lines: 11-
+    :lines: 4-9, 17-
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/reportlab_2.py>`
@@ -126,6 +127,7 @@ Usage example:
 
 .. literalinclude:: _static/examples/creating_pdf/pillow_1.py
     :language: python
+    :lines: 3-6, 10-
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/pillow_1.py>`
@@ -156,7 +158,7 @@ See the example below for usage examples:
 
 .. literalinclude:: _static/examples/creating_pdf/pillow_3.py
     :language: python
-    :lines: 10-
+    :lines: 3-8, 16-
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/pillow_3.py>`
@@ -171,6 +173,7 @@ rescue:
 
 .. literalinclude:: _static/examples/creating_pdf/pillow_4.py
     :language: python
+    :lines: 2-3, 7-
 
 *See the full example*
 :download:`here <_static/examples/creating_pdf/pillow_4.py>`

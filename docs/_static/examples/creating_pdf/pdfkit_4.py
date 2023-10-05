@@ -1,14 +1,5 @@
 # Required imports
 from faker import Faker
-from faker_file.providers.pdf_file import PdfFileProvider
-from faker_file.providers.pdf_file.generators.pdfkit_generator import (
-    PdfkitPdfGenerator,
-)
-
-FAKER = Faker()  # Initialize Faker
-FAKER.add_provider(PdfFileProvider)  # Register PdfFileProvider
-
-# Additional imports
 from faker_file.base import DynamicTemplate
 from faker_file.contrib.pdf_file.pdfkit_snippets import (
     add_page_break,
@@ -16,6 +7,13 @@ from faker_file.contrib.pdf_file.pdfkit_snippets import (
     add_picture,
     add_table,
 )
+from faker_file.providers.pdf_file import PdfFileProvider
+from faker_file.providers.pdf_file.generators.pdfkit_generator import (
+    PdfkitPdfGenerator,
+)
+
+FAKER = Faker()  # Initialize Faker
+FAKER.add_provider(PdfFileProvider)  # Register PdfFileProvider
 
 # Create a PDF file with paragraph, picture, table and manual page breaks
 # in between the mentioned elements. The ``DynamicTemplate`` simply
