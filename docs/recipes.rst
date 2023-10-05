@@ -72,7 +72,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_2.py
     :language: python
-    :lines: 7-
+    :lines: 2, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_2.py>`
@@ -84,7 +84,7 @@ Create a ZIP file of 9 DOCX files with content generated from template
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_3.py
     :language: python
-    :lines: 7-
+    :lines: 2, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_3.py>`
@@ -104,7 +104,7 @@ contain 5 DOCX files.
 
 .. literalinclude:: _static/examples/recipes/create_zip_file_4.py
     :language: python
-    :lines: 7-
+    :lines: 2-5, 10-
 
 *See the full example*
 :download:`here <_static/examples/recipes/create_zip_file_4.py>`
