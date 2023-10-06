@@ -380,7 +380,7 @@ Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/mp3_file_edge_tts_1.py>`
@@ -413,7 +413,7 @@ Usage with custom MP3 generator class.
 
 .. literalinclude:: _static/examples/recipes/mp3_file_custom_1.py
     :language: python
-    :lines: 11-
+    :lines: 2, 4, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/mp3_file_custom_1.py>`
@@ -430,7 +430,7 @@ Pick a random file from a directory given
 
 .. literalinclude:: _static/examples/recipes/random_file_from_dir_1.py
     :language: python
-    :lines: 11-
+    :lines: 2, 4, 7, 12-
 
 *See the full example*
 :download:`here <_static/examples/recipes/random_file_from_dir_1.py>`
@@ -443,7 +443,7 @@ File from path given
 
 .. literalinclude:: _static/examples/recipes/file_from_path_1.py
     :language: python
-    :lines: 10-
+    :lines: 3-4, 7, 11-
 
 *See the full example*
 :download:`here <_static/examples/recipes/file_from_path_1.py>`
