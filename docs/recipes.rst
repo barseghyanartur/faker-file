@@ -501,7 +501,7 @@ See the following example:
 
 .. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
     :language: python
-    :lines: 19-
+    :lines: 2-4, 9, 15, 22-
 
 *See the full example*
 :download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
@@ -529,7 +529,7 @@ however narrow that list by providing ``extensions`` argument:
 
 .. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
     :language: python
-    :lines: 25-
+    :lines: 23-
 
 *See the full example*
 :download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
@@ -551,7 +551,7 @@ Some well working options for ``model_path`` are:
 
 .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
     :language: python
-    :lines: 23-
+    :lines: 5-7, 25-
 
 *See the full example*
 :download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
@@ -575,15 +575,15 @@ of the file to build a test payload as shown in the example test below:
 *See the full example*
 :download:`here <_static/examples/recipes/raw_1.py>`
 
-Create a HTML file predefined template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a HTML file from predefined template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you want to generate a file in a format that is not (yet) supported,
 you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
 .. literalinclude:: _static/examples/recipes/generic_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/recipes/generic_file_1.py>`
@@ -594,7 +594,7 @@ AWS S3 storage
 ^^^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
@@ -620,7 +620,7 @@ Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
@@ -633,7 +633,7 @@ would be correct:
 
 .. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
     :language: python
-    :lines: 9-13
+    :lines: 8-12
 
 *See the full example*
 :download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
@@ -642,7 +642,7 @@ SFTP storage
 ^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/sftp_storage_1.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/sftp_storage_1.py>`

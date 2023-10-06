@@ -1,10 +1,9 @@
 from faker import Faker
 from faker_file.providers.txt_file import TxtFileProvider
+from faker_file.storages.aws_s3 import AWSS3Storage
 
 FAKER = Faker()
 FAKER.add_provider(TxtFileProvider)
-
-from faker_file.storages.aws_s3 import AWSS3Storage
 
 AWS_S3_STORAGE = AWSS3Storage(
     bucket_name="your-bucket-name",
