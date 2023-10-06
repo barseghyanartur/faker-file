@@ -1,6 +1,13 @@
 from multiprocessing import Pool
 
 from faker import Faker
+from faker_file.providers.helpers.inner import (
+    create_inner_docx_file,
+    create_inner_epub_file,
+    create_inner_pdf_file,
+    create_inner_txt_file,
+    fuzzy_choice_create_inner_file,
+)
 from faker_file.storages.filesystem import FileSystemStorage
 
 FAKER = Faker()
@@ -26,14 +33,6 @@ Best regards,
 {{address}}
 {{phone_number}}
 """
-
-from faker_file.providers.helpers.inner import (
-    create_inner_docx_file,
-    create_inner_epub_file,
-    create_inner_pdf_file,
-    create_inner_txt_file,
-    fuzzy_choice_create_inner_file,
-)
 
 kwargs = {"storage": STORAGE, "generator": FAKER, "content": TEMPLATE}
 

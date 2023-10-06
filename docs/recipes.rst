@@ -490,7 +490,7 @@ Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/files_multiprocessing_2.py
     :language: python
-    :lines: 30-
+    :lines: 4-10, 36-
 
 *See the full example*
 :download:`here <_static/examples/recipes/files_multiprocessing_2.py>`
