@@ -48,6 +48,7 @@ def execute_file(file_path, caplog):
         exec(code, global_vars)
 
 
+@pytest.mark.django_db
 @pytest.mark.parametrize("file_path", py_files)
 def test_dynamic_files(file_path, caplog, mock_gcs, mock_paramiko):
     execute_file(file_path, caplog)
