@@ -74,18 +74,18 @@ As everything else in life, it has pros, cons and alternatives.
 The pros
 ~~~~~~~~
 
-- **Data privacy**: Because it's fake - there's no risk of exposing sensitive user data
-  and no need to comply with data privacy regulations.
+- **Data privacy**: Because it's fake - there's no risk of exposing sensitive
+  user data and no need to comply with data privacy regulations.
 - **Scalability**: You can generate as much data as you need.
-- **Controll**: You have full control over the data, so you can test specific rare edge
-  cases.
+- **Controll**: You have full control over the data, so you can test specific
+  rare edge cases.
 
 The cons
 ~~~~~~~~
 
-- **Realism**: Because it's fake it does not always accurately represent real data
-  or contain the same patterns and anomalies. That could lead to less accurate
-  testing.
+- **Realism**: Because it's fake it does not always accurately represent real
+  data or contain the same patterns and anomalies. That could lead to less
+  accurate testing.
 - **Generation complexity**: Creating realistic data can be complex and
   time-consuming, depending on the domain and the complexity of the data
   structures.
@@ -325,9 +325,9 @@ files.
 - Content is generated dynamically.
 - Prefix the filenames in archive with ``nested_level_1_``.
 - Prefix the filename of the archive itself with ``nested_level_0_``.
-- Each of the `ZIP` files inside the `ZIP` file in their turn contains 5 other `ZIP`
-  files, prefixed with ``nested_level_2_``, which in their turn contain 2
-  DOCX files.
+- Each of the `ZIP` files inside the `ZIP` file in their turn contains 5 other
+  `ZIP` files, prefixed with ``nested_level_2_``, which in their turn contain
+  2 `DOCX` files.
 
 .. code-block:: python
 
@@ -382,7 +382,7 @@ Create a ZIP file with variety of different file types within
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 - 50 files in the ZIP archive (limited to DOCX, EPUB and TXT types).
 - Content is generated dynamically.
-- Prefix the filename of the archive itself with zzz_archive_.
+- Prefix the filename of the archive itself with `zzz_archive_`.
 - Inside the ZIP, put all files in directory zzz.
 
 .. code-block:: python
@@ -456,7 +456,11 @@ Another way to create a ZIP file with variety of different file types within
 
 Using raw=True features in tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If you pass ``raw=True`` argument to any provider or inner function, instead of creating a file, you will get bytes back (or to be totally correct, bytes-like object ``BytesValue``, which is basically bytes enriched with meta-data). You could then use the bytes content of the file to build a test payload as shown in the example test below:
+If you pass ``raw=True`` argument to any provider or inner function, instead
+of creating a file, you will get bytes back (or to be totally correct,
+bytes-like object ``BytesValue``, which is basically bytes enriched with
+meta-data). You could then use the bytes content of the file to build a test
+payload as shown in the example test below:
 
 .. code-block:: python
 
@@ -596,7 +600,7 @@ CLI
 Even if you're not using automated testing, but still want to quickly
 generate a file with fake content, you could use faker-file:
 
-.. code-block:: sh+-
+.. code-block:: sh
 
   faker-file generate-completion
   source ~/faker_file_completion.sh
@@ -648,9 +652,9 @@ Recap/conclusion
 - Most likely, combination of `Faker`_, `factory_boy`_ and `faker-file`_ will
   do just fine for your MVP and even way beyond that (you have all in one:
   synthetic data + dynamic fixtures + generation of files).
-  This approach also saves you from thinking about where to store your test data,
-  and overall, makes your code more manageable and simplifies the development
-  process.
+  This approach also saves you from thinking about where to store your test
+  data, and overall, makes your code more manageable and simplifies the
+  development process.
 - If you need to test files in your project, think upfront about the details,
   such as amount of test files you will need, where to store them, how to store
   them, etc.

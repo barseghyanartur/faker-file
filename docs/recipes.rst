@@ -220,11 +220,11 @@ It takes a list of content modifiers
 (tuples): ``(func: Callable, kwargs: dict)``. Each callable should accept
 the following arguments:
 
-- provider: Faker ``Generator`` instance or ``Faker`` instance.
-- document: Document instance. Implementation specific.
-- data: Dictionary. Used primarily for observability.
-- counter: Integer. Index number of the content modifier.
-- **kwargs: Dictionary. Useful to pass implementation-specific arguments.
+- `provider`: Faker ``Generator`` instance or ``Faker`` instance.
+- `document`: Document instance. Implementation specific.
+- `data`: Dictionary. Used primarily for observability.
+- `counter`: Integer. Index number of the content modifier.
+- `**kwargs`: Dictionary. Useful to pass implementation-specific arguments.
 
 The following example shows how to generate a DOCX file with paragraph, table
 and image.

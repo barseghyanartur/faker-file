@@ -81,28 +81,34 @@ can be generally broken down by 2 categories:
 
 Image providers:
 
-+------+-------------------------+------------------+-------------------------------+
-| File | Graphic                 | Text             | Generator                     |
-| type |                         |                  |                               |
-+======+=========================+==================+===============================+
-| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | Pillow, WeasyPrint            |
-+------+-------------------------+------------------+-------------------------------+
-| GIF  | GraphicGifFileProvider  | GifFileProvider  | Pillow, WeasyPrint            |
-+------+-------------------------+------------------+-------------------------------+
-| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Pillow, Imagekit, WeasyPrint  |
-+------+-------------------------+------------------+-------------------------------+
-| JPEG | GraphicJpegFileProvider | JpegFileProvider | Pillow, Imagekit, WeasyPrint  |
-+------+-------------------------+------------------+-------------------------------+
-| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Pillow, Imagekit, WeasyPrint  |
-+------+-------------------------+------------------+-------------------------------+
-| PNG  | GraphicPngFileProvider  | PngFileProvider  | Pillow, Imagekit, WeasyPrint  |
-+------+-------------------------+------------------+-------------------------------+
-| SVG  | (not supported)         | SvgFileProvider  | Imagekit                      |
-+------+-------------------------+------------------+-------------------------------+
-| TIFF | GraphicTiffFileProvider | TiffFileProvider | Pillow, Imagekit*, WeasyPrint |
-+------+-------------------------+------------------+-------------------------------+
-| WEBP | GraphicWebpFileProvider | WebpFileProvider | Pillow, Imagekit*, WeasyPrint |
-+------+-------------------------+------------------+-------------------------------+
++------+-------------------------+------------------+-------------------------+
+| File | Graphic                 | Text             | Generator               |
+| type |                         |                  |                         |
++======+=========================+==================+=========================+
+| BMP  | GraphicBmpFileProvider  | BmpFileProvider  | Pillow, WeasyPrint      |
++------+-------------------------+------------------+-------------------------+
+| GIF  | GraphicGifFileProvider  | GifFileProvider  | Pillow, WeasyPrint      |
++------+-------------------------+------------------+-------------------------+
+| ICO  | GraphicIcoFileProvider  | IcoFileProvider  | Pillow, Imagekit,       |
+|      |                         |                  | WeasyPrint              |
++------+-------------------------+------------------+-------------------------+
+| JPEG | GraphicJpegFileProvider | JpegFileProvider | Pillow, Imagekit,       |
+|      |                         |                  | WeasyPrint              |
++------+-------------------------+------------------+-------------------------+
+| PDF  | GraphicPdfFileProvider  | PdfFileProvider  | Pillow, Imagekit,       |
+|      |                         |                  | WeasyPrint              |
++------+-------------------------+------------------+-------------------------+
+| PNG  | GraphicPngFileProvider  | PngFileProvider  | Pillow, Imagekit,       |
+|      |                         |                  | WeasyPrint              |
++------+-------------------------+------------------+-------------------------+
+| SVG  | (not supported)         | SvgFileProvider  | Imagekit                |
++------+-------------------------+------------------+-------------------------+
+| TIFF | GraphicTiffFileProvider | TiffFileProvider | Pillow, Imagekit*,      |
+|      |                         |                  | WeasyPrint              |
++------+-------------------------+------------------+-------------------------+
+| WEBP | GraphicWebpFileProvider | WebpFileProvider | Pillow, Imagekit*,      |
+|      |                         |                  | WeasyPrint              |
++------+-------------------------+------------------+-------------------------+
 
 .. note::
 
