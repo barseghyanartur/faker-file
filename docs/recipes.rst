@@ -458,7 +458,7 @@ BIN
 ^^^
 .. literalinclude:: _static/examples/recipes/file_of_size_bin_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/recipes/file_of_size_bin_1.py>`
@@ -467,7 +467,7 @@ TXT
 ^^^
 .. literalinclude:: _static/examples/recipes/file_of_size_txt_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
 :download:`here <_static/examples/recipes/file_of_size_txt_1.py>`
@@ -481,7 +481,7 @@ Generate 10 DOCX files
 
 .. literalinclude:: _static/examples/recipes/files_multiprocessing_1.py
     :language: python
-    :lines: 7-
+    :lines: 1, 4-6, 8-
 
 *See the full example*
 :download:`here <_static/examples/recipes/files_multiprocessing_1.py>`
