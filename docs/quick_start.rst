@@ -32,7 +32,9 @@ functions):
     :lines: 103-
 
 *See the full example*
-:download:`here <_static/examples/recipes/import_and_init_1.py>`
+:download:`here <_static/examples/quick_start/import_and_init_1.py>`
+
+----
 
 With ``factory_boy``
 ~~~~~~~~~~~~~~~~~~~~
