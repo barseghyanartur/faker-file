@@ -1,9 +1,7 @@
 from faker import Faker
-
-FAKER = Faker()
-
 from faker_file.providers.bin_file import BinFileProvider
 
+FAKER = Faker()
 FAKER.add_provider(BinFileProvider)
 
 bin_file = FAKER.bin_file(length=1024**2)  # 1 Mb

@@ -7,7 +7,7 @@ from faker_file.providers.pdf_file.generators.pil_generator import (
 FAKER = Faker()
 FAKER.add_provider(PdfFileProvider)
 
-file = FAKER.pdf_file(
+pdf_file = FAKER.pdf_file(
     pdf_generator_cls=PilPdfGenerator,
     pdf_generator_kwargs={
         "encoding": "utf8",

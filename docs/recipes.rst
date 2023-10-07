@@ -28,12 +28,12 @@ Create a TXT file with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content of the file is ``Lorem ipsum``.
 
-.. literalinclude:: _static/examples/recipes/create_txt_file_1.py
+.. literalinclude:: _static/examples/recipes/txt_file_1.py
     :language: python
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_txt_file_1.py>`
+:download:`here <_static/examples/recipes/txt_file_1.py>`
 
 Create a DOCX file with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,24 +42,24 @@ Create a DOCX file with dynamically generated content
 - Wrap lines after 80 chars.
 - Prefix the filename with ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/create_docx_file_1.py
+.. literalinclude:: _static/examples/recipes/docx_file_1.py
     :language: python
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_docx_file_1.py>`
+:download:`here <_static/examples/recipes/docx_file_1.py>`
 
 Create a ZIP file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the ZIP archive (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. literalinclude:: _static/examples/recipes/create_zip_file_1.py
+.. literalinclude:: _static/examples/recipes/zip_file_1.py
     :language: python
     :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_zip_file_1.py>`
+:download:`here <_static/examples/recipes/zip_file_1.py>`
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,24 +70,24 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the archive itself with ``zzz``.
 - Inside the ZIP, put all files in directory ``yyy``.
 
-.. literalinclude:: _static/examples/recipes/create_zip_file_2.py
+.. literalinclude:: _static/examples/recipes/zip_file_2.py
     :language: python
     :lines: 2, 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_zip_file_2.py>`
+:download:`here <_static/examples/recipes/zip_file_2.py>`
 
 Create a ZIP file of 9 DOCX files with content generated from template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 9 DOCX files in the ZIP archive.
 - Content is generated dynamically from given template.
 
-.. literalinclude:: _static/examples/recipes/create_zip_file_3.py
+.. literalinclude:: _static/examples/recipes/zip_file_3.py
     :language: python
     :lines: 2, 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_zip_file_3.py>`
+:download:`here <_static/examples/recipes/zip_file_3.py>`
 
 Create a nested ZIP file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,12 +102,12 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. literalinclude:: _static/examples/recipes/create_zip_file_4.py
+.. literalinclude:: _static/examples/recipes/zip_file_4.py
     :language: python
     :lines: 2-5, 10-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_zip_file_4.py>`
+:download:`here <_static/examples/recipes/zip_file_4.py>`
 
 Create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -116,12 +116,12 @@ Create a ZIP file with variety of different file types within
 - Prefix the filename of the archive itself with ``zzz_archive_``.
 - Inside the ZIP, put all files in directory ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/create_zip_file_5.py
+.. literalinclude:: _static/examples/recipes/zip_file_5.py
     :language: python
     :lines: 2-7, 9-10, 14-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_zip_file_5.py>`
+:download:`here <_static/examples/recipes/zip_file_5.py>`
 
 Another way to create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -130,12 +130,12 @@ Another way to create a ZIP file with variety of different file types within
 - Filename of the archive itself is ``alice-looking-through-the-glass.zip``.
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
-.. literalinclude:: _static/examples/recipes/create_zip_file_6.py
+.. literalinclude:: _static/examples/recipes/zip_file_6.py
     :language: python
     :lines: 2-6, 11-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_zip_file_6.py>`
+:download:`here <_static/examples/recipes/zip_file_6.py>`
 
 Note, that ``count`` argument (not shown in the example, but commonly
 accepted by inner functions) will be simply ignored here.
@@ -145,12 +145,12 @@ Create an EML file consisting of TXT files with static content
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. literalinclude:: _static/examples/recipes/create_eml_file_1.py
+.. literalinclude:: _static/examples/recipes/eml_file_1.py
     :language: python
     :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_eml_file_1.py>`
+:download:`here <_static/examples/recipes/eml_file_1.py>`
 
 Create a EML file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,12 +160,12 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filenames in email with ``xxx_``.
 - Prefix the filename of the email itself with ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/create_eml_file_2.py
+.. literalinclude:: _static/examples/recipes/eml_file_2.py
     :language: python
     :lines: 3, 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_eml_file_2.py>`
+:download:`here <_static/examples/recipes/eml_file_2.py>`
 
 Create a nested EML file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,12 +180,12 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. literalinclude:: _static/examples/recipes/create_eml_file_3.py
+.. literalinclude:: _static/examples/recipes/eml_file_3.py
     :language: python
     :lines: 3-6, 10-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_eml_file_3.py>`
+:download:`here <_static/examples/recipes/eml_file_3.py>`
 
 Create an EML file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -193,24 +193,24 @@ Create an EML file with variety of different file types within
 - Content is generated dynamically.
 - Prefix the filename of the EML itself with ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/create_eml_file_4.py
+.. literalinclude:: _static/examples/recipes/eml_file_4.py
     :language: python
     :lines: 3-8, 17-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_eml_file_4.py>`
+:download:`here <_static/examples/recipes/eml_file_4.py>`
 
 Create a PDF file with predefined template containing dynamic fixtures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
-.. literalinclude:: _static/examples/recipes/create_pdf_file_1.py
+.. literalinclude:: _static/examples/recipes/pdf_file_1.py
     :language: python
     :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_pdf_file_1.py>`
+:download:`here <_static/examples/recipes/pdf_file_1.py>`
 
 Create a DOCX file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -220,54 +220,54 @@ It takes a list of content modifiers
 (tuples): ``(func: Callable, kwargs: dict)``. Each callable should accept
 the following arguments:
 
-- provider: Faker ``Generator`` instance or ``Faker`` instance.
-- document: Document instance. Implementation specific.
-- data: Dictionary. Used primarily for observability.
-- counter: Integer. Index number of the content modifier.
-- **kwargs: Dictionary. Useful to pass implementation-specific arguments.
+- `provider`: Faker ``Generator`` instance or ``Faker`` instance.
+- `document`: Document instance. Implementation specific.
+- `data`: Dictionary. Used primarily for observability.
+- `counter`: Integer. Index number of the content modifier.
+- `**kwargs`: Dictionary. Useful to pass implementation-specific arguments.
 
 The following example shows how to generate a DOCX file with paragraph, table
 and image.
 
-.. literalinclude:: _static/examples/recipes/create_docx_file_mixed_1.py
+.. literalinclude:: _static/examples/recipes/docx_file_mixed_1.py
     :language: python
     :lines: 2-8, 13-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_docx_file_mixed_1.py>`
+:download:`here <_static/examples/recipes/docx_file_mixed_1.py>`
 
 Create a ODT file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Similarly to previous section, the following example shows how to generate an
 ODT file with table and image.
 
-.. literalinclude:: _static/examples/recipes/create_odt_file_mixed_1.py
+.. literalinclude:: _static/examples/recipes/odt_file_mixed_1.py
     :language: python
     :lines: 3-10, 12-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_odt_file_mixed_1.py>`
+:download:`here <_static/examples/recipes/odt_file_mixed_1.py>`
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: _static/examples/recipes/create_pdf_file_reportlab_1.py
+.. literalinclude:: _static/examples/recipes/pdf_file_reportlab_1.py
     :language: python
     :lines: 3-5, 9-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_pdf_file_reportlab_1.py>`
+:download:`here <_static/examples/recipes/pdf_file_reportlab_1.py>`
 
 Create a PDF using `pdfkit` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Note, that at the moment, ``pdfkit`` is the default generator. However,
 you could set it explicitly as follows:
 
-.. literalinclude:: _static/examples/recipes/create_pdf_file_pdfkit_1.py
+.. literalinclude:: _static/examples/recipes/pdf_file_pdfkit_1.py
     :language: python
     :lines: 3-5, 9-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_pdf_file_pdfkit_1.py>`
+:download:`here <_static/examples/recipes/pdf_file_pdfkit_1.py>`
 
 Create a graphic PDF file using `Pillow`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -276,23 +276,23 @@ content. However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. literalinclude:: _static/examples/recipes/create_pdf_file_pillow_1.py
+.. literalinclude:: _static/examples/recipes/pdf_file_pillow_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_pdf_file_pillow_1.py>`
+:download:`here <_static/examples/recipes/pdf_file_pillow_1.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours). One of the most useful arguments supported is
 ``size``.
 
-.. literalinclude:: _static/examples/recipes/create_pdf_file_pillow_2.py
+.. literalinclude:: _static/examples/recipes/pdf_file_pillow_2.py
     :language: python
-    :lines: 9-
+    :lines: 7-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_pdf_file_pillow_2.py>`
+:download:`here <_static/examples/recipes/pdf_file_pillow_2.py>`
 
 Graphic providers
 ~~~~~~~~~~~~~~~~~
@@ -305,70 +305,70 @@ Supported files formats are: `BMP`, `GIF`, `ICO`, `JPEG`, `PDF`, `PNG`, `SVG`
 
 Create an ICO file
 ^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_graphic_ico_file_1.py
+.. literalinclude:: _static/examples/recipes/graphic_ico_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_graphic_ico_file_1.py>`
+:download:`here <_static/examples/recipes/graphic_ico_file_1.py>`
 
 Create a JPEG file
 ^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_graphic_jpeg_file_1.py
+.. literalinclude:: _static/examples/recipes/graphic_jpeg_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_graphic_jpeg_file_1.py>`
+:download:`here <_static/examples/recipes/graphic_jpeg_file_1.py>`
 
 Create a PNG file
 ^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_graphic_png_file_1.py
+.. literalinclude:: _static/examples/recipes/graphic_png_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_graphic_png_file_1.py>`
+:download:`here <_static/examples/recipes/graphic_png_file_1.py>`
 
 Create a WEBP file
 ^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_graphic_webp_file_1.py
+.. literalinclude:: _static/examples/recipes/graphic_webp_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_graphic_webp_file_1.py>`
+:download:`here <_static/examples/recipes/graphic_webp_file_1.py>`
 
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
-.. literalinclude:: _static/examples/recipes/create_mp3_file_1.py
+.. literalinclude:: _static/examples/recipes/mp3_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_mp3_file_1.py>`
+:download:`here <_static/examples/recipes/mp3_file_1.py>`
 
 Create a MP3 file by explicitly specifying MP3 generator class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Google Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_mp3_file_gtts_1.py
+.. literalinclude:: _static/examples/recipes/mp3_file_gtts_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_mp3_file_gtts_1.py>`
+:download:`here <_static/examples/recipes/mp3_file_gtts_1.py>`
 
 ----
 
 You can tune arguments too:
 
-.. literalinclude:: _static/examples/recipes/create_mp3_file_gtts_2.py
+.. literalinclude:: _static/examples/recipes/mp3_file_gtts_2.py
     :language: python
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_mp3_file_gtts_2.py>`
+:download:`here <_static/examples/recipes/mp3_file_gtts_2.py>`
 
 Refer to https://gtts.readthedocs.io/en/latest/module.html#languages-gtts-lang
 for list of accepted values for ``lang`` argument.
@@ -378,23 +378,23 @@ for list of accepted values for ``tld`` argument.
 
 Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_mp3_file_edge_tts_1.py
+.. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_1.py
     :language: python
-    :lines: 7-
+    :lines: 3-5, 9-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_mp3_file_edge_tts_1.py>`
+:download:`here <_static/examples/recipes/mp3_file_edge_tts_1.py>`
 
 ----
 
 You can tune arguments too:
 
-.. literalinclude:: _static/examples/recipes/create_mp3_file_edge_tts_2.py
+.. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_2.py
     :language: python
     :lines: 10-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_mp3_file_edge_tts_2.py>`
+:download:`here <_static/examples/recipes/mp3_file_edge_tts_2.py>`
 
 Run ``edge-tts -l`` from terminal for list of available voices.
 
@@ -411,12 +411,12 @@ services `here <https://cloud.google.com/text-to-speech/quotas>`_.
 
 Usage with custom MP3 generator class.
 
-.. literalinclude:: _static/examples/recipes/create_mp3_file_custom_1.py
+.. literalinclude:: _static/examples/recipes/mp3_file_custom_1.py
     :language: python
-    :lines: 11-
+    :lines: 2, 4, 9-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_mp3_file_custom_1.py>`
+:download:`here <_static/examples/recipes/mp3_file_custom_1.py>`
 
 See exact implementation of
 `marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/customizations/marytts_mp3_generator>`_
@@ -428,12 +428,12 @@ Pick a random file from a directory given
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. literalinclude:: _static/examples/recipes/create_random_file_from_dir_1.py
+.. literalinclude:: _static/examples/recipes/random_file_from_dir_1.py
     :language: python
-    :lines: 11-
+    :lines: 2, 4, 7, 12-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_random_file_from_dir_1.py>`
+:download:`here <_static/examples/recipes/random_file_from_dir_1.py>`
 
 File from path given
 ~~~~~~~~~~~~~~~~~~~~
@@ -441,12 +441,12 @@ File from path given
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. literalinclude:: _static/examples/recipes/create_file_from_path_1.py
+.. literalinclude:: _static/examples/recipes/file_from_path_1.py
     :language: python
-    :lines: 10-
+    :lines: 3-4, 7, 11-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_file_from_path_1.py>`
+:download:`here <_static/examples/recipes/file_from_path_1.py>`
 
 Generate a file of a certain size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -456,21 +456,21 @@ approximate.
 
 BIN
 ^^^
-.. literalinclude:: _static/examples/recipes/create_file_of_size_bin_1.py
+.. literalinclude:: _static/examples/recipes/file_of_size_bin_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_file_of_size_bin_1.py>`
+:download:`here <_static/examples/recipes/file_of_size_bin_1.py>`
 
 TXT
 ^^^
-.. literalinclude:: _static/examples/recipes/create_file_of_size_txt_1.py
+.. literalinclude:: _static/examples/recipes/file_of_size_txt_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_file_of_size_txt_1.py>`
+:download:`here <_static/examples/recipes/file_of_size_txt_1.py>`
 
 Generate a files using multiprocessing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,21 +479,21 @@ Generate 10 DOCX files
 - Use template.
 - Generate 10 DOCX files.
 
-.. literalinclude:: _static/examples/recipes/create_files_multiprocessing_1.py
+.. literalinclude:: _static/examples/recipes/files_multiprocessing_1.py
     :language: python
-    :lines: 7-
+    :lines: 1, 4-6, 8-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_files_multiprocessing_1.py>`
+:download:`here <_static/examples/recipes/files_multiprocessing_1.py>`
 
 Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/create_files_multiprocessing_2.py
+.. literalinclude:: _static/examples/recipes/files_multiprocessing_2.py
     :language: python
-    :lines: 30-
+    :lines: 4-10, 36-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_files_multiprocessing_2.py>`
+:download:`here <_static/examples/recipes/files_multiprocessing_2.py>`
 
 Generating files from existing documents using NLP augmentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -501,7 +501,7 @@ See the following example:
 
 .. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
     :language: python
-    :lines: 19-
+    :lines: 2-4, 9, 15, 22-
 
 *See the full example*
 :download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
@@ -529,7 +529,7 @@ however narrow that list by providing ``extensions`` argument:
 
 .. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
     :language: python
-    :lines: 25-
+    :lines: 23-
 
 *See the full example*
 :download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
@@ -551,7 +551,7 @@ Some well working options for ``model_path`` are:
 
 .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
     :language: python
-    :lines: 23-
+    :lines: 5-7, 25-
 
 *See the full example*
 :download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
@@ -568,25 +568,25 @@ totally correct, ``bytes``-like object ``BytesValue``, which is basically
 bytes enriched with meta-data). You could then use the ``bytes`` content
 of the file to build a test payload as shown in the example test below:
 
-.. literalinclude:: _static/examples/recipes/create_raw_1.py
+.. literalinclude:: _static/examples/recipes/raw_1.py
     :language: python
     :lines: 16-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_raw_1.py>`
+:download:`here <_static/examples/recipes/raw_1.py>`
 
-Create a HTML file predefined template
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a HTML file from predefined template
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you want to generate a file in a format that is not (yet) supported,
 you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
-.. literalinclude:: _static/examples/recipes/create_generic_file_1.py
+.. literalinclude:: _static/examples/recipes/generic_file_1.py
     :language: python
-    :lines: 5-
+    :lines: 2-3, 5-
 
 *See the full example*
-:download:`here <_static/examples/recipes/create_generic_file_1.py>`
+:download:`here <_static/examples/recipes/generic_file_1.py>`
 
 Working with storages
 ~~~~~~~~~~~~~~~~~~~~~
@@ -594,7 +594,7 @@ AWS S3 storage
 ^^^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
@@ -620,7 +620,7 @@ Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
@@ -633,7 +633,7 @@ would be correct:
 
 .. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
     :language: python
-    :lines: 9-13
+    :lines: 8-12
 
 *See the full example*
 :download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
@@ -642,7 +642,7 @@ SFTP storage
 ^^^^^^^^^^^^
 .. literalinclude:: _static/examples/recipes/sftp_storage_1.py
     :language: python
-    :lines: 7-
+    :lines: 3, 7-
 
 *See the full example*
 :download:`here <_static/examples/recipes/sftp_storage_1.py>`
@@ -656,292 +656,91 @@ reside outside the ``MEDIA_ROOT`` directory (by default in ``/tmp/`` on
 Linux) and further operations with those files through Django will cause
 ``SuspiciousOperation`` exception.
 
+----
+
 Basic example
 ~~~~~~~~~~~~~
 
 Imaginary ``Django`` model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/factory_boy_models_1.py
+    :language: python
+    :lines: 4-11
 
-    from django.db import models
-
-    class Upload(models.Model):
-        """Upload model."""
-
-        name = models.CharField(max_length=255, unique=True)
-        description = models.TextField(null=True, blank=True)
-
-        # File
-        file = models.FileField(null=True)
-
-        class Meta:
-            verbose_name = "Upload"
-            verbose_name_plural = "Upload"
-
-        def __str__(self):
-            return self.name
+*See the full example*
+:download:`here <_static/examples/recipes/factory_boy_models_1.py>`
 
 Correspondent ``factory_boy`` factory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: python
-
-    from django.conf import settings
-
-    from factory import Faker
-    from factory.django import DjangoModelFactory
-
-    # Import all providers we want to use
-    from faker_file.providers.bin_file import BinFileProvider
-    from faker_file.providers.csv_file import CsvFileProvider
-    from faker_file.providers.docx_file import DocxFileProvider
-    from faker_file.providers.eml_file import EmlFileProvider
-    from faker_file.providers.epub_file import EpubFileProvider
-    from faker_file.providers.ico_file import IcoFileProvider
-    from faker_file.providers.jpeg_file import JpegFileProvider
-    from faker_file.providers.mp3_file import Mp3FileProvider
-    from faker_file.providers.ods_file import OdsFileProvider
-    from faker_file.providers.odt_file import OdtFileProvider
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.providers.png_file import PngFileProvider
-    from faker_file.providers.pptx_file import PptxFileProvider
-    from faker_file.providers.rtf_file import RtfFileProvider
-    from faker_file.providers.svg_file import SvgFileProvider
-    from faker_file.providers.txt_file import TxtFileProvider
-    from faker_file.providers.webp_file import WebpFileProvider
-    from faker_file.providers.xlsx_file import XlsxFileProvider
-    from faker_file.providers.zip_file import ZipFileProvider
-
-    # Import file storage, because we need to customize things in order for it
-    # to work with Django.
-    from faker_file.storages.filesystem import FileSystemStorage
-
-    from upload.models import Upload
-
-    # Add all providers we want to use
-    Faker.add_provider(BinFileProvider)
-    Faker.add_provider(CsvFileProvider)
-    Faker.add_provider(DocxFileProvider)
-    Faker.add_provider(EmlFileProvider)
-    Faker.add_provider(EpubFileProvider)
-    Faker.add_provider(IcoFileProvider)
-    Faker.add_provider(JpegFileProvider)
-    Faker.add_provider(Mp3FileProvider)
-    Faker.add_provider(OdsFileProvider)
-    Faker.add_provider(OdtFileProvider)
-    Faker.add_provider(PdfFileProvider)
-    Faker.add_provider(PngFileProvider)
-    Faker.add_provider(PptxFileProvider)
-    Faker.add_provider(RtfFileProvider)
-    Faker.add_provider(SvgFileProvider)
-    Faker.add_provider(TxtFileProvider)
-    Faker.add_provider(WebpFileProvider)
-    Faker.add_provider(XlsxFileProvider)
-    Faker.add_provider(ZipFileProvider)
-
-    # Define a file storage. When working with Django and FileSystemStorage
-    # you need to set the value of `root_path` argument to
-    # `settings.MEDIA_ROOT`.
-    STORAGE = FileSystemStorage(
-        root_path=settings.MEDIA_ROOT,
-        rel_path="tmp"
-    )
-
-    class UploadFactory(DjangoModelFactory):
-        """Upload factory."""
-
-        name = Faker("text", max_nb_chars=100)
-        description = Faker("text", max_nb_chars=1000)
-
-        class Meta:
-            model = Upload
-
-        class Params:
-            bin_file = Trait(file=Faker("bin_file", storage=STORAGE))
-            csv_file = Trait(file=Faker("csv_file", storage=STORAGE))
-            docx_file = Trait(file=Faker("docx_file", storage=STORAGE))
-            eml_file = Trait(file=Faker("eml_file", storage=STORAGE))
-            epub_file = Trait(file=Faker("epub_file", storage=STORAGE))
-            ico_file = Trait(file=Faker("ico_file", storage=STORAGE))
-            jpeg_file = Trait(file=Faker("jpeg_file", storage=STORAGE))
-            mp3_file = Trait(file=Faker("mp3_file", storage=STORAGE))
-            ods_file = Trait(file=Faker("ods_file", storage=STORAGE))
-            odt_file = Trait(file=Faker("odt_file", storage=STORAGE))
-            pdf_file = Trait(file=Faker("pdf_file", storage=STORAGE))
-            png_file = Trait(file=Faker("png_file", storage=STORAGE))
-            pptx_file = Trait(file=Faker("pptx_file", storage=STORAGE))
-            rtf_file = Trait(file=Faker("rtf_file", storage=STORAGE))
-            svg_file = Trait(file=Faker("svg_file", storage=STORAGE))
-            txt_file = Trait(file=Faker("txt_file", storage=STORAGE))
-            webp_file = Trait(file=Faker("webp_file", storage=STORAGE))
-            xlsx_file = Trait(file=Faker("xlsx_file", storage=STORAGE))
-            zip_file = Trait(file=Faker("zip_file", storage=STORAGE))
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
+    :language: python
+    :lines: 1-87
 
 And then somewhere in your code:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
+    :language: python
+    :lines: 91-
 
-    UploadFactory(bin_file=True)  # Upload with BIN file
-    UploadFactory(docx_file=True)  # Upload with DOCX file
-    UploadFactory(jpeg_file=True)  # Upload with JPEG file
-    UploadFactory(zip_file=True)  # Upload with ZIP file
+*See the full example*
+:download:`here <_static/examples/recipes/factory_boy_factory_1.py>`
+
+----
 
 Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-    from factory import LazyAttribute
-    from faker import Faker
-    from random import choice
-
-    FAKER = Faker()
-
-    PROVIDER_CHOICES = [
-        lambda: BinFileProvider(FAKER).bin_file(storage=STORAGE),
-        lambda: CsvFileProvider(FAKER).csv_file(storage=STORAGE),
-        lambda: DocxFileProvider(FAKER).docx_file(storage=STORAGE),
-        lambda: EmlFileProvider(FAKER).eml_file(storage=STORAGE),
-        lambda: EpubFileProvider(FAKER).epub_file(storage=STORAGE),
-        lambda: IcoFileProvider(FAKER).ico_file(storage=STORAGE),
-        lambda: JpegFileProvider(FAKER).jpeg_file(storage=STORAGE),
-        lambda: Mp3FileProvider(FAKER).mp3_file(storage=STORAGE),
-        lambda: OdsFileProvider(FAKER).ods_file(storage=STORAGE),
-        lambda: OdtFileProvider(FAKER).odt_file(storage=STORAGE),
-        lambda: PdfFileProvider(FAKER).pdf_file(storage=STORAGE),
-        lambda: PngFileProvider(FAKER).png_file(storage=STORAGE),
-        lambda: PptxFileProvider(FAKER).pptx_file(storage=STORAGE),
-        lambda: RtfFileProvider(FAKER).rtf_file(storage=STORAGE),
-        lambda: SvgFileProvider(FAKER).svg_file(storage=STORAGE),
-        lambda: TxtFileProvider(FAKER).txt_file(storage=STORAGE),
-        lambda: XlsxFileProvider(FAKER).xlsx_file(storage=STORAGE),
-        lambda: ZipFileProvider(FAKER).zip_file(storage=STORAGE),
-    ]
-
-    def pick_random_provider(*args, **kwargs):
-        return choice(PROVIDER_CHOICES)()
-
-    class UploadFactory(DjangoModelFactory):
-        """Upload factory that randomly picks a file provider."""
-
-        # ...
-        class Params:
-            # ...
-            random_file = Trait(file=LazyAttribute(pick_random_provider))
-            # ...
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
+    :language: python
+    :lines: 1, 4, 6, 27, 30-49, 55-95
 
 And then somewhere in your code:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
+    :language: python
+    :lines: 98-
 
-    UploadFactory(random_file=True)  # Upload with randon file
+*See the full example*
+:download:`here <_static/examples/recipes/factory_boy_factory_2.py>`
 
 Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
+    :language: python
+    :lines: 7
 
-    from factory import Faker
-    from factory.django import DjangoModelFactory
-    from faker_file.providers.ods_file import OdsFileProvider
-
-    Faker._DEFAULT_LOCALE = "hy_AM"  # Set locale to Armenian
-
-    Faker.add_provider(OdsFileProvider)
-
-    class UploadFactory(DjangoModelFactory):
-        """Base Upload factory."""
-
-        name = Faker("text", max_nb_chars=100)
-        description = Faker("text", max_nb_chars=1000)
-        file = Faker("ods_file")
-
-        class Meta:
-            """Meta class."""
-
-            model = Upload
+*See the full example*
+:download:`here <_static/examples/recipes/factory_boy_factory_3.py>`
 
 Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Faker example with AWS S3 storage**
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
+    :language: python
+    :lines: 2, 4-
 
-    from django.conf import settings
-    from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.storages.aws_s3 import AWSS3Storage
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_3.py>`
 
-    FAKER = Faker()
-    STORAGE = AWSS3Storage(
-        bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
-        root_path="",
-        rel_path="",
-    )
-    FAKER.add_provider(PdfFileProvider)
-
-    file = FAKER.pdf_file(storage=STORAGE)
+----
 
 **factory-boy example with AWS S3 storage**
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
+    :language: python
+    :lines: 2, 4-6, 9-
 
-    import factory
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
 
-    from django.conf import settings
-    from factory import Faker
-    from factory.django import DjangoModelFactory
-    from faker_file.storages.aws_s3 import AWSS3Storage
-
-    from upload.models import Upload
-
-    STORAGE = AWSS3Storage(
-        bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
-        root_path="",
-        rel_path="",
-    )
-
-    Faker.add_provider(PdfFileProvider)
-
-    class UploadFactory(DjangoModelFactory):
-        name = Faker('word')
-        description = Faker('text')
-        file = Faker("pdf_file", storage=STORAGE)
-
-        class Meta:
-            model = Upload
-
-    upload = UploadFactory()
+----
 
 **Flexible storage selection**
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/flexible_storage_1.py
+    :language: python
+    :lines: 2-
 
-    from django.conf import settings
-    from django.core.files.storage import default_storage
-    from faker_file.storages.aws_s3 import AWSS3Storage
-    from faker_file.storages.filesystem import FileSystemStorage
-    from storages.backends.s3boto3 import S3Boto3Storage
-
-    # Faker doesn't know anything about Django. That's why, if we want to
-    # support remote storages, we need to manually check which file storage
-    # backend is used. If `Boto3` storage backend (of the `django-storages`
-    # package) is used we use the correspondent `AWSS3Storage` class of the
-    # `faker-file`.
-    # Otherwise, fall back to native file system storage (`FileSystemStorage`)
-    # of the `faker-file`.
-    if isinstance(default_storage, S3Boto3Storage):
-        STORAGE = AWSS3Storage(
-            bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
-            credentials={
-                "key_id": settings.AWS_ACCESS_KEY_ID,
-                "key_secret": settings.AWS_SECRET_ACCESS_KEY,
-            },
-            root_path="",
-            rel_path="tmp",
-        )
-    else:
-        STORAGE = FileSystemStorage(
-            root_path=settings.MEDIA_ROOT,
-            rel_path="tmp",
-        )
+*See the full example*
+:download:`here <_static/examples/recipes/flexible_storage_1.py>`

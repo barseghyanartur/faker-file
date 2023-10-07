@@ -1,9 +1,7 @@
 from faker import Faker
-
-FAKER = Faker()
-
 from faker_file.providers.pdf_file import GraphicPdfFileProvider
 
+FAKER = Faker()
 FAKER.add_provider(GraphicPdfFileProvider)
 
 pdf_file = FAKER.graphic_pdf_file()

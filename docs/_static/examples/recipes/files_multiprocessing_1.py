@@ -1,12 +1,11 @@
+from multiprocessing import Pool
+
 from faker import Faker
+from faker_file.providers.helpers.inner import create_inner_docx_file
 from faker_file.storages.filesystem import FileSystemStorage
 
 FAKER = Faker()
 STORAGE = FileSystemStorage()
-
-from multiprocessing import Pool
-
-from faker_file.providers.helpers.inner import create_inner_docx_file
 
 # Document template
 TEMPLATE = "Hey {{name}},\n{{text}},\nBest regards\n{{name}}"

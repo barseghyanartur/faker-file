@@ -1,9 +1,7 @@
 from faker import Faker
-
-FAKER = Faker()
-
 from faker_file.providers.txt_file import TxtFileProvider
 
+FAKER = Faker()
 FAKER.add_provider(TxtFileProvider)
 
 txt_file = FAKER.txt_file(max_nb_chars=1024**2)  # 1 Mb

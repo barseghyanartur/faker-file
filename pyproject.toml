@@ -45,7 +45,7 @@ known_first_party = [
     "marytts_mp3_generator",
 ]
 known_third_party = ["django", "factory", "faker_file"]
-skip = ["wsgi.py",]
+skip = ["wsgi.py", "builddocs/"]
 
 [tool.ruff]
 line-length = 80

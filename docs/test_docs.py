@@ -5,6 +5,7 @@ from unittest.mock import create_autospec
 
 import paramiko
 import pytest
+from django.test import override_settings
 from faker_file.registry import FILE_REGISTRY
 from moto import mock_s3
 
@@ -48,7 +49,9 @@ def execute_file(file_path, caplog):
         exec(code, global_vars)
 
 
+@pytest.mark.django_db
 @pytest.mark.parametrize("file_path", py_files)
+@override_settings(AWS_STORAGE_BUCKET_NAME="testing")
 def test_dynamic_files(file_path, caplog, mock_gcs, mock_paramiko):
     execute_file(file_path, caplog)
     FILE_REGISTRY.clean_up()

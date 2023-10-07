@@ -20,10 +20,10 @@ Best regards,
 {{phone_number}}
 """
 
-file = FAKER.docx_file(content=TEMPLATE)
+docx_file = FAKER.docx_file(content=TEMPLATE)
 
-print(file)  # Sample value: 'tmp/tmpgdctmfbp.docx'
-print(file.data["content"])
+print(docx_file)  # Sample value: 'tmp/tmpgdctmfbp.docx'
+print(docx_file.data["content"])
 # Sample value below:
 #  2009-05-14 Pettyberg, Puerto Rico
 #  Hello Lauren Williams,

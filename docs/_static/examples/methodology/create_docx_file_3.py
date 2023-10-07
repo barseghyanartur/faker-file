@@ -16,7 +16,7 @@ FAKER.add_provider(DocxFileProvider)
 # accepts a list of callables (such as ``add_paragraph``,
 # ``add_page_break``) and dictionary to be later on fed to the callables
 # as keyword arguments for customising the default values.
-file = FAKER.docx_file(
+docx_file = FAKER.docx_file(
     content=DynamicTemplate(
         [
             (add_paragraph, {}),  # Add paragraph
