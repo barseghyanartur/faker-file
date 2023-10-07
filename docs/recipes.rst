@@ -729,7 +729,7 @@ Other Django usage examples
 
 .. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
     :language: python
-    :lines: 2-6, 9-13, 17-
+    :lines: 2, 4-6, 9-
 
 *See the full example*
 :download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
@@ -740,7 +740,7 @@ Other Django usage examples
 
 .. literalinclude:: _static/examples/recipes/flexible_storage_1.py
     :language: python
-    :lines: 2, 5-
+    :lines: 2-
 
 *See the full example*
 :download:`here <_static/examples/recipes/flexible_storage_1.py>`
