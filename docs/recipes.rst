@@ -718,7 +718,7 @@ Other Django usage examples
 
 .. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
     :language: python
-    :lines: 6-10, 15-
+    :lines: 2, 4-
 
 *See the full example*
 :download:`here <_static/examples/recipes/aws_s3_storage_3.py>`
@@ -729,7 +729,7 @@ Other Django usage examples
 
 .. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
     :language: python
-    :lines: 2, 9-13, 17-
+    :lines: 2-6, 9-13, 17-
 
 *See the full example*
 :download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
@@ -738,33 +738,9 @@ Other Django usage examples
 
 **Flexible storage selection**
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/flexible_storage_1.py
+    :language: python
+    :lines: 2, 5-
 
-    from django.conf import settings
-    from django.core.files.storage import default_storage
-    from faker_file.storages.aws_s3 import AWSS3Storage
-    from faker_file.storages.filesystem import FileSystemStorage
-    from storages.backends.s3boto3 import S3Boto3Storage
-
-    # Faker doesn't know anything about Django. That's why, if we want to
-    # support remote storages, we need to manually check which file storage
-    # backend is used. If `Boto3` storage backend (of the `django-storages`
-    # package) is used we use the correspondent `AWSS3Storage` class of the
-    # `faker-file`.
-    # Otherwise, fall back to native file system storage (`FileSystemStorage`)
-    # of the `faker-file`.
-    if isinstance(default_storage, S3Boto3Storage):
-        STORAGE = AWSS3Storage(
-            bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
-            credentials={
-                "key_id": settings.AWS_ACCESS_KEY_ID,
-                "key_secret": settings.AWS_SECRET_ACCESS_KEY,
-            },
-            root_path="",
-            rel_path="tmp",
-        )
-    else:
-        STORAGE = FileSystemStorage(
-            root_path=settings.MEDIA_ROOT,
-            rel_path="tmp",
-        )
+*See the full example*
+:download:`here <_static/examples/recipes/flexible_storage_1.py>`
