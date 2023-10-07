@@ -731,7 +731,7 @@ Other Django usage examples
     )
     FAKER.add_provider(PdfFileProvider)
 
-    file = FAKER.pdf_file(storage=STORAGE)
+    pdf_file = FAKER.pdf_file(storage=STORAGE)
 
 **factory-boy example with AWS S3 storage**
 
