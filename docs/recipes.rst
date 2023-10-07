@@ -716,53 +716,25 @@ Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Faker example with AWS S3 storage**
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
+    :language: python
+    :lines: 6-10, 15-
 
-    from django.conf import settings
-    from faker import Faker
-    from faker_file.providers.pdf_file import PdfFileProvider
-    from faker_file.storages.aws_s3 import AWSS3Storage
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_3.py>`
 
-    FAKER = Faker()
-    STORAGE = AWSS3Storage(
-        bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
-        root_path="",
-        rel_path="",
-    )
-    FAKER.add_provider(PdfFileProvider)
-
-    pdf_file = FAKER.pdf_file(storage=STORAGE)
+----
 
 **factory-boy example with AWS S3 storage**
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
+    :language: python
+    :lines: 2, 9-13, 17-
 
-    import factory
+*See the full example*
+:download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
 
-    from django.conf import settings
-    from factory import Faker
-    from factory.django import DjangoModelFactory
-    from faker_file.storages.aws_s3 import AWSS3Storage
-
-    from upload.models import Upload
-
-    STORAGE = AWSS3Storage(
-        bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
-        root_path="",
-        rel_path="",
-    )
-
-    Faker.add_provider(PdfFileProvider)
-
-    class UploadFactory(DjangoModelFactory):
-        name = Faker('word')
-        description = Faker('text')
-        file = Faker("pdf_file", storage=STORAGE)
-
-        class Meta:
-            model = Upload
-
-    upload = UploadFactory()
+----
 
 **Flexible storage selection**
 
