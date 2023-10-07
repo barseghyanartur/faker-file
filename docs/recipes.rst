@@ -692,13 +692,13 @@ Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
     :language: python
-    :lines: 1, 4, 6-7, 36-56, 62-84
+    :lines: 1, 4, 6, 27, 30-49, 55-95
 
 And then somewhere in your code:
 
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
     :language: python
-    :lines: 87-
+    :lines: 98-
 
 *See the full example*
 :download:`here <_static/examples/recipes/factory_boy_factory_2.py>`

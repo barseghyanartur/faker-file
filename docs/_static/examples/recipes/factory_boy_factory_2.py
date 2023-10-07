@@ -4,8 +4,6 @@ from django.conf import settings
 from factory import Faker, LazyAttribute, Trait
 from factory.django import DjangoModelFactory
 from faker import Faker as OriginalFaker
-
-# Import all providers we want to use
 from faker_file.providers.bin_file import BinFileProvider
 from faker_file.providers.csv_file import CsvFileProvider
 from faker_file.providers.docx_file import DocxFileProvider
@@ -25,13 +23,9 @@ from faker_file.providers.txt_file import TxtFileProvider
 from faker_file.providers.webp_file import WebpFileProvider
 from faker_file.providers.xlsx_file import XlsxFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
-
-# Import file storage, because we need to customize things in order for it
-# to work with Django.
 from faker_file.storages.filesystem import FileSystemStorage
 
 from upload.models import Upload
-
 
 FAKER = OriginalFaker()
 FAKER.add_provider(BinFileProvider)
@@ -61,12 +55,29 @@ STORAGE = FileSystemStorage(root_path=settings.MEDIA_ROOT, rel_path="tmp")
 
 
 def random_file_generator(*args, **kwargs):
-    random_provider = choice([
-        "bin_file", "csv_file", "docx_file", "eml_file", "epub_file",
-        "ico_file", "jpeg_file", "mp3_file", "ods_file", "odt_file",
-        "pdf_file", "png_file", "pptx_file", "rtf_file", "svg_file",
-        "txt_file", "webp_file", "xlsx_file", "zip_file"
-    ])
+    random_provider = choice(
+        [
+            "bin_file",
+            "csv_file",
+            "docx_file",
+            "eml_file",
+            "epub_file",
+            "ico_file",
+            "jpeg_file",
+            "mp3_file",
+            "ods_file",
+            "odt_file",
+            "pdf_file",
+            "png_file",
+            "pptx_file",
+            "rtf_file",
+            "svg_file",
+            "txt_file",
+            "webp_file",
+            "xlsx_file",
+            "zip_file",
+        ]
+    )
     func = getattr(FAKER, random_provider)
     return func(storage=STORAGE)
 
