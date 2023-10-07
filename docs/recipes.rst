@@ -705,27 +705,12 @@ And then somewhere in your code:
 
 Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
+    :language: python
+    :lines: 7
 
-    from factory import Faker
-    from factory.django import DjangoModelFactory
-    from faker_file.providers.ods_file import OdsFileProvider
-
-    Faker._DEFAULT_LOCALE = "hy_AM"  # Set locale to Armenian
-
-    Faker.add_provider(OdsFileProvider)
-
-    class UploadFactory(DjangoModelFactory):
-        """Base Upload factory."""
-
-        name = Faker("text", max_nb_chars=100)
-        description = Faker("text", max_nb_chars=1000)
-        file = Faker("ods_file")
-
-        class Meta:
-            """Meta class."""
-
-            model = Upload
+*See the full example*
+:download:`here <_static/examples/recipes/factory_boy_factory_3.py>`
 
 Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
