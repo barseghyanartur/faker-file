@@ -690,53 +690,18 @@ And then somewhere in your code:
 
 Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: python
-
-    from factory import LazyAttribute
-    from faker import Faker
-    from random import choice
-
-    FAKER = Faker()
-
-    PROVIDER_CHOICES = [
-        lambda: BinFileProvider(FAKER).bin_file(storage=STORAGE),
-        lambda: CsvFileProvider(FAKER).csv_file(storage=STORAGE),
-        lambda: DocxFileProvider(FAKER).docx_file(storage=STORAGE),
-        lambda: EmlFileProvider(FAKER).eml_file(storage=STORAGE),
-        lambda: EpubFileProvider(FAKER).epub_file(storage=STORAGE),
-        lambda: IcoFileProvider(FAKER).ico_file(storage=STORAGE),
-        lambda: JpegFileProvider(FAKER).jpeg_file(storage=STORAGE),
-        lambda: Mp3FileProvider(FAKER).mp3_file(storage=STORAGE),
-        lambda: OdsFileProvider(FAKER).ods_file(storage=STORAGE),
-        lambda: OdtFileProvider(FAKER).odt_file(storage=STORAGE),
-        lambda: PdfFileProvider(FAKER).pdf_file(storage=STORAGE),
-        lambda: PngFileProvider(FAKER).png_file(storage=STORAGE),
-        lambda: PptxFileProvider(FAKER).pptx_file(storage=STORAGE),
-        lambda: RtfFileProvider(FAKER).rtf_file(storage=STORAGE),
-        lambda: SvgFileProvider(FAKER).svg_file(storage=STORAGE),
-        lambda: TxtFileProvider(FAKER).txt_file(storage=STORAGE),
-        lambda: XlsxFileProvider(FAKER).xlsx_file(storage=STORAGE),
-        lambda: ZipFileProvider(FAKER).zip_file(storage=STORAGE),
-    ]
-
-    def pick_random_provider(*args, **kwargs):
-        return choice(PROVIDER_CHOICES)()
-
-    class UploadFactory(DjangoModelFactory):
-        """Upload factory that randomly picks a file provider."""
-
-        # ...
-        class Params:
-            # ...
-            random_file = Trait(file=LazyAttribute(pick_random_provider))
-            # ...
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
+    :language: python
+    :lines: 1, 4, 6-7, 36-56, 62-84
 
 And then somewhere in your code:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
+    :language: python
+    :lines: 87-
 
-    UploadFactory(random_file=True)  # Upload with randon file
+*See the full example*
+:download:`here <_static/examples/recipes/factory_boy_factory_2.py>`
 
 Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~

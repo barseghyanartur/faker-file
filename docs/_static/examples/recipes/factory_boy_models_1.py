@@ -11,7 +11,7 @@ class Upload(models.Model):
     file = models.FileField(null=True)
 
     class Meta:
-        app_label = "uploads"
+        app_label = "uploads"  # Ignore this line when copying
         verbose_name = "Upload"
         verbose_name_plural = "Upload"
 
