@@ -57,7 +57,7 @@ With ``factory_boy``
 
 .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
     :language: python
-    :lines: 2-4, 46-49, 80-119
+    :lines: 2-4, 46-49, 80-118
 
 **Usage example**
 
