@@ -4,8 +4,6 @@ from faker_file.providers.odt_file import OdtFileProvider
 
 from upload.models import Upload
 
-Faker._DEFAULT_LOCALE = "hy_AM"  # Set locale to Armenian
-
 Faker.add_provider(OdtFileProvider)
 
 
@@ -23,4 +21,5 @@ class UploadFactory(DjangoModelFactory):
 
 
 # Example usage
-upload = UploadFactory()
+with Faker.override_default_locale("hy_AM"):  # Set locale to Armenian
+    upload = UploadFactory()

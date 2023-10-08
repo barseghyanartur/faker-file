@@ -707,7 +707,7 @@ Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
     :language: python
-    :lines: 7
+    :lines: 24-26
 
 *See the full example*
 :download:`here <_static/examples/recipes/factory_boy_factory_3.py>`
