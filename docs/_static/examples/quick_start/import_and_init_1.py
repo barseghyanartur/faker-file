@@ -1,6 +1,8 @@
 # Imports and initialization
 from faker import Faker
-from faker_file.providers.augment_file_from_dir import AugmentFileFromDirProvider
+from faker_file.providers.augment_file_from_dir import (
+    AugmentFileFromDirProvider,
+)
 from faker_file.providers.bin_file import BinFileProvider
 from faker_file.providers.bmp_file import BmpFileProvider
 from faker_file.providers.csv_file import CsvFileProvider
@@ -8,14 +10,26 @@ from faker_file.providers.docx_file import DocxFileProvider
 from faker_file.providers.eml_file import EmlFileProvider
 from faker_file.providers.epub_file import EpubFileProvider
 from faker_file.providers.gif_file import GifFileProvider
-from faker_file.providers.ico_file import GraphicIcoFileProvider, IcoFileProvider
-from faker_file.providers.jpeg_file import GraphicJpegFileProvider, JpegFileProvider
+from faker_file.providers.ico_file import (
+    GraphicIcoFileProvider,
+    IcoFileProvider,
+)
+from faker_file.providers.jpeg_file import (
+    GraphicJpegFileProvider,
+    JpegFileProvider,
+)
 from faker_file.providers.mp3_file import Mp3FileProvider
 from faker_file.providers.odp_file import OdpFileProvider
 from faker_file.providers.ods_file import OdsFileProvider
 from faker_file.providers.odt_file import OdtFileProvider
-from faker_file.providers.pdf_file import GraphicPdfFileProvider, PdfFileProvider
-from faker_file.providers.png_file import GraphicPngFileProvider, PngFileProvider
+from faker_file.providers.pdf_file import (
+    GraphicPdfFileProvider,
+    PdfFileProvider,
+)
+from faker_file.providers.png_file import (
+    GraphicPngFileProvider,
+    PngFileProvider,
+)
 from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.random_file_from_dir import RandomFileFromDirProvider
 from faker_file.providers.rtf_file import RtfFileProvider
@@ -23,7 +37,10 @@ from faker_file.providers.svg_file import SvgFileProvider
 from faker_file.providers.tar_file import TarFileProvider
 from faker_file.providers.tiff_file import TiffFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
-from faker_file.providers.webp_file import GraphicWebpFileProvider, WebpFileProvider
+from faker_file.providers.webp_file import (
+    GraphicWebpFileProvider,
+    WebpFileProvider,
+)
 from faker_file.providers.xlsx_file import XlsxFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
 
@@ -67,7 +84,9 @@ FAKER.odt_file()
 FAKER.txt_file()
 
 # Usage examples
-augmented_file = FAKER.augment_file_from_dir(source_dir_path="/tmp/tmp/", )
+augmented_file = FAKER.augment_file_from_dir(
+    source_dir_path="/tmp/tmp/",
+)
 bin_file = FAKER.bin_file()
 bmp_file = FAKER.bmp_file()
 csv_file = FAKER.csv_file()
@@ -89,7 +108,9 @@ odt_file = FAKER.odt_file()
 pdf_file = FAKER.pdf_file()
 png_file = FAKER.png_file()
 pptx_file = FAKER.pptx_file()
-random_file = FAKER.random_file_from_dir(source_dir_path="/tmp/tmp/", )
+random_file = FAKER.random_file_from_dir(
+    source_dir_path="/tmp/tmp/",
+)
 rtf_file = FAKER.rtf_file()
 svg_file = FAKER.svg_file()
 tar_file = FAKER.tar_file()
