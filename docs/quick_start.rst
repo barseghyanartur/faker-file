@@ -48,7 +48,7 @@ With ``factory_boy``
 
 .. literalinclude:: _static/examples/quick_start/factory_models_1.py
     :language: python
-    :lines: 1, 3-12
+    :lines: 1, 3-11
 
 *See the full example*
 :download:`here <_static/examples/quick_start/factory_models_1.py>`
