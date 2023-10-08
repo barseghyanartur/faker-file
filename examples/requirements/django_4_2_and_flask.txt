@@ -33,10 +33,13 @@ beautifulsoup4==4.12.2
 blinker==1.6.2
     # via flask
 boto3==1.26.142
-    # via pathy
+    # via
+    #   moto
+    #   pathy
 botocore==1.29.142
     # via
     #   boto3
+    #   moto
     #   s3transfer
 brotli==1.0.9
     # via fonttools
@@ -74,6 +77,7 @@ cryptography==40.0.2
     # via
     #   asyncssh
     #   azure-storage-blob
+    #   moto
     #   paramiko
 cssselect2==0.7.0
     # via weasyprint
@@ -183,6 +187,7 @@ jinja2==3.1.2
     # via
     #   flask
     #   flask-babelex
+    #   moto
     #   xml2epub
 jmespath==1.0.1
     # via
@@ -207,6 +212,8 @@ markupsafe==2.1.2
     #   wtforms
 mock==5.0.2
     # via pathy
+moto==4.2.5
+    # via -r examples/requirements/test.in
 multidict==6.0.4
     # via
     #   aiohttp
@@ -302,6 +309,7 @@ python-dateutil==2.8.2
     # via
     #   botocore
     #   faker
+    #   moto
 python-docx==0.8.11
     # via -r examples/requirements/common.in
 python-levenshtein==0.21.0
@@ -309,7 +317,9 @@ python-levenshtein==0.21.0
 python-pptx==0.6.21
     # via -r examples/requirements/common.in
 pyyaml==6.0
-    # via drf-spectacular
+    # via
+    #   drf-spectacular
+    #   responses
 rapidfuzz==3.1.1
     # via levenshtein
 reportlab==3.6.12
@@ -320,7 +330,11 @@ requests==2.31.0
     #   google-api-core
     #   google-cloud-storage
     #   gtts
+    #   moto
+    #   responses
     #   xml2epub
+responses==0.23.3
+    # via moto
 rsa==4.9
     # via google-auth
 s3transfer==0.6.1
@@ -376,6 +390,8 @@ typer==0.7.0
     #   typer-cli
 typer-cli==0.0.13
     # via pathy
+types-pyyaml==6.0.12.12
+    # via responses
 typing-extensions==4.6.2
     # via
     #   alembic
@@ -391,6 +407,7 @@ urllib3==1.26.16
     #   botocore
     #   google-auth
     #   requests
+    #   responses
 virtualenv==20.23.0
     # via tox
 weasyprint==59.0
@@ -401,13 +418,17 @@ webencodings==0.5.1
     #   html5lib
     #   tinycss2
 werkzeug==2.3.4
-    # via flask
+    # via
+    #   flask
+    #   moto
 wtforms==3.0.1
     # via flask-admin
 xlsxwriter==3.1.2
     # via python-pptx
 xml2epub==2.6.2
     # via -r examples/requirements/common.in
+xmltodict==0.13.0
+    # via moto
 yarl==1.9.2
     # via aiohttp
 zopfli==0.2.2
