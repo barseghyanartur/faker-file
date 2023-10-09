@@ -4,12 +4,13 @@ Release history and notes
 
 .. _Armenian genocide: https://en.wikipedia.org/wiki/Armenian_genocide
 .. _Blockade of the Republic of Artsakh: https://en.wikipedia.org/wiki/Blockade_of_the_Republic_of_Artsakh_(2022%E2%80%93present)
+.. _Pillow: https://pypi.org/project/pillow/
 .. _WeasyPrint: https://pypi.org/project/weasyprint/
 .. _imgkit: https://pypi.org/project/imgkit/
 .. _pdf2image: https://pypi.org/project/pdf2image/
 .. _pdfkit: https://pypi.org/project/pdfkit/
-.. _Pillow: https://pypi.org/project/pillow/
 .. _reportlab: https://pypi.org/project/reportlab/
+.. _wkhtmltopdf: https://wkhtmltopdf.org/
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -30,7 +31,8 @@ are used for versioning (schema follows below):
 ------
 
 - Improvements and fixes in the documentation.
-
+- Announcing feature plans to change default PDF and Image generators
+  to `Pillow`_ based ones, instead of `wkhtmltopdf`_ in version 0.18.
 
 0.17.8
 ------
