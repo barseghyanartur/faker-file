@@ -84,9 +84,9 @@ FAKER.odt_file()
 FAKER.txt_file()
 
 # Usage examples
-augmented_file = FAKER.augment_file_from_dir(
-    source_dir_path="/tmp/tmp/",
-)
+# augmented_file = FAKER.augment_file_from_dir(
+#     source_dir_path="/tmp/tmp/",
+# )
 bin_file = FAKER.bin_file()
 bmp_file = FAKER.bmp_file()
 csv_file = FAKER.csv_file()
@@ -121,10 +121,10 @@ xlsx_file = FAKER.xlsx_file()
 zip_file = FAKER.zip_file()
 
 # Usage examples bytes back
-augmented_raw = FAKER.augment_file_from_dir(
-    source_dir_path="/tmp/tmp/",
-    raw=True,
-)
+# augmented_raw = FAKER.augment_file_from_dir(
+#     source_dir_path="/tmp/tmp/",
+#     raw=True,
+# )
 bin_raw = FAKER.bin_file(raw=True)
 bmp_raw = FAKER.bmp_file(raw=True)
 csv_raw = FAKER.csv_file(raw=True)
