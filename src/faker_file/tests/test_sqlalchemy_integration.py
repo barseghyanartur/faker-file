@@ -2,13 +2,14 @@ from typing import Any, Callable, Dict
 from unittest import TestCase
 
 import pytest
-import sqlalchemy_factories as factories
 from faker import Faker
-from faker_file_admin import app
-from faker_file_admin.models import Upload
 from parametrize import parametrize
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+import sqlalchemy_factories as factories
+from faker_file_admin import app
+from faker_file_admin.models import Upload
 
 from ..registry import FILE_REGISTRY
 from ..storages.filesystem import FileSystemStorage

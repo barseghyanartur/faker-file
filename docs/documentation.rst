@@ -8,9 +8,10 @@ Contents:
 .. toctree::
    :maxdepth: 20
 
-   index
+   readme
    quick_start
    recipes
+   creating_images
    creating_pdf
    creating_docx
    creating_odt

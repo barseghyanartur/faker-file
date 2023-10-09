@@ -2,9 +2,8 @@ import os
 import tempfile
 
 import ffmpeg
-from speak2mary import MaryTTS
-
 from faker_file.providers.base.mp3_generator import BaseMp3Generator
+from speak2mary import MaryTTS
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"

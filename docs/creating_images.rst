@@ -62,44 +62,41 @@ or unicode characters.
 
 See the following full functional snippet for generating images using `imgkit`_.
 
-.. code-block:: python
-    :name: test_building_images_using_imgkit
+.. literalinclude:: _static/examples/creating_images/imgkit_1.py
+    :language: python
 
-    from faker import Faker
-    from faker_file.providers.png_file import PngFileProvider
-    from faker_file.providers.image.imgkit_generator import (
-        ImgkitImageGenerator,
-    )
-
-    FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(PngFileProvider)  # Register PngFileProvider
-
-    # Generate PNG file using `imgkit`
-    pdf_file = FAKER.png_file(image_generator_cls=ImgkitImageGenerator)
+*See the full example*
+:download:`here <_static/examples/creating_images/imgkit_1.py>`
 
 The generated PNG image will have 10,000 characters of text. The generated image
 will be as wide as needed to fit those 10,000 characters, but newlines are
 respected.
 
+----
+
 If you want image to be less wide, set value of ``wrap_chars_after`` to 80
 characters (or any other number that fits your needs). See the example below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_images/imgkit_2.py
+    :language: python
+    :lines: 8-
 
-    # Generate an image file, wrapping each line after 80 characters
-    png_file = FAKER.png_file(
-        image_generator_cls=ImgkitImageGenerator, wrap_chars_after=80
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/imgkit_2.py>`
+
+----
 
 To have a longer text, increase the value of ``max_nb_chars`` accordingly.
 See the example below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_images/imgkit_3.py
+    :language: python
+    :lines: 8-
 
-    # Generate an image file of 20,000 characters
-    png_file = FAKER.png_file(
-        image_generator_cls=ImgkitImageGenerator, max_nb_chars=20_000
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/imgkit_3.py>`
+
+----
 
 As mentioned above, it's possible to diversify the generated context with
 images, paragraphs, tables and pretty much everything that you could think of,
@@ -108,44 +105,12 @@ the box. In order to customise the blocks image file is built from,
 the ``DynamicTemplate`` class is used. See the example below for usage
 examples:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_images/imgkit_4.py
+    :language: python
+    :lines: 2-7, 13-
 
-    # Additional imports
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.image.imgkit_snippets import (
-        add_paragraph,
-        add_picture,
-        add_table,
-    )
-
-    # Create an image file with a paragraph, a picture and a table.
-    # The ``DynamicTemplate`` simply accepts a list of callables (such
-    # as ``add_paragraph``, ``add_picture``) and dictionary to be later on
-    # fed to the callables as keyword arguments for customising the default
-    # values.
-    png_file = FAKER.png_file(
-        image_generator_cls=ImgkitImageGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_picture, {}),  # Add picture
-                (add_table, {}),  # Add table
-            ]
-        )
-    )
-
-    # You could make the list as long as you like or simply multiply for
-    # easier repetition as follows:
-    png_file = FAKER.png_file(
-        image_generator_cls=ImgkitImageGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_picture, {}),  # Add picture
-                (add_table, {}),  # Add table
-            ] * 100  # Will repeat your config 100 times
-        )
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/imgkit_4.py>`
 
 Building mixed-content images using `WeasyPrint`_
 -------------------------------------------------
@@ -155,20 +120,14 @@ good alternative to.
 
 See the following snippet for generating images using `WeasyPrint`_.
 
-.. code-block:: python
-    :name: test_building_images_using_weasyprint
+.. literalinclude:: _static/examples/creating_images/weasyprint_1.py
+    :language: python
+    :lines: 2-4, 9-
 
-    from faker import Faker
-    from faker_file.providers.png_file import PngFileProvider
-    from faker_file.providers.image.weasyprint_generator import (
-        WeasyPrintImageGenerator,
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/weasyprint_1.py>`
 
-    FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(PngFileProvider)  # Register provider
-
-    # Generate image file using `WeasyPrint`
-    png_file = FAKER.png_file(image_generator_cls=WeasyPrintImageGenerator)
+----
 
 All examples shown for `imgkit`_ apply for `WeasyPrint`_ generator, however
 when building images files from blocks (paragraphs, images and tables), the
@@ -180,120 +139,47 @@ think of, although currently only images, paragraphs and tables are supported.
 In order to customise the blocks image file is built from, the
 ``DynamicTemplate`` class is used. See the example below for usage examples:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_images/weasyprint_2.py
+    :language: python
+    :lines: 3-7, 15-
 
-    # Additional imports
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.image.weasyprint_snippets import (
-        add_paragraph,
-        add_picture,
-        add_table,
-    )
-
-    # Create an image file with paragraph, picture and table.
-    # The ``DynamicTemplate`` simply accepts a list of callables (such
-    # as ``add_paragraph``, ``add_picture``) and dictionary to be later on
-    # fed to the callables as keyword arguments for customising the default
-    # values.
-    png_file = FAKER.png_file(
-        image_generator_cls=WeasyPrintImageGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_picture, {}),  # Add picture
-                (add_table, {}),  # Add table
-            ]
-        )
-    )
-
-    # You could make the list as long as you like or simply multiply for
-    # easier repetition as follows:
-    png_file = FAKER.png_file(
-        image_generator_cls=WeasyPrintImageGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_picture, {}),  # Add picture
-                (add_table, {}),  # Add table
-            ] * 100
-        )
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/weasyprint_2.py>`
 
 Building mixed-content images using `Pillow`_
 ---------------------------------------------
 Usage example:
 
-.. code-block:: python
-    :name: test_building_images_using_pillow
+.. literalinclude:: _static/examples/creating_images/pillow_1.py
+    :language: python
+    :lines: 2, 7-
 
-    from faker import Faker
-    from faker_file.providers.png_file import PngFileProvider
-    from faker_file.providers.image.pil_generator import PilImageGenerator
+*See the full example*
+:download:`here <_static/examples/creating_images/pillow_1.py>`
 
-    FAKER = Faker()
-    FAKER.add_provider(PngFileProvider)
-
-    png_file = FAKER.png_file(image_generator_cls=PilImageGenerator)
+----
 
 With options:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_images/pillow_2.py
+    :language: python
+    :lines: 8-
 
-    png_file = FAKER.png_file(
-        image_generator_cls=PilImageGenerator,
-        image_generator_kwargs={
-            "encoding": "utf8",
-            "font_size": 14,
-            "page_width": 800,
-            "page_height": 1200,
-            "line_height": 16,
-            "spacing": 5,
-        },
-        wrap_chars_after=100,
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/pillow_2.py>`
+
+----
 
 All examples shown for `imgkit`_ and `WeasyPrint`_ apply to `Pillow`_ generator,
 however when building image files from blocks (paragraphs, images and tables),
 the imports shall be adjusted. See the example below:
 
-.. code-block:: python
+.. literalinclude:: _static/examples/creating_images/pillow_3.py
+    :language: python
+    :lines: 3-7, 13-
 
-    # Additional imports
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.png_file.pil_snippets import (
-        add_paragraph,
-        add_picture,
-        add_table,
-    )
-
-    # Create an image file with paragraph, picture and table.
-    # The ``DynamicTemplate`` simply accepts a list of callables (such as
-    # ``add_paragraph``, ``add_picture``) and dictionary to be later on fed
-    # to the callables as keyword arguments for customising the default
-    # values.
-    png_file = FAKER.png_file(
-        image_generator_cls=PilImageGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_picture, {}),  # Add picture
-                (add_table, {}),  # Add table
-            ]
-        )
-    )
-
-    # You could make the list as long as you like or simply multiply for
-    # easier repetition as follows:
-    png_file = FAKER.png_file(
-        image_generator_cls=PilImageGenerator,
-        content=DynamicTemplate(
-            [
-                (add_paragraph, {}),  # Add paragraph
-                (add_picture, {}),  # Add picture
-                (add_table, {}),  # Add table
-            ] * 100
-        )
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/pillow_3.py>`
 
 Creating graphics-only images using `Pillow`_
 ---------------------------------------------
@@ -302,98 +188,34 @@ files would not contain text, so don't use it when you need text based content.
 However, sometimes you just need a valid image file, without caring much about
 the content. That's where graphic image providers comes to rescue:
 
-.. code-block:: python
-    :name: test_building_images_with_graphics_using_pillow
+.. literalinclude:: _static/examples/creating_images/pillow_4.py
+    :language: python
+    :lines: 2-3, 5-
 
-    from faker import Faker
-    from faker_file.providers.png_file import GraphicPngFileProvider
-
-    FAKER = Faker() # Initialize Faker
-    FAKER.add_provider(GraphicPngFileProvider)  # Register provider
-
-    png_file = FAKER.graphic_png_file()
+*See the full example*
+:download:`here <_static/examples/creating_images/pillow_4.py>`
 
 The generated file will contain a random graphic (consisting of lines and
-shapes of different colours). One of the most useful arguments supported is
-``size``.
+shapes of different colours).
 
-.. code-block:: python
+----
 
-    png_file = FAKER.graphic_png_file(
-        size=(800, 800),
-    )
+One of the most useful arguments supported is ``size``.
+
+.. literalinclude:: _static/examples/creating_images/pillow_5.py
+    :language: python
+    :lines: 7-
+
+*See the full example*
+:download:`here <_static/examples/creating_images/pillow_5.py>`
 
 Augment existing images
 -----------------------
 Augment the input image with a series of random augmentation methods.
 
-.. code-block:: python
-    :name: test_augment_images_using_pillow
+.. literalinclude:: _static/examples/creating_images/augment_1.py
+    :language: python
+    :lines: 2-15, 17, 19-20, 28-
 
-    from faker import Faker
-    from faker_file.base import DynamicTemplate
-    from faker_file.contrib.pdf_file.pil_snippets import *
-    from faker_file.providers.image.augment import (
-        flip_horizontal,
-        flip_vertical,
-        decrease_contrast,
-        add_brightness,
-        resize_width,
-        resize_height,
-    )
-    from faker_file.providers.image.pil_generator import PilImageGenerator
-    from faker_file.providers.png_file import (
-        GraphicPngFileProvider,
-        PngFileProvider,
-    )
-    from faker_file.providers.augment_image_from_path import (
-        AugmentImageFromPathProvider
-    )
-    from faker_file.providers.augment_random_image_from_dir import (
-        AugmentRandomImageFromDirProvider
-    )
-
-    FAKER = Faker()
-    FAKER.add_provider(PngFileProvider)
-    FAKER.add_provider(GraphicPngFileProvider)
-    FAKER.add_provider(AugmentImageFromPathProvider)
-    FAKER.add_provider(AugmentRandomImageFromDirProvider)
-
-    # Create a couple of graphic images to augment later on.
-    FAKER.graphic_png_file(basename="01")  # One named 01.png
-    # And 5 more with random names.
-    for __ in range(5):
-        FAKER.graphic_png_file()
-
-    # We could have also assumed that images directory exists and contains
-    # image files, amount which 01.png. Augmentations will be applied
-    # sequentially, one by one until all fulfilled. If you wish to apply only
-    # a random number of augmentations, but not all, pass the `num_steps`
-    # argument, with value less than the number of `augmentations` provided.
-    augmented_image_file = FAKER.augment_image_from_path(
-        path="/tmp/tmp/01.png",
-        augmentations=[
-            (flip_horizontal, {}),
-            (flip_vertical, {}),
-            (decrease_contrast, {}),
-            (add_brightness, {}),
-            (resize_width, {"lower": 0.9, "upper": 1.1}),
-            (resize_height, {"lower": 0.9, "upper": 1.1}),
-        ],
-        prefix="augmented_image_01_",
-        # num_steps=3,
-    )
-
-    augmented_random_image_file = FAKER.augment_random_image_from_dir(
-        source_dir_path="/tmp/tmp/",
-        augmentations=[
-            (flip_horizontal, {}),
-            (flip_vertical, {}),
-            (decrease_contrast, {}),
-            (add_brightness, {}),
-            (resize_width, {"lower": 0.9, "upper": 1.1}),
-            (resize_height, {"lower": 0.9, "upper": 1.1}),
-        ],
-        prefix="augmented_random_image_",
-        # num_steps=3,
-    )
+*See the full example*
+:download:`here <_static/examples/creating_images/augment_1.py>`
