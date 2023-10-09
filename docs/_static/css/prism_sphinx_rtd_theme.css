@@ -1,5 +1,7 @@
 /**
- * Sphinx RTD theme.
+ * Python Sphinx RTD theme for PrismJs.
+ *
+ * The original sphinx-rtd-theme (https://github.com/readthedocs/sphinx_rtd_theme).
  *
  * Adapted from PrismJS prism-themes (https://github.com/PrismJS/prism-themes),
  * specifically prism-gruvbox-light.css theme.
@@ -10,7 +12,7 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #3c3836; /* fg1 / fg */
+	color: #3c3836;
 	font-family: Consolas, Monaco, "Andale Mono", monospace;
 	direction: ltr;
 	text-align: left;
@@ -31,16 +33,16 @@ pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection {
-	color: #282828; /* fg0 */
-	background: #a89984; /* bg4 */
+	color: #282828;
+	background: #a89984;
 }
 
 pre[class*="language-"]::selection,
 pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
-	color: #282828; /* fg0 */
-	background: #a89984; /* bg4 */
+	color: #282828;
+	background: #a89984;
 }
 
 /* Code blocks */
@@ -52,7 +54,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #eeffcc; /* bg0_h */
+	background: #eeffcc;
 	border: none !important;
     box-shadow: none !important;
 }
@@ -70,7 +72,7 @@ pre[class*="language-"] {
 .token.comment,
 .token.prolog,
 .token.cdata {
-	color: #7c6f64; /* fg4 / gray1 */
+	color: #7c6f64;
 }
 
 .token.keyword {
@@ -80,17 +82,16 @@ pre[class*="language-"] {
 
 .token.delimiter,
 .token.boolean,
-/*.token.keyword,*/
 .token.selector,
 .token.important,
 .token.atrule {
-	color: #9d0006; /* red2 */
+	color: #9d0006;
 }
 
 .token.operator,
 .token.punctuation,
 .token.attr-name {
-	color: #7c6f64; /* fg4 / gray1 */
+	color: #7c6f64;
 	background-color: #eeffcc;
 }
 
@@ -98,45 +99,45 @@ pre[class*="language-"] {
 .token.tag .punctuation,
 .token.doctype,
 .token.builtin {
-	color: #b57614; /* yellow2 */
+	color: #b57614;
 }
 
 .token.entity,
 .token.number,
 .token.symbol {
-	color: #8f3f71; /* purple2 */
+	color: #8f3f71;
 }
 
 .token.property,
 .token.constant,
 .token.variable {
-	color: #9d0006; /* red2 */
+	color: #9d0006;
 }
 
 .token.string {
-	color: #4070a0; /* green2 */
+	color: #4070a0;
 }
 
 .token.char {
-	color: #797403; /* green2 */
+	color: #797403;
 }
 
 .token.attr-value,
 .token.attr-value .punctuation {
-	color: #7c6f64; /* fg4 / gray1 */
+	color: #7c6f64;
 }
 
 .token.url {
-	color: #797403; /* green2 */
+	color: #797403;
 	text-decoration: underline;
 }
 
 .token.function {
-	color: #b57614; /* yellow2 */
+	color: #b57614;
 }
 
 .token.regex {
-	background: #797403; /* green2 */
+	background: #797403;
 }
 
 .token.bold {
@@ -148,11 +149,11 @@ pre[class*="language-"] {
 }
 
 .token.inserted {
-	background: #7c6f64; /* fg4 / gray1 */
+	background: #7c6f64;
 }
 
 .token.deleted {
-	background: #9d0006; /* red2 */
+	background: #9d0006;
 }
 
 /* Additional overrides */
