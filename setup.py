@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.17.8"
+version = "0.17.9"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -28,6 +28,7 @@ tests_require = [
     "pytest-ordering",  # pytest add-on
     "pytest-pythonpath",  # pytest add-on
     "pytest-rst",  # pytest add-on
+    "moto",  # testing documentation
 ]
 
 _common = [

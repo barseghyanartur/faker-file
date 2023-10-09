@@ -29,6 +29,7 @@ are used for versioning (schema follows below):
 
 0.17.9
 ------
+2023-10-10
 
 - Improvements and fixes in the documentation.
 - Announcing feature plans to change default PDF and Image generators
