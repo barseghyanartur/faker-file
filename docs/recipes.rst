@@ -8,19 +8,23 @@ Imports and initializations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Recommended way**
 
-.. literalinclude:: _static/examples/recipes/imports_and_init_1.py
-    :language: python
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/imports_and_init_1.py>`
+    .. literalinclude:: _static/examples/recipes/imports_and_init_1.py
+        :language: python
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/imports_and_init_1.py>`
 
 **But this works too**
 
-.. literalinclude:: _static/examples/recipes/imports_and_init_2.py
-    :language: python
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/imports_and_init_2.py>`
+    .. literalinclude:: _static/examples/recipes/imports_and_init_2.py
+        :language: python
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/imports_and_init_2.py>`
 
 Throughout documentation we will be mixing these approaches.
 
@@ -28,12 +32,14 @@ Create a TXT file with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content of the file is ``Lorem ipsum``.
 
-.. literalinclude:: _static/examples/recipes/txt_file_1.py
-    :language: python
-    :lines: 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/txt_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/txt_file_1.py
+        :language: python
+        :lines: 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/txt_file_1.py>`
 
 Create a DOCX file with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,24 +48,28 @@ Create a DOCX file with dynamically generated content
 - Wrap lines after 80 chars.
 - Prefix the filename with ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/docx_file_1.py
-    :language: python
-    :lines: 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/docx_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/docx_file_1.py
+        :language: python
+        :lines: 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/docx_file_1.py>`
 
 Create a ZIP file consisting of TXT files with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 5 TXT files in the ZIP archive (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. literalinclude:: _static/examples/recipes/zip_file_1.py
-    :language: python
-    :lines: 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/zip_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/zip_file_1.py
+        :language: python
+        :lines: 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/zip_file_1.py>`
 
 Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,24 +80,28 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the archive itself with ``zzz``.
 - Inside the ZIP, put all files in directory ``yyy``.
 
-.. literalinclude:: _static/examples/recipes/zip_file_2.py
-    :language: python
-    :lines: 2, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/zip_file_2.py>`
+    .. literalinclude:: _static/examples/recipes/zip_file_2.py
+        :language: python
+        :lines: 2, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/zip_file_2.py>`
 
 Create a ZIP file of 9 DOCX files with content generated from template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 9 DOCX files in the ZIP archive.
 - Content is generated dynamically from given template.
 
-.. literalinclude:: _static/examples/recipes/zip_file_3.py
-    :language: python
-    :lines: 2, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/zip_file_3.py>`
+    .. literalinclude:: _static/examples/recipes/zip_file_3.py
+        :language: python
+        :lines: 2, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/zip_file_3.py>`
 
 Create a nested ZIP file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,12 +116,14 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. literalinclude:: _static/examples/recipes/zip_file_4.py
-    :language: python
-    :lines: 2-5, 10-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/zip_file_4.py>`
+    .. literalinclude:: _static/examples/recipes/zip_file_4.py
+        :language: python
+        :lines: 2-5, 10-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/zip_file_4.py>`
 
 Create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -116,12 +132,14 @@ Create a ZIP file with variety of different file types within
 - Prefix the filename of the archive itself with ``zzz_archive_``.
 - Inside the ZIP, put all files in directory ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/zip_file_5.py
-    :language: python
-    :lines: 2-7, 9-10, 14-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/zip_file_5.py>`
+    .. literalinclude:: _static/examples/recipes/zip_file_5.py
+        :language: python
+        :lines: 2-7, 9-10, 14-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/zip_file_5.py>`
 
 Another way to create a ZIP file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -130,12 +148,14 @@ Another way to create a ZIP file with variety of different file types within
 - Filename of the archive itself is ``alice-looking-through-the-glass.zip``.
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
-.. literalinclude:: _static/examples/recipes/zip_file_6.py
-    :language: python
-    :lines: 2-6, 11-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/zip_file_6.py>`
+    .. literalinclude:: _static/examples/recipes/zip_file_6.py
+        :language: python
+        :lines: 2-6, 11-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/zip_file_6.py>`
 
 Note, that ``count`` argument (not shown in the example, but commonly
 accepted by inner functions) will be simply ignored here.
@@ -145,12 +165,14 @@ Create an EML file consisting of TXT files with static content
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. literalinclude:: _static/examples/recipes/eml_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/eml_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/eml_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/eml_file_1.py>`
 
 Create a EML file consisting of 3 DOCX files with dynamically generated content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,12 +182,14 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filenames in email with ``xxx_``.
 - Prefix the filename of the email itself with ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/eml_file_2.py
-    :language: python
-    :lines: 3, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/eml_file_2.py>`
+    .. literalinclude:: _static/examples/recipes/eml_file_2.py
+        :language: python
+        :lines: 3, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/eml_file_2.py>`
 
 Create a nested EML file
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,12 +204,14 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. literalinclude:: _static/examples/recipes/eml_file_3.py
-    :language: python
-    :lines: 3-6, 10-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/eml_file_3.py>`
+    .. literalinclude:: _static/examples/recipes/eml_file_3.py
+        :language: python
+        :lines: 3-6, 10-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/eml_file_3.py>`
 
 Create an EML file with variety of different file types within
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -193,24 +219,28 @@ Create an EML file with variety of different file types within
 - Content is generated dynamically.
 - Prefix the filename of the EML itself with ``zzz``.
 
-.. literalinclude:: _static/examples/recipes/eml_file_4.py
-    :language: python
-    :lines: 3-8, 17-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/eml_file_4.py>`
+    .. literalinclude:: _static/examples/recipes/eml_file_4.py
+        :language: python
+        :lines: 3-8, 17-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/eml_file_4.py>`
 
 Create a PDF file with predefined template containing dynamic fixtures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
-.. literalinclude:: _static/examples/recipes/pdf_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/pdf_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/pdf_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/pdf_file_1.py>`
 
 Create a DOCX file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -229,45 +259,53 @@ the following arguments:
 The following example shows how to generate a DOCX file with paragraph, table
 and image.
 
-.. literalinclude:: _static/examples/recipes/docx_file_mixed_1.py
-    :language: python
-    :lines: 2-8, 13-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/docx_file_mixed_1.py>`
+    .. literalinclude:: _static/examples/recipes/docx_file_mixed_1.py
+        :language: python
+        :lines: 2-8, 13-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/docx_file_mixed_1.py>`
 
 Create a ODT file with table and image using ``DynamicTemplate``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Similarly to previous section, the following example shows how to generate an
 ODT file with table and image.
 
-.. literalinclude:: _static/examples/recipes/odt_file_mixed_1.py
-    :language: python
-    :lines: 3-10, 12-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/odt_file_mixed_1.py>`
+    .. literalinclude:: _static/examples/recipes/odt_file_mixed_1.py
+        :language: python
+        :lines: 3-10, 12-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/odt_file_mixed_1.py>`
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: _static/examples/recipes/pdf_file_reportlab_1.py
-    :language: python
-    :lines: 3-5, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/pdf_file_reportlab_1.py>`
+    .. literalinclude:: _static/examples/recipes/pdf_file_reportlab_1.py
+        :language: python
+        :lines: 3-5, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/pdf_file_reportlab_1.py>`
 
 Create a PDF using `pdfkit` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Note, that at the moment, ``pdfkit`` is the default generator. However,
 you could set it explicitly as follows:
 
-.. literalinclude:: _static/examples/recipes/pdf_file_pdfkit_1.py
-    :language: python
-    :lines: 3-5, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/pdf_file_pdfkit_1.py>`
+    .. literalinclude:: _static/examples/recipes/pdf_file_pdfkit_1.py
+        :language: python
+        :lines: 3-5, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/pdf_file_pdfkit_1.py>`
 
 Create a graphic PDF file using `Pillow`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -276,23 +314,27 @@ content. However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. literalinclude:: _static/examples/recipes/pdf_file_pillow_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/pdf_file_pillow_1.py>`
+    .. literalinclude:: _static/examples/recipes/pdf_file_pillow_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/pdf_file_pillow_1.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours). One of the most useful arguments supported is
 ``size``.
 
-.. literalinclude:: _static/examples/recipes/pdf_file_pillow_2.py
-    :language: python
-    :lines: 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/pdf_file_pillow_2.py>`
+    .. literalinclude:: _static/examples/recipes/pdf_file_pillow_2.py
+        :language: python
+        :lines: 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/pdf_file_pillow_2.py>`
 
 Graphic providers
 ~~~~~~~~~~~~~~~~~
@@ -305,70 +347,84 @@ Supported files formats are: `BMP`, `GIF`, `ICO`, `JPEG`, `PDF`, `PNG`, `SVG`
 
 Create an ICO file
 ^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/graphic_ico_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/graphic_ico_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/graphic_ico_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/graphic_ico_file_1.py>`
 
 Create a JPEG file
 ^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/graphic_jpeg_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/graphic_jpeg_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/graphic_jpeg_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/graphic_jpeg_file_1.py>`
 
 Create a PNG file
 ^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/graphic_png_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/graphic_png_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/graphic_png_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/graphic_png_file_1.py>`
 
 Create a WEBP file
 ^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/graphic_webp_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/graphic_webp_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/graphic_webp_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/graphic_webp_file_1.py>`
 
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
-.. literalinclude:: _static/examples/recipes/mp3_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/mp3_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/mp3_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/mp3_file_1.py>`
 
 Create a MP3 file by explicitly specifying MP3 generator class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Google Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/mp3_file_gtts_1.py
-    :language: python
-    :lines: 3-5, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/mp3_file_gtts_1.py>`
+    .. literalinclude:: _static/examples/recipes/mp3_file_gtts_1.py
+        :language: python
+        :lines: 3-5, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/mp3_file_gtts_1.py>`
 
 ----
 
 You can tune arguments too:
 
-.. literalinclude:: _static/examples/recipes/mp3_file_gtts_2.py
-    :language: python
-    :lines: 10-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/mp3_file_gtts_2.py>`
+    .. literalinclude:: _static/examples/recipes/mp3_file_gtts_2.py
+        :language: python
+        :lines: 10-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/mp3_file_gtts_2.py>`
 
 Refer to https://gtts.readthedocs.io/en/latest/module.html#languages-gtts-lang
 for list of accepted values for ``lang`` argument.
@@ -378,23 +434,27 @@ for list of accepted values for ``tld`` argument.
 
 Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_1.py
-    :language: python
-    :lines: 3-5, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/mp3_file_edge_tts_1.py>`
+    .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_1.py
+        :language: python
+        :lines: 3-5, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/mp3_file_edge_tts_1.py>`
 
 ----
 
 You can tune arguments too:
 
-.. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_2.py
-    :language: python
-    :lines: 10-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/mp3_file_edge_tts_2.py>`
+    .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_2.py
+        :language: python
+        :lines: 10-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/mp3_file_edge_tts_2.py>`
 
 Run ``edge-tts -l`` from terminal for list of available voices.
 
@@ -411,12 +471,14 @@ services `here <https://cloud.google.com/text-to-speech/quotas>`_.
 
 Usage with custom MP3 generator class.
 
-.. literalinclude:: _static/examples/recipes/mp3_file_custom_1.py
-    :language: python
-    :lines: 2, 4, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/mp3_file_custom_1.py>`
+    .. literalinclude:: _static/examples/recipes/mp3_file_custom_1.py
+        :language: python
+        :lines: 2, 4, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/mp3_file_custom_1.py>`
 
 See exact implementation of
 `marytts_mp3_generator <https://github.com/barseghyanartur/faker-file/tree/main/examples/customizations/marytts_mp3_generator>`_
@@ -428,12 +490,14 @@ Pick a random file from a directory given
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. literalinclude:: _static/examples/recipes/random_file_from_dir_1.py
-    :language: python
-    :lines: 2, 4, 7, 12-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/random_file_from_dir_1.py>`
+    .. literalinclude:: _static/examples/recipes/random_file_from_dir_1.py
+        :language: python
+        :lines: 2, 4, 7, 12-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/random_file_from_dir_1.py>`
 
 File from path given
 ~~~~~~~~~~~~~~~~~~~~
@@ -441,12 +505,14 @@ File from path given
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. literalinclude:: _static/examples/recipes/file_from_path_1.py
-    :language: python
-    :lines: 3-4, 7, 11-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/file_from_path_1.py>`
+    .. literalinclude:: _static/examples/recipes/file_from_path_1.py
+        :language: python
+        :lines: 3-4, 7, 11-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/file_from_path_1.py>`
 
 Generate a file of a certain size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -456,21 +522,25 @@ approximate.
 
 BIN
 ^^^
-.. literalinclude:: _static/examples/recipes/file_of_size_bin_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/file_of_size_bin_1.py>`
+    .. literalinclude:: _static/examples/recipes/file_of_size_bin_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/file_of_size_bin_1.py>`
 
 TXT
 ^^^
-.. literalinclude:: _static/examples/recipes/file_of_size_txt_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/file_of_size_txt_1.py>`
+    .. literalinclude:: _static/examples/recipes/file_of_size_txt_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/file_of_size_txt_1.py>`
 
 Generate a files using multiprocessing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,32 +549,38 @@ Generate 10 DOCX files
 - Use template.
 - Generate 10 DOCX files.
 
-.. literalinclude:: _static/examples/recipes/files_multiprocessing_1.py
-    :language: python
-    :lines: 1, 4-6, 8-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/files_multiprocessing_1.py>`
+    .. literalinclude:: _static/examples/recipes/files_multiprocessing_1.py
+        :language: python
+        :lines: 1, 4-6, 8-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/files_multiprocessing_1.py>`
 
 Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/files_multiprocessing_2.py
-    :language: python
-    :lines: 4-10, 36-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/files_multiprocessing_2.py>`
+    .. literalinclude:: _static/examples/recipes/files_multiprocessing_2.py
+        :language: python
+        :lines: 4-10, 36-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/files_multiprocessing_2.py>`
 
 Generating files from existing documents using NLP augmentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the following example:
 
-.. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
-    :language: python
-    :lines: 2-4, 9, 15, 22-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
+    .. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
+        :language: python
+        :lines: 2-4, 9, 15, 22-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
 
 Generated file will resemble text of the original document, but
 will not be the same. This is useful when you don't want to
@@ -527,12 +603,14 @@ The following file types are supported:
 By default, all supported files are eligible for random selection. You could
 however narrow that list by providing ``extensions`` argument:
 
-.. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
-    :language: python
-    :lines: 23-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
+    .. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
+        :language: python
+        :lines: 23-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
 
 ----
 
@@ -549,12 +627,14 @@ Some well working options for ``model_path`` are:
 - ``bert-base-german-cased``
 - ``GroNLP/bert-base-dutch-cased``
 
-.. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
-    :language: python
-    :lines: 5-7, 25-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
+    .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
+        :language: python
+        :lines: 5-7, 25-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
 
 Refer to ``nlpaug``
 `docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
@@ -568,12 +648,14 @@ totally correct, ``bytes``-like object ``BytesValue``, which is basically
 bytes enriched with meta-data). You could then use the ``bytes`` content
 of the file to build a test payload as shown in the example test below:
 
-.. literalinclude:: _static/examples/recipes/raw_1.py
-    :language: python
-    :lines: 16-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/raw_1.py>`
+    .. literalinclude:: _static/examples/recipes/raw_1.py
+        :language: python
+        :lines: 16-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/raw_1.py>`
 
 Create a HTML file from predefined template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -581,23 +663,27 @@ If you want to generate a file in a format that is not (yet) supported,
 you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
-.. literalinclude:: _static/examples/recipes/generic_file_1.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/generic_file_1.py>`
+    .. literalinclude:: _static/examples/recipes/generic_file_1.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/generic_file_1.py>`
 
 Working with storages
 ~~~~~~~~~~~~~~~~~~~~~
 AWS S3 storage
 ^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
-    :language: python
-    :lines: 3, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
+    .. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
+        :language: python
+        :lines: 3, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
 
 ----
 
@@ -609,21 +695,25 @@ For instance, if you use ``Django`` and ``django-storages``, and want to
 store the files inside ``/user/uploads`` directory the following would be
 correct:
 
-.. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
-    :language: python
-    :lines: 8-12
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/aws_s3_storage_2.py>`
+    .. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
+        :language: python
+        :lines: 8-12
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/aws_s3_storage_2.py>`
 
 Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
-    :language: python
-    :lines: 3, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
+    .. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
+        :language: python
+        :lines: 3, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
 
 ----
 
@@ -631,21 +721,25 @@ Similarly to ``AWSS3Storage``, if you use ``Django`` and ``django-storages``,
 and want to store the files inside ``/user/uploads`` directory the following
 would be correct:
 
-.. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
-    :language: python
-    :lines: 8-12
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
+    .. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
+        :language: python
+        :lines: 8-12
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
 
 SFTP storage
 ^^^^^^^^^^^^
-.. literalinclude:: _static/examples/recipes/sftp_storage_1.py
-    :language: python
-    :lines: 3, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/sftp_storage_1.py>`
+    .. literalinclude:: _static/examples/recipes/sftp_storage_1.py
+        :language: python
+        :lines: 3, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/sftp_storage_1.py>`
 
 When using with ``Django`` (and ``factory_boy``)
 ------------------------------------------------
@@ -664,12 +758,14 @@ Basic example
 Imaginary ``Django`` model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. literalinclude:: _static/examples/recipes/factory_boy_models_1.py
-    :language: python
-    :lines: 4-11
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/factory_boy_models_1.py>`
+    .. literalinclude:: _static/examples/recipes/factory_boy_models_1.py
+        :language: python
+        :lines: 4-11
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/factory_boy_models_1.py>`
 
 Correspondent ``factory_boy`` factory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -679,12 +775,14 @@ Correspondent ``factory_boy`` factory
 
 And then somewhere in your code:
 
-.. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
-    :language: python
-    :lines: 91-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/factory_boy_factory_1.py>`
+    .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
+        :language: python
+        :lines: 91-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/factory_boy_factory_1.py>`
 
 ----
 
@@ -696,51 +794,61 @@ Randomize provider choice
 
 And then somewhere in your code:
 
-.. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
-    :language: python
-    :lines: 98-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/factory_boy_factory_2.py>`
+    .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
+        :language: python
+        :lines: 98-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/factory_boy_factory_2.py>`
 
 Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
-    :language: python
-    :lines: 23-24
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/factory_boy_factory_3.py>`
+    .. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
+        :language: python
+        :lines: 23-24
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/factory_boy_factory_3.py>`
 
 Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Faker example with AWS S3 storage**
 
-.. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
-    :language: python
-    :lines: 2, 4-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/aws_s3_storage_3.py>`
+    .. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
+        :language: python
+        :lines: 2, 4-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/aws_s3_storage_3.py>`
 
 ----
 
 **factory-boy example with AWS S3 storage**
 
-.. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
-    :language: python
-    :lines: 2, 4-6, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
+    .. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
+        :language: python
+        :lines: 2, 4-6, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
 
 ----
 
 **Flexible storage selection**
 
-.. literalinclude:: _static/examples/recipes/flexible_storage_1.py
-    :language: python
-    :lines: 2-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/recipes/flexible_storage_1.py>`
+    .. literalinclude:: _static/examples/recipes/flexible_storage_1.py
+        :language: python
+        :lines: 2-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/flexible_storage_1.py>`
