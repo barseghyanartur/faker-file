@@ -34,11 +34,13 @@ or unicode characters.
 
 See the following full functional snippet for generating PDF using `pdfkit`_.
 
-.. literalinclude:: _static/examples/creating_pdf/pdfkit_1.py
-    :language: python
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_1.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pdfkit_1.py
+        :language: python
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pdfkit_1.py>`
 
 The generated PDF will have 10,000 characters of text, which is about 2 pages.
 
@@ -52,23 +54,27 @@ If you want PDF with more pages, you could either:
 
 See the example below for ``max_nb_chars`` tweak:
 
-.. literalinclude:: _static/examples/creating_pdf/pdfkit_2.py
-    :language: python
-    :lines: 11-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_2.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pdfkit_2.py
+        :language: python
+        :lines: 11-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pdfkit_2.py>`
 
 ----
 
 See the example below for ``wrap_chars_after`` tweak:
 
-.. literalinclude:: _static/examples/creating_pdf/pdfkit_3.py
-    :language: python
-    :lines: 11-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_3.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pdfkit_3.py
+        :language: python
+        :lines: 11-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pdfkit_3.py>`
 
 ----
 
@@ -79,12 +85,14 @@ paragraphs, tables and manual text breaks are supported out of the box. In
 order to customise the blocks PDF file is built from, the ``DynamicTemplate``
 class is used. See the example below for usage examples:
 
-.. literalinclude:: _static/examples/creating_pdf/pdfkit_4.py
-    :language: python
-    :lines: 3-9, 17-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pdfkit_4.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pdfkit_4.py
+        :language: python
+        :lines: 3-9, 17-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pdfkit_4.py>`
 
 Building PDFs with text using `reportlab`_
 ------------------------------------------
@@ -94,12 +102,14 @@ encoding when generating unicode text.
 
 See the following full functional snippet for generating PDF using `reportlab`_.
 
-.. literalinclude:: _static/examples/creating_pdf/reportlab_1.py
-    :language: python
-    :lines: 4-7, 11-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/reportlab_1.py>`
+    .. literalinclude:: _static/examples/creating_pdf/reportlab_1.py
+        :language: python
+        :lines: 4-7, 11-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/reportlab_1.py>`
 
 ----
 
@@ -114,34 +124,40 @@ paragraphs, tables and manual text breaks are supported. In order to customise
 the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
 See the example below for usage examples:
 
-.. literalinclude:: _static/examples/creating_pdf/reportlab_2.py
-    :language: python
-    :lines: 4-9, 17-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/reportlab_2.py>`
+    .. literalinclude:: _static/examples/creating_pdf/reportlab_2.py
+        :language: python
+        :lines: 4-9, 17-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/reportlab_2.py>`
 
 Building PDFs with text using `Pillow`_
 ---------------------------------------
 Usage example:
 
-.. literalinclude:: _static/examples/creating_pdf/pillow_1.py
-    :language: python
-    :lines: 3-6, 10-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_1.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pillow_1.py
+        :language: python
+        :lines: 3-6, 10-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pillow_1.py>`
 
 ----
 
 With options:
 
-.. literalinclude:: _static/examples/creating_pdf/pillow_2.py
-    :language: python
-    :lines: 10-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_2.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pillow_2.py
+        :language: python
+        :lines: 10-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pillow_2.py>`
 
 ----
 
@@ -156,12 +172,14 @@ paragraphs, tables and manual text breaks are supported. In order to customise
 the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
 See the example below for usage examples:
 
-.. literalinclude:: _static/examples/creating_pdf/pillow_3.py
-    :language: python
-    :lines: 3-8, 16-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_3.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pillow_3.py
+        :language: python
+        :lines: 3-8, 16-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pillow_3.py>`
 
 Creating PDFs with graphics using `Pillow`_
 -------------------------------------------
@@ -171,12 +189,14 @@ However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. literalinclude:: _static/examples/creating_pdf/pillow_4.py
-    :language: python
-    :lines: 2-3, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_4.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pillow_4.py
+        :language: python
+        :lines: 2-3, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pillow_4.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours).
@@ -185,9 +205,11 @@ shapes of different colours).
 
 One of the most useful arguments supported is ``size``.
 
-.. literalinclude:: _static/examples/creating_pdf/pillow_5.py
-    :language: python
-    :lines: 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_pdf/pillow_5.py>`
+    .. literalinclude:: _static/examples/creating_pdf/pillow_5.py
+        :language: python
+        :lines: 7-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_pdf/pillow_5.py>`

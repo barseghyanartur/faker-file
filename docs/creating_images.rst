@@ -62,11 +62,13 @@ or unicode characters.
 
 See the following full functional snippet for generating images using `imgkit`_.
 
-.. literalinclude:: _static/examples/creating_images/imgkit_1.py
-    :language: python
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/imgkit_1.py>`
+    .. literalinclude:: _static/examples/creating_images/imgkit_1.py
+        :language: python
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/imgkit_1.py>`
 
 The generated PNG image will have 10,000 characters of text. The generated image
 will be as wide as needed to fit those 10,000 characters, but newlines are
@@ -77,24 +79,28 @@ respected.
 If you want image to be less wide, set value of ``wrap_chars_after`` to 80
 characters (or any other number that fits your needs). See the example below:
 
-.. literalinclude:: _static/examples/creating_images/imgkit_2.py
-    :language: python
-    :lines: 8-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/imgkit_2.py>`
+    .. literalinclude:: _static/examples/creating_images/imgkit_2.py
+        :language: python
+        :lines: 8-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/imgkit_2.py>`
 
 ----
 
 To have a longer text, increase the value of ``max_nb_chars`` accordingly.
 See the example below:
 
-.. literalinclude:: _static/examples/creating_images/imgkit_3.py
-    :language: python
-    :lines: 8-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/imgkit_3.py>`
+    .. literalinclude:: _static/examples/creating_images/imgkit_3.py
+        :language: python
+        :lines: 8-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/imgkit_3.py>`
 
 ----
 
@@ -105,12 +111,14 @@ the box. In order to customise the blocks image file is built from,
 the ``DynamicTemplate`` class is used. See the example below for usage
 examples:
 
-.. literalinclude:: _static/examples/creating_images/imgkit_4.py
-    :language: python
-    :lines: 2-7, 13-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/imgkit_4.py>`
+    .. literalinclude:: _static/examples/creating_images/imgkit_4.py
+        :language: python
+        :lines: 2-7, 13-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/imgkit_4.py>`
 
 Building mixed-content images using `WeasyPrint`_
 -------------------------------------------------
@@ -120,12 +128,14 @@ good alternative to.
 
 See the following snippet for generating images using `WeasyPrint`_.
 
-.. literalinclude:: _static/examples/creating_images/weasyprint_1.py
-    :language: python
-    :lines: 2-4, 9-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/weasyprint_1.py>`
+    .. literalinclude:: _static/examples/creating_images/weasyprint_1.py
+        :language: python
+        :lines: 2-4, 9-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/weasyprint_1.py>`
 
 ----
 
@@ -139,34 +149,40 @@ think of, although currently only images, paragraphs and tables are supported.
 In order to customise the blocks image file is built from, the
 ``DynamicTemplate`` class is used. See the example below for usage examples:
 
-.. literalinclude:: _static/examples/creating_images/weasyprint_2.py
-    :language: python
-    :lines: 3-7, 15-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/weasyprint_2.py>`
+    .. literalinclude:: _static/examples/creating_images/weasyprint_2.py
+        :language: python
+        :lines: 3-7, 15-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/weasyprint_2.py>`
 
 Building mixed-content images using `Pillow`_
 ---------------------------------------------
 Usage example:
 
-.. literalinclude:: _static/examples/creating_images/pillow_1.py
-    :language: python
-    :lines: 2, 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/pillow_1.py>`
+    .. literalinclude:: _static/examples/creating_images/pillow_1.py
+        :language: python
+        :lines: 2, 7-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/pillow_1.py>`
 
 ----
 
 With options:
 
-.. literalinclude:: _static/examples/creating_images/pillow_2.py
-    :language: python
-    :lines: 8-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/pillow_2.py>`
+    .. literalinclude:: _static/examples/creating_images/pillow_2.py
+        :language: python
+        :lines: 8-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/pillow_2.py>`
 
 ----
 
@@ -174,12 +190,14 @@ All examples shown for `imgkit`_ and `WeasyPrint`_ apply to `Pillow`_ generator,
 however when building image files from blocks (paragraphs, images and tables),
 the imports shall be adjusted. See the example below:
 
-.. literalinclude:: _static/examples/creating_images/pillow_3.py
-    :language: python
-    :lines: 3-7, 13-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/pillow_3.py>`
+    .. literalinclude:: _static/examples/creating_images/pillow_3.py
+        :language: python
+        :lines: 3-7, 13-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/pillow_3.py>`
 
 Creating graphics-only images using `Pillow`_
 ---------------------------------------------
@@ -188,12 +206,14 @@ files would not contain text, so don't use it when you need text based content.
 However, sometimes you just need a valid image file, without caring much about
 the content. That's where graphic image providers comes to rescue:
 
-.. literalinclude:: _static/examples/creating_images/pillow_4.py
-    :language: python
-    :lines: 2-3, 5-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/pillow_4.py>`
+    .. literalinclude:: _static/examples/creating_images/pillow_4.py
+        :language: python
+        :lines: 2-3, 5-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/pillow_4.py>`
 
 The generated file will contain a random graphic (consisting of lines and
 shapes of different colours).
@@ -202,20 +222,24 @@ shapes of different colours).
 
 One of the most useful arguments supported is ``size``.
 
-.. literalinclude:: _static/examples/creating_images/pillow_5.py
-    :language: python
-    :lines: 7-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/pillow_5.py>`
+    .. literalinclude:: _static/examples/creating_images/pillow_5.py
+        :language: python
+        :lines: 7-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/pillow_5.py>`
 
 Augment existing images
 -----------------------
 Augment the input image with a series of random augmentation methods.
 
-.. literalinclude:: _static/examples/creating_images/augment_1.py
-    :language: python
-    :lines: 2-15, 17, 19-20, 28-
+.. container:: prismjs-sphinx
 
-*See the full example*
-:download:`here <_static/examples/creating_images/augment_1.py>`
+    .. literalinclude:: _static/examples/creating_images/augment_1.py
+        :language: python
+        :lines: 2-15, 17, 19-20, 28-
+
+    *See the full example*
+    :download:`here <_static/examples/creating_images/augment_1.py>`
