@@ -201,7 +201,6 @@ prismjs_base = "//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0"
 html_css_files = [
     f"{prismjs_base}/themes/prism.min.css",
     f"{prismjs_base}/plugins/toolbar/prism-toolbar.min.css",
-    f"{prismjs_base}/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.css",
     "https://cdn.jsdelivr.net/gh/barseghyanartur/prismjs-sphinx/src/css/sphinx_rtd_theme.css",
 ]
 
