@@ -5,6 +5,7 @@ from unittest.mock import create_autospec
 
 import paramiko
 import pytest
+import tika
 from django.test import override_settings
 from faker_file.registry import FILE_REGISTRY
 from moto import mock_s3
@@ -12,6 +13,16 @@ from moto import mock_s3
 # Walk through the directory and all subdirectories for .py files
 example_dir = Path("docs/_static/examples")
 py_files = sorted([str(p) for p in example_dir.rglob("*.py")])
+
+
+@pytest.fixture(scope="module")
+def setup_module():
+    # Perform setup actions here
+    print("Setup actions for the module")
+    tika.initVM()
+    yield
+    # Perform teardown actions here (optional)
+    print("Teardown actions for the module")
 
 
 @pytest.fixture

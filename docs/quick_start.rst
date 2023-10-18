@@ -27,7 +27,7 @@ If you just need bytes back (instead of creating the file), provide
 the ``raw=True`` argument (works with all provider classes and inner
 functions):
 
-.. container:: prismjs-sphinx
+.. container:: prismjs-sphinx-download
 
     .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
         :language: python
@@ -48,7 +48,7 @@ With ``factory_boy``
 
 **upload/models.py**
 
-.. container:: prismjs-sphinx
+.. container:: prismjs-sphinx-download
 
     .. literalinclude:: _static/examples/quick_start/factory_models_1.py
         :language: python
@@ -65,7 +65,7 @@ With ``factory_boy``
 
 **Usage example**
 
-.. container:: prismjs-sphinx
+.. container:: prismjs-sphinx-download
 
     .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
         :language: python
