@@ -4,6 +4,7 @@ find . -name "*.py,cover" -exec rm -rf {} \;
 find . -name "*.orig" -exec rm -rf {} \;
 find . -name "__pycache__" -exec rm -rf {} \;
 rm -rf build/
+rm -rf builddocs/
 rm -rf dist/
 rm -rf src/faker-file.egg-info/
 rm -rf src/faker-file/var/

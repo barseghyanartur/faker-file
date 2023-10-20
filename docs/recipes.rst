@@ -8,7 +8,7 @@ Imports and initializations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Recommended way**
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/imports_and_init_1.py
         :language: python
@@ -18,7 +18,7 @@ Imports and initializations
 
 **But this works too**
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/imports_and_init_2.py
         :language: python
@@ -32,7 +32,7 @@ Create a TXT file with static content
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content of the file is ``Lorem ipsum``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/txt_file_1.py
         :language: python
@@ -48,7 +48,7 @@ Create a DOCX file with dynamically generated content
 - Wrap lines after 80 chars.
 - Prefix the filename with ``zzz``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/docx_file_1.py
         :language: python
@@ -62,7 +62,7 @@ Create a ZIP file consisting of TXT files with static content
 - 5 TXT files in the ZIP archive (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/zip_file_1.py
         :language: python
@@ -80,7 +80,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filename of the archive itself with ``zzz``.
 - Inside the ZIP, put all files in directory ``yyy``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/zip_file_2.py
         :language: python
@@ -94,7 +94,7 @@ Create a ZIP file of 9 DOCX files with content generated from template
 - 9 DOCX files in the ZIP archive.
 - Content is generated dynamically from given template.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/zip_file_3.py
         :language: python
@@ -116,7 +116,7 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/zip_file_4.py
         :language: python
@@ -132,7 +132,7 @@ Create a ZIP file with variety of different file types within
 - Prefix the filename of the archive itself with ``zzz_archive_``.
 - Inside the ZIP, put all files in directory ``zzz``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/zip_file_5.py
         :language: python
@@ -148,7 +148,7 @@ Another way to create a ZIP file with variety of different file types within
 - Filename of the archive itself is ``alice-looking-through-the-glass.zip``.
 - Files inside the archive have fixed name (passed with ``basename`` argument).
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/zip_file_6.py
         :language: python
@@ -165,7 +165,7 @@ Create an EML file consisting of TXT files with static content
 - 5 TXT files in the EML email (default value is 5).
 - Content of all files is ``Lorem ipsum``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/eml_file_1.py
         :language: python
@@ -182,7 +182,7 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
 - Prefix the filenames in email with ``xxx_``.
 - Prefix the filename of the email itself with ``zzz``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/eml_file_2.py
         :language: python
@@ -204,7 +204,7 @@ contain 5 DOCX files.
   files, prefixed with ``nested_level_2_``, which in their turn contain 5
   DOCX files.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/eml_file_3.py
         :language: python
@@ -219,7 +219,7 @@ Create an EML file with variety of different file types within
 - Content is generated dynamically.
 - Prefix the filename of the EML itself with ``zzz``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/eml_file_4.py
         :language: python
@@ -233,7 +233,7 @@ Create a PDF file with predefined template containing dynamic fixtures
 - Content template is predefined and contains dynamic fixtures.
 - Wrap lines after 80 chars.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/pdf_file_1.py
         :language: python
@@ -259,7 +259,7 @@ the following arguments:
 The following example shows how to generate a DOCX file with paragraph, table
 and image.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/docx_file_mixed_1.py
         :language: python
@@ -273,7 +273,7 @@ Create a ODT file with table and image using ``DynamicTemplate``
 Similarly to previous section, the following example shows how to generate an
 ODT file with table and image.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/odt_file_mixed_1.py
         :language: python
@@ -284,7 +284,7 @@ ODT file with table and image.
 
 Create a PDF using `reportlab` generator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/pdf_file_reportlab_1.py
         :language: python
@@ -298,7 +298,7 @@ Create a PDF using `pdfkit` generator
 Note, that at the moment, ``pdfkit`` is the default generator. However,
 you could set it explicitly as follows:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/pdf_file_pdfkit_1.py
         :language: python
@@ -314,7 +314,7 @@ content. However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/pdf_file_pillow_1.py
         :language: python
@@ -327,7 +327,7 @@ The generated file will contain a random graphic (consisting of lines and
 shapes of different colours). One of the most useful arguments supported is
 ``size``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/pdf_file_pillow_2.py
         :language: python
@@ -347,7 +347,7 @@ Supported files formats are: `BMP`, `GIF`, `ICO`, `JPEG`, `PDF`, `PNG`, `SVG`
 
 Create an ICO file
 ^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/graphic_ico_file_1.py
         :language: python
@@ -358,7 +358,7 @@ Create an ICO file
 
 Create a JPEG file
 ^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/graphic_jpeg_file_1.py
         :language: python
@@ -369,7 +369,7 @@ Create a JPEG file
 
 Create a PNG file
 ^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/graphic_png_file_1.py
         :language: python
@@ -380,7 +380,7 @@ Create a PNG file
 
 Create a WEBP file
 ^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/graphic_webp_file_1.py
         :language: python
@@ -391,7 +391,7 @@ Create a WEBP file
 
 Create a MP3 file
 ~~~~~~~~~~~~~~~~~
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/mp3_file_1.py
         :language: python
@@ -404,7 +404,7 @@ Create a MP3 file by explicitly specifying MP3 generator class
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Google Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/mp3_file_gtts_1.py
         :language: python
@@ -417,7 +417,7 @@ Google Text-to-Speech
 
 You can tune arguments too:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/mp3_file_gtts_2.py
         :language: python
@@ -434,7 +434,7 @@ for list of accepted values for ``tld`` argument.
 
 Microsoft Edge Text-to-Speech
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_1.py
         :language: python
@@ -447,7 +447,7 @@ Microsoft Edge Text-to-Speech
 
 You can tune arguments too:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_2.py
         :language: python
@@ -471,7 +471,7 @@ services `here <https://cloud.google.com/text-to-speech/quotas>`_.
 
 Usage with custom MP3 generator class.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/mp3_file_custom_1.py
         :language: python
@@ -490,7 +490,7 @@ Pick a random file from a directory given
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/random_file_from_dir_1.py
         :language: python
@@ -505,7 +505,7 @@ File from path given
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/file_from_path_1.py
         :language: python
@@ -522,7 +522,7 @@ approximate.
 
 BIN
 ^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/file_of_size_bin_1.py
         :language: python
@@ -533,7 +533,7 @@ BIN
 
 TXT
 ^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/file_of_size_txt_1.py
         :language: python
@@ -549,7 +549,7 @@ Generate 10 DOCX files
 - Use template.
 - Generate 10 DOCX files.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/files_multiprocessing_1.py
         :language: python
@@ -560,7 +560,7 @@ Generate 10 DOCX files
 
 Randomize the file format
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/files_multiprocessing_2.py
         :language: python
@@ -573,7 +573,7 @@ Generating files from existing documents using NLP augmentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the following example:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
         :language: python
@@ -603,7 +603,7 @@ The following file types are supported:
 By default, all supported files are eligible for random selection. You could
 however narrow that list by providing ``extensions`` argument:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
         :language: python
@@ -627,7 +627,7 @@ Some well working options for ``model_path`` are:
 - ``bert-base-german-cased``
 - ``GroNLP/bert-base-dutch-cased``
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
         :language: python
@@ -648,7 +648,7 @@ totally correct, ``bytes``-like object ``BytesValue``, which is basically
 bytes enriched with meta-data). You could then use the ``bytes`` content
 of the file to build a test payload as shown in the example test below:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/raw_1.py
         :language: python
@@ -663,7 +663,7 @@ If you want to generate a file in a format that is not (yet) supported,
 you can try to use ``GenericFileProvider``. In the following example,
 an HTML file is generated from a template.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/generic_file_1.py
         :language: python
@@ -676,7 +676,7 @@ Working with storages
 ~~~~~~~~~~~~~~~~~~~~~
 AWS S3 storage
 ^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
         :language: python
@@ -695,7 +695,7 @@ For instance, if you use ``Django`` and ``django-storages``, and want to
 store the files inside ``/user/uploads`` directory the following would be
 correct:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
         :language: python
@@ -706,7 +706,7 @@ correct:
 
 Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
         :language: python
@@ -721,7 +721,7 @@ Similarly to ``AWSS3Storage``, if you use ``Django`` and ``django-storages``,
 and want to store the files inside ``/user/uploads`` directory the following
 would be correct:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
         :language: python
@@ -732,7 +732,7 @@ would be correct:
 
 SFTP storage
 ^^^^^^^^^^^^
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/sftp_storage_1.py
         :language: python
@@ -758,7 +758,7 @@ Basic example
 Imaginary ``Django`` model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/factory_boy_models_1.py
         :language: python
@@ -775,7 +775,7 @@ Correspondent ``factory_boy`` factory
 
 And then somewhere in your code:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
         :language: python
@@ -794,7 +794,7 @@ Randomize provider choice
 
 And then somewhere in your code:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
         :language: python
@@ -805,7 +805,7 @@ And then somewhere in your code:
 
 Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
         :language: python
@@ -818,7 +818,7 @@ Other Django usage examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Faker example with AWS S3 storage**
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
         :language: python
@@ -831,7 +831,7 @@ Other Django usage examples
 
 **factory-boy example with AWS S3 storage**
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
         :language: python
@@ -844,7 +844,7 @@ Other Django usage examples
 
 **Flexible storage selection**
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/flexible_storage_1.py
         :language: python

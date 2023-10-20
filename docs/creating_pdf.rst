@@ -34,7 +34,7 @@ or unicode characters.
 
 See the following full functional snippet for generating PDF using `pdfkit`_.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_1.py
         :language: python
@@ -54,7 +54,7 @@ If you want PDF with more pages, you could either:
 
 See the example below for ``max_nb_chars`` tweak:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_2.py
         :language: python
@@ -67,7 +67,7 @@ See the example below for ``max_nb_chars`` tweak:
 
 See the example below for ``wrap_chars_after`` tweak:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_3.py
         :language: python
@@ -85,7 +85,7 @@ paragraphs, tables and manual text breaks are supported out of the box. In
 order to customise the blocks PDF file is built from, the ``DynamicTemplate``
 class is used. See the example below for usage examples:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_4.py
         :language: python
@@ -102,7 +102,7 @@ encoding when generating unicode text.
 
 See the following full functional snippet for generating PDF using `reportlab`_.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/reportlab_1.py
         :language: python
@@ -124,7 +124,7 @@ paragraphs, tables and manual text breaks are supported. In order to customise
 the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
 See the example below for usage examples:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/reportlab_2.py
         :language: python
@@ -137,7 +137,7 @@ Building PDFs with text using `Pillow`_
 ---------------------------------------
 Usage example:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pillow_1.py
         :language: python
@@ -150,7 +150,7 @@ Usage example:
 
 With options:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pillow_2.py
         :language: python
@@ -172,7 +172,7 @@ paragraphs, tables and manual text breaks are supported. In order to customise
 the blocks PDF file is built from, the ``DynamicTemplate`` class is used.
 See the example below for usage examples:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pillow_3.py
         :language: python
@@ -189,7 +189,7 @@ However, sometimes you just need a valid file in PDF format, without
 caring much about the content. That's where a GraphicPdfFileProvider comes to
 rescue:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pillow_4.py
         :language: python
@@ -205,7 +205,7 @@ shapes of different colours).
 
 One of the most useful arguments supported is ``size``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_pdf/pillow_5.py
         :language: python

@@ -180,7 +180,7 @@ Create a simple DOCX file
 Let's imagine we need to generate a DOCX file with text 50 chars long (just
 for observability).
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/create_docx_file_1.py
         :language: python
@@ -192,7 +192,7 @@ Create a more structured DOCX file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Imagine, you need a letter sample. It contains
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/create_docx_file_2.py
         :language: python
@@ -206,7 +206,7 @@ Create even more structured DOCX file
 Imagine, you need to generate a highly custom document with types of data,
 such as images, tables, manual page breaks, paragraphs, etc.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/create_docx_file_3.py
         :language: python
@@ -241,7 +241,7 @@ Create a file by copying it from the given path.
 - Prefix of the destination file would be ``zzz``.
 - ``path`` is the absolute path to the file to copy.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/file_from_path_provider.py
         :language: python
@@ -261,7 +261,7 @@ Create a file by copying it randomly from the given directory.
 - Prefix of the destination file would be ``zzz``.
 - ``source_dir_path`` is the absolute path to the directory to pick files from.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/rand_file_from_dir_provider.py
         :language: python
@@ -282,7 +282,7 @@ cleaning up files after the tests run. At any time, to clean up all files
 created by that moment, call ``clean_up`` method of the ``FileRegistry``
 class instance, as shown below:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/clean_up_files_1.py
         :language: python
@@ -296,7 +296,7 @@ Typically you would call the ``clean_up`` method in the ``tearDown``.
 
 To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/clean_up_files_2.py
         :language: python
@@ -310,7 +310,7 @@ To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
 If you only have a string representation of the ``StringValue``, try to search
 for its' correspondent ``StringValue`` instance first using ``search`` method.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/methodology/clean_up_files_3.py
         :language: python

@@ -357,9 +357,19 @@ If you just need ``bytes`` back (instead of creating the file), provide
 the ``raw=True`` argument (works with all provider classes and inner
 functions):
 
-.. code-block:: python
+.. container:: jsphinx-toggle-emphasis
 
-    raw = FAKER.txt_file(raw=True)
+    .. code-block:: python
+        :emphasize-lines: 7
+        :name: test_usage_examples_with_faker_raw_recommended_way
+
+        from faker import Faker
+        from faker_file.providers.txt_file import TxtFileProvider
+
+        FAKER = Faker()
+        FAKER.add_provider(TxtFileProvider)
+
+        raw = FAKER.txt_file(raw=True)
 
 .. note::
 
@@ -383,9 +393,18 @@ functions):
 
 If you just need ``bytes`` back:
 
-.. code-block:: python
+.. container:: jsphinx-toggle-emphasis
 
-    raw = TxtFileProvider(FAKER).txt_file(raw=True)
+    .. code-block:: python
+        :emphasize-lines: 6
+        :name: test_rst_readme_usage_examples_with_faker_raw_but_this_works_too
+
+        from faker import Faker
+        from faker_file.providers.txt_file import TxtFileProvider
+
+        FAKER = Faker()
+
+        raw = TxtFileProvider(FAKER).txt_file(raw=True)
 
 With ``factory_boy``
 --------------------

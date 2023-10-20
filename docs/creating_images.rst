@@ -62,7 +62,7 @@ or unicode characters.
 
 See the following full functional snippet for generating images using `imgkit`_.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/imgkit_1.py
         :language: python
@@ -79,7 +79,7 @@ respected.
 If you want image to be less wide, set value of ``wrap_chars_after`` to 80
 characters (or any other number that fits your needs). See the example below:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/imgkit_2.py
         :language: python
@@ -93,7 +93,7 @@ characters (or any other number that fits your needs). See the example below:
 To have a longer text, increase the value of ``max_nb_chars`` accordingly.
 See the example below:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/imgkit_3.py
         :language: python
@@ -111,7 +111,7 @@ the box. In order to customise the blocks image file is built from,
 the ``DynamicTemplate`` class is used. See the example below for usage
 examples:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/imgkit_4.py
         :language: python
@@ -128,7 +128,7 @@ good alternative to.
 
 See the following snippet for generating images using `WeasyPrint`_.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/weasyprint_1.py
         :language: python
@@ -149,7 +149,7 @@ think of, although currently only images, paragraphs and tables are supported.
 In order to customise the blocks image file is built from, the
 ``DynamicTemplate`` class is used. See the example below for usage examples:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/weasyprint_2.py
         :language: python
@@ -162,7 +162,7 @@ Building mixed-content images using `Pillow`_
 ---------------------------------------------
 Usage example:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/pillow_1.py
         :language: python
@@ -175,7 +175,7 @@ Usage example:
 
 With options:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/pillow_2.py
         :language: python
@@ -190,7 +190,7 @@ All examples shown for `imgkit`_ and `WeasyPrint`_ apply to `Pillow`_ generator,
 however when building image files from blocks (paragraphs, images and tables),
 the imports shall be adjusted. See the example below:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/pillow_3.py
         :language: python
@@ -206,7 +206,7 @@ files would not contain text, so don't use it when you need text based content.
 However, sometimes you just need a valid image file, without caring much about
 the content. That's where graphic image providers comes to rescue:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/pillow_4.py
         :language: python
@@ -222,7 +222,7 @@ shapes of different colours).
 
 One of the most useful arguments supported is ``size``.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/pillow_5.py
         :language: python
@@ -235,7 +235,7 @@ Augment existing images
 -----------------------
 Augment the input image with a series of random augmentation methods.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_images/augment_1.py
         :language: python
