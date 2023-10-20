@@ -7,7 +7,7 @@ Migrate
 =======
 .. code-block:: shell
 
-    cd admin
+    cd faker_file_admin
     alembic upgrade head
 
 Run server
