@@ -3,7 +3,7 @@ Creating DOCX
 
 See the following full functional snippet for generating DOCX.
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_docx/docx_1.py
         :language: python
@@ -23,7 +23,7 @@ If you want DOCX with more pages, you could either:
 
 See the example below for ``max_nb_chars`` tweak:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_docx/docx_2.py
         :language: python
@@ -36,7 +36,7 @@ See the example below for ``max_nb_chars`` tweak:
 
 See the example below for ``wrap_chars_after`` tweak:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_docx/docx_3.py
         :language: python
@@ -54,7 +54,7 @@ paragraphs, tables and manual text breaks are supported out of the box. In
 order to customise the blocks DOCX file is built from, the ``DynamicTemplate``
 class is used. See the example below for usage examples:
 
-.. container:: prismjs-sphinx-download
+.. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/creating_docx/docx_4.py
         :language: python
