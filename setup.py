@@ -55,6 +55,7 @@ _ml = [
     "torch",  # data-augmentation
     "transformers",  # data-augmentation
     "tika",  # data-augmentation
+    "textaugment",  # data-augmentation
 ]
 
 extras_require = {
