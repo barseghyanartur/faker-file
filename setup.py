@@ -52,6 +52,7 @@ _common = [
 
 _ml = [
     "nlpaug",  # data-augmentation
+    "nltk",  # data-augmentation
     "torch",  # data-augmentation
     "transformers",  # data-augmentation
     "tika",  # data-augmentation
