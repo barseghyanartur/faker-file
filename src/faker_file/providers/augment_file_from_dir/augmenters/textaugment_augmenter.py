@@ -1,4 +1,4 @@
-from typing import Type
+from typing import Any, Type
 
 import nltk
 from textaugment import EDA
@@ -57,13 +57,15 @@ class EDATextaugmentAugmenter(BaseTextAugmenter):
     """
 
     action: str = DEFAULT_ACTION
+    kwargs: dict[str, Any] = {}
     _data_downloaded: bool = False
 
     def handle_kwargs(self: "EDATextaugmentAugmenter", **kwargs) -> None:
         """Handle kwargs."""
         if "action" in kwargs:
             self.action = kwargs["action"]
-
+        if "kwargs" in kwargs:
+            self.kwargs = kwargs["kwargs"]
         self.__class__.init()
 
     @classmethod
@@ -75,12 +77,8 @@ class EDATextaugmentAugmenter(BaseTextAugmenter):
             nltk.download("stopwords")
             cls._data_downloaded = True
 
-    def augment(
-        self: "EDATextaugmentAugmenter",
-        text: str,
-        **kwargs,
-    ) -> str:
+    def augment(self: "EDATextaugmentAugmenter", text: str) -> str:
         """Augment text."""
         aug = EDA()
         func = getattr(aug, self.action)
-        return func(text, **kwargs)
+        return func(text, **self.kwargs)

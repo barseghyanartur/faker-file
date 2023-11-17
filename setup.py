@@ -53,10 +53,10 @@ _common = [
 _ml = [
     "nlpaug",  # data-augmentation
     "nltk",  # data-augmentation
+    "textaugment",  # data-augmentation
+    "tika",  # data-augmentation
     "torch",  # data-augmentation
     "transformers",  # data-augmentation
-    "tika",  # data-augmentation
-    "textaugment",  # data-augmentation
 ]
 
 extras_require = {
