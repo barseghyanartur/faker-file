@@ -1,4 +1,4 @@
-from typing import Any, Type
+from typing import Any, Dict, Type
 
 import nltk
 from textaugment import EDA
@@ -57,7 +57,7 @@ class EDATextaugmentAugmenter(BaseTextAugmenter):
     """
 
     action: str = DEFAULT_ACTION
-    kwargs: dict[str, Any] = {}
+    kwargs: Dict[str, Any] = {}
     _data_downloaded: bool = False
 
     def handle_kwargs(self: "EDATextaugmentAugmenter", **kwargs) -> None:
