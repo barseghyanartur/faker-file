@@ -1,8 +1,7 @@
 .PHONY: clean_up another_script
 
 alembic_migrate:
-	cd examples/sqlalchemy_example/faker_file_admin/
-	alembic upgrade head
+	cd examples/sqlalchemy_example/faker_file_admin/ && alembic upgrade head
 
 benchmark_test:
 	pytest -vvrx --durations=0
@@ -121,13 +120,11 @@ isort:
 	isort . --overwrite-in-place
 
 jupyter:
-	cd examples/django_example/
-	TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
+	cd examples/django_example/ && TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
 
 make_migrations:
 	echo 'Making messages for faker-file...'
-	cd examples/django_example/
-	./manage.py makemigrations faker-file
+	cd examples/django_example/ && ./manage.py makemigrations faker-file
 
 	echo 'Making messages for example projects...'
 	./manage.py makemigrations
@@ -140,8 +137,7 @@ make_release:
 	twine upload dist/* --verbose
 
 migrate:
-	cd examples/django_example/
-	./manage.py migrate "$$@"
+	cd examples/django_example/ && ./manage.py migrate "$$@"
 
 mypy:
 	mypy src/
@@ -158,19 +154,16 @@ ruff:
 	ruff src/
 
 runserver:
-	cd examples/django_example/
-	./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"
+	cd examples/django_example/ && ./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"
 
 serve_docs:
-	cd builddocs/
-	python -m http.server 5000
+	cd builddocs/ && python -m http.server 5000
 
 shell:
 	cd examples/django_example/ && ./manage.py shell --traceback -v 3 "$$@"
 
 sqlalchemy_shell:
-	cd examples/sqlalchemy_example/
-	ipython
+	cd examples/sqlalchemy_example/ && ipython
 
 test:
 	pytest
