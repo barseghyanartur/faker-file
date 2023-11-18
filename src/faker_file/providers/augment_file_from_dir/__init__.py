@@ -15,6 +15,7 @@ from typing import (
 from faker.providers import BaseProvider
 
 from ...base import BytesValue, FileMixin, StringValue
+from ...helpers import load_class_from_path
 from ...storages.base import BaseStorage
 from ...storages.filesystem import FileSystemStorage
 from ..base.text_augmenter import BaseTextAugmenter
@@ -28,18 +29,22 @@ from ..helpers.inner import (
     create_inner_rtf_file,
     create_inner_txt_file,
 )
-from .augmenters.nlpaug_augmenter import ContextualWordEmbeddingsAugmenter
-from .extractors.tika_extractor import TikaTextExtractor
+
+# from .augmenters.nlpaug_augmenter import ContextualWordEmbeddingsAugmenter
+# from .extractors.tika_extractor import TikaTextExtractor
 
 # Full list:
 # create_inner_bin_file: N/A
+# create_inner_bmp_file: Not supported
 # create_inner_csv_file: Not supported
 # create_inner_docx_file: Supported
 # create_inner_eml_file: Supported
 # create_inner_epub_file: Supported
 # create_inner_generic_file: Not supported
+# create_inner_gif_file: Not supported
 # create_inner_ico_file: Not supported
 # create_inner_jpeg_file: Not supported
+# create_inner_json_file: Not supported
 # create_inner_mp3_file: Not supported
 # create_inner_ods_file: Not supported
 # create_inner_odt_file: Supported
@@ -59,7 +64,32 @@ from .extractors.tika_extractor import TikaTextExtractor
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
-__all__ = ("AugmentFileFromDirProvider",)
+__all__ = (
+    "AugmentFileFromDirProvider",
+    "NLPAUG_AUGMENTER",
+    "TEXTAUGMENT_AUGMENTER",
+    "DEFAULT_AUGMENTER",
+    "TIKA_EXTRACTOR",
+    "DEFAULT_EXTRACTOR",
+    "FILE_TYPE_TO_INNER_FUNC_MAPPING",
+    "EXTENSIONS",
+)
+
+NLPAUG_AUGMENTER = (
+    "faker_file.providers.augment_file_from_dir.augmenters.nlpaug_augmenter"
+    ".ContextualWordEmbeddingsAugmenter"
+)
+TEXTAUGMENT_AUGMENTER = (
+    "faker_file.providers.augment_file_from_dir.augmenters"
+    ".textaugment_augmenter.EDATextaugmentAugmenter"
+)
+DEFAULT_AUGMENTER = TEXTAUGMENT_AUGMENTER
+
+TIKA_EXTRACTOR = (
+    "faker_file.providers.augment_file_from_dir.extractors.tika_extractor"
+    ".TikaTextExtractor"
+)
+DEFAULT_EXTRACTOR = TIKA_EXTRACTOR
 
 FILE_TYPE_TO_INNER_FUNC_MAPPING: Dict[str, Callable] = {
     "docx": create_inner_docx_file,
@@ -115,11 +145,13 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
-        text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
+        text_extractor_cls: Optional[
+            Union[str, Type[BaseTextExtractor]]
+        ] = DEFAULT_EXTRACTOR,
         text_extractor_kwargs: Optional[Dict[str, Any]] = None,
-        text_augmenter_cls: Type[
-            BaseTextAugmenter
-        ] = ContextualWordEmbeddingsAugmenter,
+        text_augmenter_cls: Optional[
+            Union[str, Type[BaseTextAugmenter]]
+        ] = DEFAULT_AUGMENTER,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
@@ -135,11 +167,13 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
-        text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
+        text_extractor_cls: Optional[
+            Union[str, Type[BaseTextExtractor]]
+        ] = DEFAULT_EXTRACTOR,
         text_extractor_kwargs: Optional[Dict[str, Any]] = None,
-        text_augmenter_cls: Type[
-            BaseTextAugmenter
-        ] = ContextualWordEmbeddingsAugmenter,
+        text_augmenter_cls: Optional[
+            Union[str, Type[BaseTextAugmenter]]
+        ] = DEFAULT_AUGMENTER,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> StringValue:
@@ -153,11 +187,13 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         wrap_chars_after: Optional[int] = None,
-        text_extractor_cls: Type[BaseTextExtractor] = TikaTextExtractor,
+        text_extractor_cls: Optional[
+            Union[str, Type[BaseTextExtractor]]
+        ] = DEFAULT_EXTRACTOR,
         text_extractor_kwargs: Optional[Dict[str, Any]] = None,
-        text_augmenter_cls: Type[
-            BaseTextAugmenter
-        ] = ContextualWordEmbeddingsAugmenter,
+        text_augmenter_cls: Optional[
+            Union[str, Type[BaseTextAugmenter]]
+        ] = DEFAULT_AUGMENTER,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = False,
         **kwargs,
@@ -201,7 +237,10 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         source_file = Path(source_file_path)
 
         if text_extractor_cls is None:
-            text_extractor_cls = TikaTextExtractor
+            text_extractor_cls = DEFAULT_EXTRACTOR
+
+        if isinstance(text_extractor_cls, str):
+            text_extractor_cls = load_class_from_path(text_extractor_cls)
 
         if not text_extractor_kwargs:
             text_extractor_kwargs = {}
@@ -211,7 +250,10 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         file_type = source_file.suffix[1:]
 
         if text_augmenter_cls is None:
-            text_augmenter_cls = ContextualWordEmbeddingsAugmenter
+            text_augmenter_cls = DEFAULT_AUGMENTER
+
+        if isinstance(text_augmenter_cls, str):
+            text_augmenter_cls = load_class_from_path(text_augmenter_cls)
 
         if not text_augmenter_kwargs:
             text_augmenter_kwargs = {}

@@ -38,3 +38,4 @@ local_settings.py
 *.cast
 .ipynb_checkpoints/
 .scannerwork/
+tika-server.jar

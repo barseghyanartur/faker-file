@@ -34,6 +34,7 @@ class ContextualWordEmbeddingsAugmenter(BaseTextAugmenter):
         FAKER.add_provider(AugmentFileFromDirProvider)
 
         file = FAKER.augment_file_from_dir(
+            source_dir_path="/tmp/tmp/",
             text_augmenter_cls=(
                 nlpaug_augmenter.ContextualWordEmbeddingsAugmenter
             ),

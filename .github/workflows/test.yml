@@ -142,6 +142,9 @@ jobs:
   # *************************************
   # ************* Main tests ************
   # *************************************
+  # Since tox is used, it already covers testing of various Python versions
+  # therefore, there's no need to have run tox tests multiple times. Just once
+  # is fairly sufficient.
   test:
     needs: pre-commit
     name: test ${{ matrix.python-version }} - ${{ matrix.os }}
@@ -156,9 +159,9 @@ jobs:
         #          - MacOs
         python-version:
           - "3.11"
-          - "3.10"
-          - "3.9"
-          - "3.8"
+#          - "3.10"
+#          - "3.9"
+#          - "3.8"
 #          - "3.7"
     steps:
     - name: Install wkhtmltopdf
