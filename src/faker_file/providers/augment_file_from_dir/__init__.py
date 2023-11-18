@@ -35,13 +35,16 @@ from ..helpers.inner import (
 
 # Full list:
 # create_inner_bin_file: N/A
+# create_inner_bmp_file: Not supported
 # create_inner_csv_file: Not supported
 # create_inner_docx_file: Supported
 # create_inner_eml_file: Supported
 # create_inner_epub_file: Supported
 # create_inner_generic_file: Not supported
+# create_inner_gif_file: Not supported
 # create_inner_ico_file: Not supported
 # create_inner_jpeg_file: Not supported
+# create_inner_json_file: Not supported
 # create_inner_mp3_file: Not supported
 # create_inner_ods_file: Not supported
 # create_inner_odt_file: Supported

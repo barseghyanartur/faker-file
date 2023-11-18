@@ -30,7 +30,7 @@ are used for versioning (schema follows below):
 
 0.17.10
 -------
-2023-11-16
+2023-11-19
 
 - Make ``text_extractor_cls`` and ``text_augmenter_cls`` arguments of the
   ``AugmentFileFromDirProvider`` provider access string values (to load
@@ -38,6 +38,7 @@ are used for versioning (schema follows below):
 - Add ``TextaugmentAugmenter`` based on `textaugment`_ package (very
   lightweight) and make it a default text augmenter.
 - Minor documentation fixes.
+- Optimized GitHub CI.
 
 0.17.9
 ------
