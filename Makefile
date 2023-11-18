@@ -173,6 +173,9 @@ sqlalchemy_shell:
 	cd examples/sqlalchemy_example/
 	ipython
 
+test:
+	pytest
+
 test_with_local_tika:
 	TIKA_SERVER_JAR="file:///$(shell pwd)/tika-server.jar" pytest
 
