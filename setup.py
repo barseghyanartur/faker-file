@@ -2,7 +2,7 @@ import os
 
 from setuptools import find_packages, setup
 
-version = "0.17.9"
+version = "0.17.10"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -52,9 +52,11 @@ _common = [
 
 _ml = [
     "nlpaug",  # data-augmentation
+    "nltk",  # data-augmentation
+    "textaugment",  # data-augmentation
+    "tika",  # data-augmentation
     "torch",  # data-augmentation
     "transformers",  # data-augmentation
-    "tika",  # data-augmentation
 ]
 
 extras_require = {

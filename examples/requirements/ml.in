@@ -6,5 +6,7 @@ tika
 
 # Data augmentation
 nlpaug
+nltk
+textaugment
 torch
 transformers

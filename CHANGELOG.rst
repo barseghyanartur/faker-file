@@ -11,6 +11,7 @@ Release history and notes
 .. _pdfkit: https://pypi.org/project/pdfkit/
 .. _reportlab: https://pypi.org/project/reportlab/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _textaugment: https://github.com/dsfsi/textaugment
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -26,6 +27,18 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.17.10
+-------
+2023-11-19
+
+- Make ``text_extractor_cls`` and ``text_augmenter_cls`` arguments of the
+  ``AugmentFileFromDirProvider`` provider access string values (to load
+  requested class from path given).
+- Add ``TextaugmentAugmenter`` based on `textaugment`_ package (very
+  lightweight) and make it a default text augmenter.
+- Minor documentation fixes.
+- Optimized GitHub CI.
 
 0.17.9
 ------
