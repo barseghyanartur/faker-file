@@ -13,7 +13,7 @@ __all__ = (
     "DEFAULT_ACTION",
 )
 
-DEFAULT_ACTION = "random_insertion"
+DEFAULT_ACTION = "synonym_replacement"
 
 
 class EDATextaugmentAugmenter(BaseTextAugmenter):

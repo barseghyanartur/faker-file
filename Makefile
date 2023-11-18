@@ -18,7 +18,7 @@ check_release:
 	python setup.py sdist bdist_wheel
 	twine check dist/* --verbose
 
-clean_up:
+clean:
 	find . -name "*.pyc" -exec rm -rf {} \;
 	find . -name "*.py,cover" -exec rm -rf {} \;
 	find . -name "*.orig" -exec rm -rf {} \;
@@ -166,8 +166,7 @@ serve_docs:
 	python -m http.server 5000
 
 shell:
-	cd examples/django_example/
-	./manage.py shell --traceback -v 3 "$$@"
+	cd examples/django_example/ && ./manage.py shell --traceback -v 3 "$$@"
 
 sqlalchemy_shell:
 	cd examples/sqlalchemy_example/
