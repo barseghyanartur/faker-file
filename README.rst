@@ -85,6 +85,7 @@ faker-file
 .. _python-pptx: https://python-pptx.readthedocs.io/
 .. _reportlab: https://pypi.org/project/reportlab/
 .. _tablib: https://tablib.readthedocs.io/
+.. _textaugment: https://pypi.org/project/textaugment/
 .. _tika: https://pypi.org/project/tika/
 .. _transformers: https://pypi.org/project/transformers/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
