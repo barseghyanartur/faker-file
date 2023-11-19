@@ -1,11 +1,21 @@
 import os
+import re
 
 from setuptools import find_packages, setup
+
+
+def clean_readme(text):
+    # Define the pattern to match ":emphasize-lines:" followed by digits
+    pattern = r":emphasize-lines: \d+"
+    # Replace the found patterns with an empty string
+    return re.sub(pattern, "", text)
+
 
 version = "0.17.10"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
+    readme = clean_readme(readme)
 except OSError:
     readme = ""
 
