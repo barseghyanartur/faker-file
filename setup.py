@@ -4,19 +4,19 @@ import re
 from setuptools import find_packages, setup
 
 
-def clean_readme(text):
+def clean_readme(text: str) -> str:
     # Pattern to match ":emphasize-lines:" followed by digits
     emphasize_lines_pattern = r":emphasize-lines: \d+"
     text = re.sub(emphasize_lines_pattern, "", text)
 
-    # Pattern to match ":name:" followed by any characters to the line end
-    name_lines_pattern = r":name: .*$"
-    text = re.sub(name_lines_pattern, "", text, flags=re.MULTILINE)
+    # # Pattern to match ":name:" followed by any characters to the line end
+    # name_lines_pattern = r":name: .*$"
+    # text = re.sub(name_lines_pattern, "", text, flags=re.MULTILINE)
 
     return text
 
 
-version = "0.17.10"
+version = "0.17.11"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()

@@ -132,9 +132,13 @@ make_migrations:
 	echo 'Applying migrations...'
 	./manage.py migrate
 
-make_release:
+release:
 	python setup.py sdist bdist_wheel
 	twine upload dist/* --verbose
+
+test_release:
+	python setup.py sdist bdist_wheel
+	twine upload --repository testpypi dist/* --verbose
 
 migrate:
 	cd examples/django_example/ && ./manage.py migrate "$$@"

@@ -1,5 +1,11 @@
 Recipes
 =======
+.. External references
+
+.. _nlpaug: https://nlpaug.readthedocs.io/
+.. _nltk: https://www.nltk.org/
+.. _textaugment: https://pypi.org/project/textaugment/
+
 When using with ``Faker``
 -------------------------
 When using with ``Faker``, there are two ways of using the providers.
@@ -613,7 +619,14 @@ however narrow that list by providing ``extensions`` argument:
     :download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
 
 ----
+Actual augmentation of texts is delegated to an abstraction layer of text
+augmenters. Currently, two augmenters are implemented. Default one is based on
+`textaugment`_ (which is in its' turn based on `nltk`_) is very lightweight
+and speedy, but produces less accurate results. Another one is based on
+`nlpaug`_, which is way more sophisticated, but at the cost of speed.
 
+nlpaug augmenter
+~~~~~~~~~~~~~~~~
 By default ``bert-base-multilingual-cased`` model is used, which is
 pretrained on the top 104 languages with the largest Wikipedia using a
 masked language modeling (MLM) objective. If you want to use a different
@@ -639,6 +652,18 @@ Some well working options for ``model_path`` are:
 Refer to ``nlpaug``
 `docs <https://nlpaug.readthedocs.io/en/latest/example/example.html>`__
 and check `Textual augmenters` examples.
+
+textaugment augmenter
+~~~~~~~~~~~~~~~~~~~~~
+.. container:: jsphinx-download
+
+    .. literalinclude:: _static/examples/recipes/augment_file_from_dir_4.py
+        :language: python
+        :lines: 5-7, 25-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/augment_file_from_dir_4.py>`
+
 
 Using `raw=True` features in tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

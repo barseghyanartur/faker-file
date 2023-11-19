@@ -71,6 +71,7 @@ faker-file
 .. _gTTS: https://gtts.readthedocs.io/
 .. _google-cloud-storage: https://pypi.org/project/google-cloud-storage/
 .. _imgkit: https://pypi.org/project/imgkit/
+.. _nltk: https://www.nltk.org/
 .. _nlpaug: https://nlpaug.readthedocs.io/
 .. _numpy: https://numpy.org/
 .. _odfpy: https://pypi.org/project/odfpy/
@@ -85,6 +86,7 @@ faker-file
 .. _python-pptx: https://python-pptx.readthedocs.io/
 .. _reportlab: https://pypi.org/project/reportlab/
 .. _tablib: https://tablib.readthedocs.io/
+.. _textaugment: https://pypi.org/project/textaugment/
 .. _tika: https://pypi.org/project/tika/
 .. _transformers: https://pypi.org/project/transformers/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
@@ -117,8 +119,8 @@ All licenses are mentioned below between the brackets.
   requires either just `Pillow`_ (`HPND`), or a combination of
   `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
-- ``PDF`` file support requires either combination of `pdfkit`_ (`MIT`)
-  and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
+- ``PDF`` file support requires either `Pillow`_ (`HPND`), or a combination of
+  `pdfkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
 - ``PPTX`` file support requires `python-pptx`_ (`MIT`).
 - ``ODP`` and ``ODT`` file support requires `odfpy`_ (`Apache 2`).
 - ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
@@ -131,9 +133,11 @@ All licenses are mentioned below between the brackets.
 - ``GoogleCloudStorage`` storage support requires `pathy`_ (`Apache 2`)
   and `google-cloud-storage`_ (`Apache 2`).
 - ``SFTPStorage`` storage support requires `paramiko`_ (`LGLPv2.1`).
-- ``AugmentFileFromDirProvider`` provider requires `nlpaug`_ (`MIT`),
-  `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`), `numpy`_ (`BSD`),
-  `pandas`_ (`BSD`), `tika`_ (`Apache 2`) and `Apache Tika`_ (`Apache 2`).
+- ``AugmentFileFromDirProvider`` provider requires either a combination of
+  `textaugment`_ (`MIT`) and `nltk`_ (`Apache 2`) or a combination of
+  `nlpaug`_ (`MIT`), `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`),
+  `numpy`_ (`BSD`), `pandas`_ (`BSD`), `tika`_ (`Apache 2`) and
+  `Apache Tika`_ (`Apache 2`).
 
 Documentation
 =============
@@ -360,8 +364,8 @@ functions):
 .. container:: jsphinx-toggle-emphasis
 
     .. code-block:: python
-        :emphasize-lines: 7
         :name: test_usage_examples_with_faker_raw_recommended_way
+        :emphasize-lines: 7
 
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider
@@ -396,8 +400,8 @@ If you just need ``bytes`` back:
 .. container:: jsphinx-toggle-emphasis
 
     .. code-block:: python
-        :emphasize-lines: 6
         :name: test_rst_readme_usage_examples_with_faker_raw_but_this_works_too
+        :emphasize-lines: 6
 
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider
