@@ -15,7 +15,7 @@ build_docs:
 
 check_release:
 	python setup.py sdist bdist_wheel
-	twine check dist/* --verbose
+	twine check dist/*
 
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \;
