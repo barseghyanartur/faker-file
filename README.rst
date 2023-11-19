@@ -71,6 +71,7 @@ faker-file
 .. _gTTS: https://gtts.readthedocs.io/
 .. _google-cloud-storage: https://pypi.org/project/google-cloud-storage/
 .. _imgkit: https://pypi.org/project/imgkit/
+.. _nltk: https://www.nltk.org/
 .. _nlpaug: https://nlpaug.readthedocs.io/
 .. _numpy: https://numpy.org/
 .. _odfpy: https://pypi.org/project/odfpy/
@@ -118,8 +119,8 @@ All licenses are mentioned below between the brackets.
   requires either just `Pillow`_ (`HPND`), or a combination of
   `imgkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`).
 - ``MP3`` file support requires `gTTS`_ (`MIT`) or `edge-tts`_ (`GPLv3`).
-- ``PDF`` file support requires either combination of `pdfkit`_ (`MIT`)
-  and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
+- ``PDF`` file support requires either `Pillow`_ (`HPND`), or a combination of
+  `pdfkit`_ (`MIT`) and `wkhtmltopdf`_ (`LGPLv3`), or `reportlab`_ (`BSD`).
 - ``PPTX`` file support requires `python-pptx`_ (`MIT`).
 - ``ODP`` and ``ODT`` file support requires `odfpy`_ (`Apache 2`).
 - ``ODS`` file support requires `tablib`_ (`MIT`) and `odfpy`_ (`Apache 2`).
@@ -132,9 +133,11 @@ All licenses are mentioned below between the brackets.
 - ``GoogleCloudStorage`` storage support requires `pathy`_ (`Apache 2`)
   and `google-cloud-storage`_ (`Apache 2`).
 - ``SFTPStorage`` storage support requires `paramiko`_ (`LGLPv2.1`).
-- ``AugmentFileFromDirProvider`` provider requires `nlpaug`_ (`MIT`),
-  `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`), `numpy`_ (`BSD`),
-  `pandas`_ (`BSD`), `tika`_ (`Apache 2`) and `Apache Tika`_ (`Apache 2`).
+- ``AugmentFileFromDirProvider`` provider requires either a combination of
+  `textaugment`_ (`MIT`) and `nltk`_ (`Apache 2`) or a combination of
+  `nlpaug`_ (`MIT`), `PyTorch`_ (`BSD`), `transformers`_ (`Apache 2`),
+  `numpy`_ (`BSD`), `pandas`_ (`BSD`), `tika`_ (`Apache 2`) and
+  `Apache Tika`_ (`Apache 2`).
 
 Documentation
 =============
