@@ -619,6 +619,7 @@ however narrow that list by providing ``extensions`` argument:
     :download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
 
 ----
+
 Actual augmentation of texts is delegated to an abstraction layer of text
 augmenters. Currently, two augmenters are implemented. Default one is based on
 `textaugment`_ (which is in its' turn based on `nltk`_) is very lightweight
