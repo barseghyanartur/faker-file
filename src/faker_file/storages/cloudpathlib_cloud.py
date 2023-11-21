@@ -147,7 +147,9 @@ class CloudpathlibFileSystemStorage(CloudpathlibCloudStorage):
             CloudpathlibFileSystemStorage
         )
 
-        fs_storage = PathyFileSystemStorage(bucket_name="artur-testing-1")
+        fs_storage = CloudpathlibFileSystemStorage(
+            bucket_name="artur-testing-1"
+        )
         file = fs_storage.generate_filename(prefix="zzz_", extension="docx")
         fs_storage.write_text(file, "Lorem ipsum")
         fs_storage.write_bytes(file, b"Lorem ipsum")

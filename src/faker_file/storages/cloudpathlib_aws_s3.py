@@ -1,4 +1,4 @@
-from pathy import set_client_params
+from cloudpathlib import S3Client
 
 from .cloudpathlib_cloud import CloudpathlibCloudStorage
 
@@ -15,9 +15,11 @@ class CloudpathlibAWSS3Storage(CloudpathlibCloudStorage):
 
     .. code-block:: python
 
-        from faker_file.storages.cloudpathlib_aws_s3 import AWSS3Storage
+        from faker_file.storages.cloudpathlib_aws_s3 import (
+            CloudpathlibAWSS3Storage
+        )
 
-        s3_storage = AWSS3Storage(
+        s3_storage = CloudpathlibAWSS3Storage(
             bucket_name="artur-testing-1",
             rel_path="tmp",
         )
@@ -35,4 +37,8 @@ class CloudpathlibAWSS3Storage(CloudpathlibCloudStorage):
         **kwargs,
     ) -> None:
         """Authenticate to AWS S3."""
-        set_client_params("s3", key_id=key_id, key_secret=key_secret)
+        client = S3Client(
+            aws_access_key_id=key_id,
+            aws_secret_access_key=key_secret,
+        )
+        client.set_as_default_client()
