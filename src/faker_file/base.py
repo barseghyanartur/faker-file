@@ -50,7 +50,7 @@ class BytesValue(bytes):
     data: Dict[str, Any]
 
     def __new__(cls, value, *args, **kwargs):
-        obj = str.__new__(cls, value)
+        obj = bytes.__new__(cls, value)
         obj.data = {}
         return obj
 
