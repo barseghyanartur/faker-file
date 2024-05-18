@@ -157,6 +157,128 @@ compile_requirements_upgrade:
 	echo "testing.in"
 	pip-compile --upgrade examples/requirements/testing.in
 
+uv_compile_requirements:
+	echo "common.in"
+	uv pip compile examples/requirements/common.in
+
+	echo "debug.in"
+	uv pip compile examples/requirements/debug.in
+
+	echo "deployment.in"
+	uv pip compile examples/requirements/deployment.in
+
+	echo "dev.in"
+	uv pip compile examples/requirements/dev.in
+
+	echo "django_2_2.in"
+	uv pip compile examples/requirements/django_2_2.in
+
+	echo "django_3_2.in"
+	uv pip compile examples/requirements/django_3_2.in
+
+	echo "django_4_0.in"
+	uv pip compile examples/requirements/django_4_0.in
+
+	echo "django_4_1.in"
+	uv pip compile examples/requirements/django_4_1.in
+
+	echo "django_4_2.in"
+	uv pip compile examples/requirements/django_4_2.in
+
+	echo "django_2_2_and_flask.in"
+	uv pip compile examples/requirements/django_2_2_and_flask.in
+
+	echo "django_3_2_and_flask.in"
+	uv pip compile examples/requirements/django_3_2_and_flask.in
+
+	echo "django_4_0_and_flask.in"
+	uv pip compile examples/requirements/django_4_0_and_flask.in
+
+	echo "django_4_1_and_flask.in"
+	uv pip compile examples/requirements/django_4_1_and_flask.in
+
+	echo "django_4_2_and_flask.in"
+	uv pip compile examples/requirements/django_4_2_and_flask.in
+
+	echo "docs.in"
+	uv pip compile examples/requirements/docs.in
+
+	echo "flask.in"
+	uv pip compile examples/requirements/flask.in
+
+	echo "ml.in"
+	uv pip compile examples/requirements/ml.in
+
+	echo "style_checkers.in"
+	uv pip compile examples/requirements/style_checkers.in
+
+	echo "test.in"
+	uv pip compile examples/requirements/test.in
+
+	echo "testing.in"
+	uv pip compile examples/requirements/testing.in
+
+uv_compile_requirements_upgrade:
+	echo "common.in"
+	uv pip compile --upgrade examples/requirements/common.in
+
+	echo "debug.in"
+	uv pip compile --upgrade examples/requirements/debug.in
+
+	echo "deployment.in"
+	uv pip compile --upgrade examples/requirements/deployment.in
+
+	echo "dev.in"
+	uv pip compile --upgrade examples/requirements/dev.in
+
+	echo "django_2_2.in"
+	uv pip compile --upgrade examples/requirements/django_2_2.in
+
+	echo "django_3_2.in"
+	uv pip compile --upgrade examples/requirements/django_3_2.in
+
+	echo "django_4_0.in"
+	uv pip compile --upgrade examples/requirements/django_4_0.in
+
+	echo "django_4_1.in"
+	uv pip compile --upgrade examples/requirements/django_4_1.in
+
+	echo "django_4_2.in"
+	uv pip compile --upgrade examples/requirements/django_4_2.in
+
+	echo "django_2_2_and_flask.in"
+	uv pip compile --upgrade examples/requirements/django_2_2_and_flask.in
+
+	echo "django_3_2_and_flask.in"
+	uv pip compile --upgrade examples/requirements/django_3_2_and_flask.in
+
+	echo "django_4_0_and_flask.in"
+	uv pip compile --upgrade examples/requirements/django_4_0_and_flask.in
+
+	echo "django_4_1_and_flask.in"
+	uv pip compile --upgrade examples/requirements/django_4_1_and_flask.in
+
+	echo "django_4_2_and_flask.in"
+	uv pip compile --upgrade examples/requirements/django_4_2_and_flask.in
+
+	echo "docs.in"
+	uv pip compile --upgrade examples/requirements/docs.in
+
+	echo "flask.in"
+	uv pip compile --upgrade examples/requirements/flask.in
+
+	echo "ml.in"
+	uv pip compile --upgrade examples/requirements/ml.in
+
+	echo "style_checkers.in"
+	uv pip compile --upgrade examples/requirements/style_checkers.in
+
+	echo "test.in"
+	uv pip compile --upgrade examples/requirements/test.in
+
+	echo "testing.in"
+	uv pip compile --upgrade examples/requirements/testing.in
+
 detect_secrets_create_baseline:
 	detect-secrets scan > .secrets.baseline
 
