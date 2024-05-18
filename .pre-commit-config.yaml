@@ -20,7 +20,7 @@ repos:
         args: []
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.6.0
     hooks:
       - id: trailing-whitespace
         exclude: "data/"
@@ -33,7 +33,7 @@ repos:
       - id: check-merge-conflict
 
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 24.4.2
     hooks:
       - id: black
         name: black
@@ -41,7 +41,7 @@ repos:
         args: [ "--config", "pyproject.toml" ]
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 5.13.2
     hooks:
       - id: isort
         name: isort
@@ -49,7 +49,7 @@ repos:
         args: [ "--settings-path", "pyproject.toml", "--profile=black" ]
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.252
+    rev: v0.4.4
     hooks:
       - id: ruff
         name: lint
