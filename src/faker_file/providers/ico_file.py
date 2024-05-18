@@ -95,8 +95,7 @@ class IcoFileProvider(BaseProvider, ImageMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def ico_file(
@@ -115,8 +114,7 @@ class IcoFileProvider(BaseProvider, ImageMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def ico_file(
         self: "IcoFileProvider",
@@ -226,8 +224,7 @@ class GraphicIcoFileProvider(BaseProvider, GraphicImageMixin):
         luminosity: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def graphic_ico_file(
@@ -239,8 +236,7 @@ class GraphicIcoFileProvider(BaseProvider, GraphicImageMixin):
         hue: Union[int, Sequence[int], str, None] = None,
         luminosity: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def graphic_ico_file(
         self: "GraphicIcoFileProvider",

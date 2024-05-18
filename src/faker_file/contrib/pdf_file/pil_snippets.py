@@ -87,6 +87,7 @@
         )
     )
 """
+
 import logging
 import textwrap
 from collections import namedtuple

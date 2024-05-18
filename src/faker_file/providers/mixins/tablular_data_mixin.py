@@ -33,8 +33,7 @@ class TabularDataMixin(FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def _tabular_data_file(
@@ -49,8 +48,7 @@ class TabularDataMixin(FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def _tabular_data_file(
         self: "TabularDataMixin",

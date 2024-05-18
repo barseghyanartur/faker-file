@@ -90,8 +90,7 @@ class TarFileProvider(BaseProvider, FileMixin):
         compression: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def tar_file(
@@ -104,8 +103,7 @@ class TarFileProvider(BaseProvider, FileMixin):
         #     Optional[Literal["gz", "bz2", "xz"]] = None
         compression: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def tar_file(
         self: "TarFileProvider",
