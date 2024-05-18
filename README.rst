@@ -169,7 +169,7 @@ Latest stable version from PyPI
 
 .. code-block:: sh
 
-    pip install faker-file[all]
+    pip install faker-file'[all]'
 
 **Only core**
 
@@ -183,79 +183,79 @@ Latest stable version from PyPI
 
 .. code-block:: sh
 
-    pip install faker-file[common]
+    pip install faker-file'[common]'
 
 **With DOCX support**
 
 .. code-block:: sh
 
-    pip install faker-file[docx]
+    pip install faker-file'[docx]'
 
 **With EPUB support**
 
 .. code-block:: sh
 
-    pip install faker-file[epub]
+    pip install faker-file'[epub]'
 
 **With images support**
 
 .. code-block:: sh
 
-    pip install faker-file[images]
+    pip install faker-file'[images]'
 
 **With PDF support**
 
 .. code-block:: sh
 
-    pip install faker-file[pdf]
+    pip install faker-file'[pdf]'
 
 **With MP3 support**
 
 .. code-block:: sh
 
-    pip install faker-file[mp3]
+    pip install faker-file'[mp3]'
 
 **With XLSX support**
 
 .. code-block:: sh
 
-    pip install faker-file[xlsx]
+    pip install faker-file'[xlsx]'
 
 **With ODS support**
 
 .. code-block:: sh
 
-    pip install faker-file[ods]
+    pip install faker-file'[ods]'
 
 **With ODT support**
 
 .. code-block:: sh
 
-    pip install faker-file[odt]
+    pip install faker-file'[odt]'
 
 **With data augmentation support**
 
 .. code-block:: sh
 
-    pip install faker-file[data-augmentation]
+    pip install faker-file'[data-augmentation]'
 
 **With GoogleCloudStorage support**
 
 .. code-block:: sh
 
-    pip install faker-file[gcs]
+    pip install faker-file'[gcs]'
 
 **With AzureCloudStorage support**
 
 .. code-block:: sh
 
-    pip install faker-file[azure]
+    pip install faker-file'[azure]'
 
 **With AWSS3Storage support**
 
 .. code-block:: sh
 
-    pip install faker-file[s3]
+    pip install faker-file'[s3]'
 
 Or development version from GitHub
 ----------------------------------
