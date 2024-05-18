@@ -37,64 +37,125 @@ clean:
 
 compile_requirements:
 	echo "common.in"
-	pip-compile examples/requirements/common.in "$$@"
+	pip-compile examples/requirements/common.in
 
 	echo "debug.in"
-	pip-compile examples/requirements/debug.in "$$@"
+	pip-compile examples/requirements/debug.in
 
 	echo "deployment.in"
-	pip-compile examples/requirements/deployment.in "$$@"
+	pip-compile examples/requirements/deployment.in
 
 	echo "dev.in"
-	pip-compile examples/requirements/dev.in "$$@"
+	pip-compile examples/requirements/dev.in
 
 	echo "django_2_2.in"
-	pip-compile examples/requirements/django_2_2.in "$$@"
+	pip-compile examples/requirements/django_2_2.in
 
 	echo "django_3_2.in"
-	pip-compile examples/requirements/django_3_2.in "$$@"
+	pip-compile examples/requirements/django_3_2.in
 
 	echo "django_4_0.in"
-	pip-compile examples/requirements/django_4_0.in "$$@"
+	pip-compile examples/requirements/django_4_0.in
 
 	echo "django_4_1.in"
-	pip-compile examples/requirements/django_4_1.in "$$@"
+	pip-compile examples/requirements/django_4_1.in
 
 	echo "django_4_2.in"
-	pip-compile examples/requirements/django_4_2.in "$$@"
+	pip-compile examples/requirements/django_4_2.in
 
 	echo "django_2_2_and_flask.in"
-	pip-compile examples/requirements/django_2_2_and_flask.in "$$@"
+	pip-compile examples/requirements/django_2_2_and_flask.in
 
 	echo "django_3_2_and_flask.in"
-	pip-compile examples/requirements/django_3_2_and_flask.in "$$@"
+	pip-compile examples/requirements/django_3_2_and_flask.in
 
 	echo "django_4_0_and_flask.in"
-	pip-compile examples/requirements/django_4_0_and_flask.in "$$@"
+	pip-compile examples/requirements/django_4_0_and_flask.in
 
 	echo "django_4_1_and_flask.in"
-	pip-compile examples/requirements/django_4_1_and_flask.in "$$@"
+	pip-compile examples/requirements/django_4_1_and_flask.in
 
 	echo "django_4_2_and_flask.in"
-	pip-compile examples/requirements/django_4_2_and_flask.in "$$@"
+	pip-compile examples/requirements/django_4_2_and_flask.in
 
 	echo "docs.in"
-	pip-compile examples/requirements/docs.in "$$@"
+	pip-compile examples/requirements/docs.in
 
 	echo "flask.in"
-	pip-compile examples/requirements/flask.in "$$@"
+	pip-compile examples/requirements/flask.in
 
 	echo "ml.in"
-	pip-compile examples/requirements/ml.in "$$@"
+	pip-compile examples/requirements/ml.in
 
 	echo "style_checkers.in"
-	pip-compile examples/requirements/style_checkers.in "$$@"
+	pip-compile examples/requirements/style_checkers.in
 
 	echo "test.in"
-	pip-compile examples/requirements/test.in "$$@"
+	pip-compile examples/requirements/test.in
 
 	echo "testing.in"
-	pip-compile examples/requirements/testing.in "$$@"
+	pip-compile examples/requirements/testing.in
+
+compile-requirements-upgrade:
+	echo "common.in"
+	pip-compile --upgrade examples/requirements/common.in
+
+	echo "debug.in"
+	pip-compile --upgrade examples/requirements/debug.in
+
+	echo "deployment.in"
+	pip-compile --upgrade examples/requirements/deployment.in
+
+	echo "dev.in"
+	pip-compile --upgrade examples/requirements/dev.in
+
+	echo "django_2_2.in"
+	pip-compile --upgrade examples/requirements/django_2_2.in
+
+	echo "django_3_2.in"
+	pip-compile --upgrade examples/requirements/django_3_2.in
+
+	echo "django_4_0.in"
+	pip-compile --upgrade examples/requirements/django_4_0.in
+
+	echo "django_4_1.in"
+	pip-compile --upgrade examples/requirements/django_4_1.in
+
+	echo "django_4_2.in"
+	pip-compile --upgrade examples/requirements/django_4_2.in
+
+	echo "django_2_2_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_2_2_and_flask.in
+
+	echo "django_3_2_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_3_2_and_flask.in
+
+	echo "django_4_0_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_4_0_and_flask.in
+
+	echo "django_4_1_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_4_1_and_flask.in
+
+	echo "django_4_2_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_4_2_and_flask.in
+
+	echo "docs.in"
+	pip-compile --upgrade examples/requirements/docs.in
+
+	echo "flask.in"
+	pip-compile --upgrade examples/requirements/flask.in
+
+	echo "ml.in"
+	pip-compile --upgrade examples/requirements/ml.in
+
+	echo "style_checkers.in"
+	pip-compile --upgrade examples/requirements/style_checkers.in
+
+	echo "test.in"
+	pip-compile --upgrade examples/requirements/test.in
+
+	echo "testing.in"
+	pip-compile --upgrade examples/requirements/testing.in
 
 detect_secrets_create_baseline:
 	detect-secrets scan > .secrets.baseline
