@@ -8,7 +8,7 @@ import pytest
 import tika
 from django.test import override_settings
 from faker_file.registry import FILE_REGISTRY
-from moto import mock_s3
+from moto import mock_aws
 
 # Walk through the directory and all subdirectories for .py files
 example_dir = Path("docs/_static/examples")
@@ -49,7 +49,7 @@ def mock_paramiko():
 
 # We have to apply `moto` mocking to all test functions, because in some
 # we have boto dependant code.
-@mock_s3
+@mock_aws
 def execute_file(file_path, caplog):
     """Dynamic test function."""
     global_vars = {}
