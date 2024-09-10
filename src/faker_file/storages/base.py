@@ -1,3 +1,5 @@
+import random
+import string
 from typing import Any, Optional
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -12,6 +14,18 @@ class BaseStorage:
     def __init__(self, *args, **kwargs) -> None:
         self.args = args
         self.kwargs = kwargs
+
+    def generate_basename(
+        self: "BaseStorage",
+        prefix: str = "tmp",
+        length: int = 8,
+    ) -> str:
+        """Generate a random alphanumeric sequence."""
+        if not prefix:
+            prefix = "tmp"
+        # Use lowercase letters, digits and underscore
+        characters = string.ascii_lowercase + string.digits + "_"
+        return prefix + "".join(random.choices(characters, k=length))
 
     def generate_filename(
         self: "BaseStorage",

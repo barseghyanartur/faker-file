@@ -1,5 +1,3 @@
-import os
-import tempfile
 from abc import abstractmethod
 from typing import Any, Dict, Optional, Union
 
@@ -69,24 +67,34 @@ class CloudStorage(BaseStorage):
         if not extension:
             raise Exception("Extension shall be given!")
 
-        if basename:
-            return (
-                self.bucket
-                / self.root_path
-                / self.rel_path
-                / f"{basename}.{extension}"
-            )
-        else:
-            with tempfile.NamedTemporaryFile(
-                prefix=prefix,
-                suffix=f".{extension}",
-            ) as temp_file:
-                return (
-                    self.bucket
-                    / self.root_path
-                    / self.rel_path
-                    / os.path.basename(temp_file.name)
-                )
+        if not basename:
+            basename = self.generate_basename(prefix)
+
+        return (
+            self.bucket
+            / self.root_path
+            / self.rel_path
+            / f"{basename}.{extension}"
+        )
+
+        # if basename:
+        #     return (
+        #         self.bucket
+        #         / self.root_path
+        #         / self.rel_path
+        #         / f"{basename}.{extension}"
+        #     )
+        # else:
+        #     with tempfile.NamedTemporaryFile(
+        #         prefix=prefix,
+        #         suffix=f".{extension}",
+        #     ) as temp_file:
+        #         return (
+        #             self.bucket
+        #             / self.root_path
+        #             / self.rel_path
+        #             / os.path.basename(temp_file.name)
+        #         )
 
     def write_text(
         self: "CloudStorage",

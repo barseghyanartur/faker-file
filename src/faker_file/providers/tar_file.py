@@ -130,6 +130,24 @@ class TarFileProvider(BaseProvider, FileMixin):
             file).
         :return: Relative path (from root directory) of the generated file
             or raw content of the file.
+
+        A complex case usage example:
+
+        .. code-block:: python
+
+            tar_file = TarFileProvider(None).tar_file(
+                prefix="ttt_archive_",
+                options={
+                    "count": 5,
+                    "create_inner_file_func": create_inner_docx_file,
+                    "create_inner_file_args": {
+                        "prefix": "ttt_file_",
+                        "max_nb_chars": 1_024,
+                        "content": "{{date}}\r\n{{text}}\r\n{{name}}",
+                    },
+                    "directory": "ttt",
+                },
+            )
         """
         # Generic
         if storage is None:
@@ -150,25 +168,7 @@ class TarFileProvider(BaseProvider, FileMixin):
 
         # Specific
         if options:
-            """
-            A complex case. Could be initialized as follows:
-
-            .. code-block:: python
-
-                zip_file = TarFileProvider(None).tar_file(
-                    prefix="ttt_archive_",
-                    options={
-                        "count": 5,
-                        "create_inner_file_func": create_inner_docx_file,
-                        "create_inner_file_args": {
-                            "prefix": "ttt_file_",
-                            "max_nb_chars": 1_024,
-                            "content": "{{date}}\r\n{{text}}\r\n{{name}}",
-                        },
-                        "directory": "ttt",
-                    },
-                )
-            """
+            # Complex case
             _count = options.get("count", 5)
             _create_inner_file_func = options.get(
                 "create_inner_file_func", create_inner_txt_file
@@ -178,7 +178,7 @@ class TarFileProvider(BaseProvider, FileMixin):
             _directory = options.get("directory", "")
 
         else:
-            # Defaults
+            # Defaults, simple case
             _count = 5
             _create_inner_file_func = create_inner_txt_file
             _create_inner_file_args = {}
