@@ -43,7 +43,7 @@ tests_require = [
     "pytest-ordering",  # pytest add-on
     "pytest-pythonpath",  # pytest add-on
     "pytest-rst",  # pytest add-on
-    "moto",  # testing documentation
+    "moto>=5.0.0",  # testing documentation
 ]
 
 _common = [

@@ -92,7 +92,7 @@ django-extensions==3.2.1
     # via -r examples/requirements/django_4_2.in
 django-storages==1.13.2
     # via -r examples/requirements/django_4_2.in
-djangorestframework @ https://github.com/encode/django-rest-framework/archive/refs/heads/master.zip
+djangorestframework==3.15.2
     # via
     #   -r examples/requirements/django_4_2.in
     #   drf-spectacular
