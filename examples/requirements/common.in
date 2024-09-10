@@ -3,7 +3,7 @@ imgkit
 gTTS
 odfpy
 openpyxl
-pathy[all]
+pathy[all]>=0.10.0,<0.11.0
 pdfkit
 python-docx
 python-pptx

@@ -159,125 +159,125 @@ compile_requirements_upgrade:
 
 uv_compile_requirements:
 	echo "common.in"
-	uv pip compile examples/requirements/common.in -o examples/requirements/common.txt
+	uv pip compile --no-strip-extras examples/requirements/common.in -o examples/requirements/common.txt
 
 	echo "debug.in"
-	uv pip compile examples/requirements/debug.in -o examples/requirements/debug.txt
+	uv pip compile --no-strip-extras examples/requirements/debug.in -o examples/requirements/debug.txt
 
 	echo "deployment.in"
-	uv pip compile examples/requirements/deployment.in -o examples/requirements/deployment.txt
+	uv pip compile --no-strip-extras examples/requirements/deployment.in -o examples/requirements/deployment.txt
 
 	echo "dev.in"
-	uv pip compile examples/requirements/dev.in -o examples/requirements/dev.txt
+	uv pip compile --no-strip-extras examples/requirements/dev.in -o examples/requirements/dev.txt
 
 	echo "django_2_2.in"
-	uv pip compile examples/requirements/django_2_2.in -o examples/requirements/django_2_2.txt
+	uv pip compile --no-strip-extras examples/requirements/django_2_2.in -o examples/requirements/django_2_2.txt
 
 	echo "django_3_2.in"
-	uv pip compile examples/requirements/django_3_2.in -o examples/requirements/django_3_2.txt
+	uv pip compile --no-strip-extras examples/requirements/django_3_2.in -o examples/requirements/django_3_2.txt
 
 	echo "django_4_0.in"
-	uv pip compile examples/requirements/django_4_0.in -o examples/requirements/django_4_0.txt
+	uv pip compile --no-strip-extras examples/requirements/django_4_0.in -o examples/requirements/django_4_0.txt
 
 	echo "django_4_1.in"
-	uv pip compile examples/requirements/django_4_1.in -o examples/requirements/django_4_1.txt
+	uv pip compile --no-strip-extras examples/requirements/django_4_1.in -o examples/requirements/django_4_1.txt
 
 	echo "django_4_2.in"
-	uv pip compile examples/requirements/django_4_2.in -o examples/requirements/django_4_2.txt
+	uv pip compile --no-strip-extras examples/requirements/django_4_2.in -o examples/requirements/django_4_2.txt
 
 	echo "django_2_2_and_flask.in"
-	uv pip compile examples/requirements/django_2_2_and_flask.in -o examples/requirements/django_2_2_and_flask.txt
+	uv pip compile --no-strip-extras examples/requirements/django_2_2_and_flask.in -o examples/requirements/django_2_2_and_flask.txt
 
 	echo "django_3_2_and_flask.in"
-	uv pip compile examples/requirements/django_3_2_and_flask.in -o examples/requirements/django_3_2_and_flask.txt
+	uv pip compile --no-strip-extras examples/requirements/django_3_2_and_flask.in -o examples/requirements/django_3_2_and_flask.txt
 
 	echo "django_4_0_and_flask.in"
-	uv pip compile examples/requirements/django_4_0_and_flask.in -o examples/requirements/django_4_0_and_flask.txt
+	uv pip compile --no-strip-extras examples/requirements/django_4_0_and_flask.in -o examples/requirements/django_4_0_and_flask.txt
 
 	echo "django_4_1_and_flask.in"
-	uv pip compile examples/requirements/django_4_1_and_flask.in -o examples/requirements/django_4_1_and_flask.txt
+	uv pip compile --no-strip-extras examples/requirements/django_4_1_and_flask.in -o examples/requirements/django_4_1_and_flask.txt
 
 	echo "django_4_2_and_flask.in"
-	uv pip compile examples/requirements/django_4_2_and_flask.in -o examples/requirements/django_4_2_and_flask.txt
+	uv pip compile --no-strip-extras examples/requirements/django_4_2_and_flask.in -o examples/requirements/django_4_2_and_flask.txt
 
 	echo "docs.in"
-	uv pip compile examples/requirements/docs.in -o examples/requirements/docs.txt
+	uv pip compile --no-strip-extras examples/requirements/docs.in -o examples/requirements/docs.txt
 
 	echo "flask.in"
-	uv pip compile examples/requirements/flask.in -o examples/requirements/flask.txt
+	uv pip compile --no-strip-extras examples/requirements/flask.in -o examples/requirements/flask.txt
 
 	echo "ml.in"
-	uv pip compile examples/requirements/ml.in -o examples/requirements/ml.txt
+	uv pip compile --no-strip-extras examples/requirements/ml.in -o examples/requirements/ml.txt
 
 	echo "style_checkers.in"
-	uv pip compile examples/requirements/style_checkers.in -o examples/requirements/style_checkers.txt
+	uv pip compile --no-strip-extras examples/requirements/style_checkers.in -o examples/requirements/style_checkers.txt
 
 	echo "test.in"
-	uv pip compile examples/requirements/test.in -o examples/requirements/test.txt
+	uv pip compile --no-strip-extras examples/requirements/test.in -o examples/requirements/test.txt
 
 	echo "testing.in"
-	uv pip compile examples/requirements/testing.in -o examples/requirements/testing.txt
+	uv pip compile --no-strip-extras examples/requirements/testing.in -o examples/requirements/testing.txt
 
 uv_compile_requirements_upgrade:
 	echo "common.in"
-	uv pip compile --upgrade examples/requirements/common.in -o examples/requirements/common.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/common.in -o examples/requirements/common.txt
 
 	echo "debug.in"
-	uv pip compile --upgrade examples/requirements/debug.in -o examples/requirements/debug.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/debug.in -o examples/requirements/debug.txt
 
 	echo "deployment.in"
-	uv pip compile --upgrade examples/requirements/deployment.in -o examples/requirements/deployment.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/deployment.in -o examples/requirements/deployment.txt
 
 	echo "dev.in"
-	uv pip compile --upgrade examples/requirements/dev.in -o examples/requirements/dev.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/dev.in -o examples/requirements/dev.txt
 
 	echo "django_2_2.in"
-	uv pip compile --upgrade examples/requirements/django_2_2.in -o examples/requirements/django_2_2.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_2_2.in -o examples/requirements/django_2_2.txt
 
 	echo "django_3_2.in"
-	uv pip compile --upgrade examples/requirements/django_3_2.in -o examples/requirements/django_3_2.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_3_2.in -o examples/requirements/django_3_2.txt
 
 	echo "django_4_0.in"
-	uv pip compile --upgrade examples/requirements/django_4_0.in -o examples/requirements/django_4_0.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_0.in -o examples/requirements/django_4_0.txt
 
 	echo "django_4_1.in"
-	uv pip compile --upgrade examples/requirements/django_4_1.in -o examples/requirements/django_4_1.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_1.in -o examples/requirements/django_4_1.txt
 
 	echo "django_4_2.in"
-	uv pip compile --upgrade examples/requirements/django_4_2.in -o examples/requirements/django_4_2.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_2.in -o examples/requirements/django_4_2.txt
 
 	echo "django_2_2_and_flask.in"
-	uv pip compile --upgrade examples/requirements/django_2_2_and_flask.in -o examples/requirements/django_2_2_and_flask.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_2_2_and_flask.in -o examples/requirements/django_2_2_and_flask.txt
 
 	echo "django_3_2_and_flask.in"
-	uv pip compile --upgrade examples/requirements/django_3_2_and_flask.in -o examples/requirements/django_3_2_and_flask.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_3_2_and_flask.in -o examples/requirements/django_3_2_and_flask.txt
 
 	echo "django_4_0_and_flask.in"
-	uv pip compile --upgrade examples/requirements/django_4_0_and_flask.in -o examples/requirements/django_4_0_and_flask.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_0_and_flask.in -o examples/requirements/django_4_0_and_flask.txt
 
 	echo "django_4_1_and_flask.in"
-	uv pip compile --upgrade examples/requirements/django_4_1_and_flask.in -o examples/requirements/django_4_1_and_flask.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_1_and_flask.in -o examples/requirements/django_4_1_and_flask.txt
 
 	echo "django_4_2_and_flask.in"
-	uv pip compile --upgrade examples/requirements/django_4_2_and_flask.in -o examples/requirements/django_4_2_and_flask.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_2_and_flask.in -o examples/requirements/django_4_2_and_flask.txt
 
 	echo "docs.in"
-	uv pip compile --upgrade examples/requirements/docs.in -o examples/requirements/docs.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/docs.in -o examples/requirements/docs.txt
 
 	echo "flask.in"
-	uv pip compile --upgrade examples/requirements/flask.in -o examples/requirements/flask.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/flask.in -o examples/requirements/flask.txt
 
 	echo "ml.in"
-	uv pip compile --upgrade examples/requirements/ml.in -o examples/requirements/ml.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/ml.in -o examples/requirements/ml.txt
 
 	echo "style_checkers.in"
-	uv pip compile --upgrade examples/requirements/style_checkers.in -o examples/requirements/style_checkers.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/style_checkers.in -o examples/requirements/style_checkers.txt
 
 	echo "test.in"
-	uv pip compile --upgrade examples/requirements/test.in -o examples/requirements/test.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/test.in -o examples/requirements/test.txt
 
 	echo "testing.in"
-	uv pip compile --upgrade examples/requirements/testing.in -o examples/requirements/testing.txt
+	uv pip compile --upgrade --no-strip-extras examples/requirements/testing.in -o examples/requirements/testing.txt
 
 detect_secrets_create_baseline:
 	detect-secrets scan > .secrets.baseline
