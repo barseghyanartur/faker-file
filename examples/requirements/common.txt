@@ -186,6 +186,8 @@ python-docx==1.1.2
     # via -r examples/requirements/common.in
 python-pptx==1.0.2
     # via -r examples/requirements/common.in
+pytz==2024.1
+    # via -r examples/requirements/common.in
 reportlab==4.2.2
     # via -r examples/requirements/common.in
 requests==2.32.3

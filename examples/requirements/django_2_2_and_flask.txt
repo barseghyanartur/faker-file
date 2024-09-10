@@ -320,7 +320,9 @@ python-levenshtein==0.25.1
 python-pptx==1.0.2
     # via -r examples/requirements/common.in
 pytz==2024.1
-    # via django
+    # via
+    #   -r examples/requirements/common.in
+    #   django
 pyyaml==6.0.2
     # via
     #   drf-spectacular

@@ -293,6 +293,8 @@ python-levenshtein==0.25.1
     # via fuzzywuzzy
 python-pptx==1.0.2
     # via -r examples/requirements/common.in
+pytz==2024.1
+    # via -r examples/requirements/common.in
 pyyaml==6.0.2
     # via responses
 rapidfuzz==3.9.7
