@@ -69,6 +69,7 @@ _ml = [
     "nlpaug",  # data-augmentation
     "nltk",  # data-augmentation
     "textaugment",  # data-augmentation
+    "textblob>=0.17,<0.18",
     "tika",  # data-augmentation
     "torch",  # data-augmentation
     "transformers",  # data-augmentation

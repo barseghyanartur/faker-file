@@ -75,9 +75,9 @@ jobs:
           python -m pip install --upgrade pip
       - name: Install tox
         run: |
-          python -m pip install --no-cache-dir tox-gh-actions pip-tools Django djangorestframework django-extensions drf_spectacular
+          python -m pip install --no-cache-dir tox-gh-actions uv Django djangorestframework django-extensions drf_spectacular
       - name: Compile requirements
-        run: pip-compile examples/requirements/flask.in
+        run: uv pip compile examples/requirements/flask.in --no-strip-extras
       - name: Install requirements
         run: pip install --no-cache-dir -r examples/requirements/flask.txt
       - name: Run test suite
@@ -121,9 +121,9 @@ jobs:
           python -m pip install --upgrade pip
       - name: Install tox
         run: |
-          python -m pip install --no-cache-dir tox-gh-actions pip-tools Django djangorestframework django-extensions drf_spectacular
+          python -m pip install --no-cache-dir tox-gh-actions uv Django djangorestframework django-extensions drf_spectacular
       - name: Compile requirements
-        run: pip-compile examples/requirements/ml.in
+        run: uv pip compile examples/requirements/ml.in --no-strip-extras
       - name: Install requirements
         run: pip install --no-cache-dir -r examples/requirements/ml.txt
       - name: Run test suite
