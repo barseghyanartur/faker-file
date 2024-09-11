@@ -85,8 +85,7 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def ods_file(
@@ -101,8 +100,7 @@ class OdsFileProvider(BaseProvider, TabularDataMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def ods_file(
         self: "OdsFileProvider",

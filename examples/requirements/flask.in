@@ -2,7 +2,7 @@
 -r test.in
 
 alembic
-Flask
+Flask>=2.0,<3.0
 #Flask<=2.1.0; python_version < '3.10'  # For Python 3.7, 3.8 and 3.9
 #Flask; python_version >= '3.10'  # For Python 3.10 and 3.11
 Flask-Admin
@@ -11,5 +11,5 @@ Flask-SQLAlchemy
 #Flask-SQLAlchemy<3.0.0; ; python_version < '3.8'  # For Python 3.7
 #Flask-SQLAlchemy>3.0.0; ; python_version >= '3.8'  # For Python 3.8, 3.9, 3.10 and 3.11
 Flask-Testing
-SQLAlchemy
+SQLAlchemy>=1.0,<2.0
 sqlalchemy_utils

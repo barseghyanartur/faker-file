@@ -28,6 +28,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.12
+-------
+2024-09-10
+
+- Minor fixes.
+
 0.17.11
 -------
 2023-11-20

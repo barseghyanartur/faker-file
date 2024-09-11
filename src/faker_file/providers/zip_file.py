@@ -84,8 +84,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
         options: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def zip_file(
@@ -95,8 +94,7 @@ class ZipFileProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         options: Optional[Dict[str, Any]] = None,
         **kwargs,
-    ) -> Union[BytesValue, StringValue]:
-        ...
+    ) -> Union[BytesValue, StringValue]: ...
 
     def zip_file(
         self: "ZipFileProvider",
