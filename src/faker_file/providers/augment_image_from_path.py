@@ -59,8 +59,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         pop_func: Callable = random_pop,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def augment_image_from_path(
@@ -73,8 +72,7 @@ class AugmentImageFromPathProvider(BaseProvider, FileMixin):
         num_steps: Optional[int] = None,
         pop_func: Callable = random_pop,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def augment_image_from_path(
         self: "AugmentImageFromPathProvider",

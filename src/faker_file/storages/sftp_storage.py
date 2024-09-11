@@ -1,6 +1,5 @@
 import logging
 import os
-import tempfile
 from typing import Optional
 
 import paramiko
@@ -107,14 +106,19 @@ class SFTPStorage(BaseStorage):
             LOGGER.error("File extension is required")
             raise ValueError("Extension shall be given!")
 
-        if basename:
-            return self._build_path(f"{basename}.{extension}")
-        else:
-            with tempfile.NamedTemporaryFile(
-                prefix=prefix,
-                suffix=f".{extension}",
-            ) as temp_file:
-                return self._build_path(os.path.basename(temp_file.name))
+        if not basename:
+            basename = self.generate_basename(prefix)
+
+        return self._build_path(f"{basename}.{extension}")
+
+        # if basename:
+        #     return self._build_path(f"{basename}.{extension}")
+        # else:
+        #     with tempfile.NamedTemporaryFile(
+        #         prefix=prefix,
+        #         suffix=f".{extension}",
+        #     ) as temp_file:
+        #         return self._build_path(os.path.basename(temp_file.name))
 
     def write_text(
         self: "SFTPStorage",

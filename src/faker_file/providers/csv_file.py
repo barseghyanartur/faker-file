@@ -81,8 +81,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def csv_file(
@@ -100,8 +99,7 @@ class CsvFileProvider(BaseProvider, FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def csv_file(
         self: "CsvFileProvider",

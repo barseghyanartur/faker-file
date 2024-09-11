@@ -28,8 +28,7 @@ class GraphicImageMixin(FileMixin):
         luminosity: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def _image_file(
@@ -42,8 +41,7 @@ class GraphicImageMixin(FileMixin):
         hue: Union[int, Sequence[int], str, None] = None,
         luminosity: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def _image_file(
         self: "GraphicImageMixin",

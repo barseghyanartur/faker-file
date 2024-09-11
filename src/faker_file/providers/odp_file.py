@@ -80,8 +80,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def odp_file(
@@ -96,8 +95,7 @@ class OdpFileProvider(BaseProvider, FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def odp_file(
         self: "OdpFileProvider",

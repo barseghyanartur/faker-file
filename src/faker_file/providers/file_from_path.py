@@ -54,8 +54,7 @@ class FileFromPathProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def file_from_path(
@@ -65,8 +64,7 @@ class FileFromPathProvider(BaseProvider, FileMixin):
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def file_from_path(
         self: "FileFromPathProvider",
