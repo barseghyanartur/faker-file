@@ -8,5 +8,6 @@ tika
 nlpaug
 nltk
 textaugment
+textblob>=0.17,<0.18
 torch
 transformers

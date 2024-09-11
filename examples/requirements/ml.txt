@@ -413,8 +413,10 @@ tblib==3.0.0
     # via pytest-parallel
 textaugment==2.0.0
     # via -r examples/requirements/ml.in
-textblob==0.18.0.post0
-    # via textaugment
+textblob==0.17.1
+    # via
+    #   -r examples/requirements/ml.in
+    #   textaugment
 tika==2.6.0
     # via -r examples/requirements/ml.in
 tinycss2==1.3.0
