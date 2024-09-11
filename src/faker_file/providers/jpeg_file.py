@@ -95,8 +95,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def jpeg_file(
@@ -115,8 +114,7 @@ class JpegFileProvider(BaseProvider, ImageMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def jpeg_file(
         self: "JpegFileProvider",
@@ -226,8 +224,7 @@ class GraphicJpegFileProvider(BaseProvider, GraphicImageMixin):
         luminosity: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def graphic_jpeg_file(
@@ -239,8 +236,7 @@ class GraphicJpegFileProvider(BaseProvider, GraphicImageMixin):
         hue: Union[int, Sequence[int], str, None] = None,
         luminosity: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def graphic_jpeg_file(
         self: "GraphicJpegFileProvider",

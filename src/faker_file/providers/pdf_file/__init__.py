@@ -138,8 +138,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def pdf_file(
@@ -158,8 +157,7 @@ class PdfFileProvider(BaseProvider, FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def pdf_file(
         self: "PdfFileProvider",
@@ -314,8 +312,7 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
         luminosity: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def graphic_pdf_file(
@@ -327,8 +324,7 @@ class GraphicPdfFileProvider(BaseProvider, GraphicImageMixin):
         hue: Union[int, Sequence[int], str, None] = None,
         luminosity: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def graphic_pdf_file(
         self: "GraphicPdfFileProvider",

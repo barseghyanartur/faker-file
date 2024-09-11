@@ -56,8 +56,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         prefix: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def random_file_from_dir(
@@ -67,8 +66,7 @@ class RandomFileFromDirProvider(BaseProvider, FileMixin):
         basename: Optional[str] = None,
         prefix: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def random_file_from_dir(
         self: "RandomFileFromDirProvider",

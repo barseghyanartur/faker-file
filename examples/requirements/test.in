@@ -3,7 +3,7 @@ asyncssh
 coverage
 factory_boy
 fuzzywuzzy[speedup]
-moto
+moto>=5.0.0
 parametrize
 py
 pytest-cov

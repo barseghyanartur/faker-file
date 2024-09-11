@@ -81,8 +81,7 @@ class SvgFileProvider(BaseProvider, ImageMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def svg_file(
@@ -101,8 +100,7 @@ class SvgFileProvider(BaseProvider, ImageMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def svg_file(
         self: "SvgFileProvider",

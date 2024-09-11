@@ -95,8 +95,7 @@ class BmpFileProvider(BaseProvider, ImageMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def bmp_file(
@@ -115,8 +114,7 @@ class BmpFileProvider(BaseProvider, ImageMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def bmp_file(
         self: "BmpFileProvider",
@@ -226,8 +224,7 @@ class GraphicBmpFileProvider(BaseProvider, GraphicImageMixin):
         luminosity: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def graphic_bmp_file(
@@ -239,8 +236,7 @@ class GraphicBmpFileProvider(BaseProvider, GraphicImageMixin):
         hue: Union[int, Sequence[int], str, None] = None,
         luminosity: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def graphic_bmp_file(
         self: "GraphicBmpFileProvider",

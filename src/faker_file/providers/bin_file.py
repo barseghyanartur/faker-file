@@ -79,8 +79,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         content: Optional[bytes] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def bin_file(
@@ -91,8 +90,7 @@ class BinFileProvider(BaseProvider, FileMixin):
         length: int = (1 * 1024 * 1024),
         content: Optional[bytes] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def bin_file(
         self: "BinFileProvider",
