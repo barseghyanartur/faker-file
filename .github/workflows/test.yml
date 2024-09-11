@@ -126,8 +126,8 @@ jobs:
         run: rm examples/requirements/ml.txt
       - name: Compile requirements
         run: uv pip compile examples/requirements/ml.in --no-strip-extras -o examples/requirements/ml.txt
-      - name: Install package
-        run: pip install .[all]
+#      - name: Install package
+#        run: pip install .[all]
       - name: Install requirements
         run: pip install --no-cache-dir -r examples/requirements/ml.txt
       - name: Run test suite
