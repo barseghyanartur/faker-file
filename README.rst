@@ -105,7 +105,7 @@ a few are `BSD`-, `Apache 2`-, `GPL` or `HPND` licensed.
 
 All licenses are mentioned below between the brackets.
 
-- Core package requires Python 3.7, 3.8, 3.9, 3.10 or 3.11.
+- Core package requires Python 3.9, 3.10 or 3.11.
 - `Faker`_ (`MIT`) is the only required dependency.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
   been tested with ``Django`` starting from version 2.2 to 4.2 (although only

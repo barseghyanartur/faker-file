@@ -48,32 +48,20 @@ compile_requirements:
 	echo "dev.in"
 	pip-compile examples/requirements/dev.in
 
-	echo "django_2_2.in"
-	pip-compile examples/requirements/django_2_2.in
+	echo "django_5_0.in"
+	pip-compile examples/requirements/django_5_0.in
 
-	echo "django_3_2.in"
-	pip-compile examples/requirements/django_3_2.in
-
-	echo "django_4_0.in"
-	pip-compile examples/requirements/django_4_0.in
-
-	echo "django_4_1.in"
-	pip-compile examples/requirements/django_4_1.in
+	echo "django_5_1.in"
+	pip-compile examples/requirements/django_5_1.in
 
 	echo "django_4_2.in"
 	pip-compile examples/requirements/django_4_2.in
 
-	echo "django_2_2_and_flask.in"
-	pip-compile examples/requirements/django_2_2_and_flask.in
+	echo "django_5_0_and_flask.in"
+	pip-compile examples/requirements/django_5_0_and_flask.in
 
-	echo "django_3_2_and_flask.in"
-	pip-compile examples/requirements/django_3_2_and_flask.in
-
-	echo "django_4_0_and_flask.in"
-	pip-compile examples/requirements/django_4_0_and_flask.in
-
-	echo "django_4_1_and_flask.in"
-	pip-compile examples/requirements/django_4_1_and_flask.in
+	echo "django_5_1_and_flask.in"
+	pip-compile examples/requirements/django_5_1_and_flask.in
 
 	echo "django_4_2_and_flask.in"
 	pip-compile examples/requirements/django_4_2_and_flask.in
@@ -109,32 +97,20 @@ compile_requirements_upgrade:
 	echo "dev.in"
 	pip-compile --upgrade examples/requirements/dev.in
 
-	echo "django_2_2.in"
-	pip-compile --upgrade examples/requirements/django_2_2.in
+	echo "django_5_0.in"
+	pip-compile --upgrade examples/requirements/django_5_0.in
 
-	echo "django_3_2.in"
-	pip-compile --upgrade examples/requirements/django_3_2.in
-
-	echo "django_4_0.in"
-	pip-compile --upgrade examples/requirements/django_4_0.in
-
-	echo "django_4_1.in"
-	pip-compile --upgrade examples/requirements/django_4_1.in
+	echo "django_5_1.in"
+	pip-compile --upgrade examples/requirements/django_5_1.in
 
 	echo "django_4_2.in"
 	pip-compile --upgrade examples/requirements/django_4_2.in
 
-	echo "django_2_2_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_2_2_and_flask.in
+	echo "django_5_0_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_5_0_and_flask.in
 
-	echo "django_3_2_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_3_2_and_flask.in
-
-	echo "django_4_0_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_4_0_and_flask.in
-
-	echo "django_4_1_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_4_1_and_flask.in
+	echo "django_5_1_and_flask.in"
+	pip-compile --upgrade examples/requirements/django_5_1_and_flask.in
 
 	echo "django_4_2_and_flask.in"
 	pip-compile --upgrade examples/requirements/django_4_2_and_flask.in
@@ -170,32 +146,20 @@ uv_compile_requirements:
 	echo "dev.in"
 	uv pip compile --no-strip-extras examples/requirements/dev.in -o examples/requirements/dev.txt
 
-	echo "django_2_2.in"
-	uv pip compile --no-strip-extras examples/requirements/django_2_2.in -o examples/requirements/django_2_2.txt
+	echo "django_5_0.in"
+	uv pip compile --no-strip-extras examples/requirements/django_5_0.in -o examples/requirements/django_5_0.txt
 
-	echo "django_3_2.in"
-	uv pip compile --no-strip-extras examples/requirements/django_3_2.in -o examples/requirements/django_3_2.txt
-
-	echo "django_4_0.in"
-	uv pip compile --no-strip-extras examples/requirements/django_4_0.in -o examples/requirements/django_4_0.txt
-
-	echo "django_4_1.in"
-	uv pip compile --no-strip-extras examples/requirements/django_4_1.in -o examples/requirements/django_4_1.txt
+	echo "django_5_1.in"
+	uv pip compile --no-strip-extras examples/requirements/django_5_1.in -o examples/requirements/django_5_1.txt
 
 	echo "django_4_2.in"
 	uv pip compile --no-strip-extras examples/requirements/django_4_2.in -o examples/requirements/django_4_2.txt
 
-	echo "django_2_2_and_flask.in"
-	uv pip compile --no-strip-extras examples/requirements/django_2_2_and_flask.in -o examples/requirements/django_2_2_and_flask.txt
+	echo "django_5_0_and_flask.in"
+	uv pip compile --no-strip-extras examples/requirements/django_5_0_and_flask.in -o examples/requirements/django_5_0_and_flask.txt
 
-	echo "django_3_2_and_flask.in"
-	uv pip compile --no-strip-extras examples/requirements/django_3_2_and_flask.in -o examples/requirements/django_3_2_and_flask.txt
-
-	echo "django_4_0_and_flask.in"
-	uv pip compile --no-strip-extras examples/requirements/django_4_0_and_flask.in -o examples/requirements/django_4_0_and_flask.txt
-
-	echo "django_4_1_and_flask.in"
-	uv pip compile --no-strip-extras examples/requirements/django_4_1_and_flask.in -o examples/requirements/django_4_1_and_flask.txt
+	echo "django_5_1_and_flask.in"
+	uv pip compile --no-strip-extras examples/requirements/django_5_1_and_flask.in -o examples/requirements/django_5_1_and_flask.txt
 
 	echo "django_4_2_and_flask.in"
 	uv pip compile --no-strip-extras examples/requirements/django_4_2_and_flask.in -o examples/requirements/django_4_2_and_flask.txt
@@ -231,32 +195,20 @@ uv_compile_requirements_upgrade:
 	echo "dev.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/dev.in -o examples/requirements/dev.txt
 
-	echo "django_2_2.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_2_2.in -o examples/requirements/django_2_2.txt
+	echo "django_5_0.in"
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_5_0.in -o examples/requirements/django_5_0.txt
 
-	echo "django_3_2.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_3_2.in -o examples/requirements/django_3_2.txt
-
-	echo "django_4_0.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_0.in -o examples/requirements/django_4_0.txt
-
-	echo "django_4_1.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_1.in -o examples/requirements/django_4_1.txt
+	echo "django_5_1.in"
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_5_1.in -o examples/requirements/django_5_1.txt
 
 	echo "django_4_2.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_2.in -o examples/requirements/django_4_2.txt
 
-	echo "django_2_2_and_flask.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_2_2_and_flask.in -o examples/requirements/django_2_2_and_flask.txt
+	echo "django_5_0_and_flask.in"
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_5_0_and_flask.in -o examples/requirements/django_5_0_and_flask.txt
 
-	echo "django_3_2_and_flask.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_3_2_and_flask.in -o examples/requirements/django_3_2_and_flask.txt
-
-	echo "django_4_0_and_flask.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_0_and_flask.in -o examples/requirements/django_4_0_and_flask.txt
-
-	echo "django_4_1_and_flask.in"
-	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_1_and_flask.in -o examples/requirements/django_4_1_and_flask.txt
+	echo "django_5_1_and_flask.in"
+	uv pip compile --upgrade --no-strip-extras examples/requirements/django_5_1_and_flask.in -o examples/requirements/django_5_1_and_flask.txt
 
 	echo "django_4_2_and_flask.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/django_4_2_and_flask.in -o examples/requirements/django_4_2_and_flask.txt
