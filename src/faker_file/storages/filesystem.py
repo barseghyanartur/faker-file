@@ -60,15 +60,20 @@ class FileSystemStorage(BaseStorage):
         if not extension:
             raise Exception("Extension shall be given!")
 
-        if basename:
-            return os.path.join(dir_path, f"{basename}.{extension}")
-        else:
-            with tempfile.NamedTemporaryFile(
-                prefix=prefix,
-                dir=dir_path,
-                suffix=f".{extension}",
-            ) as temp_file:
-                return temp_file.name
+        if not basename:
+            basename = self.generate_basename(prefix)
+
+        return os.path.join(dir_path, f"{basename}.{extension}")
+
+        # if basename:
+        #     return os.path.join(dir_path, f"{basename}.{extension}")
+        # else:
+        #     with tempfile.NamedTemporaryFile(
+        #         prefix=prefix,
+        #         dir=dir_path,
+        #         suffix=f".{extension}",
+        #     ) as temp_file:
+        #         return temp_file.name
 
     def write_text(
         self: "FileSystemStorage",
