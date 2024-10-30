@@ -145,8 +145,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def mp3_file(
@@ -164,8 +163,7 @@ class Mp3FileProvider(BaseProvider, FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def mp3_file(
         self: "Mp3FileProvider",

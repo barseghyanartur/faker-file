@@ -1,2 +1,2 @@
--r django_3_2.in
+-r django_4_2.in
 -r deployment.in

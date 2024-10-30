@@ -124,8 +124,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def docx_file(
@@ -140,8 +139,7 @@ class DocxFileProvider(BaseProvider, FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def docx_file(
         self: "DocxFileProvider",

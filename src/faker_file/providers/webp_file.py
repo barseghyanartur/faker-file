@@ -95,8 +95,7 @@ class WebpFileProvider(BaseProvider, ImageMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def webp_file(
@@ -115,8 +114,7 @@ class WebpFileProvider(BaseProvider, ImageMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def webp_file(
         self: "WebpFileProvider",
@@ -226,8 +224,7 @@ class GraphicWebpFileProvider(BaseProvider, GraphicImageMixin):
         luminosity: Optional[str] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def graphic_webp_file(
@@ -239,8 +236,7 @@ class GraphicWebpFileProvider(BaseProvider, GraphicImageMixin):
         hue: Union[int, Sequence[int], str, None] = None,
         luminosity: Optional[str] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def graphic_webp_file(
         self: "GraphicWebpFileProvider",

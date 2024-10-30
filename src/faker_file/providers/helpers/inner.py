@@ -87,8 +87,7 @@ def create_inner_augment_image_from_path(
     pop_func: Callable = random_pop,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -102,8 +101,7 @@ def create_inner_augment_image_from_path(
     num_steps: Optional[int] = None,
     pop_func: Callable = random_pop,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_augment_image_from_path(
@@ -155,8 +153,7 @@ def create_inner_augment_random_image_from_dir(
     pop_func: Callable = random_pop,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -171,8 +168,7 @@ def create_inner_augment_random_image_from_dir(
     num_steps: Optional[int] = None,
     pop_func: Callable = random_pop,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_augment_random_image_from_dir(
@@ -227,8 +223,7 @@ def create_inner_bin_file(
     content: Optional[bytes] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -240,8 +235,7 @@ def create_inner_bin_file(
     length: int = (1 * 1024 * 1024),
     content: Optional[bytes] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_bin_file(
@@ -292,8 +286,7 @@ def create_inner_csv_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -311,8 +304,7 @@ def create_inner_csv_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_csv_file(
@@ -371,8 +363,7 @@ def create_inner_docx_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -388,8 +379,7 @@ def create_inner_docx_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_docx_file(
@@ -445,8 +435,7 @@ def create_inner_eml_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -463,8 +452,7 @@ def create_inner_eml_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_eml_file(
@@ -522,8 +510,7 @@ def create_inner_epub_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -541,8 +528,7 @@ def create_inner_epub_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_epub_file(
@@ -596,8 +582,7 @@ def create_inner_file_from_path(
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -608,8 +593,7 @@ def create_inner_file_from_path(
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_file_from_path(
@@ -655,8 +639,7 @@ def create_inner_generic_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -671,8 +654,7 @@ def create_inner_generic_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_generic_file(
@@ -727,8 +709,7 @@ def create_inner_ico_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -744,8 +725,7 @@ def create_inner_ico_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_ico_file(
@@ -795,8 +775,7 @@ def create_inner_graphic_ico_file(
     luminosity: Optional[str] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -809,8 +788,7 @@ def create_inner_graphic_ico_file(
     hue: Union[int, Sequence[int], str, None] = None,
     luminosity: Optional[str] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_graphic_ico_file(
@@ -861,8 +839,7 @@ def create_inner_jpeg_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -878,8 +855,7 @@ def create_inner_jpeg_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_jpeg_file(
@@ -929,8 +905,7 @@ def create_inner_graphic_jpeg_file(
     luminosity: Optional[str] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -943,8 +918,7 @@ def create_inner_graphic_jpeg_file(
     hue: Union[int, Sequence[int], str, None] = None,
     luminosity: Optional[str] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_graphic_jpeg_file(
@@ -996,8 +970,7 @@ def create_inner_json_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1014,8 +987,7 @@ def create_inner_json_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_json_file(
@@ -1073,8 +1045,7 @@ def create_inner_mp3_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1091,8 +1062,7 @@ def create_inner_mp3_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_mp3_file(
@@ -1149,8 +1119,7 @@ def create_inner_odp_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1166,8 +1135,7 @@ def create_inner_odp_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> Union[BytesValue, StringValue]:
-    ...
+) -> Union[BytesValue, StringValue]: ...
 
 
 def create_inner_odp_file(
@@ -1222,8 +1190,7 @@ def create_inner_ods_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1239,8 +1206,7 @@ def create_inner_ods_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_ods_file(
@@ -1295,8 +1261,7 @@ def create_inner_odt_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1312,8 +1277,7 @@ def create_inner_odt_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_odt_file(
@@ -1370,8 +1334,7 @@ def create_inner_pdf_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1389,8 +1352,7 @@ def create_inner_pdf_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_pdf_file(
@@ -1444,8 +1406,7 @@ def create_inner_graphic_pdf_file(
     luminosity: Optional[str] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1458,8 +1419,7 @@ def create_inner_graphic_pdf_file(
     hue: Union[int, Sequence[int], str, None] = None,
     luminosity: Optional[str] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_graphic_pdf_file(
@@ -1510,8 +1470,7 @@ def create_inner_png_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1527,8 +1486,7 @@ def create_inner_png_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_png_file(
@@ -1578,8 +1536,7 @@ def create_inner_graphic_png_file(
     luminosity: Optional[str] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1592,8 +1549,7 @@ def create_inner_graphic_png_file(
     hue: Union[int, Sequence[int], str, None] = None,
     luminosity: Optional[str] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_graphic_png_file(
@@ -1644,8 +1600,7 @@ def create_inner_pptx_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1661,8 +1616,7 @@ def create_inner_pptx_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_pptx_file(
@@ -1712,8 +1666,7 @@ def create_inner_random_file_from_dir(
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1724,8 +1677,7 @@ def create_inner_random_file_from_dir(
     prefix: Optional[str] = None,
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_random_file_from_dir(
@@ -1774,8 +1726,7 @@ def create_inner_rtf_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1791,8 +1742,7 @@ def create_inner_rtf_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_rtf_file(
@@ -1847,8 +1797,7 @@ def create_inner_svg_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1864,8 +1813,7 @@ def create_inner_svg_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_svg_file(
@@ -1916,8 +1864,7 @@ def create_inner_tar_file(
     compression: Optional[str] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1929,8 +1876,7 @@ def create_inner_tar_file(
     options: Optional[Dict[str, Any]] = None,
     compression: Optional[str] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_tar_file(
@@ -1978,8 +1924,7 @@ def create_inner_txt_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -1995,8 +1940,7 @@ def create_inner_txt_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_txt_file(
@@ -2051,8 +1995,7 @@ def create_inner_webp_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -2068,8 +2011,7 @@ def create_inner_webp_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_webp_file(
@@ -2119,8 +2061,7 @@ def create_inner_graphic_webp_file(
     luminosity: Optional[str] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -2133,8 +2074,7 @@ def create_inner_graphic_webp_file(
     hue: Union[int, Sequence[int], str, None] = None,
     luminosity: Optional[str] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_graphic_webp_file(
@@ -2185,8 +2125,7 @@ def create_inner_xlsx_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -2202,8 +2141,7 @@ def create_inner_xlsx_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_xlsx_file(
@@ -2261,8 +2199,7 @@ def create_inner_xml_file(
     ] = DEFAULT_FORMAT_FUNC,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -2281,8 +2218,7 @@ def create_inner_xml_file(
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_xml_file(
@@ -2338,8 +2274,7 @@ def create_inner_zip_file(
     options: Optional[Dict[str, Any]] = None,
     raw: bool = True,
     **kwargs,
-) -> BytesValue:
-    ...
+) -> BytesValue: ...
 
 
 @overload
@@ -2350,8 +2285,7 @@ def create_inner_zip_file(
     generator: Optional[Union[Faker, Generator, Provider]] = None,
     options: Optional[Dict[str, Any]] = None,
     **kwargs,
-) -> StringValue:
-    ...
+) -> StringValue: ...
 
 
 def create_inner_zip_file(

@@ -44,6 +44,8 @@ class TestSFTPStorageTestCase(unittest.TestCase):
     sftp_user: str = SFTP_USER
     sftp_pass: str = SFTP_PASS
     sftp_root_path: str = SFTP_ROOT_PATH
+    # Maximum number of retries to check if the port is free
+    max_port_retry_limit: int = 10
 
     @staticmethod
     def is_port_in_use(host: str, port: int) -> bool:
@@ -52,13 +54,29 @@ class TestSFTPStorageTestCase(unittest.TestCase):
 
     @classmethod
     def free_port(cls: "TestSFTPStorageTestCase") -> None:
-        # Check if the port is in use and wait until it is free
+        """Check if the port is in use and wait until it is free."""
+        retry_count = 0
         while cls.is_port_in_use(cls.sftp_host, cls.sftp_port):
+            if retry_count >= cls.max_port_retry_limit:
+                LOGGER.warning(
+                    f"Maximum retries reached. Port {cls.sftp_port} on "
+                    f"host {cls.sftp_host} may not be free soon."
+                )
+                retry_count = 0  # Reset the retry count
+                # Assign a new port
+                cls.sftp_port = int(AutoFreePortInt(host=SFTP_HOST))
+                LOGGER.warning(
+                    f"Assigned a new port {cls.sftp_port} on "
+                    f"host {cls.sftp_host}. Restarting attempts..."
+                )
+                continue
+
             LOGGER.info(
                 f"Port {cls.sftp_port} in use on host {cls.sftp_host}, "
                 f"waiting..."
             )
             time.sleep(1)
+            retry_count += 1
 
     def tearDown(self) -> None:
         super().tearDown()

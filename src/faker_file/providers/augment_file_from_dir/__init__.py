@@ -155,8 +155,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def augment_file_from_dir(
@@ -176,8 +175,7 @@ class AugmentFileFromDirProvider(BaseProvider, FileMixin):
         ] = DEFAULT_AUGMENTER,
         text_augmenter_kwargs: Optional[Dict[str, Any]] = None,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def augment_file_from_dir(
         self: "AugmentFileFromDirProvider",

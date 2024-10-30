@@ -82,8 +82,7 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def xlsx_file(
@@ -98,8 +97,7 @@ class XlsxFileProvider(BaseProvider, TabularDataMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def xlsx_file(
         self: "XlsxFileProvider",

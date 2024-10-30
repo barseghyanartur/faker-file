@@ -80,8 +80,7 @@ class JsonFileProvider(BaseProvider, FileMixin):
         ] = DEFAULT_FORMAT_FUNC,
         raw: bool = True,
         **kwargs,
-    ) -> BytesValue:
-        ...
+    ) -> BytesValue: ...
 
     @overload
     def json_file(
@@ -98,8 +97,7 @@ class JsonFileProvider(BaseProvider, FileMixin):
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
         **kwargs,
-    ) -> StringValue:
-        ...
+    ) -> StringValue: ...
 
     def json_file(
         self: "JsonFileProvider",

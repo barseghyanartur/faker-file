@@ -7,6 +7,8 @@ tika
 # Data augmentation
 nlpaug
 nltk
+scipy<=1.12.0
 textaugment
+textblob>=0.17,<0.18
 torch
 transformers
