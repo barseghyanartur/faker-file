@@ -28,6 +28,14 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.17.13
+-------
+2024-10-30
+
+- Upgrade `Pillow` related code to work with `Pillow`>=9.1.0 (tested with
+  10.x and 11.x).
+- Drop EOL Python 3.8 support.
+
 0.17.12
 -------
 2024-09-10
