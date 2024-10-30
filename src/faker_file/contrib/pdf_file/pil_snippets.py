@@ -267,9 +267,18 @@ def add_paragraph(
     y_text = position[1]
     # LOGGER.debug(f"position: {position}")
     for counter, line in enumerate(lines):
-        text_width, text_height = generator.draw.textsize(
-            line, font=font, spacing=generator.spacing
+        # text_width, text_height = generator.draw.textsize(
+        #     line, font=font, spacing=generator.spacing
+        # )
+        text_bbox = generator.draw.textbbox(
+            (position[0], y_text),
+            line,
+            font=font,
+            spacing=generator.spacing,
         )
+        # text_width = text_bbox[2] - text_bbox[0]
+        text_height = text_bbox[3] - text_bbox[1]
+
         if y_text + text_height > generator.page_height:
             generator.save_and_start_new_page()
             y_text = 0
@@ -369,7 +378,11 @@ def add_heading(
         font=font,
     )
 
-    text_width, text_height = generator.draw.textsize(_content, font=font)
+    # text_width, text_height = generator.draw.textsize(_content, font=font)
+    text_bbox = generator.draw.textbbox((position[0], y), _content, font=font)
+    # text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
+
     y += text_height
 
     # If you want to keep track of the last position to place another
@@ -450,7 +463,11 @@ def draw_table_cell(document, cell_content, position, cell_size, font):
     )
 
     # Draw text in the rectangle
-    text_width, text_height = document.textsize(cell_content, font=font)
+    # text_width, text_height = document.textsize(cell_content, font=font)
+    text_bbox = document.textbbox((0, 0), cell_content, font=font)
+    text_width = text_bbox[2] - text_bbox[0]
+    text_height = text_bbox[3] - text_bbox[1]
+
     text_position = (
         x + (width - text_width) // 2,
         y + (height - text_height) // 2,

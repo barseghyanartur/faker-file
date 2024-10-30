@@ -180,7 +180,8 @@ class PilImageGenerator(BaseImageGenerator):
         low, high = 0, len(text)
         while low < high:
             mid = (high + low) // 2
-            text_width, _ = draw.textsize(text[:mid], font=font)
+            # text_width, _ = draw.textsize(text[:mid], font=font)
+            text_width = draw.textlength(text[:mid], font=font)
 
             if text_width > max_width:
                 high = mid
@@ -288,9 +289,19 @@ class PilImageGenerator(BaseImageGenerator):
 
             y_text = 0
             for counter, line in enumerate(lines):
-                text_width, text_height = self.draw.textsize(
-                    line, font=font, spacing=self.spacing
+                # text_width, text_height = self.draw.textsize(
+                #     line, font=font, spacing=self.spacing
+                # )
+                # Updated to use textbbox for text width and height
+                text_bbox = self.draw.textbbox(
+                    (0, y_text),
+                    line,
+                    font=font,
+                    spacing=self.spacing,
                 )
+                # text_width = text_bbox[2] - text_bbox[0]
+                text_height = text_bbox[3] - text_bbox[1]
+
                 if y_text + text_height > self.page_height:
                     self.save_and_start_new_page()
                     y_text = 0

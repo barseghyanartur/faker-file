@@ -16,7 +16,7 @@ def clean_readme(text: str) -> str:
     return text
 
 
-version = "0.17.12"
+version = "0.17.13"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -108,8 +108,8 @@ setup(
     long_description_content_type="text/x-rst",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
+        # "Programming Language :: Python :: 3.7",
+        # "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",

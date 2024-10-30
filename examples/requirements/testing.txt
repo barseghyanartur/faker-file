@@ -211,7 +211,7 @@ pdf2image==1.17.0
     # via -r examples/requirements/common.in
 pdfkit==1.0.0
     # via -r examples/requirements/common.in
-pillow==9.5.0
+pillow==11.0.0
     # via
     #   pdf2image
     #   python-pptx
@@ -399,7 +399,7 @@ werkzeug==3.0.4
     # via moto
 xlsxwriter==3.2.0
     # via python-pptx
-xml2epub==2.6.5
+xml2epub==2.6.6
     # via -r examples/requirements/common.in
 xmltodict==0.13.0
     # via moto
