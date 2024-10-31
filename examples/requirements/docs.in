@@ -1,5 +1,5 @@
 -r common.in
--r django_3_2.in
+-r django_4_2.in
 
 reportlab==3.3.0
 rst2pdf

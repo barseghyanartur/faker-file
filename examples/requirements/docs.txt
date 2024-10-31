@@ -79,30 +79,30 @@ defusedxml==0.7.1
     # via odfpy
 distlib==0.3.8
     # via virtualenv
-django==3.2.25
+django==4.2.16
     # via
-    #   -r examples/requirements/django_3_2.in
+    #   -r examples/requirements/django_4_2.in
     #   django-debug-toolbar
     #   django-extensions
     #   django-storages
     #   djangorestframework
     #   drf-spectacular
 django-debug-toolbar==4.3.0
-    # via -r examples/requirements/django_3_2.in
+    # via -r examples/requirements/django_4_2.in
 django-extensions==3.2.3
-    # via -r examples/requirements/django_3_2.in
+    # via -r examples/requirements/django_4_2.in
 django-storages==1.13.2
-    # via -r examples/requirements/django_3_2.in
-djangorestframework==3.12.4
+    # via -r examples/requirements/django_4_2.in
+djangorestframework==3.15.2
     # via
-    #   -r examples/requirements/django_3_2.in
+    #   -r examples/requirements/django_4_2.in
     #   drf-spectacular
 docutils==0.21.2
     # via
     #   rst2pdf
     #   sphinx
 drf-spectacular==0.27.2
-    # via -r examples/requirements/django_3_2.in
+    # via -r examples/requirements/django_4_2.in
 edge-tts==6.1.12
     # via -r examples/requirements/common.in
 et-xmlfile==1.1.0
@@ -312,9 +312,7 @@ python-levenshtein==0.25.1
 python-pptx==1.0.2
     # via -r examples/requirements/common.in
 pytz==2024.1
-    # via
-    #   -r examples/requirements/common.in
-    #   django
+    # via -r examples/requirements/common.in
 pyyaml==6.0.2
     # via
     #   drf-spectacular

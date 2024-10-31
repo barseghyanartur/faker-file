@@ -7,13 +7,17 @@ black==24.8.0
 cfgv==3.4.0
     # via pre-commit
 click==8.1.7
-    # via black
+    # via
+    #   black
+    #   pydoclint
 dill==0.3.8
     # via pylint
 distlib==0.3.8
     # via virtualenv
 doc8==1.1.2
     # via -r examples/requirements/style_checkers.in
+docstring-parser-fork==0.0.9
+    # via pydoclint
 docutils==0.21.2
     # via
     #   doc8
@@ -45,6 +49,8 @@ platformdirs==4.3.2
     #   virtualenv
 pre-commit==3.8.0
     # via -r examples/requirements/style_checkers.in
+pydoclint==0.5.9
+    # via -r examples/requirements/style_checkers.in
 pydocstyle==6.3.0
     # via -r examples/requirements/style_checkers.in
 pyflakes==3.2.0
@@ -67,6 +73,7 @@ tomli==2.0.1
     # via
     #   black
     #   doc8
+    #   pydoclint
     #   pylint
 tomlkit==0.13.2
     # via pylint

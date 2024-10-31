@@ -1,9 +1,0 @@
--r common.in
--r test.in
-
-Django>=4.0,<4.1
-django-debug-toolbar>=3.3.0
-django-extensions
-djangorestframework>=3.13.0,<3.14
-django-storages>=1.13,<1.14
-drf_spectacular
