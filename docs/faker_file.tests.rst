@@ -49,6 +49,7 @@ faker\_file.tests.test\_cli module
 
 .. automodule:: faker_file.tests.test_cli
    :members:
+   :exclude-members: test_cli
    :undoc-members:
    :show-inheritance:
 
