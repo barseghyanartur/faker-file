@@ -38,15 +38,16 @@ standards.
 
 Code standards
 --------------
-`black`_, `isort`_, `ruff`_ and `doc8`_ will be automatically triggered by
-`pre-commit`_. Still, if you want to run checks manually:
+`ruff`_ and `doc8`_ will be automatically triggered by `pre-commit`_.
+
+`ruff`_ is configured to do the job of `black`_ and `isort`_ as well, so
+all the standards apply.
+
+Still, if you want to run checks manually:
 
 .. code-block:: sh
 
-    ./scripts/black.sh
-    ./scripts/doc8.sh
-    ./scripts/isort.sh
-    ./scripts/ruff.sh
+    make pre-commit
 
 Requirements
 ------------
