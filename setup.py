@@ -16,7 +16,7 @@ def clean_readme(text: str) -> str:
     return text
 
 
-version = "0.17.13"
+version = "0.17.14"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
