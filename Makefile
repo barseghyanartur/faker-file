@@ -12,7 +12,7 @@ build_docs:
 
 check_release:
 	python setup.py sdist bdist_wheel
-	twine check dist/*
+	twine check dist/* --verbose
 
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \;
@@ -182,7 +182,7 @@ mypy:
 auto_build_docs:
 	sphinx-autobuild docs docs/_build/html
 
-rebuild_docs: clean_up
+rebuild_docs: clean
 	sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 	cp docs/conf.py.distrib docs/conf.py
 	cp docs/index.rst.distrib docs/index.rst
@@ -197,7 +197,7 @@ runserver:
 	cd examples/django_example/ && ./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"
 
 serve_docs:
-	cd builddocs/ && python -m http.server 5000
+	cd builddocs/ && python -m http.server 5001
 
 shell:
 	cd examples/django_example/ && ./manage.py shell --traceback -v 3 "$$@"
