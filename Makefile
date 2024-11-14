@@ -35,105 +35,105 @@ clean:
 	rm -rf .mypy_cache/
 	rm -rf .ruff_cache/
 
+#compile_requirements:
+#	echo "common.in"
+#	pip-compile examples/requirements/common.in
+#
+#	echo "debug.in"
+#	pip-compile examples/requirements/debug.in
+#
+#	echo "deployment.in"
+#	pip-compile examples/requirements/deployment.in
+#
+#	echo "dev.in"
+#	pip-compile examples/requirements/dev.in
+#
+#	echo "django_5_0.in"
+#	pip-compile examples/requirements/django_5_0.in
+#
+#	echo "django_5_1.in"
+#	pip-compile examples/requirements/django_5_1.in
+#
+#	echo "django_4_2.in"
+#	pip-compile examples/requirements/django_4_2.in
+#
+#	echo "django_5_0_and_flask.in"
+#	pip-compile examples/requirements/django_5_0_and_flask.in
+#
+#	echo "django_5_1_and_flask.in"
+#	pip-compile examples/requirements/django_5_1_and_flask.in
+#
+#	echo "django_4_2_and_flask.in"
+#	pip-compile examples/requirements/django_4_2_and_flask.in
+#
+#	echo "docs.in"
+#	pip-compile examples/requirements/docs.in
+#
+#	echo "flask.in"
+#	pip-compile examples/requirements/flask.in
+#
+#	echo "ml.in"
+#	pip-compile examples/requirements/ml.in
+#
+#	echo "style_checkers.in"
+#	pip-compile examples/requirements/style_checkers.in
+#
+#	echo "test.in"
+#	pip-compile examples/requirements/test.in
+#
+#	echo "testing.in"
+#	pip-compile examples/requirements/testing.in
+#
+#compile_requirements_upgrade:
+#	echo "common.in"
+#	pip-compile --upgrade examples/requirements/common.in
+#
+#	echo "debug.in"
+#	pip-compile --upgrade examples/requirements/debug.in
+#
+#	echo "deployment.in"
+#	pip-compile --upgrade examples/requirements/deployment.in
+#
+#	echo "dev.in"
+#	pip-compile --upgrade examples/requirements/dev.in
+#
+#	echo "django_5_0.in"
+#	pip-compile --upgrade examples/requirements/django_5_0.in
+#
+#	echo "django_5_1.in"
+#	pip-compile --upgrade examples/requirements/django_5_1.in
+#
+#	echo "django_4_2.in"
+#	pip-compile --upgrade examples/requirements/django_4_2.in
+#
+#	echo "django_5_0_and_flask.in"
+#	pip-compile --upgrade examples/requirements/django_5_0_and_flask.in
+#
+#	echo "django_5_1_and_flask.in"
+#	pip-compile --upgrade examples/requirements/django_5_1_and_flask.in
+#
+#	echo "django_4_2_and_flask.in"
+#	pip-compile --upgrade examples/requirements/django_4_2_and_flask.in
+#
+#	echo "docs.in"
+#	pip-compile --upgrade examples/requirements/docs.in
+#
+#	echo "flask.in"
+#	pip-compile --upgrade examples/requirements/flask.in
+#
+#	echo "ml.in"
+#	pip-compile --upgrade examples/requirements/ml.in
+#
+#	echo "style_checkers.in"
+#	pip-compile --upgrade examples/requirements/style_checkers.in
+#
+#	echo "test.in"
+#	pip-compile --upgrade examples/requirements/test.in
+#
+#	echo "testing.in"
+#	pip-compile --upgrade examples/requirements/testing.in
+
 compile_requirements:
-	echo "common.in"
-	pip-compile examples/requirements/common.in
-
-	echo "debug.in"
-	pip-compile examples/requirements/debug.in
-
-	echo "deployment.in"
-	pip-compile examples/requirements/deployment.in
-
-	echo "dev.in"
-	pip-compile examples/requirements/dev.in
-
-	echo "django_5_0.in"
-	pip-compile examples/requirements/django_5_0.in
-
-	echo "django_5_1.in"
-	pip-compile examples/requirements/django_5_1.in
-
-	echo "django_4_2.in"
-	pip-compile examples/requirements/django_4_2.in
-
-	echo "django_5_0_and_flask.in"
-	pip-compile examples/requirements/django_5_0_and_flask.in
-
-	echo "django_5_1_and_flask.in"
-	pip-compile examples/requirements/django_5_1_and_flask.in
-
-	echo "django_4_2_and_flask.in"
-	pip-compile examples/requirements/django_4_2_and_flask.in
-
-	echo "docs.in"
-	pip-compile examples/requirements/docs.in
-
-	echo "flask.in"
-	pip-compile examples/requirements/flask.in
-
-	echo "ml.in"
-	pip-compile examples/requirements/ml.in
-
-	echo "style_checkers.in"
-	pip-compile examples/requirements/style_checkers.in
-
-	echo "test.in"
-	pip-compile examples/requirements/test.in
-
-	echo "testing.in"
-	pip-compile examples/requirements/testing.in
-
-compile_requirements_upgrade:
-	echo "common.in"
-	pip-compile --upgrade examples/requirements/common.in
-
-	echo "debug.in"
-	pip-compile --upgrade examples/requirements/debug.in
-
-	echo "deployment.in"
-	pip-compile --upgrade examples/requirements/deployment.in
-
-	echo "dev.in"
-	pip-compile --upgrade examples/requirements/dev.in
-
-	echo "django_5_0.in"
-	pip-compile --upgrade examples/requirements/django_5_0.in
-
-	echo "django_5_1.in"
-	pip-compile --upgrade examples/requirements/django_5_1.in
-
-	echo "django_4_2.in"
-	pip-compile --upgrade examples/requirements/django_4_2.in
-
-	echo "django_5_0_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_5_0_and_flask.in
-
-	echo "django_5_1_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_5_1_and_flask.in
-
-	echo "django_4_2_and_flask.in"
-	pip-compile --upgrade examples/requirements/django_4_2_and_flask.in
-
-	echo "docs.in"
-	pip-compile --upgrade examples/requirements/docs.in
-
-	echo "flask.in"
-	pip-compile --upgrade examples/requirements/flask.in
-
-	echo "ml.in"
-	pip-compile --upgrade examples/requirements/ml.in
-
-	echo "style_checkers.in"
-	pip-compile --upgrade examples/requirements/style_checkers.in
-
-	echo "test.in"
-	pip-compile --upgrade examples/requirements/test.in
-
-	echo "testing.in"
-	pip-compile --upgrade examples/requirements/testing.in
-
-uv_compile_requirements:
 	echo "common.in"
 	uv pip compile --no-strip-extras examples/requirements/common.in -o examples/requirements/common.txt
 
@@ -182,7 +182,7 @@ uv_compile_requirements:
 	echo "testing.in"
 	uv pip compile --no-strip-extras examples/requirements/testing.in -o examples/requirements/testing.txt
 
-uv_compile_requirements_upgrade:
+compile_requirements_upgrade:
 	echo "common.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/common.in -o examples/requirements/common.txt
 

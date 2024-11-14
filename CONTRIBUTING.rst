@@ -9,6 +9,7 @@ Contributor guidelines
 .. _doc8: https://doc8.readthedocs.io/
 .. _ruff: https://beta.ruff.rs/docs/
 .. _pip-tools: https://pip-tools.readthedocs.io/
+.. _uv: https://docs.astral.sh/uv/
 .. _issues: https://github.com/barseghyanartur/faker-file/issues
 .. _discussions: https://github.com/barseghyanartur/faker-file/discussions
 .. _pull request: https://github.com/barseghyanartur/faker-file/pulls
@@ -51,11 +52,12 @@ Still, if you want to run checks manually:
 
 Requirements
 ------------
-Requirements are compiled using `pip-tools`_.
+Requirements are compiled using `uv`_.
 
 .. code-block:: sh
 
-    ./scripts/compile_requirements.sh
+    make compile_requirements
+    make compile_requirements_upgrade
 
 Virtual environment
 -------------------
