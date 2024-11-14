@@ -6,8 +6,8 @@ alembic_migrate:
 benchmark_test:
 	pytest -vvrx --durations=0
 
-black:
-	black .
+#black:
+#	black .
 
 build_docs:
 	sphinx-build -n -a -b html docs builddocs
@@ -243,6 +243,9 @@ doc8:
 flask_runserver:
 	python examples/sqlalchemy_example/run_server.py
 
+pre-commit:
+	pre-commit run --all-files
+
 install:
 	pip-compile examples/requirements/dev.in
 	pip install -r examples/requirements/dev.txt
@@ -251,8 +254,8 @@ install:
 	python examples/django_example/manage.py collectstatic --noinput
 	python examples/django_example/manage.py migrate --noinput
 
-isort:
-	isort . --overwrite-in-place
+#isort:
+#	isort . --overwrite-in-place
 
 jupyter:
 	cd examples/django_example/ && TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
@@ -281,16 +284,19 @@ migrate:
 mypy:
 	mypy src/
 
+auto_build_docs:
+	sphinx-autobuild docs docs/_build/html
+
 rebuild_docs: clean_up
 	sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 	cp docs/conf.py.distrib docs/conf.py
 	cp docs/index.rst.distrib docs/index.rst
 
 ruff:
-	ruff conftest.py
-	ruff setup.py
-	ruff examples/
-	ruff src/
+	ruff check conftest.py --fix
+	ruff check setup.py --fix
+	ruff check examples/ --fix
+	ruff check src/ --fix
 
 runserver:
 	cd examples/django_example/ && ./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"

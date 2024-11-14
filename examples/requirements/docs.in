@@ -4,4 +4,5 @@
 reportlab==3.3.0
 rst2pdf
 sphinx
+sphinx-autobuild
 sphinx-rtd-theme>=3.0.0
