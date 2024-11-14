@@ -6,9 +6,6 @@ alembic_migrate:
 benchmark_test:
 	pytest -vvrx --durations=0
 
-#black:
-#	black .
-
 build_docs:
 	sphinx-build -n -a -b html docs builddocs
 	cd builddocs && zip -r ../builddocs.zip . -x ".*" && cd ..
@@ -34,104 +31,6 @@ clean:
 	rm -rf .pytest_cache/
 	rm -rf .mypy_cache/
 	rm -rf .ruff_cache/
-
-#compile_requirements:
-#	echo "common.in"
-#	pip-compile examples/requirements/common.in
-#
-#	echo "debug.in"
-#	pip-compile examples/requirements/debug.in
-#
-#	echo "deployment.in"
-#	pip-compile examples/requirements/deployment.in
-#
-#	echo "dev.in"
-#	pip-compile examples/requirements/dev.in
-#
-#	echo "django_5_0.in"
-#	pip-compile examples/requirements/django_5_0.in
-#
-#	echo "django_5_1.in"
-#	pip-compile examples/requirements/django_5_1.in
-#
-#	echo "django_4_2.in"
-#	pip-compile examples/requirements/django_4_2.in
-#
-#	echo "django_5_0_and_flask.in"
-#	pip-compile examples/requirements/django_5_0_and_flask.in
-#
-#	echo "django_5_1_and_flask.in"
-#	pip-compile examples/requirements/django_5_1_and_flask.in
-#
-#	echo "django_4_2_and_flask.in"
-#	pip-compile examples/requirements/django_4_2_and_flask.in
-#
-#	echo "docs.in"
-#	pip-compile examples/requirements/docs.in
-#
-#	echo "flask.in"
-#	pip-compile examples/requirements/flask.in
-#
-#	echo "ml.in"
-#	pip-compile examples/requirements/ml.in
-#
-#	echo "style_checkers.in"
-#	pip-compile examples/requirements/style_checkers.in
-#
-#	echo "test.in"
-#	pip-compile examples/requirements/test.in
-#
-#	echo "testing.in"
-#	pip-compile examples/requirements/testing.in
-#
-#compile_requirements_upgrade:
-#	echo "common.in"
-#	pip-compile --upgrade examples/requirements/common.in
-#
-#	echo "debug.in"
-#	pip-compile --upgrade examples/requirements/debug.in
-#
-#	echo "deployment.in"
-#	pip-compile --upgrade examples/requirements/deployment.in
-#
-#	echo "dev.in"
-#	pip-compile --upgrade examples/requirements/dev.in
-#
-#	echo "django_5_0.in"
-#	pip-compile --upgrade examples/requirements/django_5_0.in
-#
-#	echo "django_5_1.in"
-#	pip-compile --upgrade examples/requirements/django_5_1.in
-#
-#	echo "django_4_2.in"
-#	pip-compile --upgrade examples/requirements/django_4_2.in
-#
-#	echo "django_5_0_and_flask.in"
-#	pip-compile --upgrade examples/requirements/django_5_0_and_flask.in
-#
-#	echo "django_5_1_and_flask.in"
-#	pip-compile --upgrade examples/requirements/django_5_1_and_flask.in
-#
-#	echo "django_4_2_and_flask.in"
-#	pip-compile --upgrade examples/requirements/django_4_2_and_flask.in
-#
-#	echo "docs.in"
-#	pip-compile --upgrade examples/requirements/docs.in
-#
-#	echo "flask.in"
-#	pip-compile --upgrade examples/requirements/flask.in
-#
-#	echo "ml.in"
-#	pip-compile --upgrade examples/requirements/ml.in
-#
-#	echo "style_checkers.in"
-#	pip-compile --upgrade examples/requirements/style_checkers.in
-#
-#	echo "test.in"
-#	pip-compile --upgrade examples/requirements/test.in
-#
-#	echo "testing.in"
-#	pip-compile --upgrade examples/requirements/testing.in
 
 compile_requirements:
 	echo "common.in"
@@ -246,16 +145,12 @@ flask_runserver:
 pre-commit:
 	pre-commit run --all-files
 
-install:
-	pip-compile examples/requirements/dev.in
+install: compile_requirements
 	pip install -r examples/requirements/dev.txt
 	pip install -e .
 	mkdir -p var/logs examples/db examples/media examples/media/static
 	python examples/django_example/manage.py collectstatic --noinput
 	python examples/django_example/manage.py migrate --noinput
-
-#isort:
-#	isort . --overwrite-in-place
 
 jupyter:
 	cd examples/django_example/ && TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
