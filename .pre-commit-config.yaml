@@ -1,5 +1,5 @@
 exclude: "^docs/|/migrations/"
-default_stages: [ commit, push ]
+default_stages: [ pre-commit, pre-push ]
 default_language_version:
   python: python3
 
@@ -20,7 +20,7 @@ repos:
         args: []
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
         exclude: "data/"
@@ -32,29 +32,29 @@ repos:
       - id: debug-statements
       - id: check-merge-conflict
 
-  - repo: https://github.com/psf/black
-    rev: 24.4.2
-    hooks:
-      - id: black
-        name: black
-        files: .
-        args: [ "--config", "pyproject.toml" ]
+#  - repo: https://github.com/psf/black
+#    rev: 24.4.2
+#    hooks:
+#      - id: black
+#        name: black
+#        files: .
+#        args: [ "--config", "pyproject.toml" ]
 
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        name: isort
-        files: .
-        args: [ "--settings-path", "pyproject.toml", "--profile=black" ]
+#  - repo: https://github.com/pycqa/isort
+#    rev: 5.13.2
+#    hooks:
+#      - id: isort
+#        name: isort
+#        files: .
+#        args: [ "--settings-path", "pyproject.toml", "--profile=black" ]
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.4.4
+    rev: v0.7.3
     hooks:
       - id: ruff
         name: lint
         files: .
-        args: [ "--config", "pyproject.toml" ]
+        args: [ "--config", "pyproject.toml", "--fix" ]
 
 #  - repo: https://github.com/asottile/pyupgrade
 #    rev: v3.2.0

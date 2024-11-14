@@ -24,103 +24,257 @@ from ..constants import (
 )
 from ..contrib.docx_file import (
     add_h1_heading as docx_add_h1_heading,
+)
+from ..contrib.docx_file import (
     add_h2_heading as docx_add_h2_heading,
+)
+from ..contrib.docx_file import (
     add_h3_heading as docx_add_h3_heading,
+)
+from ..contrib.docx_file import (
     add_h4_heading as docx_add_h4_heading,
+)
+from ..contrib.docx_file import (
     add_h5_heading as docx_add_h5_heading,
+)
+from ..contrib.docx_file import (
     add_h6_heading as docx_add_h6_heading,
+)
+from ..contrib.docx_file import (
     add_page_break as docx_add_page_break,
+)
+from ..contrib.docx_file import (
     add_paragraph as docx_add_paragraph,
+)
+from ..contrib.docx_file import (
     add_picture as docx_add_picture,
+)
+from ..contrib.docx_file import (
     add_table as docx_add_table,
+)
+from ..contrib.docx_file import (
     add_title_heading as docx_add_title_heading,
 )
 from ..contrib.image.imgkit_snippets import (
     add_h1_heading as image_imgkit_add_h1_heading,
+)
+from ..contrib.image.imgkit_snippets import (
     add_h2_heading as image_imgkit_add_h2_heading,
+)
+from ..contrib.image.imgkit_snippets import (
     add_h3_heading as image_imgkit_add_h3_heading,
+)
+from ..contrib.image.imgkit_snippets import (
     add_h4_heading as image_imgkit_add_h4_heading,
+)
+from ..contrib.image.imgkit_snippets import (
     add_h5_heading as image_imgkit_add_h5_heading,
+)
+from ..contrib.image.imgkit_snippets import (
     add_h6_heading as image_imgkit_add_h6_heading,
+)
+from ..contrib.image.imgkit_snippets import (
     add_page_break as image_imgkit_add_page_break,
+)
+from ..contrib.image.imgkit_snippets import (
     add_paragraph as image_imgkit_add_paragraph,
+)
+from ..contrib.image.imgkit_snippets import (
     add_picture as image_imgkit_add_picture,
+)
+from ..contrib.image.imgkit_snippets import (
     add_table as image_imgkit_add_table,
 )
 from ..contrib.image.pil_snippets import (
     add_h1_heading as image_pil_add_h1_heading,
+)
+from ..contrib.image.pil_snippets import (
     add_h2_heading as image_pil_add_h2_heading,
+)
+from ..contrib.image.pil_snippets import (
     add_h3_heading as image_pil_add_h3_heading,
+)
+from ..contrib.image.pil_snippets import (
     add_h4_heading as image_pil_add_h4_heading,
+)
+from ..contrib.image.pil_snippets import (
     add_h5_heading as image_pil_add_h5_heading,
+)
+from ..contrib.image.pil_snippets import (
     add_h6_heading as image_pil_add_h6_heading,
+)
+from ..contrib.image.pil_snippets import (
     add_page_break as image_pil_add_page_break,
+)
+from ..contrib.image.pil_snippets import (
     add_paragraph as image_pil_add_paragraph,
+)
+from ..contrib.image.pil_snippets import (
     add_picture as image_pil_add_picture,
+)
+from ..contrib.image.pil_snippets import (
     add_table as image_pil_add_table,
 )
 from ..contrib.image.weasyprint_snippets import (
     add_h1_heading as image_weasyprint_add_h1_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_h2_heading as image_weasyprint_add_h2_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_h3_heading as image_weasyprint_add_h3_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_h4_heading as image_weasyprint_add_h4_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_h5_heading as image_weasyprint_add_h5_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_h6_heading as image_weasyprint_add_h6_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_heading as image_weasyprint_add_heading,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_page_break as image_weasyprint_add_page_break,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_paragraph as image_weasyprint_add_paragraph,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_picture as image_weasyprint_add_picture,
+)
+from ..contrib.image.weasyprint_snippets import (
     add_table as image_weasyprint_add_table,
 )
 from ..contrib.odt_file import (
     add_h1_heading as odt_add_h1_heading,
+)
+from ..contrib.odt_file import (
     add_h2_heading as odt_add_h2_heading,
+)
+from ..contrib.odt_file import (
     add_h3_heading as odt_add_h3_heading,
+)
+from ..contrib.odt_file import (
     add_h4_heading as odt_add_h4_heading,
+)
+from ..contrib.odt_file import (
     add_h5_heading as odt_add_h5_heading,
+)
+from ..contrib.odt_file import (
     add_h6_heading as odt_add_h6_heading,
+)
+from ..contrib.odt_file import (
     add_page_break as odt_add_page_break,
+)
+from ..contrib.odt_file import (
     add_paragraph as odt_add_paragraph,
+)
+from ..contrib.odt_file import (
     add_picture as odt_add_picture,
+)
+from ..contrib.odt_file import (
     add_table as odt_add_table,
 )
 from ..contrib.pdf_file.pdfkit_snippets import (
     add_h1_heading as pdf_pdfkit_add_h1_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_h2_heading as pdf_pdfkit_add_h2_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_h3_heading as pdf_pdfkit_add_h3_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_h4_heading as pdf_pdfkit_add_h4_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_h5_heading as pdf_pdfkit_add_h5_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_h6_heading as pdf_pdfkit_add_h6_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_heading as pdf_pdfkit_add_heading,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_page_break as pdf_pdfkit_add_page_break,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_paragraph as pdf_pdfkit_add_paragraph,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_picture as pdf_pdfkit_add_picture,
+)
+from ..contrib.pdf_file.pdfkit_snippets import (
     add_table as pdf_pdfkit_add_table,
 )
 from ..contrib.pdf_file.pil_snippets import (
     add_h1_heading as pdf_pil_add_h1_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_h2_heading as pdf_pil_add_h2_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_h3_heading as pdf_pil_add_h3_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_h4_heading as pdf_pil_add_h4_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_h5_heading as pdf_pil_add_h5_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_h6_heading as pdf_pil_add_h6_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_heading as pdf_pil_add_heading,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_page_break as pdf_pil_add_page_break,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_paragraph as pdf_pil_add_paragraph,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_picture as pdf_pil_add_picture,
+)
+from ..contrib.pdf_file.pil_snippets import (
     add_table as pdf_pil_add_table,
 )
 from ..contrib.pdf_file.reportlab_snippets import (
     add_h1_heading as pdf_reportlab_add_h1_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_h2_heading as pdf_reportlab_add_h2_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_h3_heading as pdf_reportlab_add_h3_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_h4_heading as pdf_reportlab_add_h4_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_h5_heading as pdf_reportlab_add_h5_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_h6_heading as pdf_reportlab_add_h6_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_heading as pdf_reportlab_add_heading,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_page_break as pdf_reportlab_add_page_break,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_paragraph as pdf_reportlab_add_paragraph,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_picture as pdf_reportlab_add_picture,
+)
+from ..contrib.pdf_file.reportlab_snippets import (
     add_table as pdf_reportlab_add_table,
 )
 from ..helpers import load_class_from_path

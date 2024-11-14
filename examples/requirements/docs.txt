@@ -8,6 +8,10 @@ aiosignal==1.3.1
     # via aiohttp
 alabaster==1.0.0
     # via sphinx
+anyio==4.6.2.post1
+    # via
+    #   starlette
+    #   watchfiles
 asgiref==3.8.1
     # via django
 async-timeout==4.0.3
@@ -61,8 +65,11 @@ click==8.1.7
     # via
     #   gtts
     #   typer
+    #   uvicorn
 colorama==0.4.6
-    # via tox
+    # via
+    #   sphinx-autobuild
+    #   tox
 coverage[toml]==7.6.1
     # via
     #   -r examples/requirements/test.in
@@ -109,7 +116,9 @@ edge-tts==6.1.12
 et-xmlfile==1.1.0
     # via openpyxl
 exceptiongroup==1.2.2
-    # via pytest
+    # via
+    #   anyio
+    #   pytest
 factory-boy==3.3.1
     # via -r examples/requirements/test.in
 faker==28.4.1
@@ -149,10 +158,13 @@ googleapis-common-protos==1.65.0
     # via google-api-core
 gtts==2.5.3
     # via -r examples/requirements/common.in
+h11==0.14.0
+    # via uvicorn
 html5lib==1.1
     # via weasyprint
 idna==3.8
     # via
+    #   anyio
     #   requests
     #   yarl
 imagesize==1.4.1
@@ -370,6 +382,8 @@ smart-open==6.4.0
     # via pathy
 smartypants==2.0.1
     # via rst2pdf
+sniffio==1.3.1
+    # via anyio
 snowballstemmer==2.2.0
     # via sphinx
 soupsieve==2.6
@@ -377,8 +391,11 @@ soupsieve==2.6
 sphinx==8.0.2
     # via
     #   -r examples/requirements/docs.in
+    #   sphinx-autobuild
     #   sphinx-rtd-theme
     #   sphinxcontrib-jquery
+sphinx-autobuild==2024.10.3
+    # via -r examples/requirements/docs.in
 sphinx-rtd-theme==3.0.1
     # via -r examples/requirements/docs.in
 sphinxcontrib-applehelp==2.0.0
@@ -399,6 +416,8 @@ sqlparse==0.5.1
     # via
     #   django
     #   django-debug-toolbar
+starlette==0.41.2
+    # via sphinx-autobuild
 tablib==3.6.1
     # via -r examples/requirements/common.in
 tblib==3.0.0
@@ -424,6 +443,7 @@ typer-cli==0.12.5
     # via pathy
 typing-extensions==4.12.2
     # via
+    #   anyio
     #   asgiref
     #   asyncssh
     #   azure-core
@@ -432,6 +452,7 @@ typing-extensions==4.12.2
     #   python-docx
     #   python-pptx
     #   typer
+    #   uvicorn
 uritemplate==4.1.1
     # via drf-spectacular
 urllib3==2.2.2
@@ -439,8 +460,12 @@ urllib3==2.2.2
     #   botocore
     #   requests
     #   responses
+uvicorn==0.32.0
+    # via sphinx-autobuild
 virtualenv==20.26.4
     # via tox
+watchfiles==0.24.0
+    # via sphinx-autobuild
 weasyprint==62.3
     # via -r examples/requirements/common.in
 webencodings==0.5.1
@@ -448,6 +473,8 @@ webencodings==0.5.1
     #   cssselect2
     #   html5lib
     #   tinycss2
+websockets==14.1
+    # via sphinx-autobuild
 werkzeug==3.0.4
     # via moto
 xlsxwriter==3.2.0
