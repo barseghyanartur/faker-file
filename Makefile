@@ -147,7 +147,7 @@ pre-commit:
 
 install: compile_requirements
 	pip install -r examples/requirements/dev.txt
-	pip install -e .
+	pip install -e .'[all]'
 	mkdir -p var/logs examples/db examples/media examples/media/static
 	python examples/django_example/manage.py collectstatic --noinput
 	python examples/django_example/manage.py migrate --noinput
