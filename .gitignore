@@ -26,6 +26,7 @@ codebin/
 /examples/tmp/
 /examples/logs/
 /builddocs/
+/docs/_build/
 /builddocs.zip
 /build/
 /dist/

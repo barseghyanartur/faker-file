@@ -16,7 +16,7 @@ def clean_readme(text: str) -> str:
     return text
 
 
-version = "0.17.13"
+version = "0.17.14"
 
 try:
     readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -156,7 +156,7 @@ setup(
         "console_scripts": ["faker-file = faker_file.cli.command:main"]
     },
     license="MIT",
-    python_requires=">=3.7",
+    python_requires=">=3.9",
     install_requires=install_requires,
     extras_require=extras_require,
     tests_require=tests_require,

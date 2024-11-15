@@ -17,11 +17,17 @@ from ..providers.augment_file_from_dir import (
 )
 from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
     DEFAULT_ACTION as NLPAUG_AUGMENTER_DEFAULT_ACTION,
+)
+from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
     DEFAULT_MODEL_PATH as NLPAUG_AUGMENTER_MODEL_PATH,
+)
+from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
     ContextualWordEmbeddingsAugmenter,
 )
 from ..providers.augment_file_from_dir.augmenters.textaugment_augmenter import (
     DEFAULT_ACTION as TEXTAUGMENT_AUGMENTER_DEFAULT_ACTION,
+)
+from ..providers.augment_file_from_dir.augmenters.textaugment_augmenter import (
     EDATextaugmentAugmenter,
 )
 from ..providers.base.text_augmenter import BaseTextAugmenter

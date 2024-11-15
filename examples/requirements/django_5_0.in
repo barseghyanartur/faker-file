@@ -1,7 +1,7 @@
 -r common.in
 -r test.in
 
-Django>=4.2,<4.3
+Django>=5.0,<5.1
 django-debug-toolbar>=3.5.0
 django-extensions
 djangorestframework>=3.15.0,<3.16

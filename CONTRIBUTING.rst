@@ -9,6 +9,7 @@ Contributor guidelines
 .. _doc8: https://doc8.readthedocs.io/
 .. _ruff: https://beta.ruff.rs/docs/
 .. _pip-tools: https://pip-tools.readthedocs.io/
+.. _uv: https://docs.astral.sh/uv/
 .. _issues: https://github.com/barseghyanartur/faker-file/issues
 .. _discussions: https://github.com/barseghyanartur/faker-file/discussions
 .. _pull request: https://github.com/barseghyanartur/faker-file/pulls
@@ -38,23 +39,25 @@ standards.
 
 Code standards
 --------------
-`black`_, `isort`_, `ruff`_ and `doc8`_ will be automatically triggered by
-`pre-commit`_. Still, if you want to run checks manually:
+`ruff`_ and `doc8`_ will be automatically triggered by `pre-commit`_.
+
+`ruff`_ is configured to do the job of `black`_ and `isort`_ as well, so
+all the standards apply.
+
+Still, if you want to run checks manually:
 
 .. code-block:: sh
 
-    ./scripts/black.sh
-    ./scripts/doc8.sh
-    ./scripts/isort.sh
-    ./scripts/ruff.sh
+    make pre-commit
 
 Requirements
 ------------
-Requirements are compiled using `pip-tools`_.
+Requirements are compiled using `uv`_.
 
 .. code-block:: sh
 
-    ./scripts/compile_requirements.sh
+    make compile_requirements
+    make compile_requirements_upgrade
 
 Virtual environment
 -------------------
