@@ -12,13 +12,13 @@ executing==2.1.0
     # via stack-data
 ipdb==0.13.13
     # via -r examples/requirements/debug.in
-ipython==8.27.0
+ipython==8.29.0
     # via
     #   -r examples/requirements/debug.in
     #   ipdb
 ipython-genutils==0.2.0
     # via -r examples/requirements/debug.in
-jedi==0.19.1
+jedi==0.19.2
     # via ipython
 matplotlib-inline==0.1.7
     # via ipython
@@ -26,7 +26,7 @@ parso==0.8.4
     # via jedi
 pexpect==4.9.0
     # via ipython
-prompt-toolkit==3.0.47
+prompt-toolkit==3.0.48
     # via ipython
 ptyprocess==0.7.0
     # via pexpect
@@ -38,7 +38,7 @@ six==1.16.0
     # via asttokens
 stack-data==0.6.3
     # via ipython
-tomli==2.0.1
+tomli==2.1.0
     # via ipdb
 traitlets==5.14.3
     # via

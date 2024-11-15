@@ -2,15 +2,15 @@
 #    uv pip compile --no-strip-extras examples/requirements/django_5_1_and_flask.in -o examples/requirements/django_5_1_and_flask.txt
 aiohappyeyeballs==2.4.3
     # via aiohttp
-aiohttp==3.10.10
+aiohttp==3.11.2
     # via edge-tts
 aiosignal==1.3.1
     # via aiohttp
-alembic==1.13.3
+alembic==1.14.0
     # via -r examples/requirements/flask.in
 asgiref==3.8.1
     # via django
-async-timeout==4.0.3
+async-timeout==5.0.1
     # via aiohttp
 asyncssh==2.18.0
     # via -r examples/requirements/test.in
@@ -19,9 +19,9 @@ attrs==24.2.0
     #   aiohttp
     #   jsonschema
     #   referencing
-azure-core==1.31.0
+azure-core==1.32.0
     # via azure-storage-blob
-azure-storage-blob==12.23.1
+azure-storage-blob==12.24.0
     # via pathy
 babel==2.16.0
     # via flask-babelex
@@ -29,13 +29,13 @@ bcrypt==4.2.0
     # via paramiko
 beautifulsoup4==4.12.3
     # via xml2epub
-blinker==1.8.2
+blinker==1.9.0
     # via flask
-boto3==1.35.52
+boto3==1.35.61
     # via
     #   moto
     #   pathy
-botocore==1.35.52
+botocore==1.35.61
     # via
     #   boto3
     #   moto
@@ -68,7 +68,7 @@ click==8.1.7
     #   typer
 colorama==0.4.6
     # via tox
-coverage[toml]==7.6.4
+coverage[toml]==7.6.5
     # via
     #   -r examples/requirements/test.in
     #   pytest-cov
@@ -84,7 +84,7 @@ defusedxml==0.7.1
     # via odfpy
 distlib==0.3.9
     # via virtualenv
-django==5.1.2
+django==5.1.3
     # via
     #   -r examples/requirements/django_5_1.in
     #   django-debug-toolbar
@@ -104,7 +104,7 @@ djangorestframework==3.15.2
     #   drf-spectacular
 drf-spectacular==0.27.2
     # via -r examples/requirements/django_5_1.in
-edge-tts==6.1.15
+edge-tts==6.1.18
     # via -r examples/requirements/common.in
 et-xmlfile==2.0.0
     # via openpyxl
@@ -112,7 +112,7 @@ exceptiongroup==1.2.2
     # via pytest
 factory-boy==3.3.1
     # via -r examples/requirements/test.in
-faker==30.8.1
+faker==33.0.0
     # via
     #   -r examples/requirements/test.in
     #   factory-boy
@@ -135,7 +135,7 @@ flask-sqlalchemy==3.0.5
     # via -r examples/requirements/flask.in
 flask-testing==0.8.1
     # via -r examples/requirements/flask.in
-fonttools[woff]==4.54.1
+fonttools[woff]==4.55.0
     # via weasyprint
 frozenlist==1.5.0
     # via
@@ -143,11 +143,11 @@ frozenlist==1.5.0
     #   aiosignal
 fuzzywuzzy[speedup]==0.18.0
     # via -r examples/requirements/test.in
-google-api-core==2.22.0
+google-api-core==2.23.0
     # via
     #   google-cloud-core
     #   google-cloud-storage
-google-auth==2.35.0
+google-auth==2.36.0
     # via
     #   google-api-core
     #   google-cloud-core
@@ -160,11 +160,11 @@ google-crc32c==1.6.0
     # via google-resumable-media
 google-resumable-media==2.7.2
     # via google-cloud-storage
-googleapis-common-protos==1.65.0
+googleapis-common-protos==1.66.0
     # via google-api-core
 greenlet==3.1.1
     # via sqlalchemy
-gtts==2.5.3
+gtts==2.5.4
     # via -r examples/requirements/common.in
 idna==3.10
     # via
@@ -215,7 +215,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.1.0
     # via pathy
-moto==5.0.18
+moto==5.0.20
     # via -r examples/requirements/test.in
 multidict==6.1.0
     # via
@@ -225,7 +225,7 @@ odfpy==1.4.1
     # via -r examples/requirements/common.in
 openpyxl==3.1.5
     # via -r examples/requirements/common.in
-packaging==24.1
+packaging==24.2
     # via
     #   pyproject-api
     #   pytest
@@ -257,7 +257,9 @@ pluggy==1.5.0
     #   pytest
     #   tox
 propcache==0.2.0
-    # via yarl
+    # via
+    #   aiohttp
+    #   yarl
 proto-plus==1.25.0
     # via google-api-core
 protobuf==5.28.3
@@ -349,9 +351,9 @@ requests==2.32.3
     #   xml2epub
 responses==0.25.3
     # via moto
-rich==13.9.3
+rich==13.9.4
     # via typer
-rpds-py==0.20.0
+rpds-py==0.21.0
     # via
     #   jsonschema
     #   referencing
@@ -381,7 +383,7 @@ sqlalchemy==1.4.54
     #   sqlalchemy-utils
 sqlalchemy-utils==0.41.2
     # via -r examples/requirements/flask.in
-sqlparse==0.5.1
+sqlparse==0.5.2
     # via
     #   django
     #   django-debug-toolbar
@@ -395,7 +397,7 @@ tinycss2==1.4.0
     #   weasyprint
 tinyhtml5==2.0.0
     # via weasyprint
-tomli==2.0.2
+tomli==2.1.0
     # via
     #   coverage
     #   pyproject-api
@@ -403,11 +405,11 @@ tomli==2.0.2
     #   tox
 tox==4.23.2
     # via -r examples/requirements/test.in
-typer==0.12.5
+typer==0.13.0
     # via
     #   pathy
     #   typer-cli
-typer-cli==0.12.5
+typer-cli==0.13.0
     # via pathy
 typing-extensions==4.12.2
     # via
@@ -439,7 +441,7 @@ webencodings==0.5.1
     #   cssselect2
     #   tinycss2
     #   tinyhtml5
-werkzeug==3.0.6
+werkzeug==3.1.3
     # via
     #   flask
     #   moto
