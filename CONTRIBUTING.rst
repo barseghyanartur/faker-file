@@ -68,8 +68,7 @@ TL;DR:
 .. code-block:: sh
 
     python -m venv env
-    pip install -e .
-    pip install -r examples/requirements/django_3_2_and_flask.txt
+    make install
 
 Documentation
 -------------
@@ -85,6 +84,12 @@ all supported environments. For that use tox.
 .. code-block:: sh
 
     tox
+
+For quick testing in current environment only:
+
+.. code-block:: sh
+
+    make test
 
 In any case, GitHub Actions will catch potential errors, but using tox speeds
 things up.
