@@ -8,6 +8,20 @@ from ...base import DEFAULT_FORMAT_FUNC
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
 __license__ = "MIT"
+__all__ = (
+    "add_h1_heading",
+    "add_h2_heading",
+    "add_h3_heading",
+    "add_h4_heading",
+    "add_h5_heading",
+    "add_h6_heading",
+    "add_heading",
+    "add_page_break",
+    "add_paragraph",
+    "add_picture",
+    "add_table",
+    "create_data_url",
+)
 
 
 def create_data_url(image_bytes: bytes, image_format: str) -> str:
@@ -31,10 +45,10 @@ def add_table(
     # Begin the HTML table
     table_html = "<table>"
 
-    for row_num in range(rows):
+    for _row_num in range(rows):
         table_html += "<tr>"
 
-        for col_num in range(cols):
+        for _col_num in range(cols):
             text = provider.generator.paragraph()
             table_html += f"<td>{text}</td>"
 
@@ -93,9 +107,9 @@ def add_paragraph(
     **kwargs,
 ):
     """Callable responsible for paragraph generation using pdfkit."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
 
     _content = provider._generate_text_content(
@@ -126,9 +140,9 @@ def add_heading(
     **kwargs,
 ):
     """Callable responsible for heading generation using pdfkit."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 30)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     level = kwargs.get("level", 1)
     if level < 1 or level > 6:

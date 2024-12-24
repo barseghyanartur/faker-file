@@ -71,9 +71,9 @@ def add_page_break(provider, document, data, counter, **kwargs):
 
 def add_paragraph(provider, document, data, counter, **kwargs):
     """Callable responsible for the paragraph generation."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
 
     _content = provider._generate_text_content(
@@ -94,9 +94,9 @@ def add_paragraph(provider, document, data, counter, **kwargs):
 
 def add_heading(provider, document, data, counter, **kwargs):
     """Callable responsible for the heading generation."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 30)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     level = kwargs.get("level", 0)
 
