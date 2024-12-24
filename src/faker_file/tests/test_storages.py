@@ -241,11 +241,11 @@ class TestStoragesTestCase(unittest.TestCase):
         """Test storage `generate_filename` exceptions."""
         storage = storage_cls(**kwargs)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017
             # Generate filename
             storage.generate_filename(prefix=prefix, extension=extension)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017
             # Generate filename
             storage.generate_filename(basename=prefix, extension=extension)
 
@@ -262,7 +262,7 @@ class TestStoragesTestCase(unittest.TestCase):
         kwargs: Dict[str, Any],
     ) -> None:
         """Test storage initialization exceptions."""
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017
             # Initialize the storage
             storage_cls(**kwargs)
 

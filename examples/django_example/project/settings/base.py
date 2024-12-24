@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from contextlib import suppress
 
 from .core import PROJECT_DIR
 
@@ -200,7 +201,5 @@ IPYTHON_KERNEL_DISPLAY_NAME = "Django Kernel"
 
 
 # Do not put any settings below this line
-try:
+with suppress(ImportError):
     from .local_settings import *  # noqa
-except ImportError:
-    pass

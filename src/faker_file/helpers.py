@@ -55,8 +55,10 @@ def load_class_from_path(full_path: str) -> Type:
             raise ImportError(f"'{full_path}' does not point to a class")
 
         return loaded_class
-    except ImportError as e:
-        raise ImportError(f"Error loading class from path '{full_path}': {e}")
+    except ImportError as err:
+        raise ImportError(
+            f"Error loading class from path '{full_path}': {err}"
+        ) from err
 
 
 def random_pop(lst: list) -> Any:
