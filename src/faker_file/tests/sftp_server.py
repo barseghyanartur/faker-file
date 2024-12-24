@@ -4,6 +4,7 @@ import os
 import tempfile
 import threading
 from asyncio import Semaphore
+from contextlib import suppress
 from typing import Type
 
 import asyncssh
@@ -85,10 +86,8 @@ async def start_server_async(
     )
 
     async with server:
-        try:
+        with suppress(asyncio.CancelledError):
             await server.wait_closed()
-        except asyncio.CancelledError:
-            pass
 
 
 def start_server(host: str = SFTP_HOST, port: int = SFTP_PORT) -> None:
