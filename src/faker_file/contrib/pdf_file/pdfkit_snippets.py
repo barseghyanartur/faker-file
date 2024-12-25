@@ -41,10 +41,10 @@ def add_table(
     # Begin the HTML table
     table_html = "<table>"
 
-    for row_num in range(rows):
+    for _row_num in range(rows):
         table_html += "<tr>"
 
-        for col_num in range(cols):
+        for _col_num in range(cols):
             text = provider.generator.paragraph()
             table_html += f"<td>{text}</td>"
 
@@ -98,9 +98,9 @@ def add_paragraph(
     **kwargs,
 ):
     """Callable responsible for paragraph generation using pdfkit."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
 
     _content = provider._generate_text_content(
@@ -130,9 +130,9 @@ def add_heading(
     **kwargs,
 ):
     """Callable responsible for heading generation using pdfkit."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 30)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     level = kwargs.get("level", 1)
     if level < 1 or level > 6:

@@ -131,9 +131,9 @@ def add_paragraph(
     **kwargs,
 ):
     """Add paragraph function."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
 
     _content = provider._generate_text_content(
@@ -169,9 +169,9 @@ def add_heading(
     **kwargs,
 ):
     """Add heading function."""
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 30)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     level = kwargs.get("level", 1)
     if level < 1 or level > 6:

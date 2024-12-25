@@ -36,14 +36,14 @@ FAKER = Faker()
 FAKER.add_provider(TxtFileProvider)
 
 
-class __TestSFTPServerMixin:
+class __TestSFTPServerMixin:  # noqa: N801
     """Test SFTP server mix-in."""
 
-    assertIsInstance: Callable
-    assertRaises: Callable
-    assertEqual: Callable
-    assertTrue: Callable
-    assertFalse: Callable
+    assertIsInstance: Callable  # noqa: N815
+    assertRaises: Callable  # noqa: N815
+    assertEqual: Callable  # noqa: N815
+    assertTrue: Callable  # noqa: N815
+    assertFalse: Callable  # noqa: N815
     sftp_host: str
     sftp_port: int
     sftp_user: str
@@ -65,15 +65,17 @@ class __TestSFTPServerMixin:
             time.sleep(1)
 
     async def test_successful_connection(self: "__TestSFTPServerMixin") -> None:
-        async with asyncssh.connect(
-            self.sftp_host,
-            port=self.sftp_port,
-            username=self.sftp_user,
-            password=self.sftp_pass,
-            known_hosts=None,
-        ) as conn:
-            async with conn.start_sftp_client() as sftp:
-                self.assertIsInstance(sftp, asyncssh.SFTPClient)
+        async with (
+            asyncssh.connect(
+                self.sftp_host,
+                port=self.sftp_port,
+                username=self.sftp_user,
+                password=self.sftp_pass,
+                known_hosts=None,
+            ) as conn,
+            conn.start_sftp_client() as sftp
+        ):
+            self.assertIsInstance(sftp, asyncssh.SFTPClient)
 
     async def test_failed_connection(self: "__TestSFTPServerMixin") -> None:
         with self.assertRaises(asyncssh.PermissionDenied):
@@ -87,49 +89,53 @@ class __TestSFTPServerMixin:
                 pass
 
     async def test_file_upload(self: "__TestSFTPServerMixin") -> None:
-        async with asyncssh.connect(
-            self.sftp_host,
-            port=self.sftp_port,
-            username=self.sftp_user,
-            password=self.sftp_pass,
-            known_hosts=None,
-        ) as conn:
-            async with conn.start_sftp_client() as sftp:
-                test_file = FAKER.txt_file()
-                await sftp.put(
-                    test_file.data["filename"], "/testfile_upload.txt"
-                )
+        async with (
+            asyncssh.connect(
+                self.sftp_host,
+                port=self.sftp_port,
+                username=self.sftp_user,
+                password=self.sftp_pass,
+                known_hosts=None,
+            ) as conn,
+            conn.start_sftp_client() as sftp
+        ):
+            test_file = FAKER.txt_file()
+            await sftp.put(
+                test_file.data["filename"], "/testfile_upload.txt"
+            )
 
-                # Read back the file and check its contents
-                async with sftp.open(
-                    "/testfile_upload.txt", "r"
-                ) as uploaded_file:
-                    uploaded_contents = await uploaded_file.read()
+            # Read back the file and check its contents
+            async with sftp.open(
+                "/testfile_upload.txt", "r"
+            ) as uploaded_file:
+                uploaded_contents = await uploaded_file.read()
 
-                self.assertEqual(test_file.data["content"], uploaded_contents)
-                FILE_REGISTRY.clean_up()
+            self.assertEqual(test_file.data["content"], uploaded_contents)
+            FILE_REGISTRY.clean_up()
 
     async def test_file_delete(self: "__TestSFTPServerMixin") -> None:
-        async with asyncssh.connect(
-            self.sftp_host,
-            port=self.sftp_port,
-            username=self.sftp_user,
-            password=self.sftp_pass,
-            known_hosts=None,
-        ) as conn:
-            async with conn.start_sftp_client() as sftp:
-                test_file = FAKER.txt_file()
-                await sftp.put(
-                    test_file.data["filename"], "/testfile_delete.txt"
-                )
+        async with (
+            asyncssh.connect(
+                self.sftp_host,
+                port=self.sftp_port,
+                username=self.sftp_user,
+                password=self.sftp_pass,
+                known_hosts=None,
+            ) as conn,
+            conn.start_sftp_client() as sftp
+        ):
+            test_file = FAKER.txt_file()
+            await sftp.put(
+                test_file.data["filename"], "/testfile_delete.txt"
+            )
 
-                # Ensure the file exists
-                self.assertTrue(await sftp.exists("/testfile_delete.txt"))
+            # Ensure the file exists
+            self.assertTrue(await sftp.exists("/testfile_delete.txt"))
 
-                # Delete the file and ensure it's gone
-                await sftp.remove("/testfile_delete.txt")
-                self.assertFalse(await sftp.exists("/testfile_delete.txt"))
-                FILE_REGISTRY.clean_up()
+            # Delete the file and ensure it's gone
+            await sftp.remove("/testfile_delete.txt")
+            self.assertFalse(await sftp.exists("/testfile_delete.txt"))
+            FILE_REGISTRY.clean_up()
 
 
 class TestSFTPServerWithStartServerAsync(

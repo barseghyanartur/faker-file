@@ -288,7 +288,7 @@ class PilImageGenerator(BaseImageGenerator):
                 lines = textwrap.wrap(content, line_max_num_chars)
 
             y_text = 0
-            for counter, line in enumerate(lines):
+            for _counter, line in enumerate(lines):
                 # text_width, text_height = self.draw.textsize(
                 #     line, font=font, spacing=self.spacing
                 # )

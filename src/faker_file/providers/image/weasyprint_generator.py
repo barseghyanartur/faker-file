@@ -166,7 +166,7 @@ class WeasyPrintImageGenerator(BaseImageGenerator):
         )
 
     def wrap(self: "WeasyPrintImageGenerator", content: str) -> str:
-        return f"<{self.wrapper_tag}>" f"{content}" f"</{self.wrapper_tag}>"
+        return f"<{self.wrapper_tag}>{content}</{self.wrapper_tag}>"
 
     def generate(
         self: "WeasyPrintImageGenerator",
