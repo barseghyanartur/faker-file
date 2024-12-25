@@ -2,22 +2,20 @@
 #    uv pip compile --no-strip-extras examples/requirements/deployment.in -o examples/requirements/deployment.txt
 backports-tarfile==1.2.0
     # via jaraco-context
-certifi==2024.8.30
+certifi==2024.12.14
     # via requests
 cffi==1.17.1
     # via cryptography
-charset-normalizer==3.4.0
+charset-normalizer==3.4.1
     # via requests
-cryptography==43.0.3
+cryptography==44.0.0
     # via secretstorage
 docutils==0.21.2
     # via readme-renderer
 idna==3.10
     # via requests
 importlib-metadata==8.5.0
-    # via
-    #   keyring
-    #   twine
+    # via keyring
 jaraco-classes==3.4.0
     # via keyring
 jaraco-context==6.0.1
@@ -38,9 +36,11 @@ more-itertools==10.5.0
     # via
     #   jaraco-classes
     #   jaraco-functools
-nh3==0.2.18
+nh3==0.2.20
     # via readme-renderer
-pkginfo==1.10.0
+packaging==24.2
+    # via twine
+pkginfo==1.12.0
     # via twine
 pycparser==2.22
     # via cffi
@@ -62,11 +62,9 @@ rich==13.9.4
     # via twine
 secretstorage==3.3.3
     # via keyring
-twine==5.1.1
+twine==6.0.1
     # via -r examples/requirements/deployment.in
-typing-extensions==4.12.2
-    # via rich
-urllib3==2.2.3
+urllib3==2.3.0
     # via
     #   requests
     #   twine

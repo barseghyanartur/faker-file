@@ -1,5 +1,5 @@
-import os
 import re
+from pathlib import Path
 
 from setuptools import find_packages, setup
 
@@ -19,9 +19,9 @@ def clean_readme(text: str) -> str:
 version = "0.17.14"
 
 try:
-    readme = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
-    readme = clean_readme(readme)
-except OSError:
+    readme_path = Path(__file__).parent / "README.rst"
+    readme = clean_readme(readme_path.read_text())
+except FileNotFoundError:
     readme = ""
 
 dependency_links = []

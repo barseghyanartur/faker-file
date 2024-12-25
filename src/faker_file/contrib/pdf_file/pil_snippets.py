@@ -225,9 +225,9 @@ def add_paragraph(
     # Extract margin values
     margin = kwargs.get("margin", (0, 0))
     top_margin, right_margin, bottom_margin, left_margin = expand_margin(margin)
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 5_000)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     # X, Y coordinates where the text will be placed
     # position = kwargs.get("position", (0, 0))
     # position = kwargs.get("position", (0, 0))
@@ -266,7 +266,7 @@ def add_paragraph(
 
     y_text = position[1]
     # LOGGER.debug(f"position: {position}")
-    for counter, line in enumerate(lines):
+    for _counter, line in enumerate(lines):
         # text_width, text_height = generator.draw.textsize(
         #     line, font=font, spacing=generator.spacing
         # )
@@ -343,9 +343,9 @@ def add_heading(
     # Extract margin values
     margin = kwargs.get("margin", (0, 0))
     top_margin, right_margin, bottom_margin, left_margin = expand_margin(margin)
-    content = kwargs.get("content", None)
+    content = kwargs.get("content")
     max_nb_chars = kwargs.get("max_nb_chars", 30)
-    wrap_chars_after = kwargs.get("wrap_chars_after", None)
+    wrap_chars_after = kwargs.get("wrap_chars_after")
     format_func = kwargs.get("format_func", DEFAULT_FORMAT_FUNC)
     # X, Y coordinates where the text will be placed
     # position = kwargs.get("position", (0, 0))

@@ -48,23 +48,48 @@ class MaryTtsMp3Generator(BaseMp3Generator):
         # Initialize with args
         mary_tts = MaryTTS(locale=self.locale, voice=self.voice)
 
-        # Generate temporary filename for WAV file
-        filename = tempfile.NamedTemporaryFile(
-            prefix="_merytts_", suffix=".wav"
-        ).name
+        # Create temporary WAV file in memory
+        with tempfile.NamedTemporaryFile(
+            delete=False,
+            suffix=".wav",
+        ) as temp_wav:
+            temp_wav.write(mary_tts.speak(self.content))
+            temp_wav_path = temp_wav.name
 
-        # Write WAV file
-        with open(filename, "wb") as file:
-            file.write(mary_tts.speak(self.content))
+        # Convert WAV to MP3 and store in memory
+        with tempfile.NamedTemporaryFile(
+            delete=False,
+            suffix=".mp3",
+        ) as temp_mp3:
+            ffmpeg.input(temp_wav_path).output(temp_mp3.name).run()
 
-        # Convert WAV to MP3
-        ffmpeg.input(filename).output(filename + ".mp3").run()
-
-        with open(filename + ".mp3", "rb") as _fake_file:
-            return_value = _fake_file.read()
+            # Read the MP3 file content into memory
+            with open(temp_mp3.name, "rb") as mp3_file:
+                mp3_content = mp3_file.read()
 
         # Clean up temporary files
-        os.remove(filename)
-        os.remove(filename + ".mp3")
+        os.remove(temp_wav.name)
+        os.remove(temp_mp3.name)
 
-        return return_value
+        return mp3_content
+
+        # # Generate temporary filename for WAV file
+        # filename = tempfile.NamedTemporaryFile(
+        #     prefix="_merytts_", suffix=".wav"
+        # ).name
+        #
+        # # Write WAV file
+        # with open(filename, "wb") as file:
+        #     file.write(mary_tts.speak(self.content))
+        #
+        # # Convert WAV to MP3
+        # ffmpeg.input(filename).output(filename + ".mp3").run()
+        #
+        # with open(filename + ".mp3", "rb") as _fake_file:
+        #     return_value = _fake_file.read()
+        #
+        # # Clean up temporary files
+        # os.remove(filename)
+        # os.remove(filename + ".mp3")
+        #
+        # return return_value
