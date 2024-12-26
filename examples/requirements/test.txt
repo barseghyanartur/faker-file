@@ -31,6 +31,8 @@ cryptography==44.0.0
     #   moto
 distlib==0.3.9
     # via virtualenv
+exceptiongroup==1.2.2
+    # via pytest
 factory-boy==3.3.1
     # via -r examples/requirements/test.in
 faker==33.1.0
@@ -126,12 +128,19 @@ six==1.17.0
     # via python-dateutil
 tblib==3.0.0
     # via pytest-parallel
+tomli==2.2.1
+    # via
+    #   coverage
+    #   pyproject-api
+    #   pytest
+    #   tox
 tox==4.23.2
     # via -r examples/requirements/test.in
 typing-extensions==4.12.2
     # via
     #   asyncssh
     #   faker
+    #   tox
 urllib3==2.3.0
     # via
     #   botocore

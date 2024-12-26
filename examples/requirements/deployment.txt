@@ -26,7 +26,7 @@ jeepney==0.8.0
     # via
     #   keyring
     #   secretstorage
-keyring==25.5.0
+keyring==25.6.0
     # via twine
 markdown-it-py==3.0.0
     # via rich
@@ -64,6 +64,8 @@ secretstorage==3.3.3
     # via keyring
 twine==6.0.1
     # via -r examples/requirements/deployment.in
+typing-extensions==4.12.2
+    # via rich
 urllib3==2.3.0
     # via
     #   requests

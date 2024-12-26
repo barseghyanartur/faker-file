@@ -14,6 +14,8 @@ anyio==4.7.0
     #   watchfiles
 asgiref==3.8.1
     # via django
+async-timeout==5.0.1
+    # via aiohttp
 asyncssh==2.19.0
     # via -r examples/requirements/test.in
 attrs==24.3.0
@@ -56,7 +58,9 @@ cffi==1.17.1
     #   pynacl
     #   weasyprint
 chardet==5.2.0
-    # via tox
+    # via
+    #   reportlab
+    #   tox
 charset-normalizer==3.4.1
     # via requests
 click==8.1.8
@@ -113,6 +117,10 @@ edge-tts==7.0.0
     # via -r examples/requirements/common.in
 et-xmlfile==2.0.0
     # via openpyxl
+exceptiongroup==1.2.2
+    # via
+    #   anyio
+    #   pytest
 factory-boy==3.3.1
     # via -r examples/requirements/test.in
 faker==33.1.0
@@ -237,8 +245,6 @@ pillow==11.0.0
     #   reportlab
     #   weasyprint
     #   xml2epub
-pip==24.3.1
-    # via reportlab
 platformdirs==4.3.6
     # via
     #   tox
@@ -333,7 +339,7 @@ referencing==0.35.1
     # via
     #   jsonschema
     #   jsonschema-specifications
-reportlab==3.3.0
+reportlab==4.2.5
     # via
     #   -r examples/requirements/common.in
     #   -r examples/requirements/docs.in
@@ -358,12 +364,10 @@ rpds-py==0.22.3
     #   referencing
 rsa==4.9
     # via google-auth
-rst2pdf==0.102
+rst2pdf==0.103.1
     # via -r examples/requirements/docs.in
 s3transfer==0.10.4
     # via boto3
-setuptools==75.6.0
-    # via reportlab
 shellingham==1.5.4
     # via typer
 six==1.17.0
@@ -412,7 +416,7 @@ sqlparse==0.5.3
     #   django-debug-toolbar
 srt==3.5.3
     # via edge-tts
-starlette==0.42.0
+starlette==0.43.0
     # via sphinx-autobuild
 tablib==3.7.0
     # via -r examples/requirements/common.in
@@ -426,6 +430,13 @@ tinycss2==1.4.0
     #   weasyprint
 tinyhtml5==2.0.0
     # via weasyprint
+tomli==2.2.1
+    # via
+    #   coverage
+    #   pyproject-api
+    #   pytest
+    #   sphinx
+    #   tox
 tox==4.23.2
     # via -r examples/requirements/test.in
 typer==0.15.1
@@ -437,14 +448,19 @@ typer-cli==0.15.1
 typing-extensions==4.12.2
     # via
     #   anyio
+    #   asgiref
     #   asyncssh
     #   azure-core
     #   azure-storage-blob
     #   edge-tts
     #   faker
+    #   multidict
     #   python-docx
     #   python-pptx
+    #   rich
+    #   tox
     #   typer
+    #   uvicorn
 uritemplate==4.1.1
     # via drf-spectacular
 urllib3==2.3.0

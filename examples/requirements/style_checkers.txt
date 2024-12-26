@@ -56,7 +56,14 @@ snowballstemmer==2.2.0
     # via pydocstyle
 stevedore==5.4.0
     # via doc8
+tomli==2.2.1
+    # via
+    #   doc8
+    #   pydoclint
+    #   pylint
 tomlkit==0.13.2
     # via pylint
+typing-extensions==4.12.2
+    # via astroid
 virtualenv==20.28.0
     # via pre-commit

@@ -10,6 +10,8 @@ alembic==1.14.0
     # via -r examples/requirements/flask.in
 asgiref==3.8.1
     # via django
+async-timeout==5.0.1
+    # via aiohttp
 asyncssh==2.19.0
     # via -r examples/requirements/test.in
 attrs==24.3.0
@@ -111,6 +113,8 @@ edge-tts==7.0.0
     # via -r examples/requirements/common.in
 et-xmlfile==2.0.0
     # via openpyxl
+exceptiongroup==1.2.2
+    # via pytest
 factory-boy==3.3.1
     # via -r examples/requirements/test.in
 faker==33.1.0
@@ -207,7 +211,7 @@ jsonschema==4.23.0
     # via drf-spectacular
 jsonschema-specifications==2024.10.1
     # via jsonschema
-keyring==25.5.0
+keyring==25.6.0
     # via twine
 levenshtein==0.26.1
     # via python-levenshtein
@@ -439,6 +443,12 @@ tinycss2==1.4.0
     #   weasyprint
 tinyhtml5==2.0.0
     # via weasyprint
+tomli==2.2.1
+    # via
+    #   coverage
+    #   pyproject-api
+    #   pytest
+    #   tox
 tox==4.23.2
     # via -r examples/requirements/test.in
 twine==6.0.1
@@ -452,13 +462,17 @@ typer-cli==0.15.1
 typing-extensions==4.12.2
     # via
     #   alembic
+    #   asgiref
     #   asyncssh
     #   azure-core
     #   azure-storage-blob
     #   edge-tts
     #   faker
+    #   multidict
     #   python-docx
     #   python-pptx
+    #   rich
+    #   tox
     #   typer
 uritemplate==4.1.1
     # via drf-spectacular
