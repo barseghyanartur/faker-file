@@ -1,7 +1,7 @@
 -r common.in
 -r django_4_2.in
 
-reportlab==3.3.0
+reportlab
 rst2pdf
 sphinx
 sphinx-autobuild

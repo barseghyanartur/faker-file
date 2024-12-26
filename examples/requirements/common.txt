@@ -6,6 +6,8 @@ aiohttp==3.11.11
     # via edge-tts
 aiosignal==1.3.2
     # via aiohttp
+async-timeout==5.0.1
+    # via aiohttp
 attrs==24.3.0
     # via aiohttp
 azure-core==1.32.0
@@ -57,6 +59,8 @@ edge-tts==7.0.0
     # via -r examples/requirements/common.in
 et-xmlfile==2.0.0
     # via openpyxl
+exceptiongroup==1.2.2
+    # via pytest
 fonttools[woff]==4.55.3
     # via weasyprint
 frozenlist==1.5.0
@@ -225,6 +229,10 @@ tinycss2==1.4.0
     #   weasyprint
 tinyhtml5==2.0.0
     # via weasyprint
+tomli==2.2.1
+    # via
+    #   coverage
+    #   pytest
 typer==0.15.1
     # via
     #   pathy
@@ -236,8 +244,10 @@ typing-extensions==4.12.2
     #   azure-core
     #   azure-storage-blob
     #   edge-tts
+    #   multidict
     #   python-docx
     #   python-pptx
+    #   rich
     #   typer
 urllib3==2.3.0
     # via

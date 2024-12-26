@@ -6,6 +6,8 @@ decorator==5.1.1
     # via
     #   ipdb
     #   ipython
+exceptiongroup==1.2.2
+    # via ipython
 executing==2.1.0
     # via stack-data
 ipdb==0.13.13
@@ -34,6 +36,8 @@ pygments==2.18.0
     # via ipython
 stack-data==0.6.3
     # via ipython
+tomli==2.2.1
+    # via ipdb
 traitlets==5.14.3
     # via
     #   ipython
