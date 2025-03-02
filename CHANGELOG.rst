@@ -12,6 +12,8 @@ Release history and notes
 .. _reportlab: https://pypi.org/project/reportlab/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 .. _textaugment: https://github.com/dsfsi/textaugment
+.. _pathy: https://github.com/justindujardin/pathy
+.. _cloudpathlib: https://github.com/drivendataorg/cloudpathlib
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -27,6 +29,14 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.17.15
+-------
+2024-03-??
+
+- Adding `cloudpathlib`_ based cloud storages as alternative to `pathy`_ based
+  cloud storages. In the future, `cloudpathlib`_ based cloud storages will
+  become default, instead of `pathy`_.
 
 0.17.14
 -------
