@@ -88,25 +88,6 @@ class CloudStorage(BaseStorage):
             / f"{basename}.{extension}"
         )
 
-        # if basename:
-        #     return (
-        #         self.bucket
-        #         / self.root_path
-        #         / self.rel_path
-        #         / f"{basename}.{extension}"
-        #     )
-        # else:
-        #     with tempfile.NamedTemporaryFile(
-        #         prefix=prefix,
-        #         suffix=f".{extension}",
-        #     ) as temp_file:
-        #         return (
-        #             self.bucket
-        #             / self.root_path
-        #             / self.rel_path
-        #             / os.path.basename(temp_file.name)
-        #         )
-
     def write_text(
         self: "CloudStorage",
         filename: Pathy,
