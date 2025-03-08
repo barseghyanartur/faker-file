@@ -2,9 +2,7 @@ import importlib
 import importlib.metadata
 import random
 from textwrap import wrap
-from typing import Any, Type, Union
-
-from packaging import version
+from typing import Any, Type
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -13,7 +11,6 @@ __all__ = (
     "load_class_from_path",
     "random_pop",
     "wrap_text",
-    "is_legacy_pathy_version",
 )
 
 
@@ -84,17 +81,3 @@ def random_pop(lst: list) -> Any:
         return lst.pop(idx)
     else:
         return None
-
-
-def is_legacy_pathy_version() -> Union[bool, None]:
-    """Check if a pathy version is less than 0.11.
-
-    :return: True if `pathy` version is less than 0.11.
-        False if `pathy` version is greater or equal than 0.11.
-        None if `pathy` is not installed.
-    """
-    try:
-        current_version = importlib.metadata.version("pathy")
-    except importlib.metadata.PackageNotFoundError:
-        return None
-    return version.parse(current_version) < version.parse("0.11")

@@ -10,12 +10,15 @@ from pathy import use_fs, use_fs_cache
 
 from ..providers.json_file import JsonFileProvider
 from ..registry import FILE_REGISTRY
-from ..storages.aws_s3 import AWSS3Storage
-from ..storages.azure_cloud_storage import AzureCloudStorage
 from ..storages.base import BaseStorage
-from ..storages.cloud import CloudStorage, PathyFileSystemStorage
 from ..storages.filesystem import FileSystemStorage
-from ..storages.google_cloud_storage import GoogleCloudStorage
+from ..storages.pathy_based.aws_s3 import AWSS3Storage
+from ..storages.pathy_based.azure_cloud_storage import AzureCloudStorage
+from ..storages.pathy_based.cloud import (
+    CloudStorage,
+    LocalCloudFileSystemStorage,
+)
+from ..storages.pathy_based.google_cloud_storage import GoogleCloudStorage
 from .data import GCS_CREDENTIALS_JSON
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
@@ -65,9 +68,9 @@ class TestStoragesTestCase(unittest.TestCase):
                 "my_zzz_filename",
                 "docx",
             ),
-            # PathyFileSystemStorage
+            # LocalCloudFileSystemStorage
             (
-                PathyFileSystemStorage,
+                LocalCloudFileSystemStorage,
                 {
                     "bucket_name": "testing",
                     "rel_path": "tmp",
@@ -77,7 +80,7 @@ class TestStoragesTestCase(unittest.TestCase):
                 "docx",
             ),
             (
-                PathyFileSystemStorage,
+                LocalCloudFileSystemStorage,
                 {
                     "bucket_name": "testing",
                     "rel_path": "tmp",
@@ -178,7 +181,8 @@ class TestStoragesTestCase(unittest.TestCase):
         """Test storage."""
         # Just for testing purposes
         if issubclass(storage_cls, CloudStorage):
-            use_fs(Path(tempfile.gettempdir()))
+            use_fs(str(Path(tempfile.gettempdir())))
+            # use_fs(Path(tempfile.gettempdir()))
             use_fs_cache()
 
         storage = storage_cls(**kwargs)
@@ -219,9 +223,9 @@ class TestStoragesTestCase(unittest.TestCase):
                 "zzz",
                 "",
             ),
-            # PathyFileSystemStorage
+            # LocalCloudFileSystemStorage
             (
-                PathyFileSystemStorage,
+                LocalCloudFileSystemStorage,
                 {
                     "bucket_name": "testing",
                     "rel_path": "tmp",
@@ -326,8 +330,8 @@ class TestStoragesTestCase(unittest.TestCase):
     def test_pathy_file_system_storage_abspath(
         self: "TestStoragesTestCase",
     ) -> None:
-        """Test `PathyFileSystemStorage` `abspath`."""
-        storage = PathyFileSystemStorage(
+        """Test `LocalCloudFileSystemStorage` `abspath`."""
+        storage = LocalCloudFileSystemStorage(
             bucket_name="faker-file-tmp",
             root_path="root_tmp",
             rel_path="rel_tmp",
@@ -342,8 +346,8 @@ class TestStoragesTestCase(unittest.TestCase):
     def test_pathy_file_system_storage_unlink(
         self: "TestStoragesTestCase",
     ) -> None:
-        """Test `PathyFileSystemStorage` `unlink`."""
-        storage = PathyFileSystemStorage(
+        """Test `LocalCloudFileSystemStorage` `unlink`."""
+        storage = LocalCloudFileSystemStorage(
             bucket_name="faker-file-tmp",
             root_path="root_tmp",
             rel_path="rel_tmp",

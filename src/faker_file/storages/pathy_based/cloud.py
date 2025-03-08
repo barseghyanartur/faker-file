@@ -1,12 +1,11 @@
-import warnings
 from abc import abstractmethod
 from typing import Any, Dict, Optional, Union
 
 from pathy import Pathy
 
 from ...base import DEFAULT_REL_PATH
-from ...helpers import is_legacy_pathy_version
 from ..base import BaseStorage
+from .helpers import is_legacy_pathy_version
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2023 Artur Barseghyan"
@@ -17,16 +16,9 @@ __all__ = (
     "PathyFileSystemStorage",
 )
 
-if is_legacy_pathy_version() is False:
-    warnings.warn(
-        "`pathy` based cloud storages require `pathy` version < 0.11,"
-        "which is legacy. Please downgrade your `pathy` version to 0.10.3 or "
-        "consider switching to `cloudpathlib` based cloud storages instead.",
-        DeprecationWarning,
-        stacklevel=2,
-    )
 
 DEFAULT_ROOT_PATH = "tmp"
+IS_LEGACY_PATHY_VERSION = is_legacy_pathy_version()
 
 
 class CloudStorage(BaseStorage):
@@ -68,6 +60,23 @@ class CloudStorage(BaseStorage):
     def authenticate(self, *args, **kwargs):
         raise NotImplementedError("Method authenticate is not implemented!")
 
+    def _get_file(self: "CloudStorage", filename: Union[Pathy, str]) -> Pathy:
+        """Get file from path.
+
+        By concept, the path is always relative to the root directory, thus
+        `rel_path` + initial filename, when used in string representation.
+
+        :param filename: File name.
+        :return Pathy: File object.
+        """
+        if isinstance(filename, Pathy):
+            return filename
+        if isinstance(filename, str) and filename.startswith(
+            f"{self.schema}://"
+        ):
+            return Pathy(filename)
+        return self.bucket / self.root_path / filename
+
     def generate_filename(
         self: "CloudStorage",
         extension: str,
@@ -95,33 +104,44 @@ class CloudStorage(BaseStorage):
         encoding: Optional[str] = None,
     ) -> int:
         """Write text."""
-        file = self.bucket / self.root_path / self.rel_path / filename
+        # file = self.bucket / self.root_path / self.rel_path / filename
+        # return file.write_text(data, encoding)
+        file = self._get_file(filename)
         return file.write_text(data, encoding)
 
     def write_bytes(self: "CloudStorage", filename: Pathy, data: bytes) -> int:
         """Write bytes."""
-        file = self.bucket / self.root_path / self.rel_path / filename
+        # file = self.bucket / self.root_path / self.rel_path / filename
+        file = self._get_file(filename)
         return file.write_bytes(data)
 
     def exists(self: "CloudStorage", filename: Union[Pathy, str]) -> bool:
         """Check if file exists."""
-        if isinstance(filename, str):
-            filename = self.bucket / self.root_path / filename
-        return filename.exists()
+        # if isinstance(filename, str):
+        #     filename = self.bucket / self.root_path / filename
+        # return filename.exists()
+        file = self._get_file(filename)
+        return file.exists()
 
     def relpath(self: "CloudStorage", filename: Pathy) -> str:
         """Return relative path."""
-        return str(filename.relative_to(self.bucket / self.root_path))
+        # return str(filename.relative_to(self.bucket / self.root_path))
+        file = self._get_file(filename)
+        return str(file.relative_to(self.bucket / self.root_path))
 
     def abspath(self: "CloudStorage", filename: Pathy) -> str:
         """Return relative path."""
-        return filename.as_uri()
+        # return filename.as_uri()
+        file = self._get_file(filename)
+        return file.as_uri()
 
     def unlink(self: "CloudStorage", filename: Union[Pathy, str]) -> None:
         """Delete the file."""
-        if isinstance(filename, str):
-            filename = self.bucket / self.root_path / filename
-        filename.unlink()
+        # if isinstance(filename, str):
+        #     filename = self.bucket / self.root_path / filename
+        # filename.unlink()
+        file = self._get_file(filename)
+        file.unlink()
 
 
 class LocalCloudFileSystemStorage(CloudStorage):
@@ -140,6 +160,26 @@ class LocalCloudFileSystemStorage(CloudStorage):
     """
 
     schema: str = "file"
+
+    if not IS_LEGACY_PATHY_VERSION:
+
+        def abspath(
+            self: "LocalCloudFileSystemStorage",
+            filename: Pathy,
+        ) -> str:
+            """Override `abspath` for local storage.
+
+            Instead of calling `as_uri()`, manually construct the absolute URI.
+            """
+            # Use the storage components to build the absolute URI.
+            parts = [self.bucket_name]
+            if self.root_path:
+                parts.append(self.root_path)
+            if self.rel_path:
+                parts.append(self.rel_path)
+            # Here we use filename.name as the final part.
+            parts.append(filename.name)
+            return "file://" + "/".join(parts)
 
     def authenticate(self: "LocalCloudFileSystemStorage", **kwargs) -> None:
         """Authenticate. Does nothing."""
