@@ -151,7 +151,7 @@ jobs:
   # is fairly sufficient.
   test:
     needs: pre-commit
-    name: test ${{ matrix.python-version }} - ${{ matrix.os }}
+    name: test py${{ matrix.python-version }} - pathy${{ matrix.pathy-version }} dj${{ matrix.django-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
