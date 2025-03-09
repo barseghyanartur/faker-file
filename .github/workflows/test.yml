@@ -194,8 +194,6 @@ jobs:
     - name: Upgrade pip
       run: |
         python -m pip install --upgrade pip
-    - name: Install pathy dependency
-      run: pip install "pathy==${{ matrix.pathy-version }}"
     - name: Install Django dependency (Django ${{ matrix.django-version }})
       run: |
         if [ "${{ matrix.django-version }}" = "42" ]; then
@@ -203,15 +201,17 @@ jobs:
         else
           pip install -r examples/requirements/django_5_0.txt;
         fi
-    - name: Prepare directories
-      run: |
-        mkdir -p examples/django_example/project/media/
-        mkdir -p examples/django_example/project/static/
     - name: Install package
       run: |
         pip install -e .[all]
 #    - name: Install tox
 #      run: python -m pip install --no-cache-dir tox-gh-actions
+    - name: Install pathy dependency
+      run: pip install "pathy==${{ matrix.pathy-version }}"
+    - name: Prepare directories
+      run: |
+        mkdir -p examples/django_example/project/media/
+        mkdir -p examples/django_example/project/static/
     - name: List all requirements
       run: |
         pip list
