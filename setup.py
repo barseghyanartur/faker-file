@@ -52,7 +52,7 @@ _common = [
     "imgkit",  # images: ICO, JPEG, PNG, SVG, WEBP
     "odfpy",  # ODP, ODS, ODT
     "openpyxl",  # XLSX
-    "pathy[all]>=0.10.0,<0.11.0",  # remote storages: Azure, GCS, S3
+    "pathy[all]>=0.10.0,<0.12.0",  # remote storages: Azure, GCS, S3
     "paramiko",  # SFTP storage
     "pdf2image",  # BMP, GIF, TIFF
     "pdfkit",  # PDF
@@ -78,12 +78,12 @@ _ml = [
 extras_require = {
     "all": _common + _ml,
     "common": _common,
-    "azure": ["pathy[azure]>=0.10.0,<0.11.0"],
+    "azure": ["pathy[azure]>=0.10.0,<0.12.0"],
     "bmp": ["WeasyPrint", "pdf2image"],
     "django": ["Django>=2.2"],
     "docx": ["python-docx"],
     "epub": ["xml2epub"],
-    "gcs": ["pathy[gcs]>=0.10.0,<0.11.0"],
+    "gcs": ["pathy[gcs]>=0.10.0,<0.12.0"],
     "gif": ["WeasyPrint", "pdf2image"],
     "images": ["imgkit"],
     "mp3": ["gtts", "edge-tts"],
@@ -92,7 +92,7 @@ extras_require = {
     "odt": ["odfpy"],
     "pdf": ["pdfkit", "reportlab"],
     "pptx": ["python-pptx"],
-    "s3": ["pathy[s3]>=0.10.0,<0.11.0"],
+    "s3": ["pathy[s3]>=0.10.0,<0.12.0"],
     "sftp": ["paramiko"],
     "sqlalchemy": ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"],
     "tiff": ["WeasyPrint", "pdf2image"],
