@@ -214,9 +214,7 @@ jobs:
 #      run: python -m pip install --no-cache-dir tox-gh-actions
     - name: Run test suite
 #      run: tox -r #--parallel auto
-      run: pytest -vrx -m "not optional" \
-        --ignore src/faker_file/tests/test_sqlalchemy_integration.py \
-        --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py
+      run: pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py
       env:
         PYTEST_ADDOPTS: "-vv --durations=10"
     - name: Coveralls
