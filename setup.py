@@ -16,7 +16,7 @@ def clean_readme(text: str) -> str:
     return text
 
 
-version = "0.17.14"
+version = "0.18"
 
 try:
     readme_path = Path(__file__).parent / "README.rst"
@@ -113,6 +113,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Environment :: Web Environment",
         "License :: OSI Approved :: MIT License",
         "Intended Audience :: Developers",

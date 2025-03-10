@@ -661,7 +661,7 @@ Please, use the following entry when citing `faker-file`_ in your research:
     @software{faker-file,
       author = {Artur Barseghyan},
       title = {faker-file: Create files with fake data. In many formats. With no efforts.},
-      year = {2022-2024},
+      year = {2022-2025},
       publisher = {GitHub},
       journal = {GitHub repository},
       howpublished = {https://github.com/barseghyanartur/faker-file},

@@ -30,14 +30,15 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
-0.17.15
--------
-2024-03-??
+0.18
+----
+2024-03-10
 
 - Drop Python 3.7 and 3.8 support.
 - Add Python 3.12 support.
-- Add pathy==0.11.x support.
-- Prepare for supporting more cloud-path alternatives (like `cloudpathlib`).
+- Add ``pathy==0.11.x`` support.
+- Prepare to support more cloud-pathlib alternatives (like `cloudpathlib`_),
+  next to existing `pathy`_.
 
 0.17.14
 -------

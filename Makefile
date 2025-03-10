@@ -28,6 +28,7 @@ clean_dev:
 clean_docs:
 	rm -rf build/
 	rm -rf builddocs/
+	rm -rf docs/_build/
 
 clean_test:
 	find . -name "*.pyc" -exec rm -rf {} \;
@@ -36,7 +37,7 @@ clean_test:
 	rm -rf .pytest_cache/
 	rm -rf htmlcov/
 
-clean: clean_dev clean_docs clean_dev
+clean: clean_dev clean_docs clean_test
 
 compile_requirements:
 	echo "common.in"
