@@ -31,7 +31,7 @@ from ..base.pdf_generator import BasePdfGenerator
 from ..mixins.graphic_image_mixin import GraphicImageMixin
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "DEFAULT_PDF_GENERATOR",

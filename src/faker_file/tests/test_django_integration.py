@@ -14,7 +14,7 @@ from ..storages.aws_s3 import AWSS3Storage
 from ..storages.filesystem import FileSystemStorage
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("DjangoIntegrationTestCase",)
 

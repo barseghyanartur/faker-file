@@ -12,6 +12,8 @@ Release history and notes
 .. _reportlab: https://pypi.org/project/reportlab/
 .. _wkhtmltopdf: https://wkhtmltopdf.org/
 .. _textaugment: https://github.com/dsfsi/textaugment
+.. _pathy: https://github.com/justindujardin/pathy
+.. _cloudpathlib: https://github.com/drivendataorg/cloudpathlib
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -27,6 +29,16 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.18
+----
+2024-03-10
+
+- Drop Python 3.7 and 3.8 support.
+- Add Python 3.12 support.
+- Add ``pathy==0.11.x`` support.
+- Prepare to support more cloud-pathlib alternatives (like `cloudpathlib`_),
+  next to existing `pathy`_.
 
 0.17.14
 -------

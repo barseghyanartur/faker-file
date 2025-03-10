@@ -143,7 +143,7 @@ def get_method_kwargs(
 
     kwargs = deepcopy(method_specs.args[1:])  # Omit `self`
     defaults = deepcopy(method_specs.defaults if method_specs.defaults else [])
-    model_props = dict(zip(kwargs, defaults, strict=False))
+    model_props = dict(zip(kwargs, defaults))
     annotations = deepcopy(method_specs.annotations)
 
     # Override the type definition for mp3_generator_cls
