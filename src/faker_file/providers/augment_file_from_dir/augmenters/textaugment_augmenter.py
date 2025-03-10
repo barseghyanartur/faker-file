@@ -6,7 +6,7 @@ from textaugment import EDA
 from ...base.text_augmenter import BaseTextAugmenter
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "EDATextaugmentAugmenter",

@@ -28,7 +28,7 @@ from ..providers.xml_file import XmlFileProvider
 from ..registry import FILE_REGISTRY
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("DataIntegrityTestCase",)
 

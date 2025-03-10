@@ -23,7 +23,7 @@ from ..storages.filesystem import FileSystemStorage
 from .helpers.inner import create_inner_txt_file
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("EmlFileProvider",)
 

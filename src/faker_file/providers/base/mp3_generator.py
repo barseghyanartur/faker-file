@@ -5,7 +5,7 @@ from faker.generator import Generator
 from faker.providers.python import Provider
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = ("BaseMp3Generator",)
 

@@ -30,7 +30,7 @@ try:
 except ImportError:
     version = "0.1"
     project = "faker-file"
-    copyright = "2022-2023, Artur Barseghyan <artur.barseghyan@gmail.com>"
+    copyright = "2022-2025, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # -- Django configuration ------------------------------------------------------
 os.environ["DJANGO_SETTINGS_MODULE"] = "project.settings.docs"
@@ -69,7 +69,7 @@ master_doc = "index"
 
 # General information about the project.
 # project = u'faker-file'
-# copyright = u'2022-2023, Artur Barseghyan <artur.barseghyan@gmail.com>'
+# copyright = u'2022-2025, Artur Barseghyan <artur.barseghyan@gmail.com>'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -309,7 +309,7 @@ texinfo_documents = [
 epub_title = "faker-file"
 epub_author = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 epub_publisher = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-epub_copyright = "2022-2023, Artur Barseghyan <artur.barseghyan@gmail.com>"
+epub_copyright = "2022-2025, Artur Barseghyan <artur.barseghyan@gmail.com>"
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.

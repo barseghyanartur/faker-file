@@ -1,10 +1,11 @@
 import importlib
+import importlib.metadata
 import random
 from textwrap import wrap
 from typing import Any, Type
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
-__copyright__ = "2022-2023 Artur Barseghyan"
+__copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "load_class_from_path",
