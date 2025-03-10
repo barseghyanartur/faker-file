@@ -32,7 +32,7 @@ are used for versioning (schema follows below):
 
 0.18
 ----
-2024-03-10
+2025-03-10
 
 - Drop Python 3.7 and 3.8 support.
 - Add Python 3.12 support.
