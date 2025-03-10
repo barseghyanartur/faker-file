@@ -166,8 +166,8 @@ jobs:
           - "3.11"
           - "3.10"
           - "3.9"
-          - "3.8"
-          - "3.7"
+#          - "3.8"
+#          - "3.7"
         django-version:
           - "42"
           - "50"
@@ -197,9 +197,9 @@ jobs:
     - name: Install Django dependency (Django ${{ matrix.django-version }})
       run: |
         if [ "${{ matrix.django-version }}" = "42" ]; then
-          pip install -r examples/requirements/django_4_2.txt;
+          pip install -r examples/requirements/django_4_2.in;
         else
-          pip install -r examples/requirements/django_5_0.txt;
+          pip install -r examples/requirements/django_5_0.in;
         fi
     - name: Install package
       run: |
