@@ -34,9 +34,10 @@ are used for versioning (schema follows below):
 -------
 2024-03-??
 
-- Adding `cloudpathlib`_ based cloud storages as alternative to `pathy`_ based
-  cloud storages. In the future, `cloudpathlib`_ based cloud storages will
-  become default, instead of `pathy`_.
+- Drop Python 3.7 and 3.8 support.
+- Add Python 3.12 support.
+- Add pathy==0.11.x support.
+- Prepare for supporting more cloud-path alternatives (like `cloudpathlib`).
 
 0.17.14
 -------
