@@ -4,6 +4,7 @@ import unittest
 from copy import deepcopy
 from typing import Any, Dict, List, Optional, Tuple, Type, Union
 
+import pytest
 import tika
 from faker import Faker
 from parametrize import parametrize
@@ -65,6 +66,7 @@ PATHY_FS_STORAGE = PathyFileSystemStorage(bucket_name="tmp", rel_path="tmp")
 SOURCE_DIR_PATH = os.path.join(tempfile.gettempdir(), DEFAULT_REL_PATH)
 
 
+@pytest.mark.ml
 class AugmentFileFromDirProviderTestCase(unittest.TestCase):
     """AugmentFileFromDirProvider test case."""
 
