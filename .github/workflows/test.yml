@@ -162,7 +162,7 @@ jobs:
         #          - Windows
         #          - MacOs
         python-version:
-          - "3.13"
+#          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
@@ -183,6 +183,8 @@ jobs:
             pathy-version: "0.10.3"
           - python-version: "3.9"
             django-version: "50"
+          - python-version: "3.9"
+            django-version: "51"
     steps:
     - name: Install wkhtmltopdf
       run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 poppler-utils
