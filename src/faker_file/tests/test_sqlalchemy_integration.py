@@ -23,6 +23,7 @@ __all__ = ("SQLAlchemyIntegrationTestCase",)
 STORAGE = FileSystemStorage(root_path="", rel_path="tmp")
 
 
+@pytest.mark.sqlalchemy
 class SQLAlchemyIntegrationTestCase(TestCase):
     """SQLAlchemy integration test case."""
 

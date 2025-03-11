@@ -1,5 +1,6 @@
 import unittest
 
+import pytest
 from PIL import Image, ImageDraw
 
 from ..providers.image.augment import solarize
@@ -10,6 +11,7 @@ __license__ = "MIT"
 __all__ = ("TestSolarizeFunction",)
 
 
+@pytest.mark.ml
 class TestSolarizeFunction(unittest.TestCase):
     """Test `solarize` function."""
 

@@ -172,12 +172,13 @@ jobs:
         django-version:
           - "42"
           - "50"
+          - "51"
         pathy-version:
           - "0.10.3"
           - "0.11"
         exclude:
-          - python-version: "3.13"
-            pathy-version: "0.10.3"
+#          - python-version: "3.13"
+#            pathy-version: "0.10.3"
           - python-version: "3.12"
             pathy-version: "0.10.3"
           - python-version: "3.9"
@@ -201,8 +202,10 @@ jobs:
       run: |
         if [ "${{ matrix.django-version }}" = "42" ]; then
           pip install -r examples/requirements/django_4_2.in;
-        else
+        elif [ "${{ matrix.django-version }}" = "50" ]; then
           pip install -r examples/requirements/django_5_0.in;
+        else
+          pip install -r examples/requirements/django_5_1.in;
         fi
     - name: Install package
       run: |
