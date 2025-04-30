@@ -330,6 +330,7 @@ With ``Faker``
 --------------
 **Recommended way**
 
+.. pytestmark: documentation
 .. code-block:: python
     :name: test_usage_examples_with_faker_recommended_way
 
@@ -363,6 +364,7 @@ functions):
 
 .. container:: jsphinx-toggle-emphasis
 
+    .. pytestmark: documentation
     .. code-block:: python
         :name: test_usage_examples_with_faker_raw_recommended_way
         :emphasize-lines: 7
@@ -385,6 +387,7 @@ functions):
 
 **But this works too**
 
+.. pytestmark: documentation
 .. code-block:: python
     :name: test_rst_readme_usage_examples_with_faker_but_this_works_too
 
@@ -399,6 +402,7 @@ If you just need ``bytes`` back:
 
 .. container:: jsphinx-toggle-emphasis
 
+    .. pytestmark: documentation
     .. code-block:: python
         :name: test_rst_readme_usage_examples_with_faker_raw_but_this_works_too
         :emphasize-lines: 6
@@ -412,8 +416,9 @@ If you just need ``bytes`` back:
 
 With ``factory_boy``
 --------------------
-upload/models.py
-~~~~~~~~~~~~~~~~
+*Filename: upload/models.py*
+
+.. pytestmark: documentation
 .. code-block:: python
 
     from django.db import models
@@ -423,13 +428,19 @@ upload/models.py
         # ...
         file = models.FileField()
 
-upload/factories.py
-~~~~~~~~~~~~~~~~~~~
+        class Meta:
+            app_label = "upload"
+
+*Filename: upload/factories.py*
+
 Note, that when using ``faker-file`` with ``Django`` and native file system
 storages, you need to pass your ``MEDIA_ROOT`` setting as ``root_path`` value
 to the chosen file storage as show below.
 
+.. pytestmark: documentation
+.. pytestmark: django_db
 .. code-block:: python
+    :name: test_upload_factories
 
     import factory
     from django.conf import settings
@@ -515,6 +526,7 @@ Native file system storage. Does not have dependencies.
 - ``rel_path``: Relative path from the root directory. Given the example of
   Django, this would be the rest of the path to the file.
 
+.. pytestmark: documentation
 .. code-block:: python
     :name: test_usage_examples_example_with_storages_filesystemstorage
 
@@ -538,6 +550,7 @@ Native file system storage. Does not have dependencies.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Native file system storage. Requires ``pathy``.
 
+.. pytestmark: documentation
 .. code-block:: python
     :name: test_usage_examples_example_with_storages_pathyfilesystemstorage
 
@@ -564,6 +577,7 @@ Native file system storage. Requires ``pathy``.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 AWS S3 storage. Requires ``pathy`` and ``boto3``.
 
+.. pytestmark: documentation
 .. code-block:: python
 
     from faker import Faker

@@ -42,7 +42,7 @@ tests_require = [
     "pytest-django",  # pytest add-on, django
     "pytest-ordering",  # pytest add-on
     "pytest-pythonpath",  # pytest add-on
-    "pytest-rst",  # pytest add-on
+    "pytest-codeblock",  # pytest add-on
     "moto>=5.0.0",  # testing documentation
 ]
 
@@ -108,8 +108,6 @@ setup(
     long_description_content_type="text/x-rst",
     classifiers=[
         "Programming Language :: Python :: 3",
-        # "Programming Language :: Python :: 3.7",
-        # "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",

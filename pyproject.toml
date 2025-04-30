@@ -11,6 +11,59 @@
 requires = ["setuptools>=41.0", "setuptools-scm", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.pytest.ini_options]
+addopts = [
+    "-rA",
+    "-vvv",
+    "-q",
+   "--cov=faker_file",
+   "--ignore=.tox",
+   "--ignore=requirements",
+   "--ignore=release",
+   "--ignore=examples",
+   "--ignore=tmp",
+   "--cov-report=html",
+   "--cov-report=term",
+   "--cov-report=annotate",
+   "--cov-append",
+   "--capture=no",
+]
+testpaths = [
+    "fake.py",
+    "__copy_fake.py",
+    "*.rst",
+    "**/*.rst",
+    "docs/test_docs.py",
+]
+python_files = [
+    "test_*.py",
+    "tests.py",
+]
+pythonpath = [
+    "src",
+    "examples/django_example",
+    "examples/sqlalchemy_example",
+    "examples/customizations",
+]
+norecursedirs = [
+    "*.egg",
+    ".git",
+    ".tox",
+    ".env",
+    "_sass",
+    "build",
+    "dist",
+    "migrations",
+]
+markers = [
+    "optional: mark a test as optional.",
+    "documentation: mark a test as a documentation test.",
+    "ml: ML test.",
+    "django: Django test.",
+    "sqlalchemy: SQLAlchemy test."
+]
+DJANGO_SETTINGS_MODULE = "project.settings.testing"
+
 [tool.ruff]
 line-length = 80
 
