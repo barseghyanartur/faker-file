@@ -17,4 +17,5 @@ __all__ = (
 
 def pytest_runtest_teardown(item, nextitem):
     """Clean up after test ends."""
-    FILE_REGISTRY.clean_up()
+    if item.get_closest_marker("documentation"):
+        FILE_REGISTRY.clean_up()
