@@ -6,11 +6,11 @@ fuzzywuzzy[speedup]
 moto>=5.0.0
 parametrize
 py
+pytest-codeblock
 pytest-cov
 pytest-django
 pytest-ordering
 pytest-parallel
 pytest-rerunfailures
-pytest-rst
 pytest>=7.0.1
 tox
