@@ -28,14 +28,13 @@ addopts = [
    "--cov-append",
    "--capture=no",
 ]
-testpaths = [
-    "test*.py",
-    "**/test*.py",
-    "__copy_fake.py",
-    "*.rst",
-    "**/*.rst",
-    "docs/test_docs.py",
-]
+#testpaths = [
+#    "test*.py",
+#    "**/test*.py",
+#    "*.rst",
+#    "**/*.rst",
+#    "docs/test_docs.py",
+#]
 python_files = [
     "test_*.py",
     "tests.py",
