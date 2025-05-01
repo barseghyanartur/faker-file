@@ -50,7 +50,7 @@ pyyaml==6.0.2
     # via pre-commit
 restructuredtext-lint==1.4.0
     # via doc8
-ruff==0.11.7
+ruff==0.11.8
     # via -r examples/requirements/style_checkers.in
 setuptools==80.1.0
     # via pbr
