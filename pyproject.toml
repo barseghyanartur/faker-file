@@ -29,7 +29,8 @@ addopts = [
    "--capture=no",
 ]
 testpaths = [
-    "fake.py",
+    "test*.py",
+    "**/test*.py",
     "__copy_fake.py",
     "*.rst",
     "**/*.rst",
