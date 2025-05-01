@@ -28,17 +28,17 @@ addopts = [
    "--cov-append",
    "--capture=no",
 ]
-testpaths = [
-    "test*.py",
-    "**/test*.py",
-    "*.rst",
-    "**/*.rst",
-    "docs/test_docs.py",
-]
-#python_files = [
-#    "test_*.py",
-#    "tests.py",
+#testpaths = [
+#    "test*.py",
+#    "**/test*.py",
+#    "*.rst",
+#    "**/*.rst",
+#    "docs/test_docs.py",
 #]
+python_files = [
+    "test_*.py",
+    "tests.py",
+]
 pythonpath = [
     "src",
     "examples/django_example",

@@ -215,8 +215,14 @@ sqlalchemy_shell:
 test-main:
 	pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py
 
+test-main-collect-only:
+	pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py --collect-only
+
 test-sqlalchemy-integration:
 	pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
+
+test-sqlalchemy-integration-collect-only:
+	pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py --collect-only
 
 test-augmented-file-from-dir-provider:
 	pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
