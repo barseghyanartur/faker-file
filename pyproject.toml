@@ -31,15 +31,14 @@ addopts = [
 testpaths = [
     "test*.py",
     "**/test*.py",
-    "__copy_fake.py",
     "*.rst",
     "**/*.rst",
     "docs/test_docs.py",
 ]
-python_files = [
-    "test_*.py",
-    "tests.py",
-]
+#python_files = [
+#    "test_*.py",
+#    "tests.py",
+#]
 pythonpath = [
     "src",
     "examples/django_example",

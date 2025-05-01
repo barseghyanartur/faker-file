@@ -212,6 +212,15 @@ shell:
 sqlalchemy_shell:
 	cd examples/sqlalchemy_example/ && ipython
 
+test-main:
+	pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py
+
+test-sqlalchemy-integration:
+	pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
+
+test-augmented-file-from-dir-provider:
+	pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
+
 test:
 	pytest
 
