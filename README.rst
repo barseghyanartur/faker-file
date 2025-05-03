@@ -594,7 +594,7 @@ AWS S3 storage. Requires ``pathy`` and ``boto3``.
 
     file = TxtFileProvider(FAKER).txt_file(storage=S3_STORAGE)
 
-    S3_STORAGE.exists(file)
+    assert S3_STORAGE.exists(file)
 
 Testing
 =======
