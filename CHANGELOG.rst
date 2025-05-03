@@ -15,6 +15,8 @@ Release history and notes
 .. _pathy: https://github.com/justindujardin/pathy
 .. _cloudpathlib: https://github.com/drivendataorg/cloudpathlib
 .. _pytest-codeblock: https://github.com/barseghyanartur/pytest-codeblock
+.. _coverage: https://github.com/nedbat/coveragepy
+.. _mypy: https://mypy-lang.org/
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -36,6 +38,7 @@ are used for versioning (schema follows below):
 2025-05-03
 
 - Switch to `pytest-codeblock`_ for testing documentation codeblocks.
+- Move `mypy`_ and `coverage`_ configuration to pyproject.toml.
 
 0.18.1
 ------

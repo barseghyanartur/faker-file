@@ -164,3 +164,31 @@ reportMissingTypeStubs = false
 pythonVersion = "3.10"
 pythonPlatform = "Linux"
 verboseOutput = true
+
+[tool.mypy]
+#check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+ignore_missing_imports = true
+warn_no_return = false
+mypy_path = "src/faker_file"
+exclude = "setup.py"
+
+[tool.coverage.run]
+relative_files = true
+omit = [
+    "src/faker_file/tests/*",
+    "examples/simple/project/settings/*",
+    "examples/django_example/project/wsgi.py",
+    "examples/django_example/upload/migrations/*",
+    ".tox/*"
+]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "@overload",
+    # "raise NotImplementedError",
+]

@@ -258,8 +258,8 @@ update-version:
 	@echo "Updating version in setup.py and __init__.py"
 	@if [ "$(UNAME_S)" = "Darwin" ]; then \
 		gsed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
-		gsed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' faker_file/__init__.py; \
+		gsed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
 	else \
 		sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
-		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' faker_file/__init__.py; \
+		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
 	fi
