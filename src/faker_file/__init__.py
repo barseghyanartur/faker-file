@@ -1,5 +1,5 @@
 __title__ = "faker_file"
-__version__ = "0.18.1"
+__version__ = "0.18.2"
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"

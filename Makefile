@@ -1,20 +1,23 @@
 .PHONY: clean_up another_script
 
-alembic_migrate:
+# Update version ONLY here
+VERSION := 0.18.2
+
+alembic-migrate:
 	cd examples/sqlalchemy_example/faker_file_admin/ && alembic upgrade head
 
-benchmark_test:
+benchmark-test:
 	pytest -vvrx --durations=0
 
-build_docs:
+build-docs:
 	sphinx-build -n -a -b html docs builddocs
 	cd builddocs && zip -r ../builddocs.zip . -x ".*" && cd ..
 
-check_release:
+check-release:
 	python setup.py sdist bdist_wheel
 	twine check dist/* --verbose
 
-clean_dev:
+clean-dev:
 	find . -name "*.orig" -exec rm -rf {} \;
 	find . -name "__pycache__" -exec rm -rf {} \;
 	rm -rf dist/
@@ -25,21 +28,21 @@ clean_dev:
 	rm -rf .mypy_cache/
 	rm -rf .ruff_cache/
 
-clean_docs:
+clean-docs:
 	rm -rf build/
 	rm -rf builddocs/
 	rm -rf docs/_build/
 
-clean_test:
+clean-test:
 	find . -name "*.pyc" -exec rm -rf {} \;
 	find . -name "*.py,cover" -exec rm -rf {} \;
 	rm -rf .coverage
 	rm -rf .pytest_cache/
 	rm -rf htmlcov/
 
-clean: clean_dev clean_docs clean_test
+clean: clean-dev clean-docs clean-test
 
-compile_requirements:
+compile-requirements:
 	echo "common.in"
 	uv pip compile --no-strip-extras examples/requirements/common.in -o examples/requirements/common.txt
 
@@ -88,7 +91,7 @@ compile_requirements:
 	echo "testing.in"
 	uv pip compile --no-strip-extras examples/requirements/testing.in -o examples/requirements/testing.txt
 
-compile_requirements_upgrade:
+compile-requirements-upgrade:
 	echo "common.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/common.in -o examples/requirements/common.txt
 
@@ -137,16 +140,16 @@ compile_requirements_upgrade:
 	echo "testing.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/testing.in -o examples/requirements/testing.txt
 
-detect_secrets_create_baseline:
+detect-secrets-create-baseline:
 	detect-secrets scan > .secrets.baseline
 
-detect_secrets_update_baseline:
+detect-secrets-update-baseline:
 	detect-secrets scan --baseline .secrets.baseline
 
 doc8:
 	doc8
 
-flask_runserver:
+flask-runserver:
 	python examples/sqlalchemy_example/run_server.py
 
 pre-commit:
@@ -162,7 +165,7 @@ install: compile_requirements
 jupyter:
 	cd examples/django_example/ && TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
 
-make_migrations:
+make-migrations:
 	echo 'Making messages for faker-file...'
 	cd examples/django_example/ && ./manage.py makemigrations faker-file
 
@@ -176,7 +179,7 @@ release:
 	python setup.py sdist bdist_wheel
 	twine upload dist/* --verbose
 
-test_release:
+test-release:
 	python setup.py sdist bdist_wheel
 	twine upload --repository testpypi dist/* --verbose
 
@@ -186,10 +189,10 @@ migrate:
 mypy:
 	mypy src/
 
-auto_build_docs:
+auto-build-docs:
 	sphinx-autobuild docs docs/_build/html
 
-rebuild_docs: clean
+rebuild-docs: clean
 	sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
 	cp docs/conf.py.distrib docs/conf.py
 	cp docs/index.rst.distrib docs/index.rst
@@ -203,13 +206,13 @@ ruff:
 runserver:
 	cd examples/django_example/ && ./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"
 
-serve_docs:
+serve-docs:
 	cd builddocs/ && python -m http.server 5001
 
 shell:
 	cd examples/django_example/ && ./manage.py shell --traceback -v 3 "$$@"
 
-sqlalchemy_shell:
+sqlalchemy-shell:
 	cd examples/sqlalchemy_example/ && ipython
 
 test-main:
@@ -230,13 +233,13 @@ test-augmented-file-from-dir-provider:
 test:
 	pytest
 
-test_with_local_tika:
+test-with-local-tika:
 	TIKA_SERVER_JAR="file:///$(shell pwd)/tika-server.jar" pytest
 
-test_rst_docs:
+test-rst-docs:
 	pytest *.rst docs/*.rst
 
-test_tests:
+test-tests:
 	pytest --cov-config=tests.coveragerc
 
 uninstall:
@@ -247,4 +250,14 @@ uninstall:
 	rm builddocs.zip
 	rm builddocs/ -rf
 
-upgrade_requirements: compile_requirements_upgrade
+upgrade-requirements: compile-requirements-upgrade
+
+update-version:
+	@echo "Updating version in setup.py and __init__.py"
+	@if [ "$(UNAME_S)" = "Darwin" ]; then \
+		gsed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
+		gsed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
+	else \
+		sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
+		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
+	fi

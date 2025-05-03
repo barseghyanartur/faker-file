@@ -10,10 +10,15 @@ Release history and notes
 .. _pdf2image: https://pypi.org/project/pdf2image/
 .. _pdfkit: https://pypi.org/project/pdfkit/
 .. _reportlab: https://pypi.org/project/reportlab/
-.. _wkhtmltopdf: https://wkhtmltopdf.org/
+.. _wkhtmltopdf: https://wkhtmltopdf.org
 .. _textaugment: https://github.com/dsfsi/textaugment
 .. _pathy: https://github.com/justindujardin/pathy
 .. _cloudpathlib: https://github.com/drivendataorg/cloudpathlib
+.. _pytest-codeblock: https://github.com/barseghyanartur/pytest-codeblock
+.. _coverage: https://github.com/nedbat/coveragepy
+.. _mypy: https://mypy-lang.org
+.. _pytest: https://docs.pytest.org
+.. _jsphinx: https://github.com/barseghyanartur/jsphinx
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -29,6 +34,14 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.18.2
+------
+2025-05-03
+
+- Switch to `pytest-codeblock`_ for testing documentation codeblocks.
+- Move `pytest`_, `mypy`_ and `coverage`_ configuration to `pyproject.toml`.
+- Update `jsphinx`_ to the latest version.
 
 0.18.1
 ------

@@ -16,7 +16,7 @@ def clean_readme(text: str) -> str:
     return text
 
 
-version = "0.18.1"
+version = "0.18.2"
 
 try:
     readme_path = Path(__file__).parent / "README.rst"
