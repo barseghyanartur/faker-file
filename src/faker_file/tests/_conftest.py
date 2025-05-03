@@ -6,16 +6,26 @@ calls the `clean_up` method of the `FILE_REGISTRY` instance.
 """
 
 from faker_file.registry import FILE_REGISTRY
+from moto import mock_aws
+from pytest_codeblock.constants import CODEBLOCK_MARK
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2025 Artur Barseghyan"
 __license__ = "MIT"
 __all__ = (
     "pytest_runtest_teardown",
+    "pytest_collection_modifyitems",
 )
+
+# Modify test item during collection
+def pytest_collection_modifyitems(config, items):
+    for item in items:
+        if item.get_closest_marker("aws"):
+            # Apply `mock_aws` to all tests marked as `aws`
+            item.obj = mock_aws(item.obj)
 
 
 def pytest_runtest_teardown(item, nextitem):
     """Clean up after test ends."""
-    if item.get_closest_marker("documentation"):
+    if item.get_closest_marker(CODEBLOCK_MARK):
         FILE_REGISTRY.clean_up()
