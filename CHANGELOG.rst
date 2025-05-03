@@ -14,6 +14,7 @@ Release history and notes
 .. _textaugment: https://github.com/dsfsi/textaugment
 .. _pathy: https://github.com/justindujardin/pathy
 .. _cloudpathlib: https://github.com/drivendataorg/cloudpathlib
+.. _pytest-codeblock: https://github.com/barseghyanartur/pytest-codeblock
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -29,6 +30,12 @@ are used for versioning (schema follows below):
   release notes carefully before upgrading (for example, when upgrading from
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
+
+0.18.2
+------
+2025-05-03
+
+- Switch to `pytest-codeblock`_ for testing documentation codeblocks.
 
 0.18.1
 ------
