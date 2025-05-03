@@ -2,9 +2,9 @@
 #    uv pip compile --no-strip-extras examples/requirements/test.in -o examples/requirements/test.txt
 asyncssh==2.20.0
     # via -r examples/requirements/test.in
-boto3==1.38.7
+boto3==1.38.8
     # via moto
-botocore==1.38.7
+botocore==1.38.8
     # via
     #   boto3
     #   moto
@@ -17,7 +17,7 @@ cffi==1.17.1
     # via cryptography
 chardet==5.2.0
     # via tox
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via requests
 colorama==0.4.6
     # via tox
@@ -25,7 +25,7 @@ coverage[toml]==7.8.0
     # via
     #   -r examples/requirements/test.in
     #   pytest-cov
-cryptography==44.0.2
+cryptography==44.0.3
     # via
     #   asyncssh
     #   moto
@@ -94,7 +94,7 @@ pytest==8.3.5
     #   pytest-ordering
     #   pytest-parallel
     #   pytest-rerunfailures
-pytest-codeblock==0.1.1
+pytest-codeblock==0.1.2
     # via -r examples/requirements/test.in
 pytest-cov==6.1.1
     # via -r examples/requirements/test.in
