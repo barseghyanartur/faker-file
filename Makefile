@@ -15,7 +15,7 @@ build-docs:
 
 check-release:
 	python setup.py sdist bdist_wheel
-	twine check dist/* --verbose
+	twine check dist/*
 
 clean-dev:
 	find . -name "*.orig" -exec rm -rf {} \;
