@@ -18,6 +18,7 @@ Release history and notes
 .. _coverage: https://github.com/nedbat/coveragepy
 .. _mypy: https://mypy-lang.org
 .. _pytest: https://docs.pytest.org
+.. _jsphinx: https://github.com/barseghyanartur/jsphinx
 
 `Sequence based identifiers
 <http://en.wikipedia.org/wiki/Software_versioning#Sequence-based_identifiers>`_
@@ -40,6 +41,7 @@ are used for versioning (schema follows below):
 
 - Switch to `pytest-codeblock`_ for testing documentation codeblocks.
 - Move `pytest`_, `mypy`_ and `coverage`_ configuration to `pyproject.toml`.
+- Update `jsphinx`_ to the latest version.
 
 0.18.1
 ------
