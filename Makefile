@@ -253,8 +253,6 @@ uninstall:
 upgrade-requirements: compile-requirements-upgrade
 
 update-version:
-	#sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' pyproject.toml
-	#sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' fake.py
 	@echo "Updating version in setup.py and __init__.py"
 	@if [ "$(UNAME_S)" = "Darwin" ]; then \
 		gsed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
