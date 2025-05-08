@@ -1,4 +1,3 @@
-# import mimetypes
 import os
 from email.message import EmailMessage
 from email.policy import default
@@ -17,6 +16,7 @@ from ..base import (
     returns_list,
 )
 from ..constants import DEFAULT_TEXT_MAX_NB_CHARS
+from ..helpers import get_mime_maintype_subtype
 from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
@@ -244,16 +244,11 @@ class EmlFileProvider(BaseProvider, FileMixin):
             for __file in _files:
                 data["inner"][str(__file)] = __file
                 __file_abs_path = fs_storage.abspath(__file)
-                # _content_type, _encoding = mimetypes.guess_type(
-                #     __file_abs_path
-                # )
-                # if _content_type is None or _encoding is not None:
-                #     # No guess could be made, or the file is
-                #     # encoded (compressed), so use a generic bag-of-bits
-                #     # type.
-                #     _content_type = "application/octet-stream"
-                _content_type = "application/octet-stream"
-                _maintype, _subtype = _content_type.split("/", 1)
+                _maintype, _subtype = get_mime_maintype_subtype(
+                    path=__file_abs_path,
+                )
+                # _content_type = "application/octet-stream"
+                # _maintype, _subtype = _content_type.split("/", 1)
                 with open(__file_abs_path, "rb") as _fp:
                     _file_data = _fp.read()
                     msg.add_attachment(
@@ -272,16 +267,11 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 )
                 data["inner"][str(__file)] = __file
                 __file_abs_path = fs_storage.abspath(__file)
-                # _content_type, _encoding = mimetypes.guess_type(
-                #     __file_abs_path
-                # )
-                # if _content_type is None or _encoding is not None:
-                #     # No guess could be made, or the file is
-                #     # encoded (compressed), so use a generic bag-of-bits
-                #     # type.
-                #     _content_type = "application/octet-stream"
-                _content_type = "application/octet-stream"
-                _maintype, _subtype = _content_type.split("/", 1)
+                _maintype, _subtype = get_mime_maintype_subtype(
+                    path=__file_abs_path,
+                )
+                # _content_type = "application/octet-stream"
+                # _maintype, _subtype = _content_type.split("/", 1)
                 with open(__file_abs_path, "rb") as _fp:
                     _file_data = _fp.read()
                     msg.add_attachment(
