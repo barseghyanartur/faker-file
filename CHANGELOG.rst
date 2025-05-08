@@ -35,6 +35,12 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.18.3
+------
+2025-05-07
+
+- Correct guessing of mimetypes in ``eml_file`` provider.
+
 0.18.2
 ------
 2025-05-03
