@@ -234,6 +234,21 @@ Create an EML file with variety of different file types within
     *See the full example*
     :download:`here <_static/examples/recipes/eml_file_4.py>`
 
+Create an EML file ``Content-Transfer-Encoding`` set to ``7bit``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 10 files in the EML file (limited to DOCX, EPUB and TXT types).
+- Content is generated dynamically.
+- Set the ``Content-Transfer-Encoding`` to ``7bit``.
+
+.. container:: jsphinx-download
+
+    .. literalinclude:: _static/examples/recipes/eml_file_5.py
+        :language: python
+        :lines: 3-8, 17-
+
+    *See the full example*
+    :download:`here <_static/examples/recipes/eml_file_5.py>`
+
 Create a PDF file with predefined template containing dynamic fixtures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Content template is predefined and contains dynamic fixtures.

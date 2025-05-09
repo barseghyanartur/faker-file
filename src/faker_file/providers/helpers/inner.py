@@ -1,3 +1,4 @@
+from email.policy import Policy
 from random import choice
 from typing import (
     Any,
@@ -464,6 +465,8 @@ def create_inner_eml_file(
     max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS,
     wrap_chars_after: Optional[int] = None,
     content: Optional[str] = None,
+    cte_type: Optional[str] = None,
+    policy: Optional[Policy] = None,
     format_func: Callable[
         [Union[Faker, Generator, Provider], str], str
     ] = DEFAULT_FORMAT_FUNC,
@@ -483,6 +486,8 @@ def create_inner_eml_file(
         max_nb_chars=max_nb_chars,
         wrap_chars_after=wrap_chars_after,
         content=content,
+        cte_type=cte_type,
+        policy=policy,
         format_func=format_func,
         raw=raw,
         **kwargs,
