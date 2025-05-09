@@ -1,7 +1,7 @@
 .PHONY: clean_up another_script
 
 # Update version ONLY here
-VERSION := 0.18.3
+VERSION := 0.18.4
 
 alembic-migrate:
 	cd examples/sqlalchemy_example/faker_file_admin/ && alembic upgrade head

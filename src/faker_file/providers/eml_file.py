@@ -1,6 +1,6 @@
 import os
 from email.message import EmailMessage
-from email.policy import default
+from email.policy import Policy, default
 from typing import Any, Callable, Dict, Optional, Union, overload
 
 from faker import Faker
@@ -78,6 +78,12 @@ class EmlFileProvider(BaseProvider, FileMixin):
             }
         )
 
+    Usage example with Content-Transfer-Encoding set to 7bit:
+
+    .. code-block:: python
+
+        file = FAKER.eml_file(cte_type="7bit", content=FAKER.text())
+
     If you want to see, which files were included inside the EML, check
     the ``file.data["files"]``.
     """
@@ -95,6 +101,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
         subject: Optional[str] = None,
+        cte_type: Optional[str] = None,
+        policy: Optional[Policy] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -113,6 +121,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
         subject: Optional[str] = None,
+        cte_type: Optional[str] = None,
+        policy: Optional[Policy] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -129,6 +139,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
         wrap_chars_after: Optional[int] = None,
         content: Optional[str] = None,
         subject: Optional[str] = None,
+        cte_type: Optional[str] = None,
+        policy: Optional[Policy] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
         ] = DEFAULT_FORMAT_FUNC,
@@ -148,6 +160,8 @@ class EmlFileProvider(BaseProvider, FileMixin):
             are then replaced by correspondent fixtures.
         :param subject: Email subject. Might contain dynamic elements, which
             are then replaced by correspondent fixtures.
+        :param cte_type: Content-Transfer-Encoding (CTE) type.
+        :param policy: Email message policy.
         :param format_func: Callable responsible for formatting template
             strings.
         :param raw: If set to True, return `BytesValue` (binary content of
@@ -186,11 +200,16 @@ class EmlFileProvider(BaseProvider, FileMixin):
             "storage": storage,
         }
 
-        msg = EmailMessage()
+        # Choose the policy to use for creating and serializing
+        if policy is None:
+            # Clone the `default` and apply `cte_type` if given
+            policy = default.clone(cte_type=cte_type) if cte_type else default
+
+        msg = EmailMessage(policy=policy)
         msg["To"] = self.generator.email()
         msg["From"] = self.generator.email()
         msg["Subject"] = subject
-        msg.set_content(content)
+        msg.set_content(content, cte=policy.cte_type)
         data.update(
             {
                 "to": msg["To"],
@@ -235,7 +254,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
         _kwargs = {"generator": self.generator}
         _kwargs.update(_create_inner_file_args)
 
-        # If _create_inner_file_func returns a list of values
+        # If `_create_inner_file_func` returns a list of values
         if returns_list(_create_inner_file_func):
             _files = _create_inner_file_func(
                 storage=fs_storage,
@@ -247,8 +266,6 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 _maintype, _subtype = get_mime_maintype_subtype(
                     path=__file_abs_path,
                 )
-                # _content_type = "application/octet-stream"
-                # _maintype, _subtype = _content_type.split("/", 1)
                 with open(__file_abs_path, "rb") as _fp:
                     _file_data = _fp.read()
                     msg.add_attachment(
@@ -258,7 +275,7 @@ class EmlFileProvider(BaseProvider, FileMixin):
                         filename=os.path.basename(__file),
                     )
                 os.remove(__file_abs_path)  # Clean up temporary files
-        # If _create_inner_file_func returns a single value
+        # If `_create_inner_file_func` returns a single value
         else:
             for __i in range(_count):
                 __file = _create_inner_file_func(
@@ -270,8 +287,6 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 _maintype, _subtype = get_mime_maintype_subtype(
                     path=__file_abs_path,
                 )
-                # _content_type = "application/octet-stream"
-                # _maintype, _subtype = _content_type.split("/", 1)
                 with open(__file_abs_path, "rb") as _fp:
                     _file_data = _fp.read()
                     msg.add_attachment(
@@ -283,11 +298,11 @@ class EmlFileProvider(BaseProvider, FileMixin):
                 os.remove(__file_abs_path)  # Clean up temporary files
 
         if raw:
-            raw_content = BytesValue(msg.as_bytes(policy=default))
+            raw_content = BytesValue(msg.as_bytes(policy=policy))
             raw_content.data = data
             return raw_content
 
-        storage.write_bytes(filename, msg.as_bytes(policy=default))
+        storage.write_bytes(filename, msg.as_bytes(policy=policy))
 
         # Generic
         file_name = StringValue(storage.relpath(filename))
