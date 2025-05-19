@@ -10,6 +10,8 @@ benchmark-test:
 	pytest -vvrx --durations=0
 
 build-docs:
+	python scripts/generate_project_source_tree.py
+	sphinx-build -n -b text docs builddocs
 	sphinx-build -n -a -b html docs builddocs
 	cd builddocs && zip -r ../builddocs.zip . -x ".*" && cd ..
 
