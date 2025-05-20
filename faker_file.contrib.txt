@@ -1,0 +1,168 @@
+faker_file.contrib package
+**************************
+
+
+Subpackages
+===========
+
+* faker_file.contrib.pdf_file package
+
+  * Submodules
+
+  * faker_file.contrib.pdf_file.pdfkit_snippets module
+
+    * "add_h1_heading()"
+
+    * "add_h2_heading()"
+
+    * "add_h3_heading()"
+
+    * "add_h4_heading()"
+
+    * "add_h5_heading()"
+
+    * "add_h6_heading()"
+
+    * "add_heading()"
+
+    * "add_page_break()"
+
+    * "add_paragraph()"
+
+    * "add_picture()"
+
+    * "add_table()"
+
+  * faker_file.contrib.pdf_file.reportlab_snippets module
+
+    * "add_h1_heading()"
+
+    * "add_h2_heading()"
+
+    * "add_h3_heading()"
+
+    * "add_h4_heading()"
+
+    * "add_h5_heading()"
+
+    * "add_h6_heading()"
+
+    * "add_heading()"
+
+    * "add_page_break()"
+
+    * "add_paragraph()"
+
+    * "add_picture()"
+
+    * "add_table()"
+
+  * Module contents
+
+
+Submodules
+==========
+
+
+faker_file.contrib.docx_file module
+===================================
+
+faker_file.contrib.docx_file.add_h1_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h1 heading generation.
+
+faker_file.contrib.docx_file.add_h2_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h2 heading generation.
+
+faker_file.contrib.docx_file.add_h3_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h3 heading generation.
+
+faker_file.contrib.docx_file.add_h4_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h4 heading generation.
+
+faker_file.contrib.docx_file.add_h5_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h5 heading generation.
+
+faker_file.contrib.docx_file.add_h6_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h6 heading generation.
+
+faker_file.contrib.docx_file.add_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the heading generation.
+
+faker_file.contrib.docx_file.add_page_break(provider, document, data, counter, **kwargs)
+
+   Callable responsible for page break generation.
+
+faker_file.contrib.docx_file.add_paragraph(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the paragraph generation.
+
+faker_file.contrib.docx_file.add_picture(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the picture generation.
+
+faker_file.contrib.docx_file.add_table(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the table generation.
+
+faker_file.contrib.docx_file.add_title_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the title heading generation.
+
+
+faker_file.contrib.odt_file module
+==================================
+
+faker_file.contrib.odt_file.add_h1_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h1 heading generation.
+
+faker_file.contrib.odt_file.add_h2_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h2 heading generation.
+
+faker_file.contrib.odt_file.add_h3_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h3 heading generation.
+
+faker_file.contrib.odt_file.add_h4_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h4 heading generation.
+
+faker_file.contrib.odt_file.add_h5_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h5 heading generation.
+
+faker_file.contrib.odt_file.add_h6_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the h6 heading generation.
+
+faker_file.contrib.odt_file.add_heading(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the heading generation.
+
+faker_file.contrib.odt_file.add_page_break(provider, document, data, counter, **kwargs)
+
+   Callable responsible for page break generation.
+
+faker_file.contrib.odt_file.add_paragraph(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the paragraph generation.
+
+faker_file.contrib.odt_file.add_picture(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the picture generation.
+
+faker_file.contrib.odt_file.add_table(provider, document, data, counter, **kwargs)
+
+   Callable responsible for the table generation.
+
+
+Module contents
+===============

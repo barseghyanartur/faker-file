@@ -1,0 +1,203 @@
+faker_file.providers.pdf_file package
+*************************************
+
+
+Subpackages
+===========
+
+* faker_file.providers.pdf_file.generators package
+
+  * Submodules
+
+  * faker_file.providers.pdf_file.generators.pdfkit_generator module
+
+    * "PdfkitPdfGenerator"
+
+      * "PdfkitPdfGenerator.encoding"
+
+      * "PdfkitPdfGenerator.generate()"
+
+      * "PdfkitPdfGenerator.handle_kwargs()"
+
+  * faker_file.providers.pdf_file.generators.reportlab_generator
+    module
+
+    * "ReportlabPdfGenerator"
+
+      * "ReportlabPdfGenerator.font_name"
+
+      * "ReportlabPdfGenerator.font_path"
+
+      * "ReportlabPdfGenerator.generate()"
+
+      * "ReportlabPdfGenerator.handle_kwargs()"
+
+  * Module contents
+
+
+Module contents
+===============
+
+class faker_file.providers.pdf_file.GraphicPdfFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic PDF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.pdf_file import GraphicPdfFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicPdfFileProvider)
+
+      file = FAKER.graphic_pdf_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_pdf_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_pdf_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'pdf'
+
+   graphic_pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic PDF file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'pdf'
+
+class faker_file.providers.pdf_file.PdfFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   PDF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.pdf_file import PdfFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(PdfFileProvider)
+
+      file = FAKER.pdf_file()
+
+   Usage example with options:
+
+      file = FAKER.pdf_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.pdf_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Default PDF generator class is *PdfkitPdfGenerator* which uses
+   *pdfkit* Python package and *wkhtmltopdf* system package for
+   generating PDFs from randomly generated text. The quality of the
+   produced PDFs is very good, but it's less performant than
+   *ReportlabPdfGenerator* (factor 40x), which does not require
+   additional system dependencies to run. To use it, pass
+   *ReportlabPdfGenerator* class in *pdf_generator_cls* argument.
+
+      from faker_file.providers.pdf_file.generators import (
+          reportlab_generator,
+      )
+
+      file = FAKER.pdf_file(
+          max_nb_chars=1_000,
+          wrap_chars_after=80,
+          pdf_generator_cls=reportlab_generator.ReportlabPdfGenerator,
+      )
+
+   extension: str = 'pdf'
+
+   pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | DynamicTemplate | None = None, pdf_generator_cls: str | Type[BasePdfGenerator] | None = DEFAULT_PDF_GENERATOR, pdf_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | DynamicTemplate | None = None, pdf_generator_cls: str | Type[BasePdfGenerator] | None = DEFAULT_PDF_GENERATOR, pdf_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a PDF file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **pdf_generator_cls** -- PDF generator class.
+
+         * **pdf_generator_kwargs** -- PDF generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.

@@ -1,0 +1,1157 @@
+faker_file package
+******************
+
+
+Subpackages
+===========
+
+* faker_file.cli package
+
+  * Submodules
+
+  * faker_file.cli.command module
+
+    * "main()"
+
+  * faker_file.cli.helpers module
+
+    * "generate_completion_file()"
+
+    * "generate_file()"
+
+    * "get_method_kwargs()"
+
+    * "is_optional_type()"
+
+  * Module contents
+
+* faker_file.contrib package
+
+  * Subpackages
+
+    * faker_file.contrib.pdf_file package
+
+      * Submodules
+
+      * faker_file.contrib.pdf_file.pdfkit_snippets module
+
+        * "add_h1_heading()"
+
+        * "add_h2_heading()"
+
+        * "add_h3_heading()"
+
+        * "add_h4_heading()"
+
+        * "add_h5_heading()"
+
+        * "add_h6_heading()"
+
+        * "add_heading()"
+
+        * "add_page_break()"
+
+        * "add_paragraph()"
+
+        * "add_picture()"
+
+        * "add_table()"
+
+      * faker_file.contrib.pdf_file.reportlab_snippets module
+
+        * "add_h1_heading()"
+
+        * "add_h2_heading()"
+
+        * "add_h3_heading()"
+
+        * "add_h4_heading()"
+
+        * "add_h5_heading()"
+
+        * "add_h6_heading()"
+
+        * "add_heading()"
+
+        * "add_page_break()"
+
+        * "add_paragraph()"
+
+        * "add_picture()"
+
+        * "add_table()"
+
+      * Module contents
+
+  * Submodules
+
+  * faker_file.contrib.docx_file module
+
+    * "add_h1_heading()"
+
+    * "add_h2_heading()"
+
+    * "add_h3_heading()"
+
+    * "add_h4_heading()"
+
+    * "add_h5_heading()"
+
+    * "add_h6_heading()"
+
+    * "add_heading()"
+
+    * "add_page_break()"
+
+    * "add_paragraph()"
+
+    * "add_picture()"
+
+    * "add_table()"
+
+    * "add_title_heading()"
+
+  * faker_file.contrib.odt_file module
+
+    * "add_h1_heading()"
+
+    * "add_h2_heading()"
+
+    * "add_h3_heading()"
+
+    * "add_h4_heading()"
+
+    * "add_h5_heading()"
+
+    * "add_h6_heading()"
+
+    * "add_heading()"
+
+    * "add_page_break()"
+
+    * "add_paragraph()"
+
+    * "add_picture()"
+
+    * "add_table()"
+
+  * Module contents
+
+* faker_file.providers package
+
+  * Subpackages
+
+    * faker_file.providers.augment_file_from_dir package
+
+      * Subpackages
+
+        * faker_file.providers.augment_file_from_dir.augmenters
+          package
+
+          * Submodules
+
+          * faker_file.providers.augment_file_from_dir.augmenters.nlp
+            aug_augmenter module
+
+          * Module contents
+
+        * faker_file.providers.augment_file_from_dir.extractors
+          package
+
+          * Submodules
+
+          * faker_file.providers.augment_file_from_dir.extractors.tik
+            a_extractor module
+
+          * Module contents
+
+      * Module contents
+
+        * "AugmentFileFromDirProvider"
+
+          * "AugmentFileFromDirProvider.augment_file_from_dir()"
+
+          * "AugmentFileFromDirProvider.extension"
+
+    * faker_file.providers.base package
+
+      * Submodules
+
+      * faker_file.providers.base.image_generator module
+
+        * "BaseImageGenerator"
+
+          * "BaseImageGenerator.generate()"
+
+          * "BaseImageGenerator.handle_kwargs()"
+
+      * faker_file.providers.base.mp3_generator module
+
+        * "BaseMp3Generator"
+
+          * "BaseMp3Generator.content"
+
+          * "BaseMp3Generator.generate()"
+
+          * "BaseMp3Generator.generator"
+
+          * "BaseMp3Generator.handle_kwargs()"
+
+      * faker_file.providers.base.pdf_generator module
+
+        * "BasePdfGenerator"
+
+          * "BasePdfGenerator.generate()"
+
+          * "BasePdfGenerator.handle_kwargs()"
+
+      * faker_file.providers.base.text_augmenter module
+
+        * "BaseTextAugmenter"
+
+          * "BaseTextAugmenter.augment()"
+
+          * "BaseTextAugmenter.handle_kwargs()"
+
+      * faker_file.providers.base.text_extractor module
+
+        * "BaseTextExtractor"
+
+          * "BaseTextExtractor.extract()"
+
+          * "BaseTextExtractor.handle_kwargs()"
+
+          * "BaseTextExtractor.path"
+
+      * Module contents
+
+    * faker_file.providers.helpers package
+
+      * Submodules
+
+      * faker_file.providers.helpers.inner module
+
+        * "create_inner_augment_image_from_path()"
+
+        * "create_inner_augment_random_image_from_dir()"
+
+        * "create_inner_bin_file()"
+
+        * "create_inner_csv_file()"
+
+        * "create_inner_docx_file()"
+
+        * "create_inner_eml_file()"
+
+        * "create_inner_epub_file()"
+
+        * "create_inner_file_from_path()"
+
+        * "create_inner_generic_file()"
+
+        * "create_inner_graphic_ico_file()"
+
+        * "create_inner_graphic_jpeg_file()"
+
+        * "create_inner_graphic_pdf_file()"
+
+        * "create_inner_graphic_png_file()"
+
+        * "create_inner_graphic_webp_file()"
+
+        * "create_inner_ico_file()"
+
+        * "create_inner_jpeg_file()"
+
+        * "create_inner_json_file()"
+
+        * "create_inner_mp3_file()"
+
+        * "create_inner_odp_file()"
+
+        * "create_inner_ods_file()"
+
+        * "create_inner_odt_file()"
+
+        * "create_inner_pdf_file()"
+
+        * "create_inner_png_file()"
+
+        * "create_inner_pptx_file()"
+
+        * "create_inner_random_file_from_dir()"
+
+        * "create_inner_rtf_file()"
+
+        * "create_inner_svg_file()"
+
+        * "create_inner_tar_file()"
+
+        * "create_inner_txt_file()"
+
+        * "create_inner_webp_file()"
+
+        * "create_inner_xlsx_file()"
+
+        * "create_inner_xml_file()"
+
+        * "create_inner_zip_file()"
+
+        * "fuzzy_choice_create_inner_file()"
+
+        * "list_create_inner_file()"
+
+      * Module contents
+
+    * faker_file.providers.image package
+
+      * Submodules
+
+      * faker_file.providers.image.augment module
+
+        * "add_brightness()"
+
+        * "add_contrast()"
+
+        * "add_darkness()"
+
+        * "add_saturation()"
+
+        * "augment_image()"
+
+        * "augment_image_file()"
+
+        * "color_jitter()"
+
+        * "decrease_contrast()"
+
+        * "equalize()"
+
+        * "flip_horizontal()"
+
+        * "flip_vertical()"
+
+        * "gaussian_blur()"
+
+        * "grayscale()"
+
+        * "random_crop()"
+
+        * "resize_height()"
+
+        * "resize_width()"
+
+        * "rotate()"
+
+        * "solarize()"
+
+      * faker_file.providers.image.imgkit_generator module
+
+        * "ImgkitImageGenerator"
+
+          * "ImgkitImageGenerator.encoding"
+
+          * "ImgkitImageGenerator.generate()"
+
+          * "ImgkitImageGenerator.handle_kwargs()"
+
+      * faker_file.providers.image.pil_generator module
+
+        * "PilImageGenerator"
+
+          * "PilImageGenerator.combine_images_vertically()"
+
+          * "PilImageGenerator.create_image_instance()"
+
+          * "PilImageGenerator.encoding"
+
+          * "PilImageGenerator.find_max_fit_for_multi_line_text()"
+
+          * "PilImageGenerator.find_max_fit_for_single_line_text()"
+
+          * "PilImageGenerator.font"
+
+          * "PilImageGenerator.font_size"
+
+          * "PilImageGenerator.generate()"
+
+          * "PilImageGenerator.handle_kwargs()"
+
+          * "PilImageGenerator.line_height"
+
+          * "PilImageGenerator.page_height"
+
+          * "PilImageGenerator.page_width"
+
+          * "PilImageGenerator.save_and_start_new_page()"
+
+          * "PilImageGenerator.spacing"
+
+          * "PilImageGenerator.start_new_page()"
+
+      * faker_file.providers.image.weasyprint_generator module
+
+        * "WeasyPrintImageGenerator"
+
+          * "WeasyPrintImageGenerator.create_image_instance()"
+
+          * "WeasyPrintImageGenerator.encoding"
+
+          * "WeasyPrintImageGenerator.generate()"
+
+          * "WeasyPrintImageGenerator.handle_kwargs()"
+
+          * "WeasyPrintImageGenerator.page_height"
+
+          * "WeasyPrintImageGenerator.page_width"
+
+          * "WeasyPrintImageGenerator.wrap()"
+
+          * "WeasyPrintImageGenerator.wrapper_tag"
+
+      * Module contents
+
+    * faker_file.providers.mixins package
+
+      * Submodules
+
+      * faker_file.providers.mixins.graphic_image_mixin module
+
+        * "GraphicImageMixin"
+
+      * faker_file.providers.mixins.image_mixin module
+
+        * "ImageMixin"
+
+      * faker_file.providers.mixins.tablular_data_mixin module
+
+        * "TabularDataMixin"
+
+      * Module contents
+
+    * faker_file.providers.mp3_file package
+
+      * Subpackages
+
+        * faker_file.providers.mp3_file.generators package
+
+          * Submodules
+
+          * faker_file.providers.mp3_file.generators.edge_tts_generat
+            or module
+
+            * "EdgeTtsMp3Generator"
+
+              * "EdgeTtsMp3Generator.generate()"
+
+              * "EdgeTtsMp3Generator.handle_kwargs()"
+
+              * "EdgeTtsMp3Generator.voice"
+
+          * faker_file.providers.mp3_file.generators.gtts_generator
+            module
+
+            * "GttsMp3Generator"
+
+              * "GttsMp3Generator.generate()"
+
+              * "GttsMp3Generator.handle_kwargs()"
+
+              * "GttsMp3Generator.lang"
+
+              * "GttsMp3Generator.tld"
+
+          * Module contents
+
+      * Module contents
+
+        * "Mp3FileProvider"
+
+          * "Mp3FileProvider.extension"
+
+          * "Mp3FileProvider.mp3_file()"
+
+    * faker_file.providers.pdf_file package
+
+      * Subpackages
+
+        * faker_file.providers.pdf_file.generators package
+
+          * Submodules
+
+          * faker_file.providers.pdf_file.generators.pdfkit_generator
+            module
+
+            * "PdfkitPdfGenerator"
+
+              * "PdfkitPdfGenerator.encoding"
+
+              * "PdfkitPdfGenerator.generate()"
+
+              * "PdfkitPdfGenerator.handle_kwargs()"
+
+          * faker_file.providers.pdf_file.generators.reportlab_genera
+            tor module
+
+            * "ReportlabPdfGenerator"
+
+              * "ReportlabPdfGenerator.font_name"
+
+              * "ReportlabPdfGenerator.font_path"
+
+              * "ReportlabPdfGenerator.generate()"
+
+              * "ReportlabPdfGenerator.handle_kwargs()"
+
+          * Module contents
+
+      * Module contents
+
+        * "GraphicPdfFileProvider"
+
+          * "GraphicPdfFileProvider.extension"
+
+          * "GraphicPdfFileProvider.graphic_pdf_file()"
+
+          * "GraphicPdfFileProvider.image_format"
+
+        * "PdfFileProvider"
+
+          * "PdfFileProvider.extension"
+
+          * "PdfFileProvider.pdf_file()"
+
+  * Submodules
+
+  * faker_file.providers.augment_image_from_path module
+
+    * "AugmentImageFromPathProvider"
+
+      * "AugmentImageFromPathProvider.augment_image_from_path()"
+
+      * "AugmentImageFromPathProvider.extension"
+
+  * faker_file.providers.augment_random_image_from_dir module
+
+    * "AugmentRandomImageFromDirProvider"
+
+      * "AugmentRandomImageFromDirProvider.augment_random_image_from_
+        dir()"
+
+      * "AugmentRandomImageFromDirProvider.extension"
+
+  * faker_file.providers.bin_file module
+
+    * "BinFileProvider"
+
+      * "BinFileProvider.bin_file()"
+
+      * "BinFileProvider.extension"
+
+  * faker_file.providers.bmp_file module
+
+    * "BmpFileProvider"
+
+      * "BmpFileProvider.bmp_file()"
+
+      * "BmpFileProvider.extension"
+
+      * "BmpFileProvider.image_format"
+
+    * "GraphicBmpFileProvider"
+
+      * "GraphicBmpFileProvider.extension"
+
+      * "GraphicBmpFileProvider.graphic_bmp_file()"
+
+      * "GraphicBmpFileProvider.image_format"
+
+  * faker_file.providers.csv_file module
+
+    * "CsvFileProvider"
+
+      * "CsvFileProvider.csv_file()"
+
+      * "CsvFileProvider.extension"
+
+  * faker_file.providers.docx_file module
+
+    * "DocxFileProvider"
+
+      * "DocxFileProvider.docx_file()"
+
+      * "DocxFileProvider.extension"
+
+  * faker_file.providers.eml_file module
+
+    * "EmlFileProvider"
+
+      * "EmlFileProvider.eml_file()"
+
+      * "EmlFileProvider.extension"
+
+  * faker_file.providers.epub_file module
+
+    * "EpubFileProvider"
+
+      * "EpubFileProvider.epub_file()"
+
+      * "EpubFileProvider.extension"
+
+  * faker_file.providers.file_from_path module
+
+    * "FileFromPathProvider"
+
+      * "FileFromPathProvider.extension"
+
+      * "FileFromPathProvider.file_from_path()"
+
+  * faker_file.providers.generic_file module
+
+    * "GenericFileProvider"
+
+      * "GenericFileProvider.extension"
+
+      * "GenericFileProvider.generic_file()"
+
+  * faker_file.providers.gif_file module
+
+    * "GifFileProvider"
+
+      * "GifFileProvider.extension"
+
+      * "GifFileProvider.gif_file()"
+
+      * "GifFileProvider.image_format"
+
+    * "GraphicGifFileProvider"
+
+      * "GraphicGifFileProvider.extension"
+
+      * "GraphicGifFileProvider.graphic_gif_file()"
+
+      * "GraphicGifFileProvider.image_format"
+
+  * faker_file.providers.ico_file module
+
+    * "GraphicIcoFileProvider"
+
+      * "GraphicIcoFileProvider.extension"
+
+      * "GraphicIcoFileProvider.graphic_ico_file()"
+
+      * "GraphicIcoFileProvider.image_format"
+
+    * "IcoFileProvider"
+
+      * "IcoFileProvider.extension"
+
+      * "IcoFileProvider.ico_file()"
+
+      * "IcoFileProvider.image_format"
+
+  * faker_file.providers.jpeg_file module
+
+    * "GraphicJpegFileProvider"
+
+      * "GraphicJpegFileProvider.extension"
+
+      * "GraphicJpegFileProvider.graphic_jpeg_file()"
+
+      * "GraphicJpegFileProvider.image_format"
+
+    * "JpegFileProvider"
+
+      * "JpegFileProvider.extension"
+
+      * "JpegFileProvider.image_format"
+
+      * "JpegFileProvider.jpeg_file()"
+
+  * faker_file.providers.json_file module
+
+    * "JsonFileProvider"
+
+      * "JsonFileProvider.extension"
+
+      * "JsonFileProvider.json_file()"
+
+  * faker_file.providers.odp_file module
+
+    * "OdpFileProvider"
+
+      * "OdpFileProvider.extension"
+
+      * "OdpFileProvider.odp_file()"
+
+  * faker_file.providers.ods_file module
+
+    * "OdsFileProvider"
+
+      * "OdsFileProvider.extension"
+
+      * "OdsFileProvider.ods_file()"
+
+  * faker_file.providers.odt_file module
+
+    * "OdtFileProvider"
+
+      * "OdtFileProvider.extension"
+
+      * "OdtFileProvider.odt_file()"
+
+  * faker_file.providers.png_file module
+
+    * "GraphicPngFileProvider"
+
+      * "GraphicPngFileProvider.extension"
+
+      * "GraphicPngFileProvider.graphic_png_file()"
+
+      * "GraphicPngFileProvider.image_format"
+
+    * "PngFileProvider"
+
+      * "PngFileProvider.extension"
+
+      * "PngFileProvider.image_format"
+
+      * "PngFileProvider.png_file()"
+
+  * faker_file.providers.pptx_file module
+
+    * "PptxFileProvider"
+
+      * "PptxFileProvider.extension"
+
+      * "PptxFileProvider.pptx_file()"
+
+  * faker_file.providers.random_file_from_dir module
+
+    * "RandomFileFromDirProvider"
+
+      * "RandomFileFromDirProvider.extension"
+
+      * "RandomFileFromDirProvider.random_file_from_dir()"
+
+  * faker_file.providers.rtf_file module
+
+    * "RtfFileProvider"
+
+      * "RtfFileProvider.extension"
+
+      * "RtfFileProvider.rtf_file()"
+
+  * faker_file.providers.svg_file module
+
+    * "SvgFileProvider"
+
+      * "SvgFileProvider.extension"
+
+      * "SvgFileProvider.image_format"
+
+      * "SvgFileProvider.svg_file()"
+
+  * faker_file.providers.tar_file module
+
+    * "TarFileProvider"
+
+      * "TarFileProvider.extension"
+
+      * "TarFileProvider.tar_file()"
+
+  * faker_file.providers.tiff_file module
+
+    * "GraphicTiffFileProvider"
+
+      * "GraphicTiffFileProvider.extension"
+
+      * "GraphicTiffFileProvider.graphic_tiff_file()"
+
+      * "GraphicTiffFileProvider.image_format"
+
+    * "TiffFileProvider"
+
+      * "TiffFileProvider.extension"
+
+      * "TiffFileProvider.image_format"
+
+      * "TiffFileProvider.tiff_file()"
+
+  * faker_file.providers.txt_file module
+
+    * "TxtFileProvider"
+
+      * "TxtFileProvider.extension"
+
+      * "TxtFileProvider.txt_file()"
+
+  * faker_file.providers.webp_file module
+
+    * "GraphicWebpFileProvider"
+
+      * "GraphicWebpFileProvider.extension"
+
+      * "GraphicWebpFileProvider.graphic_webp_file()"
+
+      * "GraphicWebpFileProvider.image_format"
+
+    * "WebpFileProvider"
+
+      * "WebpFileProvider.extension"
+
+      * "WebpFileProvider.image_format"
+
+      * "WebpFileProvider.webp_file()"
+
+  * faker_file.providers.xlsx_file module
+
+    * "XlsxFileProvider"
+
+      * "XlsxFileProvider.extension"
+
+      * "XlsxFileProvider.xlsx_file()"
+
+  * faker_file.providers.xml_file module
+
+    * "XmlFileProvider"
+
+      * "XmlFileProvider.extension"
+
+      * "XmlFileProvider.xml_file()"
+
+  * faker_file.providers.zip_file module
+
+    * "ZipFileProvider"
+
+      * "ZipFileProvider.extension"
+
+      * "ZipFileProvider.zip_file()"
+
+  * Module contents
+
+* faker_file.storages package
+
+  * Submodules
+
+  * faker_file.storages.aws_s3 module
+
+  * faker_file.storages.azure_cloud_storage module
+
+  * faker_file.storages.base module
+
+    * "BaseStorage"
+
+      * "BaseStorage.abspath()"
+
+      * "BaseStorage.exists()"
+
+      * "BaseStorage.generate_basename()"
+
+      * "BaseStorage.generate_filename()"
+
+      * "BaseStorage.relpath()"
+
+      * "BaseStorage.unlink()"
+
+      * "BaseStorage.write_bytes()"
+
+      * "BaseStorage.write_text()"
+
+  * faker_file.storages.cloud module
+
+  * faker_file.storages.filesystem module
+
+    * "FileSystemStorage"
+
+      * "FileSystemStorage.abspath()"
+
+      * "FileSystemStorage.exists()"
+
+      * "FileSystemStorage.generate_filename()"
+
+      * "FileSystemStorage.relpath()"
+
+      * "FileSystemStorage.unlink()"
+
+      * "FileSystemStorage.write_bytes()"
+
+      * "FileSystemStorage.write_text()"
+
+  * faker_file.storages.google_cloud_storage module
+
+  * faker_file.storages.sftp_storage module
+
+    * "SFTPStorage"
+
+      * "SFTPStorage.abspath()"
+
+      * "SFTPStorage.close()"
+
+      * "SFTPStorage.exists()"
+
+      * "SFTPStorage.generate_filename()"
+
+      * "SFTPStorage.relpath()"
+
+      * "SFTPStorage.sftp"
+
+      * "SFTPStorage.transport"
+
+      * "SFTPStorage.unlink()"
+
+      * "SFTPStorage.write_bytes()"
+
+      * "SFTPStorage.write_text()"
+
+  * Module contents
+
+* faker_file.tests package
+
+  * Submodules
+
+  * faker_file.tests.data module
+
+  * faker_file.tests.sftp_server module
+
+    * "SFTPServer"
+
+    * "SFTPServerManager"
+
+      * "SFTPServerManager.start()"
+
+      * "SFTPServerManager.start_server()"
+
+      * "SFTPServerManager.stop()"
+
+    * "SSHServer"
+
+      * "SSHServer.auth_completed()"
+
+      * "SSHServer.begin_auth()"
+
+      * "SSHServer.password_auth_supported()"
+
+      * "SSHServer.session_requested()"
+
+      * "SSHServer.sftp_requested()"
+
+      * "SSHServer.validate_password()"
+
+    * "start_server()"
+
+    * "start_server_async()"
+
+  * faker_file.tests.test_augment module
+
+  * faker_file.tests.test_augment_file_from_dir_provider module
+
+  * faker_file.tests.test_base module
+
+    * "StringListTestCase"
+
+      * "StringListTestCase.test_string_list()"
+
+  * faker_file.tests.test_cli module
+
+  * faker_file.tests.test_data_integrity module
+
+  * faker_file.tests.test_django_integration module
+
+  * faker_file.tests.test_helpers module
+
+  * faker_file.tests.test_providers module
+
+  * faker_file.tests.test_registry module
+
+  * faker_file.tests.test_sftp_server module
+
+  * faker_file.tests.test_sftp_storage module
+
+  * faker_file.tests.test_sqlalchemy_integration module
+
+  * faker_file.tests.test_storages module
+
+  * faker_file.tests.texts module
+
+  * faker_file.tests.utils module
+
+    * "AutoFreePortInt"
+
+      * "AutoFreePortInt.DEFAULT_MAX_PORT"
+
+      * "AutoFreePortInt.DEFAULT_MIN_PORT"
+
+    * "AutoIncPortInt"
+
+  * Module contents
+
+
+Submodules
+==========
+
+
+faker_file.base module
+======================
+
+class faker_file.base.BytesValue(value, *args, **kwargs)
+
+   Bases: "bytes"
+
+   data: Dict[str, Any]
+
+faker_file.base.DEFAULT_FORMAT_FUNC(generator: Faker | Generator | Provider, content: str) -> str
+
+class faker_file.base.DynamicTemplate(content_modifiers: List[Tuple[Callable, Dict[str, Any]]])
+
+   Bases: "object"
+
+   Dynamic template.
+
+class faker_file.base.FileMixin
+
+   Bases: "object"
+
+   File mixin.
+
+   extension: str
+
+   formats: List[str]
+
+   generator: Faker | Generator | Provider
+
+   numerify: Callable
+
+   random_element: Callable
+
+class faker_file.base.StringList(strings: List[str] | None = None, separator: str = ' ')
+
+   Bases: "object"
+
+   String list.
+
+      Usage example:
+
+         my_string = StringList(separator="
+
+   ")
+      my_string += "grape" my_string += "peaches" print(my_string)
+
+   add_string(value: str) -> None
+
+   remove_string(value: str) -> None
+
+class faker_file.base.StringValue(value, *args, **kwargs)
+
+   Bases: "str"
+
+   data: Dict[str, Any]
+
+faker_file.base.parse_format_func(generator: Faker | Generator | Provider, content: str) -> str
+
+faker_file.base.pystr_format_func(generator: Faker | Generator | Provider, content: str) -> str
+
+faker_file.base.returns_list(func: Callable) -> bool
+
+   Checks if callable returns a list of Union[BytesValue,
+   StringValue].
+
+   Returns True if it's a List. Returns False otherwise.
+
+
+faker_file.constants module
+===========================
+
+
+faker_file.helpers module
+=========================
+
+faker_file.helpers.get_mime_maintype_subtype(path: str) -> Tuple[str, str]
+
+   Determine the MIME maintype and subtype for the given file path,
+   using Python's built-in mimetypes plus a few custom entries.
+
+   Parameters:
+      **path** -- Path to the file (extension is used for lookup).
+
+   Returns:
+      (maintype, subtype) tuple, for example ("application", "pdf")
+
+faker_file.helpers.load_class_from_path(full_path: str) -> Type
+
+   Load a class from a given full path string identifier.
+
+   Parameters:
+      **full_path** -- The full path to the class, e.g.
+      'module.submodule.MyClass'.
+
+   Returns:
+      The loaded class.
+
+   Raise:
+      If the module cannot be found or the class does not exist in the
+      module, it raises ImportError.
+
+   Usage example:
+
+      my_class = load_class_from_path("module.submodule.MyClass")
+      instance = my_class()
+
+faker_file.helpers.random_pop(lst: list) -> Any
+
+   Randomly pops element from the given list. Alters the list.
+
+   Parameters:
+      **lst** -- List to pop element from.
+
+   Returns:
+      A single element from the list.
+
+   Usage example:
+
+      from faker_file.helpers import random_pop
+      my_list = [1, 2, 3, 4, 5]
+      element = random_pop(my_list)
+
+faker_file.helpers.wrap_text(text: str, wrap_chars_after: int) -> str
+
+
+faker_file.registry module
+==========================
+
+class faker_file.registry.FileRegistry
+
+   Bases: "object"
+
+   Stores list *StringValue* instances.
+
+      from faker import Faker
+      from faker_file.providers.txt_file import TxtFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(TxtFileProvider)
+
+      txt_file_1 = FAKER.txt_file()
+      txt_file_2 = FAKER.txt_file()
+      ...
+      txt_file_n = FAKER.txt_file()
+
+      # The FileRegistry._registry would then contain this:
+      {
+          txt_file_1,
+          txt_file_2,
+          ...,
+          txt_file_n,
+      }
+
+   add(string_value: StringValue) -> None
+
+   clean_up() -> None
+
+   remove(string_value: StringValue | str) -> bool
+
+   search(value: str) -> StringValue | None
+
+
+Module contents
+===============

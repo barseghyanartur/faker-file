@@ -1,0 +1,80 @@
+faker_file.providers.mp3_file.generators package
+************************************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.mp3_file.generators.edge_tts_generator module
+==================================================================
+
+class faker_file.providers.mp3_file.generators.edge_tts_generator.EdgeTtsMp3Generator(content: str, generator: Faker | Generator | Provider, **kwargs)
+
+   Bases: "BaseMp3Generator"
+
+   Edge Text-to-Speech generator.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.mp3_file import Mp3FileProvider
+      from faker_file.providers.mp3_file.generators import edge_tts_generator
+
+      FAKER = Faker()
+      FAKER.add_provider(Mp3FileProvider)
+
+      file = FAKER.mp3_file(
+          mp3_generator_cls=edge_tts_generator.EdgeTtsMp3Generator
+      )
+
+   generate(**kwargs) -> bytes
+
+      Generate MP3.
+
+   handle_kwargs(**kwargs) -> None
+
+      Handle kwargs.
+
+   voice: str = 'en-GB-SoniaNeural'
+
+
+faker_file.providers.mp3_file.generators.gtts_generator module
+==============================================================
+
+class faker_file.providers.mp3_file.generators.gtts_generator.GttsMp3Generator(content: str, generator: Faker | Generator | Provider, **kwargs)
+
+   Bases: "BaseMp3Generator"
+
+   Google Text-to-Speech generator.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.mp3_file import Mp3FileProvider
+      from faker_file.providers.mp3_file.generators.gtts_generator import (
+          GttsMp3Generator,
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(Mp3FileProvider)
+
+      file = FAKER.mp3_file(
+          mp3_generator_cls=GttsMp3Generator
+      )
+
+   generate(**kwargs) -> bytes
+
+      Generate MP3.
+
+   handle_kwargs(**kwargs) -> None
+
+      Handle kwargs.
+
+   lang: str = 'en'
+
+   tld: str = 'com'
+
+
+Module contents
+===============

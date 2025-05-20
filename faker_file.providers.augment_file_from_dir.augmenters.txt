@@ -1,0 +1,14 @@
+faker_file.providers.augment_file_from_dir.augmenters package
+*************************************************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.augment_file_from_dir.augmenters.nlpaug_augmenter module
+=============================================================================
+
+
+Module contents
+===============

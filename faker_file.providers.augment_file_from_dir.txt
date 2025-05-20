@@ -1,0 +1,93 @@
+faker_file.providers.augment_file_from_dir package
+**************************************************
+
+
+Subpackages
+===========
+
+* faker_file.providers.augment_file_from_dir.augmenters package
+
+  * Submodules
+
+  * faker_file.providers.augment_file_from_dir.augmenters.nlpaug_augm
+    enter module
+
+  * Module contents
+
+* faker_file.providers.augment_file_from_dir.extractors package
+
+  * Submodules
+
+  * faker_file.providers.augment_file_from_dir.extractors.tika_extrac
+    tor module
+
+  * Module contents
+
+
+Module contents
+===============
+
+class faker_file.providers.augment_file_from_dir.AugmentFileFromDirProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   Augment file from given directory provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.augment_file_from_dir import (
+          AugmentFileFromDirProvider,
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(AugmentFileFromDirProvider)
+
+      file = FAKER.augment_file_from_dir(
+          source_dir_path="/tmp/tmp/",
+      )
+
+   Usage example with options:
+
+      file = FAKER.augment_file_from_dir(
+         source_dir_path="/tmp/tmp/", prefix="zzz",
+         extensions={"docx", "pdf"}
+
+      )
+
+   augment_file_from_dir(source_dir_path: str, extensions: Iterable[str] | None = None, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, wrap_chars_after: int | None = None, text_extractor_cls: str | Type[BaseTextExtractor] | None = DEFAULT_EXTRACTOR, text_extractor_kwargs: Dict[str, Any] | None = None, text_augmenter_cls: str | Type[BaseTextAugmenter] | None = DEFAULT_AUGMENTER, text_augmenter_kwargs: Dict[str, Any] | None = None, raw: bool = True, **kwargs) -> BytesValue
+   augment_file_from_dir(source_dir_path: str, extensions: Iterable[str] | None = None, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, wrap_chars_after: int | None = None, text_extractor_cls: str | Type[BaseTextExtractor] | None = DEFAULT_EXTRACTOR, text_extractor_kwargs: Dict[str, Any] | None = None, text_augmenter_cls: str | Type[BaseTextAugmenter] | None = DEFAULT_AUGMENTER, text_augmenter_kwargs: Dict[str, Any] | None = None, **kwargs) -> StringValue
+
+      Augment a random file from given directory.
+
+      Parameters:
+         * **source_dir_path** -- Source files directory.
+
+         * **extensions** -- Allowed extensions.
+
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **text_extractor_cls** -- Text extractor class.
+
+         * **text_extractor_kwargs** -- Text extractor kwargs.
+
+         * **text_augmenter_cls** -- Text augmenter class.
+
+         * **text_augmenter_kwargs** -- Text augmenter kwargs.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = ''

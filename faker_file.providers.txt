@@ -1,0 +1,3346 @@
+faker_file.providers package
+****************************
+
+
+Subpackages
+===========
+
+* faker_file.providers.augment_file_from_dir package
+
+  * Subpackages
+
+    * faker_file.providers.augment_file_from_dir.augmenters package
+
+      * Submodules
+
+      * faker_file.providers.augment_file_from_dir.augmenters.nlpaug_
+        augmenter module
+
+      * Module contents
+
+    * faker_file.providers.augment_file_from_dir.extractors package
+
+      * Submodules
+
+      * faker_file.providers.augment_file_from_dir.extractors.tika_ex
+        tractor module
+
+      * Module contents
+
+  * Module contents
+
+    * "AugmentFileFromDirProvider"
+
+      * "AugmentFileFromDirProvider.augment_file_from_dir()"
+
+      * "AugmentFileFromDirProvider.extension"
+
+* faker_file.providers.base package
+
+  * Submodules
+
+  * faker_file.providers.base.image_generator module
+
+    * "BaseImageGenerator"
+
+      * "BaseImageGenerator.generate()"
+
+      * "BaseImageGenerator.handle_kwargs()"
+
+  * faker_file.providers.base.mp3_generator module
+
+    * "BaseMp3Generator"
+
+      * "BaseMp3Generator.content"
+
+      * "BaseMp3Generator.generate()"
+
+      * "BaseMp3Generator.generator"
+
+      * "BaseMp3Generator.handle_kwargs()"
+
+  * faker_file.providers.base.pdf_generator module
+
+    * "BasePdfGenerator"
+
+      * "BasePdfGenerator.generate()"
+
+      * "BasePdfGenerator.handle_kwargs()"
+
+  * faker_file.providers.base.text_augmenter module
+
+    * "BaseTextAugmenter"
+
+      * "BaseTextAugmenter.augment()"
+
+      * "BaseTextAugmenter.handle_kwargs()"
+
+  * faker_file.providers.base.text_extractor module
+
+    * "BaseTextExtractor"
+
+      * "BaseTextExtractor.extract()"
+
+      * "BaseTextExtractor.handle_kwargs()"
+
+      * "BaseTextExtractor.path"
+
+  * Module contents
+
+* faker_file.providers.helpers package
+
+  * Submodules
+
+  * faker_file.providers.helpers.inner module
+
+    * "create_inner_augment_image_from_path()"
+
+    * "create_inner_augment_random_image_from_dir()"
+
+    * "create_inner_bin_file()"
+
+    * "create_inner_csv_file()"
+
+    * "create_inner_docx_file()"
+
+    * "create_inner_eml_file()"
+
+    * "create_inner_epub_file()"
+
+    * "create_inner_file_from_path()"
+
+    * "create_inner_generic_file()"
+
+    * "create_inner_graphic_ico_file()"
+
+    * "create_inner_graphic_jpeg_file()"
+
+    * "create_inner_graphic_pdf_file()"
+
+    * "create_inner_graphic_png_file()"
+
+    * "create_inner_graphic_webp_file()"
+
+    * "create_inner_ico_file()"
+
+    * "create_inner_jpeg_file()"
+
+    * "create_inner_json_file()"
+
+    * "create_inner_mp3_file()"
+
+    * "create_inner_odp_file()"
+
+    * "create_inner_ods_file()"
+
+    * "create_inner_odt_file()"
+
+    * "create_inner_pdf_file()"
+
+    * "create_inner_png_file()"
+
+    * "create_inner_pptx_file()"
+
+    * "create_inner_random_file_from_dir()"
+
+    * "create_inner_rtf_file()"
+
+    * "create_inner_svg_file()"
+
+    * "create_inner_tar_file()"
+
+    * "create_inner_txt_file()"
+
+    * "create_inner_webp_file()"
+
+    * "create_inner_xlsx_file()"
+
+    * "create_inner_xml_file()"
+
+    * "create_inner_zip_file()"
+
+    * "fuzzy_choice_create_inner_file()"
+
+    * "list_create_inner_file()"
+
+  * Module contents
+
+* faker_file.providers.image package
+
+  * Submodules
+
+  * faker_file.providers.image.augment module
+
+    * "add_brightness()"
+
+    * "add_contrast()"
+
+    * "add_darkness()"
+
+    * "add_saturation()"
+
+    * "augment_image()"
+
+    * "augment_image_file()"
+
+    * "color_jitter()"
+
+    * "decrease_contrast()"
+
+    * "equalize()"
+
+    * "flip_horizontal()"
+
+    * "flip_vertical()"
+
+    * "gaussian_blur()"
+
+    * "grayscale()"
+
+    * "random_crop()"
+
+    * "resize_height()"
+
+    * "resize_width()"
+
+    * "rotate()"
+
+    * "solarize()"
+
+  * faker_file.providers.image.imgkit_generator module
+
+    * "ImgkitImageGenerator"
+
+      * "ImgkitImageGenerator.encoding"
+
+      * "ImgkitImageGenerator.generate()"
+
+      * "ImgkitImageGenerator.handle_kwargs()"
+
+  * faker_file.providers.image.pil_generator module
+
+    * "PilImageGenerator"
+
+      * "PilImageGenerator.combine_images_vertically()"
+
+      * "PilImageGenerator.create_image_instance()"
+
+      * "PilImageGenerator.encoding"
+
+      * "PilImageGenerator.find_max_fit_for_multi_line_text()"
+
+      * "PilImageGenerator.find_max_fit_for_single_line_text()"
+
+      * "PilImageGenerator.font"
+
+      * "PilImageGenerator.font_size"
+
+      * "PilImageGenerator.generate()"
+
+      * "PilImageGenerator.handle_kwargs()"
+
+      * "PilImageGenerator.line_height"
+
+      * "PilImageGenerator.page_height"
+
+      * "PilImageGenerator.page_width"
+
+      * "PilImageGenerator.save_and_start_new_page()"
+
+      * "PilImageGenerator.spacing"
+
+      * "PilImageGenerator.start_new_page()"
+
+  * faker_file.providers.image.weasyprint_generator module
+
+    * "WeasyPrintImageGenerator"
+
+      * "WeasyPrintImageGenerator.create_image_instance()"
+
+      * "WeasyPrintImageGenerator.encoding"
+
+      * "WeasyPrintImageGenerator.generate()"
+
+      * "WeasyPrintImageGenerator.handle_kwargs()"
+
+      * "WeasyPrintImageGenerator.page_height"
+
+      * "WeasyPrintImageGenerator.page_width"
+
+      * "WeasyPrintImageGenerator.wrap()"
+
+      * "WeasyPrintImageGenerator.wrapper_tag"
+
+  * Module contents
+
+* faker_file.providers.mixins package
+
+  * Submodules
+
+  * faker_file.providers.mixins.graphic_image_mixin module
+
+    * "GraphicImageMixin"
+
+  * faker_file.providers.mixins.image_mixin module
+
+    * "ImageMixin"
+
+  * faker_file.providers.mixins.tablular_data_mixin module
+
+    * "TabularDataMixin"
+
+  * Module contents
+
+* faker_file.providers.mp3_file package
+
+  * Subpackages
+
+    * faker_file.providers.mp3_file.generators package
+
+      * Submodules
+
+      * faker_file.providers.mp3_file.generators.edge_tts_generator
+        module
+
+        * "EdgeTtsMp3Generator"
+
+          * "EdgeTtsMp3Generator.generate()"
+
+          * "EdgeTtsMp3Generator.handle_kwargs()"
+
+          * "EdgeTtsMp3Generator.voice"
+
+      * faker_file.providers.mp3_file.generators.gtts_generator module
+
+        * "GttsMp3Generator"
+
+          * "GttsMp3Generator.generate()"
+
+          * "GttsMp3Generator.handle_kwargs()"
+
+          * "GttsMp3Generator.lang"
+
+          * "GttsMp3Generator.tld"
+
+      * Module contents
+
+  * Module contents
+
+    * "Mp3FileProvider"
+
+      * "Mp3FileProvider.extension"
+
+      * "Mp3FileProvider.mp3_file()"
+
+* faker_file.providers.pdf_file package
+
+  * Subpackages
+
+    * faker_file.providers.pdf_file.generators package
+
+      * Submodules
+
+      * faker_file.providers.pdf_file.generators.pdfkit_generator
+        module
+
+        * "PdfkitPdfGenerator"
+
+          * "PdfkitPdfGenerator.encoding"
+
+          * "PdfkitPdfGenerator.generate()"
+
+          * "PdfkitPdfGenerator.handle_kwargs()"
+
+      * faker_file.providers.pdf_file.generators.reportlab_generator
+        module
+
+        * "ReportlabPdfGenerator"
+
+          * "ReportlabPdfGenerator.font_name"
+
+          * "ReportlabPdfGenerator.font_path"
+
+          * "ReportlabPdfGenerator.generate()"
+
+          * "ReportlabPdfGenerator.handle_kwargs()"
+
+      * Module contents
+
+  * Module contents
+
+    * "GraphicPdfFileProvider"
+
+      * "GraphicPdfFileProvider.extension"
+
+      * "GraphicPdfFileProvider.graphic_pdf_file()"
+
+      * "GraphicPdfFileProvider.image_format"
+
+    * "PdfFileProvider"
+
+      * "PdfFileProvider.extension"
+
+      * "PdfFileProvider.pdf_file()"
+
+
+Submodules
+==========
+
+
+faker_file.providers.augment_image_from_path module
+===================================================
+
+class faker_file.providers.augment_image_from_path.AugmentImageFromPathProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   Augment image from given path provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.augment_image_from_path import (
+          AugmentImageFromPathProvider
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(AugmentImageFromPathProvider)
+
+      file = FAKER.augment_image_from_path(
+          path="/path/to/image.png"
+      )
+
+   Usage example with options:
+
+      file = FAKER.augment_image_from_path(
+          path="/path/to/image.png",
+          prefix="zzz",
+      )
+
+   augment_image_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, raw: bool = True, **kwargs) -> BytesValue
+   augment_image_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, **kwargs) -> StringValue
+
+      Augment an image from given path.
+
+      Parameters:
+         * **path** -- Path to source file.
+
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **augmentations** -- List of tuples of callable
+           augmentation functions and their respective keyword
+           arguments. If not provided, the default augmentation
+           functions will be used.
+
+         * **num_steps** -- Number of augmentation steps (functions)
+           to be applied. If not specified, the length of the
+           *augmentations* list will be used.
+
+         * **pop_func** -- Callable to pop items from *augmentations*
+           list. By default, the *random_pop* is used, which pops
+           items in random order. If you want the order of
+           augmentations to be constant and as given, replace it with
+           *list.pop* (*pop_func=list.pop*).
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = ''
+
+
+faker_file.providers.augment_random_image_from_dir module
+=========================================================
+
+class faker_file.providers.augment_random_image_from_dir.AugmentRandomImageFromDirProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   Augment image from given directory provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.augment_random_image_from_dir import (
+          AugmentRandomImageFromDirProvider
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(AugmentRandomImageFromDirProvider)
+
+      file = FAKER.augment_random_image_from_dir(
+          source_dir_path="/tmp/tmp/"
+      )
+
+   Usage example with options:
+
+      file = FAKER.augment_random_image_from_dir(
+          source_dir_path="/tmp/tmp/",
+          prefix="zzz",
+          extensions={"jpeg", "png"},
+      )
+
+   augment_random_image_from_dir(source_dir_path: str, extensions: Iterable[str] | None = None, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, raw: bool = True, **kwargs) -> BytesValue
+   augment_random_image_from_dir(source_dir_path: str, extensions: Iterable[str] | None = None, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, **kwargs) -> StringValue
+
+      Augment a random image from given directory.
+
+      Parameters:
+         * **source_dir_path** -- Source files directory.
+
+         * **extensions** -- Allowed extensions.
+
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **augmentations** -- List of tuples of callable
+           augmentation functions and their respective keyword
+           arguments. If not provided, the default augmentation
+           functions will be used.
+
+         * **num_steps** -- Number of augmentation steps (functions)
+           to be applied. If not specified, the length of the
+           *augmentations* list will be used.
+
+         * **pop_func** -- Callable to pop items from *augmentations*
+           list. By default, the *random_pop* is used, which pops
+           items in random order. If you want the order of
+           augmentations to be constant and as given, replace it with
+           *list.pop* (*pop_func=list.pop*).
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = ''
+
+
+faker_file.providers.bin_file module
+====================================
+
+class faker_file.providers.bin_file.BinFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   BIN file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.bin_file import BinFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(BinFileProvider)
+
+      file = FAKER.bin_file()
+
+   Usage example with options:
+
+      file = FAKER.bin_file(
+          prefix="zzz",
+          length=1024**2,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.bin_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          length=1024**2,
+      )
+
+   Usage example with AWS S3 storage:
+
+      from faker_file.storages.aws_s3 import AWSS3Storage
+
+      file = FAKER.bin_file(
+          storage=AWSS3Storage(bucket_name="My-test-bucket"),
+          prefix="zzz",
+          length=1024**2,
+      )
+
+   bin_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, length: int = 1 * 1024 * 1024, content: bytes | None = None, raw: bool = True, **kwargs) -> BytesValue
+   bin_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, length: int = 1 * 1024 * 1024, content: bytes | None = None, **kwargs) -> StringValue
+
+      Generate a BIN file with random bytes.
+
+      Parameters:
+         * **storage** -- Storage class. Defaults to
+           *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **length**
+
+         * **content** -- File content. If given, used as is.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = 'bin'
+
+
+faker_file.providers.bmp_file module
+====================================
+
+class faker_file.providers.bmp_file.BmpFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   BMP file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.bmp_file import BmpFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(BmpFileProvider)
+
+      file = FAKER.bmp_file()
+
+   Usage example with options:
+
+      file = FAKER.bmp_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.bmp_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   bmp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = WEASYPRINT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   bmp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = WEASYPRINT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a GIF file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = 'bmp'
+
+   image_format: str = 'bmp'
+
+class faker_file.providers.bmp_file.GraphicBmpFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic BMP file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.bmp_file import GraphicBmpFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicBmpFileProvider)
+
+      file = FAKER.graphic_bmp_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_bmp_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_bmp_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'bmp'
+
+   graphic_bmp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_bmp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic BMP file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'bmp'
+
+
+faker_file.providers.csv_file module
+====================================
+
+class faker_file.providers.csv_file.CsvFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   CSV file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.csv_file import CsvFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(CsvFileProvider)
+
+      file = FAKER.csv_file()
+
+   Usage example with options:
+
+      file = FAKER.csv_file(
+          prefix="zzz",
+          num_rows=100,
+          data_columns=('{{name}}', '{{sentence}}', '{{address}}'),
+          include_row_ids=True,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.csv_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          num_rows=100,
+      )
+
+   csv_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, header: Sequence[str] | None = None, data_columns: Tuple[str, ...] = ('{{name}}', '{{address}}'), num_rows: int = 10, include_row_ids: bool = False, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   csv_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, header: Sequence[str] | None = None, data_columns: Tuple[str, ...] = ('{{name}}', '{{address}}'), num_rows: int = 10, include_row_ids: bool = False, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a CSV file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **header** -- The "header" argument expects a list or a
+           tuple of strings that will serve as the header row if
+           supplied.
+
+         * **data_columns** -- The "data_columns" argument expects a
+           list or a tuple of string tokens, and these string tokens
+           will be passed to "parse()" for data generation. Argument
+           Groups are used to pass arguments to the provider methods.
+           Both "header" and "data_columns" must be of the same
+           length.
+
+         * **num_rows** -- The "num_rows" argument controls how many
+           rows of data to generate, and the "include_row_ids"
+           argument may be set to "True" to include a sequential row
+           ID column.
+
+         * **include_row_ids**
+
+         * **content** -- File content. If given, used as is.
+
+         * **encoding** -- Encoding.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = 'csv'
+
+
+faker_file.providers.docx_file module
+=====================================
+
+class faker_file.providers.docx_file.DocxFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   DOCX file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.docx_file import DocxFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(DocxFileProvider)
+
+      file = FAKER.docx_file()
+
+   Usage example with options:
+
+      file = FAKER.docx_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.docx_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with content modifiers:
+
+      from faker_file.base import DynamicTemplate
+      from faker_file.contrib.docx_file import (
+          add_h1_heading,
+          add_h2_heading,
+          add_h3_heading,
+          add_h4_heading,
+          add_h5_heading,
+          add_h6_heading,
+          add_page_break,
+          add_paragraph,
+          add_picture,
+          add_table,
+          add_title_heading,
+      )
+
+      file = FAKER.docx_file(
+          content=DynamicTemplate(
+              [
+                  (add_title_heading, {}),
+                  (add_paragraph, {}),
+                  (add_h1_heading, {}),
+                  (add_h2_heading, {}),
+                  (add_h3_heading, {}),
+                  (add_h4_heading, {}),
+                  (add_h5_heading, {}),
+                  (add_h6_heading, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_page_break, {}),
+                  (add_h6_heading, {}),
+                  (add_table, {}),
+                  (add_paragraph, {}),
+              ]
+          )
+      )
+
+   docx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | DynamicTemplate | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   docx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | DynamicTemplate | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a DOCX file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic elements
+           (still being a string), which are then replaced by
+           correspondent fixtures. Can alternatively be a
+           *DynamicTemplate* - list of content modifiers (callables to
+           call after the document instance has been created). Each
+           callable should accept the following arguments: provider,
+           document, data, counter and >>**<<kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = 'docx'
+
+
+faker_file.providers.eml_file module
+====================================
+
+class faker_file.providers.eml_file.EmlFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   EML file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.eml_file import EmlFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(EmlFileProvider)
+
+      file = FAKER.eml_file()
+
+   Usage example with attachments:
+
+      from faker_file.providers.helpers.inner import create_inner_docx_file
+
+      file = FAKER.eml_file(
+          prefix="zzz_email_",
+          options={
+              "count": 5,
+              "create_inner_file_func": create_inner_docx_file,
+              "create_inner_file_args": {
+                  "prefix": "zzz_docx_file_",
+                  "max_nb_chars": 1_024,
+              },
+          }
+      )
+
+   Usage example of nested EMLs attachments:
+
+      from faker_file.providers.helpers.inner import create_inner_eml_file
+
+      file = FAKER.eml_file(
+          options={
+              "create_inner_file_func": create_inner_eml_file,
+              "create_inner_file_args": {
+                  "options": {
+                      "create_inner_file_func": create_inner_docx_file,
+                  }
+              }
+          }
+      )
+
+   Usage example with Content-Transfer-Encoding set to 7bit:
+
+      file = FAKER.eml_file(cte_type="7bit", content=FAKER.text())
+
+   If you want to see, which files were included inside the EML, check
+   the "file.data["files"]".
+
+   eml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, options: Dict[str, Any] | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, subject: str | None = None, cte_type: str | None = None, policy: Policy | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   eml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, options: Dict[str, Any] | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, subject: str | None = None, cte_type: str | None = None, policy: Policy | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an EML file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **options** -- Options (non-structured) for complex types,
+           such as ZIP.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **subject** -- Email subject. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **cte_type** -- Content-Transfer-Encoding (CTE) type.
+
+         * **policy** -- Email message policy.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = 'eml'
+
+
+faker_file.providers.epub_file module
+=====================================
+
+class faker_file.providers.epub_file.EpubFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   EPUB file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.epub_file import EpubFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(EpubFileProvider)
+
+      file = FAKER.epub_file()
+
+   Usage example with options:
+
+      file = FAKER.epub_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.epub_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   epub_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, title: str | None = None, chapter_title: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   epub_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, title: str | None = None, chapter_title: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a EPUB file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **title** -- E-book title. Might contain dynamic elements,
+           which are then replaced by correspondent fixtures.
+
+         * **chapter_title** -- Chapter title. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   extension: str = 'epub'
+
+
+faker_file.providers.file_from_path module
+==========================================
+
+class faker_file.providers.file_from_path.FileFromPathProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   File from given path provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.file_from_path import (
+          FileFromPathProvide
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(FileFromPathProvider)
+
+      file = FAKER.file_from_path(
+          path="/path/to/file.pdf"
+      )
+
+   Usage example with options:
+
+      file = FAKER.file_from_path(
+          path="/path/to/file.pdf",
+          prefix="zzz",
+      )
+
+   extension: str = ''
+
+   file_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   file_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, **kwargs) -> StringValue
+
+      File from given path.
+
+      Parameters:
+         * **path** -- Path to source file.
+
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.generic_file module
+========================================
+
+class faker_file.providers.generic_file.GenericFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   Generic file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.generic_file import GenericFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GenericFileProvider)
+
+      file = FAKER.generic_file(
+          content="<html><body><p>{{text}}</p></body></html>",
+          extension="html",
+      )
+
+   Usage example with options:
+
+      file = FAKER.generic_file(
+          content="<html><body><p>{{text}}</p></body></html>",
+          extension="html",
+          prefix="zzz",
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.generic_file(
+          content="<html><body><p>{{text}}</p></body></html>",
+          extension="html",
+          basename="index",
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+      )
+
+   Usage example with AWS S3 storage:
+
+      from faker_file.storages.aws_s3 import AWSS3Storage
+
+      file = FAKER.generic_file(
+          storage=AWSS3Storage(bucket_name="My-test-bucket"),
+          content="<html><body><p>{{text}}</p></body></html>",
+          extension="html",
+      )
+
+   extension: str = None
+
+   generic_file(content: bytes | str, extension: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   generic_file(content: bytes | str, extension: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a generic file with given content.
+
+      Parameters:
+         * **content** -- File content. If given, used as is.
+
+         * **extension** -- File extension.
+
+         * **storage** -- Storage class. Defaults to
+           *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.gif_file module
+====================================
+
+class faker_file.providers.gif_file.GifFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   GIF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.gif_file import GifFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GifFileProvider)
+
+      file = FAKER.gif_file()
+
+   Usage example with options:
+
+      file = FAKER.gif_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.gif_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'gif'
+
+   gif_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = WEASYPRINT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   gif_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = WEASYPRINT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a GIF file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'gif'
+
+class faker_file.providers.gif_file.GraphicGifFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic GIF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.gif_file import GraphicGifFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicGifFileProvider)
+
+      file = FAKER.graphic_gif_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_gif_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_gif_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'gif'
+
+   graphic_gif_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_gif_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic GIF file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'gif'
+
+
+faker_file.providers.ico_file module
+====================================
+
+class faker_file.providers.ico_file.GraphicIcoFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic ICO file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.ico_file import GraphicIcoFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicIcoFileProvider)
+
+      file = FAKER.graphic_ico_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_ico_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_ico_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'ico'
+
+   graphic_ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic ICO file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'ico'
+
+class faker_file.providers.ico_file.IcoFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   ICO file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.ico_file import IcoFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(IcoFileProvider)
+
+      file = FAKER.ico_file()
+
+   Usage example with options:
+
+      file = FAKER.ico_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.ico_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'ico'
+
+   ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an ICO file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'ico'
+
+
+faker_file.providers.jpeg_file module
+=====================================
+
+class faker_file.providers.jpeg_file.GraphicJpegFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic JPEG file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.jpeg_file import GraphicJpegFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicJpegFileProvider)
+
+      file = FAKER.graphic_jpeg_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_jpeg_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_jpeg_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'jpg'
+
+   graphic_jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic JPEG file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'jpeg'
+
+class faker_file.providers.jpeg_file.JpegFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   JPEG file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.jpeg_file import JpegFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(JpegFileProvider)
+
+      file = FAKER.jpeg_file()
+
+   Usage example with options:
+
+      file = FAKER.jpeg_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.jpeg_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'jpg'
+
+   image_format: str = 'jpeg'
+
+   jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a JPEG file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.json_file module
+=====================================
+
+class faker_file.providers.json_file.JsonFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   JSON file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.json_file import JsonFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(JsonFileProvider)
+
+      file = FAKER.json_file()
+
+   Usage example with options:
+
+      file = FAKER.json_file(
+          prefix="zzz",
+          num_rows=100,
+          data_columns={"name": "{{name}}", "residency": "{{address}}"},
+          indent=4,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.json_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          num_rows=100,
+      )
+
+   extension: str = 'json'
+
+   json_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, data_columns: List | None = None, num_rows: int = 10, indent: int | None = None, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   json_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, data_columns: List | None = None, num_rows: int = 10, indent: int | None = None, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a JSON file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **data_columns** -- The "data_columns" argument expects a
+           dict of string tokens, and these string tokens will be
+           passed to "parse()" for data generation. Argument Groups
+           are used to pass arguments to the provider methods.
+
+         * **num_rows** -- The "num_rows" argument controls how many
+           rows of data to generate, and the "include_row_ids"
+           argument may be set to "True" to include a sequential row
+           ID column.
+
+         * **indent** -- Number of spaces to indent the fields.
+
+         * **content** -- File content. If given, used as is.
+
+         * **encoding** -- Encoding.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.odp_file module
+====================================
+
+class faker_file.providers.odp_file.OdpFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   ODP file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.odp_file import OdpFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(OdpFileProvider)
+
+      file = FAKER.odp_file()
+
+   Usage example with options:
+
+      file = FAKER.odp_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.odp_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'odp'
+
+   odp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   odp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an ODP file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.ods_file module
+====================================
+
+class faker_file.providers.ods_file.OdsFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "TabularDataMixin"
+
+   ODS file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.ods_file import OdsFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(OdsFileProvider)
+
+      file = FAKER.ods_file()
+
+   Usage example with options:
+
+      from faker import Faker
+      from faker_file.providers.ods_file import OdsFileProvider
+
+      file = FAKER.ods_file(
+          prefix="zzz",
+          num_rows=100,
+          data_columns={
+              "name": "{{name}}",
+              "residency": "{{address}}",
+          },
+          include_row_ids=True,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.ods_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          num_rows=100,
+          data_columns={
+              "name": "{{name}}",
+              "residency": "{{address}}",
+          },
+          include_row_ids=True,
+      )
+
+   extension: str = 'ods'
+
+   ods_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   ods_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an ODS file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **data_columns** -- The "data_columns" argument expects a
+           list or a tuple of string tokens, and these string tokens
+           will be passed to "pystr_format()" for data generation.
+           Argument Groups are used to pass arguments to the provider
+           methods. Both "header" and "data_columns" must be of the
+           same length.
+
+         * **num_rows** -- The "num_rows" argument controls how many
+           rows of data to generate, and the "include_row_ids"
+           argument may be set to "True" to include a sequential row
+           ID column.
+
+         * **content** -- List of dicts with content (JSON-like
+           format). If given, used as is.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.odt_file module
+====================================
+
+class faker_file.providers.odt_file.OdtFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   ODT file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.odt_file import OdtFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(OdtFileProvider)
+
+      file = FAKER.odt_file()
+
+   Usage example with options:
+
+      file = FAKER.odt_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.odt_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with content modifiers:
+
+      from faker_file.base import DynamicTemplate
+      from faker_file.providers.jpeg_file import JpegFileProvider
+      from faker_file.contrib.odt_file import (
+          add_h1_heading,
+          add_h2_heading,
+          add_h3_heading,
+          add_h4_heading,
+          add_h5_heading,
+          add_h6_heading,
+          add_page_break,
+          add_paragraph,
+          add_picture,
+          add_table,
+      )
+
+      file = FAKER.odt_file(
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_paragraph, {}),
+                  (add_h2_heading, {}),
+                  (add_h3_heading, {}),
+                  (add_h4_heading, {}),
+                  (add_h5_heading, {}),
+                  (add_h6_heading, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_page_break, {}),
+                  (add_h6_heading, {}),
+                  (add_table, {}),
+                  (add_paragraph, {}),
+              ]
+          )
+      )
+
+   extension: str = 'odt'
+
+   odt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | DynamicTemplate | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   odt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | DynamicTemplate | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an ODT file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.png_file module
+====================================
+
+class faker_file.providers.png_file.GraphicPngFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic PNG file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.png_file import GraphicPngFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicPngFileProvider)
+
+      file = FAKER.graphic_png_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_png_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_png_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'png'
+
+   graphic_png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic PNG file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'png'
+
+class faker_file.providers.png_file.PngFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   PNG file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.png_file import PngFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(PngFileProvider)
+
+      file = FAKER.png_file()
+
+   Usage example with options:
+
+      file = FAKER.png_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.png_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'png'
+
+   image_format: str = 'png'
+
+   png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a PNG file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.pptx_file module
+=====================================
+
+class faker_file.providers.pptx_file.PptxFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   PPTX file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.pptx_file import PptxFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(PptxFileProvider)
+
+      file = FAKER.pptx_file()
+
+   Usage example with options:
+
+      file = FAKER.pptx_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.pptx_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'pptx'
+
+   pptx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   pptx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.random_file_from_dir module
+================================================
+
+class faker_file.providers.random_file_from_dir.RandomFileFromDirProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   Random file from given directory provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.random_file_from_dir import (
+          RandomFileFromDirProvider,
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(RandomFileFromDirProvider)
+
+      file = FAKER.random_file_from_dir(
+          source_dir_path="/tmp/tmp/",
+      )
+
+   Usage example with options:
+
+      file = FAKER.random_file_from_dir(
+          source_dir_path="/tmp/tmp/",
+          prefix="zzz",
+      )
+
+   extension: str = ''
+
+   random_file_from_dir(source_dir_path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   random_file_from_dir(source_dir_path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, **kwargs) -> StringValue
+
+      Pick a random file from given directory.
+
+      Parameters:
+         * **source_dir_path** -- Source files directory.
+
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.rtf_file module
+====================================
+
+class faker_file.providers.rtf_file.RtfFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   RTF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.rtf_file import RtfFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(RtfFileProvider)
+
+      file = FAKER.rtf_file()
+
+   Usage example with options:
+
+      file = FAKER.rtf_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.rtf_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'rtf'
+
+   rtf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   rtf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a RTF file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.svg_file module
+====================================
+
+class faker_file.providers.svg_file.SvgFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   SVG file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.svg_file import SvgFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(SvgFileProvider)
+
+      file = FAKER.svg_file()
+
+   Usage example with options:
+
+      file = FAKER.svg_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.svg_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'svg'
+
+   image_format: str = 'svg'
+
+   svg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   svg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an SVG file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.tar_file module
+====================================
+
+class faker_file.providers.tar_file.TarFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   TAR file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.tar_file import TarFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(TarFileProvider)
+
+      file = FAKER.tar_file()
+
+   Usage example with options:
+
+      from faker_file.providers.helpers.inner import create_inner_docx_file
+      from faker_file.providers.tar_file import TarFileProvider
+
+      file = FAKER.tar_file(
+          prefix="ttt_archive_",
+          options={
+              "count": 5,
+              "create_inner_file_func": create_inner_docx_file,
+              "create_inner_file_args": {
+                  "prefix": "ttt_docx_file_",
+                  "max_nb_chars": 1_024,
+              },
+              "directory": "ttt",
+          },
+      )
+
+   Usage example of nested TARs:
+
+      from faker_file.providers.helpers.inner import create_inner_tar_file
+
+      file = FAKER.tar_file(
+          options={
+              "create_inner_file_func": create_inner_tar_file,
+              "create_inner_file_args": {
+                  "options": {
+                      "create_inner_file_func": create_inner_docx_file,
+                  }
+              }
+          },
+      )
+
+   If you want to see, which files were included inside the TAR, check
+   the "file.data["files"]".
+
+   extension: str = 'tar'
+
+   tar_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, options: Dict[str, Any] | None = None, compression: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   tar_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, options: Dict[str, Any] | None = None, compression: str | None = None, **kwargs) -> StringValue
+
+      Generate a TAR file with random text.
+
+         param storage:
+            Storage. Defaults to *FileSystemStorage*.
+
+         param basename:
+            File basename (without extension).
+
+         param prefix:
+            File name prefix.
+
+         param options:
+            Options (non-structured) for complex types, such as ZIP.
+
+         param compression:
+            Desired compression. Can be None or *gz*, *bz2* or *xz*.
+
+         param raw:
+            If set to True, return *BytesValue* (binary content of the
+            file). Otherwise, return *StringValue* (path to the saved
+            file).
+
+         return:
+            Relative path (from root directory) of the generated file
+            or raw content of the file.
+
+         A complex case usage example:
+
+            tar_file = TarFileProvider(None).tar_file(
+                prefix="ttt_archive_",
+                options={
+                    "count": 5,
+                    "create_inner_file_func": create_inner_docx_file,
+                    "create_inner_file_args": {
+                        "prefix": "ttt_file_",
+                        "max_nb_chars": 1_024,
+                        "content": "{{date}}
+
+      {{text}} {{name}}",
+
+               }, "directory": "ttt",
+
+            },
+
+         )
+
+
+faker_file.providers.tiff_file module
+=====================================
+
+class faker_file.providers.tiff_file.GraphicTiffFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic TIFF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.tiff_file import GraphicTiffFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicTiffFileProvider)
+
+      file = FAKER.graphic_tiff_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_tiff_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_tiff_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'tif'
+
+   graphic_tiff_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_tiff_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic TIFF file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'tiff'
+
+class faker_file.providers.tiff_file.TiffFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   TIFF file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.tiff_file import TiffFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(TiffFileProvider)
+
+      file = FAKER.tiff_file()
+
+   Usage example with options:
+
+      file = FAKER.tiff_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.tiff_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'tif'
+
+   image_format: str = 'tiff'
+
+   tiff_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = WEASYPRINT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   tiff_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = WEASYPRINT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a TIFF file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.txt_file module
+====================================
+
+class faker_file.providers.txt_file.TxtFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   TXT file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.txt_file import TxtFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(TxtFileProvider)
+
+      file = FAKER.txt_file()
+
+   Usage example with options:
+
+      file = FAKER.txt_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.txt_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'txt'
+
+   txt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   txt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a TXT file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.webp_file module
+=====================================
+
+class faker_file.providers.webp_file.GraphicWebpFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "GraphicImageMixin"
+
+   Graphic WEBP file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.webp_file import GraphicWebpFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(GraphicWebpFileProvider)
+
+      file = FAKER.graphic_webp_file()
+
+   Usage example with options:
+
+      file = FAKER.graphic_webp_file(
+          prefix="zzz",
+          size=(800, 800),
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.graphic_webp_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          basename="yyy",
+          size=(1024, 1024),
+      )
+
+   extension: str = 'webp'
+
+   graphic_webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+   graphic_webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+      Generate a graphic WEBP file with random lines.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **size** -- Image size in pixels.
+
+         * **hue** -- Read more about ://faker.readthedocs.io/en/dev/
+           providers/faker.providers.color.html
+
+         * **luminosity** -- If given, the output string would be
+           separated by line breaks after the given position.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+   image_format: str = 'webp'
+
+class faker_file.providers.webp_file.WebpFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "ImageMixin"
+
+   WEBP file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.webp_file import WebpFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(WebpFileProvider)
+
+      file = FAKER.webp_file()
+
+   Usage example with options:
+
+      file = FAKER.webp_file(
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.webp_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=100_000,
+          wrap_chars_after=80,
+      )
+
+   extension: str = 'webp'
+
+   image_format: str = 'webp'
+
+   webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, image_generator_cls: str | Type[BaseImageGenerator] | None = DEFAULT_IMAGE_GENERATOR, image_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a WEBP file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **wrap_chars_after** -- If given, the output string would
+           be separated by line breaks after the given position.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **image_generator_cls** -- Image generator class.
+
+         * **image_generator_kwargs** -- Image generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.xlsx_file module
+=====================================
+
+class faker_file.providers.xlsx_file.XlsxFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "TabularDataMixin"
+
+   XLSX file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.xlsx_file import XlsxFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(XlsxFileProvider)
+
+      file = FAKER.xlsx_file()
+
+   Usage example with options:
+
+      file = FAKER.xlsx_file(
+          prefix="zzz",
+          num_rows=100,
+          data_columns={
+              "name": "{{name}}",
+              "residency": "{{address}}",
+          },
+          include_row_ids=True,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.xlsx_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          num_rows=100,
+          data_columns={
+              "name": "{{name}}",
+              "residency": "{{address}}",
+          },
+          include_row_ids=True,
+      )
+
+   extension: str = 'xlsx'
+
+   xlsx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   xlsx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a XLSX file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **data_columns** -- The "data_columns" argument expects a
+           list or a tuple of string tokens, and these string tokens
+           will be passed to "pystr_format()" for data generation.
+           Argument Groups are used to pass arguments to the provider
+           methods. Both "header" and "data_columns" must be of the
+           same length.
+
+         * **num_rows** -- The "num_rows" argument controls how many
+           rows of data to generate, and the "include_row_ids"
+           argument may be set to "True" to include a sequential row
+           ID column.
+
+         * **content** -- List of dicts with content (JSON-like
+           format). If given, used as is.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.xml_file module
+====================================
+
+class faker_file.providers.xml_file.XmlFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   XML file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.xml_file import XmlFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(XmlFileProvider)
+
+      file = FAKER.xml_file()
+
+   Usage example with options:
+
+      file = FAKER.xml_file(
+          prefix="zzz",
+          num_rows=100,
+          data_columns={
+              "name": "{{name}}",
+              "sentence": "{{sentence}}",
+              "address": "{{address}}",
+          },
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.xml_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          num_rows=100,
+      )
+
+   Usage example with template:
+
+      XML_TEMPLATE = '''
+      <books>
+          <book>
+              <name>{{sentence}}</name>
+              <description>{{paragraph}}</description>
+              <isbn>{{isbn13}}</isbn>
+          </book>
+          <book>
+              <name>{{sentence}}</name>
+              <description>{{paragraph}}</description>
+              <isbn>{{isbn13}}</isbn>
+          </book>
+          <book>
+              <name>{{sentence}}</name>
+              <description>{{paragraph}}</description>
+              <isbn>{{isbn13}}</isbn>
+          </book>
+      </books>
+      '''
+
+      file = FAKER.xml_file(content=XML_TEMPLATE)
+
+   extension: str = 'xml'
+
+   xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate an XML file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **root_element** -- Root XML element.
+
+         * **row_element** -- Row XML element.
+
+         * **data_columns** -- The "data_columns" argument expects a
+           list or a tuple of string tokens, and these string tokens
+           will be passed to "pystr_format()" for data generation.
+           Argument Groups are used to pass arguments to the provider
+           methods. Both "header" and "data_columns" must be of the
+           same length.
+
+         * **num_rows** -- The "num_rows" argument controls how many
+           rows of data to generate, and the "include_row_ids"
+           argument may be set to "True" to include a sequential row
+           ID column.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **encoding** -- Encoding.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+faker_file.providers.zip_file module
+====================================
+
+class faker_file.providers.zip_file.ZipFileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   ZIP file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.zip_file import ZipFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(ZipFileProvider)
+
+      file = FAKER.zip_file()
+
+   Usage example with options:
+
+      from faker_file.providers.helpers.inner import create_inner_docx_file
+
+      file = FAKER.zip_file(
+          prefix="zzz_archive_",
+          options={
+              "count": 5,
+              "create_inner_file_func": create_inner_docx_file,
+              "create_inner_file_args": {
+                  "prefix": "zzz_docx_file_",
+                  "max_nb_chars": 1_024,
+              },
+              "directory": "zzz",
+          },
+      )
+
+   Usage example of nested ZIPs:
+
+      from faker_file.providers.helpers.inner import create_inner_zip_file
+
+      file = FAKER.zip_file(
+          options={
+              "create_inner_file_func": create_inner_zip_file,
+              "create_inner_file_args": {
+                  "options": {
+                      "create_inner_file_func": create_inner_docx_file,
+                  },
+              },
+          },
+      )
+
+   If you want to see, which files were included inside the ZIP, check
+   the "file.data["files"]".
+
+   extension: str = 'zip'
+
+   zip_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, options: Dict[str, Any] | None = None, raw: bool = True, **kwargs) -> BytesValue
+   zip_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, options: Dict[str, Any] | None = None, **kwargs) -> BytesValue | StringValue
+
+      Generate a ZIP file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **options** -- Options (non-structured) for complex types,
+           such as ZIP.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.
+
+
+Module contents
+===============

@@ -1,0 +1,28 @@
+faker_file.cli package
+**********************
+
+
+Submodules
+==========
+
+
+faker_file.cli.command module
+=============================
+
+faker_file.cli.command.main()
+
+
+faker_file.cli.helpers module
+=============================
+
+faker_file.cli.helpers.generate_completion_file()
+
+faker_file.cli.helpers.generate_file(method_name: str, **kwargs) -> StringValue
+
+faker_file.cli.helpers.get_method_kwargs(cls: Type[FileMixin], method_name: str) -> Tuple[Dict[str, Any], Dict[str, Any]]
+
+faker_file.cli.helpers.is_optional_type(t: Any) -> bool
+
+
+Module contents
+===============

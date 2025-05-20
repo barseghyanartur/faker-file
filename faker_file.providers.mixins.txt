@@ -1,0 +1,40 @@
+faker_file.providers.mixins package
+***********************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.mixins.graphic_image_mixin module
+======================================================
+
+class faker_file.providers.mixins.graphic_image_mixin.GraphicImageMixin
+
+   Bases: "FileMixin"
+
+   Graphic image mixin.
+
+
+faker_file.providers.mixins.image_mixin module
+==============================================
+
+class faker_file.providers.mixins.image_mixin.ImageMixin
+
+   Bases: "FileMixin"
+
+   Image mixin.
+
+
+faker_file.providers.mixins.tablular_data_mixin module
+======================================================
+
+class faker_file.providers.mixins.tablular_data_mixin.TabularDataMixin
+
+   Bases: "FileMixin"
+
+   Tabular data mixin.
+
+
+Module contents
+===============

@@ -1,0 +1,300 @@
+faker_file.providers.helpers package
+************************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.helpers.inner module
+=========================================
+
+faker_file.providers.helpers.inner.create_inner_augment_image_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_augment_image_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, **kwargs) -> StringValue
+
+   Create inner augment_image_from_path file.
+
+faker_file.providers.helpers.inner.create_inner_augment_random_image_from_dir(source_dir_path: str, extensions: Iterable[str] | None = None, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_augment_random_image_from_dir(source_dir_path: str, extensions: Iterable[str] | None = None, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, augmentations: List[Tuple[Callable, Dict[str, Any]]] | None = None, num_steps: int | None = None, pop_func: Callable = random_pop, **kwargs) -> StringValue
+
+   Create inner augment_random_image_from_dir file.
+
+faker_file.providers.helpers.inner.create_inner_bin_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, length: int = 1 * 1024 * 1024, content: bytes | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_bin_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, length: int = 1 * 1024 * 1024, content: bytes | None = None, **kwargs) -> StringValue
+
+   Create inner BIN file.
+
+faker_file.providers.helpers.inner.create_inner_csv_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, header: Sequence[str] | None = None, data_columns: Tuple[str, str] = ('{{name}}', '{{address}}'), num_rows: int = 10, include_row_ids: bool = False, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_csv_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, header: Sequence[str] | None = None, data_columns: Tuple[str, str] = ('{{name}}', '{{address}}'), num_rows: int = 10, include_row_ids: bool = False, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner CSV file.
+
+faker_file.providers.helpers.inner.create_inner_docx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_docx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner DOCX file.
+
+faker_file.providers.helpers.inner.create_inner_eml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, options: Dict[str, Any] | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_eml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, options: Dict[str, Any] | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner EML file.
+
+faker_file.providers.helpers.inner.create_inner_epub_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, title: str | None = None, chapter_title: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_epub_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, title: str | None = None, chapter_title: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner EPUB file.
+
+faker_file.providers.helpers.inner.create_inner_file_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_file_from_path(path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, **kwargs) -> StringValue
+
+   Create inner file from path.
+
+faker_file.providers.helpers.inner.create_inner_generic_file(content: bytes | str, extension: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_generic_file(content: bytes | str, extension: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner generic file.
+
+faker_file.providers.helpers.inner.create_inner_graphic_ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_graphic_ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+   Create inner graphic ICO file.
+
+faker_file.providers.helpers.inner.create_inner_graphic_jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_graphic_jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+   Create inner graphic JPEG file.
+
+faker_file.providers.helpers.inner.create_inner_graphic_pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_graphic_pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+   Create inner graphic PDF file.
+
+faker_file.providers.helpers.inner.create_inner_graphic_png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_graphic_png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+   Create inner graphic PNG file.
+
+faker_file.providers.helpers.inner.create_inner_graphic_webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_graphic_webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, size: Tuple[int, int] = (256, 256), hue: int | Sequence[int] | str | None = None, luminosity: str | None = None, **kwargs) -> StringValue
+
+   Create inner graphic WEBP file.
+
+faker_file.providers.helpers.inner.create_inner_ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_ico_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner ICO file.
+
+faker_file.providers.helpers.inner.create_inner_jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_jpeg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner JPEG file.
+
+faker_file.providers.helpers.inner.create_inner_json_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, data_columns: List | None = None, num_rows: int = 10, indent: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_json_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, data_columns: List | None = None, num_rows: int = 10, indent: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner JSON file.
+
+faker_file.providers.helpers.inner.create_inner_mp3_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS, content: str | None = None, mp3_generator_cls: str | Type[BaseMp3Generator] | None = None, mp3_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_mp3_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS, content: str | None = None, mp3_generator_cls: str | Type[BaseMp3Generator] | None = None, mp3_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner ODS file.
+
+faker_file.providers.helpers.inner.create_inner_odp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_odp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> BytesValue | StringValue
+
+   Create inner ODP file.
+
+faker_file.providers.helpers.inner.create_inner_ods_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_ods_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner ODS file.
+
+faker_file.providers.helpers.inner.create_inner_odt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_odt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner ODT file.
+
+faker_file.providers.helpers.inner.create_inner_pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, pdf_generator_cls: str | Type[BasePdfGenerator] | None = None, pdf_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_pdf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, pdf_generator_cls: str | Type[BasePdfGenerator] | None = None, pdf_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner PDF file.
+
+faker_file.providers.helpers.inner.create_inner_png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_png_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner PNG file.
+
+faker_file.providers.helpers.inner.create_inner_pptx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_pptx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner PPTX file.
+
+faker_file.providers.helpers.inner.create_inner_random_file_from_dir(source_dir_path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_random_file_from_dir(source_dir_path: str, storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, **kwargs) -> StringValue
+
+   Create inner random_file_from_dir file.
+
+faker_file.providers.helpers.inner.create_inner_rtf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_rtf_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner RTF file.
+
+faker_file.providers.helpers.inner.create_inner_svg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_svg_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner SVG file.
+
+faker_file.providers.helpers.inner.create_inner_tar_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, options: Dict[str, Any] | None = None, compression: str | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_tar_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, options: Dict[str, Any] | None = None, compression: str | None = None, **kwargs) -> StringValue
+
+   Create inner TAR file.
+
+faker_file.providers.helpers.inner.create_inner_txt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_txt_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_TEXT_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner TXT file.
+
+faker_file.providers.helpers.inner.create_inner_webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_webp_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, max_nb_chars: int = DEFAULT_IMAGE_MAX_NB_CHARS, wrap_chars_after: int | None = None, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner WEBP file.
+
+faker_file.providers.helpers.inner.create_inner_xlsx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_xlsx_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner XLSX file.
+
+faker_file.providers.helpers.inner.create_inner_xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+   Create inner XML file.
+
+faker_file.providers.helpers.inner.create_inner_zip_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, options: Dict[str, Any] | None = None, raw: bool = True, **kwargs) -> BytesValue
+faker_file.providers.helpers.inner.create_inner_zip_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, generator: Faker | Generator | Provider | None = None, options: Dict[str, Any] | None = None, **kwargs) -> StringValue
+
+   Create inner ZIP file.
+
+faker_file.providers.helpers.inner.fuzzy_choice_create_inner_file(func_choices: List[Tuple[Callable, Dict[str, Any]]], **kwargs) -> BytesValue | StringValue
+
+   Create inner file from given list of function choices.
+
+   Parameters:
+      **func_choices** -- List of functions to choose from.
+
+   Returns:
+      StringValue.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.helpers.inner import (
+          create_inner_docx_file,
+          create_inner_epub_file,
+          create_inner_txt_file,
+          fuzzy_choice_create_inner_file,
+      )
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      FAKER = Faker()
+      STORAGE = FileSystemStorage()
+
+      kwargs = {"storage": STORAGE, "generator": FAKER}
+      file = fuzzy_choice_create_inner_file(
+          [
+              (create_inner_docx_file, kwargs),
+              (create_inner_epub_file, kwargs),
+              (create_inner_txt_file, kwargs),
+          ]
+      )
+
+   You could use it in archives to make a variety of different file
+   types within the archive.
+
+      from faker import Faker
+      from faker_file.providers.helpers.inner import (
+          create_inner_docx_file,
+          create_inner_epub_file,
+          create_inner_txt_file,
+          fuzzy_choice_create_inner_file,
+      )
+      from faker_file.providers.zip_file import ZipFileProvider
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      FAKER = Faker()
+      FAKER.add_provider(ZipFileProvider)
+
+      STORAGE = FileSystemStorage()
+
+      kwargs = {"storage": STORAGE, "generator": FAKER}
+      file = FAKER.zip_file(
+          prefix="zzz_archive_",
+          options={
+              "count": 50,
+              "create_inner_file_func": fuzzy_choice_create_inner_file,
+              "create_inner_file_args": {
+                  "func_choices": [
+                      (create_inner_docx_file, kwargs),
+                      (create_inner_epub_file, kwargs),
+                      (create_inner_txt_file, kwargs),
+                  ],
+              },
+              "directory": "zzz",
+          }
+      )
+
+faker_file.providers.helpers.inner.list_create_inner_file(func_list: List[Tuple[Callable, Dict[str, Any]]], **kwargs) -> List[BytesValue | StringValue]
+
+   Generates multiple files based on the provided list of functions
+   and arguments.
+
+   Parameters:
+      **func_list** -- List of tuples, each containing a function to
+      generate a file and its arguments.
+
+   Returns:
+      List of generated file names.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.helpers.inner import (
+          create_inner_docx_file,
+          create_inner_xml_file,
+          list_create_inner_file,
+      )
+      from faker_file.providers.zip_file import ZipFileProvider
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      FAKER = Faker()
+      FAKER.add_provider(ZipFileProvider)
+      STORAGE = FileSystemStorage()
+
+      kwargs = {"storage": STORAGE, "generator": FAKER}
+      file = FAKER.zip_file(
+          basename="alice-looking-through-the-glass",
+          options={
+              "create_inner_file_func": list_create_inner_file,
+              "create_inner_file_args": {
+                  "func_list": [
+                      (create_inner_docx_file, {"basename": "doc"}),
+                      (create_inner_xml_file, {"basename": "doc_metadata"}),
+                      (create_inner_xml_file, {"basename": "doc_isbn"}),
+                  ],
+              },
+          }
+      )
+
+   Note, that while all other inner functions return back
+   *Union[BytesValue, StringValue]* value, *list_create_inner_file*
+   returns back a *List[Union[BytesValue, StringValue]]* value.
+
+   Notably, all inner functions were designed to support archives
+   (such as ZIP, TAR and EML, but the list may grow in the future). If
+   the inner function passed in the *create_inner_file_func* argument
+   returns a List of *Union[BytesValue, StringValue]* values, the
+   *option* argument is being ignored and generated files are simply
+   limited to what has been passed in the *func_list* list of tuples.
+
+
+Module contents
+===============

@@ -1,0 +1,607 @@
+faker_file.providers.image package
+**********************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.image.augment module
+=========================================
+
+faker_file.providers.image.augment.add_brightness(img: Image, lower: float = 1, upper: float = 2) -> Image
+
+   Increase the image's brightness by a random factor.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random enhancement. Default
+        is 0.5.
+
+      * **upper** -- Upper bound for the random enhancement. Default
+        is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.add_contrast(img: Image, lower: float = 1, upper: float = 2) -> Image
+
+   Enhance the image's contrast by a random factor.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random enhancement. Default
+        is 0.5.
+
+      * **upper** -- Upper bound for the random enhancement. Default
+        is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.add_darkness(img: Image, lower: float = 0.5, upper: float = 1) -> Image
+
+   Decrease the image's brightness by a random factor.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random enhancement. Default
+        is 0.5.
+
+      * **upper** -- Upper bound for the random enhancement. Default
+        is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.add_saturation(img: Image, lower: float = 1, upper: float = 2) -> Image
+
+   Enhance the image's color saturation by a random factor.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random enhancement. Default
+        is 0.5.
+
+      * **upper** -- Upper bound for the random enhancement. Default
+        is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.augment_image(image_bytes: bytes, augmentations: ~typing.List[~typing.Tuple[~typing.Callable, ~typing.Dict[str, ~typing.Any]]] | None = None, num_steps: int | None = None, pop_func: ~typing.Callable = <function random_pop>) -> bytes
+
+   Augment the input image with a series of random augmentation
+   methods.
+
+   Read an image provided in bytes format, applies a specified number
+   of random augmentation methods from a given list, and then returns
+   the augmented image in bytes format. If no list of methods is
+   provided, a default list is used. If no number of steps (methods)
+   is specified, all methods will be applied.
+
+   Parameters:
+      * **image_bytes** -- Input image in bytes format.
+
+      * **augmentations** -- List of tuples of callable augmentation
+        functions and their respective keyword arguments. If not
+        provided, the default augmentation functions will be used.
+
+      * **num_steps** -- Number of augmentation steps (functions) to
+        be applied. If not specified, the length of the
+        *augmentations* list will be used.
+
+      * **pop_func** -- Callable to pop items from *augmentations*
+        list. By default, the *random_pop* is used, which pops items
+        in random order. If you want the order of augmentations to be
+        constant and as given, replace it with *list.pop*
+        (*pop_func=list.pop*).
+
+   Returns:
+      Augmented image in bytes format.
+
+faker_file.providers.image.augment.augment_image_file(image_path: str, augmentations: ~typing.List[~typing.Tuple[~typing.Callable, ~typing.Dict[str, ~typing.Any]]] | None = None, num_steps: int | None = None, pop_func: ~typing.Callable = <function random_pop>) -> bytes
+
+   Augment image from path.
+
+   Augment the input image with a series of random augmentation
+   functions.
+
+faker_file.providers.image.augment.color_jitter(img: Image, lower: float = 0.5, upper: float = 1.5) -> Image
+
+   Randomly adjust the image's brightness, contrast, saturation, and
+   hue.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random enhancement
+        multiplier. Default is 0.5.
+
+      * **upper** -- Upper bound for the random enhancement
+        multiplier. Default is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.decrease_contrast(img: Image, lower: float = 0.5, upper: float = 1) -> Image
+
+   Reduce the image's contrast by a random factor.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random enhancement. Default
+        is 0.5.
+
+      * **upper** -- Upper bound for the random enhancement. Default
+        is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.equalize(img: Image) -> Image
+
+   Equalize the image's histogram.
+
+faker_file.providers.image.augment.flip_horizontal(img: Image) -> Image
+
+   Flip the image horizontally.
+
+faker_file.providers.image.augment.flip_vertical(img: Image) -> Image
+
+   Flip the image vertically.
+
+faker_file.providers.image.augment.gaussian_blur(img: Image, lower: float = 0.5, upper: float = 3) -> Image
+
+   Apply Gaussian blur to the image using a random radius.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random radius. Default is
+        0.5.
+
+      * **upper** -- Upper bound for the random radius. Default is
+        1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.grayscale(img: Image) -> Image
+
+   Convert the image to grayscale.
+
+faker_file.providers.image.augment.random_crop(img: Image, lower: float = 0.6, upper: float = 0.9) -> Image
+
+   Randomly crop a portion of the image.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random crop. Default is 0.5.
+
+      * **upper** -- Upper bound for the random crop. Default is 1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.resize_height(img: Image, lower: float = 0.5, upper: float = 1.5) -> Image
+
+   Resize the image in height by a random percentage.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random resize. Default is
+        0.5.
+
+      * **upper** -- Upper bound for the random resize. Default is
+        1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.resize_width(img: Image, lower: float = 0.5, upper: float = 1.5) -> Image
+
+   Resize the image in width by a random percentage.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random resize. Default is
+        0.5.
+
+      * **upper** -- Upper bound for the random resize. Default is
+        1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.rotate(img: Image, lower: int = -45, upper: int = 45) -> Image
+
+   Rotate the image by a random angle.
+
+   Parameters:
+      * **img** -- Input image to be adjusted.
+
+      * **lower** -- Lower bound for the random rotation. Default is
+        0.5.
+
+      * **upper** -- Upper bound for the random rotation. Default is
+        1.5.
+
+   Returns:
+      Adjusted image.
+
+faker_file.providers.image.augment.solarize(img: Image, threshold: int = 128) -> Image
+
+   Invert pixel values above a specified threshold.
+
+
+faker_file.providers.image.imgkit_generator module
+==================================================
+
+class faker_file.providers.image.imgkit_generator.ImgkitImageGenerator(**kwargs)
+
+   Bases: "BaseImageGenerator"
+
+   Imgkit image generator.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.png_file import PngFileProvider
+      from faker_file.providers.image.imgkit_generator import (
+          ImgkitImageGenerator
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(PngFileProvider)
+
+      file = FAKER.png_file(
+          img_generator_cls=ImgkitImageGenerator
+      )
+
+   Using *DynamicTemplate*:
+
+      from faker_file.base import DynamicTemplate
+      from faker_file.contrib.image.imgkit_snippets import (
+          add_h1_heading,
+          add_h2_heading,
+          add_h3_heading,
+          add_h4_heading,
+          add_h5_heading,
+          add_h6_heading,
+          add_heading,
+          add_page_break,
+          add_paragraph,
+          add_picture,
+          add_table,
+      )
+
+      # Create a file with lots of elements
+      file = FAKER.png_file(
+          image_generator_cls=ImgkitImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_paragraph, {}),
+                  (add_h2_heading, {}),
+                  (add_h3_heading, {}),
+                  (add_h4_heading, {}),
+                  (add_h5_heading, {}),
+                  (add_h6_heading, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_page_break, {}),
+                  (add_h6_heading, {}),
+                  (add_table, {}),
+                  (add_paragraph, {}),
+              ]
+          )
+      )
+
+   encoding: str = 'utf-8'
+
+   generate(content: str, data: Dict[str, Any], provider: Faker | Generator | Provider, **kwargs) -> bytes
+
+      Generate image.
+
+   handle_kwargs(**kwargs) -> None
+
+      Handle kwargs.
+
+
+faker_file.providers.image.pil_generator module
+===============================================
+
+class faker_file.providers.image.pil_generator.PilImageGenerator(**kwargs)
+
+   Bases: "BaseImageGenerator"
+
+   PIL image generator.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.png_file import PngFileProvider
+      from faker_file.providers.image.pil_generator import PilImageGenerator
+
+      FAKER = Faker()
+      FAKER.add_provider(PngFileProvider)
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+      )
+
+   With options:
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+          image_generator_kwargs={
+              "spacing": 6,
+          },
+          wrap_chars_after=119,
+      )
+
+   With dynamic content:
+
+      from faker import Faker
+      from faker_file.base import DynamicTemplate
+      from faker_file.contrib.image.pil_snippets import *
+      from faker_file.providers.image.pil_generator import PilImageGenerator
+      from faker_file.providers.png_file import PngFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(PngFileProvider)
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_table, {"rows": 5, "cols": 4}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=PilImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {"margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+              ]
+          )
+      )
+
+   combine_images_vertically()
+
+   create_image_instance(height: int | None = None) -> <module 'PIL.Image' from '/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/PIL/Image.py'>
+
+   encoding: str = 'utf-8'
+
+   classmethod find_max_fit_for_multi_line_text(draw: <module 'PIL.ImageDraw' from '/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/PIL/ImageDraw.py'>, lines: ~typing.List[str], font: <module 'PIL.ImageFont' from '/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/PIL/ImageFont.py'>, max_width: int)
+
+   classmethod find_max_fit_for_single_line_text(draw: <module 'PIL.ImageDraw' from '/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/PIL/ImageDraw.py'>, text: str, font: <module 'PIL.ImageFont' from '/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/PIL/ImageFont.py'>, max_width: int) -> int
+
+   font: str = 'Pillow/Tests/fonts/DejaVuSans.ttf'
+
+   font_size: int = 12
+
+   generate(content: str, data: Dict[str, Any], provider: Faker | Generator | Provider, **kwargs) -> bytes
+
+      Generate image.
+
+   handle_kwargs(**kwargs) -> None
+
+      Handle kwargs.
+
+   line_height: int = 14
+
+   page_height: int = 1123
+
+   page_width: int = 794
+
+   save_and_start_new_page()
+
+   spacing: int = 6
+
+   start_new_page()
+
+
+faker_file.providers.image.weasyprint_generator module
+======================================================
+
+class faker_file.providers.image.weasyprint_generator.WeasyPrintImageGenerator(**kwargs)
+
+   Bases: "BaseImageGenerator"
+
+   WeasyPrint and Pdf2Image ImageGenerator image generator.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.png_file import PngFileProvider
+      from faker_file.providers.image.weasyprint_generator import (
+          WeasyPrintImageGenerator
+      )
+
+      FAKER = Faker()
+      FAKER.add_provider(PngFileProvider)
+
+      file = FAKER.png_file(
+          img_generator_cls=WeasyPrintImageGenerator
+      )
+
+   With dynamic content:
+
+      from faker import Faker
+      from faker_file.base import DynamicTemplate
+      from faker_file.contrib.image.weasyprint_snippets import *
+      from faker_file.providers.image.weasyprint_generator import (
+          WeasyPrintImageGenerator
+      )
+      from faker_file.providers.png_file import PngFileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(PngFileProvider)
+
+      file = FAKER.png_file(
+          image_generator_cls=WeasyPrintImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=WeasyPrintImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=WeasyPrintImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=WeasyPrintImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {}),
+                  (add_picture, {}),
+                  (add_paragraph, {"max_nb_chars": 500}),
+                  (add_table, {"rows": 5, "cols": 4}),
+              ]
+          )
+      )
+
+      file = FAKER.png_file(
+          image_generator_cls=WeasyPrintImageGenerator,
+          content=DynamicTemplate(
+              [
+                  (add_h1_heading, {"margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+                  (add_picture, {"margin": (2, 2)}),
+                  (add_paragraph, {"max_nb_chars": 500, "margin": (2, 2)}),
+              ]
+          )
+      )
+
+   create_image_instance(width: int | None = None, height: int | None = None) -> <module 'PIL.Image' from '/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/PIL/Image.py'>
+
+   encoding: str = 'utf-8'
+
+   generate(content: str, data: Dict[str, Any], provider: Faker | Generator | Provider, **kwargs) -> bytes
+
+      Generate image.
+
+   handle_kwargs(**kwargs) -> None
+
+      Handle kwargs.
+
+   page_height: int = 1123
+
+   page_width: int = 794
+
+   wrap(content: str) -> str
+
+   wrapper_tag: str = 'div'
+
+
+Module contents
+===============

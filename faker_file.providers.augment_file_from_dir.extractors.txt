@@ -1,0 +1,14 @@
+faker_file.providers.augment_file_from_dir.extractors package
+*************************************************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.augment_file_from_dir.extractors.tika_extractor module
+===========================================================================
+
+
+Module contents
+===============

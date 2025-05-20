@@ -1,0 +1,106 @@
+faker_file.contrib.pdf_file package
+***********************************
+
+
+Submodules
+==========
+
+
+faker_file.contrib.pdf_file.pdfkit_snippets module
+==================================================
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_h1_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h1 heading generation.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_h2_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h2 heading generation.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_h3_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h3 heading generation.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_h4_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h4 heading generation.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_h5_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h5 heading generation.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_h6_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h6 heading generation.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for heading generation using pdfkit.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_page_break(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the page break insertion using pdfkit.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_paragraph(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for paragraph generation using pdfkit.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_picture(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the picture generation using pdfkit.
+
+faker_file.contrib.pdf_file.pdfkit_snippets.add_table(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the table generation using pdfkit.
+
+
+faker_file.contrib.pdf_file.reportlab_snippets module
+=====================================================
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_h1_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h1 heading generation.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_h2_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h2 heading generation.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_h3_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h3 heading generation.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_h4_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h4 heading generation.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_h5_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h5 heading generation.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_h6_heading(provider, generator, document, data, counter, **kwargs)
+
+   Callable responsible for the h6 heading generation.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_heading(provider, generator, story, data, counter, **kwargs)
+
+   Add heading function.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_page_break(provider, generator, story, data, counter, **kwargs)
+
+   Add page break function.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_paragraph(provider, generator, story, data, counter, **kwargs)
+
+   Add paragraph function.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_picture(provider, generator, story, data, counter, **kwargs)
+
+   Add picture function.
+
+faker_file.contrib.pdf_file.reportlab_snippets.add_table(provider, generator, story, data, counter, **kwargs)
+
+   Add table function.
+
+
+Module contents
+===============

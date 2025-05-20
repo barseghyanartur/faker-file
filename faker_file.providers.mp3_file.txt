@@ -1,0 +1,160 @@
+faker_file.providers.mp3_file package
+*************************************
+
+
+Subpackages
+===========
+
+* faker_file.providers.mp3_file.generators package
+
+  * Submodules
+
+  * faker_file.providers.mp3_file.generators.edge_tts_generator module
+
+    * "EdgeTtsMp3Generator"
+
+      * "EdgeTtsMp3Generator.generate()"
+
+      * "EdgeTtsMp3Generator.handle_kwargs()"
+
+      * "EdgeTtsMp3Generator.voice"
+
+  * faker_file.providers.mp3_file.generators.gtts_generator module
+
+    * "GttsMp3Generator"
+
+      * "GttsMp3Generator.generate()"
+
+      * "GttsMp3Generator.handle_kwargs()"
+
+      * "GttsMp3Generator.lang"
+
+      * "GttsMp3Generator.tld"
+
+  * Module contents
+
+
+Module contents
+===============
+
+class faker_file.providers.mp3_file.Mp3FileProvider(generator: Any)
+
+   Bases: "BaseProvider", "FileMixin"
+
+   MP3 file provider.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.mp3_file import Mp3FileProvider
+
+      FAKER = Faker()
+      FAKER.add_provider(Mp3FileProvider)
+
+      file = FAKER.mp3_file()
+
+   Usage example with options:
+
+      file = FAKER.mp3_file(
+          prefix="zzz",
+          max_nb_chars=500,
+      )
+
+   Usage example with *FileSystemStorage* storage (for *Django*):
+
+      from django.conf import settings
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      file = FAKER.mp3_file(
+          storage=FileSystemStorage(
+              root_path=settings.MEDIA_ROOT,
+              rel_path="tmp",
+          ),
+          prefix="zzz",
+          max_nb_chars=500,
+      )
+
+   Default MP3 generator class is *GttsMp3Generator* which uses Google
+   Text-to-Speech services to generate an MP3 file from given or
+   randomly generated text. It does not require additional services to
+   run and the only dependency here is the *gtts* package. You can
+   however implement your own custom MP3 generator class and pass it
+   to te *mp3_file* method in *mp3_generator_cls* argument instead of
+   the default *GttsMp3Generator*.
+
+   Usage with custom MP3 generator class.
+
+      # Imaginary `marytts` Python library
+      from marytts import MaryTTS
+
+      # Import BaseMp3Generator
+      from faker_file.providers.base.mp3_generator import (
+          BaseMp3Generator,
+      )
+
+      # Define custom MP3 generator
+      class MaryTtsMp3Generator(BaseMp3Generator):
+
+          locale: str = "cmu-rms-hsmm"
+          voice: str = "en_US"
+
+          def handle_kwargs(self, **kwargs) -> None:
+              # Since it's impossible to unify all TTS systems it's allowed
+              # to pass arbitrary arguments to the `BaseMp3Generator`
+              # constructor. Each implementation class contains its own
+              # additional tuning arguments. Check the source code of the
+              # implemented MP3 generators as an example.
+              if "locale" in kwargs:
+                  self.locale = kwargs["locale"]
+              if "voice" in kwargs:
+                  self.voice = kwargs["voice"]
+
+          def generate(self) -> bytes:
+              # Your implementation here. Note, that `self.content`
+              # in this context is the text to make MP3 from.
+              # `self.generator` would be the `Faker` or `Generator`
+              # instance from which you could extract information on
+              # active locale.
+              # What comes below is pseudo implementation.
+              mary_tts = MaryTTS(locale=self.locale, voice=self.voice)
+              return mary_tts.synth_mp3(self.content)
+
+      # Generate MP3 file from random text
+      file = FAKER.mp3_file(
+          mp3_generator_cls=MaryTtsMp3Generator,
+      )
+
+   extension: str = 'mp3'
+
+   mp3_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS, content: str | None = None, mp3_generator_cls: str | Type[BaseMp3Generator] | None = DEFAULT_MP3_GENERATOR, mp3_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
+   mp3_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, max_nb_chars: int = DEFAULT_AUDIO_MAX_NB_CHARS, content: str | None = None, mp3_generator_cls: str | Type[BaseMp3Generator] | None = DEFAULT_MP3_GENERATOR, mp3_generator_kwargs: Dict[str, Any] | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+
+      Generate a MP3 file with random text.
+
+      Parameters:
+         * **storage** -- Storage. Defaults to *FileSystemStorage*.
+
+         * **basename** -- File basename (without extension).
+
+         * **prefix** -- File name prefix.
+
+         * **max_nb_chars** -- Max number of chars for the content.
+
+         * **content** -- File content. Might contain dynamic
+           elements, which are then replaced by correspondent
+           fixtures.
+
+         * **mp3_generator_cls** -- Mp3 generator class.
+
+         * **mp3_generator_kwargs** -- Mp3 generator kwargs.
+
+         * **format_func** -- Callable responsible for formatting
+           template strings.
+
+         * **raw** -- If set to True, return *BytesValue* (binary
+           content of the file). Otherwise, return *StringValue* (path
+           to the saved file).
+
+      Returns:
+         Relative path (from root directory) of the generated file or
+         raw content of the file.

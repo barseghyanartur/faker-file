@@ -1,0 +1,96 @@
+faker_file.providers.base package
+*********************************
+
+
+Submodules
+==========
+
+
+faker_file.providers.base.image_generator module
+================================================
+
+class faker_file.providers.base.image_generator.BaseImageGenerator(**kwargs)
+
+   Bases: "object"
+
+   Base image generator.
+
+   generate(content: str, data: Dict[str, Any], provider: Faker | Generator | Provider) -> bytes
+
+   handle_kwargs(**kwargs)
+
+      Handle kwargs.
+
+
+faker_file.providers.base.mp3_generator module
+==============================================
+
+class faker_file.providers.base.mp3_generator.BaseMp3Generator(content: str, generator: Faker | Generator | Provider, **kwargs)
+
+   Bases: "object"
+
+   Base MP3 generator.
+
+   content: str
+
+   generate(**kwargs) -> bytes
+
+   generator: Faker | Generator | Provider
+
+   handle_kwargs(**kwargs)
+
+      Handle kwargs.
+
+
+faker_file.providers.base.pdf_generator module
+==============================================
+
+class faker_file.providers.base.pdf_generator.BasePdfGenerator(**kwargs)
+
+   Bases: "object"
+
+   Base PDF generator.
+
+   generate(content: str, data: Dict[str, Any], provider: Faker | Generator | Provider) -> bytes
+
+   handle_kwargs(**kwargs)
+
+      Handle kwargs.
+
+
+faker_file.providers.base.text_augmenter module
+===============================================
+
+class faker_file.providers.base.text_augmenter.BaseTextAugmenter(**kwargs)
+
+   Bases: "object"
+
+   Base text augmenter.
+
+   augment(text: str) -> str
+
+   handle_kwargs(**kwargs)
+
+      Handle kwargs.
+
+
+faker_file.providers.base.text_extractor module
+===============================================
+
+class faker_file.providers.base.text_extractor.BaseTextExtractor(**kwargs)
+
+   Bases: "object"
+
+   Base text extractor.
+
+   extract(source_file: Path | str) -> str
+
+   handle_kwargs(**kwargs)
+
+      Handle kwargs.
+
+   path: str
+
+
+Module contents
+===============

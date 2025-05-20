@@ -1,0 +1,300 @@
+faker_file.tests package
+************************
+
+
+Submodules
+==========
+
+
+faker_file.tests.data module
+============================
+
+
+faker_file.tests.sftp_server module
+===================================
+
+class faker_file.tests.sftp_server.SFTPServer(conn: SSHServerChannel)
+
+   Bases: "SFTPServer"
+
+class faker_file.tests.sftp_server.SFTPServerManager(host: str = '0.0.0.0', port: int = 2222)
+
+   Bases: "object"
+
+   start() -> None
+
+   async start_server() -> None
+
+   stop() -> None
+
+class faker_file.tests.sftp_server.SSHServer(connection_semaphore: Semaphore)
+
+   Bases: "SSHServer"
+
+   auth_completed() -> None
+
+      Authentication was completed successfully
+
+      This method is called when authentication has completed
+      successfully. Applications may use this method to perform
+      processing based on the authenticated username or options in the
+      authorized keys list or certificate associated with the user
+      before any sessions are opened or forwarding requests are
+      handled.
+
+   async begin_auth(username: str) -> bool
+
+      Authentication has been requested by the client
+
+      This method will be called when authentication is attempted for
+      the specified user. Applications should use this method to
+      prepare whatever state they need to complete the authentication,
+      such as loading in the set of authorized keys for that user. If
+      no authentication is required for this user, this method should
+      return *False* to cause the authentication to immediately
+      succeed. Otherwise, it should return *True* to indicate that
+      authentication should proceed.
+
+      If blocking operations need to be performed to prepare the state
+      needed to complete the authentication, this method may be
+      defined as a coroutine.
+
+      Parameters:
+         **username** (*str*) -- The name of the user being
+         authenticated
+
+      Returns:
+         A *bool* indicating whether authentication is required
+
+   password_auth_supported() -> bool
+
+      Return whether or not password authentication is supported
+
+      This method should return *True* if password authentication is
+      supported. Applications wishing to support it must have this
+      method return *True* and implement "validate_password()" to
+      return whether or not the password provided by the client is
+      valid for the user being authenticated.
+
+      By default, this method returns *False* indicating that password
+      authentication is not supported.
+
+      Returns:
+         A *bool* indicating if password authentication is supported
+         or not
+
+   session_requested() -> bool
+
+      Handle an incoming session request
+
+      This method is called when a session open request is received
+      from the client, indicating it wishes to open a channel to be
+      used for running a shell, executing a command, or connecting to
+      a subsystem. If the application wishes to accept the session, it
+      must override this method to return either an "SSHServerSession"
+      object to use to process the data received on the channel or a
+      tuple consisting of an "SSHServerChannel" object created with
+      "create_server_channel" and an "SSHServerSession", if the
+      application wishes to pass non-default arguments when creating
+      the channel.
+
+      If blocking operations need to be performed before the session
+      can be created, a coroutine which returns an "SSHServerSession"
+      object can be returned instead of the session itself. This can
+      be either returned directly or as a part of a tuple with an
+      "SSHServerChannel" object.
+
+      To reject this request, this method should return *False* to
+      send back a "Session refused" response or raise a
+      "ChannelOpenError" exception with the reason for the failure.
+
+      The details of what type of session the client wants to start
+      will be delivered to methods on the "SSHServerSession" object
+      which is returned, along with other information such as
+      environment variables, terminal type, size, and modes.
+
+      By default, all session requests are rejected.
+
+      Returns:
+         One of the following:
+
+         * An "SSHServerSession" object or a coroutine which returns
+           an "SSHServerSession"
+
+         * A tuple consisting of an "SSHServerChannel" and the above
+
+         * A *callable* or coroutine handler function which takes
+           AsyncSSH stream objects for stdin, stdout, and stderr as
+           arguments
+
+         * A tuple consisting of an "SSHServerChannel" and the above
+
+         * *False* to refuse the request
+
+      Raises:
+         "ChannelOpenError" if the session shouldn't be accepted
+
+   sftp_requested() -> Type[SFTPServer]
+
+   validate_password(username: str, password: str) -> bool
+
+      Return whether password is valid for this user
+
+      This method should return *True* if the specified password is a
+      valid password for the user being authenticated. It must be
+      overridden by applications wishing to support password
+      authentication.
+
+      If the password provided is valid but expired, this method may
+      raise "PasswordChangeRequired" to request that the client
+      provide a new password before authentication is allowed to
+      complete. In this case, the application must override
+      "change_password()" to handle the password change request.
+
+      This method may be called multiple times with different
+      passwords provided by the client. Applications may wish to limit
+      the number of attempts which are allowed. This can be done by
+      having "password_auth_supported()" begin returning *False* after
+      the maximum number of attempts is exceeded.
+
+      If blocking operations need to be performed to determine the
+      validity of the password, this method may be defined as a
+      coroutine.
+
+      By default, this method returns *False* for all passwords.
+
+      Parameters:
+         * **username** (*str*) -- The user being authenticated
+
+         * **password** (*str*) -- The password sent by the client
+
+      Returns:
+         A *bool* indicating if the specified password is valid for
+         the user being authenticated
+
+      Raises:
+         "PasswordChangeRequired" if the password provided is expired
+         and needs to be changed
+
+faker_file.tests.sftp_server.start_server(host: str = '0.0.0.0', port: int = 2222) -> None
+
+async faker_file.tests.sftp_server.start_server_async(host: str = '0.0.0.0', port: int = 2222) -> None
+
+
+faker_file.tests.test_augment module
+====================================
+
+
+faker_file.tests.test_augment_file_from_dir_provider module
+===========================================================
+
+
+faker_file.tests.test_base module
+=================================
+
+class faker_file.tests.test_base.StringListTestCase(methodName='runTest')
+
+   Bases: "TestCase"
+
+   StringList test case.
+
+   test_string_list() -> None
+
+
+faker_file.tests.test_cli module
+================================
+
+
+faker_file.tests.test_data_integrity module
+===========================================
+
+
+faker_file.tests.test_django_integration module
+===============================================
+
+
+faker_file.tests.test_helpers module
+====================================
+
+
+faker_file.tests.test_providers module
+======================================
+
+
+faker_file.tests.test_registry module
+=====================================
+
+
+faker_file.tests.test_sftp_server module
+========================================
+
+
+faker_file.tests.test_sftp_storage module
+=========================================
+
+
+faker_file.tests.test_sqlalchemy_integration module
+===================================================
+
+
+faker_file.tests.test_storages module
+=====================================
+
+
+faker_file.tests.texts module
+=============================
+
+
+faker_file.tests.utils module
+=============================
+
+class faker_file.tests.utils.AutoFreePortInt(min_port: int = 2223, max_port: int = 5000, host: str = 'localhost', *args, **kwargs)
+
+   Bases: "int"
+
+   Automatically and randomly picks a free port within a specified
+   range.
+
+   For instance:
+
+      # Random free port between default range 2223 and 5000 port =
+      AutoFreePortInt()
+
+      # Random free port between 3000 and 4000 port =
+      AutoFreePortInt(min_port=3000, max_port=4000)
+
+   For the rest, it behaves like a normal integer.
+
+   For better integration, it's recommended to cast the value to
+   *int*, like this:
+
+      port = int(AutoFreePortInt())
+
+   DEFAULT_MAX_PORT: int = 5000
+
+   DEFAULT_MIN_PORT: int = 2223
+
+class faker_file.tests.utils.AutoIncPortInt(*args, **kwargs)
+
+   Bases: "int"
+
+   Automatically incremented integer value.
+
+   Contains state of issued values. Starts from 2223. Every time
+   initialized, value increases.
+
+   Usage example:
+
+      port = AutoInt()  # 2223 port = AutoInt()  # 2224 port =
+      AutoInt()  # 2225
+
+   For the rest, it behaves like a normal integer.
+
+   For better integration, it's recommended to cast the value to
+   *int*, like this:
+
+      port = int(AutoInt())
+
+
+Module contents
+===============

@@ -1,0 +1,195 @@
+faker_file.storages package
+***************************
+
+
+Submodules
+==========
+
+
+faker_file.storages.aws_s3 module
+=================================
+
+
+faker_file.storages.azure_cloud_storage module
+==============================================
+
+
+faker_file.storages.base module
+===============================
+
+class faker_file.storages.base.BaseStorage(*args, **kwargs)
+
+   Bases: "object"
+
+   Base storage.
+
+   abspath(filename: Any) -> str
+
+      Return absolute path.
+
+   exists(filename: Any) -> bool
+
+      Check if file exists.
+
+   generate_basename(prefix: str = 'tmp', length: int = 8) -> str
+
+      Generate a random alphanumeric sequence.
+
+   generate_filename(extension: str, prefix: str | None = None, basename: str | None = None) -> Any
+
+      Generate filename.
+
+   relpath(filename: Any) -> str
+
+      Return relative path.
+
+   unlink(filename: Any) -> None
+
+      Delete the file.
+
+   write_bytes(filename: Any, data: bytes) -> int
+
+      Write bytes.
+
+   write_text(filename: Any, data: str, encoding: str | None = None) -> int
+
+      Write text.
+
+
+faker_file.storages.cloud module
+================================
+
+
+faker_file.storages.filesystem module
+=====================================
+
+class faker_file.storages.filesystem.FileSystemStorage(root_path: str | None = '/tmp', rel_path: str | None = 'tmp', *args, **kwargs)
+
+   Bases: "BaseStorage"
+
+   File storage.
+
+   Usage example:
+
+      from faker_file.storages.filesystem import FileSystemStorage
+
+      storage = FileSystemStorage()
+      file = storage.generate_filename(prefix="zzz_", extension="docx")
+      storage.write_text(file, "Lorem ipsum")
+      storage.write_bytes(file, b"Lorem ipsum")
+
+   Initialization with params:
+
+      storage = FileSystemStorage()
+
+   abspath(filename: str) -> str
+
+      Return absolute path.
+
+   exists(filename: str) -> bool
+
+      Check if file exists.
+
+   generate_filename(extension: str, prefix: str | None = None, basename: str | None = None) -> str
+
+      Generate filename.
+
+   relpath(filename: str) -> str
+
+      Return relative path.
+
+   unlink(filename: str) -> None
+
+      Delete the file.
+
+   write_bytes(filename: str, data: bytes) -> int
+
+      Write bytes.
+
+   write_text(filename: str, data: str, encoding: str | None = None) -> int
+
+      Write text.
+
+
+faker_file.storages.google_cloud_storage module
+===============================================
+
+
+faker_file.storages.sftp_storage module
+=======================================
+
+class faker_file.storages.sftp_storage.SFTPStorage(host: str, port: int = 22, username: str = '', password: str | None = None, key: PKey | None = None, root_path: str = '', rel_path: str = '', *args, **kwargs)
+
+   Bases: "BaseStorage"
+
+   SFTP storage.
+
+   Usage example:
+
+      from faker import Faker
+      from faker_file.providers.txt_file import TxtFileProvider
+      from faker_file.storages.sftp_storage import SFTPStorage
+
+      FAKER = Faker()
+      FAKER.add_provider(TxtFileProvider)
+
+      # SFTP storage class
+      STORAGE = SFTPStorage(
+          host="0.0.0.0",
+          username="foo",
+          password="pass",
+      )
+
+      # Generate TXT file in the default directory
+      txt_file = FAKER.txt_file(storage=STORAGE)
+
+      # Another SFTP storage class, but inside a `/upload/another` directory
+      STORAGE_SUB_DIR = SFTPStorage(
+          host="0.0.0.0",
+          username="foo",
+          password="pass",
+          root_path="/upload/another",
+      )
+
+      # Generate TXT file inside `/upload/another` directory
+      txt_file = FAKER.txt_file(storage=STORAGE_SUB_DIR)
+
+   abspath(filename: str) -> str
+
+      Return absolute path.
+
+   close()
+
+      Explicitly close the connection.
+
+   exists(filename: str) -> bool
+
+      Check if file exists.
+
+   generate_filename(extension: str, prefix: str | None = None, basename: str | None = None) -> str
+
+      Generate filename.
+
+   relpath(filename: str) -> str
+
+      Return relative path.
+
+   sftp: SFTPClient | None = None
+
+   transport: Transport | None = None
+
+   unlink(filename: str) -> None
+
+      Remove a file.
+
+   write_bytes(filename: str, data: bytes) -> int
+
+      Write bytes.
+
+   write_text(filename: str, data: str, encoding: str | None = 'utf-8') -> int
+
+      Write text.
+
+
+Module contents
+===============
