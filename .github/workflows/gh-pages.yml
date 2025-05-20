@@ -1,0 +1,30 @@
+name: Deploy llms.txt
+
+permissions:
+  contents: write    # Required to push commits
+  pages: write       # If you’re deploying to GitHub Pages
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install docs deps
+        run: pip install -r examples/requirements/docs.txt
+      - name: Build llms.txt
+#        run: sphinx-build -n -D master_doc=llms -b text docs build/text llms.rst
+        run: sphinx-build -n -b text docs build/text
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: build/text
+          allow_empty_commit: true

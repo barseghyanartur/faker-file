@@ -19,6 +19,10 @@ faker-file
     :target: http://faker-file.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
+.. image:: https://img.shields.io/badge/docs-llms.txt-blue
+    :target: http://faker-file.readthedocs.io/en/latest/llms.txt
+    :alt: llms.txt - documentation for LLMs
+
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
    :target: https://github.com/barseghyanartur/faker-file/#License
    :alt: MIT
