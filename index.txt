@@ -5,7 +5,8 @@ faker-file
 
 [image: PyPI Version][image][image: Supported Python
 versions][image][image: Build Status][image][image: Documentation
-Status][image][image: MIT][image][image: Coverage][image]
+Status][image][image: llms.txt - documentation for LLMs][image][image:
+MIT][image][image: Coverage][image]
 
 
 Prerequisites
