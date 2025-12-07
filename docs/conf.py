@@ -50,6 +50,8 @@ extensions = [
     "sphinx.ext.viewcode",
     # 'rst2pdf.pdfbuilder',
     # 'rinoh.frontend.sphinx',
+    "sphinx_no_pragma",
+    "sphinx_llms_txt_link",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
