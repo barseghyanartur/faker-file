@@ -187,19 +187,7 @@ jobs:
             django-version: "51"
     steps:
     - name: Install wkhtmltopdf
-      run: sudo apt-get update && sudo apt-get install -y \
-        libfreetype6-dev \
-        libharfbuzz0b \
-        libjpeg-dev \
-        liblcms2-dev \
-        libopenjp2-7-dev \
-        libpango-1.0-0 \
-        libpangoft2-1.0-0 \
-        libtiff5-dev \
-        libwebp-dev \
-        poppler-utils \
-        wkhtmltopdf \
-        zlib1g-dev
+      run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 poppler-utils
     - name: Clean-up
       run: sudo apt clean && sudo apt autoclean && sudo rm -rf /tmp/* && sudo rm -rf /usr/share/dotnet && sudo rm -rf /opt/ghc && sudo rm -rf "/usr/local/share/boost" && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
     - uses: actions/checkout@v4
