@@ -157,7 +157,7 @@ flask-runserver:
 pre-commit:
 	pre-commit run --all-files
 
-install: compile_requirements
+install: compile-requirements
 	pip install -r examples/requirements/dev.txt
 	pip install -e .'[all]'
 	mkdir -p var/logs examples/db examples/media examples/media/static
