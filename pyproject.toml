@@ -126,8 +126,8 @@ exclude = [
 # Allow unused variables when underscore-prefixed.
 lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-# Assume Python 3.9.
-target-version = "py39"
+# Assume Python 3.13.
+target-version = "py313"
 
 [tool.ruff.lint.per-file-ignores]
 "conftest.py" = [
@@ -161,7 +161,7 @@ stubPath = "src/stubs"
 reportMissingImports = true
 reportMissingTypeStubs = false
 
-pythonVersion = "3.10"
+pythonVersion = "3.13"
 pythonPlatform = "Linux"
 verboseOutput = true
 
