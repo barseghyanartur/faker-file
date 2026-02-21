@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  faker-file:
+    build: .
+    volumes:
+      - .:/workspace
+      - /workspace/.venv  # This prevents the local mount from overwriting the internal .venv
+    working_dir: /workspace
+    stdin_open: true
+    tty: true

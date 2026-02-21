@@ -76,7 +76,7 @@ _ml = [
 ]
 
 extras_require = {
-    "all": _common + _ml,
+    "all": _common + _ml + tests_require,
     "common": _common,
     "azure": ["pathy[azure]>=0.10.0,<0.12.0"],
     "bmp": ["WeasyPrint", "pdf2image"],

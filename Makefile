@@ -235,6 +235,17 @@ test-augmented-file-from-dir-provider:
 test:
 	pytest
 
+PYTHON_VERSION ?= 3.12
+
+docker-test:
+	docker-compose build --build-arg PYTHON_VERSION=$(PYTHON_VERSION) faker-file
+	docker-compose run --rm \
+		-e UV_PROJECT_ENVIRONMENT=/workspace/.venv \
+		faker-file bash -c "uv pip install -e .[all] && pytest -vrx -m 'not optional' --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py"
+
+docker-shell:
+	docker-compose run --rm faker-file bash
+
 test-with-local-tika:
 	TIKA_SERVER_JAR="file:///$(shell pwd)/tika-server.jar" pytest
 
