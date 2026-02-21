@@ -128,7 +128,9 @@ packaging==26.0
     # via pytest
 paramiko==4.0.0
     # via -r examples/requirements/common.in
-pathy[all]==0.10.3
+pathlib-abc==0.1.1
+    # via pathy
+pathy[all]==0.11.0
     # via -r examples/requirements/common.in
 pdf2image==1.17.0
     # via -r examples/requirements/common.in
