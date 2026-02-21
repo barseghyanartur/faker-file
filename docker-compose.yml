@@ -1,11 +1,12 @@
-version: '3.8'
-
 services:
   faker-file:
-    build: .
+    build:
+      context: .
+      args:
+        - PYTHON_VERSION=${PYTHON_VERSION:-3.12}
     volumes:
-      - .:/workspace
-      - /workspace/.venv  # This prevents the local mount from overwriting the internal .venv
-    working_dir: /workspace
-    stdin_open: true
-    tty: true
+      - .:/workspace              # Mount code
+      - venvs_data:/opt/venvs     # Persist all venvs here
+
+volumes:
+  venvs_data:                     # This creates a persistent Docker volume

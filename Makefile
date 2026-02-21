@@ -236,12 +236,27 @@ test:
 	pytest
 
 PYTHON_VERSION ?= 3.12
+DJANGO_VERSION ?= 51
+PATHY_VERSION ?= 0.11
+
+# Create a unique ID for this environment
+ENV_ID = py$(PYTHON_VERSION)_dj$(DJANGO_VERSION)_pathy$(PATHY_VERSION)
+VENV_DIR = /opt/venvs/$(ENV_ID)
 
 docker-test:
 	docker-compose build --build-arg PYTHON_VERSION=$(PYTHON_VERSION) faker-file
 	docker-compose run --rm \
-		-e UV_PROJECT_ENVIRONMENT=/workspace/.venv \
-		faker-file bash -c "uv pip install -e .[all] && pytest -vrx -m 'not optional' --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py"
+		-e VIRTUAL_ENV=$(VENV_DIR) \
+		-e PATH="$(VENV_DIR)/bin:$$PATH" \
+		faker-file bash -c '\
+			if [ ! -d "$(VENV_DIR)" ]; then uv venv $(VENV_DIR) --python $(PYTHON_VERSION); fi && \
+			uv pip install \
+				-r examples/requirements/django_$(subst .,_,$(DJANGO_VERSION)).in \
+				"pathy==$(PATHY_VERSION)" \
+				-e .[all] && \
+			pytest -vrx -m "not optional" \
+				--ignore src/faker_file/tests/test_sqlalchemy_integration.py \
+				--ignore src/faker_file/tests/test_augment_file_from_dir_provider.py'
 
 docker-shell:
 	docker-compose run --rm faker-file bash
