@@ -36,4 +36,5 @@ WORKDIR /app
 COPY . /app
 
 # The entrypoint will now use the uv-installed tox
-ENTRYPOINT ["uvx", "tox"]
+# ENTRYPOINT ["uvx", "tox"]
+ENTRYPOINT ["uv", "run", "--with", "tox", "--with", "tox-uv", "tox"]
