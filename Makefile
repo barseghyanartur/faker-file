@@ -251,7 +251,7 @@ docker-test:
 		faker-file bash -c '\
 			if [ ! -d "$(VENV_DIR)" ]; then uv venv $(VENV_DIR) --python $(PYTHON_VERSION); fi && \
 			uv pip install \
-				-r examples/requirements/django_$(subst .,_,$(DJANGO_VERSION)).in \
+				-r examples/requirements/django_5_1.in \
 				"pathy==$(PATHY_VERSION)" \
 				-e .[all] && \
 			pytest -vrx -m "not optional" \
