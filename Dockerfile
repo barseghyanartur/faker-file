@@ -1,11 +1,39 @@
-# To build:
-# > docker build -f Dockerfile .
-FROM docker.io/ubuntu:18.04
-ENV PYTHONUNBUFFERED 1
+FROM ubuntu:22.04
 
-RUN apt update && apt install tzdata -y --no-install-recommends
-RUN apt install -y git nano mc apt-utils software-properties-common --no-install-recommends
-RUN add-apt-repository ppa:deadsnakes/ppa -y
-RUN apt update && apt install -y python3.6 python3.7 python3.8 python3.9 python3.10 python3-pip python3-setuptools --no-install-recommends
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+# Ensure uv-installed pythons are in the path if needed
+ENV PATH="/root/.local/bin/:${PATH}"
 
-ENTRYPOINT  ["tail", "-f", "/dev/null"]
+# 1. Install ONLY system-level tools and libraries
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    git \
+    make \
+    # faker-file specific system dependencies
+    wkhtmltopdf \
+    libpango-1.0-0 \
+    libharfbuzz0b \
+    libpangoft2-1.0-0 \
+    poppler-utils \
+    libmagic1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# 2. Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# 3. Pre-fetch the Python versions we need 
+# This makes the 'docker build' step contain the pythons, 
+# so 'docker run' remains fast.
+RUN uv python install 3.9 3.10 3.11 3.12 3.13
+
+# 4. Install tox and tox-uv into a global-like tool space
+RUN uv tool install tox --with tox-uv
+
+WORKDIR /app
+COPY . /app
+
+# The entrypoint will now use the uv-installed tox
+ENTRYPOINT ["uvx", "tox"]

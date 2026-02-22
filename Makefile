@@ -263,3 +263,15 @@ update-version:
 		sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
 		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
 	fi
+
+# Docker related
+DOCKER_IMAGE_NAME := faker-file-test-runner
+
+docker-build:
+	docker build -t $(DOCKER_IMAGE_NAME) .
+
+docker-test: docker-build
+	docker run --rm -v $(shell pwd):/app $(DOCKER_IMAGE_NAME) $(ARGS)
+
+docker-shell:
+	docker run --rm -it -v $(shell pwd):/app $(DOCKER_IMAGE_NAME) /bin/bash
