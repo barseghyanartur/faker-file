@@ -19,19 +19,13 @@ jobs:
         os:
           - ubuntu-22.04
         python-version:
-#          - "3.11"
           - "3.10"
-#          - "3.9"
-#          - "3.8"
-#          - "3.7"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-#          cache: 'pip'
-#          cache-dependency-path: '**/setup.py'
       - name: Install detect-secrets
         run: pip install --no-cache-dir detect-secrets doc8 isort==5.11.5
       - name: Run pre-commit
@@ -50,14 +44,9 @@ jobs:
       matrix:
         os:
           - ubuntu-22.04
-        #          - Windows
-        #          - MacOs
         python-version:
           - "3.11"
           - "3.10"
-#          - "3.9"
-#          - "3.8"
-#          - "3.7"
     steps:
       - name: Install wkhtmltopdf
         run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 poppler-utils
@@ -68,21 +57,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-#          cache: 'pip'
-#          cache-dependency-path: '**/examples/requirements/flask.txt'
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-      - name: Install tox
+      - name: Install test dependencies
         run: |
-          python -m pip install --no-cache-dir tox-gh-actions uv Django djangorestframework django-extensions drf_spectacular
+          python -m pip install --no-cache-dir Django djangorestframework django-extensions drf_spectacular
       - name: Compile requirements
         run: uv pip compile examples/requirements/flask.in --no-strip-extras
       - name: Install requirements
         run: pip install --no-cache-dir -r examples/requirements/flask.txt
       - name: Run test suite
-#        continue-on-error: true
-        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py #--workers 2
+        run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
 
@@ -96,14 +82,10 @@ jobs:
       matrix:
         os:
           - ubuntu-22.04
-        #          - Windows
-        #          - MacOs
         python-version:
           - "3.11"
           - "3.10"
           - "3.9"
-#          - "3.8"
-#          - "3.7"
     steps:
       - name: Install wkhtmltopdf
         run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 poppler-utils
@@ -114,25 +96,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-#          cache: 'pip'
-#          cache-dependency-path: '**/examples/requirements/ml.txt'
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-      - name: Install tox
+      - name: Install test dependencies
         run: |
-          python -m pip install --no-cache-dir tox-gh-actions uv Django djangorestframework django-extensions drf_spectacular
-#      - name: Remove compiled requirements
-#        run: rm examples/requirements/ml.txt
+          python -m pip install --no-cache-dir Django djangorestframework django-extensions drf_spectacular
       - name: Compile requirements
         run: uv pip compile examples/requirements/ml.in --no-strip-extras -o examples/requirements/ml.txt
-#      - name: Install package
-#        run: pip install .[all]
       - name: Install requirements
         run: pip install --no-cache-dir -r examples/requirements/ml.txt
       - name: Run test suite
-#        continue-on-error: true
-        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py #--workers 2
+        run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
         env:
           PYTEST_ADDOPTS: "-vv --durations=10"
       - name: Coveralls
@@ -146,9 +121,6 @@ jobs:
   # *************************************
   # ************* Main tests ************
   # *************************************
-  # Since tox is used, it already covers testing of various Python versions
-  # therefore, there's no need to have run tox tests multiple times. Just once
-  # is fairly sufficient.
   test:
     needs: pre-commit
     name: test py${{ matrix.python-version }} - pathy${{ matrix.pathy-version }} - dj${{ matrix.django-version }}
@@ -159,32 +131,22 @@ jobs:
       matrix:
         os:
           - ubuntu-22.04
-        #          - Windows
-        #          - MacOs
         python-version:
-#          - "3.13"
+          - "3.13"
           - "3.12"
           - "3.11"
           - "3.10"
           - "3.9"
-#          - "3.8"
-#          - "3.7"
         django-version:
           - "42"
-          - "50"
-          - "51"
         pathy-version:
           - "0.10.3"
           - "0.11"
         exclude:
-#          - python-version: "3.13"
-#            pathy-version: "0.10.3"
+          - python-version: "3.13"
+            pathy-version: "0.10.3"
           - python-version: "3.12"
             pathy-version: "0.10.3"
-          - python-version: "3.9"
-            django-version: "50"
-          - python-version: "3.9"
-            django-version: "51"
     steps:
     - name: Install wkhtmltopdf
       run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 poppler-utils
@@ -195,25 +157,14 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-#        cache: 'pip'
-#        cache-dependency-path: '**/examples/requirements/django_*.txt'
     - name: Upgrade pip
       run: |
         python -m pip install --upgrade pip
-    - name: Install Django dependency (Django ${{ matrix.django-version }})
-      run: |
-        if [ "${{ matrix.django-version }}" = "42" ]; then
-          pip install -r examples/requirements/django_4_2.in;
-        elif [ "${{ matrix.django-version }}" = "50" ]; then
-          pip install -r examples/requirements/django_5_0.in;
-        else
-          pip install -r examples/requirements/django_5_1.in;
-        fi
+    - name: Install Django dependency (Django 4.2)
+      run: pip install -r examples/requirements/django_4_2.in
     - name: Install package
       run: |
         pip install -e .[all]
-#    - name: Install tox
-#      run: python -m pip install --no-cache-dir tox-gh-actions
     - name: Install pathy dependency
       run: pip install "pathy==${{ matrix.pathy-version }}"
     - name: Prepare directories
@@ -224,7 +175,6 @@ jobs:
       run: |
         pip list
     - name: Run test suite
-#      run: tox -r #--parallel auto
       run: pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py
       env:
         PYTEST_ADDOPTS: "-vv --durations=10"
@@ -250,7 +200,6 @@ jobs:
     - name: Coveralls Finished
       id: coveralls-finish
       continue-on-error: true
-#      if: steps.coveralls-setup.outcome == 'success'
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}

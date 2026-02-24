@@ -1,40 +1,52 @@
+# Build:  docker build -t faker-file-test .
+# Test:   docker run --rm faker-file-test
+# Env:    docker run --rm faker-file-test -e py311-django42-pathy0110
+# Shell:  docker run --rm -it --entrypoint bash faker-file-test
+
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
-# Ensure uv-installed pythons are in the path if needed
-ENV PATH="/root/.local/bin/:${PATH}"
 
-# 1. Install ONLY system-level tools and libraries
+# System dependencies matching GitHub CI (ubuntu-22.04).
+# default-jre-headless is required by tika (used in data-integrity tests);
+# GitHub-hosted runners have Java pre-installed.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
     ca-certificates \
-    git \
-    make \
-    # faker-file specific system dependencies
     wkhtmltopdf \
     libpango-1.0-0 \
     libharfbuzz0b \
     libpangoft2-1.0-0 \
     poppler-utils \
-    libmagic1 \
+    default-jre-headless \
+    build-essential \
+    curl \
+    git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+# Point Python's SSL module to the system CA bundle.
+# python-build-standalone (installed by uv) may not locate it automatically.
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
-# 3. Pre-fetch the Python versions we need 
-# This makes the 'docker build' step contain the pythons, 
-# so 'docker run' remains fast.
+# Copy uv binary from the official uv image (avoids network installer issues)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Install all Python versions used in the test matrix
 RUN uv python install 3.9 3.10 3.11 3.12 3.13
 
-# 4. Install tox and tox-uv into a global-like tool space
+# Install tox and tox-uv into a uv-managed tool environment
 RUN uv tool install tox --with tox-uv
 
-WORKDIR /app
-COPY . /app
+# Make uv tool binaries (tox) available on PATH
+ENV PATH="/root/.local/bin:${PATH}"
 
-# The entrypoint will now use the uv-installed tox
-# ENTRYPOINT ["uvx", "tox"]
-ENTRYPOINT ["uv", "run", "--with", "tox", "--with", "tox-uv", "tox"]
+WORKDIR /app
+COPY . .
+
+# Pre-create directories required by tests
+RUN mkdir -p examples/django_example/project/media/ \
+             examples/django_example/project/static/
+
+ENTRYPOINT ["tox"]
+CMD []
