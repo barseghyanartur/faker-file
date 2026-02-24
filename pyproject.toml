@@ -42,31 +42,32 @@ requires-python = ">=3.9"
 dependencies = ["Faker"]
 
 [project.optional-dependencies]
-all = [
-    "Faker",
-    "WeasyPrint",
-    "imgkit",
-    "odfpy",
-    "openpyxl",
-    "pathy[all]>=0.10.0,<0.12.0",
-    "paramiko",
-    "pdf2image",
-    "pdfkit",
-    "reportlab",
-    "python-docx",
-    "python-pptx",
-    "tablib",
-    "xml2epub",
-    "gtts",
-    "edge-tts",
-    "nlpaug",
-    "nltk",
-    "textaugment",
-    "textblob>=0.17,<0.18",
-    "tika",
-    "torch",
-    "transformers",
-]
+all = ["faker-file[common,data-augmentation,test,docs,build]"]
+# all = [
+#     "Faker",
+#     "WeasyPrint",
+#     "imgkit",
+#     "odfpy",
+#     "openpyxl",
+#     "pathy[all]>=0.10.0,<0.12.0",
+#     "paramiko",
+#     "pdf2image",
+#     "pdfkit",
+#     "reportlab",
+#     "python-docx",
+#     "python-pptx",
+#     "tablib",
+#     "xml2epub",
+#     "gtts",
+#     "edge-tts",
+#     "nlpaug",
+#     "nltk",
+#     "textaugment",
+#     "textblob>=0.17,<0.20",
+#     "tika",
+#     "torch",
+#     "transformers",
+# ]
 common = [
     "Faker",
     "WeasyPrint",
@@ -113,6 +114,40 @@ sftp = ["paramiko"]
 sqlalchemy = ["SQLAlchemy>=1.0", "SQLAlchemy-Utils>=0.37.0"]
 tiff = ["WeasyPrint", "pdf2image"]
 xlsx = ["tablib", "openpyxl"]
+
+dev = [
+    "detect-secrets",
+    "doc8",
+    "ipython",
+    "mypy",
+    "pydoclint",
+    "ruff",
+    "twine",
+    "uv",
+]
+test = [
+    "django",
+    "fake.py",
+    "moto[s3]",
+    "openai",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "respx",
+]
+docs = [
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme>=1.3.0",
+    "sphinx-no-pragma",
+    "sphinx-llms-txt-link",
+    "sphinx-source-tree",
+]
+build = [
+    "build",
+    "twine",
+    "wheel",
+]
 
 [project.scripts]
 faker-file = "faker_file.cli.command:main"
