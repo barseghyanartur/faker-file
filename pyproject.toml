@@ -26,11 +26,12 @@ keywords = [
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
+    # "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Environment :: Web Environment",
     "License :: OSI Approved :: MIT License",
     "Intended Audience :: Developers",
@@ -88,7 +89,7 @@ data-augmentation = [
     "nlpaug",
     "nltk",
     "textaugment",
-    "textblob>=0.17,<0.18",
+    "textblob>=0.17,<0.20",
     "tika",
     "torch",
     "transformers",

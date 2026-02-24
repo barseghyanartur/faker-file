@@ -33,7 +33,7 @@ ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 # Install all Python versions used in the test matrix
-RUN uv python install 3.9 3.10 3.11 3.12 3.13
+RUN uv python install 3.9 3.10 3.11 3.12 3.13 3.14
 
 # Install tox and tox-uv into a uv-managed tool environment
 RUN uv tool install tox --with tox-uv
