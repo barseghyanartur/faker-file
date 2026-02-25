@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.test import TestCase
 from faker import Faker
-from parametrize import parametrize
 from storages.backends.s3boto3 import S3Boto3Storage
 
 import factories

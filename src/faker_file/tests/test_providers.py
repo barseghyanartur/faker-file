@@ -2267,7 +2267,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    pytest.mark.(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_ALLOW_FAILURES,
     )
