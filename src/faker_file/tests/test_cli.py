@@ -5,7 +5,6 @@ import unittest
 from importlib import import_module, reload
 from typing import Union
 
-import pytest
 from parameterized import parameterized
 
 from ..cli.command import main

@@ -6,8 +6,8 @@ from typing import Any, Dict, List, Tuple, Type, Union
 import pytest
 from faker import Faker
 from fuzzywuzzy import fuzz
-from tika import parser
 from parameterized import parameterized
+from tika import parser
 
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider

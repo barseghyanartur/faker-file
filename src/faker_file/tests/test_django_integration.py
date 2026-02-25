@@ -1,6 +1,5 @@
 from typing import Any, Callable, Dict
 
-import pytest
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.test import TestCase

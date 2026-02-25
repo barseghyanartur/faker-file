@@ -4,10 +4,9 @@ import unittest
 from pathlib import Path
 from typing import Any, Dict, Type, Union
 
-import pytest
 from faker import Faker
-from pathy import use_fs, use_fs_cache
 from parameterized import parameterized
+from pathy import use_fs, use_fs_cache
 
 from ..providers.json_file import JsonFileProvider
 from ..registry import FILE_REGISTRY

@@ -10,8 +10,8 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
 import pytest
-from parameterized import parameterized
 from faker import Faker
+from parameterized import parameterized
 from pathy import use_fs
 from PIL import Image, ImageDraw
 

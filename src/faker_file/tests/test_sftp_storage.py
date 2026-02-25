@@ -8,7 +8,6 @@ import unittest
 from functools import partial
 from typing import Any, Dict, Type, Union
 
-import pytest
 from faker import Faker
 from parameterized import parameterized
 
