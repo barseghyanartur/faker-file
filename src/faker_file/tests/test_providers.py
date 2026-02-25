@@ -11,7 +11,6 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
 
 import pytest
 from faker import Faker
-from parametrize import parametrize
 from pathy import use_fs
 from PIL import Image, ImageDraw
 
@@ -2178,7 +2177,7 @@ class ProvidersTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -2200,7 +2199,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_RETRY_FAILURES,
     )
@@ -2223,7 +2222,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -2245,7 +2244,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_RETRY_FAILURES,
     )
@@ -2268,7 +2267,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    pytest.mark.(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA_ALLOW_FAILURES,
     )
@@ -2291,7 +2290,7 @@ class ProvidersTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue(storage.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -2312,7 +2311,7 @@ class ProvidersTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -2333,7 +2332,7 @@ class ProvidersTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, content",
         [
             (create_inner_webp_file, "Lorem ipsum"),
@@ -2353,7 +2352,7 @@ class ProvidersTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, content",
         [
             (create_inner_webp_file, "Lorem ipsum"),
@@ -2373,7 +2372,7 @@ class ProvidersTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "module_path, "
         "module_name, "
         "create_inner_file_func, "
@@ -2679,7 +2678,7 @@ class ProvidersTestCase(unittest.TestCase):
                 image_generator_cls=MyImageGenerator
             )
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA,
     )
@@ -2703,7 +2702,7 @@ class ProvidersTestCase(unittest.TestCase):
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA_RETRY_FAILURES,
     )
@@ -2728,7 +2727,7 @@ class ProvidersTestCase(unittest.TestCase):
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA_ALLOW_FAILURES,
     )
@@ -2880,7 +2879,7 @@ class RandomFileFromDirProviderTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -2902,7 +2901,7 @@ class RandomFileFromDirProviderTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA,
     )
@@ -2926,7 +2925,7 @@ class RandomFileFromDirProviderTestCase(unittest.TestCase):
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -2947,7 +2946,7 @@ class RandomFileFromDirProviderTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -3064,7 +3063,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -3086,7 +3085,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA,
     )
@@ -3110,7 +3109,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -3131,7 +3130,7 @@ class FileFromPathProviderTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -3421,7 +3420,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -3443,7 +3442,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue(_file.data["storage"].exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA,
     )
@@ -3467,7 +3466,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -3488,7 +3487,7 @@ class AugmentImageFromPathProviderTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -3641,7 +3640,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -3663,7 +3662,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
         _file = _method(**_kwargs)
         self.assertTrue((storage or FS_STORAGE).exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "fake, provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
@@ -3687,7 +3686,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
         self.assertIsInstance(_bytes, bytes)
         self.assertGreater(len(_bytes), 0)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )
@@ -3708,7 +3707,7 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
 
         self.assertTrue(FS_STORAGE.exists(_file))
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "create_inner_file_func, options, create_inner_file_args",
         __PARAMETRIZED_DATA_ARCHIVES,
     )

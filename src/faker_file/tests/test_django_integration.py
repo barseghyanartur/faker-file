@@ -1,5 +1,6 @@
 from typing import Any, Callable, Dict
 
+import pytest
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.test import TestCase
@@ -47,7 +48,7 @@ class DjangoIntegrationTestCase(TestCase):
         super().tearDown(*args, **kwargs)
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "factory, kwargs",
         [
             (factories.UploadFactory, {}),

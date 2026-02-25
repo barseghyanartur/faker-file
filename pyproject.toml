@@ -126,13 +126,21 @@ dev = [
     "uv",
 ]
 test = [
+    "asyncssh",
+    "coverage",
     "django",
     "fake.py",
+    "fuzzywuzzy[speedup]",
+    "moto>=5.0.0",
     "moto[s3]",
     "openai",
     "pytest",
+    "pytest-codeblock",
     "pytest-cov",
     "pytest-django",
+    "pytest-ordering",
+    "pytest-parallel",
+    "pytest-rerunfailures",
     "respx",
 ]
 docs = [

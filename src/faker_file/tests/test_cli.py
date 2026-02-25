@@ -5,7 +5,7 @@ import unittest
 from importlib import import_module, reload
 from typing import Union
 
-from parametrize import parametrize
+import pytest
 
 from ..cli.command import main
 from ..registry import FILE_REGISTRY
@@ -47,7 +47,7 @@ class TestCLI(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "method_name, kwargs",
         [
             # BIN

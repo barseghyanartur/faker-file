@@ -8,8 +8,8 @@ import unittest
 from functools import partial
 from typing import Any, Dict, Type, Union
 
+import pytest
 from faker import Faker
-from parametrize import parametrize
 
 from ..providers.txt_file import TxtFileProvider
 from ..registry import FILE_REGISTRY
@@ -104,7 +104,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         cls.server_thread.start()
         time.sleep(2)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "storage_cls, kwargs, prefix, basename, extension",
         [
             # SFTPStorage
@@ -172,7 +172,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         storage.unlink(file_text)
         storage.unlink(file_bytes)
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "storage_cls, kwargs, prefix, extension",
         [
             # FileSystemStorage
@@ -262,7 +262,7 @@ class TestSFTPStorageTestCase(unittest.TestCase):
 
         FILE_REGISTRY.clean_up()  # Clean up storage files
 
-    @parametrize(
+    @pytest.mark.parametrize(
         "kwargs",
         [
             # Wrong username, key
