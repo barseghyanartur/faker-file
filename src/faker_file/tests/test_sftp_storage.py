@@ -10,6 +10,7 @@ from typing import Any, Dict, Type, Union
 
 import pytest
 from faker import Faker
+from parameterized import parameterized
 
 from ..providers.txt_file import TxtFileProvider
 from ..registry import FILE_REGISTRY
@@ -104,8 +105,8 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         cls.server_thread.start()
         time.sleep(2)
 
-    @pytest.mark.parametrize(
-        "storage_cls, kwargs, prefix, basename, extension",
+    @parameterized.expand(
+        # "storage_cls, kwargs, prefix, basename, extension",
         [
             # SFTPStorage
             (
@@ -172,8 +173,8 @@ class TestSFTPStorageTestCase(unittest.TestCase):
         storage.unlink(file_text)
         storage.unlink(file_bytes)
 
-    @pytest.mark.parametrize(
-        "storage_cls, kwargs, prefix, extension",
+    @parameterized.expand(
+        # "storage_cls, kwargs, prefix, extension",
         [
             # FileSystemStorage
             (
@@ -262,8 +263,8 @@ class TestSFTPStorageTestCase(unittest.TestCase):
 
         FILE_REGISTRY.clean_up()  # Clean up storage files
 
-    @pytest.mark.parametrize(
-        "kwargs",
+    @parameterized.expand(
+        # "kwargs",
         [
             # Wrong username, key
             (

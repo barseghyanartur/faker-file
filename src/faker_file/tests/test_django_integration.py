@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.test import TestCase
 from faker import Faker
+from parameterized import parameterized
 from storages.backends.s3boto3 import S3Boto3Storage
 
 import factories
@@ -47,8 +48,8 @@ class DjangoIntegrationTestCase(TestCase):
         super().tearDown(*args, **kwargs)
         FILE_REGISTRY.clean_up()
 
-    @pytest.mark.parametrize(
-        "factory, kwargs",
+    @parameterized.expand(
+        # "factory, kwargs",
         [
             (factories.UploadFactory, {}),
             (factories.UploadFactory, {"random_file": True}),

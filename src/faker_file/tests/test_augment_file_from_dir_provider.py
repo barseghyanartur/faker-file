@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple, Type, Union
 import pytest
 import tika
 from faker import Faker
-from parametrize import parametrize
+from parameterized import parameterized
 from pathy import use_fs
 
 from ..base import DEFAULT_REL_PATH
@@ -280,8 +280,8 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
         super().tearDownClass()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
-        "provider, method_name, kwargs, storage",
+    @parameterized.expand(
+        # "provider, method_name, kwargs, storage",
         __PARAMETRIZED_DATA,
     )
     def test_standalone(
@@ -337,8 +337,8 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
                 text_augmenter_cls=MyTextAugmenter,
             )
 
-    @parametrize(
-        "provider, method_name, kwargs, storage",
+    @parameterized.expand(
+        # "provider, method_name, kwargs, storage",
         __RAW_PARAMETRIZED_DATA,
     )
     def test_raw_standalone(

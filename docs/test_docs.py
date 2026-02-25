@@ -8,6 +8,7 @@ import pytest
 import tika
 from django.test import override_settings
 from faker_file.registry import FILE_REGISTRY
+from parameterized import parameterized
 from moto import mock_aws
 
 # Walk through the directory and all subdirectories for .py files
@@ -62,7 +63,10 @@ def execute_file(file_path, caplog):
 
 @pytest.mark.flaky(retries=3, delay=1)
 @pytest.mark.django_db
-@pytest.mark.parametrize("file_path", py_files)
+@parameterized.expand(
+    # "file_path", 
+    py_files,
+)
 @override_settings(AWS_STORAGE_BUCKET_NAME="testing")
 def test_dynamic_files(file_path, caplog, mock_gcs, mock_paramiko):
     execute_file(file_path, caplog)

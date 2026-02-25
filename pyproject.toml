@@ -134,6 +134,7 @@ test = [
     "moto>=5.0.0",
     "moto[s3]",
     "openai",
+    "parameterized",
     "pytest",
     "pytest-codeblock",
     "pytest-cov",

@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 import sqlalchemy_factories as factories
 from faker_file_admin import app
 from faker_file_admin.models import Upload
+from parameterized import parameterized
 
 from ..registry import FILE_REGISTRY
 from ..storages.filesystem import FileSystemStorage
@@ -40,8 +41,8 @@ class SQLAlchemyIntegrationTestCase(TestCase):
 
     FAKER: Faker
 
-    @pytest.mark.parametrize(
-        "factory, kwargs",
+    @parameterized.expand(
+        # "factory, kwargs",
         [
             (factories.UploadFactory, {}),
             (factories.UploadFactory, {"random_file": True}),

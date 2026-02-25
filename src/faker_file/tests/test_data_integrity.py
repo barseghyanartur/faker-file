@@ -7,6 +7,7 @@ import pytest
 from faker import Faker
 from fuzzywuzzy import fuzz
 from tika import parser
+from parameterized import parameterized
 
 from ..providers.docx_file import DocxFileProvider
 from ..providers.eml_file import EmlFileProvider
@@ -133,8 +134,8 @@ class DataIntegrityTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @pytest.mark.parametrize(
-        "fake, provider, method_name, kwargs, similarity_margin",
+    @parameterized.expand(
+        # "fake, provider, method_name, kwargs, similarity_margin",
         __PARAMETRIZED_DATA,
     )
     @pytest.mark.flaky(reruns=3)
