@@ -63,8 +63,8 @@ def execute_file(file_path, caplog):
 
 @pytest.mark.flaky(retries=3, delay=1)
 @pytest.mark.django_db
-@parameterized.expand(
-    # "file_path", 
+@pytest.mark.parametrize(
+    "file_path",
     py_files,
 )
 @override_settings(AWS_STORAGE_BUCKET_NAME="testing")
