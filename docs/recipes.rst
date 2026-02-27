@@ -18,6 +18,7 @@ Imports and initializations
 
     .. literalinclude:: _static/examples/recipes/imports_and_init_1.py
         :language: python
+        :name: test_imports_and_init_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/imports_and_init_1.py>`
@@ -28,6 +29,7 @@ Imports and initializations
 
     .. literalinclude:: _static/examples/recipes/imports_and_init_2.py
         :language: python
+        :name: test_imports_and_init_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/imports_and_init_2.py>`
@@ -43,6 +45,7 @@ Create a TXT file with static content
     .. literalinclude:: _static/examples/recipes/txt_file_1.py
         :language: python
         :lines: 7-
+        :name: test_txt_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/txt_file_1.py>`
@@ -59,6 +62,7 @@ Create a DOCX file with dynamically generated content
     .. literalinclude:: _static/examples/recipes/docx_file_1.py
         :language: python
         :lines: 7-
+        :name: test_docx_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/docx_file_1.py>`
@@ -73,6 +77,7 @@ Create a ZIP file consisting of TXT files with static content
     .. literalinclude:: _static/examples/recipes/zip_file_1.py
         :language: python
         :lines: 7-
+        :name: test_zip_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/zip_file_1.py>`
@@ -91,6 +96,7 @@ Create a ZIP file consisting of 3 DOCX files with dynamically generated content
     .. literalinclude:: _static/examples/recipes/zip_file_2.py
         :language: python
         :lines: 2, 7-
+        :name: test_zip_file_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/zip_file_2.py>`
@@ -105,6 +111,7 @@ Create a ZIP file of 9 DOCX files with content generated from template
     .. literalinclude:: _static/examples/recipes/zip_file_3.py
         :language: python
         :lines: 2, 7-
+        :name: test_zip_file_3
 
     *See the full example*
     :download:`here <_static/examples/recipes/zip_file_3.py>`
@@ -127,6 +134,7 @@ contain 5 DOCX files.
     .. literalinclude:: _static/examples/recipes/zip_file_4.py
         :language: python
         :lines: 2-5, 10-
+        :name: test_zip_file_4
 
     *See the full example*
     :download:`here <_static/examples/recipes/zip_file_4.py>`
@@ -143,6 +151,7 @@ Create a ZIP file with variety of different file types within
     .. literalinclude:: _static/examples/recipes/zip_file_5.py
         :language: python
         :lines: 2-7, 9-10, 14-
+        :name: test_zip_file_5
 
     *See the full example*
     :download:`here <_static/examples/recipes/zip_file_5.py>`
@@ -159,6 +168,7 @@ Another way to create a ZIP file with variety of different file types within
     .. literalinclude:: _static/examples/recipes/zip_file_6.py
         :language: python
         :lines: 2-6, 11-
+        :name: test_zip_file_6
 
     *See the full example*
     :download:`here <_static/examples/recipes/zip_file_6.py>`
@@ -176,6 +186,7 @@ Create an EML file consisting of TXT files with static content
     .. literalinclude:: _static/examples/recipes/eml_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_eml_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/eml_file_1.py>`
@@ -193,6 +204,7 @@ Create a EML file consisting of 3 DOCX files with dynamically generated content
     .. literalinclude:: _static/examples/recipes/eml_file_2.py
         :language: python
         :lines: 3, 7-
+        :name: test_eml_file_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/eml_file_2.py>`
@@ -215,6 +227,7 @@ contain 5 DOCX files.
     .. literalinclude:: _static/examples/recipes/eml_file_3.py
         :language: python
         :lines: 3-6, 10-
+        :name: test_eml_file_3
 
     *See the full example*
     :download:`here <_static/examples/recipes/eml_file_3.py>`
@@ -230,6 +243,7 @@ Create an EML file with variety of different file types within
     .. literalinclude:: _static/examples/recipes/eml_file_4.py
         :language: python
         :lines: 3-8, 17-
+        :name: test_eml_file_4
 
     *See the full example*
     :download:`here <_static/examples/recipes/eml_file_4.py>`
@@ -245,6 +259,7 @@ Create an EML file ``Content-Transfer-Encoding`` set to ``7bit``
     .. literalinclude:: _static/examples/recipes/eml_file_5.py
         :language: python
         :lines: 3-8, 17-
+        :name: test_eml_file_5
 
     *See the full example*
     :download:`here <_static/examples/recipes/eml_file_5.py>`
@@ -259,6 +274,7 @@ Create a PDF file with predefined template containing dynamic fixtures
     .. literalinclude:: _static/examples/recipes/pdf_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_pdf_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/pdf_file_1.py>`
@@ -285,6 +301,7 @@ and image.
     .. literalinclude:: _static/examples/recipes/docx_file_mixed_1.py
         :language: python
         :lines: 2-8, 13-
+        :name: test_docx_file_mixed_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/docx_file_mixed_1.py>`
@@ -299,6 +316,7 @@ ODT file with table and image.
     .. literalinclude:: _static/examples/recipes/odt_file_mixed_1.py
         :language: python
         :lines: 3-10, 12-
+        :name: test_odt_file_mixed_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/odt_file_mixed_1.py>`
@@ -310,6 +328,7 @@ Create a PDF using `reportlab` generator
     .. literalinclude:: _static/examples/recipes/pdf_file_reportlab_1.py
         :language: python
         :lines: 3-5, 9-
+        :name: test_pdf_file_reportlab_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/pdf_file_reportlab_1.py>`
@@ -324,6 +343,7 @@ you could set it explicitly as follows:
     .. literalinclude:: _static/examples/recipes/pdf_file_pdfkit_1.py
         :language: python
         :lines: 3-5, 9-
+        :name: test_pdf_file_pdfkit_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/pdf_file_pdfkit_1.py>`
@@ -340,6 +360,7 @@ rescue:
     .. literalinclude:: _static/examples/recipes/pdf_file_pillow_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_pdf_file_pillow_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/pdf_file_pillow_1.py>`
@@ -353,6 +374,7 @@ shapes of different colours). One of the most useful arguments supported is
     .. literalinclude:: _static/examples/recipes/pdf_file_pillow_2.py
         :language: python
         :lines: 7-
+        :name: test_pdf_file_pillow_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/pdf_file_pillow_2.py>`
@@ -373,6 +395,7 @@ Create an ICO file
     .. literalinclude:: _static/examples/recipes/graphic_ico_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_graphic_ico_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/graphic_ico_file_1.py>`
@@ -384,6 +407,7 @@ Create a JPEG file
     .. literalinclude:: _static/examples/recipes/graphic_jpeg_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_graphic_jpeg_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/graphic_jpeg_file_1.py>`
@@ -395,6 +419,7 @@ Create a PNG file
     .. literalinclude:: _static/examples/recipes/graphic_png_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_graphic_png_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/graphic_png_file_1.py>`
@@ -406,6 +431,7 @@ Create a WEBP file
     .. literalinclude:: _static/examples/recipes/graphic_webp_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_graphic_webp_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/graphic_webp_file_1.py>`
@@ -417,6 +443,7 @@ Create a MP3 file
     .. literalinclude:: _static/examples/recipes/mp3_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_mp3_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/mp3_file_1.py>`
@@ -430,6 +457,7 @@ Google Text-to-Speech
     .. literalinclude:: _static/examples/recipes/mp3_file_gtts_1.py
         :language: python
         :lines: 3-5, 9-
+        :name: test_mp3_file_gtts_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/mp3_file_gtts_1.py>`
@@ -443,6 +471,7 @@ You can tune arguments too:
     .. literalinclude:: _static/examples/recipes/mp3_file_gtts_2.py
         :language: python
         :lines: 10-
+        :name: test_mp3_file_gtts_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/mp3_file_gtts_2.py>`
@@ -460,6 +489,7 @@ Microsoft Edge Text-to-Speech
     .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_1.py
         :language: python
         :lines: 3-5, 9-
+        :name: test_mp3_file_edge_tts_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/mp3_file_edge_tts_1.py>`
@@ -473,6 +503,7 @@ You can tune arguments too:
     .. literalinclude:: _static/examples/recipes/mp3_file_edge_tts_2.py
         :language: python
         :lines: 10-
+        :name: test_mp3_file_edge_tts_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/mp3_file_edge_tts_2.py>`
@@ -497,6 +528,7 @@ Usage with custom MP3 generator class.
     .. literalinclude:: _static/examples/recipes/mp3_file_custom_1.py
         :language: python
         :lines: 2, 4, 9-
+        :name: test_mp3_file_custom_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/mp3_file_custom_1.py>`
@@ -516,6 +548,7 @@ Pick a random file from a directory given
     .. literalinclude:: _static/examples/recipes/random_file_from_dir_1.py
         :language: python
         :lines: 2, 4, 7, 12-
+        :name: test_random_file_from_dir_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/random_file_from_dir_1.py>`
@@ -531,6 +564,7 @@ File from path given
     .. literalinclude:: _static/examples/recipes/file_from_path_1.py
         :language: python
         :lines: 3-4, 7, 11-
+        :name: test_file_from_path_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/file_from_path_1.py>`
@@ -548,6 +582,7 @@ BIN
     .. literalinclude:: _static/examples/recipes/file_of_size_bin_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_file_of_size_bin_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/file_of_size_bin_1.py>`
@@ -559,6 +594,7 @@ TXT
     .. literalinclude:: _static/examples/recipes/file_of_size_txt_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_file_of_size_txt_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/file_of_size_txt_1.py>`
@@ -575,6 +611,7 @@ Generate 10 DOCX files
     .. literalinclude:: _static/examples/recipes/files_multiprocessing_1.py
         :language: python
         :lines: 1, 4-6, 8-
+        :name: test_files_multiprocessing_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/files_multiprocessing_1.py>`
@@ -586,6 +623,7 @@ Randomize the file format
     .. literalinclude:: _static/examples/recipes/files_multiprocessing_2.py
         :language: python
         :lines: 4-10, 36-
+        :name: test_files_multiprocessing_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/files_multiprocessing_2.py>`
@@ -599,6 +637,7 @@ See the following example:
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
         :language: python
         :lines: 2-4, 9, 15, 22-
+        :name: test_augment_file_from_dir_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/augment_file_from_dir_1.py>`
@@ -629,6 +668,7 @@ however narrow that list by providing ``extensions`` argument:
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
         :language: python
         :lines: 23-
+        :name: test_augment_file_from_dir_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/augment_file_from_dir_2.py>`
@@ -661,6 +701,7 @@ Some well working options for ``model_path`` are:
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
         :language: python
         :lines: 5-7, 25-
+        :name: test_augment_file_from_dir_3
 
     *See the full example*
     :download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
@@ -676,6 +717,7 @@ textaugment augmenter
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_4.py
         :language: python
         :lines: 5-7, 25-
+        :name: test_augment_file_from_dir_4
 
     *See the full example*
     :download:`here <_static/examples/recipes/augment_file_from_dir_4.py>`
@@ -694,6 +736,7 @@ of the file to build a test payload as shown in the example test below:
     .. literalinclude:: _static/examples/recipes/raw_1.py
         :language: python
         :lines: 16-
+        :name: test_raw_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/raw_1.py>`
@@ -709,6 +752,7 @@ an HTML file is generated from a template.
     .. literalinclude:: _static/examples/recipes/generic_file_1.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_generic_file_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/generic_file_1.py>`
@@ -722,6 +766,7 @@ AWS S3 storage
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
         :language: python
         :lines: 3, 7-
+        :name: test_aws_s3_storage_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/aws_s3_storage_1.py>`
@@ -741,6 +786,7 @@ correct:
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
         :language: python
         :lines: 8-12
+        :name: test_aws_s3_storage_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/aws_s3_storage_2.py>`
@@ -752,6 +798,7 @@ Google Cloud Storage
     .. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
         :language: python
         :lines: 3, 7-
+        :name: test_google_cloud_storage_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/google_cloud_storage_1.py>`
@@ -767,6 +814,7 @@ would be correct:
     .. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
         :language: python
         :lines: 8-12
+        :name: test_google_cloud_storage_2
 
     *See the full example*
     :download:`here <_static/examples/recipes/google_cloud_storage_2.py>`
@@ -778,6 +826,7 @@ SFTP storage
     .. literalinclude:: _static/examples/recipes/sftp_storage_1.py
         :language: python
         :lines: 3, 7-
+        :name: test_sftp_storage_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/sftp_storage_1.py>`
@@ -804,6 +853,7 @@ Imaginary ``Django`` model
     .. literalinclude:: _static/examples/recipes/factory_boy_models_1.py
         :language: python
         :lines: 4-11
+        :name: test_factory_boy_models_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/factory_boy_models_1.py>`
@@ -813,6 +863,7 @@ Correspondent ``factory_boy`` factory
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
     :language: python
     :lines: 1-87
+    :name: test_factory_boy_factory_1
 
 And then somewhere in your code:
 
@@ -821,6 +872,7 @@ And then somewhere in your code:
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
         :language: python
         :lines: 91-
+        :name: test_factory_boy_factory_1b
 
     *See the full example*
     :download:`here <_static/examples/recipes/factory_boy_factory_1.py>`
@@ -832,6 +884,7 @@ Randomize provider choice
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
     :language: python
     :lines: 1, 4, 6, 27, 30-49, 55-95
+    :name: test_factory_boy_factory_2
 
 And then somewhere in your code:
 
@@ -840,6 +893,7 @@ And then somewhere in your code:
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
         :language: python
         :lines: 98-
+        :name: test_factory_boy_factory_2b
 
     *See the full example*
     :download:`here <_static/examples/recipes/factory_boy_factory_2.py>`
@@ -851,6 +905,7 @@ Use a different locale
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
         :language: python
         :lines: 23-24
+        :name: test_factory_boy_factory_3
 
     *See the full example*
     :download:`here <_static/examples/recipes/factory_boy_factory_3.py>`
@@ -864,6 +919,7 @@ Other Django usage examples
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
         :language: python
         :lines: 2, 4-
+        :name: test_aws_s3_storage_3
 
     *See the full example*
     :download:`here <_static/examples/recipes/aws_s3_storage_3.py>`
@@ -877,6 +933,7 @@ Other Django usage examples
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
         :language: python
         :lines: 2, 4-6, 9-
+        :name: test_aws_s3_storage_4
 
     *See the full example*
     :download:`here <_static/examples/recipes/aws_s3_storage_4.py>`
@@ -890,6 +947,7 @@ Other Django usage examples
     .. literalinclude:: _static/examples/recipes/flexible_storage_1.py
         :language: python
         :lines: 2-
+        :name: test_flexible_storage_1
 
     *See the full example*
     :download:`here <_static/examples/recipes/flexible_storage_1.py>`
