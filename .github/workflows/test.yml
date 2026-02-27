@@ -69,7 +69,9 @@ jobs:
       - name: Compile requirements
         run: uv pip compile examples/requirements/flask.in --no-strip-extras
       - name: Install requirements
-        run: pip install --no-cache-dir -r examples/requirements/flask.txt
+        run:  |
+          pip install -e .[test]
+          pip install --no-cache-dir -r examples/requirements/flask.txt
       - name: Run test suite
         run: pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
         env:
@@ -111,7 +113,9 @@ jobs:
       - name: Compile requirements
         run: uv pip compile examples/requirements/ml.in --no-strip-extras -o examples/requirements/ml.txt
       - name: Install requirements
-        run: pip install --no-cache-dir -r examples/requirements/ml.txt
+        run: |
+          pip install -e .[test]
+          pip install --no-cache-dir -r examples/requirements/ml.txt
       - name: Run test suite
         run: pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
         env:
