@@ -12,24 +12,12 @@ from pathy import use_fs
 
 from ..base import DEFAULT_REL_PATH
 from ..providers.augment_file_from_dir import (
-    NLPAUG_AUGMENTER,
-    TEXTAUGMENT_AUGMENTER,
+    FAKER_WORD_AUGMENTER,
     AugmentFileFromDirProvider,
 )
-from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
-    DEFAULT_ACTION as NLPAUG_AUGMENTER_DEFAULT_ACTION,
-)
-from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
-    DEFAULT_MODEL_PATH as NLPAUG_AUGMENTER_MODEL_PATH,
-)
-from ..providers.augment_file_from_dir.augmenters.nlpaug_augmenter import (
-    ContextualWordEmbeddingsAugmenter,
-)
-from ..providers.augment_file_from_dir.augmenters.textaugment_augmenter import (
-    DEFAULT_ACTION as TEXTAUGMENT_AUGMENTER_DEFAULT_ACTION,
-)
-from ..providers.augment_file_from_dir.augmenters.textaugment_augmenter import (
-    EDATextaugmentAugmenter,
+from ..providers.augment_file_from_dir.augmenters.faker_augmenter import (
+    DEFAULT_AUGMENTATION_PROBABILITY,
+    DEFAULT_POOL_SIZE,
 )
 from ..providers.base.text_augmenter import BaseTextAugmenter
 from ..providers.base.text_extractor import BaseTextExtractor
@@ -86,10 +74,12 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
             "augment_file_from_dir",
             {
                 "source_dir_path": SOURCE_DIR_PATH,
-                "text_augmenter_cls": ContextualWordEmbeddingsAugmenter,
+                "text_augmenter_cls": FAKER_WORD_AUGMENTER,
                 "text_augmenter_kwargs": {
-                    "model_path": NLPAUG_AUGMENTER_MODEL_PATH,
-                    "action": NLPAUG_AUGMENTER_DEFAULT_ACTION,
+                    "augmentation_probability": (
+                        DEFAULT_AUGMENTATION_PROBABILITY
+                    ),
+                    "pool_size": DEFAULT_POOL_SIZE,
                 },
             },
             None,

@@ -87,13 +87,13 @@ common = [
     "edge-tts",
 ]
 data-augmentation = [
-    "nlpaug",
-    "nltk",
-    "textaugment",
-    "textblob>=0.17,<0.18",
+    # "nlpaug",
+    # "nltk",
+    # "textaugment",
+    # "textblob>=0.17,<0.18",
     "tika",
-    "torch",
-    "transformers",
+    # "torch",
+    # "transformers",
 ]
 azure = ["pathy[azure]>=0.10.0,<0.12.0"]
 bmp = ["WeasyPrint", "pdf2image"]
