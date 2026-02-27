@@ -120,7 +120,7 @@ class FakerWordAugmenter(BaseTextAugmenter):
     def augment(self: "FakerWordAugmenter", text: str) -> str:
         """
         Augment text by randomly replacing words with Faker-generated ones.
-        
+
         :param text: Text to augment.
         :return: Augmented text.
         """
