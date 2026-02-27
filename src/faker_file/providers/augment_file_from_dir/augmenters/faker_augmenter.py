@@ -118,7 +118,12 @@ class FakerWordAugmenter(BaseTextAugmenter):
         self._word_pool = [fake.word() for _ in range(self.pool_size)]
 
     def augment(self: "FakerWordAugmenter", text: str) -> str:
-        """Augment text by randomly replacing words with Faker-generated ones."""
+        """
+        Augment text by randomly replacing words with Faker-generated ones.
+        
+        :param text: Text to augment.
+        :return: Augmented text.
+        """
         if not text:
             return text
 

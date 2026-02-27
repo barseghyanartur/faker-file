@@ -7,6 +7,7 @@ See the following full functional snippet for generating ODT.
 
     .. literalinclude:: _static/examples/creating_odt/odt_1.py
         :language: python
+        :name: test_creating_odt_1
 
     *See the full example*
     :download:`here <_static/examples/creating_odt/odt_1.py>`
@@ -28,6 +29,7 @@ See the example below for ``max_nb_chars`` tweak:
     .. literalinclude:: _static/examples/creating_odt/odt_2.py
         :language: python
         :lines: 8-
+        :name: test_creating_odt_2
 
     *See the full example*
     :download:`here <_static/examples/creating_odt/odt_2.py>`
@@ -41,6 +43,7 @@ See the example below for ``wrap_chars_after`` tweak:
     .. literalinclude:: _static/examples/creating_odt/odt_3.py
         :language: python
         :lines: 8-
+        :name: test_creating_odt_3
 
     *See the full example*
     :download:`here <_static/examples/creating_odt/odt_3.py>`
@@ -59,6 +62,7 @@ class is used. See the example below for usage examples:
     .. literalinclude:: _static/examples/creating_odt/odt_4.py
         :language: python
         :lines: 3-9, 14-
+        :name: test_creating_odt_4
 
     *See the full example*
     :download:`here <_static/examples/creating_odt/odt_4.py>`

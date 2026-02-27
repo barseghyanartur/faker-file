@@ -41,7 +41,7 @@ are used for versioning (schema follows below):
 
 - Deprecated NLPAug- and TextAugment-based augmenters, as both libraries
   seem to have pour support with modern Python versions. Introduced
-  a simple FakerWordAugmenter as a default text-augmenter, with no 
+  a simple FakerWordAugmenter as a default text-augmenter, with no
   additional dependencies.
 
 0.18.4

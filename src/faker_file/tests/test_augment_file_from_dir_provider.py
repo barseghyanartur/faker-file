@@ -89,41 +89,7 @@ class AugmentFileFromDirProviderTestCase(unittest.TestCase):
             "augment_file_from_dir",
             {
                 "source_dir_path": SOURCE_DIR_PATH,
-                "text_augmenter_cls": NLPAUG_AUGMENTER,
-            },
-            None,
-        ),
-        (
-            AugmentFileFromDirProvider,
-            "augment_file_from_dir",
-            {
-                "source_dir_path": SOURCE_DIR_PATH,
-                "text_augmenter_cls": EDATextaugmentAugmenter,
-            },
-            None,
-        ),
-        (
-            AugmentFileFromDirProvider,
-            "augment_file_from_dir",
-            {
-                "source_dir_path": SOURCE_DIR_PATH,
-                "text_augmenter_cls": TEXTAUGMENT_AUGMENTER,
-                "text_augmenter_kwargs": {
-                    "action": TEXTAUGMENT_AUGMENTER_DEFAULT_ACTION,
-                },
-            },
-            None,
-        ),
-        (
-            AugmentFileFromDirProvider,
-            "augment_file_from_dir",
-            {
-                "source_dir_path": SOURCE_DIR_PATH,
-                "text_augmenter_cls": TEXTAUGMENT_AUGMENTER,
-                "text_augmenter_kwargs": {
-                    "action": TEXTAUGMENT_AUGMENTER_DEFAULT_ACTION,
-                    "kwargs": {"n": 10, "top_n": 100},
-                },
+                "text_augmenter_cls": FAKER_WORD_AUGMENTER,
             },
             None,
         ),
