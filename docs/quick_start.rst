@@ -13,12 +13,16 @@ With ``Faker``
 ~~~~~~~~~~~~~~
 **Imports and initialization**
 
+.. pytestfixture: django_db
+
 .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
     :language: python
     :lines: 2-78
     :name: test_import_and_init_1
 
 **Usage examples**
+
+.. pytestfixture: django_db
 
 .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
     :language: python
@@ -30,6 +34,8 @@ the ``raw=True`` argument (works with all provider classes and inner
 functions):
 
 .. container:: jsphinx-download
+
+    .. pytestfixture: django_db
 
     .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
         :language: python
@@ -45,6 +51,8 @@ With ``factory_boy``
 ~~~~~~~~~~~~~~~~~~~~
 **Imports and initialization**
 
+.. pytestfixture: django_db
+
 .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
     :language: python
     :lines: 3, 5-45, 49-78
@@ -53,6 +61,8 @@ With ``factory_boy``
 **upload/models.py**
 
 .. container:: jsphinx-download
+
+    .. pytestfixture: django_db
 
     .. literalinclude:: _static/examples/quick_start/factory_models_1.py
         :language: python
@@ -64,6 +74,8 @@ With ``factory_boy``
 
 **upload/factories.py**
 
+.. pytestfixture: django_db
+
 .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
     :language: python
     :lines: 2-4, 46-49, 80-118
@@ -72,6 +84,8 @@ With ``factory_boy``
 **Usage example**
 
 .. container:: jsphinx-download
+
+    .. pytestfixture: django_db
 
     .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
         :language: python
