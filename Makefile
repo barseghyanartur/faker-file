@@ -163,7 +163,9 @@ docker-test: docker-build
 		docker compose run --rm tox; \
 	fi
 
-# Usage: make docker-test-env ENV=py312-django42-pathy0110
+# Usage:
+#  make docker-test-env ENV=py312-django42-pathy0110
+#  make docker-test-env ENV=py313-django42-pathy0110
 docker-test-env: docker-build
 	@if [ -z "$(ENV)" ]; then \
 		echo "Usage: make docker-test-env ENV=py312-django42-pathy0110"; \
