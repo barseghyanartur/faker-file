@@ -628,8 +628,8 @@ Randomize the file format
     *See the full example*
     :download:`here <_static/examples/recipes/files_multiprocessing_2.py>`
 
-Generating files from existing documents using NLP augmentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Generating files from existing documents using augmentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 See the following example:
 
 .. container:: jsphinx-download
@@ -676,10 +676,12 @@ however narrow that list by providing ``extensions`` argument:
 ----
 
 Actual augmentation of texts is delegated to an abstraction layer of text
-augmenters. Currently, two augmenters are implemented. Default one is based on
-`textaugment`_ (which is in its' turn based on `nltk`_) is very lightweight
-and speedy, but produces less accurate results. Another one is based on
-`nlpaug`_, which is way more sophisticated, but at the cost of speed.
+augmenters. Currently, only one augmenter is implemented. Default one is based 
+on `Faker`_, is very lightweight and speedy, but produces less accurate 
+results. In past two other aumenters existed: one based on `textaugment`_, 
+another on `nlpaug`_, which is way more sophisticated, but at the cost of speed 
+and hard-to-maintain dependencies, due to which both were deprecated, but are 
+not yet removed from the codebase.
 
 nlpaug augmenter
 ~~~~~~~~~~~~~~~~
@@ -701,7 +703,7 @@ Some well working options for ``model_path`` are:
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
         :language: python
         :lines: 5-7, 25-
-        :name: test_augment_file_from_dir_3
+        :name: _test_augment_file_from_dir_3
 
     *See the full example*
     :download:`here <_static/examples/recipes/augment_file_from_dir_3.py>`
@@ -717,7 +719,7 @@ textaugment augmenter
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_4.py
         :language: python
         :lines: 5-7, 25-
-        :name: test_augment_file_from_dir_4
+        :name: _test_augment_file_from_dir_4
 
     *See the full example*
     :download:`here <_static/examples/recipes/augment_file_from_dir_4.py>`
@@ -793,6 +795,8 @@ correct:
 
 Google Cloud Storage
 ^^^^^^^^^^^^^^^^^^^^
+.. pytestfixture: mock_gcs
+
 .. container:: jsphinx-download
 
     .. literalinclude:: _static/examples/recipes/google_cloud_storage_1.py
@@ -822,6 +826,8 @@ would be correct:
 SFTP storage
 ^^^^^^^^^^^^
 .. container:: jsphinx-download
+
+    .. pytestfixture: mock_paramiko
 
     .. literalinclude:: _static/examples/recipes/sftp_storage_1.py
         :language: python
@@ -860,6 +866,8 @@ Imaginary ``Django`` model
 
 Correspondent ``factory_boy`` factory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. pytestmark: django_db
+
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
     :language: python
     :lines: 1-87
@@ -868,6 +876,8 @@ Correspondent ``factory_boy`` factory
 And then somewhere in your code:
 
 .. container:: jsphinx-download
+
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
         :language: python
@@ -881,6 +891,8 @@ And then somewhere in your code:
 
 Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+.. pytestmark: django_db
+
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
     :language: python
     :lines: 1, 4, 6, 27, 30-49, 55-95
@@ -889,6 +901,8 @@ Randomize provider choice
 And then somewhere in your code:
 
 .. container:: jsphinx-download
+
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
         :language: python
@@ -901,6 +915,8 @@ And then somewhere in your code:
 Use a different locale
 ~~~~~~~~~~~~~~~~~~~~~~
 .. container:: jsphinx-download
+
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_3.py
         :language: python
@@ -916,6 +932,8 @@ Other Django usage examples
 
 .. container:: jsphinx-download
 
+    .. pytestmark: django_db
+
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
         :language: python
         :lines: 2, 4-
@@ -929,6 +947,8 @@ Other Django usage examples
 **factory-boy example with AWS S3 storage**
 
 .. container:: jsphinx-download
+
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_4.py
         :language: python

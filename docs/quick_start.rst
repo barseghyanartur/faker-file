@@ -13,7 +13,7 @@ With ``Faker``
 ~~~~~~~~~~~~~~
 **Imports and initialization**
 
-.. pytestfixture: django_db
+.. pytestmark: django_db
 
 .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
     :language: python
@@ -22,7 +22,7 @@ With ``Faker``
 
 **Usage examples**
 
-.. pytestfixture: django_db
+.. pytestmark: django_db
 
 .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
     :language: python
@@ -35,7 +35,7 @@ functions):
 
 .. container:: jsphinx-download
 
-    .. pytestfixture: django_db
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/quick_start/import_and_init_1.py
         :language: python
@@ -51,7 +51,7 @@ With ``factory_boy``
 ~~~~~~~~~~~~~~~~~~~~
 **Imports and initialization**
 
-.. pytestfixture: django_db
+.. pytestmark: django_db
 
 .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
     :language: python
@@ -62,7 +62,7 @@ With ``factory_boy``
 
 .. container:: jsphinx-download
 
-    .. pytestfixture: django_db
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/quick_start/factory_models_1.py
         :language: python
@@ -74,7 +74,7 @@ With ``factory_boy``
 
 **upload/factories.py**
 
-.. pytestfixture: django_db
+.. pytestmark: django_db
 
 .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
     :language: python
@@ -85,7 +85,7 @@ With ``factory_boy``
 
 .. container:: jsphinx-download
 
-    .. pytestfixture: django_db
+    .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/quick_start/factory_import_and_init_1.py
         :language: python

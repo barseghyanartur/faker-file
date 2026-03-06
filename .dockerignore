@@ -27,7 +27,6 @@ dist/
 htmlcov/
 
 # Docs
-docs/
 builddocs/
 builddocs.zip
 docs/_build/

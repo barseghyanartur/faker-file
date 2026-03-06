@@ -223,7 +223,8 @@ markers = [
     "documentation: mark a test as a documentation test.",
     "ml: ML test.",
     "django: Django test.",
-    "sqlalchemy: SQLAlchemy test."
+    "sqlalchemy: SQLAlchemy test.",
+    "codeblock: mark a test as a codeblock (docs) test."
 ]
 DJANGO_SETTINGS_MODULE = "project.settings.testing"
 
