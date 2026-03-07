@@ -85,6 +85,7 @@ common = [
     "xml2epub",
     "gtts",
     "edge-tts",
+    "setuptools<82.0.0",
 ]
 data-augmentation = [
     # "nlpaug",
@@ -136,7 +137,7 @@ test = [
     "openai",
     "parameterized",
     "pytest",
-    "pytest-codeblock",
+    "pytest-codeblock>=0.5.7",
     "pytest-cov",
     "pytest-django",
     "pytest-ordering",

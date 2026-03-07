@@ -10,7 +10,7 @@ import tika
 from django.test import override_settings
 from faker_file.registry import FILE_REGISTRY
 from parameterized import parameterized
-from moto import mock_aws
+from moto import mock_aws as moto_mock_aws
 
 # # Walk through the directory and all subdirectories for .py files
 # example_dir = Path("docs/_static/examples")
@@ -30,8 +30,12 @@ def setup_tika():
 @pytest.fixture
 def mock_gcs():
     """Mock Google Cloud Storage."""
-    with mock.patch("google.cloud.storage.Client") as mock_client:
-        yield mock_client
+    try:
+        from google.cloud import storage
+        with mock.patch("google.cloud.storage.Client") as mock_client:
+            yield mock_client
+    except (ImportError, AttributeError):
+        yield None
 
 
 @pytest.fixture
@@ -46,6 +50,21 @@ def mock_paramiko():
     with mock.patch("paramiko.Transport", mock_transport), mock.patch(
         "paramiko.SFTPClient", mock_sftp_client
     ):
+        yield
+
+
+@pytest.fixture
+def mock_aws():
+    """Mock AWS."""
+    with moto_mock_aws() as mock:
+        with override_settings(AWS_STORAGE_BUCKET_NAME="testing"):
+            yield
+
+
+@pytest.fixture
+def aws_settings():
+    """Override Django settings for AWS."""
+    with override_settings(AWS_STORAGE_BUCKET_NAME="testing"):
         yield
 
 

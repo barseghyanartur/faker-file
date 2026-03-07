@@ -765,6 +765,8 @@ AWS S3 storage
 ^^^^^^^^^^^^^^
 .. container:: jsphinx-download
 
+    .. pytestfixture: mock_aws
+
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_1.py
         :language: python
         :lines: 3, 7-
@@ -784,6 +786,8 @@ store the files inside ``/user/uploads`` directory the following would be
 correct:
 
 .. container:: jsphinx-download
+
+    .. pytestfixture: mock_aws
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_2.py
         :language: python
@@ -814,6 +818,8 @@ and want to store the files inside ``/user/uploads`` directory the following
 would be correct:
 
 .. container:: jsphinx-download
+
+    .. pytestfixture: mock_gcs
 
     .. literalinclude:: _static/examples/recipes/google_cloud_storage_2.py
         :language: python
@@ -932,6 +938,8 @@ Other Django usage examples
 
 .. container:: jsphinx-download
 
+    .. pytestfixture: mock_aws
+
     .. pytestmark: django_db
 
     .. literalinclude:: _static/examples/recipes/aws_s3_storage_3.py
@@ -947,6 +955,8 @@ Other Django usage examples
 **factory-boy example with AWS S3 storage**
 
 .. container:: jsphinx-download
+
+    .. pytestfixture: mock_aws
 
     .. pytestmark: django_db
 
