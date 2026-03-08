@@ -1,3 +1,38 @@
+# Include license and metadata files:
+include pyproject.toml
 include README.rst
 include LICENSE.rst
 include CHANGELOG.rst
+
+# Exclude anything under docs/ and examples/:
+prune .github
+prune docs
+prune examples
+prune scripts
+
+# Exclude specific files
+exclude .env
+exclude .coveralls.yml
+exclude .gitignore
+exclude .hgignore
+exclude .pre-commit-config.yaml
+exclude .readthedocs.yaml
+exclude .scrutinizer.yml
+exclude .secrets.baseline
+exclude CODE_OF_CONDUCT.rst
+exclude CODE_OF_CONDUCT.md
+exclude conftest.py
+exclude CONTRIBUTING.rst
+exclude Dockerfile
+exclude Makefile
+exclude monkeytype_config.py
+exclude SECURITY.md
+exclude SECURITY.rst
+exclude tox.ini
+exclude tests.coveragerc
+
+# Exclude any hidden directories:
+prune __pycache__
+
+# Drop bytecode, etc.
+-global-exclude *.py[cod]

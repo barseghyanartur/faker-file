@@ -5,19 +5,17 @@ default_language_version:
 
 repos:
 
-  - repo: local
+  - repo: https://github.com/PyCQA/doc8
+    rev: v1.1.2
+    hooks:
+      - id: doc8
+        args: []
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
     hooks:
       - id: detect-secrets
-        name: Detect secrets
-        language: python
-        entry: detect-secrets-hook
         args: ['--baseline', '.secrets.baseline']
-
-      - id: doc8
-        name: Doc8 linter
-        language: python
-        entry: doc8
-        args: []
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
