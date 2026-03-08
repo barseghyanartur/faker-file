@@ -3759,7 +3759,7 @@ class XMLFileProviderTestCase(unittest.TestCase):
         self.assertTrue(FS_STORAGE.exists(_file))
 
         # Read the generated XML file
-        with open(_file, "r", encoding="utf-8") as f:
+        with open(FS_STORAGE.abspath(_file), "r", encoding="utf-8") as f:
             xml_content = f.read()
 
         # Verify that special characters are escaped
@@ -3798,7 +3798,7 @@ class XMLFileProviderTestCase(unittest.TestCase):
         self.assertTrue(FS_STORAGE.exists(_file))
 
         # Read and validate XML
-        with open(_file, "r", encoding="utf-8") as f:
+        with open(FS_STORAGE.abspath(_file), "r", encoding="utf-8") as f:
             xml_content = f.read()
 
         try:
@@ -3827,7 +3827,7 @@ class XMLFileProviderTestCase(unittest.TestCase):
                 _file = XmlFileProvider(FAKER).xml_file(content=xml_template)
                 self.assertTrue(FS_STORAGE.exists(_file))
 
-                with open(_file, "r", encoding="utf-8") as f:
+                with open(FS_STORAGE.abspath(_file), "r", encoding="utf-8") as f:
                     xml_content = f.read()
 
                 try:
