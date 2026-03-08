@@ -38,6 +38,7 @@ See the following full functional snippet for generating PDF using `pdfkit`_.
 
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_1.py
         :language: python
+        :name: test_creating_pdf_pdfkit_1
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pdfkit_1.py>`
@@ -59,6 +60,7 @@ See the example below for ``max_nb_chars`` tweak:
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_2.py
         :language: python
         :lines: 11-
+        :name: test_creating_pdf_pdfkit_2
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pdfkit_2.py>`
@@ -72,6 +74,7 @@ See the example below for ``wrap_chars_after`` tweak:
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_3.py
         :language: python
         :lines: 11-
+        :name: test_creating_pdf_pdfkit_3
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pdfkit_3.py>`
@@ -90,6 +93,7 @@ class is used. See the example below for usage examples:
     .. literalinclude:: _static/examples/creating_pdf/pdfkit_4.py
         :language: python
         :lines: 3-9, 17-
+        :name: test_creating_pdf_pdfkit_4
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pdfkit_4.py>`
@@ -107,6 +111,7 @@ See the following full functional snippet for generating PDF using `reportlab`_.
     .. literalinclude:: _static/examples/creating_pdf/reportlab_1.py
         :language: python
         :lines: 4-7, 11-
+        :name: test_creating_pdf_reportlab_1
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/reportlab_1.py>`
@@ -129,6 +134,7 @@ See the example below for usage examples:
     .. literalinclude:: _static/examples/creating_pdf/reportlab_2.py
         :language: python
         :lines: 4-9, 17-
+        :name: test_creating_pdf_reportlab_2
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/reportlab_2.py>`
@@ -142,6 +148,7 @@ Usage example:
     .. literalinclude:: _static/examples/creating_pdf/pillow_1.py
         :language: python
         :lines: 3-6, 10-
+        :name: test_creating_pdf_pillow_1
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pillow_1.py>`
@@ -155,6 +162,7 @@ With options:
     .. literalinclude:: _static/examples/creating_pdf/pillow_2.py
         :language: python
         :lines: 10-
+        :name: test_creating_pdf_pillow_2
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pillow_2.py>`
@@ -177,6 +185,7 @@ See the example below for usage examples:
     .. literalinclude:: _static/examples/creating_pdf/pillow_3.py
         :language: python
         :lines: 3-8, 16-
+        :name: test_creating_pdf_pillow_3
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pillow_3.py>`
@@ -194,6 +203,7 @@ rescue:
     .. literalinclude:: _static/examples/creating_pdf/pillow_4.py
         :language: python
         :lines: 2-3, 7-
+        :name: test_creating_pdf_pillow_4
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pillow_4.py>`
@@ -210,6 +220,7 @@ One of the most useful arguments supported is ``size``.
     .. literalinclude:: _static/examples/creating_pdf/pillow_5.py
         :language: python
         :lines: 7-
+        :name: test_creating_pdf_pillow_5
 
     *See the full example*
     :download:`here <_static/examples/creating_pdf/pillow_5.py>`

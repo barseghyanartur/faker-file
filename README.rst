@@ -109,11 +109,11 @@ a few are `BSD`-, `Apache 2`-, `GPL` or `HPND` licensed.
 
 All licenses are mentioned below between the brackets.
 
-- Core package requires Python 3.9, 3.10, 3.11 or 3.12.
+- Core package requires Python 3.10, 3.11, 3.12, 3.13 or 3.14.
 - `Faker`_ (`MIT`) is the only required dependency.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
-  been tested with ``Django`` starting from version 2.2 to 4.2 (although only
-  maintained versions of Django are currently being tested against).
+  been tested with ``Django`` starting from version 2.2 to 5.1 (although only
+  a single maintained LTS version of Django is currently being tested against).
 - ``BMP``, ``GIF`` and ``TIFF`` file support requires either just
   `Pillow`_ (`HPND`), or a combination of `WeasyPrint`_ (`BSD`),
   `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).

@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, Type, Union
 
 from faker import Faker
-from parametrize import parametrize
+from parameterized import parameterized
 from pathy import use_fs, use_fs_cache
 
 from ..providers.json_file import JsonFileProvider
@@ -50,8 +50,8 @@ class TestStoragesTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()  # Clean up files
 
-    @parametrize(
-        "storage_cls, kwargs, prefix, basename, extension",
+    @parameterized.expand(
+        # "storage_cls, kwargs, prefix, basename, extension",
         [
             # FileSystemStorage
             (
@@ -213,8 +213,8 @@ class TestStoragesTestCase(unittest.TestCase):
         # Clean up
         storage.unlink(filename_bytes)
 
-    @parametrize(
-        "storage_cls, kwargs, prefix, extension",
+    @parameterized.expand(
+        # "storage_cls, kwargs, prefix, extension",
         [
             # FileSystemStorage
             (
@@ -253,8 +253,8 @@ class TestStoragesTestCase(unittest.TestCase):
             # Generate filename
             storage.generate_filename(basename=prefix, extension=extension)
 
-    @parametrize(
-        "storage_cls, kwargs",
+    @parameterized.expand(
+        # "storage_cls, kwargs",
         [
             # CloudStorage
             (CloudStorage, {"bucket_name": "testing"}),
@@ -270,8 +270,8 @@ class TestStoragesTestCase(unittest.TestCase):
             # Initialize the storage
             storage_cls(**kwargs)
 
-    @parametrize(
-        "method_name, method_kwargs",
+    @parameterized.expand(
+        # "method_name, method_kwargs",
         [
             ("generate_filename", {"prefix": "zzz", "extension": "txt"}),
             (
@@ -297,8 +297,8 @@ class TestStoragesTestCase(unittest.TestCase):
         with self.assertRaises(NotImplementedError):
             method(**method_kwargs)
 
-    @parametrize(
-        "method_name, method_kwargs",
+    @parameterized.expand(
+        # "method_name, method_kwargs",
         [
             ("authenticate", {}),
         ],

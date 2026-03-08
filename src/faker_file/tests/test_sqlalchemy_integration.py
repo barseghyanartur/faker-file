@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import pytest
 from faker import Faker
-from parametrize import parametrize
+from parameterized import parameterized
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -41,8 +41,8 @@ class SQLAlchemyIntegrationTestCase(TestCase):
 
     FAKER: Faker
 
-    @parametrize(
-        "factory, kwargs",
+    @parameterized.expand(
+        # "factory, kwargs",
         [
             (factories.UploadFactory, {}),
             (factories.UploadFactory, {"random_file": True}),

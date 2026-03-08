@@ -8,8 +8,8 @@ Contributor guidelines
 .. _isort: https://pycqa.github.io/isort/
 .. _doc8: https://doc8.readthedocs.io/
 .. _ruff: https://beta.ruff.rs/docs/
-.. _pip-tools: https://pip-tools.readthedocs.io/
 .. _uv: https://docs.astral.sh/uv/
+.. _pytest-codeblock: https://pytest-codeblock.readthedocs.io/
 .. _issues: https://github.com/barseghyanartur/faker-file/issues
 .. _discussions: https://github.com/barseghyanartur/faker-file/discussions
 .. _pull request: https://github.com/barseghyanartur/faker-file/pulls
@@ -30,8 +30,8 @@ TL;DR:
 
 .. code-block:: sh
 
-    pip install pipx --user  # Install pipx
-    pipx install pre-commit  # Install pre-commit
+    curl -LsSf https://astral.sh/uv/install.sh | sh  # Install uv
+    uv tool install pre-commit  # Install pre-commit
     pre-commit install  # Install pre-commit hooks
 
 Installing `pre-commit`_ will ensure you adhere to the project code quality
@@ -56,8 +56,8 @@ Requirements are compiled using `uv`_.
 
 .. code-block:: sh
 
-    make compile_requirements
-    make compile_requirements_upgrade
+    make compile-requirements
+    make compile-requirements_upgrade
 
 Virtual environment
 -------------------
@@ -67,7 +67,7 @@ TL;DR:
 
 .. code-block:: sh
 
-    python -m venv env
+    make create-venv
     make install
 
 Documentation
@@ -76,6 +76,11 @@ Check `documentation`_.
 
 Testing
 -------
+.. note::
+
+    Python code snippets in the documentation are tested
+    using `pytest-codeblock`_.
+
 Check `testing`_.
 
 If you introduce changes or fixes, make sure to test them locally using
