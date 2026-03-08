@@ -3230,8 +3230,8 @@ class faker_file.providers.xml_file.XmlFileProvider(generator: Any)
 
    extension: str = 'xml'
 
-   xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, raw: bool = True, **kwargs) -> BytesValue
-   xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = DEFAULT_FORMAT_FUNC, **kwargs) -> StringValue
+   xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = xml_safe_format_func, raw: bool = True, **kwargs) -> BytesValue
+   xml_file(storage: BaseStorage | None = None, basename: str | None = None, prefix: str | None = None, root_element: str = 'root', row_element: str = 'row', data_columns: Dict[str, str] | None = None, num_rows: int = 10, content: str | None = None, encoding: str | None = None, format_func: Callable[[Faker | Generator | Provider, str], str] = xml_safe_format_func, **kwargs) -> StringValue
 
       Generate an XML file with random text.
 

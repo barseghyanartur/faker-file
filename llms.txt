@@ -5856,6 +5856,15 @@ below):
 * All backwards incompatible changes are mentioned in this document.
 
 
+0.19.1
+------
+
+2026-03-09
+
+* Fix "XmlFileProvider" to properly escape XML special characters
+  ("&", "<", ">", """, "'") in template-generated content.
+
+
 0.19
 ----
 
