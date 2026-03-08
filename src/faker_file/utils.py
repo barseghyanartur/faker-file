@@ -28,10 +28,6 @@ def xml_safe_format_func(
     (e.g. `{{country}}`, `{{sentence}}`) before inserting them into the
     template string.
 
-    faker-file's default format_func is essentially:
-
-    which calls Faker's template engine to replace {{directive}} tokens.
-
     We intercept each substitution and escape the result so that
     values like "Svalbard & Jan Mayen Islands" become
     "Svalbard &amp; Jan Mayen Islands", keeping the XML valid.
