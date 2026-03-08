@@ -369,7 +369,6 @@ functions):
 
     .. code-block:: python
         :name: test_usage_examples_with_faker_raw_recommended_way
-        :emphasize-lines: 7
 
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider
@@ -405,7 +404,6 @@ If you just need ``bytes`` back:
 
     .. code-block:: python
         :name: test_rst_readme_usage_examples_with_faker_raw_but_this_works_too
-        :emphasize-lines: 6
 
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider

@@ -304,12 +304,13 @@ upgrade-requirements: compile-requirements-upgrade
 # Release
 # ----------------------------------------------------------------------------
 
-release:
+build:
 	source $(VENV) && python -m build
+
+release:
 	source $(VENV) && twine upload dist/* --verbose
 
 test-release:
-	source $(VENV) && python -m build
 	source $(VENV) && twine upload --repository testpypi dist/* --verbose
 
 update-version:
