@@ -19,24 +19,24 @@ TOKEN_RE = re.compile(r"\{\{(\w+)\}\}")
 
 
 def xml_safe_format_func(
-    generator: Union[Faker, Generator, Provider], 
+    generator: Union[Faker, Generator, Provider],
     content: str,
 ) -> str:
     """
-    A drop-in replacement for default format_func (`generator.parse(content)`) 
+    A drop-in replacement for default format_func (`generator.parse(content)`)
     that XML-escapes every value produced by Faker template directives
     (e.g. `{{country}}`, `{{sentence}}`) before inserting them into the
     template string.
 
     faker-file's default format_func is essentially:
-        
+
     which calls Faker's template engine to replace {{directive}} tokens.
 
     We intercept each substitution and escape the result so that
     values like "Svalbard & Jan Mayen Islands" become
     "Svalbard &amp; Jan Mayen Islands", keeping the XML valid.
     """
-    
+
     def _replace(match: re.Match) -> str:
         directive = match.group(1)  # e.g. "country"
         value = str(generator.parse(f"{{{{{directive}}}}}"))  # call Faker

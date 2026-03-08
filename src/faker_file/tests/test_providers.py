@@ -1,5 +1,6 @@
 import logging
 import os.path
+import re
 import tempfile
 import unittest
 from copy import deepcopy
@@ -3763,8 +3764,10 @@ class XMLFileProviderTestCase(unittest.TestCase):
 
         # Verify that special characters are escaped
         # The & character should be escaped as &amp;
-        self.assertNotIn("&", xml_content.replace("&amp;", "").replace("&lt;", "").replace("&gt;", "").replace("&quot;", "").replace("&apos;", ""))
-        
+        _pattern = re.compile(r"&(amp|lt|gt|quot|apos);")
+
+        self.assertNotIn("&", _pattern.sub("", xml_content))
+
         # Verify the XML is valid by parsing it
         from xml.etree import ElementTree
         try:
