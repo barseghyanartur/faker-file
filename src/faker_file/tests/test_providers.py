@@ -3775,40 +3775,6 @@ class XMLFileProviderTestCase(unittest.TestCase):
         except ElementTree.ParseError as e:
             self.fail(f"Generated XML is not valid: {e}")
 
-    def test_xml_file_escapes_edge_cases(self) -> None:
-        """Test XML file properly escapes edge case characters."""
-
-        class EdgeCaseProvider(BaseProvider):
-            def edge_case_text(self) -> str:
-                cases = [
-                    "Text with & ampersand",
-                    "Already escaped &amp; entity",
-                    "Less than < and greater than >",
-                    "Quote \" and apostrophe '",
-                    "Mixed &amp; < > \" ' all together",
-                    "Svalbard & Jan Mayen Islands",
-                ]
-                return self.random_element(cases)
-
-        _faker = Faker()
-        _faker.add_provider(EdgeCaseProvider)
-
-        xml_template = "<root><text>{{edge_case_text}}</text></root>"
-        _file = XmlFileProvider(_faker).xml_file(content=xml_template)
-        self.assertTrue(FS_STORAGE.exists(_file))
-
-        # Read and validate XML
-        with open(FS_STORAGE.abspath(_file), "r", encoding="utf-8") as f:
-            xml_content = f.read()
-
-        try:
-            root = ElementTree.fromstring(xml_content)
-            text_value = root.find("text").text
-            # Verify the text was properly escaped and unescaped
-            self.assertIsNotNone(text_value)
-        except ElementTree.ParseError as e:
-            self.fail(f"Generated XML with edge cases is not valid: {e}")
-
     def test_xml_file_escapes_edge_cases_complete_list(self) -> None:
         """Test XML file properly escapes edge case characters."""
 
@@ -3823,8 +3789,15 @@ class XMLFileProviderTestCase(unittest.TestCase):
 
         for edge_case in edge_cases:
             with self.subTest(edge_case=edge_case):
-                xml_template = f"<root><text>{edge_case}</text></root>"
-                _file = XmlFileProvider(FAKER).xml_file(content=xml_template)
+                class EdgeCaseProvider(BaseProvider):
+                    def edge_text(self) -> str:
+                        return edge_case
+
+                _faker = Faker()
+                _faker.add_provider(EdgeCaseProvider)
+
+                xml_template = "<root><text>{{edge_text}}</text></root>"
+                _file = XmlFileProvider(_faker).xml_file(content=xml_template)
                 self.assertTrue(FS_STORAGE.exists(_file))
 
                 with open(FS_STORAGE.abspath(_file), "r", encoding="utf-8") as f:
