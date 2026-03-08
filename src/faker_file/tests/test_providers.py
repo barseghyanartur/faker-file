@@ -3790,8 +3790,8 @@ class XMLFileProviderTestCase(unittest.TestCase):
         for edge_case in edge_cases:
             with self.subTest(edge_case=edge_case):
                 class EdgeCaseProvider(BaseProvider):
-                    def edge_text(self) -> str:
-                        return edge_case
+                    def edge_text(self, _text: str = edge_case) -> str:
+                        return _text
 
                 _faker = Faker()
                 _faker.add_provider(EdgeCaseProvider)
