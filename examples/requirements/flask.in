@@ -5,7 +5,7 @@ alembic
 Flask>=2.0,<3.0
 #Flask<=2.1.0; python_version < '3.10'  # For Python 3.7, 3.8 and 3.9
 #Flask; python_version >= '3.10'  # For Python 3.10 and 3.11
-Flask-Admin
+Flask-Admin>=1.6.1,<2.0
 Flask-BabelEx
 Flask-SQLAlchemy
 #Flask-SQLAlchemy<3.0.0; ; python_version < '3.8'  # For Python 3.7

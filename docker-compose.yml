@@ -1,0 +1,5 @@
+services:
+  tox:
+    build: .
+    volumes:
+      - ./htmlcov:/app/htmlcov

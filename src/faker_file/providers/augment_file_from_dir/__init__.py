@@ -83,7 +83,11 @@ TEXTAUGMENT_AUGMENTER = (
     "faker_file.providers.augment_file_from_dir.augmenters"
     ".textaugment_augmenter.EDATextaugmentAugmenter"
 )
-DEFAULT_AUGMENTER = TEXTAUGMENT_AUGMENTER
+FAKER_WORD_AUGMENTER = (
+    "faker_file.providers.augment_file_from_dir.augmenters"
+    ".faker_augmenter.FakerWordAugmenter"
+)
+DEFAULT_AUGMENTER = FAKER_WORD_AUGMENTER
 
 TIKA_EXTRACTOR = (
     "faker_file.providers.augment_file_from_dir.extractors.tika_extractor"

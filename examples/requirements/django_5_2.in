@@ -1,0 +1,9 @@
+-r common.in
+-r test.in
+
+Django>=5.2,<5.3
+django-debug-toolbar>=3.5.0
+django-extensions
+djangorestframework>=3.16.0,<3.17
+django-storages>=1.13
+drf_spectacular
