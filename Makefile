@@ -1,7 +1,7 @@
 .PHONY: clean_up another_script
 
 # Update version ONLY here
-VERSION := 0.19
+VERSION := 0.19.1
 SHELL := /bin/bash
 VENV := .venv/bin/activate
 UNAME_S := $(shell uname -s)
@@ -227,6 +227,9 @@ docker-test-docs-env: docker-build
 		exit 1; \
 	fi
 	docker compose run --rm tox -e $(ENV)
+
+docker-test-xml: docker-build
+	docker compose run --rm tox -e py313-django42-pathy0110-sqlalchemy -- -k XMLFileProviderTestCase
 
 docker-shell: docker-build
 	docker compose run --rm --entrypoint bash tox
