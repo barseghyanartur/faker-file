@@ -8,9 +8,11 @@ from importlib import import_module, reload
 from io import BytesIO
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, Type, Union
+from xml.etree import ElementTree
 
 import pytest
 from faker import Faker
+from faker.providers import BaseProvider
 from parameterized import parameterized
 from pathy import use_fs
 from PIL import Image, ImageDraw
@@ -3744,3 +3746,90 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
             }
         )
         self.assertTrue(file.data["storage"].exists(file))
+
+
+class XMLFileProviderTestCase(unittest.TestCase):
+    """XMLFileProvider test case."""
+
+    def test_xml_file_escapes_special_characters(self) -> None:
+        """Test XML file properly escapes special characters."""
+        xml_template = "<root><country>{{country}}</country></root>"
+        _file = XmlFileProvider(FAKER).xml_file(content=xml_template)
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+        # Read the generated XML file
+        with open(_file, "r", encoding="utf-8") as f:
+            xml_content = f.read()
+
+        # Verify that special characters are escaped
+        # The & character should be escaped as &amp;
+        self.assertNotIn("&", xml_content.replace("&amp;", "").replace("&lt;", "").replace("&gt;", "").replace("&quot;", "").replace("&apos;", ""))
+        
+        # Verify the XML is valid by parsing it
+        from xml.etree import ElementTree
+        try:
+            ElementTree.fromstring(xml_content)
+        except ElementTree.ParseError as e:
+            self.fail(f"Generated XML is not valid: {e}")
+
+    def test_xml_file_escapes_edge_cases(self) -> None:
+        """Test XML file properly escapes edge case characters."""
+
+        class EdgeCaseProvider(BaseProvider):
+            def edge_case_text(self) -> str:
+                cases = [
+                    "Text with & ampersand",
+                    "Already escaped &amp; entity",
+                    "Less than < and greater than >",
+                    "Quote \" and apostrophe '",
+                    "Mixed &amp; < > \" ' all together",
+                    "Svalbard & Jan Mayen Islands",
+                ]
+                return self.random_element(cases)
+
+        _faker = Faker()
+        _faker.add_provider(EdgeCaseProvider)
+
+        xml_template = "<root><text>{{edge_case_text}}</text></root>"
+        _file = XmlFileProvider(_faker).xml_file(content=xml_template)
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+        # Read and validate XML
+        with open(_file, "r", encoding="utf-8") as f:
+            xml_content = f.read()
+
+        try:
+            root = ElementTree.fromstring(xml_content)
+            text_value = root.find("text").text
+            # Verify the text was properly escaped and unescaped
+            self.assertIsNotNone(text_value)
+        except ElementTree.ParseError as e:
+            self.fail(f"Generated XML with edge cases is not valid: {e}")
+
+    def test_xml_file_escapes_edge_cases_complete_list(self) -> None:
+        """Test XML file properly escapes edge case characters."""
+
+        edge_cases = [
+            "Text with & ampersand",
+            "Already escaped &amp; entity",
+            "Less than < and greater than >",
+            "Quote \" and apostrophe '",
+            "Mixed &amp; < > \" ' all together",
+            "Svalbard & Jan Mayen Islands",
+        ]
+
+        for edge_case in edge_cases:
+            with self.subTest(edge_case=edge_case):
+                xml_template = f"<root><text>{edge_case}</text></root>"
+                _file = XmlFileProvider(FAKER).xml_file(content=xml_template)
+                self.assertTrue(FS_STORAGE.exists(_file))
+
+                with open(_file, "r", encoding="utf-8") as f:
+                    xml_content = f.read()
+
+                try:
+                    root = ElementTree.fromstring(xml_content)
+                    text_value = root.find("text").text
+                    self.assertIsNotNone(text_value)
+                except ElementTree.ParseError as e:
+                    self.fail(f"XML with '{edge_case}' is not valid: {e}")
