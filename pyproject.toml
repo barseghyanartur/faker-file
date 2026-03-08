@@ -1,6 +1,6 @@
 [project]
 name = "faker-file"
-version = "0.18.4"
+version = "0.19"
 description = "Generate files with fake data."
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = {file = "LICENSE.rst"}

@@ -1,7 +1,7 @@
 .PHONY: clean_up another_script
 
 # Update version ONLY here
-VERSION := 0.18.4
+VERSION := 0.19
 SHELL := /bin/bash
 VENV := .venv/bin/activate
 UNAME_S := $(shell uname -s)

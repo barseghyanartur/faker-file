@@ -37,12 +37,13 @@ are used for versioning (schema follows below):
 
 0.19
 ----
-2026-02-27
+2026-03-08
 
 - Deprecated NLPAug- and TextAugment-based augmenters, as both libraries
   seem to have pour support with modern Python versions. Introduced
   a simple FakerWordAugmenter as a default text-augmenter, with no
   additional dependencies.
+- Tested against Python 3.13.
 
 0.18.4
 ------
