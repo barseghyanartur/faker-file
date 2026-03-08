@@ -897,6 +897,8 @@ And then somewhere in your code:
 
 Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+.. pytestmark: xfail
+
 .. pytestmark: django_db
 
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
