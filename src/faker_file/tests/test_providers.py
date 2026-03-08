@@ -3800,7 +3800,9 @@ class XMLFileProviderTestCase(unittest.TestCase):
                 _file = XmlFileProvider(_faker).xml_file(content=xml_template)
                 self.assertTrue(FS_STORAGE.exists(_file))
 
-                with open(FS_STORAGE.abspath(_file), "r", encoding="utf-8") as f:
+                with open(
+                    FS_STORAGE.abspath(_file), "r", encoding="utf-8"
+                ) as f:
                     xml_content = f.read()
 
                 try:

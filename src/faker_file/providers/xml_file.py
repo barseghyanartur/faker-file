@@ -6,7 +6,7 @@ from faker.generator import Generator
 from faker.providers import BaseProvider
 from faker.providers.python import Provider
 
-from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_XML_DATA_COLUMNS
 from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
