@@ -109,11 +109,11 @@ a few are `BSD`-, `Apache 2`-, `GPL` or `HPND` licensed.
 
 All licenses are mentioned below between the brackets.
 
-- Core package requires Python 3.9, 3.10, 3.11 or 3.12.
+- Core package requires Python 3.10, 3.11, 3.12, 3.13 or 3.14.
 - `Faker`_ (`MIT`) is the only required dependency.
 - `Django`_ (`BSD`) integration with `factory_boy`_ (`MIT`) has
-  been tested with ``Django`` starting from version 2.2 to 4.2 (although only
-  maintained versions of Django are currently being tested against).
+  been tested with ``Django`` starting from version 2.2 to 5.1 (although only
+  a single maintained LTS version of Django is currently being tested against).
 - ``BMP``, ``GIF`` and ``TIFF`` file support requires either just
   `Pillow`_ (`HPND`), or a combination of `WeasyPrint`_ (`BSD`),
   `pdf2image`_ (`MIT`), `Pillow`_ (`HPND`) and `poppler`_ (`GPLv2`).
@@ -369,7 +369,6 @@ functions):
 
     .. code-block:: python
         :name: test_usage_examples_with_faker_raw_recommended_way
-        :emphasize-lines: 7
 
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider
@@ -405,7 +404,6 @@ If you just need ``bytes`` back:
 
     .. code-block:: python
         :name: test_rst_readme_usage_examples_with_faker_raw_but_this_works_too
-        :emphasize-lines: 6
 
         from faker import Faker
         from faker_file.providers.txt_file import TxtFileProvider

@@ -1,23 +1,59 @@
 .PHONY: clean_up another_script
 
 # Update version ONLY here
-VERSION := 0.18.4
+VERSION := 0.19
+SHELL := /bin/bash
+VENV := .venv/bin/activate
+UNAME_S := $(shell uname -s)
 
-alembic-migrate:
-	cd examples/sqlalchemy_example/faker_file_admin/ && alembic upgrade head
+# ----------------------------------------------------------------------------
+# Tests
+# ----------------------------------------------------------------------------
 
 benchmark-test:
-	pytest -vvrx --durations=0
+	source $(VENV) && pytest -vvrx --durations=0
+
+# ----------------------------------------------------------------------------
+# Documentation
+# ----------------------------------------------------------------------------
 
 build-docs:
-	python scripts/generate_project_source_tree.py
-	sphinx-build -n -b text docs builddocs
-	sphinx-build -n -a -b html docs builddocs
+	source $(VENV) && python scripts/generate_project_source_tree.py
+	source $(VENV) && sphinx-build -n -b text docs builddocs
+	source $(VENV) && sphinx-build -n -a -b html docs builddocs
 	cd builddocs && zip -r ../builddocs.zip . -x ".*" && cd ..
 
 check-release:
-	python setup.py sdist bdist_wheel
-	twine check dist/*
+	source $(VENV) && python -m build
+	source $(VENV) && twine check dist/*
+
+auto-build-docs:
+	sphinx-autobuild docs docs/_build/html
+
+rebuild-docs: clean
+	sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
+	cp docs/conf.py.distrib docs/conf.py
+	cp docs/index.rst.distrib docs/index.rst
+
+serve-docs:
+	source $(VENV) && cd builddocs/ && python -m http.server 5001
+
+# ----------------------------------------------------------------------------
+# Development
+# ----------------------------------------------------------------------------
+
+flask-runserver:
+	source $(VENV) && python examples/sqlalchemy_example/run_server.py
+
+create-venv:
+	uv venv
+
+install:
+	source $(VENV) && uv pip install -e .'[all]'
+	source $(VENV) && uv pip install -r examples/requirements/django_4_2.in
+	mkdir -p var/logs examples/db examples/media examples/media/static
+	source $(VENV) && python examples/django_example/manage.py collectstatic --noinput
+	source $(VENV) && python examples/django_example/manage.py migrate --noinput
 
 clean-dev:
 	find . -name "*.orig" -exec rm -rf {} \;
@@ -142,110 +178,120 @@ compile-requirements-upgrade:
 	echo "testing.in"
 	uv pip compile --upgrade --no-strip-extras examples/requirements/testing.in -o examples/requirements/testing.txt
 
+# ----------------------------------------------------------------------------
+# Security
+# ----------------------------------------------------------------------------
+
 detect-secrets-create-baseline:
-	detect-secrets scan > .secrets.baseline
+	source $(VENV) && detect-secrets scan > .secrets.baseline
 
 detect-secrets-update-baseline:
-	detect-secrets scan --baseline .secrets.baseline
+	source $(VENV) && detect-secrets scan --baseline .secrets.baseline
+
+# ----------------------------------------------------------------------------
+# Docker test
+# ----------------------------------------------------------------------------
+
+docker-build:
+	docker compose build
+
+# List all available environments in the Docker container
+docker-list-envs: docker-build
+	docker compose run --rm tox -l
+
+docker-test: docker-build
+	@if [ -n "$(ENV)" ]; then \
+		docker compose run --rm tox -e $(ENV); \
+	else \
+		docker compose run --rm tox; \
+	fi
+
+# Usage:
+#  make docker-test-env ENV=py312-django42-pathy0110-sqlalchemy
+#  make docker-test-env ENV=py313-django42-pathy0110-sqlalchemy
+docker-test-env: docker-build
+	@if [ -z "$(ENV)" ]; then \
+		echo "Usage: make docker-test-env ENV=py312-django42-pathy0110-sqlalchemy"; \
+		exit 1; \
+	fi
+	docker compose run --rm tox -e $(ENV)
+
+docker-test-docs: docker-build
+	docker compose run --rm tox -e py310-docs,py311-docs,py312-docs,py313-docs
+
+# Usage:
+#  make docker-test-docs-env ENV=py313-docs
+docker-test-docs-env: docker-build
+	@if [ -z "$(ENV)" ]; then \
+		echo "Usage: make docker-test-docs-env ENV=py313-docs"; \
+		exit 1; \
+	fi
+	docker compose run --rm tox -e $(ENV)
+
+docker-shell: docker-build
+	docker compose run --rm --entrypoint bash tox
+
+# Usage: make docker-shell-env ENV=py312-django42-pathy0110-sqlalchemy
+docker-shell-env: docker-build
+	@if [ -z "$(ENV)" ]; then \
+		echo "Usage: make docker-shell-env ENV=py312-django42-pathy0110-sqlalchemy"; \
+		exit 1; \
+	fi
+	docker compose run --rm --entrypoint bash tox -e $(ENV)
+
+# ----------------------------------------------------------------------------
+# Linting
+# ----------------------------------------------------------------------------
 
 doc8:
-	doc8
+	source $(VENV) && doc8
 
-flask-runserver:
-	python examples/sqlalchemy_example/run_server.py
+mypy:
+	source $(VENV) && mypy src/
+
+
+ruff:
+	source $(VENV) && ruff check conftest.py --fix
+	source $(VENV) && ruff check examples/ --fix
+	source $(VENV) && ruff check src/ --fix
+
+# ----------------------------------------------------------------------------
+# Pre-commit
+# ----------------------------------------------------------------------------
 
 pre-commit:
 	pre-commit run --all-files
 
-install: compile_requirements
-	pip install -r examples/requirements/dev.txt
-	pip install -e .'[all]'
-	mkdir -p var/logs examples/db examples/media examples/media/static
-	python examples/django_example/manage.py collectstatic --noinput
-	python examples/django_example/manage.py migrate --noinput
-
 jupyter:
-	cd examples/django_example/ && TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
+	source $(VENV) && cd examples/django_example/ && TOKENIZERS_PARALLELISM=true ./manage.py shell_plus --notebook
 
 make-migrations:
 	echo 'Making messages for faker-file...'
-	cd examples/django_example/ && ./manage.py makemigrations faker-file
+	source $(VENV) && cd examples/django_example/ && ./manage.py makemigrations faker-file
 
 	echo 'Making messages for example projects...'
-	./manage.py makemigrations
+	source $(VENV) && ./manage.py makemigrations
 
 	echo 'Applying migrations...'
-	./manage.py migrate
-
-release:
-	python setup.py sdist bdist_wheel
-	twine upload dist/* --verbose
-
-test-release:
-	python setup.py sdist bdist_wheel
-	twine upload --repository testpypi dist/* --verbose
+	source $(VENV) && ./manage.py migrate
 
 migrate:
-	cd examples/django_example/ && ./manage.py migrate "$$@"
-
-mypy:
-	mypy src/
-
-auto-build-docs:
-	sphinx-autobuild docs docs/_build/html
-
-rebuild-docs: clean
-	sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
-	cp docs/conf.py.distrib docs/conf.py
-	cp docs/index.rst.distrib docs/index.rst
-
-ruff:
-	ruff check conftest.py --fix
-	ruff check setup.py --fix
-	ruff check examples/ --fix
-	ruff check src/ --fix
+	source $(VENV) && cd examples/django_example/ && ./manage.py migrate "$$@"
 
 runserver:
-	cd examples/django_example/ && ./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"
-
-serve-docs:
-	cd builddocs/ && python -m http.server 5001
+	source $(VENV) && cd examples/django_example/ && ./manage.py runserver 0.0.0.0:8000 --traceback -v 3 "$$@"
 
 shell:
-	cd examples/django_example/ && ./manage.py shell --traceback -v 3 "$$@"
+	source $(VENV) && cd examples/django_example/ && ./manage.py shell --traceback -v 3 "$$@"
 
 sqlalchemy-shell:
-	cd examples/sqlalchemy_example/ && ipython
+	source $(VENV) && cd examples/sqlalchemy_example/ && ipython
 
-test-main:
-	pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py
-
-test-main-collect-only:
-	pytest -vrx -m "not optional" --ignore src/faker_file/tests/test_sqlalchemy_integration.py --ignore src/faker_file/tests/test_augment_file_from_dir_provider.py --collect-only
-
-test-sqlalchemy-integration:
-	pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py
-
-test-sqlalchemy-integration-collect-only:
-	pytest -vrx src/faker_file/tests/test_sqlalchemy_integration.py --collect-only
-
-test-augmented-file-from-dir-provider:
-	pytest -vrx src/faker_file/tests/test_augment_file_from_dir_provider.py
-
-test:
-	pytest
-
-test-with-local-tika:
-	TIKA_SERVER_JAR="file:///$(shell pwd)/tika-server.jar" pytest
-
-test-rst-docs:
-	pytest *.rst docs/*.rst
-
-test-tests:
-	pytest --cov-config=tests.coveragerc
+alembic-migrate:
+	source $(VENV) && cd examples/sqlalchemy_example/faker_file_admin/ && alembic upgrade head
 
 uninstall:
-	pip uninstall faker-file -y
+	source $(VENV) && uv pip uninstall faker-file -y
 	rm build -rf
 	rm dist -rf
 	rm src/faker-file.egg-info -rf
@@ -254,12 +300,25 @@ uninstall:
 
 upgrade-requirements: compile-requirements-upgrade
 
+# ----------------------------------------------------------------------------
+# Release
+# ----------------------------------------------------------------------------
+
+build:
+	source $(VENV) && python -m build
+
+release:
+	source $(VENV) && twine upload dist/* --verbose
+
+test-release:
+	source $(VENV) && twine upload --repository testpypi dist/* --verbose
+
 update-version:
-	@echo "Updating version in setup.py and __init__.py"
+	@echo "Updating version in pyproject.toml and __init__.py"
 	@if [ "$(UNAME_S)" = "Darwin" ]; then \
-		gsed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
+		gsed -i 's/^version = "[0-9.]\+"/version = "$(VERSION)"/' pyproject.toml; \
 		gsed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
 	else \
-		sed -i 's/version = "[0-9.]\+"/version = "$(VERSION)"/' setup.py; \
+		sed -i 's/^version = "[0-9.]\+"/version = "$(VERSION)"/' pyproject.toml; \
 		sed -i 's/__version__ = "[0-9.]\+"/__version__ = "$(VERSION)"/' src/faker_file/__init__.py; \
 	fi

@@ -1,3 +1,7 @@
+"""
+Deprecated! Use FakerWordAugmenter.
+"""
+
 import nlpaug.augmenter.word as naw
 
 from ...base.text_augmenter import BaseTextAugmenter

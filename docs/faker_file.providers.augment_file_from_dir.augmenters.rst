@@ -4,10 +4,10 @@ faker\_file.providers.augment\_file\_from\_dir.augmenters package
 Submodules
 ----------
 
-faker\_file.providers.augment\_file\_from\_dir.augmenters.nlpaug\_augmenter module
+faker\_file.providers.augment\_file\_from\_dir.augmenters.faker\_augmenter module
 ----------------------------------------------------------------------------------
 
-.. automodule:: faker_file.providers.augment_file_from_dir.augmenters.nlpaug_augmenter
+.. automodule:: faker_file.providers.augment_file_from_dir.augmenters.faker_augmenter
    :members:
    :undoc-members:
    :show-inheritance:

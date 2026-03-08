@@ -1,3 +1,7 @@
+"""
+Deprecated! Use FakerWordAugmenter.
+"""
+
 from typing import Any, Dict, Type
 
 import nltk

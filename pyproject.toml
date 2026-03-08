@@ -1,15 +1,178 @@
-# Example configuration for Black.
+[project]
+name = "faker-file"
+version = "0.19"
+description = "Generate files with fake data."
+readme = {file = "README.rst", content-type = "text/x-rst"}
+license-files = ["LICENSE.rst"]
+authors = [
+    {name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com"},
+]
+keywords = [
+    "factories",
+    "fake file",
+    "fake files",
+    "fake-file-generator",
+    "fake-files-generator",
+    "faker",
+    "faker-file",
+    "file-generator",
+    "files",
+    "files-generator",
+    "test file",
+    "test files",
+    "test-file-generator",
+    "test-files-generator",
+    "testing",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    # "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+]
+requires-python = ">=3.9"
+dependencies = ["Faker"]
 
-# NOTE: you have to use single-quoted strings in TOML for regular expressions.
-# It's the equivalent of r-strings in Python.  Multiline strings are treated as
-# verbose regular expressions by Black.  Use [ ] to denote a significant space
-# character.
+[project.optional-dependencies]
+all = ["faker-file[common,data-augmentation,test,docs,build]"]
+# all = [
+#     "Faker",
+#     "WeasyPrint",
+#     "imgkit",
+#     "odfpy",
+#     "openpyxl",
+#     "pathy[all]>=0.10.0,<0.12.0",
+#     "paramiko",
+#     "pdf2image",
+#     "pdfkit",
+#     "reportlab",
+#     "python-docx",
+#     "python-pptx",
+#     "tablib",
+#     "xml2epub",
+#     "gtts",
+#     "edge-tts",
+#     "nlpaug",
+#     "nltk",
+#     "textaugment",
+#     "textblob>=0.17,<0.18",
+#     "tika",
+#     "torch",
+#     "transformers",
+# ]
+common = [
+    "Faker",
+    "WeasyPrint",
+    "imgkit",
+    "odfpy",
+    "openpyxl",
+    "pathy[all]>=0.10.0,<0.12.0",
+    "paramiko",
+    "pdf2image",
+    "pdfkit",
+    "reportlab",
+    "python-docx",
+    "python-pptx",
+    "tablib",
+    "xml2epub",
+    "gtts",
+    "edge-tts",
+    "setuptools<82.0.0",
+]
+data-augmentation = [
+    # "nlpaug",
+    # "nltk",
+    # "textaugment",
+    # "textblob>=0.17,<0.18",
+    "tika",
+    # "torch",
+    # "transformers",
+]
+azure = ["pathy[azure]>=0.10.0,<0.12.0"]
+bmp = ["WeasyPrint", "pdf2image"]
+django = ["Django>=2.2"]
+docx = ["python-docx"]
+epub = ["xml2epub"]
+gcs = ["pathy[gcs]>=0.10.0,<0.12.0"]
+gif = ["WeasyPrint", "pdf2image"]
+images = ["imgkit"]
+mp3 = ["gtts", "edge-tts"]
+odp = ["odfpy"]
+ods = ["tablib", "odfpy"]
+odt = ["odfpy"]
+pdf = ["pdfkit", "reportlab"]
+pptx = ["python-pptx"]
+s3 = ["pathy[s3]>=0.10.0,<0.12.0"]
+sftp = ["paramiko"]
+sqlalchemy = ["SQLAlchemy>=1.0,<2.0", "SQLAlchemy-Utils>=0.37.0"]
+tiff = ["WeasyPrint", "pdf2image"]
+xlsx = ["tablib", "openpyxl"]
 
-# Build system information below.
-# NOTE: You don't need this in your own Black configuration.
+dev = [
+    "detect-secrets",
+    "doc8",
+    "ipython",
+    "mypy",
+    "pydoclint",
+    "ruff",
+    "twine",
+    "uv",
+]
+test = [
+    "asyncssh",
+    "coverage",
+    "django",
+    "fake.py",
+    "fuzzywuzzy[speedup]",
+    "moto>=5.0.0",
+    "moto[s3]",
+    "openai",
+    "parameterized",
+    "pytest",
+    "pytest-codeblock>=0.5.7",
+    "pytest-cov",
+    "pytest-django",
+    "pytest-ordering",
+    "pytest-parallel",
+    "pytest-rerunfailures",
+    "respx",
+]
+docs = [
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinx-rtd-theme>=1.3.0",
+    "sphinx-no-pragma",
+    "sphinx-llms-txt-link",
+    "sphinx-source-tree",
+]
+build = [
+    "build",
+    "twine",
+    "wheel",
+]
+
+[project.scripts]
+faker-file = "faker_file.cli.command:main"
+
+[project.urls]
+"Bug Tracker" = "https://github.com/barseghyanartur/faker-file/issues"
+"Documentation" = "https://faker-file.readthedocs.io/"
+"Source Code" = "https://github.com/barseghyanartur/faker-file"
+"Changelog" = "https://faker-file.readthedocs.io/en/latest/changelog.html"
+
 [build-system]
-requires = ["setuptools>=41.0", "setuptools-scm", "wheel"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 addopts = [
@@ -60,7 +223,8 @@ markers = [
     "documentation: mark a test as a documentation test.",
     "ml: ML test.",
     "django: Django test.",
-    "sqlalchemy: SQLAlchemy test."
+    "sqlalchemy: SQLAlchemy test.",
+    "codeblock: mark a test as a codeblock (docs) test."
 ]
 DJANGO_SETTINGS_MODULE = "project.settings.testing"
 
@@ -173,7 +337,6 @@ warn_unused_configs = true
 ignore_missing_imports = true
 warn_no_return = false
 mypy_path = "src/faker_file"
-exclude = "setup.py"
 
 [tool.coverage.run]
 relative_files = true
@@ -192,3 +355,18 @@ exclude_lines = [
     "@overload",
     # "raise NotImplementedError",
 ]
+
+[tool.doc8]
+# doc8 configuration: https://pypi.org/project/doc8/
+ignore-path = [
+    "docs/_build",
+    "builddocs/",
+    "examples/requirements/*.in",
+    "examples/requirements/*.txt",
+    "examples/django_example/project/static/*",
+    "examples/django_example/project/media/tmp/*",
+    "src/faker_file.egg-info",
+    "tmp/",
+]
+max-line-length = 80
+sphinx = true

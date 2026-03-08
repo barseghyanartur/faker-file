@@ -184,6 +184,7 @@ for observability).
 
     .. literalinclude:: _static/examples/methodology/create_docx_file_1.py
         :language: python
+        :name: test_create_docx_file_1
 
     *See the full example*
     :download:`here <_static/examples/methodology/create_docx_file_1.py>`
@@ -197,6 +198,7 @@ Imagine, you need a letter sample. It contains
     .. literalinclude:: _static/examples/methodology/create_docx_file_2.py
         :language: python
         :lines: 7-
+        :name: test_create_docx_file_2
 
     *See the full example*
     :download:`here <_static/examples/methodology/create_docx_file_2.py>`
@@ -211,6 +213,7 @@ such as images, tables, manual page breaks, paragraphs, etc.
     .. literalinclude:: _static/examples/methodology/create_docx_file_3.py
         :language: python
         :lines: 2-8, 13-
+        :name: test_create_docx_file_3
 
     *See the full example*
     :download:`here <_static/examples/methodology/create_docx_file_3.py>`
@@ -246,6 +249,7 @@ Create a file by copying it from the given path.
     .. literalinclude:: _static/examples/methodology/file_from_path_provider.py
         :language: python
         :lines: 3-4, 6, 11-
+        :name: test_file_from_path_provider
 
     *See the full example*
     :download:`here <_static/examples/methodology/file_from_path_provider.py>`
@@ -266,6 +270,7 @@ Create a file by copying it randomly from the given directory.
     .. literalinclude:: _static/examples/methodology/rand_file_from_dir_provider.py
         :language: python
         :lines: 3-4, 6, 12-
+        :name: test_rand_file_from_dir_provider
 
     *See the full example*
     :download:`here <_static/examples/methodology/rand_file_from_dir_provider.py>`
@@ -286,6 +291,7 @@ class instance, as shown below:
 
     .. literalinclude:: _static/examples/methodology/clean_up_files_1.py
         :language: python
+        :name: test_clean_up_files_1
 
     *See the full example*
     :download:`here <_static/examples/methodology/clean_up_files_1.py>`
@@ -301,6 +307,7 @@ To remove a single file, use ``remove`` method of ``FileRegistry`` instance.
     .. literalinclude:: _static/examples/methodology/clean_up_files_2.py
         :language: python
         :lines: 11-
+        :name: test_clean_up_files_2
 
     *See the full example*
     :download:`here <_static/examples/methodology/clean_up_files_2.py>`
@@ -315,6 +322,7 @@ for its' correspondent ``StringValue`` instance first using ``search`` method.
     .. literalinclude:: _static/examples/methodology/clean_up_files_3.py
         :language: python
         :lines: 11-
+        :name: test_clean_up_files_3
 
     *See the full example*
     :download:`here <_static/examples/methodology/clean_up_files_3.py>`

@@ -66,6 +66,7 @@ See the following full functional snippet for generating images using `imgkit`_.
 
     .. literalinclude:: _static/examples/creating_images/imgkit_1.py
         :language: python
+        :name: test_creating_images_1
 
     *See the full example*
     :download:`here <_static/examples/creating_images/imgkit_1.py>`
@@ -84,6 +85,7 @@ characters (or any other number that fits your needs). See the example below:
     .. literalinclude:: _static/examples/creating_images/imgkit_2.py
         :language: python
         :lines: 8-
+        :name: test_creating_images_2
 
     *See the full example*
     :download:`here <_static/examples/creating_images/imgkit_2.py>`
@@ -98,6 +100,7 @@ See the example below:
     .. literalinclude:: _static/examples/creating_images/imgkit_3.py
         :language: python
         :lines: 8-
+        :name: test_creating_images_3
 
     *See the full example*
     :download:`here <_static/examples/creating_images/imgkit_3.py>`
@@ -116,6 +119,7 @@ examples:
     .. literalinclude:: _static/examples/creating_images/imgkit_4.py
         :language: python
         :lines: 2-7, 13-
+        :name: test_creating_images_4
 
     *See the full example*
     :download:`here <_static/examples/creating_images/imgkit_4.py>`
@@ -133,6 +137,7 @@ See the following snippet for generating images using `WeasyPrint`_.
     .. literalinclude:: _static/examples/creating_images/weasyprint_1.py
         :language: python
         :lines: 2-4, 9-
+        :name: test_creating_images_weasyprint_1
 
     *See the full example*
     :download:`here <_static/examples/creating_images/weasyprint_1.py>`
@@ -154,6 +159,7 @@ In order to customise the blocks image file is built from, the
     .. literalinclude:: _static/examples/creating_images/weasyprint_2.py
         :language: python
         :lines: 3-7, 15-
+        :name: test_creating_images_weasyprint_2
 
     *See the full example*
     :download:`here <_static/examples/creating_images/weasyprint_2.py>`
@@ -167,6 +173,7 @@ Usage example:
     .. literalinclude:: _static/examples/creating_images/pillow_1.py
         :language: python
         :lines: 2, 7-
+        :name: test_creating_images_pillow_1
 
     *See the full example*
     :download:`here <_static/examples/creating_images/pillow_1.py>`
@@ -180,6 +187,7 @@ With options:
     .. literalinclude:: _static/examples/creating_images/pillow_2.py
         :language: python
         :lines: 8-
+        :name: test_creating_images_pillow_2
 
     *See the full example*
     :download:`here <_static/examples/creating_images/pillow_2.py>`
@@ -195,6 +203,7 @@ the imports shall be adjusted. See the example below:
     .. literalinclude:: _static/examples/creating_images/pillow_3.py
         :language: python
         :lines: 3-7, 13-
+        :name: test_creating_images_pillow_3
 
     *See the full example*
     :download:`here <_static/examples/creating_images/pillow_3.py>`
@@ -211,6 +220,7 @@ the content. That's where graphic image providers comes to rescue:
     .. literalinclude:: _static/examples/creating_images/pillow_4.py
         :language: python
         :lines: 2-3, 5-
+        :name: test_creating_images_pillow_4
 
     *See the full example*
     :download:`here <_static/examples/creating_images/pillow_4.py>`
@@ -227,6 +237,7 @@ One of the most useful arguments supported is ``size``.
     .. literalinclude:: _static/examples/creating_images/pillow_5.py
         :language: python
         :lines: 7-
+        :name: test_creating_images_pillow_5
 
     *See the full example*
     :download:`here <_static/examples/creating_images/pillow_5.py>`
@@ -240,6 +251,7 @@ Augment the input image with a series of random augmentation methods.
     .. literalinclude:: _static/examples/creating_images/augment_1.py
         :language: python
         :lines: 2-15, 17, 19-20, 28-
+        :name: test_creating_images_augment_1
 
     *See the full example*
     :download:`here <_static/examples/creating_images/augment_1.py>`

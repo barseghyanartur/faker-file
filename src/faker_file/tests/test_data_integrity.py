@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Tuple, Type, Union
 import pytest
 from faker import Faker
 from fuzzywuzzy import fuzz
-from parametrize import parametrize
+from parameterized import parameterized
 from tika import parser
 
 from ..providers.docx_file import DocxFileProvider
@@ -134,8 +134,8 @@ class DataIntegrityTestCase(unittest.TestCase):
         super().tearDown()
         FILE_REGISTRY.clean_up()
 
-    @parametrize(
-        "fake, provider, method_name, kwargs, similarity_margin",
+    @parameterized.expand(
+        # "fake, provider, method_name, kwargs, similarity_margin",
         __PARAMETRIZED_DATA,
     )
     @pytest.mark.flaky(reruns=3)
