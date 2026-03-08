@@ -228,6 +228,9 @@ docker-test-docs-env: docker-build
 	fi
 	docker compose run --rm tox -e $(ENV)
 
+docker-test-xml: docker-build
+	docker compose run --rm tox -e py313-django42-pathy0110-sqlalchemy -- -k XMLFileProviderTestCase
+
 docker-shell: docker-build
 	docker compose run --rm --entrypoint bash tox
 
