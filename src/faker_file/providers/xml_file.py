@@ -6,11 +6,12 @@ from faker.generator import Generator
 from faker.providers import BaseProvider
 from faker.providers.python import Provider
 
-from ..base import DEFAULT_FORMAT_FUNC, BytesValue, FileMixin, StringValue
+from ..base import BytesValue, FileMixin, StringValue
 from ..constants import DEFAULT_XML_DATA_COLUMNS
 from ..registry import FILE_REGISTRY
 from ..storages.base import BaseStorage
 from ..storages.filesystem import FileSystemStorage
+from ..utils import xml_safe_format_func
 
 __author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
 __copyright__ = "2022-2025 Artur Barseghyan"
@@ -100,7 +101,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         content_template: str,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
-        ] = DEFAULT_FORMAT_FUNC,
+        ] = xml_safe_format_func,
     ) -> ET.Element:
         element = ET.Element(element_name)
         element.text = format_func(self.generator, content_template)
@@ -120,7 +121,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         encoding: Optional[str] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
-        ] = DEFAULT_FORMAT_FUNC,
+        ] = xml_safe_format_func,
         raw: bool = True,
         **kwargs,
     ) -> BytesValue: ...
@@ -139,7 +140,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         encoding: Optional[str] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
-        ] = DEFAULT_FORMAT_FUNC,
+        ] = xml_safe_format_func,
         **kwargs,
     ) -> StringValue: ...
 
@@ -156,7 +157,7 @@ class XmlFileProvider(BaseProvider, FileMixin):
         encoding: Optional[str] = None,
         format_func: Callable[
             [Union[Faker, Generator, Provider], str], str
-        ] = DEFAULT_FORMAT_FUNC,
+        ] = xml_safe_format_func,
         raw: bool = False,
         **kwargs,
     ) -> Union[BytesValue, StringValue]:

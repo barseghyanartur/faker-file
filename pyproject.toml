@@ -1,6 +1,6 @@
 [project]
 name = "faker-file"
-version = "0.19"
+version = "0.19.1"
 description = "Generate files with fake data."
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license-files = ["LICENSE.rst"]
@@ -100,7 +100,10 @@ bmp = ["WeasyPrint", "pdf2image"]
 django = ["Django>=2.2"]
 docx = ["python-docx"]
 epub = ["xml2epub"]
-gcs = ["pathy[gcs]>=0.10.0,<0.12.0"]
+gcs = [
+    "pathy[gcs]>=0.10.0,<0.12.0",
+    "setuptools<82.0.0",
+]
 gif = ["WeasyPrint", "pdf2image"]
 images = ["imgkit"]
 mp3 = ["gtts", "edge-tts"]

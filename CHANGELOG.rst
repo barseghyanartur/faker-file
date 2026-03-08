@@ -35,6 +35,13 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.19.1
+------
+2026-03-09
+
+- Fix ``XmlFileProvider`` to properly escape XML special characters
+  (``&``, ``<``, ``>``, ``"``, ``'``) in template-generated content.
+
 0.19
 ----
 2026-03-08
