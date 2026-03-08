@@ -156,7 +156,7 @@ Table of Contents
 
       * Randomize the file format
 
-    * Generating files from existing documents using NLP augmentation
+    * Generating files from existing documents using augmentation
 
     * nlpaug augmenter
 
@@ -363,6 +363,8 @@ Table of Contents
   * Issues
 
 * Release history and notes
+
+  * 0.19
 
   * 0.18.4
 
@@ -668,7 +670,21 @@ Table of Contents
                 * Submodules
 
                 * faker_file.providers.augment_file_from_dir.augmente
-                  rs.nlpaug_augmenter module
+                  rs.faker_augmenter module
+
+                  * "FakerWordAugmenter"
+
+                    * "FakerWordAugmenter.augment()"
+
+                    * "FakerWordAugmenter.augmentation_probability"
+
+                    * "FakerWordAugmenter.generator"
+
+                    * "FakerWordAugmenter.handle_kwargs()"
+
+                    * "FakerWordAugmenter.locale"
+
+                    * "FakerWordAugmenter.pool_size"
 
                 * Module contents
 

@@ -13,8 +13,22 @@ Subpackages
 
       * Submodules
 
-      * faker_file.providers.augment_file_from_dir.augmenters.nlpaug_
-        augmenter module
+      * faker_file.providers.augment_file_from_dir.augmenters.faker_a
+        ugmenter module
+
+        * "FakerWordAugmenter"
+
+          * "FakerWordAugmenter.augment()"
+
+          * "FakerWordAugmenter.augmentation_probability"
+
+          * "FakerWordAugmenter.generator"
+
+          * "FakerWordAugmenter.handle_kwargs()"
+
+          * "FakerWordAugmenter.locale"
+
+          * "FakerWordAugmenter.pool_size"
 
       * Module contents
 

@@ -150,8 +150,22 @@ Subpackages
 
           * Submodules
 
-          * faker_file.providers.augment_file_from_dir.augmenters.nlp
-            aug_augmenter module
+          * faker_file.providers.augment_file_from_dir.augmenters.fak
+            er_augmenter module
+
+            * "FakerWordAugmenter"
+
+              * "FakerWordAugmenter.augment()"
+
+              * "FakerWordAugmenter.augmentation_probability"
+
+              * "FakerWordAugmenter.generator"
+
+              * "FakerWordAugmenter.handle_kwargs()"
+
+              * "FakerWordAugmenter.locale"
+
+              * "FakerWordAugmenter.pool_size"
 
           * Module contents
 

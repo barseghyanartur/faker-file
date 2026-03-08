@@ -13,8 +13,8 @@ Refer to pre-commit for installation instructions.
 
 TL;DR:
 
-   pip install pipx --user  # Install pipx
-   pipx install pre-commit  # Install pre-commit
+   curl -LsSf https://astral.sh/uv/install.sh | sh  # Install uv
+   uv tool install pre-commit  # Install pre-commit
    pre-commit install  # Install pre-commit hooks
 
 Installing pre-commit will ensure you adhere to the project code
@@ -39,8 +39,8 @@ Requirements
 
 Requirements are compiled using uv.
 
-   make compile_requirements
-   make compile_requirements_upgrade
+   make compile-requirements
+   make compile-requirements_upgrade
 
 
 Virtual environment
@@ -50,7 +50,7 @@ You are advised to work in virtual environment.
 
 TL;DR:
 
-   python -m venv env
+   make create-venv
    make install
 
 
@@ -62,6 +62,11 @@ Check documentation.
 
 Testing
 =======
+
+Note:
+
+  Python code snippets in the documentation are tested using pytest-
+  codeblock.
 
 Check testing.
 

@@ -948,8 +948,8 @@ Randomize the file format
 *See the full example* "here"
 
 
-Generating files from existing documents using NLP augmentation
----------------------------------------------------------------
+Generating files from existing documents using augmentation
+-----------------------------------------------------------
 
 See the following example:
 
@@ -1006,11 +1006,13 @@ could however narrow that list by providing "extensions" argument:
 ======================================================================
 
 Actual augmentation of texts is delegated to an abstraction layer of
-text augmenters. Currently, two augmenters are implemented. Default
-one is based on textaugment (which is in its' turn based on nltk) is
-very lightweight and speedy, but produces less accurate results.
-Another one is based on nlpaug, which is way more sophisticated, but
-at the cost of speed.
+text augmenters. Currently, only one augmenter is implemented. Default
+one is based on >>`Faker`_<<, is very lightweight and speedy, but
+produces less accurate results. In past two other aumenters existed:
+one based on textaugment, another on nlpaug, which is way more
+sophisticated, but at the cost of speed and hard-to-maintain
+dependencies, due to which both were deprecated, but are not yet
+removed from the codebase.
 
 
 nlpaug augmenter

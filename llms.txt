@@ -18,13 +18,14 @@ are *BSD*-, *Apache 2*-, *GPL* or *HPND* licensed.
 
 All licenses are mentioned below between the brackets.
 
-* Core package requires Python 3.9, 3.10, 3.11 or 3.12.
+* Core package requires Python 3.10, 3.11, 3.12, 3.13 or 3.14.
 
 * Faker (*MIT*) is the only required dependency.
 
 * Django (*BSD*) integration with factory_boy (*MIT*) has been tested
-  with "Django" starting from version 2.2 to 4.2 (although only
-  maintained versions of Django are currently being tested against).
+  with "Django" starting from version 2.2 to 5.1 (although only a
+  single maintained LTS version of Django is currently being tested
+  against).
 
 * "BMP", "GIF" and "TIFF" file support requires either just
   >>`Pillow`_<< (*HPND*), or a combination of WeasyPrint (*BSD*),
@@ -1589,8 +1590,8 @@ Randomize the file format
 *See the full example* "here"
 
 
-Generating files from existing documents using NLP augmentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Generating files from existing documents using augmentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See the following example:
 
@@ -1647,11 +1648,13 @@ could however narrow that list by providing "extensions" argument:
 ======================================================================
 
 Actual augmentation of texts is delegated to an abstraction layer of
-text augmenters. Currently, two augmenters are implemented. Default
-one is based on >>`textaugment`_<< (which is in its' turn based on
-nltk) is very lightweight and speedy, but produces less accurate
-results. Another one is based on nlpaug, which is way more
-sophisticated, but at the cost of speed.
+text augmenters. Currently, only one augmenter is implemented. Default
+one is based on Faker, is very lightweight and speedy, but produces
+less accurate results. In past two other aumenters existed: one based
+on >>`textaugment`_<<, another on nlpaug, which is way more
+sophisticated, but at the cost of speed and hard-to-maintain
+dependencies, due to which both were deprecated, but are not yet
+removed from the codebase.
 
 
 nlpaug augmenter
@@ -3382,8 +3385,8 @@ Installation
 When using >>`faker-file`_<< for automated tests in a large project
 with a lot of dependencies, the recommended way to install it is to
 carefully pick the dependencies required and further use requirements
-management package, like >>`pip-tools`_<<, to compile them into hashed
-set of packages working well together.
+management package, like pip-tools, to compile them into hashed set of
+packages working well together.
 
 For instance, if we only need DOCX and PDF support, your
 "requirements.in" file could look as follows:
@@ -4912,8 +4915,8 @@ Randomize the file format
 *See the full example* "here"
 
 
-Generating files from existing documents using NLP augmentation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Generating files from existing documents using augmentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See the following example:
 
@@ -4970,11 +4973,13 @@ could however narrow that list by providing "extensions" argument:
 ======================================================================
 
 Actual augmentation of texts is delegated to an abstraction layer of
-text augmenters. Currently, two augmenters are implemented. Default
-one is based on >>`textaugment`_<< (which is in its' turn based on
-nltk) is very lightweight and speedy, but produces less accurate
-results. Another one is based on nlpaug, which is way more
-sophisticated, but at the cost of speed.
+text augmenters. Currently, only one augmenter is implemented. Default
+one is based on Faker, is very lightweight and speedy, but produces
+less accurate results. In past two other aumenters existed: one based
+on >>`textaugment`_<<, another on nlpaug, which is way more
+sophisticated, but at the cost of speed and hard-to-maintain
+dependencies, due to which both were deprecated, but are not yet
+removed from the codebase.
 
 
 nlpaug augmenter
@@ -5701,8 +5706,8 @@ Refer to pre-commit for installation instructions.
 
 TL;DR:
 
-   pip install pipx --user  # Install pipx
-   pipx install pre-commit  # Install pre-commit
+   curl -LsSf https://astral.sh/uv/install.sh | sh  # Install uv
+   uv tool install pre-commit  # Install pre-commit
    pre-commit install  # Install pre-commit hooks
 
 Installing pre-commit will ensure you adhere to the project code
@@ -5727,8 +5732,8 @@ Requirements
 
 Requirements are compiled using uv.
 
-   make compile_requirements
-   make compile_requirements_upgrade
+   make compile-requirements
+   make compile-requirements_upgrade
 
 
 Virtual environment
@@ -5738,7 +5743,7 @@ You are advised to work in virtual environment.
 
 TL;DR:
 
-   python -m venv env
+   make create-venv
    make install
 
 
@@ -5750,6 +5755,11 @@ Check documentation.
 
 Testing
 -------
+
+Note:
+
+  Python code snippets in the documentation are tested using
+  >>`pytest-codeblock`_<<.
 
 Check testing.
 
@@ -5846,6 +5856,19 @@ below):
 * All backwards incompatible changes are mentioned in this document.
 
 
+0.19
+----
+
+2026-03-08
+
+* Deprecated NLPAug- and TextAugment-based augmenters, as both
+  libraries seem to have pour support with modern Python versions.
+  Introduced a simple FakerWordAugmenter as a default text-augmenter,
+  with no additional dependencies.
+
+* Tested against Python 3.13.
+
+
 0.18.4
 ------
 
@@ -5867,7 +5890,8 @@ below):
 
 2025-05-03
 
-* Switch to pytest-codeblock for testing documentation codeblocks.
+* Switch to >>`pytest-codeblock`_<< for testing documentation
+  codeblocks.
 
 * Move pytest, mypy and coverage configuration to *pyproject.toml*.
 
@@ -7047,7 +7071,21 @@ Package
               * Submodules
 
               * faker_file.providers.augment_file_from_dir.augmenters
-                .nlpaug_augmenter module
+                .faker_augmenter module
+
+                * "FakerWordAugmenter"
+
+                  * "FakerWordAugmenter.augment()"
+
+                  * "FakerWordAugmenter.augmentation_probability"
+
+                  * "FakerWordAugmenter.generator"
+
+                  * "FakerWordAugmenter.handle_kwargs()"
+
+                  * "FakerWordAugmenter.locale"
+
+                  * "FakerWordAugmenter.pool_size"
 
               * Module contents
 

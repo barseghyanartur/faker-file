@@ -151,7 +151,21 @@ Package
               * Submodules
 
               * faker_file.providers.augment_file_from_dir.augmenters
-                .nlpaug_augmenter module
+                .faker_augmenter module
+
+                * "FakerWordAugmenter"
+
+                  * "FakerWordAugmenter.augment()"
+
+                  * "FakerWordAugmenter.augmentation_probability"
+
+                  * "FakerWordAugmenter.generator"
+
+                  * "FakerWordAugmenter.handle_kwargs()"
+
+                  * "FakerWordAugmenter.locale"
+
+                  * "FakerWordAugmenter.pool_size"
 
               * Module contents
 

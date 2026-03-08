@@ -18,13 +18,14 @@ are *BSD*-, *Apache 2*-, *GPL* or *HPND* licensed.
 
 All licenses are mentioned below between the brackets.
 
-* Core package requires Python 3.9, 3.10, 3.11 or 3.12.
+* Core package requires Python 3.10, 3.11, 3.12, 3.13 or 3.14.
 
 * Faker (*MIT*) is the only required dependency.
 
 * Django (*BSD*) integration with factory_boy (*MIT*) has been tested
-  with "Django" starting from version 2.2 to 4.2 (although only
-  maintained versions of Django are currently being tested against).
+  with "Django" starting from version 2.2 to 5.1 (although only a
+  single maintained LTS version of Django is currently being tested
+  against).
 
 * "BMP", "GIF" and "TIFF" file support requires either just Pillow
   (*HPND*), or a combination of WeasyPrint (*BSD*), pdf2image (*MIT*),
@@ -845,7 +846,7 @@ Table of Contents
 
       * Randomize the file format
 
-    * Generating files from existing documents using NLP augmentation
+    * Generating files from existing documents using augmentation
 
     * nlpaug augmenter
 
@@ -1052,6 +1053,8 @@ Table of Contents
   * Issues
 
 * Release history and notes
+
+  * 0.19
 
   * 0.18.4
 
@@ -1357,7 +1360,21 @@ Table of Contents
                 * Submodules
 
                 * faker_file.providers.augment_file_from_dir.augmente
-                  rs.nlpaug_augmenter module
+                  rs.faker_augmenter module
+
+                  * "FakerWordAugmenter"
+
+                    * "FakerWordAugmenter.augment()"
+
+                    * "FakerWordAugmenter.augmentation_probability"
+
+                    * "FakerWordAugmenter.generator"
+
+                    * "FakerWordAugmenter.handle_kwargs()"
+
+                    * "FakerWordAugmenter.locale"
+
+                    * "FakerWordAugmenter.pool_size"
 
                 * Module contents
 
