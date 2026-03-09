@@ -3749,6 +3749,20 @@ class AugmentRandomImageFromDirProviderTestCase(unittest.TestCase):
         self.assertTrue(file.data["storage"].exists(file))
 
 
+class WebPProviderTestCase(unittest.TestCase):
+    """WebpFileProvider and GraphicWebpFileProvider test case."""
+
+    def test_webp_file(self) -> None:
+        """Test WebP file generation."""
+        _file = WebpFileProvider(FAKER).webp_file()
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+    def test_graphic_webp_file(self) -> None:
+        """Test WebP file generation."""
+        _file = GraphicWebpFileProvider(FAKER).graphic_webp_file()
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+
 class XMLFileProviderTestCase(unittest.TestCase):
     """XMLFileProvider test case."""
 

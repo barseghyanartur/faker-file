@@ -28,7 +28,7 @@ check-release:
 	source $(VENV) && twine check dist/*
 
 auto-build-docs:
-	sphinx-autobuild docs docs/_build/html
+	source $(VENV) && sphinx-autobuild docs docs/_build/html --port 5001
 
 rebuild-docs: clean
 	sphinx-apidoc src/faker_file --full -o docs -H 'faker-file' -A 'Artur Barseghyan <artur.barseghyan@gmail.com>' -f -d 20
@@ -209,12 +209,18 @@ docker-test: docker-build
 # Usage:
 #  make docker-test-env ENV=py312-django42-pathy0110-sqlalchemy
 #  make docker-test-env ENV=py313-django42-pathy0110-sqlalchemy
+#  make docker-test-env ENV=py313-django42-pathy0110-sqlalchemy TEST=WebPProviderTestCase
+#  make docker-test-env ENV=py313-django42-pathy0110-sqlalchemy TEST=WebPProviderTestCase::test_webp_file
 docker-test-env: docker-build
 	@if [ -z "$(ENV)" ]; then \
-		echo "Usage: make docker-test-env ENV=py312-django42-pathy0110-sqlalchemy"; \
+		echo "Usage: make docker-test-env ENV=py312-django42-pathy0110-sqlalchemy [TEST=TestClass or TestClass::test_method]"; \
 		exit 1; \
 	fi
-	docker compose run --rm tox -e $(ENV)
+	@if [ -n "$(TEST)" ]; then \
+		docker compose run --rm tox -e $(ENV) -- -k $(TEST); \
+	else \
+		docker compose run --rm tox -e $(ENV); \
+	fi
 
 docker-test-docs: docker-build
 	docker compose run --rm tox -e py310-docs,py311-docs,py312-docs,py313-docs
