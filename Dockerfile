@@ -11,9 +11,11 @@ ENV PYTHONUNBUFFERED=1
 # System dependencies matching GitHub CI (ubuntu-22.04).
 # default-jre-headless is required by tika (used in data-integrity tests);
 # GitHub-hosted runners have Java pre-installed.
+# xvfb provides virtual X server for wkhtmltoimage in headless environment.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     wkhtmltopdf \
+    xvfb \
     libpango-1.0-0 \
     libharfbuzz0b \
     libpangoft2-1.0-0 \
@@ -28,6 +30,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Point Python's SSL module to the system CA bundle.
 # python-build-standalone (installed by uv) may not locate it automatically.
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
+# Set up xvfb for headless wkhtmltoimage
+ENV DISPLAY=:99
+ENV XDG_RUNTIME_DIR=/tmp/runtime-root
 
 # Copy uv binary from the official uv image (avoids network installer issues)
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
@@ -46,7 +52,13 @@ COPY . .
 
 # Pre-create directories required by tests
 RUN mkdir -p examples/django_example/project/media/ \
-             examples/django_example/project/static/
+             examples/django_example/project/static/ && \
+    mkdir -p /tmp/runtime-root && \
+    chmod 0700 /tmp/runtime-root
 
-ENTRYPOINT ["tox"]
+# Wrapper script to start xvfb and run tox
+RUN echo '#!/bin/bash\nXvfb :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset &\nXVFB_PID=$!\nsleep 2\nexec tox "$@"' > /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD []

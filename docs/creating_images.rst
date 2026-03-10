@@ -54,6 +54,12 @@ The following image generators are available.
 - ``WeasyPrintImageGenerator``, built on top of the `WeasyPrint`_.
   Easy to work with. Supports formats that `imgkit`_ does not.
 
+.. note:: 
+
+    Unfortunately, `wkhtmltopdf`_ library doesn't have a stable support
+    for WEBP format. On some systems, creating of WEBP using `wkhtmltopdf`_
+    will fail.
+
 Building mixed-content images using `imgkit`_
 ---------------------------------------------
 While `imgkit`_ generator is heavier and has `wkhtmltopdf`_ as a system

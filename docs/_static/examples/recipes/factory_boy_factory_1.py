@@ -19,7 +19,6 @@ from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.rtf_file import RtfFileProvider
 from faker_file.providers.svg_file import SvgFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
-from faker_file.providers.webp_file import WebpFileProvider
 from faker_file.providers.xlsx_file import XlsxFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
 
@@ -46,7 +45,6 @@ Faker.add_provider(PptxFileProvider)
 Faker.add_provider(RtfFileProvider)
 Faker.add_provider(SvgFileProvider)
 Faker.add_provider(TxtFileProvider)
-Faker.add_provider(WebpFileProvider)
 Faker.add_provider(XlsxFileProvider)
 Faker.add_provider(ZipFileProvider)
 
@@ -82,7 +80,6 @@ class UploadFactory(DjangoModelFactory):
         rtf_file = Trait(file=Faker("rtf_file", storage=STORAGE))
         svg_file = Trait(file=Faker("svg_file", storage=STORAGE))
         txt_file = Trait(file=Faker("txt_file", storage=STORAGE))
-        webp_file = Trait(file=Faker("webp_file", storage=STORAGE))
         xlsx_file = Trait(file=Faker("xlsx_file", storage=STORAGE))
         zip_file = Trait(file=Faker("zip_file", storage=STORAGE))
 
