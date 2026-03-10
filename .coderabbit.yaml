@@ -1,0 +1,11 @@
+language: en
+reviews:
+  profile: chill
+  base_branches:
+    - main
+    - dev
+  path_filters:
+    include:
+      - "**/*"
+    exclude:
+      - "**/*.lock"
