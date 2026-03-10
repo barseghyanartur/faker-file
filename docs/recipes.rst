@@ -876,7 +876,7 @@ Correspondent ``factory_boy`` factory
 
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_1.py
     :language: python
-    :lines: 1-87
+    :lines: 1-84
     :name: test_factory_boy_factory_1
 
 And then somewhere in your code:
@@ -897,13 +897,11 @@ And then somewhere in your code:
 
 Randomize provider choice
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-.. pytestmark: xfail
-
 .. pytestmark: django_db
 
 .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
     :language: python
-    :lines: 1, 4, 6, 27, 30-49, 55-95
+    :lines: 1-2, 4, 6, 26-28, 29-47, 54-92
     :name: test_factory_boy_factory_2
 
 And then somewhere in your code:
@@ -914,7 +912,7 @@ And then somewhere in your code:
 
     .. literalinclude:: _static/examples/recipes/factory_boy_factory_2.py
         :language: python
-        :lines: 98-
+        :lines: 95-
         :name: test_factory_boy_factory_2b
 
     *See the full example*

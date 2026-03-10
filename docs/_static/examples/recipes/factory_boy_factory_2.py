@@ -20,7 +20,6 @@ from faker_file.providers.pptx_file import PptxFileProvider
 from faker_file.providers.rtf_file import RtfFileProvider
 from faker_file.providers.svg_file import SvgFileProvider
 from faker_file.providers.txt_file import TxtFileProvider
-from faker_file.providers.webp_file import WebpFileProvider
 from faker_file.providers.xlsx_file import XlsxFileProvider
 from faker_file.providers.zip_file import ZipFileProvider
 from faker_file.storages.filesystem import FileSystemStorage
@@ -44,7 +43,6 @@ FAKER.add_provider(PptxFileProvider)
 FAKER.add_provider(RtfFileProvider)
 FAKER.add_provider(SvgFileProvider)
 FAKER.add_provider(TxtFileProvider)
-FAKER.add_provider(WebpFileProvider)
 FAKER.add_provider(XlsxFileProvider)
 FAKER.add_provider(ZipFileProvider)
 
@@ -73,7 +71,6 @@ def random_file_generator(*args, **kwargs):
             "rtf_file",
             "svg_file",
             "txt_file",
-            "webp_file",
             "xlsx_file",
             "zip_file",
         ]
