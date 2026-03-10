@@ -3763,6 +3763,23 @@ class WebPProviderTestCase(unittest.TestCase):
         self.assertTrue(FS_STORAGE.exists(_file))
 
 
+class WebPProviderTestCase(unittest.TestCase):
+    """WebpFileProvider and GraphicWebpFileProvider test case."""
+
+    def test_webp_file(self) -> None:
+        """Test WebP file generation."""
+        # Use PIL generator since wkhtmltoimage doesn't support WebP output
+        _file = WebpFileProvider(FAKER).webp_file(
+            image_generator_cls=PIL_IMAGE_GENERATOR
+        )
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+    def test_graphic_webp_file(self) -> None:
+        """Test WebP file generation."""
+        _file = GraphicWebpFileProvider(FAKER).graphic_webp_file()
+        self.assertTrue(FS_STORAGE.exists(_file))
+
+
 class XMLFileProviderTestCase(unittest.TestCase):
     """XMLFileProvider test case."""
 
