@@ -158,8 +158,8 @@ Update when:
 AGENTS.md uses executable code blocks with `name=<test_name>` attributes:
 
 ````markdown
-<!-- pytestfixture: my_fixture -->
-<!-- TODO: Replace my_fixture with your actual fixture name from conftest.py -->
+<!-- pytestfixture: Faker -->
+<!-- TODO: Replace Faker with your actual fixture name from conftest.py -->
 ```python name=test_example
 from faker_file.providers.txt_file import TxtFileProvider
 
@@ -173,7 +173,7 @@ All code examples in README.rst (and other reStructuredText files) should be
 runnable tests. Use the `:name:` attribute to prefix the block name with `test_`:
 
 ```rst
-.. pytestfixture: my_fixture
+.. pytestfixture: Faker
 .. code-block:: python
     :name: test_feature_name
 

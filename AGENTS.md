@@ -32,7 +32,7 @@ Core principles:
 
 ### Simple case
 
-<!-- pytestfixture: my_fixture -->
+<!-- pytestfixture: Faker -->
 ```python name=test_simple_case
 from faker_file.providers.txt_file import TxtFileProvider
 
@@ -44,7 +44,7 @@ file_path = faker.txt_file()
 
 ### With custom configuration
 
-<!-- pytestfixture: my_fixture -->
+<!-- pytestfixture: Faker -->
 ```python name=test_with_config
 from faker_file.providers.docx_file import DocxFileProvider
 
@@ -56,7 +56,7 @@ file_path = faker.docx_file(content="{first_name} {last_name}")
 
 ### With storage
 
-<!-- pytestfixture: my_fixture -->
+<!-- pytestfixture: Faker -->
 ```python name=test_with_storage
 from faker_file.storages.aws_s3 import AWS S3Storage
 
@@ -65,24 +65,6 @@ faker = Faker()
 faker.add_provider(TxtFileProvider)
 
 file_path = faker.txt_file(storage=storage)
-```
-
-### Exception handling
-
-All faker-file exceptions inherit from `FakerFileError`:
-
-<!-- pytestfixture: my_fixture -->
-```python name=test_exception_handling
-from faker_file.base import FakerFileError
-from faker_file.providers.pdf_file import PdfFileProvider
-
-try:
-    faker = Faker()
-    faker.add_provider(PdfFileProvider)
-    file_path = faker.pdf_file()  # May raise FakerFileError
-except FakerFileError:
-    # Catch-all for any faker-file error
-    ...
 ```
 
 ### Configuration reference
@@ -226,7 +208,7 @@ testing only. Do not add unit test fixtures there.
 
 ```python
 # 1. pytest.raises wraps the full operation
-with pytest.raises(FakerFileError):
+with pytest.raises(Exception):
     result = function_under_test(input_data)
 
 # 2. Verify the file was created

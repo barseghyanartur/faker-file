@@ -139,7 +139,7 @@ test = [
     "openai",
     "parameterized",
     "pytest",
-    "pytest-codeblock>=0.5.7",
+    "pytest-codeblock>=0.5.8",
     "pytest-cov",
     "pytest-django",
     "pytest-ordering",
