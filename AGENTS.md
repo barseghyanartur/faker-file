@@ -57,10 +57,12 @@ file_path = faker.docx_file(content="{first_name} {last_name}")
 ### With storage
 
 <!-- pytestfixture: Faker -->
+<!-- pytestfixture: aws_mock -->
 ```python name=test_with_storage
-from faker_file.storages.aws_s3 import AWS S3Storage
+from faker_file.providers.txt_file import TxtFileProvider
+from faker_file.storages.aws_s3 import AWSS3Storage
 
-storage = S3Storage(bucket_name="my-test-bucket")
+storage = AWSS3Storage(bucket_name="my-test-bucket")
 faker = Faker()
 faker.add_provider(TxtFileProvider)
 
