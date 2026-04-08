@@ -634,6 +634,8 @@ See the following example:
 
 .. container:: jsphinx-download
 
+    .. pytestmark: flaky
+
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_1.py
         :language: python
         :lines: 2-4, 9, 15, 22-
@@ -664,6 +666,8 @@ By default, all supported files are eligible for random selection. You could
 however narrow that list by providing ``extensions`` argument:
 
 .. container:: jsphinx-download
+
+    .. pytestmark: flaky
 
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_2.py
         :language: python
@@ -700,6 +704,8 @@ Some well working options for ``model_path`` are:
 
 .. container:: jsphinx-download
 
+    .. pytestmark: flaky
+
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_3.py
         :language: python
         :lines: 5-7, 25-
@@ -715,6 +721,8 @@ and check `Textual augmenters` examples.
 textaugment augmenter
 ~~~~~~~~~~~~~~~~~~~~~
 .. container:: jsphinx-download
+
+    .. pytestmark: flaky
 
     .. literalinclude:: _static/examples/recipes/augment_file_from_dir_4.py
         :language: python
