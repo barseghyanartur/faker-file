@@ -3,6 +3,7 @@ name = "faker-file"
 version = "0.19.1"
 description = "Generate files with fake data."
 readme = {file = "README.rst", content-type = "text/x-rst"}
+license = "MIT"
 license-files = ["LICENSE.rst"]
 authors = [
     {name = "Artur Barseghyan", email = "artur.barseghyan@gmail.com"},
