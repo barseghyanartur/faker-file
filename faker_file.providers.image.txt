@@ -437,13 +437,13 @@ class faker_file.providers.image.pil_generator.PilImageGenerator(**kwargs)
 
    combine_images_vertically()
 
-   create_image_instance(height: int | None = None) -> <module 'PIL.Image' from '/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/PIL/Image.py'>
+   create_image_instance(height: int | None = None) -> <module 'PIL.Image' from '/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py'>
 
    encoding: str = 'utf-8'
 
-   classmethod find_max_fit_for_multi_line_text(draw: <module 'PIL.ImageDraw' from '/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/PIL/ImageDraw.py'>, lines: ~typing.List[str], font: <module 'PIL.ImageFont' from '/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/PIL/ImageFont.py'>, max_width: int)
+   classmethod find_max_fit_for_multi_line_text(draw: <module 'PIL.ImageDraw' from '/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/ImageDraw.py'>, lines: ~typing.List[str], font: <module 'PIL.ImageFont' from '/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/ImageFont.py'>, max_width: int)
 
-   classmethod find_max_fit_for_single_line_text(draw: <module 'PIL.ImageDraw' from '/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/PIL/ImageDraw.py'>, text: str, font: <module 'PIL.ImageFont' from '/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/PIL/ImageFont.py'>, max_width: int) -> int
+   classmethod find_max_fit_for_single_line_text(draw: <module 'PIL.ImageDraw' from '/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/ImageDraw.py'>, text: str, font: <module 'PIL.ImageFont' from '/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/ImageFont.py'>, max_width: int) -> int
 
    font: str = 'Pillow/Tests/fonts/DejaVuSans.ttf'
 
@@ -582,7 +582,7 @@ class faker_file.providers.image.weasyprint_generator.WeasyPrintImageGenerator(*
           )
       )
 
-   create_image_instance(width: int | None = None, height: int | None = None) -> <module 'PIL.Image' from '/opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages/PIL/Image.py'>
+   create_image_instance(width: int | None = None, height: int | None = None) -> <module 'PIL.Image' from '/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py'>
 
    encoding: str = 'utf-8'
 
